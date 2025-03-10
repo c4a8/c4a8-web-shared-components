@@ -6,6 +6,7 @@ class StickyScroller {
   static rootSelector = '.is-sticky-scroller';
   static instances = [];
 
+  // TODO update to work with height instead of clip path for performance issues
   constructor(root) {
     this.root = root;
 

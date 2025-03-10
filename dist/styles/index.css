@@ -47470,6 +47470,7 @@ shape {
 
 .is-sticky-scroller[data-sticky-scroller].is-sticky {
   position: fixed !important;
+  contain: paint;
 }
 .modal--open .is-sticky-scroller[data-sticky-scroller].is-sticky {
   position: relative !important;

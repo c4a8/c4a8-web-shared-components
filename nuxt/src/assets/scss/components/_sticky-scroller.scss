@@ -2,6 +2,7 @@
   &[data-sticky-scroller] {
     &.is-sticky {
       position: fixed !important;
+      contain: paint;
 
       .modal--open & {
         position: relative !important;
