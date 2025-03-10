@@ -261,7 +261,7 @@ class StickyScroller {
     const nextElement = this.spacer.nextSibling;
     const propertyName = '--color-sticky-scroller';
 
-    if (!nextElement) return;
+    if (!nextElement || nextElement.nodeType !== Node.ELEMENT_NODE) return;
 
     const backgroundColor = Tools.getElementBgColor(nextElement) || Tools.getElementBgColor(nextElement.firstChild);
 
