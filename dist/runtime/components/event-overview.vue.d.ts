@@ -5,7 +5,7 @@ declare namespace _default {
         defaultLimit: number;
         maxLimitDefault: number;
         showMore: boolean;
-        files: never[];
+        filesValue: never[];
     };
     namespace computed {
         function classList(): any;
@@ -27,7 +27,7 @@ declare namespace _default {
         function updatedEvent(event: any): any;
         function isVisible(index: any): any;
         function handleShowMore(): void;
-        function updateFiles(files: any): boolean;
+        function updateFiles(files: any): true | undefined;
     }
     namespace props {
         let events: ArrayConstructor;

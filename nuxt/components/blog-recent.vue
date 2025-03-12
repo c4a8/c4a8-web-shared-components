@@ -242,7 +242,20 @@ export default {
       return post.external || post.cta?.external ? '_blank' : '_self';
     },
     postUrl(post) {
-      return post?.cta?.href || post.url;
+      let url = post?.cta?.href || post.url;
+
+      if (url.includes('/posts/')) {
+        const urlParts = url.split('/posts/');
+        const dateAndSlug = urlParts[1].split('-');
+        const year = dateAndSlug[0];
+        const month = dateAndSlug[1];
+        const slug = dateAndSlug.slice(3).join('-');
+        const category = post.categories && post.categories.length > 0 ? `${post.categories[0].toLowerCase()}/` : '';
+
+        url = `/blog/${category}${year}/${month}/${slug}/`;
+      }
+
+      return url;
     },
     excerpt(post) {
       return post.excerpt || post.hero?.subline;
