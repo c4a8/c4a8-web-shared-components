@@ -76,7 +76,7 @@ export default {
   },
   computed: {
     successStorySlider() {
-      return this.successStory.videos.length > 2;
+      return this.successStory?.videos?.length > 2;
     },
     successStoryLevel() {
       return this.level || 'h2';
