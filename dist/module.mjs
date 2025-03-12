@@ -58,7 +58,7 @@ const module = defineNuxtModule({
     _nuxt.options.sitemap = sitemapOptions;
     await installModule("@nuxtjs/sitemap");
     const runtimeDir = resolve(__dirname, "./runtime");
-    const optimizeDeps = [runtimeDir, "node-html-parser", "jquery", "slick-carousel"];
+    const optimizeDeps = [runtimeDir, "node-html-parser", "jquery", "slick-carousel", "vue3-lottie"];
     _nuxt.options.build.transpile = _nuxt.options.build.transpile || [];
     _nuxt.options.build.transpile.push(...optimizeDeps);
     _nuxt.options.vite.optimizeDeps ||= {};
