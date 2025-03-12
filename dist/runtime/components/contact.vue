@@ -188,6 +188,7 @@ export default {
     styleObject() {
       return {
         '--color-contact-background': this.bgColor || this.contact?.bgColor,
+        '--color-contact-quote-background': this.bgColor || this.contact?.bgColor,
         '--contact-copy-color': this.color || this.contact?.color,
         '--color-contact-box-background': this.boxBgColor || this.contact?.boxBgColor,
         '--contact-box-copy-color': this.boxColor || this.contact?.boxColor,
