@@ -35,6 +35,16 @@ footer {
   }
 
   .footer__socials {
+    .btn {
+      color: var(--color-copy-light);
+      background-color: rgba(247, 250, 255, 0.1);
+
+      &:hover {
+        color: var(--color-copy);
+        background-color: var(--color-white);
+      }
+    }
+
     .fab {
       font-size: 1.6em;
     }

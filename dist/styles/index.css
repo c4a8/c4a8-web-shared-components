@@ -29898,7 +29898,7 @@ body.compensate-for-scrollbar {
   font-style: normal;
   font-weight: 400;
   font-display: block;
-  src: url(fa-brands-400.woff2) format("woff2"), url(fa-brands-400.ttf) format("truetype");
+  src: url("../../assets/fonts/fa-brands-400.woff2") format("woff2"), url("../../assets/fonts/fa-brands-400.ttf") format("truetype");
 }
 .fa-brands,
 .fab {
@@ -41888,6 +41888,14 @@ footer {
   footer:not(.footer--corporate) .footer__partners {
     margin-bottom: var(--footer-spacing-large);
   }
+}
+footer .footer__socials .btn {
+  color: var(--color-copy-light);
+  background-color: rgba(247, 250, 255, 0.1);
+}
+footer .footer__socials .btn:hover {
+  color: var(--color-copy);
+  background-color: var(--color-white);
 }
 footer .footer__socials .fab {
   font-size: 1.6em;

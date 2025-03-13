@@ -1,3 +1,1 @@
-export function useContactData(contactData: any): {
-    contactData: import("vue").ComputedRef<any>;
-};
+export function useContactData(contactData: any): import("vue").ComputedRef<any>;
