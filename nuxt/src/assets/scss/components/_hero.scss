@@ -223,7 +223,7 @@
 
     .hero__content {
       @include media-breakpoint-up(lg) {
-        min-height: auto;
+        min-height: 400px;
       }
     }
   }
