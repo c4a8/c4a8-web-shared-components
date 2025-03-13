@@ -1,6 +1,6 @@
 <template>
   <div :class="videoClass" :onclick="onClick" ref="root" data-utility-animation-ref="root">
-    <wrapper class="row align-items-end no-gutters" :hideContainer="!isVariantRow">
+    <wrapper classes="row align-items-end no-gutters" :hideContainer="!isVariantRow">
       <div
         :class="videoPlayerClass"
         :id="videoId"
