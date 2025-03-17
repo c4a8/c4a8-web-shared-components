@@ -6,6 +6,7 @@
     @click="handleClick"
     :data-utility-animation-step="utilityAnimationStep"
     :style="style"
+    ref="root"
   >
     <template v-if="large">
       <div class="row no-gutters">
@@ -146,6 +147,7 @@
 <script>
 import Tools from '../utils/tools.js';
 import Events from '../utils/events.js';
+import UtilityAnimation from '../utils/utility-animation.js';
 
 export default {
   tagName: 'card',
@@ -273,6 +275,11 @@ export default {
     blogView.subscribe((view) => {
       this.activeView = view;
     });
+  },
+  mounted() {
+    if (!this.hasAnimationValue) return;
+
+    UtilityAnimation.init([this.$refs.root]);
   },
   methods: {
     isTags(target) {
