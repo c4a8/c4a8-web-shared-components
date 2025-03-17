@@ -624,6 +624,12 @@ class Tools {
     element.setAttribute('data-price-formatted', '');
     element.innerHTML = formattedResult;
   }
+
+  static getBlogImgPath() {
+    const config = Tools.getConfig();
+
+    return config.public?.blogImagePath || 'blog/heads/';
+  }
 }
 
 export default Tools;
