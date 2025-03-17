@@ -13,12 +13,8 @@ export default defineNuxtPlugin((_nuxtApp) => {
 
   addRouteMiddleware(
     'global-collection-layouts',
-    async () => {
-      // TODO fix cleanPath issue here
-      // const route = useRoute();
-      // const cleanPath = route.path.substring(0, route.path.length - 1);
-
-      // const cleanPath = '';
+    async (to) => {
+      const cleanPath = to.path;
 
       // TODO adjust this so it works with the collections defined in your nuxt.config.js
       const { data } = await useAsyncData('events', () =>
@@ -51,7 +47,7 @@ export default defineNuxtPlugin((_nuxtApp) => {
 
   if (process.client) {
     // TODO read this from package.json . could be an issue because of the moving and the relative location of the file
-    console.debug('Shared Components v.0.1.114');
+    console.debug('Shared Components v.0.1.116');
 
     import('jquery')
       .then((module) => {

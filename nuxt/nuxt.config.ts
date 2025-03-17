@@ -26,14 +26,13 @@ export default defineNuxtConfig({
     locales: ['de', 'en', 'es'],
     vueI18n: './i18n.config.js',
   },
-  // content: {
-  //   markdown: {
-  //     anchorLinks: false,
-  //   },
-  //   locales: ['de', 'en'],
-  //   defaultLocale: 'de',
-  // },
+  content: {
+    markdown: {
+      anchorLinks: false,
+    },
+    locales: ['de', 'en', 'es'],
+    defaultLocale: 'de',
+  },
 });
 
 // TODO try to fix nuxt content inside storybook. right now query is not working and returns a 404
-// TODO fix lottie inside storybook
