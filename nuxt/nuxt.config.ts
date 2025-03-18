@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     '@nuxtjs/storybook',
     '@nuxt/content',
     '@nuxtjs/i18n',
+    '@pinia/nuxt',
     // [
     //   'shared-components',
     //   {

@@ -42,6 +42,12 @@ const directories = [
     extensions: ['.js'],
     recursive: true,
   },
+  {
+    source: path.join(__dirname, '../stores'),
+    destination: path.join(__dirname, '../src/runtime/stores'),
+    extensions: ['.js'],
+    recursive: true,
+  },
 ];
 
 const copyFiles = (source, destination, extensions, recursive) => {
