@@ -2,7 +2,7 @@ const FooterData = {
   bgColor: 'var(--color-midnight)',
   mail: 'info@glueckkanja.com',
   offices: ['Germany', 'Australia', 'Austria', 'Spain', 'Switzerland'],
-  copyright: '2024 glueckkanja AG. All rights reserved.',
+  copyright: '2025 glueckkanja AG. All rights reserved.',
   logos: [
     {
       img: '/logos/gk-Logo-sw.svg',
