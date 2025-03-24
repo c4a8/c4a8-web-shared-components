@@ -536,24 +536,6 @@ class Tools {
     return window.location.hash;
   }
 
-  static getConfig() {
-    let config = {};
-
-    if (typeof useRuntimeConfig === 'function') {
-      const runetimeConfig = useRuntimeConfig();
-
-      config = { ...runetimeConfig };
-    }
-
-    return config;
-  }
-
-  static getEnvironment() {
-    const config = Tools.getConfig();
-
-    return config?.public?.environment || 'development';
-  }
-
   static getOrigin() {
     let origin = '';
 
@@ -625,9 +607,7 @@ class Tools {
     element.innerHTML = formattedResult;
   }
 
-  static getBlogImgPath() {
-    const config = Tools.getConfig();
-
+  static getBlogImgPath(config) {
     return config.public?.blogImagePath || 'blog/heads/';
   }
 }

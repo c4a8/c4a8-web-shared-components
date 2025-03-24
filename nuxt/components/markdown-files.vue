@@ -14,7 +14,7 @@ export default {
       let eventCount = 0;
 
       for (const item of this.list) {
-        const { description, customExcerpt, _path, date, moment, _dir, hideInRecent, webcast, ...rest } = item;
+        const { seo, customExcerpt, path, date, moment, _dir, hideInRecent, webcast, meta, ...rest } = item;
 
         if (this.isRecent && (hideInRecent || (_dir === 'events' && webcast !== true))) {
           continue;
@@ -27,21 +27,21 @@ export default {
           eventCount++;
         }
 
-        const filteredRest = Object.keys(rest)
+        const filteredRest = Object.keys({ ...rest, ...meta })
           .filter((key) => !this.hideData.includes(key))
           .reduce((obj, key) => {
-            obj[key] = rest[key];
+            obj[key] = meta?.[key] || rest[key];
             return obj;
           }, {});
 
-        const dateValue = this.cleanDate(this.isDate(moment) ? moment : date ? date : this.extractDate(_path));
+        const dateValue = this.cleanDate(this.isDate(moment) ? moment : date ? date : this.extractDate(path));
         const dateValueOrFallback = dateValue ? dateValue : '2000-01-01';
 
         updatedList.push({
-          url: _path,
+          url: path,
           date: dateValueOrFallback,
           moment: dateValueOrFallback,
-          excerpt: customExcerpt || description,
+          excerpt: customExcerpt || seo?.description,
           ...filteredRest,
         });
       }

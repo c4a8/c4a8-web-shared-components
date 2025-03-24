@@ -2,11 +2,11 @@
 
 <script setup>
 import { useHead } from '#imports';
+import useEnvironment from '../composables/useEnvironment';
+import useConfig from '../composables/useConfig';
 
-import Tools from '../utils/tools';
-
-if (Tools.getEnvironment() !== 'development') {
-  const config = Tools.getConfig();
+if (useEnvironment() !== 'development') {
+  const config = useConfig();
   const googleTagManagerId = config?.public?.googleTagManagerId || 'NO_ID_PROVIDED';
   const googleTagManagerDomain = config?.public?.googleTagManagerDomain || 'NO_DOMAIN_PROVIDED';
 

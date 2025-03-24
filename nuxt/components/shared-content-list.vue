@@ -1,38 +1,48 @@
 <template>
-  <ContentList :query="localeQuery" v-if="!isStorybook">
-    <template #default="{ list }">
-      <slot v-bind:list="list" />
-    </template>
-    <template #not-found><div></div></template>
-  </ContentList>
+  <template v-if="!isStorybook">
+    <slot v-bind:list="list" />
+  </template>
   <slot v-bind:list="dataList" v-else></slot>
 </template>
 
-<script>
+<script setup>
 import Tools from '../utils/tools.js';
 import { useI18n } from 'vue-i18n';
+import { computed } from 'vue';
+import { useAsyncData, queryCollection } from '#imports';
 
-export default {
-  name: 'SharedContentList',
-  computed: {
-    isStorybook() {
-      return Tools.isStorybook();
-    },
-    localeQuery() {
-      const { locale } = useI18n();
+const props = defineProps({
+  query: {
+    type: Object,
+    required: true,
+  },
+  dataList: {
+    type: Array,
+    default: () => [],
+  },
+});
 
-      return {
-        ...this.query,
-        where: {
-          ...this.query.where,
-          _locale: locale.value,
-        },
-      };
-    },
+const isStorybook = computed(() => Tools.isStorybook());
+
+const { locale } = useI18n();
+
+// TODO move query.path to collectionName and remove /
+
+const localeQuery = computed(() => ({
+  ...props.query,
+  where: {
+    ...props.query.where,
   },
-  props: {
-    query: Object,
-    dataList: Array,
-  },
-};
+}));
+
+const { data: list } = await useAsyncData('content-list', () => {
+  const collectionName = 'content_' + locale.value;
+
+  const query = queryCollection(collectionName);
+
+  if (localeQuery.value.where && Object.keys(localeQuery.value.where).length > 0)
+    return query.where(localeQuery.value.where).all();
+
+  return query.all();
+});
 </script>
