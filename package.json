@@ -36,8 +36,8 @@
     "vue": "^3.4.37"
   },
   "dependencies": {
-    "@nuxtjs/sitemap": "^6.1.5",
     "@nuxt/image": "^1.9.0",
+    "@nuxtjs/sitemap": "^7.2.9",
     "@types/jquery": "^3.5.32",
     "autoprefixer": "^10.4.20",
     "bootstrap": "^4.5.3",
@@ -46,6 +46,7 @@
     "ion-rangeslider": "^2.3.1",
     "jquery": "^3.7.1",
     "node-html-parser": "^6.1.13",
+    "nuxt": "^3.16.1",
     "nuxt-seo-utils": "^6.0.3",
     "postcss-merge-rules": "^7.0.4",
     "postcss-nested": "^6.2.0",
@@ -57,7 +58,7 @@
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.9.0",
-    "@nuxt/kit": "^3.14.159",
+    "@nuxt/kit": "^3.16.1",
     "@storybook/addon-essentials": "^8.2.9",
     "@storybook/addon-interactions": "^8.2.9",
     "@storybook/addon-links": "^8.2.9",

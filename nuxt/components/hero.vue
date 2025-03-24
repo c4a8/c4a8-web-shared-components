@@ -76,7 +76,7 @@
 </template>
 
 <script>
-import { useHead } from 'unhead';
+import { useHead } from '@unhead/vue';
 import { useAppStore } from '../stores/app';
 
 import Tools from '../utils/tools.js';
