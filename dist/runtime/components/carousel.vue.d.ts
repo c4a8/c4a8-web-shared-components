@@ -6,8 +6,8 @@ declare namespace _default {
     };
     namespace computed {
         function jsonItems(): any;
-        function classList(): any;
-        function style(): any;
+        function classList(): string[];
+        function style(): string[];
     }
     function mounted(): void;
     function beforeDestroy(): void;

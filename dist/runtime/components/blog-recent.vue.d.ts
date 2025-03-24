@@ -3,8 +3,11 @@ declare namespace _default {
         export { MarkdownFiles };
     }
     let tagName: string;
+    function setup(): {
+        config: {};
+    };
     namespace computed {
-        function classList(): any;
+        function classList(): (string | (() => any))[];
         function showCompoent(): true | (() => {
             limit: any;
             sort: {

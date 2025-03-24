@@ -2,7 +2,7 @@ declare namespace _default {
     let tagName: string;
     namespace computed {
         function otherId(): string;
-        function required(): any;
+        function required(): "required" | null;
         function idValue(): any;
     }
     namespace methods {

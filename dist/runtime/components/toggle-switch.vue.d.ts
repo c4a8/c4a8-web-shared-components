@@ -30,7 +30,7 @@ declare namespace _default {
         function defaultPlan(): any;
         function toggleSwitchActive(): any;
         function toggleSwitchLimitLeftClass(): "" | "toggle-switch__text--right";
-        function toggleSwitchClasses(): any;
+        function toggleSwitchClasses(): string[];
     }
 }
 export default _default;

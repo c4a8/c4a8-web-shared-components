@@ -1,7 +1,7 @@
 declare namespace _default {
     let tagName: string;
     namespace computed {
-        function classList(): any;
+        function classList(): string[];
         function limitedResults(): any;
     }
     function data(): {
@@ -12,7 +12,7 @@ declare namespace _default {
         searchExpanded: boolean;
     };
     namespace methods {
-        function handleEnter(): any;
+        function handleEnter(): void | Promise<void>;
         function handleSearch(): void;
         function initSearchEngine(): void;
         function handleSearchBar(): void;

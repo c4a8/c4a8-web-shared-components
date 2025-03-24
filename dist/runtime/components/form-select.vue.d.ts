@@ -1,7 +1,7 @@
 declare namespace _default {
     let tagName: string;
     namespace computed {
-        function required(): any;
+        function required(): "required" | null;
     }
     namespace props {
         let options: ArrayConstructor;

@@ -8,7 +8,7 @@ declare namespace _default {
         iconHandPause: string;
     };
     namespace computed {
-        function style(): any;
+        function style(): string;
         function stroke(): any;
     }
     namespace props {

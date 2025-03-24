@@ -13,14 +13,14 @@ declare namespace _default {
     };
     let expose: string[];
     namespace computed {
-        function classList(): (string | (() => any))[];
-        function classListComponent(): any;
+        function classList(): (string | (() => any[]))[];
+        function classListComponent(): any[];
         function isLottie(): boolean;
         function jsonLottieData(): any;
         function jsonLottieSettingsData(): any;
-        function isCloudinary(): any;
+        function isCloudinary(): boolean;
         function source(): any;
-        function loading(): any;
+        function loading(): "lazy" | null;
         function crossOriginValue(): any;
         function hasPictureTag(): any;
         function pictureWrapperClassList(): any[];
@@ -35,18 +35,21 @@ declare namespace _default {
     namespace methods {
         function getSourceSetMedia(srcSet: any): any;
         function canGenerateSrcSet(): any;
-        function getSetup(): any;
+        function getSetup(): {
+            preset: any;
+            transformationsString: string;
+        };
         function getPreset(): any;
-        function hasProtocol(): any;
+        function hasProtocol(): boolean;
         function getBaseAssetPath(): any;
-        function getCloudinaryBasePathLink(srcSet: any): any;
-        function getCloudinaryLink(): any;
+        function getCloudinaryBasePathLink(srcSet: any): string;
+        function getCloudinaryLink(): string;
         function getCloudinaryLinkWithTransformation(): string;
         function loadImage(link: any): void;
         function getTransformationString(preset: any): string;
         function buildSrcSet(preset: any, transformationsString: any): void;
-        function isGif(): any;
-        function isSvg(): any;
+        function isGif(): boolean | undefined;
+        function isSvg(): boolean;
     }
     namespace props {
         export namespace imgSrcSets {

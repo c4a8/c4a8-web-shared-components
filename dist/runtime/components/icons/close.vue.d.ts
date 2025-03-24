@@ -1,8 +1,8 @@
 declare namespace _default {
     let tagName: string;
     namespace computed {
-        function outerPosition(): any;
-        function style(): any;
+        function outerPosition(): number;
+        function style(): string;
     }
     namespace props {
         let padding: NumberConstructor;

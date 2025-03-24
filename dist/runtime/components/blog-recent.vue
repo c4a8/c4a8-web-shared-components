@@ -56,10 +56,18 @@ import State from '../utils/state.js';
 import StickyScroller from '../utils/sticky-scroller.js';
 import UtilityAnimation from '../utils/utility-animation.js';
 import MarkdownFiles from './markdown-files.vue';
+import useConfig from '../composables/useConfig.js';
 
 export default {
   components: { MarkdownFiles },
   tagName: 'blog-recent',
+  setup() {
+    const config = useConfig();
+
+    return {
+      config,
+    };
+  },
   computed: {
     classList() {
       return [
@@ -182,9 +190,7 @@ export default {
       return `blog-recent__subline ${this.sublineClasses ? this.sublineClasses : 'font-size-2'}`;
     },
     imgUrl() {
-      const config = Tools.getConfig();
-
-      return config.public?.blogImagePath || 'blog/heads/';
+      return Tools.getBlogImgPath(this.config);
     },
   },
   mounted() {

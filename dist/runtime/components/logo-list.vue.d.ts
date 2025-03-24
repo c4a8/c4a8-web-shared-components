@@ -3,11 +3,11 @@ declare namespace _default {
     function mounted(): void;
     namespace computed {
         function defaultSpacing(): void;
-        function classList(): any;
-        function isOverlapping(): any;
+        function classList(): any[];
+        function isOverlapping(): boolean;
         function columnsValue(): string;
-        function aspectRatioValue(): any;
-        function styles(): any;
+        function aspectRatioValue(): string;
+        function styles(): string;
     }
     namespace props {
         let list: ArrayConstructor;

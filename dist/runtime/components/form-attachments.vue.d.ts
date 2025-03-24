@@ -7,11 +7,11 @@ declare namespace _default {
         files: DataTransfer;
     };
     namespace computed {
-        function filesList(): any;
-        function classList(): any;
-        function interactableClassList(): any;
-        function requiredValue(): any;
-        function maxSizeMb(): any;
+        function filesList(): any[] | null;
+        function classList(): string[];
+        function interactableClassList(): string[];
+        function requiredValue(): "required" | null;
+        function maxSizeMb(): number;
         function maxFilesValue(): any;
         function extensionList(): any;
         function extensionListText(): string;

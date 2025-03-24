@@ -1,8 +1,10 @@
 declare namespace _default {
     let tagName: string;
     namespace computed {
-        function style(): any;
-        function leftValue(): any;
+        function style(): {
+            'background-color': any;
+        };
+        function leftValue(): boolean;
     }
     namespace props {
         let spacing: StringConstructor;

@@ -22,7 +22,7 @@ declare namespace _default {
         function handleLetterSwitcherEnded(): void;
     }
     namespace computed {
-        function classList(): any;
+        function classList(): (string | (() => any))[];
         function shape(): any;
         function overlineClassList(): string[];
         function contentClassList(): (string | (() => any))[];

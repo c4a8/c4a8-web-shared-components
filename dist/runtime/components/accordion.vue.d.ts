@@ -1,12 +1,12 @@
 declare namespace _default {
     let tagName: string;
     namespace computed {
-        function imageWrapperClasses(): any;
-        function containerClasses(): any;
-        function accordionClasses(): any;
-        function fallbackImageClasses(): any;
-        function columnClasses(): any;
-        function headlineClasses(): any;
+        function imageWrapperClasses(): (string | null)[];
+        function containerClasses(): any[];
+        function accordionClasses(): (string | null)[];
+        function fallbackImageClasses(): (string | null)[];
+        function columnClasses(): (string | null)[];
+        function headlineClasses(): string;
     }
     function mounted(): void;
     namespace methods {
@@ -20,7 +20,7 @@ declare namespace _default {
         function allTabsClosed(): boolean;
         function getStateByIndex(index: any): any;
         function getId(accordion: any, index: any, name: any): string;
-        function isExpanded(tab: any): "false" | "true";
+        function isExpanded(tab: any): "true" | "false";
         function buttonClasses(tab: any): (string | null)[];
         function contentClasses(tab: any): (string | null)[];
         function cardClasses(index: any): (string | null)[];

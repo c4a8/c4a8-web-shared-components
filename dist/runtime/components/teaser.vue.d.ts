@@ -31,9 +31,9 @@ declare namespace _default {
         let spacing: StringConstructor;
     }
     namespace computed {
-        function classList(): any;
+        function classList(): any[];
         function computedText(): any;
-        function headlineClassesWithDefault(): any;
+        function headlineClassesWithDefault(): string;
     }
     function mounted(): void;
     namespace methods {

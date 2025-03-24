@@ -24,10 +24,12 @@ declare namespace _default {
     }
     function mounted(): void;
     namespace computed {
-        function columnClass(): any;
-        function featureGridHeadlineRowClasses(): any;
-        function containerClasses(): any;
-        function styleObject(): any;
+        function columnClass(): string;
+        function featureGridHeadlineRowClasses(): string;
+        function containerClasses(): any[];
+        function styleObject(): {
+            backgroundColor: any;
+        };
     }
 }
 export default _default;

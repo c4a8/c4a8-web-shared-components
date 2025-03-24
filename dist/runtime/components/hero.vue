@@ -76,7 +76,7 @@
 </template>
 
 <script>
-import { useHead } from 'unhead';
+import { useHead } from '@unhead/vue';
 
 import Tools from '../utils/tools.js';
 import CloudinaryTools from '../utils/cloudinary-tools.js';

@@ -9,10 +9,10 @@ declare namespace _default {
         isLower: null;
     };
     namespace computed {
-        function classList(): any;
-        function fontSize(): any;
-        function letterSwitchEndClassList(): (string | (() => any))[];
-        function letterSwitchAnimationClassList(): any;
+        function classList(): string[];
+        function fontSize(): "font-size-5" | "font-size-6 bold";
+        function letterSwitchEndClassList(): (string | (() => "font-size-5" | "font-size-6 bold"))[];
+        function letterSwitchAnimationClassList(): (string | (() => "font-size-5" | "font-size-6 bold"))[];
     }
     function mounted(): void;
     namespace methods {

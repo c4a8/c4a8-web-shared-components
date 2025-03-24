@@ -4,7 +4,9 @@ declare namespace _default {
         let headline: StringConstructor;
     }
     namespace computed {
-        function backgroundColorStyle(): any;
+        function backgroundColorStyle(): {
+            backgroundColor: any;
+        };
     }
     namespace methods {
         function animationStyle(index: any): {

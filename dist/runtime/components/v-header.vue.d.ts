@@ -1,12 +1,53 @@
 declare namespace _default {
     let tagName: string;
     namespace computed {
-        function classList(): any;
-        function secondaryNavigationClassList(): any;
-        function secondaryNavigation(): any;
-        function headerLogoStyle(): any;
-        function headerContainerClassList(): (string | (() => any))[];
-        function containerClass(): any;
+        function classList(): string[];
+        function secondaryNavigationClassList(): any[];
+        function secondaryNavigation(): {
+            children: {
+                children: {
+                    name: string;
+                    img: string;
+                    target: string;
+                    languages: {
+                        de: {
+                            title: string;
+                            subtitle: string;
+                            url: string;
+                        };
+                        en: {
+                            title: string;
+                            subtitle: string;
+                            url: string;
+                        };
+                        es: {
+                            title: string;
+                            subtitle: string;
+                            url: string;
+                        };
+                    };
+                }[];
+                name: string;
+                products: boolean;
+            }[];
+            text: string;
+            name: string;
+            skin: string;
+            languages: {
+                de: {
+                    title: string;
+                };
+                en: {
+                    title: string;
+                };
+                es: {
+                    title: string;
+                };
+            };
+        } | null;
+        function headerLogoStyle(): string | undefined;
+        function headerContainerClassList(): (string | (() => "container" | "container-xxl"))[];
+        function containerClass(): "container" | "container-xxl";
         function homeObj(): any;
         function lowerLang(): any;
         function searchValue(): boolean;
@@ -27,7 +68,7 @@ declare namespace _default {
     namespace methods {
         function getSecondaryNavigationDimensions(): void;
         function closeSecondaryNavigation(): void;
-        function toggleSecondaryNavigation(): any;
+        function toggleSecondaryNavigation(): void;
         function shrinkWidthSecondaryNavigation(): void;
         function shrinkSecondaryNavigation(secondaryNavigation: any): void;
         function expandWidthSecondaryNavigation(secondaryNavigation: any): void;

@@ -7,23 +7,23 @@ export default {
   computed: {
     structuredList() {
       const updatedList = this.list.map((item) => {
-        const { description, _path, date, moment, ...rest } = item;
+        const { seo, path, date, moment, meta, ...rest } = item;
 
-        const filteredRest = Object.keys(rest)
+        const filteredRest = Object.keys({ ...rest, ...meta })
           .filter((key) => !this.hideData.includes(key))
           .reduce((obj, key) => {
-            obj[key] = rest[key];
+            obj[key] = meta?.[key] || rest[key];
             return obj;
           }, {});
 
-        const dateValue = this.cleanDate(this.isDate(moment) ? moment : date ? date : this.extractDate(_path));
+        const dateValue = this.cleanDate(this.isDate(moment) ? moment : date ? date : this.extractDate(path));
         const dateValueOrFallback = dateValue ? dateValue : '2000-01-01';
 
         return {
-          url: _path,
+          url: path,
           date: dateValueOrFallback,
           moment: dateValueOrFallback,
-          excerpt: description,
+          excerpt: seo?.description,
           ...filteredRest,
         };
       });

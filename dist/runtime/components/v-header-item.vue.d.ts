@@ -4,12 +4,12 @@ declare namespace _default {
         function navigation(): any;
     }
     namespace methods {
-        function headerItemClasses(item: any): any;
-        function headerLinkClasses(item: any, index: any): any;
+        function headerItemClasses(item: any): any[];
+        function headerLinkClasses(item: any, index: any): any[];
         function getListClasses(item: any, index: any, classes: any): any[];
-        function isLinkListHidden(item: any, index: any): any;
-        function navHighlightClasses(item: any, index: any): any;
-        function headerProductListClasses(item: any, index: any): any;
+        function isLinkListHidden(item: any, index: any): boolean;
+        function navHighlightClasses(item: any, index: any): string[];
+        function headerProductListClasses(item: any, index: any): any[];
     }
     namespace props {
         let lowerLang: StringConstructor;

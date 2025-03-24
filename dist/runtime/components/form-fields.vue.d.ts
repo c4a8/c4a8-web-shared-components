@@ -5,12 +5,12 @@ declare namespace _default {
         userValue: null;
     };
     namespace computed {
-        function classList(): any;
+        function classList(): (string | (() => "" | "mb-3" | "mb-8"))[];
         function showInClasses(): any;
         function groupClass(): "" | "mb-3" | "mb-8";
-        function errorId(): any;
-        function readonly(): any;
-        function required(): any;
+        function errorId(): string;
+        function readonly(): "readonly" | null;
+        function required(): "required" | null;
         function placeholder(): any;
         function value(): any;
     }
