@@ -2,6 +2,10 @@
 
 import { mergeConfig } from 'vite';
 
+import path from 'path';
+
+const getAbsolutePath = (packageName) => path.dirname(require.resolve(path.join(packageName, 'package.json')));
+
 // const componentsDir = '../components/';
 
 const config = {
@@ -9,12 +13,10 @@ const config = {
   stories: ['../stories/**/*.mdx', '../stories/**/*.stories.@(js|jsx|ts|tsx|mdx)'],
   addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@chromatic-com/storybook'],
   framework: {
-    name: '@storybook-vue/nuxt',
+    name: getAbsolutePath('@storybook-vue/nuxt'),
     options: {},
   },
-  docs: {
-    autodocs: 'tag',
-  },
+  docs: {},
   staticDirs: ['../public', '../static'],
   async viteFinal(config) {
     return mergeConfig(config, {
