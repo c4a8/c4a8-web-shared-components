@@ -7,6 +7,9 @@ export default {
   computed: {
     structuredList() {
       const updatedList = [];
+
+      if (!this.list) return;
+
       const limitEvents = this.query?.limitEvents;
       const reversed = this.query?.reversed;
       const sort = this.query?.sort[0] || this.sort;

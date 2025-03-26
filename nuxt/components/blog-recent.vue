@@ -104,17 +104,25 @@ export default {
       query.reversed = this.reversed;
 
       if (this.combine === true) {
-        query.where = { _path: /^\/(posts|events|casestudies)\// };
-        query.path = '/';
+        query.where = {
+          layout: { IN: ['casestudies', 'events', 'posts'] },
+        };
+
         query.limit = null;
         query.limitEvents = this.limitEvents;
       } else {
         if (this.events === true) {
-          query.path = '/events';
+          query.where = {
+            path: { LIKE: ['/events/%'] },
+          };
         } else if (this.caseStudies === true) {
-          query.path = '/casestudies';
+          query.where = {
+            path: { LIKE: ['/casestudies/%'] },
+          };
         } else {
-          query.path = '/posts';
+          query.where = {
+            path: { LIKE: ['/posts/%'] },
+          };
         }
       }
 
