@@ -26,8 +26,6 @@ const isStorybook = computed(() => Tools.isStorybook());
 
 const { locale } = useI18n();
 
-// TODO move query.path to collectionName and remove /
-
 const localeQuery = computed(() => ({
   ...props.query,
   where: {
@@ -35,13 +33,27 @@ const localeQuery = computed(() => ({
   },
 }));
 
-const { data: list } = await useAsyncData('content-list', () => {
-  const collectionName = 'content_' + locale.value;
+const dataKey = props.query?.key || props.query?.path?.replace('/', 'content-') || 'content-list';
 
+const { data: list } = await useAsyncData(dataKey, () => {
+  const collectionName = 'content_' + locale.value;
   const query = queryCollection(collectionName);
 
-  if (localeQuery.value.where && Object.keys(localeQuery.value.where).length > 0)
-    return query.where(localeQuery.value.where).all();
+  if (localeQuery.value.where && Object.keys(localeQuery.value.where).length > 0) {
+    let queryBuilder = query;
+
+    Object.entries(localeQuery.value.where).forEach(([field, condition]) => {
+      if (typeof condition === 'object') {
+        Object.entries(condition).forEach(([operator, value]) => {
+          queryBuilder = queryBuilder.where(field, operator, value);
+        });
+      } else {
+        queryBuilder = queryBuilder.where(field, '=', condition);
+      }
+    });
+
+    return queryBuilder.all();
+  }
 
   return query.all();
 });

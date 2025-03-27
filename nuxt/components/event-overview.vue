@@ -82,6 +82,8 @@ export default {
         };
       }
 
+      query.path = '/events';
+
       return query;
     },
     sort() {
