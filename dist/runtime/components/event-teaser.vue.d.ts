@@ -30,10 +30,21 @@ declare namespace _default {
         }
     }
     namespace computed {
-        function authorNames(): any;
-        function imgSrcSets(): any;
-        function computedStyles(): any;
-        function eventTeaserImageFullWidth(): any;
+        function authorNames(): string;
+        function imgSrcSets(): {
+            srcSets: ({
+                params: string;
+                media: string;
+            } | {
+                params: string;
+                media?: undefined;
+            })[];
+        } | null;
+        function computedStyles(): {
+            '--utility-animation-index': any;
+            '--event-teaser-background-color-rgb': any;
+        };
+        function eventTeaserImageFullWidth(): "" | "event-teaser--image-full-width";
         function ctaHref(): any;
     }
     function mounted(): void;
@@ -47,7 +58,7 @@ declare namespace _default {
         function clickHandler(event: any): void;
         function shapePeak(index: any): "right" | "left";
         function shapeHeight(index: any): 10 | 12;
-        function shapeWidth(index: any): 237 | 80;
+        function shapeWidth(index: any): 80 | 237;
     }
 }
 export default _default;

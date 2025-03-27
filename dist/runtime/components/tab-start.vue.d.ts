@@ -12,8 +12,10 @@ declare namespace _default {
         let headlineClasses: StringConstructor;
     }
     namespace computed {
-        function classList(): any;
-        function headlineClassList(): any;
+        function classList(): (string | {
+            'show active': any;
+        })[];
+        function headlineClassList(): any[];
     }
 }
 export default _default;

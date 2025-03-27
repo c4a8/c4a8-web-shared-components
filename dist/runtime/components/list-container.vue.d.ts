@@ -1,8 +1,8 @@
 declare namespace _default {
     let tagName: string;
     namespace computed {
-        function classValue(): any;
-        function colorStyling(): any;
+        function classValue(): string[];
+        function colorStyling(): string[];
     }
     function mounted(): void;
     namespace props {

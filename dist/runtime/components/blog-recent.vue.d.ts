@@ -6,25 +6,69 @@ declare namespace _default {
     function data(): {
         hideData: string[];
         filesValue: never[];
+        dataAuthorsValue: null;
+    };
+    function setup(): {
+        config: {};
     };
     namespace computed {
-        function classList(): any;
+        function classList(): (string | (() => any))[];
         function showCompoent(): true | (() => {
             limit: any;
-            sort: any;
+            sort: {
+                moment: number;
+            }[];
             reversed: any;
             where: {
-                _path: RegExp;
+                layout: {
+                    IN: string[];
+                };
+                path?: undefined;
+            } | {
+                path: {
+                    LIKE: string[];
+                };
+                layout?: undefined;
+            } | {
+                path: {
+                    LIKE: string[];
+                };
+                layout?: undefined;
+            } | {
+                path: {
+                    LIKE: string[];
+                };
+                layout?: undefined;
             };
             path: string;
             limitEvents: any;
         });
         function query(): {
             limit: any;
-            sort: any;
+            sort: {
+                moment: number;
+            }[];
             reversed: any;
             where: {
-                _path: RegExp;
+                layout: {
+                    IN: string[];
+                };
+                path?: undefined;
+            } | {
+                path: {
+                    LIKE: string[];
+                };
+                layout?: undefined;
+            } | {
+                path: {
+                    LIKE: string[];
+                };
+                layout?: undefined;
+            } | {
+                path: {
+                    LIKE: string[];
+                };
+                layout?: undefined;
             };
             path: string;
             limitEvents: any;
@@ -45,8 +89,10 @@ declare namespace _default {
     namespace watch {
         function filesValue(newValue: any): void;
     }
+    function created(): void;
     namespace methods {
         function init(): void;
+        function getDataAuthors(): Promise<any>;
         function event(post: any): boolean;
         function blogTitleUrl(post: any): any;
         function target(post: any): "_blank" | "_self";

@@ -42,11 +42,19 @@ declare namespace _default {
         props: {};
     };
     namespace computed {
-        function classList(): any;
+        function classList(): string[];
         function innerSize(): string;
-        function parentStyle(): any;
+        function parentStyle(): string;
         function rotation(): "180deg" | "90deg" | "0deg";
-        function settings(): any;
+        function settings(): {
+            width: () => string;
+            height: () => string;
+            padding: any;
+            'xml:space': string;
+            version: string;
+            xmlns: string;
+            'xmlns:link': string;
+        };
     }
     namespace props {
         namespace icon {

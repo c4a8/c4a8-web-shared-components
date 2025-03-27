@@ -54,17 +54,46 @@ declare namespace _default {
     }
     function mounted(): void;
     namespace computed {
-        function hasVideo(): any;
-        function parentId(): any;
-        function targetId(): any;
-        function containerClass(): any;
-        function rowClass(): any;
-        function mainClass(): any;
+        function hasVideo(): boolean;
+        function parentId(): string;
+        function targetId(): string;
+        function containerClass(): (string | {
+            'video-frame__container--spacing': any;
+            'is-sticky-scroller': any;
+            'video-frame--top-overflow': any;
+            'video-frame--played': any;
+        })[];
+        function rowClass(): (string | {
+            'position-relative': any;
+        })[];
+        function mainClass(): (string | {
+            'video-frame--full-width': any;
+            'is-sticky-scroller': any;
+            'video-frame--played': any;
+        })[];
         function playerClass(): string[];
-        function cornerClass(): any;
-        function headlineStyle(): any;
-        function videoPlayerOptions(): any;
-        function embedSrc(): any;
+        function cornerClass(): any[];
+        function headlineStyle(): {
+            '--video-frame-headline-color': string;
+        } | {
+            '--video-frame-headline-color'?: undefined;
+        };
+        function videoPlayerOptions(): {
+            videoId?: undefined;
+            parentSelector?: undefined;
+            targetSelector?: undefined;
+            isAutoplay?: undefined;
+            classMap?: undefined;
+        } | {
+            videoId: any;
+            parentSelector: string;
+            targetSelector: string;
+            isAutoplay: boolean;
+            classMap: {
+                toggle: string;
+            };
+        };
+        function embedSrc(): string;
     }
     namespace methods {
         function handleClick(): void;

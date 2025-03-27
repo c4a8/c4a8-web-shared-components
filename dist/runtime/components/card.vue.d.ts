@@ -7,13 +7,13 @@ declare namespace _default {
     };
     namespace computed {
         function blogView(): any;
-        function combinedTitle(): any;
-        function noLink(): any;
+        function combinedTitle(): string;
+        function noLink(): boolean;
         function indexValue(): any;
-        function style(): any;
-        function hasAnimationValue(): any;
+        function style(): string | null;
+        function hasAnimationValue(): boolean;
         function utilityAnimationStep(): "1" | null;
-        function rowValue(): any;
+        function rowValue(): boolean;
         function variant(): "card--long" | "card--products" | "card--event" | "card--row" | "card--default";
         function classList(): any[];
         function productValue(): any;
@@ -24,9 +24,18 @@ declare namespace _default {
         function hasBlogTitlePic(): boolean;
         function hasNoLink(): boolean;
         function ctaValue(): any;
-        function cardFooterData(): any;
+        function cardFooterData(): {
+            date: () => any;
+            author: any;
+            authorsList: any;
+            hasNoLink: () => boolean;
+            dataAuthors: any;
+            isRow: () => boolean;
+            tags: any;
+        };
     }
     function created(): null | undefined;
+    function mounted(): void;
     namespace methods {
         function isTags(target: any): boolean;
         function formatDate(date: any): any;

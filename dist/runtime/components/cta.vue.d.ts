@@ -1,11 +1,11 @@
 declare namespace _default {
     let tagName: string;
     namespace computed {
-        function tag(): any;
+        function tag(): "a" | "button";
         function hasIcon(): any;
-        function externalValue(): any;
-        function downloadValue(): any;
-        function classList(): any;
+        function externalValue(): boolean;
+        function downloadValue(): boolean;
+        function classList(): any[];
         function innerSkin(): any;
         function innerWidth(): any;
         function baseClass(): any;
@@ -14,7 +14,7 @@ declare namespace _default {
         function sizeValue(): string;
     }
     namespace methods {
-        function handleClick(e: any): any;
+        function handleClick(e: any): void;
     }
     namespace props {
         namespace href {

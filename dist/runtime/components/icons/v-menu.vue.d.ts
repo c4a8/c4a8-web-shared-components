@@ -3,7 +3,7 @@ declare namespace _default {
     namespace computed {
         function strokeWidth(): number;
         function effectiveKeySplines(): string;
-        function style(): any;
+        function style(): string;
         function lineData(): {
             line1: {
                 from: {

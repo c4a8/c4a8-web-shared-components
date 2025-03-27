@@ -22,7 +22,7 @@ declare class Tools {
     static toSize(bytes: any): string;
     static camalCaseToSnakeCase(camalCase: any): any;
     static animateValue(element: any, start: any, end: any, duration: any, formatter?: Intl.NumberFormat): void;
-    static debounce: (func: any, wait: any, immediate: any) => (...args: any[]) => void;
+    static debounce: (func: any, wait: any, immediate: any) => () => void;
     static isOutsideOf(name: any, e: any): boolean;
     static getExtension(fileName: any): any;
     static validateVueProps(component: any): {
@@ -61,8 +61,6 @@ declare class Tools {
     static blue(hex: any): number;
     static hexToRgb(hex: any): string;
     static getHash(): string;
-    static getConfig(): {};
-    static getEnvironment(): any;
     static getOrigin(): string;
     static getCurrentPath(): string;
     static getPageTitle(): string;
@@ -70,4 +68,5 @@ declare class Tools {
     static isClientOnlyLibLoaded(): any;
     static getPriceFormatter(pricingData: any): Intl.NumberFormat;
     static updateElementPrice(element: any, state: any, formatter: any): void;
+    static getBlogImgPath(config: any): any;
 }

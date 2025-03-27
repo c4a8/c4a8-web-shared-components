@@ -1,8 +1,8 @@
 declare namespace _default {
     let tagName: string;
     namespace computed {
-        function classList(): any;
-        function seperator(): any;
+        function classList(): string[];
+        function seperator(): " & " | ", ";
         function authorArray(): any;
         function hasDataAndAuthors(): any;
         function langValue(): any;
@@ -10,7 +10,7 @@ declare namespace _default {
     namespace methods {
         function authorsSeperator(array: any, element: any): boolean;
         function authorStart(array: any, element: any): any;
-        function authorLink(author: any): any;
+        function authorLink(author: any): string | null;
     }
     namespace props {
         let authorsList: ArrayConstructor;

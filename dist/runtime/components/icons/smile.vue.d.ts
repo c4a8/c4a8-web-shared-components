@@ -1,7 +1,7 @@
 declare namespace _default {
     let tagName: string;
     namespace computed {
-        function style(): any;
+        function style(): string;
     }
     function data(): {
         iconSmileStepTime: string;

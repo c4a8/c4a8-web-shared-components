@@ -1,13 +1,13 @@
 declare namespace _default {
     let tagName: string;
     namespace computed {
-        function videoClass(): any;
-        function videoPlayerClass(): any;
-        function videoContentClass(): any;
+        function videoClass(): any[];
+        function videoPlayerClass(): any[];
+        function videoContentClass(): any[];
         function videoTextClasses(): string[];
-        function isCompact(): any;
-        function variantClasses(): any;
-        function isVariantRow(): any;
+        function isCompact(): boolean;
+        function variantClasses(): "" | "bg-dark" | "col-md-6 order-md-2";
+        function isVariantRow(): boolean;
         function videoParsed(): any;
         function onClickVideoContent(): "this.querySelector('a').click()" | null;
         function onClick(): "this.querySelector('a').click()" | null;
@@ -28,7 +28,7 @@ declare namespace _default {
     }
     function mounted(): void;
     namespace methods {
-        function isReversed(): any;
+        function isReversed(): boolean;
         function handleButtonClick(): void;
         function handleLightboxClick(): void;
         function handleLightboxClose(): void;

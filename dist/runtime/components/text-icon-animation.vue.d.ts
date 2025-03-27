@@ -15,9 +15,9 @@ declare namespace _default {
     namespace computed {
         function animationData(): any;
         function sequence(): any;
-        function classList(): any;
-        function isFixed(): any;
-        function iconClassList(): any;
+        function classList(): any[];
+        function isFixed(): boolean;
+        function iconClassList(): string;
     }
     namespace methods {
         function handleTextAnimationState(state: any): void;

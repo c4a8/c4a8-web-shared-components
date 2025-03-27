@@ -2,7 +2,7 @@ declare namespace _default {
     let tagName: string;
     namespace computed {
         function tag(): any;
-        function classList(): any;
+        function classList(): string;
         function dataUtilityAnimationStep(): any;
     }
     namespace props {

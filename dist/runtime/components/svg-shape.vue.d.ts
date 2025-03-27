@@ -44,11 +44,11 @@ declare namespace _default {
         function svgShapeObliquity(): any;
         function svgShapeClasses(): any;
         function svgShapeHeight(): any;
-        function basePoints(): any;
-        function peakPointY(): any;
-        function peakPointX(): any;
+        function basePoints(): string;
+        function peakPointY(): 0 | (() => any);
+        function peakPointX(): 0 | (() => any);
         function points(): string;
-        function translateStyle(): any;
+        function translateStyle(): "" | "transform: translateY(2px);";
     }
 }
 export default _default;

@@ -1,8 +1,8 @@
 declare namespace _default {
     let tagName: string;
     namespace computed {
-        function otherId(): any;
-        function required(): any;
+        function otherId(): string;
+        function required(): "required" | null;
         function idValue(): any;
     }
     namespace props {

@@ -4,7 +4,7 @@ declare namespace _default {
         hasMultipleDays: boolean;
     };
     namespace computed {
-        function style(): any;
+        function style(): string;
         function textWithAmpersand(): any;
         function normalizedDate(): any;
         function normalizedText(): any;
@@ -17,7 +17,7 @@ declare namespace _default {
         function timeValue(): any;
     }
     namespace methods {
-        function handleClick(): any;
+        function handleClick(): Window | null | undefined;
     }
     namespace props {
         let title: StringConstructor;

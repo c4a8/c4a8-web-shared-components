@@ -4,18 +4,26 @@ declare namespace _default {
         function modalErrorValue(): any;
         function classList(): string[];
         function dialogClassList(): string[];
-        function settings(): any;
-        function isCenterSlim(): () => any;
+        function settings(): {
+            'data-client-name': any;
+            'data-api-url': any;
+            'data-job-id': any;
+            'data-modal-id': any;
+            'data-api-key': any;
+            'data-mock-apply-url': any;
+            'data-mock-documents-url': any;
+        };
+        function isCenterSlim(): () => boolean;
         function modal(): any;
-        function centerValue(): any;
-        function slimValue(): any;
-        function loadingValue(): any;
+        function centerValue(): boolean;
+        function slimValue(): boolean;
+        function loadingValue(): true | null;
         function notificationValue(): boolean;
         function size(): "small" | null;
         function hasCircleAndHover(): boolean;
         function circle(): () => boolean;
         function hover(): () => boolean;
-        function bodyClasses(): any;
+        function bodyClasses(): (string | null)[];
     }
     function mounted(): void;
     function unmounted(): void;

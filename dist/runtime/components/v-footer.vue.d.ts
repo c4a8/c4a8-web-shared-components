@@ -4,16 +4,16 @@ declare namespace _default {
         bgColorRgbaValue: null;
     };
     namespace computed {
-        function classList(): any;
-        function isCorporate(): any;
-        function style(): any;
+        function classList(): string[];
+        function isCorporate(): boolean;
+        function style(): string[];
         function dataValue(): any;
         function links(): any;
-        function locations(): any;
+        function locations(): any[];
     }
     function mounted(): void;
     namespace methods {
-        function bgColorRgba(): any;
+        function bgColorRgba(): string | null;
     }
     namespace props {
         let data: ObjectConstructor;

@@ -1,15 +1,44 @@
 declare namespace _default {
     let tagName: string;
     namespace computed {
-        function classList(): any;
+        function classList(): any[];
         function checkCardsContainerClass(): string[];
-        function containerValue(): any;
+        function containerValue(): string;
         function headlineLevelValue(): any;
-        function headlineClassesValue(): any;
-        function sublineClassesValue(): any;
+        function headlineClassesValue(): string;
+        function sublineClassesValue(): string;
         function itemClass(): string;
         function hasProducts(): any;
-        function carouselOptions(): any;
+        function carouselOptions(): {
+            slidesToShow: number;
+            slidesToScroll: number;
+            prevArrow: string;
+            nextArrow: string;
+            dots: boolean;
+            centerMode: boolean;
+            dotsClass: string;
+            responsive: ({
+                breakpoint: number;
+                settings: {
+                    slidesToShow: number;
+                    slidesToScroll: number;
+                    dots: boolean;
+                    centerMode?: undefined;
+                    infinite?: undefined;
+                    centerPadding?: undefined;
+                };
+            } | {
+                breakpoint: number;
+                settings: {
+                    centerMode: boolean;
+                    infinite: boolean;
+                    centerPadding: string;
+                    slidesToShow: number;
+                    slidesToScroll: number;
+                    dots: boolean;
+                };
+            })[];
+        };
     }
     function mounted(): void;
     let methods: {};

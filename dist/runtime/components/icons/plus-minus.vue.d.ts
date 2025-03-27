@@ -2,7 +2,7 @@ declare namespace _default {
     let tagName: string;
     namespace computed {
         function effectiveKeySplines(): string;
-        function style(): any;
+        function style(): string;
     }
     function updated(): void;
     function mounted(): void;

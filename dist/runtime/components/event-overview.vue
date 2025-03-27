@@ -78,7 +78,7 @@ export default {
 
       if (this.order && Array.isArray(this.order)) {
         query.where = {
-          eventid: { $in: this.order },
+          eventid: { IN: this.order },
         };
       }
 

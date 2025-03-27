@@ -1,7 +1,7 @@
 declare namespace _default {
     let tagName: string;
     namespace computed {
-        function classList(): any;
+        function classList(): any[];
     }
     function mounted(): void;
     namespace props {

@@ -1,7 +1,12 @@
 declare namespace _default {
     let tagName: string;
     namespace computed {
-        function structuredList(): any;
+        function structuredList(): {
+            url: any;
+            date: any;
+            moment: any;
+            excerpt: any;
+        }[] | undefined;
     }
     namespace methods {
         function extractDate(path: any): any;

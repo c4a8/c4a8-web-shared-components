@@ -26,14 +26,20 @@ declare namespace _default {
         let svgShape: ObjectConstructor;
     }
     namespace computed {
-        function classList(): any;
-        function contactVariantClass(): any;
-        function contactLight(): any;
-        function contactBoxClass(): any;
-        function contactFormClass(): any;
-        function contactContainerClass(): any;
-        function contactRowClass(): any;
-        function styleObject(): any;
+        function classList(): any[];
+        function contactVariantClass(): string[];
+        function contactLight(): "" | "contact__person--light";
+        function contactBoxClass(): "" | "col-md-10 col-lg-5 offset-lg-1 order-2";
+        function contactFormClass(): "" | "col-md-10 col-lg-6 order-1";
+        function contactContainerClass(): "" | "container pt-8 pt-lg-10";
+        function contactRowClass(): "" | "row justify-content-center";
+        function styleObject(): {
+            '--color-contact-background': any;
+            '--color-contact-quote-background': any;
+            '--contact-copy-color': any;
+            '--color-contact-box-background': any;
+            '--contact-box-copy-color': any;
+        };
     }
 }
 export default _default;

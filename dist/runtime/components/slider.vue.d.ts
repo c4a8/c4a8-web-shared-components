@@ -35,12 +35,12 @@ export function defaultOptions({ length, centerPadding }: {
 declare namespace _default {
     let tagName: string;
     namespace computed {
-        function classList(): any;
+        function classList(): string[];
         function jsonOptions(): any;
         function getSpacing(): any;
         function headlineLevelValue(): any;
-        function headlineClassesValue(): any;
-        function centerPaddingValue(): any;
+        function headlineClassesValue(): string;
+        function centerPaddingValue(): string | null;
         function carouselOptions(): (() => any) | {
             rows: number;
             slidesToShow: number;

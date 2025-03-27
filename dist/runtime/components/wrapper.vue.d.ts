@@ -1,7 +1,7 @@
 declare namespace _default {
     let tagName: string;
     namespace computed {
-        function classList(): any;
+        function classList(): any[];
     }
     namespace props {
         namespace hideContainer {

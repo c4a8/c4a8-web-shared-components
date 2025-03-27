@@ -1,12 +1,12 @@
 declare namespace _default {
     let tagName: string;
     namespace computed {
-        function classList(): any;
-        function hasNoAnimation(): any;
+        function classList(): any[];
+        function hasNoAnimation(): boolean;
         function classListTitle(): string[];
         function classListList(): string[];
-        function hasActiveItem(): any;
-        function isHidden(): any;
+        function hasActiveItem(): boolean | undefined;
+        function isHidden(): boolean;
     }
     namespace watch {
         function hidden(oldValue: any, _: any): void;
@@ -17,7 +17,7 @@ declare namespace _default {
         function bindEvents(): void;
         function handleUpdate(event: any): void;
         function isLowerBreakpoint(): boolean;
-        function isExpandable(): any;
+        function isExpandable(): boolean;
         function updateHeight(): void;
         function handleClick(event: any): void;
     }

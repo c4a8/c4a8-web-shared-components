@@ -27,7 +27,7 @@ const module = defineNuxtModule({
     name: "shared-components",
     configKey: "sharedComponents",
     compatibility: {
-      nuxt: ">=3.0.0"
+      nuxt: ">=3.16.1"
     }
   },
   defaults: {

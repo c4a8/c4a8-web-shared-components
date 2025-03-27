@@ -205,6 +205,7 @@
 </template>
 
 <script>
+import { useAppStore } from '../stores/app.js';
 import Tools from '../utils/tools.js';
 import State from '../utils/state.js';
 import Events from '../utils/events.js';
@@ -212,6 +213,11 @@ import SecondaryNavigation from '../utils/data/secondary-navigation.js';
 
 export default {
   tagName: 'v-header',
+  setup() {
+    const store = useAppStore();
+
+    return { store };
+  },
   computed: {
     classList() {
       return [
@@ -301,9 +307,22 @@ export default {
     hasMeta() {
       return this.meta && this.meta.length > 0;
     },
+    headerState() {
+      return this.store.getHeader;
+    },
   },
   created() {
     this.setActiveNavigation();
+
+    this.store.setHeader({
+      isScrolled: this.isScrolled,
+      isLight: this.isLight,
+      isHovering: this.hover,
+      isProduct: this.product,
+      isExpanded: !this.closed,
+      isBlending: this.blendMode,
+      isUpdating: this.inUpdate,
+    });
   },
   watch: {
     secondaryNavigationDimensions(newVal) {
@@ -312,6 +331,21 @@ export default {
           this.calculateLogoOffsetPosition();
         });
       }
+    },
+    isScrolled(newVal) {
+      this.store.setHeader({ ...this.headerState, isScrolled: newVal });
+    },
+    hover(newVal) {
+      this.store.setHeader({ ...this.headerState, isHovering: newVal });
+    },
+    closed(newVal) {
+      this.store.setHeader({ ...this.headerState, isExpanded: !newVal });
+    },
+    blendMode(newVal) {
+      this.store.setHeader({ ...this.headerState, isBlending: newVal });
+    },
+    inUpdate(newVal) {
+      this.store.setHeader({ ...this.headerState, isUpdating: newVal });
     },
   },
   mounted() {

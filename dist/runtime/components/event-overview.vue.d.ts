@@ -8,14 +8,18 @@ declare namespace _default {
         filesValue: never[];
     };
     namespace computed {
-        function classList(): any;
+        function classList(): (string | null)[];
         function lastIndex(): number;
         function limitValue(): any;
         function maxLimitValue(): any;
         function eventsValue(): any;
-        function hasMore(): any;
+        function hasMore(): boolean;
         function query(): {
-            where: any;
+            where: {
+                eventid: {
+                    IN: any;
+                };
+            };
             path: string;
         };
         function sort(): {

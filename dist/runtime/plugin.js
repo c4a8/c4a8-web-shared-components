@@ -17,37 +17,34 @@ export default defineNuxtPlugin((_nuxtApp) => {
       const cleanPath = to.path;
 
       // TODO adjust this so it works with the collections defined in your nuxt.config.js
-      const { data } = await useAsyncData('events', () =>
-        queryContent('events')
-          .where({
-            _path: cleanPath,
-          })
-          .findOne()
-      );
+      // const { data } = await useAsyncData('events', () =>
+      //   queryContent('events')
+      //     .where({
+      //       _path: cleanPath,
+      //     })
+      //     .findOne()
+      // );
 
-      if (data && data.value && data.value.layout) {
-        //   const middlewareState = useState("middlewareState", () => null);
-
-        //   switch (data.value.layout) {
-        //     case "event":
-        //       middlewareState.value = {
-        //         footer: {
-        //           noMargin: true,
-        //         },
-        //       };
-
-        //       break;
-        //   }
-
-        setPageLayout(data.value.layout);
-      }
+      // if (data && data.value && data.value.layout) {
+      //   const middlewareState = useState("middlewareState", () => null);
+      //   switch (data.value.layout) {
+      //     case "event":
+      //       middlewareState.value = {
+      //         footer: {
+      //           noMargin: true,
+      //         },
+      //       };
+      //       break;
+      //   }
+      // setPageLayout(data.value.layout);
+      // }
     },
     { global: true }
   );
 
   if (process.client) {
     // TODO read this from package.json . could be an issue because of the moving and the relative location of the file
-    console.debug('Shared Components v.0.1.116');
+    console.debug('Shared Components v.0.1.118');
 
     import('jquery')
       .then((module) => {

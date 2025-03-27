@@ -26,7 +26,15 @@ declare namespace _default {
     function mounted(): any;
     namespace computed {
         function pricingSliderRange(): any;
-        function hsIonRangeSliderOptions(): any;
+        function hsIonRangeSliderOptions(): {
+            extra_classes: string;
+            hide_from_to: boolean;
+            min: any;
+            max: any;
+            from: any;
+            step: any;
+            result_min_target_el: string;
+        };
     }
     namespace methods {
         function handleRangeSliderStart(slider: any): void;

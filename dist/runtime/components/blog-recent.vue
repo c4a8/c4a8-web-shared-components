@@ -34,7 +34,7 @@
                       :author="post.author"
                       :target="target(post)"
                       :event="event(post)"
-                      :dataAuthors="dataAuthors"
+                      :dataAuthors="dataAuthorsValue"
                       :external-language="post.externalLanguage"
                       :excerpt="excerpt(post)"
                     />
@@ -64,6 +64,7 @@ import State from '../utils/state.js';
 import StickyScroller from '../utils/sticky-scroller.js';
 import UtilityAnimation from '../utils/utility-animation.js';
 import MarkdownFiles from './markdown-files.vue';
+import useConfig from '../composables/useConfig.js';
 
 export default {
   components: { MarkdownFiles },
@@ -72,6 +73,14 @@ export default {
     return {
       hideData: ['tags'],
       filesValue: [],
+      dataAuthorsValue: null,
+    };
+  },
+  setup() {
+    const config = useConfig();
+
+    return {
+      config,
     };
   },
   computed: {
@@ -96,17 +105,29 @@ export default {
       query.reversed = this.reversed;
 
       if (this.combine === true) {
-        query.where = { _path: /^\/(posts|events|casestudies)\// };
-        query.path = '/';
+        query.where = {
+          layout: { IN: ['event', 'post', 'casestudies'] },
+        };
+
+        query.path = 'event-post-casestudies';
         query.limit = null;
         query.limitEvents = this.limitEvents;
       } else {
         if (this.events === true) {
-          query.path = '/events';
+          query.where = {
+            path: { LIKE: ['/events/%'] },
+          };
+          query.path = 'events';
         } else if (this.caseStudies === true) {
-          query.path = '/casestudies';
+          query.where = {
+            path: { LIKE: ['/casestudies/%'] },
+          };
+          query.path = 'casestudies';
         } else {
-          query.path = '/posts';
+          query.where = {
+            path: { LIKE: ['/posts/%'] },
+          };
+          query.path = 'posts';
         }
       }
 
@@ -200,9 +221,7 @@ export default {
       return `blog-recent__subline ${this.sublineClasses ? this.sublineClasses : 'font-size-2'}`;
     },
     imgUrl() {
-      const config = Tools.getConfig();
-
-      return config.public?.blogImagePath || 'blog/heads/';
+      return Tools.getBlogImgPath(this.config);
     },
   },
   watch: {
@@ -213,6 +232,9 @@ export default {
         });
       }
     },
+  },
+  created() {
+    this.getDataAuthors();
   },
   methods: {
     init() {
@@ -225,6 +247,17 @@ export default {
       }
 
       UtilityAnimation.init([this.$refs.root]);
+    },
+    async getDataAuthors() {
+      if (this.dataAuthors) return (this.dataAuthorsValue = this.dataAuthors);
+
+      const { data: authors } = await useAsyncData('authors_data', () => {
+        const query = queryCollection('authors_data');
+
+        return query.first();
+      });
+
+      this.dataAuthorsValue = authors?.value?.meta;
     },
     event(post) {
       return post.layout === 'post' ? false : true;

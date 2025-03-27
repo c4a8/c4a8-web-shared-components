@@ -76,7 +76,8 @@
 </template>
 
 <script>
-import { useHead } from 'unhead';
+import { useHead } from '@unhead/vue';
+import { useAppStore } from '../stores/app';
 
 import Tools from '../utils/tools.js';
 import CloudinaryTools from '../utils/cloudinary-tools.js';
@@ -129,6 +130,11 @@ export default {
   tagName: 'hero',
   components: {
     'hero-pattern': heroPattern,
+  },
+  setup() {
+    const store = useAppStore();
+
+    return { store };
   },
   data() {
     return {
@@ -234,7 +240,9 @@ export default {
       return this.heroJson ? this.heroJson.cta : null;
     },
     isLight() {
-      return this.heroJson ? this.heroJson.light : false;
+      if (this.heroJson && typeof this.heroJson.light !== 'undefined') return this.heroJson.light;
+
+      return this.store.header?.isLight;
     },
     isLightOverline() {
       return this.heroJson && typeof this.heroJson.lightOverline !== 'undefined'

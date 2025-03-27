@@ -19,8 +19,11 @@ declare namespace _default {
         let classes: StringConstructor;
     }
     namespace computed {
-        function classList(): any;
-        function style(): any;
+        function classList(): any[];
+        function style(): {
+            backgroundColor: any;
+            color: any;
+        };
     }
 }
 export default _default;

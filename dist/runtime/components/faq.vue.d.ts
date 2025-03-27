@@ -5,9 +5,9 @@ declare namespace _default {
     };
     function beforeMount(): void;
     namespace computed {
-        function style(): any;
+        function style(): string | null;
         function classList(): string[];
-        function headlineClasses(): any;
+        function headlineClasses(): string;
         function headlineLevel(): any;
     }
     function mounted(): void;

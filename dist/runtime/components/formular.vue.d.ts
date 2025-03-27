@@ -8,13 +8,13 @@ declare namespace _default {
         errors: never[];
     };
     namespace computed {
-        function classList(): any;
+        function classList(): string[];
         function novalidate(): any;
-        function hasAnimationValue(): any;
-        function rowClassList(): any;
-        function wrapperClassList(): any;
-        function headlineClassList(): any;
-        function sublineClassList(): any;
+        function hasAnimationValue(): boolean;
+        function rowClassList(): string[];
+        function wrapperClassList(): string[];
+        function headlineClassList(): string[];
+        function sublineClassList(): string[];
         function formClassList(): string[];
         function positionValue(): any;
         function method(): any;
