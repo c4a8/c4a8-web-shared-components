@@ -59,6 +59,8 @@
   </template>
 </template>
 <script>
+import { useAsyncData, queryCollection } from '#imports';
+
 import Tools from '../utils/tools.js';
 import State from '../utils/state.js';
 import StickyScroller from '../utils/sticky-scroller.js';
