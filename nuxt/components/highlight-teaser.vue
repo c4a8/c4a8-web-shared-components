@@ -118,6 +118,7 @@ export default {
     },
     sliderOptions() {
       return {
+        rows: 0,
         slidesToShow: 1,
         slidesToScroll: 1,
         dots: false,

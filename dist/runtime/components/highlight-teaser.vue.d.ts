@@ -18,6 +18,7 @@ declare namespace _default {
         function pagination(): boolean;
         function limitedEntries(): any;
         function sliderOptions(): {
+            rows: number;
             slidesToShow: number;
             slidesToScroll: number;
             dots: boolean;
