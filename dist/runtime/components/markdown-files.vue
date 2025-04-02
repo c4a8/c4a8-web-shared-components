@@ -40,13 +40,19 @@ export default {
         const dateValue = this.cleanDate(this.isDate(moment) ? moment : date ? date : this.extractDate(path));
         const dateValueOrFallback = dateValue ? dateValue : '2000-01-01';
 
-        updatedList.push({
+        const processedItem = {
           url: path,
           date: dateValueOrFallback,
           moment: dateValueOrFallback,
           excerpt: meta.customExcerpt || seo?.description,
           ...filteredRest,
-        });
+        };
+
+        if (this.hideItems && this.hideItems(processedItem)) {
+          continue;
+        }
+
+        updatedList.push(processedItem);
       }
 
       if (sort) {
@@ -102,6 +108,10 @@ export default {
     limit: Number,
     query: Object,
     isRecent: Boolean,
+    hideItems: {
+      type: Function,
+      default: null,
+    },
   },
 };
 </script>

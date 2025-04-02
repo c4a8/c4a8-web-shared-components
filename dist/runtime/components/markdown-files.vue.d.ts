@@ -25,6 +25,12 @@ declare namespace _default {
         let limit: NumberConstructor;
         let query: ObjectConstructor;
         let isRecent: BooleanConstructor;
+        namespace hideItems {
+            let type_1: FunctionConstructor;
+            export { type_1 as type };
+            let _default_1: null;
+            export { _default_1 as default };
+        }
     }
 }
 export default _default;

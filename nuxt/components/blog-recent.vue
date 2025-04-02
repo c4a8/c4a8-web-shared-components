@@ -9,6 +9,7 @@
           :query="query"
           :limit="limit"
           :is-recent="true"
+          :hide-items="(item) => new Date(item.date) > new Date()"
         >
           <div :class="classList" ref="root" v-if="updateFiles(files)">
             <div class="blog-recent__bg" :style="{ 'background-color': bgColor }" v-if="skinClass !== ''"></div>

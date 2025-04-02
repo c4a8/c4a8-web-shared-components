@@ -39,9 +39,9 @@ const { data: list } = await useAsyncData(dataKey, () => {
   const collectionName = 'content_' + locale.value;
   const query = queryCollection(collectionName);
 
-  if (localeQuery.value.where && Object.keys(localeQuery.value.where).length > 0) {
-    let queryBuilder = query;
+  let queryBuilder = query;
 
+  if (localeQuery.value.where && Object.keys(localeQuery.value.where).length > 0) {
     Object.entries(localeQuery.value.where).forEach(([field, condition]) => {
       if (typeof condition === 'object') {
         Object.entries(condition).forEach(([operator, value]) => {
@@ -51,10 +51,8 @@ const { data: list } = await useAsyncData(dataKey, () => {
         queryBuilder = queryBuilder.where(field, '=', condition);
       }
     });
-
-    return queryBuilder.all();
   }
 
-  return query.all();
+  return queryBuilder.all();
 });
 </script>
