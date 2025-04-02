@@ -82,7 +82,7 @@ export default {
     },
     style() {
       return `--highlight-teaser-animation-color: ${
-        this.animationColor != '' ? this.animationColor : 'var(--color-primary)'
+        typeof this.animationColor !== 'undefined' ? this.animationColor : 'var(--color-primary)'
       };`;
     },
     reducedAnimationValue() {
