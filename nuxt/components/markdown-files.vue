@@ -17,7 +17,7 @@ export default {
       let eventCount = 0;
 
       for (const item of this.list) {
-        const { seo, customExcerpt, path, date, moment, _dir, hideInRecent, webcast, meta, ...rest } = item;
+        const { seo, path, date, moment, _dir, hideInRecent, webcast, meta, ...rest } = item;
 
         if (this.isRecent && (hideInRecent || (_dir === 'events' && webcast !== true))) {
           continue;
@@ -44,7 +44,7 @@ export default {
           url: path,
           date: dateValueOrFallback,
           moment: dateValueOrFallback,
-          excerpt: customExcerpt || seo?.description,
+          excerpt: meta.customExcerpt || seo?.description,
           ...filteredRest,
         });
       }
