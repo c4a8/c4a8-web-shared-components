@@ -44,7 +44,7 @@ export default defineNuxtPlugin((_nuxtApp) => {
 
   if (process.client) {
     // TODO read this from package.json . could be an issue because of the moving and the relative location of the file
-    console.debug('Shared Components v.0.1.122');
+    console.debug('Shared Components v.0.1.123');
 
     import('jquery')
       .then((module) => {
