@@ -11,7 +11,7 @@ declare class Tools {
     static getScrollTop(element: any): number | undefined;
     static scrollIntoView(element: any, smooth: any): void;
     static getLang(): string;
-    static isNotDefaultLang(): boolean;
+    static isNotDefaultLang(lang: any): boolean;
     static scrollToTop(): void;
     static getParentComponent(element: any): any;
     static getParent(element: any, selector: any): any;

@@ -1,5 +1,5 @@
 import { parse } from 'node-html-parser';
-import { useRuntimeConfig, useRoute } from '#imports';
+import { useRoute } from '#imports';
 
 class Tools {
   static defaultLang = 'de';
@@ -61,14 +61,16 @@ class Tools {
   }
 
   static getLang() {
+    console.debug('TOOD remove me from componennt and use i18n');
+
     // TODO solve this via nuxt or i18n
     return 'en';
 
     return (document.querySelector('html').getAttribute('lang') || this.defaultLang).toLowerCase();
   }
 
-  static isNotDefaultLang() {
-    return this.getLang() !== this.defaultLang;
+  static isNotDefaultLang(lang) {
+    return lang !== this.defaultLang;
   }
 
   static scrollToTop() {

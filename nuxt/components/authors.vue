@@ -22,8 +22,15 @@
 <script>
 import Tools from '../utils/tools.js';
 
+import { useI18n } from '#imports';
+
 export default {
   tagName: 'authors',
+  setup() {
+    const { locale } = useI18n();
+
+    return { locale };
+  },
   computed: {
     classList() {
       return [
@@ -42,7 +49,7 @@ export default {
       return this.authorArray && this.dataAuthors;
     },
     langValue() {
-      return this.lang ? this.lang : Tools.getLang();
+      return this.lang ? this.lang : this.locale;
     },
   },
   methods: {
@@ -55,7 +62,7 @@ export default {
       }
     },
     authorLink(author) {
-      const folder = Tools.isNotDefaultLang() ? '/' + this.langValue : '';
+      const folder = Tools.isNotDefaultLang(this.langValue) ? '/' + this.langValue : '';
 
       return this.dataAuthors?.hasOwnProperty(author) ? `${folder}${this.dataAuthors[author].permalink}` : null;
     },

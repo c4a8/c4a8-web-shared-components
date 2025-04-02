@@ -44860,6 +44860,9 @@ div.custom-control .custom-control-input,
   position: relative;
   transform: translateY(var(--hero-shape-offset-y)) translateX(var(--hero-shape-offset-x));
 }
+.hero__background-shape > *.is-svg {
+  width: 100%;
+}
 .hero__background-shape > *.lottie {
   display: inline-flex;
   justify-content: flex-end;

@@ -1,5 +1,8 @@
 declare namespace _default {
     let tagName: string;
+    function setup(): {
+        locale: any;
+    };
     namespace computed {
         function classList(): string[];
         function seperator(): " & " | ", ";
