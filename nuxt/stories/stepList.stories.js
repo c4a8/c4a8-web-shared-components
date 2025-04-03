@@ -1,9 +1,9 @@
-import StepList from '../../../components/step-list';
-import { getAssetPath } from '../../../../.storybook/templates';
+import StepListComponent from '../components/step-list.vue';
+import { getAssetPath } from '../.storybook/templates';
 
 export default {
   title: 'Components/Step List',
-  component: StepList,
+  component: StepListComponent,
 };
 
 export const Default = {
@@ -67,7 +67,7 @@ export const SmallWithIcons = {
     variant: 'small',
     list: [
       {
-        img: getAssetPath('svg/icons/icon-hand.svg'),
+        img: getAssetPath('../svg/icons/icon-hand.svg'),
         tint: true,
         alt: 'lorem ipsum dolor sit amet, consectetur adipis',
         title: 'Anmelden',
@@ -77,13 +77,13 @@ export const SmallWithIcons = {
         link: true,
       },
       {
-        img: getAssetPath('svg/icons/icon-consulting-services.svg'),
+        img: getAssetPath('../svg/icons/icon-consulting-services.svg'),
         alt: 'lorem ipsum dolor sit amet, consectetur adipis',
         title: 'Wo',
         content: 'Remote per Teams Meeting',
       },
       {
-        img: getAssetPath('svg/icons/phone-mail.svg'),
+        img: getAssetPath('../svg/icons/phone-mail.svg'),
         tint: true,
         alt: 'lorem ipsum dolor sit amet, consectetur adipis',
         title: 'Gebühr',
@@ -91,7 +91,7 @@ export const SmallWithIcons = {
           '1300,00 € pro Teilnehmer<br/>(200,00 € Discount bei laufenden Projekten oder ab zwei Teilnehmern eines Unternehmens)',
       },
       {
-        img: getAssetPath('svg/icons/icon-checklist-write.svg'),
+        img: getAssetPath('../svg/icons/icon-checklist-write.svg'),
         overlapping: true,
         alt: 'lorem ipsum dolor sit amet, consectetur adipis',
         title: 'Zielgruppe',
