@@ -826,17 +826,9 @@ export default {
     getFolderSwitchUrl(lang, currentPath, segment) {
       if (!segment) return currentPath;
 
-      let newPath;
+      const langPrefix = new RegExp(`^/${this.lowerLang}/`);
 
-      if (lang === this.defaultLang) {
-        const regex = new RegExp(`/${this.lowerLang}/`);
-
-        newPath = currentPath.replace(regex, '/');
-      } else {
-        newPath = currentPath.replace(segment, `${lang}/${segment}`);
-      }
-
-      return newPath;
+      return currentPath.replace(langPrefix, `/${lang}/`);
     },
     isBlogTagsUrl(currentPath) {
       const regex = /\/blog\/tags/;
