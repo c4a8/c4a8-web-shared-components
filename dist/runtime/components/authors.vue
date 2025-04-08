@@ -62,9 +62,9 @@ export default {
       }
     },
     authorLink(author) {
-      const folder = Tools.isNotDefaultLang(this.langValue) ? '/' + this.langValue : '';
-
-      return this.dataAuthors?.hasOwnProperty(author) ? `${folder}${this.dataAuthors[author].permalink}` : null;
+      return this.dataAuthors?.hasOwnProperty(author)
+        ? `/${this.langValue}${this.dataAuthors[author].permalink}`
+        : null;
     },
   },
   props: {
