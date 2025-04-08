@@ -131,13 +131,13 @@ export default defineNuxtModule({
       });
     });
 
-    extendPages((pages) => {
-      pages.unshift({
-        name: 'slug-events',
-        path: '/events/:slug(.*)*',
-        file: resolve('./runtime/pages/events/[...slug].vue'),
-      });
-    });
+    // extendPages((pages) => {
+    //   pages.unshift({
+    //     name: 'slug-events',
+    //     path: '/events/:slug(.*)*',
+    //     file: resolve('./runtime/pages/events/[...slug].vue'),
+    //   });
+    // });
 
     addImportsDir(resolve('./runtime/composables'));
   },
