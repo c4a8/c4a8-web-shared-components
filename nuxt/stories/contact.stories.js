@@ -1,5 +1,5 @@
-import ContactComponent from '../../components/contact.vue';
-import Contact from '../../../.storybook/data/contact.js';
+import ContactComponent from '../components/contact.vue';
+import Contact from '../.storybook/data/contact.js';
 
 export default {
   component: ContactComponent,

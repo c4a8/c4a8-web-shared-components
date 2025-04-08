@@ -59,7 +59,7 @@
                   v-for="(detail, index) in contact.person.details"
                   :key="index"
                   class="contact__detail w-100 px-5 d-flex align-items-center"
-                  :class="{ 'mb-3 mb-lg-4': !index === contact.person.details.length - 1 }"
+                  :class="{ 'mb-3 mb-lg-4': index !== contact.person.details.length - 1 }"
                 >
                   <a :href="detail.href" class="d-flex custom">
                     <span class="streamline-sm mr-4">
@@ -100,7 +100,7 @@
               v-for="(detail, index) in contact.person.details"
               :key="index"
               class="contact__detail font-size-2 w-100 d-flex align-items-center"
-              :class="{ 'mb-3 mb-lg-4': !index === contact.person.details.length - 1 }"
+              :class="{ 'mb-3 mb-lg-4': index !== contact.person.details.length - 1 }"
             >
               <a :href="detail.href" class="custom">
                 <span class="streamline-sm mr-4">
