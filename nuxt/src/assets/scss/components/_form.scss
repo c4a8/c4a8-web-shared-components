@@ -79,7 +79,7 @@ $form-radio-size: $form-checkbox-size;
 
     .is-valid ~ {
       .form__checkbox-label {
-        color: var(--color-copy);
+        color: var(--contact-copy-color, var(--color-copy));
       }
     }
 
