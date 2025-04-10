@@ -11,7 +11,7 @@ const getAbsolutePath = (packageName) => path.dirname(require.resolve(path.join(
 const config = {
   // stories: [`${componentsDir}**/*.mdx`, `${componentsDir}**/*.stories.@(js|jsx|ts|tsx|mdx)`],
   stories: ['../stories/**/*.mdx', '../stories/**/*.stories.@(js|jsx|ts|tsx|mdx)'],
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@chromatic-com/storybook'],
+  addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
   framework: {
     name: getAbsolutePath('@storybook-vue/nuxt'),
     options: {},
