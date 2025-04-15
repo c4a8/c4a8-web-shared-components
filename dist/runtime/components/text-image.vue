@@ -239,7 +239,7 @@ export default {
       return classes;
     },
     textImageLightTextClass() {
-      return [this.copyClasses || '', this.textImageLightText];
+      return [this.copyClasses || '', this.textImageLightText, 'richtext'];
     },
   },
   mounted() {
