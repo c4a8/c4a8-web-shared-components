@@ -16,7 +16,7 @@ export default {
               <div v-for="(typeValues, index) in types" :key="index">
                 <div :class="['typography__item', typeValues.class, typeValues.light ? 'light' : '', typeValues.bold ? 'bold' : '']">
                   <template v-if="!typeValues.headline">
-                    {{ typeValues.class }} {{ typeValues.light ? '(light)' : typeValues.bold ? '(bold)' : '' }}
+                    {{ typeValues.class }} {{ typeValues.light ? 'light' : typeValues.bold ? 'bold' : '' }}
                   </template>
                   <template v-else>
                     <div style="margin: 1em 0;" class="h4-font-size">{{ typeValues.headline }}</div>
