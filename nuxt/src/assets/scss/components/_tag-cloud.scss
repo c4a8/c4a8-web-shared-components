@@ -81,19 +81,19 @@
   &[data-weight='3'] {
     flex: 1 1 auto;
     width: 90vw;
-    font-size: $font-size-3;
+    font-size: $font-size-24px;
 
     @include media-breakpoint-up(sm) {
       width: 55vw;
     }
 
     @include media-breakpoint-up(lg) {
-      font-size: $font-size-4;
+      font-size: $font-size-32px;
       width: auto;
     }
 
     @include media-breakpoint-up(xl) {
-      font-size: $font-size-5;
+      font-size: $font-size-48px;
     }
   }
 
@@ -106,15 +106,15 @@
   @include media-breakpoint-down(md) {
     padding: spacing(3);
     flex: 1 0 15%;
-    font-size: $font-size-2;
+    font-size: $font-size-20px;
   }
 
   @include media-breakpoint-up(lg) {
-    font-size: $font-size-3;
+    font-size: $font-size-24px;
   }
 
   @include media-breakpoint-up(xl) {
-    font-size: $font-size-4;
+    font-size: $font-size-32px;
   }
 }
 

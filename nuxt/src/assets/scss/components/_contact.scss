@@ -125,9 +125,7 @@
       overflow: hidden;
       flex: 0;
       height: 0;
-      transition:
-        opacity 0.7s $animation-transition,
-        height 0.7s $animation-transition;
+      transition: opacity 0.7s $animation-transition, height 0.7s $animation-transition;
     }
 
     .contact__box {
@@ -135,11 +133,11 @@
     }
 
     .contact__details {
-      font-size: $font-size-1;
+      font-size: $font-size-16px;
       padding-left: var(--contact-spacing-collapsed);
 
       @include media-breakpoint-up(lg) {
-        font-size: $font-size-2;
+        font-size: $font-size-20px;
       }
     }
 

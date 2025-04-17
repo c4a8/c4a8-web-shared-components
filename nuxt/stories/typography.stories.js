@@ -1,6 +1,4 @@
 import styles from '../src/assets/scss/_exports.module.scss';
-const defaultExport = Object.keys(styles);
-console.log('🚀 ~ styles:', defaultExport);
 
 export default {
   title: 'Docs/Typography',
@@ -71,28 +69,30 @@ export default {
   ],
 };
 
+const defaultBreakpoints = ['sm', 'lg', 'xl'];
+
 // Typography settings and generation logic
 const settings = {
   'h1-font-size': {
-    breakpoints: ['sm', 'lg', ''],
+    breakpoints: defaultBreakpoints,
     variant: 'light',
   },
   'h2-font-size': {
-    breakpoints: ['sm', 'lg', ''],
+    breakpoints: defaultBreakpoints,
     variant: 'bold',
   },
   'h3-font-size': {
-    breakpoints: ['sm', 'lg', ''],
+    breakpoints: defaultBreakpoints,
     variant: 'bold',
   },
   'h4-font-size': {
-    breakpoints: ['sm', 'lg', ''],
+    breakpoints: defaultBreakpoints,
   },
   'h5-font-size': {
-    breakpoints: ['sm', 'lg', ''],
+    breakpoints: defaultBreakpoints,
   },
   'h6-font-size': {
-    breakpoints: ['sm', 'lg', ''],
+    breakpoints: defaultBreakpoints,
   },
   'Copy Sizes': null,
   'font-size-sm': {
@@ -100,36 +100,36 @@ const settings = {
     variant: 'bold',
   },
   'font-size-1': {
-    breakpoints: [''],
+    breakpoints: defaultBreakpoints,
     variant: 'bold',
   },
   'font-size-2': {
-    breakpoints: [''],
+    breakpoints: defaultBreakpoints,
     variant: 'bold',
   },
   'font-size-3': {
-    breakpoints: ['sm', 'lg', ''],
+    breakpoints: defaultBreakpoints,
     variant: 'bold',
   },
   'font-size-4': {
-    breakpoints: ['sm', 'lg', ''],
+    breakpoints: defaultBreakpoints,
     variant: 'light',
   },
   'Extra Sizes': null,
   'font-size-5': {
-    breakpoints: [''],
+    breakpoints: defaultBreakpoints,
     variant: 'light',
   },
   'font-size-6': {
-    breakpoints: ['sm', 'lg', ''],
+    breakpoints: defaultBreakpoints,
     variant: 'light',
   },
   'font-size-7': {
-    breakpoints: ['sm', 'lg', ''],
+    breakpoints: defaultBreakpoints,
     variant: 'light',
   },
   'font-size-8': {
-    breakpoints: ['sm', 'lg', 'xl'],
+    breakpoints: defaultBreakpoints,
     variant: 'bold',
   },
 };
@@ -152,7 +152,6 @@ const generateDocs = function (typeFace, breakpoints) {
 
   let docs = '';
   let aboveBreakpointLabel = breakpoints.length > 1 ? 'Above (lg) Breakpoint' : 'All Breakpoints';
-  let lastBreakpointInStyles = false;
 
   const typeFaceLevel = getTypeFaceLevel(typeFace);
 
@@ -160,18 +159,8 @@ const generateDocs = function (typeFace, breakpoints) {
     const typeFaceKey = `${typeFace}${breakpoint ? '-' + breakpoint : ''}`;
     const typeFaceValue = styles[typeFaceKey];
     const typeFaceLineHeightKey = `${typeFaceLevel}-line-height`;
-    const typeFaceLineHeightKeyBreakpoint = lastBreakpointInStyles
-      ? `${typeFaceLineHeightKey}-${lastBreakpointInStyles}`
-      : `${typeFaceLineHeightKey}-${breakpoint}`;
-
-    let typeFaceLineHeight;
-
-    if (styles[typeFaceLineHeightKeyBreakpoint]) {
-      typeFaceLineHeight = styles[typeFaceLineHeightKeyBreakpoint];
-      lastBreakpointInStyles = breakpoint;
-    } else {
-      typeFaceLineHeight = styles[typeFaceLineHeightKey];
-    }
+    const typeFaceLineHeightKeyBreakpoint = `${typeFaceLineHeightKey}${breakpoint ? '-' + breakpoint : ''}`;
+    const typeFaceLineHeight = styles[typeFaceLineHeightKeyBreakpoint] || styles[typeFaceLineHeightKey];
 
     if (!typeFaceValue) return;
 
@@ -198,9 +187,9 @@ const generateDocs = function (typeFace, breakpoints) {
 
     const formattedValue = `<div class="typgraphy__tooltip-details">font-size: ${formatter.format(pxValue)}px`;
     const lineHeight = `${typeFaceLineHeight ? '<br/>line-height: ' + formatter.format(pxValueLineHeight) + 'px' : ''}`;
-    const details = `${formattedValue}${lineHeight}`;
+    const details = `${formattedValue}${lineHeight}</div>`;
 
-    docs += `${breakpoint ? 'Breakpoint (' + breakpoint + ')' : aboveBreakpointLabel}: ${details}</div>`;
+    docs += `${breakpoint ? 'Breakpoint (' + breakpoint + ')' : aboveBreakpointLabel}: ${details}`;
   });
 
   if (docs === '') return null;
