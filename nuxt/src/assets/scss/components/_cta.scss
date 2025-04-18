@@ -333,6 +333,10 @@
       border: 0;
       border-radius: 0;
 
+      &.on-surface {
+        background-color: var(--color-primary-on-surface);
+      }
+
       &:not(label.btn):not([href]) {
         background-color: var(--color-primary);
         color: var(--color-white);

@@ -27,6 +27,7 @@ const State = {
   STICKY: 'is-sticky',
   IN_TRANSITION: 'in-transition',
   IS_STARTING: 'is-starting',
+  ON_SURFACE: 'on-surface',
 };
 
 export default State;

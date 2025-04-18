@@ -89,11 +89,12 @@
               </div>
               <div class="header__button" v-if="button">
                 <cta
-                  :text="button.text"
+                  :text="onSurfaceCta"
                   :href="button.href"
                   :target="button.target"
                   :skin="button.skin"
                   :classes="ctaClassList"
+                  :on-surface="onSurfaceCta"
                 />
               </div>
               <div class="header__language-switch" v-if="hasLangSwitch">
@@ -114,6 +115,7 @@
               :target="button.target"
               :skin="button.skin"
               :classes="ctaClassList"
+              :on-surface="onSurfaceCta"
             />
           </div>
           <search v-if="searchValue" class="header__search" language="de" placeholder="search" />
@@ -228,6 +230,7 @@ export default {
         Tools.isTrue(this.product) ? 'header--product' : '',
         !Tools.isTrue(this.closed) ? State.EXPANDED : '',
         Tools.isTrue(this.blendMode) ? 'header--blending' : '',
+        this.onSurface ? State.ON_SURFACE : '',
         this.inUpdate ? 'is-updating' : '',
         'vue-component',
       ];
@@ -309,6 +312,9 @@ export default {
     },
     headerState() {
       return this.store.getHeader;
+    },
+    onSurfaceCta() {
+      return this.hoverHeader ? null : this.onSurface;
     },
   },
   created() {
@@ -914,9 +920,11 @@ export default {
       type: Boolean,
     },
     theme: String,
+    onSurface: Boolean,
   },
   data() {
     return {
+      hoverHeader: false,
       inUpdate: false,
       inTransition: false,
       defaultLang: 'de',

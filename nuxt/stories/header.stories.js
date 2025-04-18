@@ -6,14 +6,19 @@ export default {
   title: 'Components/Header',
   // ...getParams({ page: true }), // TODO make sure padding is removed for that
   component: HeaderComponent,
+  parameters: {
+    layout: 'fullscreen',
+  },
   decorators: [
-    (story) => ({
+    (story, context) => ({
       components: { story },
+      setup() {
+        return { args: context.args };
+      },
       template: `
-        <div>
-          <story />
-          <div style="margin-top: 50vh;height: 200vh;" class="dummy-content"></div>
-        </div>
+        <story />
+        <div v-if="args.onSurface" style="height: 200vh;background-color: var(--color-yellow);" class="dummy-content"></div>
+        <div v-else style="margin-top: 50vh;height: 200vh;" class="dummy-content"></div>
       `,
     }),
   ],
@@ -65,8 +70,8 @@ const productArgs = {
   },
   home: {
     name: 'home',
-    imgLight: '/logos/radius-logo-white.svg',
-    img: '/logos/radius-logo-green.svg',
+    imgLight: '/products/scepman/scepman-logo-all-white.svg',
+    img: '/products/scepman/scepman-logo-rgb.svg',
     languages: {
       en: {
         title: 'Home EN',
@@ -94,8 +99,7 @@ const productArgs = {
       languages: {
         en: {
           title: 'Pricing EN',
-          url: '',
-          active: true,
+          url: '/iframe.html',
         },
       },
     },
@@ -124,7 +128,7 @@ const productArgs = {
 };
 
 export const HeaderProduct = {
-  args: { ...productArgs },
+  args: { ...productArgs, onSurface: true },
 };
 
 export const HeaderProductLight = {
