@@ -1,6 +1,7 @@
 import { defineNuxtPlugin, addRouteMiddleware, useAsyncData } from '#app';
 import Events from './utils/events.js';
 import translations from './locales/global.js';
+import { version } from '../../package.json';
 
 export default defineNuxtPlugin((_nuxtApp) => {
   const i18n = _nuxtApp.$i18n;
@@ -43,8 +44,7 @@ export default defineNuxtPlugin((_nuxtApp) => {
   );
 
   if (process.client) {
-    // TODO read this from package.json . could be an issue because of the moving and the relative location of the file
-    console.debug('Shared Components v.0.2.3');
+    console.debug(`Shared Components v.${version}`);
 
     import('jquery')
       .then((module) => {
