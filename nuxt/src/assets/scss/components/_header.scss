@@ -56,6 +56,10 @@ $header-border-size: 1px;
       }
     }
 
+    &:not(:hover):not(.is-scrolled):not(.is-expanded) {
+      --color-header-background: rgba(255, 255, 255, 0.3);
+    }
+
     &.header--product {
       box-shadow: none;
 
@@ -64,9 +68,11 @@ $header-border-size: 1px;
         box-shadow: $header-section-box-shadow;
       }
 
-      &:not(:hover):not(.is-scrolled):not(.is-expanded) {
-        --color-header-background: transparent;
-      }
+      // &:not(:hover):not(.is-scrolled):not(.is-expanded) {
+      //   --color-header-background: transparent;
+
+      //   --color-header-background: rgba(255, 255, 255, 0.3);
+      // }
 
       .header__item {
         &:hover {
@@ -132,6 +138,31 @@ $header-border-size: 1px;
       }
     }
 
+    &:not(:hover):not(.is-scrolled) {
+      &::before {
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: -1;
+        backdrop-filter: blur(30px);
+      }
+
+      // &::after {
+      //   position: absolute;
+      //   content: '';
+      //   top: 0;
+      //   left: 0;
+      //   bottom: 0;
+      //   right: 0;
+      //   z-index: -2;
+      //   background-color: var(--color-white);
+      //   opacity: 0.3;
+      // }
+    }
+
     &:not(:hover):not(.is-scrolled).header--light {
       @include media-breakpoint-up($header-expand-breakpoint) {
         --color-header-background: transparent;
@@ -140,16 +171,16 @@ $header-border-size: 1px;
         box-shadow: none;
         color: var(--color-copy-light);
 
-        &::before {
-          position: absolute;
-          content: '';
-          top: 0;
-          left: 0;
-          bottom: 0;
-          right: 0;
-          z-index: -1;
-          backdrop-filter: blur(60px);
-        }
+        // &::before {
+        //   position: absolute;
+        //   content: '';
+        //   top: 0;
+        //   left: 0;
+        //   bottom: 0;
+        //   right: 0;
+        //   z-index: -1;
+        //   backdrop-filter: blur(60px);
+        // }
 
         .header__link {
           color: inherit;

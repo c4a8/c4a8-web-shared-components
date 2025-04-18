@@ -1,4 +1,3 @@
-import { useAppStore } from '../stores/app';
 import PageDefault from '../components/page-default.vue';
 import VHeader from '../components/v-header.vue';
 import Content from '../components/content.vue';
@@ -7,42 +6,37 @@ import Hero from '../components/hero.vue';
 import HeaderData from '../.storybook/data/header';
 
 export default {
+  component: VHeader,
   title: 'Pages/Home',
   parameters: {
     isPage: true,
     layout: 'fullscreen',
   },
-
-  render: (args) => ({
-    components: { PageDefault, VHeader, Content, Hero },
-    setup() {
-      const store = useAppStore();
-
-      return {
-        args,
-        store,
-      };
-    },
-    template: `
-      <PageDefault>
-        <v-header v-bind="args.header" />
-        <Content>
-    	    <Hero :hero="args.hero" />
-          <br><br><br><br><br><br><br>
-
-          {{ store }}
-        </Content>
-      </PageDefault>
-    `,
-  }),
+  decorators: [
+    (story, context) => ({
+      components: { story, PageDefault, VHeader, Content, Hero },
+      setup() {
+        return { args: context.args };
+      },
+      template: `
+        <PageDefault>
+          <v-header v-bind="args.header" />
+          <Content>
+       	    <Hero :hero="args.hero" />
+            <div style="height: 200vh;" class="dummy-content"></div>
+          </Content>
+        </PageDefault>
+      `,
+    }),
+  ],
 };
 
-export const Home = {
+export const HomeProduct = {
   args: {
     header: {
       home: HeaderData.home,
       navigation: HeaderData.navigation,
-      light: true,
+      // light: true,
       lang: 'en',
       product: true,
       button: {
@@ -52,8 +46,8 @@ export const Home = {
       },
       home: {
         name: 'home',
-        imgLight: '/logos/radius-logo-white.svg',
-        img: '/logos/radius-logo-green.svg',
+        imgLight: '/products/scepman/scepman-logo-all-white.svg',
+        img: '/products/scepman/scepman-logo-rgb.svg',
         languages: {
           en: {
             title: 'Home EN',
@@ -110,37 +104,55 @@ export const Home = {
       theme: 'radiusaas',
     },
     hero: {
-      bgColor: 'var(--color-blue-medium)',
-      headline: 'Ihre Cloud Strategie',
-      headlineClasses: 'h2-font-size bold',
-      lightOverline: true,
-      subline: 'Microsoft stellt die Technologie, wir die Expertise. Sie brauchen nur noch den Erfolg zu ernten.',
+      pattern: true,
+      headline: 'SCEPman',
+      subline: 'Lorem ipsum dolor sit',
       textShadow: true,
-      ctaList: [
-        {
-          ctaText: 'Kontakt aufnehmen',
-          ctaHref: 'javascript:void(0);',
-          skin: 'primary',
-          icon: 'phone',
-        },
-        {
-          ctaText: 'Mail us',
-          ctaHref: 'javascript:void(0);',
-          skin: 'secondary',
-          icon: 'mail',
-          hasBackground: true,
-        },
-      ],
-      badges: [
-        {
-          img: '/logos/partner-seal-mpoy.svg',
-          alt: 'Partner of the Year Award',
-        },
-        {
-          img: '/logos/partner-seal-mssp.svg',
-          alt: 'Security MSSP of the Year',
-        },
-      ],
+      bgColor: 'var(--color-white)',
+      cta: {
+        text: 'Try SCEPman now',
+        href: 'javascript:void(0);',
+        skin: 'primary is-cutoff',
+      },
+      shape: {
+        img: '/products/radius/radius-hero-screen.png',
+        alt: 'Home',
+        cloudinary: true,
+        mobileOrder: 5,
+      },
     },
+    // hero: {
+    //   bgColor: 'var(--color-blue-medium)',
+    //   headline: 'Ihre Cloud Strategie',
+    //   headlineClasses: 'h2-font-size bold',
+    //   lightOverline: true,
+    //   subline: 'Microsoft stellt die Technologie, wir die Expertise. Sie brauchen nur noch den Erfolg zu ernten.',
+    //   textShadow: true,
+    //   ctaList: [
+    //     {
+    //       ctaText: 'Kontakt aufnehmen',
+    //       ctaHref: 'javascript:void(0);',
+    //       skin: 'primary',
+    //       icon: 'phone',
+    //     },
+    //     {
+    //       ctaText: 'Mail us',
+    //       ctaHref: 'javascript:void(0);',
+    //       skin: 'secondary',
+    //       icon: 'mail',
+    //       hasBackground: true,
+    //     },
+    //   ],
+    //   badges: [
+    //     {
+    //       img: '/logos/partner-seal-mpoy.svg',
+    //       alt: 'Partner of the Year Award',
+    //     },
+    //     {
+    //       img: '/logos/partner-seal-mssp.svg',
+    //       alt: 'Security MSSP of the Year',
+    //     },
+    //   ],
+    // },
   },
 };
