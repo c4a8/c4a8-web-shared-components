@@ -183,7 +183,18 @@ $line-height-map: (
   ),
 );
 
-// Generic mixin for font sizes with breakpoints
+@mixin font-size-all-breakpoints($size-prefix) {
+  @include font-size-breakpoints($size-prefix, 'sm');
+
+  @include media-breakpoint-up(lg) {
+    @include font-size-breakpoints($size-prefix, 'lg');
+  }
+
+  @include media-breakpoint-up(xl) {
+    @include font-size-breakpoints($size-prefix, 'xl');
+  }
+}
+
 @mixin font-size-breakpoints($size-prefix, $breakpoint: false) {
   $breakpoint-key: if($breakpoint == 'lg' or $breakpoint == 'xl', $breakpoint, 'sm');
 
@@ -275,28 +286,28 @@ $line-height-map: (
   font-size: $font-size-sm;
 }
 
-@mixin font-size-1($breakpoint: false) {
-  @include font-size-breakpoints('font-size-1', $breakpoint);
+@mixin font-size-1() {
+  @include font-size-all-breakpoints('font-size-1');
 }
 
-@mixin font-size-2($breakpoint: false) {
-  @include font-size-breakpoints('font-size-2', $breakpoint);
+@mixin font-size-2() {
+  @include font-size-all-breakpoints('font-size-2');
 }
 
-@mixin font-size-3($breakpoint: false) {
-  @include font-size-breakpoints('font-size-3', $breakpoint);
+@mixin font-size-3() {
+  @include font-size-all-breakpoints('font-size-3');
 }
 
-@mixin font-size-4($breakpoint: false) {
-  @include font-size-breakpoints('font-size-4', $breakpoint);
+@mixin font-size-4() {
+  @include font-size-all-breakpoints('font-size-4');
 }
 
-@mixin font-size-5($breakpoint: false) {
-  @include font-size-breakpoints('font-size-5', $breakpoint);
+@mixin font-size-5() {
+  @include font-size-all-breakpoints('font-size-5');
 }
 
 @mixin font-size-6($breakpoint: false) {
-  @include font-size-breakpoints('font-size-6', $breakpoint);
+  @include font-size-all-breakpoints('font-size-6');
 
   @if $breakpoint == 'lg' {
     margin-left: -5px;

@@ -29,12 +29,10 @@ $font-size-sm: $font-size-base * 0.85;
 $font-size-xs: $font-size-sm * 0.89;
 $font-size-lg: 1.5rem;
 
-// XXX
-
 // Font size 1
 $font-size-1-xl: 1rem;
 $font-size-1-lg: 1rem;
-$font-size-1-sm: 0.875rem;
+$font-size-1-sm: 1rem;
 $font-size-1-line-height-xl: $default-line-height;
 $font-size-1-line-height-lg: $default-line-height;
 $font-size-1-line-height-sm: $default-line-height;
@@ -43,25 +41,25 @@ $font-size-1-line-height-sm: $default-line-height;
 $font-size-2-xl: 1.25rem;
 $font-size-2-lg: 1.25rem;
 $font-size-2-sm: 1.125rem;
-$font-size-2-line-height-xl: 1.6em;
-$font-size-2-line-height-lg: 1.6em;
+$font-size-2-line-height-xl: 1.7em;
+$font-size-2-line-height-lg: 1.7em;
 $font-size-2-line-height-sm: 1.6667em;
 
 // Font size 3
 $font-size-3-xl: 1.5625rem;
 $font-size-3-lg: 1.25rem;
 $font-size-3-sm: 1.25rem;
-$font-size-3-line-height-xl: 2.5rem;
-$font-size-3-line-height-lg: 2.5rem;
-$font-size-3-line-height-sm: 2.5rem;
+$font-size-3-line-height-xl: 1.6em;
+$font-size-3-line-height-lg: 1.6em;
+$font-size-3-line-height-sm: 1.6em;
 
 // Font size 4
 $font-size-4-xl: 1.95313rem;
 $font-size-4-lg: 1.5625rem;
-$font-size-4-sm: 1.5625rem;
-$font-size-4-line-height-xl: 2rem;
-$font-size-4-line-height-lg: 2.5rem;
-$font-size-4-line-height-sm: 2rem;
+$font-size-4-sm: $font-size-22px;
+$font-size-4-line-height-xl: 1.7em;
+$font-size-4-line-height-lg: 1.7em;
+$font-size-4-line-height-sm: 1.6365em;
 
 // Font size 5
 $font-size-5-xl: 3rem;
