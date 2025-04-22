@@ -13,7 +13,7 @@
     @click="handleClick"
   >
     <span class="cta__text">{{ text }}</span>
-    <icon :icon="iconName" v-if="hasIcon" :size="sizeValue" />
+    <icon :icon="iconName" v-if="hasIcon" :size="sizeValue" :stroke-width="4" />
   </component>
 </template>
 
@@ -48,6 +48,7 @@ export default {
         this.link && Tools.isTrue(this.active) === true ? State.ACTIVE : '',
         Tools.isTrue(this.loading) ? State.LOADING : '',
         Tools.isTrue(this.hasBackground) === true ? 'cta--has-background' : '',
+        this.onSurface ? State.ON_SURFACE : '',
         'vue-component',
       ];
     },
@@ -159,6 +160,10 @@ export default {
     javascript: {
       default: null,
       type: String,
+    },
+    onSurface: {
+      default: null,
+      type: Boolean,
     },
   },
 };

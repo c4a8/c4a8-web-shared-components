@@ -13701,50 +13701,6 @@ a.badge-soft-indigo:hover {
   background: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='%23fff' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.72,15.78a.75.75,0,0,1-.53.22h-.38a.77.77,0,0,1-.53-.22L6.15,10.64a.5.5,0,0,1,0-.71l.71-.71a.49.49,0,0,1,.7,0L12,13.67l4.44-4.45a.5.5,0,0,1,.71,0l.7.71a.5.5,0,0,1,0,.71Z'/%3E%3C/svg%3E") no-repeat right center/1rem 1rem;
 }
 
-.btn-primary[href]:active,
-.btn-primary[href]:focus,
-.btn-primary[href]:hover,
-.btn-primary[type]:active,
-.btn-primary[type]:focus,
-.btn-primary[type]:hover {
-  box-shadow: 0 4px 11px rgba(55, 125, 255, 0.35);
-}
-
-.btn-primary:not([href]),
-.btn-primary:not([href]):not([href]):not(:disabled):not(.disabled),
-.btn-primary:not(label.btn),
-.btn-primary:not(label.btn):not([href]):not(:disabled):not(.disabled) {
-  background-color: #377dff;
-  border-color: #377dff;
-}
-
-.btn-primary:hover {
-  background-color: #377dff;
-  border-color: #377dff;
-}
-
-.btn-secondary[href]:active,
-.btn-secondary[href]:focus,
-.btn-secondary[href]:hover,
-.btn-secondary[type]:active,
-.btn-secondary[type]:focus,
-.btn-secondary[type]:hover {
-  box-shadow: 0 4px 11px rgba(113, 134, 157, 0.35);
-}
-
-.btn-secondary:not([href]),
-.btn-secondary:not([href]):not([href]):not(:disabled):not(.disabled),
-.btn-secondary:not(label.btn),
-.btn-secondary:not(label.btn):not([href]):not(:disabled):not(.disabled) {
-  background-color: #71869d;
-  border-color: #71869d;
-}
-
-.btn-secondary:hover {
-  background-color: #71869d;
-  border-color: #71869d;
-}
-
 .btn-success[href]:active,
 .btn-success[href]:focus,
 .btn-success[href]:hover,
@@ -22338,6 +22294,8 @@ body.compensate-for-scrollbar {
   --color-shuttle-gray: #666979;
   --color-waterloo: #80828f;
   --color-anakiwa: #97d4ff;
+  --color-butterfly-bush: #524fa3;
+  --color-kimberly: #716fa7;
   --color-white: #fff;
   --color-headlines: var(--color-blue-dark);
   --color-copy: var(--color-blue-dark);
@@ -38062,6 +38020,13 @@ modal {
 .richtext p + h6 {
   margin-top: 5rem;
 }
+.richtext ol {
+  margin-top: 1.5rem;
+}
+.richtext ul li,
+.richtext ol li {
+  margin-bottom: 1rem;
+}
 .richtext ul {
   list-style: none;
   margin-bottom: 0;
@@ -38092,9 +38057,6 @@ modal {
 }
 .richtext ul + * {
   margin-top: 3rem;
-}
-.richtext ul li {
-  margin-bottom: 1rem;
 }
 .richtext ul li::before {
   top: 16px;
@@ -40075,8 +40037,8 @@ svg.streamline-icon {
 
 .hover__parent:hover .cta,
 .shared-components .cta:hover {
+  --cta-copy-color: var(--color-primary-accent);
   box-shadow: none;
-  color: var(--color-primary-accent);
 }
 .hover__parent:hover .cta.cta--external .icon svg,
 .shared-components .cta:hover.cta--external .icon svg {
@@ -40108,6 +40070,11 @@ svg.streamline-icon {
 .shared-components .cta:hover:not(.btn):not(.custom):not(.nav-link).is-light {
   color: var(--color-white);
 }
+.hover__parent:hover .cta.btn-primary,
+.shared-components .cta:hover.btn-primary {
+  --cta-btn-color: var(--color-primary-accent);
+  --cta-copy-color: var(--color-copy-on-primary-accent);
+}
 .hover__parent:hover .cta.btn-primary.is-light,
 .shared-components .cta:hover.btn-primary.is-light {
   background-color: var(--color-primary-accent-light);
@@ -40118,6 +40085,26 @@ svg.streamline-icon {
   background-color: var(--color-primary-accent-light);
   color: var(--color-primary-accent);
 }
+.hover__parent:hover .cta.btn-primary.on-surface,
+.shared-components .cta:hover.btn-primary.on-surface {
+  --cta-copy-color: var(--color-copy-on-primary-accent-on-surface);
+  --cta-btn-color: var(--color-primary-accent-on-surface);
+  --cta-background-accent-color: --cta-btn-color;
+  color: var(--color-copy-on-primary-on-surface);
+  background-color: var(--cta-btn-color);
+}
+.hover__parent:hover .cta.btn-primary.on-surface:not(.is-loading),
+.shared-components .cta:hover.btn-primary.on-surface:not(.is-loading) {
+  border-color: var(--cta-btn-color);
+}
+.hover__parent:hover .cta.btn-primary.on-surface::before,
+.shared-components .cta:hover.btn-primary.on-surface::before {
+  background-color: var(--cta-btn-color);
+}
+.hover__parent:hover .cta.btn-primary.on-surface::after,
+.shared-components .cta:hover.btn-primary.on-surface::after {
+  color: inherit;
+}
 .hover__parent:hover .cta.btn-primary::after,
 .shared-components .cta:hover.btn-primary::after {
   opacity: 1;
@@ -40125,17 +40112,21 @@ svg.streamline-icon {
 }
 .hover__parent:hover .cta.btn-secondary,
 .shared-components .cta:hover.btn-secondary {
-  border-color: var(--color-primary-accent);
-  color: var(--color-primary-accent);
+  --cta-btn-color: var(--color-secondary-accent);
+  color: var(--cta-btn-color);
+}
+.hover__parent:hover .cta.btn-secondary:not(.is-loading),
+.shared-components .cta:hover.btn-secondary:not(.is-loading) {
+  border-color: var(--cta-btn-color);
 }
 .hover__parent:hover .cta.btn-secondary.is-cutoff::before,
 .shared-components .cta:hover.btn-secondary.is-cutoff::before {
-  background: var(--color-primary-accent);
+  background: var(--cta-btn-color);
 }
 .hover__parent:hover .cta.btn-secondary.is-light,
 .shared-components .cta:hover.btn-secondary.is-light {
   border-color: var(--color-white);
-  color: var(--color-primary-accent);
+  color: var(--color-secondary-accent-light);
 }
 .hover__parent:hover .cta.btn-secondary.is-light::before,
 .shared-components .cta:hover.btn-secondary.is-light::before {
@@ -40146,9 +40137,24 @@ svg.streamline-icon {
   opacity: 1;
   background-position: left bottom;
 }
+.hover__parent:hover .cta.btn-secondary.on-surface,
+.shared-components .cta:hover.btn-secondary.on-surface {
+  --cta-btn-color: var(--color-secondary-accent-on-surface);
+  --cta-background-accent-color: --cta-btn-color;
+  color: var(--color-copy-on-secondary-on-surface);
+}
+.hover__parent:hover .cta.btn-secondary.on-surface:not(.is-loading),
+.shared-components .cta:hover.btn-secondary.on-surface:not(.is-loading) {
+  border-color: var(--cta-btn-color);
+}
+.hover__parent:hover .cta.btn-secondary.on-surface::after,
+.shared-components .cta:hover.btn-secondary.on-surface::after {
+  color: inherit;
+}
 
 .cta {
   --cta-active-size: 3px;
+  --cta-border-width: 2px;
   position: relative;
   border-radius: 0;
 }
@@ -40227,8 +40233,8 @@ svg.streamline-icon {
 }
 .cta.cta--download:not(.link) .icon {
   transform: translateY(-50%) rotate(135deg);
-  width: 14px;
-  height: 14px;
+  width: 15px;
+  height: 15px;
 }
 .cta.btn {
   font-size: 1rem;
@@ -40244,7 +40250,7 @@ svg.streamline-icon {
   user-select: none;
   background-color: transparent;
   transition: all 0.2s ease-in-out;
-  border: 0.0625rem solid transparent;
+  border: var(--cta-border-width) solid transparent;
 }
 @media (min-width: 992px) {
   .cta.btn {
@@ -40286,12 +40292,17 @@ svg.streamline-icon {
 }
 
 .shared-components .cta {
-  color: var(--color-primary);
+  --cta-background-accent-color: transparent;
+  --cta-copy-color: var(--color-primary);
+  --cta-background-color: transparent;
+  --cta-border-color: transparent;
+  color: var(--cta-copy-color);
   -webkit-appearance: none;
   appearance: none;
+  background-color: var(--cta-background-color);
 }
 .shared-components .cta.cta--monochrome {
-  color: var(--color-copy);
+  --cta-copy-color: var(--color-copy);
 }
 .shared-components .cta:not(.btn):not(.custom):not(.nav-link).is-light {
   color: var(--color-white);
@@ -40301,64 +40312,57 @@ svg.streamline-icon {
   position: relative;
 }
 .shared-components .cta.btn-primary {
-  background-color: var(--color-primary);
-  color: var(--color-white);
-  border: 0;
+  --cta-copy-color: var(--color-copy-on-primary);
+  --cta-background-accent-color: var(--color-primary-accent);
+  --cta-background-color: var(--color-primary);
+  --cta-border-color: transparent;
   border-radius: 0;
+  border-color: var(--cta-border-color);
 }
-.shared-components .cta.btn-primary:not(label.btn):not([href]) {
-  background-color: var(--color-primary);
-  color: var(--color-white);
+.shared-components .cta.btn-primary:not(.is-loading) {
+  --cta-border-color: var(--color-primary);
 }
 .shared-components .cta.btn-primary::after {
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+  left: calc(-1 * var(--cta-border-width) / 2);
+  top: calc(-1 * var(--cta-border-width) / 2);
+  width: calc(100% + var(--cta-border-width));
+  height: calc(100% + var(--cta-border-width));
   content: attr(data-text);
-  color: var(--color-white);
+  color: var(--cta-copy-color);
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to right, var(--color-primary-accent) 50%, transparent 50%);
+  background: linear-gradient(to right, var(--cta-background-accent-color) 50%, transparent 50%);
   background-size: 200% 100%;
   background-position: right bottom;
   opacity: 0;
   transition: background 0.5s cubic-bezier(0.19, 1, 0.2, 1);
 }
-.shared-components .cta.btn-primary.is-light {
-  color: var(--color-primary);
-  background-color: var(--color-white);
-}
-.shared-components .cta.btn-primary.is-light:not(label.btn):not([href]) {
-  color: var(--color-primary);
-  background-color: var(--color-white);
-}
-.shared-components .cta.btn-primary.is-light::after {
-  display: none;
-}
 @media (min-width: 992px) {
   .shared-components .cta.btn-primary.is-light-lg {
-    color: var(--color-primary);
-    background-color: var(--color-white);
+    background-color: var(--color-primary-on-surface);
+    color: var(--color-copy-on-primary-on-surface);
   }
-  .shared-components .cta.btn-primary.is-light-lg:not(label.btn):not([href]) {
-    color: var(--color-primary);
-    background-color: var(--color-white);
+  .shared-components .cta.btn-primary.is-light-lg:not(.is-loading) {
+    border-color: var(--color-primary-on-surface);
   }
-  .shared-components .cta.btn-primary.is-light-lg::after {
-    display: none;
-  }
+}
+.shared-components .cta.btn-primary.is-light, .shared-components .cta.btn-primary.on-surface {
+  background-color: var(--color-primary-on-surface);
+  color: var(--color-copy-on-primary-on-surface);
+}
+.shared-components .cta.btn-primary.is-light:not(.is-loading), .shared-components .cta.btn-primary.on-surface:not(.is-loading) {
+  border-color: var(--color-primary-on-surface);
 }
 .shared-components .cta.btn-secondary {
   background-color: transparent;
-  border-color: var(--color-primary);
-  color: var(--color-primary);
+  border-color: var(--color-secondary);
+  color: var(--color-secondary);
 }
 .shared-components .cta.btn-secondary.is-cutoff::before {
   clip-path: polygon(calc(100% - 15px + 1px) 0, 100% calc(15px - 1px), 100% 100%, 100% 0);
-  background: var(--color-primary);
+  background: var(--color-secondary);
   content: "";
   position: absolute;
   left: 0;
@@ -40420,6 +40424,13 @@ svg.streamline-icon {
     opacity: 0;
     transition: background 0.5s cubic-bezier(0.19, 1, 0.2, 1);
   }
+}
+.shared-components .cta.btn-secondary.on-surface {
+  border-color: var(--color-secondary-on-surface);
+  color: var(--color-copy-on-secondary-on-surface);
+}
+.shared-components .cta.btn-secondary.on-surface::before {
+  background: var(--color-secondary-on-surface);
 }
 .shared-components .cta.active {
   color: var(--color-active);
@@ -43108,14 +43119,17 @@ div.custom-control .custom-control-input,
 .header.vue-component:hover .header__secondary-navigation-button, .header.vue-component.is-scrolled .header__secondary-navigation-button {
   box-shadow: var(--header-secondary-navigation-shadow);
 }
+.header.vue-component.on-surface .header__secondary-navigation {
+  --color-header-background: transparent;
+}
+.header.vue-component:not(:hover):not(.is-scrolled):not(.is-expanded) {
+  --color-header-background: rgba(255, 255, 255, 0.3);
+}
 .header.vue-component.header--product {
   box-shadow: none;
 }
 .header.vue-component.header--product.is-scrolled, .header.vue-component.header--product:hover {
   box-shadow: 0 12px 15px rgba(140, 152, 164, 0.1);
-}
-.header.vue-component.header--product:not(:hover):not(.is-scrolled):not(.is-expanded) {
-  --color-header-background: transparent;
 }
 .header.vue-component.header--product .header__item:hover .header__link::after {
   display: none;
@@ -43131,7 +43145,7 @@ div.custom-control .custom-control-input,
     color: inherit;
   }
   .header.vue-component.header--product .header__item.active::before {
-    background-color: var(--color-secondary);
+    background-color: var(--color-highlight);
     content: "";
     height: 8px;
     left: 50%;
@@ -43174,22 +43188,22 @@ div.custom-control .custom-control-input,
   overflow-y: auto;
   max-height: 90vh;
 }
+.header.vue-component:not(:hover):not(.is-scrolled)::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  backdrop-filter: blur(30px);
+}
 @media (min-width: 992px) {
   .header.vue-component:not(:hover):not(.is-scrolled).header--light {
     --color-header-background: transparent;
     --color-header-border: transparent;
     box-shadow: none;
     color: var(--color-copy-light);
-  }
-  .header.vue-component:not(:hover):not(.is-scrolled).header--light::before {
-    position: absolute;
-    content: "";
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: -1;
-    backdrop-filter: blur(60px);
   }
   .header.vue-component:not(:hover):not(.is-scrolled).header--light .header__link {
     color: inherit;

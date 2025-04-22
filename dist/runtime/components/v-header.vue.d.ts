@@ -856,6 +856,7 @@ declare namespace _default {
         function hasContact(): any;
         function hasMeta(): any;
         function headerState(): any;
+        function onSurfaceCta(): any;
     }
     function created(): void;
     namespace watch {
@@ -958,8 +959,10 @@ declare namespace _default {
             export let type: BooleanConstructor;
         }
         let theme: StringConstructor;
+        let onSurface: BooleanConstructor;
     }
     function data(): {
+        hoverHeader: boolean;
         inUpdate: boolean;
         inTransition: boolean;
         defaultLang: string;
