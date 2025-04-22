@@ -13,7 +13,7 @@
     @click="handleClick"
   >
     <span class="cta__text">{{ text }}</span>
-    <icon :icon="iconName" v-if="hasIcon" :size="sizeValue" />
+    <icon :icon="iconName" v-if="hasIcon" :size="sizeValue" :stroke-width="4" />
   </component>
 </template>
 

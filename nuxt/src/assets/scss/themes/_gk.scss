@@ -5,16 +5,32 @@
   // Theme colors
   --color-headlines: var(--color-blue-dark);
   --color-copy: var(--color-blue-dark);
+
   --color-primary: var(--color-blue-light);
   --color-primary-accent: var(--color-blue-medium);
   --color-primary-accent-light: var(--color-link-water);
   --color-primary-on-surface: red;
   --color-primary-accent-on-surface: red;
-  --color-secondary: var(--color-yellow);
-  --color-secondary-accent: red;
+
+  --color-secondary: var(--color-blue-light);
+  --color-secondary-accent: var(--color-blue-medium);
+  --color-secondary-accent-light: red;
   --color-secondary-on-surface: red;
   --color-secondary-accent-on-surface: red;
+
+  --color-highlight: var(--color-cold-purple);
+
   --color-copy-highlight: var(--color-orange);
+
+  --color-copy-on-primary: var(--color-copy-light);
+  --color-copy-on-primary-accent: var(--color-copy);
+  --color-copy-on-primary-on-surface: var(--color-copy-light);
+  --color-copy-on-primary-accent-on-surface: var(--color-copy-light);
+
+  --color-copy-on-secondary: var(--color-ripe-lemon);
+  --color-copy-on-secondary-accent: var(--color-ripe-lemon);
+  --color-copy-on-secondary-on-surface: var(--color-kimberly);
+  --color-copy-on-secondary-accent-on-surface: var(--color-kimberly);
 
   // Element colors
   --color-bg-grey: var(--color-porcelain);

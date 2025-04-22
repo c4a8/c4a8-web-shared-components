@@ -3,18 +3,34 @@
 :root {
   --site: 'scepman';
   // Theme colors
-  --color-headlines: var(--color-midnight);
-  --color-copy: var(--color-midnight);
-  --color-primary: var(--color-yellow);
-  --color-primary-accent: var(--color-ripe-lemon);
-  --color-primary-accent-light: var(--color-varden);
-  --color-primary-on-surface: var(--color-butterfly-bush);
-  --color-primary-accent-on-surface: red;
-  --color-secondary: var(--color-cold-purple);
-  --color-secondary-accent: var(--color-cold-purple);
-  --color-secondary-on-surface: red;
+  --color-headlines: var(--color-midnight); // #011e33;
+  --color-copy: var(--color-midnight); // #011e33;
+
+  --color-primary: var(--color-yellow); // #fcd116;
+  --color-primary-accent: var(--color-ripe-lemon); // #f7cb0b;
+  --color-primary-accent-light: var(--color-varden); // #fff8dc;
+  --color-primary-on-surface: var(--color-kimberly); // #716fa7;
+  --color-primary-accent-on-surface: green;
+
+  --color-secondary: var(--color-ripe-lemon); // #f7cb0b; vorher var(--color-cold-purple); // #a09edb;
+  --color-secondary-accent: var(--color-ripe-lemon); // #f7cb0b; vorher var(--color-cold-purple); // #a09edb;
+  --color-secondary-accent-light: red;
+  --color-secondary-on-surface: var(--color-kimberly); // #716fa7;
   --color-secondary-accent-on-surface: red;
-  --color-copy-highlight: var(--color-cold-purple);
+
+  --color-highlight: var(--color-cold-purple); // #a09edb;
+
+  --color-copy-highlight: var(--color-cold-purple); // #a09edb;
+
+  --color-copy-on-primary: var(--color-copy); // #011e33;
+  --color-copy-on-primary-accent: var(--color-copy); // #011e33;
+  --color-copy-on-primary-on-surface: var(--color-copy-light); // #ffffff;
+  --color-copy-on-primary-accent-on-surface: var(--color-copy-light); // #ffffff;
+
+  --color-copy-on-secondary: var(--color-ripe-lemon); // #f7cb0b;
+  --color-copy-on-secondary-accent: var(--color-ripe-lemon); // #f7cb0b;
+  --color-copy-on-secondary-on-surface: var(--color-kimberly); // #716fa7;
+  --color-copy-on-secondary-accent-on-surface: var(--color-kimberly); // #716fa7;
 
   // Element colors
   --color-bg-grey: var(--color-porcelain);

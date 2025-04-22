@@ -36,7 +36,107 @@ export const HomeProduct = {
     header: {
       home: HeaderData.home,
       navigation: HeaderData.navigation,
-      // light: true,
+      lang: 'en',
+      product: true,
+      button: {
+        text: 'Start now',
+        href: '/start-now/',
+        skin: 'primary is-cutoff',
+      },
+      home: {
+        name: 'home',
+        imgLight: '/products/scepman/scepman-logo-all-white.svg',
+        img: '/products/scepman/scepman-logo-rgb.svg',
+        languages: {
+          en: {
+            title: 'Home EN',
+            url: '',
+            alt: 'alt text EN',
+          },
+        },
+      },
+      navigation: [
+        {
+          name: 'home',
+          languages: {
+            de: {
+              title: 'Home',
+              url: '',
+            },
+            en: {
+              title: 'Home EN',
+              url: '',
+            },
+          },
+        },
+        {
+          name: 'pricing',
+          languages: {
+            en: {
+              title: 'Pricing EN',
+              url: '/iframe.html',
+            },
+          },
+        },
+        {
+          name: 'partner',
+          languages: {
+            en: {
+              title: 'Partner EN',
+              url: '',
+            },
+          },
+        },
+        {
+          name: 'docs',
+          languages: {
+            en: {
+              title: 'Docs',
+              url: 'https://docs.radiusaas.com/',
+              target: '_blank',
+            },
+          },
+        },
+      ],
+      showSecondaryNavigation: true,
+      theme: 'radiusaas',
+    },
+    hero: {
+      pattern: true,
+      headline: 'SCEPman',
+      subline: 'Lorem ipsum dolor sit',
+      textShadow: true,
+      bgColor: 'var(--color-white)',
+      ctaList: [
+        {
+          ctaText: 'Try SCEPman now',
+          ctaHref: 'javascript:void(0);',
+          skin: 'primary is-cutoff',
+          icon: 'phone',
+        },
+        {
+          ctaText: 'Mail us',
+          ctaHref: 'javascript:void(0);',
+          skin: 'secondary is-cutoff',
+          icon: 'mail',
+        },
+      ],
+      shape: {
+        img: '/products/radius/radius-hero-screen.png',
+        alt: 'Home',
+        cloudinary: true,
+        mobileOrder: 5,
+      },
+    },
+  },
+};
+
+export const HomeProductOnSurface = {
+  args: {
+    header: {
+      onSurface: true,
+      home: HeaderData.home,
+      navigation: HeaderData.navigation,
       lang: 'en',
       product: true,
       button: {
@@ -76,7 +176,6 @@ export const HomeProduct = {
             en: {
               title: 'Pricing EN',
               url: '',
-              active: true,
             },
           },
         },
@@ -85,7 +184,7 @@ export const HomeProduct = {
           languages: {
             en: {
               title: 'Partner EN',
-              url: '',
+              url: '/iframe.html',
             },
           },
         },
@@ -104,16 +203,25 @@ export const HomeProduct = {
       theme: 'radiusaas',
     },
     hero: {
-      pattern: true,
       headline: 'SCEPman',
       subline: 'Lorem ipsum dolor sit',
-      textShadow: true,
-      bgColor: 'var(--color-white)',
-      cta: {
-        text: 'Try SCEPman now',
-        href: 'javascript:void(0);',
-        skin: 'primary is-cutoff',
-      },
+      bgColor: 'var(--color-primary)',
+      ctaList: [
+        {
+          ctaText: 'Try SCEPman now',
+          ctaHref: 'javascript:void(0);',
+          skin: 'primary is-cutoff',
+          icon: 'phone',
+          onSurface: true,
+        },
+        {
+          ctaText: 'Mail us',
+          ctaHref: 'javascript:void(0);',
+          skin: 'secondary is-cutoff',
+          icon: 'mail',
+          onSurface: true,
+        },
+      ],
       shape: {
         img: '/products/radius/radius-hero-screen.png',
         alt: 'Home',
@@ -121,38 +229,5 @@ export const HomeProduct = {
         mobileOrder: 5,
       },
     },
-    // hero: {
-    //   bgColor: 'var(--color-blue-medium)',
-    //   headline: 'Ihre Cloud Strategie',
-    //   headlineClasses: 'h2-font-size bold',
-    //   lightOverline: true,
-    //   subline: 'Microsoft stellt die Technologie, wir die Expertise. Sie brauchen nur noch den Erfolg zu ernten.',
-    //   textShadow: true,
-    //   ctaList: [
-    //     {
-    //       ctaText: 'Kontakt aufnehmen',
-    //       ctaHref: 'javascript:void(0);',
-    //       skin: 'primary',
-    //       icon: 'phone',
-    //     },
-    //     {
-    //       ctaText: 'Mail us',
-    //       ctaHref: 'javascript:void(0);',
-    //       skin: 'secondary',
-    //       icon: 'mail',
-    //       hasBackground: true,
-    //     },
-    //   ],
-    //   badges: [
-    //     {
-    //       img: '/logos/partner-seal-mpoy.svg',
-    //       alt: 'Partner of the Year Award',
-    //     },
-    //     {
-    //       img: '/logos/partner-seal-mssp.svg',
-    //       alt: 'Security MSSP of the Year',
-    //     },
-    //   ],
-    // },
   },
 };

@@ -17,8 +17,8 @@ export default {
       },
       template: `
         <story />
-        <div v-if="args.onSurface" style="height: 200vh;background-color: var(--color-yellow);" class="dummy-content"></div>
-        <div v-else style="margin-top: 50vh;height: 200vh;" class="dummy-content"></div>
+        <div v-if="args.onSurface" style="height: 200vh;background-color: var(--color-yellow);opacity: 1;" class="dummy-content is--dark"></div>
+        <div v-else style="height: 200vh;" class="dummy-content is--dark"></div>
       `,
     }),
   ],
@@ -127,11 +127,23 @@ const productArgs = {
   theme: 'radiusaas',
 };
 
-export const HeaderProduct = {
+export const HeaderProductOnSurface = {
   args: { ...productArgs, onSurface: true },
 };
 
+export const HeaderProduct = {
+  args: { ...productArgs },
+};
+
 export const HeaderProductLight = {
+  args: {
+    light: true,
+    ...productArgs,
+    onSurface: true,
+  },
+};
+
+export const HeaderProductLightBlendMode = {
   args: {
     light: true,
     blendMode: true,

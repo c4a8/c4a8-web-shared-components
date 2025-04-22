@@ -314,7 +314,7 @@ export default {
       return this.store.getHeader;
     },
     onSurfaceCta() {
-      return this.hoverHeader ? null : this.onSurface;
+      return this.hoverHeader || this.isScrolled ? null : this.onSurface || (this.isLight && this.onSurface);
     },
   },
   created() {
