@@ -43,6 +43,17 @@ $richtext-conclusion-spacing-lg: $spacing-content-default;
     }
   }
 
+  ol {
+    margin-top: spacing(6);
+  }
+
+  ul,
+  ol {
+    li {
+      margin-bottom: spacing(4);
+    }
+  }
+
   ul {
     @include richtext-width;
     @include bulletpoints;
@@ -64,8 +75,6 @@ $richtext-conclusion-spacing-lg: $spacing-content-default;
     }
 
     li {
-      margin-bottom: spacing(4);
-
       &::before {
         top: 16px;
       }
