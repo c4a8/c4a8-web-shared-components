@@ -399,10 +399,10 @@
       border-radius: 0;
       border-color: var(--cta-border-color);
 
-      &:not(label.btn):not([href]) {
-        --cta-copy-color: var(--color-copy-on-primary);
-        --cta-background-color: var(--color-primary);
-      }
+      // &:not(label.btn):not([href]) {
+      //   --cta-copy-color: var(--color-copy-on-primary);
+      //   --cta-background-color: var(--color-primary);
+      // }
 
       &:not(.is-loading) {
         --cta-border-color: var(--color-primary);
