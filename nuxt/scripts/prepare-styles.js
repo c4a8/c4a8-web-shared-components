@@ -10,13 +10,34 @@ const scssInput = resolve(__dirname, '../src/assets/scss/index.scss');
 const cssOutput = resolve(__dirname, '../dist/styles/index.css');
 const optimizedCssOutput = resolve(__dirname, '../dist/styles/index.min.css');
 
+// Define paths for theme files
+const scssThemesDirectory = resolve(__dirname, '../src/assets/scss/themes');
 const cssDirectory = resolve(__dirname, '../src/assets/css/themes');
+
+// Ensure the CSS themes directory exists
+if (!fs.existsSync(cssDirectory)) {
+  fs.mkdirSync(cssDirectory, { recursive: true });
+}
+
+// First compile SCSS theme files to CSS
+console.log('Compiling SCSS theme files to CSS...');
+const scssThemeFiles = fs.readdirSync(scssThemesDirectory).filter((file) => file.endsWith('.scss'));
+
+scssThemeFiles.forEach((file) => {
+  const scssFile = resolve(scssThemesDirectory, file);
+  const cssFile = resolve(cssDirectory, file.replace(/^_/, '').replace('.scss', '.css'));
+
+  console.log(`Compiling ${file} to CSS...`);
+  execSync(`sass ${scssFile} ${cssFile} --no-source-map`, { stdio: 'inherit' });
+});
+
+// Get all CSS files (including newly generated ones)
 const staticCssFiles = fs
   .readdirSync(cssDirectory)
   .filter((file) => file.endsWith('.css'))
   .map((file) => resolve(cssDirectory, file));
 
-console.log('Compiling SCSS to CSS...');
+console.log('Compiling main SCSS to CSS...');
 execSync(`sass ${scssInput} ${cssOutput} --no-source-map`, { stdio: 'inherit' });
 
 console.log('Optimizing CSS with PostCSS...');

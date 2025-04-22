@@ -1,18 +1,18 @@
-/* gk theme related styling here */
-
 :root {
-  --site: 'themename';
-  /* Theme colors */
+  --site: "themename";
   --color-headlines: red;
   --color-copy: red;
   --color-primary: red;
   --color-primary-accent: red;
   --color-primary-accent-light: red;
+  --color-primary-on-surface: red;
+  --color-primary-accent-on-surface: red;
   --color-secondary: red;
   --color-secondary-accent: red;
+  --color-secondary-on-surface: red;
+  --color-secondary-accent-on-surface: red;
   --color-copy-highlight: red;
-
-  /* Element colors */
+  --color-copy-on-primary: red;
   --color-bg-grey: red;
   --color-bg-dark-grey: red;
   --color-svg-icon: red;
@@ -24,7 +24,5 @@
   --color-loading--2: var(--color-yellow);
   --color-loading--3: var(--color-conifer);
   --color-loading--4: var(--color-orange);
-
-  /* fonts */
-  --font-family: 'Miriam Libre', sans-serif;
+  --font-family: "Miriam Libre", sans-serif;
 }

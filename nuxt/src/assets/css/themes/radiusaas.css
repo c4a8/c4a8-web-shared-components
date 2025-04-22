@@ -1,8 +1,5 @@
-/* radius theme related styleing here */
-
 :root {
-  --site: 'radiusaas';
-  /* Theme colors */
+  --site: "radiusaas";
   --color-headlines: var(--color-midnight);
   --color-copy: var(--color-midnight);
   --color-primary: var(--color-conifer);
@@ -11,8 +8,6 @@
   --color-secondary: var(--color-macaroni-and-cheese);
   --color-secondary-accent: var(--color-macaroni-and-cheese);
   --color-copy-highlight: red;
-
-  /* Element colors */
   --color-bg-grey: var(--color-porcelain);
   --color-bg-dark-grey: var(--color-regent-grey);
   --color-svg-icon: var(--color-primary);
@@ -24,7 +19,5 @@
   --color-loading--2: var(--color-yellow);
   --color-loading--3: var(--color-conifer);
   --color-loading--4: var(--color-orange);
-
-  /* fonts */
-  --font-family: 'Miriam Libre', sans-serif;
+  --font-family: "Miriam Libre", sans-serif;
 }
