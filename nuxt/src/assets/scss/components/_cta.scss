@@ -399,6 +399,7 @@
       border-radius: 0;
       border-color: var(--cta-border-color);
 
+      // TODO figure out what this case is
       // &:not(label.btn):not([href]) {
       //   --cta-copy-color: var(--color-copy-on-primary);
       //   --cta-background-color: var(--color-primary);
@@ -426,16 +427,24 @@
         transition: background 0.5s $animation-transition;
       }
 
-      &.is-light {
-        @include cta-btn-primary-is-light;
-      }
+      // &.is-light {
+      //   @include cta-btn-primary-is-light;
+      // }
 
       &.is-light-lg {
         @include media-breakpoint-up(lg) {
-          @include cta-btn-primary-is-light;
+          // @include cta-btn-primary-is-light;
+
+          background-color: var(--color-primary-on-surface);
+          color: var(--color-copy-on-primary-on-surface);
+
+          &:not(.is-loading) {
+            border-color: var(--color-primary-on-surface);
+          }
         }
       }
 
+      &.is-light,
       &.on-surface {
         background-color: var(--color-primary-on-surface);
         color: var(--color-copy-on-primary-on-surface);
