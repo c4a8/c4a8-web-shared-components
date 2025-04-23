@@ -40075,6 +40075,11 @@ svg.streamline-icon {
   --cta-btn-color: var(--color-primary-accent);
   --cta-copy-color: var(--color-copy-on-primary-accent);
 }
+.hover__parent:hover .cta.btn-primary.on-surface:not(.is-loading), .hover__parent:hover .cta.btn-primary:not(.is-loading),
+.shared-components .cta:hover.btn-primary.on-surface:not(.is-loading),
+.shared-components .cta:hover.btn-primary:not(.is-loading) {
+  --cta-border-color: transparent;
+}
 .hover__parent:hover .cta.btn-primary.is-light,
 .shared-components .cta:hover.btn-primary.is-light {
   background-color: var(--color-primary-accent-light);
@@ -40087,19 +40092,9 @@ svg.streamline-icon {
 }
 .hover__parent:hover .cta.btn-primary.on-surface,
 .shared-components .cta:hover.btn-primary.on-surface {
-  --cta-copy-color: var(--color-copy-on-primary-accent-on-surface);
   --cta-btn-color: var(--color-primary-accent-on-surface);
-  --cta-background-accent-color: --cta-btn-color;
-  color: var(--color-copy-on-primary-on-surface);
-  background-color: var(--cta-btn-color);
-}
-.hover__parent:hover .cta.btn-primary.on-surface:not(.is-loading),
-.shared-components .cta:hover.btn-primary.on-surface:not(.is-loading) {
-  border-color: var(--cta-btn-color);
-}
-.hover__parent:hover .cta.btn-primary.on-surface::before,
-.shared-components .cta:hover.btn-primary.on-surface::before {
-  background-color: var(--cta-btn-color);
+  --cta-copy-color: var(--color-copy-on-primary-accent-on-surface);
+  --cta-background-accent-color: var(--cta-btn-color);
 }
 .hover__parent:hover .cta.btn-primary.on-surface::after,
 .shared-components .cta:hover.btn-primary.on-surface::after {
@@ -40113,11 +40108,12 @@ svg.streamline-icon {
 .hover__parent:hover .cta.btn-secondary,
 .shared-components .cta:hover.btn-secondary {
   --cta-btn-color: var(--color-secondary-accent);
-  color: var(--cta-btn-color);
+  --cta-copy-color: var(--color-copy-on-secondary-accent);
 }
-.hover__parent:hover .cta.btn-secondary:not(.is-loading),
+.hover__parent:hover .cta.btn-secondary.on-surface:not(.is-loading), .hover__parent:hover .cta.btn-secondary:not(.is-loading),
+.shared-components .cta:hover.btn-secondary.on-surface:not(.is-loading),
 .shared-components .cta:hover.btn-secondary:not(.is-loading) {
-  border-color: var(--cta-btn-color);
+  --cta-border-color: var(--cta-btn-color);
 }
 .hover__parent:hover .cta.btn-secondary.is-cutoff::before,
 .shared-components .cta:hover.btn-secondary.is-cutoff::before {
@@ -40140,12 +40136,8 @@ svg.streamline-icon {
 .hover__parent:hover .cta.btn-secondary.on-surface,
 .shared-components .cta:hover.btn-secondary.on-surface {
   --cta-btn-color: var(--color-secondary-accent-on-surface);
-  --cta-background-accent-color: --cta-btn-color;
-  color: var(--color-copy-on-secondary-on-surface);
-}
-.hover__parent:hover .cta.btn-secondary.on-surface:not(.is-loading),
-.shared-components .cta:hover.btn-secondary.on-surface:not(.is-loading) {
-  border-color: var(--cta-btn-color);
+  --cta-copy-color: var(--color-copy-on-secondary-accent-on-surface);
+  --cta-background-accent-color: var(--cta-btn-color);
 }
 .hover__parent:hover .cta.btn-secondary.on-surface::after,
 .shared-components .cta:hover.btn-secondary.on-surface::after {
@@ -40300,6 +40292,7 @@ svg.streamline-icon {
   -webkit-appearance: none;
   appearance: none;
   background-color: var(--cta-background-color);
+  border-color: var(--cta-border-color);
 }
 .shared-components .cta.cta--monochrome {
   --cta-copy-color: var(--color-copy);
@@ -40317,7 +40310,6 @@ svg.streamline-icon {
   --cta-background-color: var(--color-primary);
   --cta-border-color: transparent;
   border-radius: 0;
-  border-color: var(--cta-border-color);
 }
 .shared-components .cta.btn-primary:not(.is-loading) {
   --cta-border-color: var(--color-primary);
@@ -40349,20 +40341,21 @@ svg.streamline-icon {
   }
 }
 .shared-components .cta.btn-primary.is-light, .shared-components .cta.btn-primary.on-surface {
-  background-color: var(--color-primary-on-surface);
-  color: var(--color-copy-on-primary-on-surface);
+  --cta-copy-color: var(--color-copy-on-primary-on-surface);
+  --cta-background-color: var(--color-primary-on-surface);
 }
 .shared-components .cta.btn-primary.is-light:not(.is-loading), .shared-components .cta.btn-primary.on-surface:not(.is-loading) {
-  border-color: var(--color-primary-on-surface);
+  --cta-border-color: var(--color-primary-on-surface);
 }
 .shared-components .cta.btn-secondary {
-  background-color: transparent;
-  border-color: var(--color-secondary);
-  color: var(--color-secondary);
+  --cta-copy-color: var(--color-copy-on-secondary);
+  --cta-background-accent-color: var(--color-secondary-accent);
+  --cta-background-color: transparent;
+  --cta-border-color: var(--color-secondary);
 }
 .shared-components .cta.btn-secondary.is-cutoff::before {
   clip-path: polygon(calc(100% - 15px + 1px) 0, 100% calc(15px - 1px), 100% 100%, 100% 0);
-  background: var(--color-secondary);
+  background: var(--cta-border-color);
   content: "";
   position: absolute;
   left: 0;
@@ -40426,11 +40419,10 @@ svg.streamline-icon {
   }
 }
 .shared-components .cta.btn-secondary.on-surface {
-  border-color: var(--color-secondary-on-surface);
-  color: var(--color-copy-on-secondary-on-surface);
-}
-.shared-components .cta.btn-secondary.on-surface::before {
-  background: var(--color-secondary-on-surface);
+  --cta-copy-color: var(--color-copy-on-secondary-on-surface);
+  --cta-background-accent-color: var(--color-secondary-accent-on-surface);
+  --cta-background-color: transparent;
+  --cta-border-color: var(--color-secondary-on-surface);
 }
 .shared-components .cta.active {
   color: var(--color-active);
@@ -43124,6 +43116,20 @@ div.custom-control .custom-control-input,
 }
 .header.vue-component:not(:hover):not(.is-scrolled):not(.is-expanded) {
   --color-header-background: rgba(255, 255, 255, 0.3);
+}
+.header.vue-component:not(:hover):not(.is-scrolled):not(.is-expanded)::after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -2;
+  background-color: var(--color-white);
+  opacity: 0.3;
+}
+.header.vue-component:not(:hover):not(.is-scrolled):not(.is-expanded).header--light::after {
+  background-color: var(--color-black);
 }
 .header.vue-component.header--product {
   box-shadow: none;
