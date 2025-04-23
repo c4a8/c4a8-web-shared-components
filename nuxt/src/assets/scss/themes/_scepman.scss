@@ -3,34 +3,34 @@
 :root {
   --site: 'scepman';
   // Theme colors
-  --color-headlines: var(--color-midnight); // #011e33;
-  --color-copy: var(--color-midnight); // #011e33;
+  --color-headlines: var(--color-midnight);
+  --color-copy: var(--color-midnight);
 
-  --color-primary: var(--color-yellow); // #fcd116;
-  --color-primary-accent: var(--color-ripe-lemon); // #f7cb0b;
-  --color-primary-accent-light: var(--color-varden); // #fff8dc;
-  --color-primary-on-surface: var(--color-kimberly); // #716fa7;
-  --color-primary-accent-on-surface: green;
+  --color-primary: #fcd116;
+  --color-primary-accent: #caa712;
+  --color-primary-accent-light: var(--color-varden);
+  --color-primary-on-surface: #716fa7;
+  --color-primary-accent-on-surface: #4f4e75;
 
-  --color-secondary: var(--color-ripe-lemon); // #f7cb0b; vorher var(--color-cold-purple); // #a09edb;
-  --color-secondary-accent: var(--color-ripe-lemon); // #f7cb0b; vorher var(--color-cold-purple); // #a09edb;
+  --color-secondary: #f7cb0b;
+  --color-secondary-accent: #caa712;
   --color-secondary-accent-light: red;
-  --color-secondary-on-surface: var(--color-kimberly); // #716fa7;
-  --color-secondary-accent-on-surface: red;
+  --color-secondary-on-surface: #716fa7;
+  --color-secondary-accent-on-surface: #4f4e75;
 
-  --color-highlight: var(--color-cold-purple); // #a09edb;
+  --color-highlight: var(--color-cold-purple);
 
-  --color-copy-highlight: var(--color-cold-purple); // #a09edb;
+  --color-copy-highlight: var(--color-cold-purple);
 
-  --color-copy-on-primary: var(--color-copy); // #011e33;
-  --color-copy-on-primary-accent: var(--color-copy); // #011e33;
-  --color-copy-on-primary-on-surface: var(--color-copy-light); // #ffffff;
-  --color-copy-on-primary-accent-on-surface: var(--color-copy-light); // #ffffff;
+  --color-copy-on-primary: var(--color-copy);
+  --color-copy-on-primary-accent: var(--color-copy);
+  --color-copy-on-primary-on-surface: var(--color-copy-light);
+  --color-copy-on-primary-accent-on-surface: var(--color-copy-light);
 
-  --color-copy-on-secondary: var(--color-ripe-lemon); // #f7cb0b;
-  --color-copy-on-secondary-accent: var(--color-ripe-lemon); // #f7cb0b;
-  --color-copy-on-secondary-on-surface: var(--color-kimberly); // #716fa7;
-  --color-copy-on-secondary-accent-on-surface: var(--color-kimberly); // #716fa7;
+  --color-copy-on-secondary: var(--color-secondary);
+  --color-copy-on-secondary-accent: var(--color-secondary-accent);
+  --color-copy-on-secondary-on-surface: var(--color-secondary-on-surface);
+  --color-copy-on-secondary-accent-on-surface: var(--color-secondary-accent-on-surface);
 
   // Element colors
   --color-bg-grey: var(--color-porcelain);

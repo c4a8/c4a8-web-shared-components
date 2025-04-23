@@ -64,6 +64,24 @@ $header-border-size: 1px;
 
     &:not(:hover):not(.is-scrolled):not(.is-expanded) {
       --color-header-background: rgba(255, 255, 255, 0.3);
+
+      &::after {
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: -2;
+        background-color: var(--color-white);
+        opacity: 0.3;
+      }
+
+      &.header--light {
+        &::after {
+          background-color: var(--color-black);
+        }
+      }
     }
 
     &.header--product {
