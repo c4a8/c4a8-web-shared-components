@@ -22382,8 +22382,8 @@ body.compensate-for-scrollbar {
   --color-emergency: var(--color-orange);
   --color-emergency-accent: var(--color-piper);
   --color-input-placeholder: var(--color-bombay);
-  --color-highlight-underline: var(--color-secondary);
-  --color-highlight-animated: var(--color-secondary);
+  --color-highlight-underline: var(--color-highlight-second);
+  --color-highlight-animated: var(--color-highlight-second);
   --color-link: var(--color-primary);
   --color-link-hover: var(--color-primary-accent);
 }
@@ -37820,7 +37820,6 @@ p {
 .modal__success-subline {
   font-size: 1.125rem;
   line-height: 1.6667em;
-  font-weight: 100 !important;
   line-height: 1.7em !important;
   margin-bottom: 3.5rem;
 }
@@ -37836,6 +37835,9 @@ p {
     line-height: 1.7em;
   }
 }
+.modal__success-subline {
+  font-weight: 100 !important;
+}
 .modal__success-subline strong {
   font-weight: inherit;
 }
@@ -37847,7 +37849,6 @@ p {
 .modal__success-text {
   font-size: 1rem;
   line-height: 1.6;
-  font-weight: 100 !important;
   line-height: 1.7em !important;
   margin-bottom: 2rem;
 }
@@ -37862,6 +37863,9 @@ p {
     font-size: 1rem;
     line-height: 1.6;
   }
+}
+.modal__success-text {
+  font-weight: 100 !important;
 }
 .modal__success-text strong {
   font-weight: inherit;
@@ -39826,7 +39830,6 @@ svg.streamline-icon {
 .content-scroller .content-scroller__block-content {
   font-size: 1rem;
   line-height: 1.6;
-  font-weight: 100 !important;
   margin-bottom: 0;
 }
 @media (min-width: 992px) {
@@ -39840,6 +39843,9 @@ svg.streamline-icon {
     font-size: 1rem;
     line-height: 1.6;
   }
+}
+.content-scroller .content-scroller__block-content {
+  font-weight: 100 !important;
 }
 .content-scroller .content-scroller__block-content strong {
   font-weight: inherit;
@@ -41029,7 +41035,6 @@ label.dropdown__checkbox-label::after {
 .event-teaser.event-teaser--teaser .event-teaser__content {
   font-size: 1.125rem;
   line-height: 1.6667em;
-  font-weight: 100 !important;
   padding-right: 3rem;
 }
 @media (min-width: 992px) {
@@ -41043,6 +41048,9 @@ label.dropdown__checkbox-label::after {
     font-size: 1.25rem;
     line-height: 1.7em;
   }
+}
+.event-teaser.event-teaser--teaser .event-teaser__content {
+  font-weight: 100 !important;
 }
 .event-teaser.event-teaser--teaser .event-teaser__content strong {
   font-weight: inherit;
@@ -43039,7 +43047,6 @@ div.custom-control .custom-control-input,
 .grid__item-text {
   font-size: 1.125rem;
   line-height: 1.6667em;
-  font-weight: 100 !important;
   margin-bottom: 2.5rem;
 }
 @media (min-width: 992px) {
@@ -43053,6 +43060,9 @@ div.custom-control .custom-control-input,
     font-size: 1.25rem;
     line-height: 1.7em;
   }
+}
+.grid__item-text {
+  font-weight: 100 !important;
 }
 .grid__item-text strong {
   font-weight: inherit;
@@ -44366,7 +44376,6 @@ div.custom-control .custom-control-input,
   font-size: calc(3.75rem / 1.8);
   line-height: 1.2em;
   font-weight: lighter;
-  font-weight: 100 !important;
   line-height: 1.2em !important;
 }
 @media (min-width: 992px) {
@@ -44380,6 +44389,9 @@ div.custom-control .custom-control-input,
     font-size: 3.75rem;
     line-height: 1.2em;
   }
+}
+.hero-text-image.hero--text .hero-text-image__headline {
+  font-weight: 100 !important;
 }
 .hero-text-image.hero--text .hero-text-image__headline strong {
   font-weight: inherit;
@@ -45082,7 +45094,6 @@ div.custom-control .custom-control-input,
   font-size: calc(3.75rem / 1.8);
   line-height: 1.2em;
   font-weight: lighter;
-  font-weight: 100 !important;
   line-height: 1.2em !important;
 }
 @media (min-width: 992px) {
@@ -45096,6 +45107,9 @@ div.custom-control .custom-control-input,
     font-size: 3.75rem;
     line-height: 1.2em;
   }
+}
+.hero.hero--text .hero__headline {
+  font-weight: 100 !important;
 }
 .hero.hero--text .hero__headline strong {
   font-weight: inherit;
@@ -45985,6 +45999,8 @@ div.custom-control .custom-control-input,
   .intro-text.intro-text--large .intro-text__copy {
     font-size: 2.5rem;
     line-height: 1.6;
+  }
+  .intro-text.intro-text--large .intro-text__copy {
     font-weight: 100 !important;
   }
   .intro-text.intro-text--large .intro-text__copy strong {
@@ -47180,7 +47196,6 @@ job-list-detail {
 .post__sticky-excerpt {
   font-size: 1.25rem;
   line-height: 1.6em;
-  font-weight: 100 !important;
   padding-top: 0.75rem;
 }
 @media (min-width: 992px) {
@@ -47194,6 +47209,9 @@ job-list-detail {
     font-size: 1.5625rem;
     line-height: 1.6em;
   }
+}
+.post__sticky-excerpt {
+  font-weight: 100 !important;
 }
 .post__sticky-excerpt strong {
   font-weight: inherit;
@@ -47392,7 +47410,6 @@ job-list-detail {
   font-size: 1.5rem;
   line-height: 1.4165em;
   font-weight: normal;
-  font-weight: 100 !important;
   line-height: 1.4em !important;
   width: 100%;
 }
@@ -47407,6 +47424,9 @@ job-list-detail {
     font-size: 1.8rem;
     line-height: 1.4585em;
   }
+}
+.quotes.quotes--no-image .quotes__entry-text {
+  font-weight: 100 !important;
 }
 .quotes.quotes--no-image .quotes__entry-text strong {
   font-weight: inherit;
@@ -48158,7 +48178,6 @@ shape {
   font-size: 1.625rem;
   line-height: 1.3847em;
   font-weight: lighter;
-  font-weight: 100 !important;
 }
 @media (min-width: 992px) {
   .step-list:not(.step-list--small) .step-list__counter {
@@ -48171,6 +48190,9 @@ shape {
     font-size: 2.5rem;
     line-height: 1.5em;
   }
+}
+.step-list:not(.step-list--small) .step-list__counter {
+  font-weight: 100 !important;
 }
 .step-list:not(.step-list--small) .step-list__counter strong {
   font-weight: inherit;
@@ -48234,7 +48256,6 @@ shape {
   font-size: 1.5rem;
   line-height: 1.4165em;
   font-weight: normal;
-  font-weight: 100 !important;
   display: block;
   margin-bottom: 1rem;
 }
@@ -48249,6 +48270,9 @@ shape {
     font-size: 1.8rem;
     line-height: 1.4585em;
   }
+}
+.step-list.step-list--small .step-list__title--no-default {
+  font-weight: 100 !important;
 }
 .step-list.step-list--small .step-list__title--no-default strong {
   font-weight: inherit;
@@ -50051,7 +50075,6 @@ shape {
 .timeline__entry-inner-text {
   font-size: 1.125rem;
   line-height: 1.6667em;
-  font-weight: 100 !important;
   border: 1px solid var(--color-timeline-line);
   border-radius: 4px;
   padding: 1rem 1.5rem;
@@ -50071,6 +50094,9 @@ shape {
     font-size: 1.25rem;
     line-height: 1.7em;
   }
+}
+.timeline__entry-inner-text {
+  font-weight: 100 !important;
 }
 .timeline__entry-inner-text strong {
   font-weight: inherit;
@@ -50161,7 +50187,6 @@ shape {
 .timeline__subline {
   font-size: 1.25rem;
   line-height: 1.6em;
-  font-weight: 100 !important;
 }
 @media (min-width: 992px) {
   .timeline__subline {
@@ -50174,6 +50199,9 @@ shape {
     font-size: 1.5625rem;
     line-height: 1.6em;
   }
+}
+.timeline__subline {
+  font-weight: 100 !important;
 }
 .timeline__subline strong {
   font-weight: inherit;
@@ -50266,7 +50294,6 @@ shape {
 .video.video--row .headline {
   font-size: 1.125rem;
   line-height: 1.6667em;
-  font-weight: 100 !important;
   display: flex;
   align-self: flex-end;
   padding-top: 1.75rem;
@@ -50283,6 +50310,9 @@ shape {
     font-size: 1.25rem;
     line-height: 1.7em;
   }
+}
+.video.video--row .headline {
+  font-weight: 100 !important;
 }
 .video.video--row .headline strong {
   font-weight: inherit;
@@ -50329,7 +50359,6 @@ shape {
 .video.video--compact .video__text {
   font-size: 1.25rem;
   line-height: 1.6em;
-  font-weight: 100 !important;
 }
 @media (min-width: 992px) {
   .video.video--compact .video__text {
@@ -50342,6 +50371,9 @@ shape {
     font-size: 1.5625rem;
     line-height: 1.6em;
   }
+}
+.video.video--compact .video__text {
+  font-weight: 100 !important;
 }
 .video.video--compact .video__text strong {
   font-weight: inherit;
@@ -50662,7 +50694,6 @@ shape {
 .page-detail__description > p:first-of-type {
   font-size: 1.25rem;
   line-height: 1.6em;
-  font-weight: 100 !important;
 }
 @media (min-width: 992px) {
   .page-detail__description > p:first-of-type {
@@ -50675,6 +50706,9 @@ shape {
     font-size: 1.5625rem;
     line-height: 1.6em;
   }
+}
+.page-detail__description > p:first-of-type {
+  font-weight: 100 !important;
 }
 .page-detail__description > p:first-of-type strong {
   font-weight: inherit;
@@ -50682,7 +50716,6 @@ shape {
 .page-detail__description > p:first-of-type + p {
   font-size: 1.25rem;
   line-height: 1.6em;
-  font-weight: 100 !important;
 }
 @media (min-width: 992px) {
   .page-detail__description > p:first-of-type + p {
@@ -50695,6 +50728,9 @@ shape {
     font-size: 1.5625rem;
     line-height: 1.6em;
   }
+}
+.page-detail__description > p:first-of-type + p {
+  font-weight: 100 !important;
 }
 .page-detail__description > p:first-of-type + p strong {
   font-weight: inherit;

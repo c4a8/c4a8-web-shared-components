@@ -1,5 +1,5 @@
 import '../src/assets/scss/index.scss';
-import '../src/assets/scss/themes/_scepman.scss';
+import '../src/assets/scss/themes/_konnekt.scss';
 
 import { h } from 'vue';
 import { createPinia } from 'pinia';
