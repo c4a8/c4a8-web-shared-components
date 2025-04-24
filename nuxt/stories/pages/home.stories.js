@@ -231,3 +231,105 @@ export const HomeProductOnSurface = {
     },
   },
 };
+
+export const HomeProductOnSurfaceLight = {
+  args: {
+    header: {
+      onSurface: true,
+      light: true,
+      home: HeaderData.home,
+      navigation: HeaderData.navigation,
+      lang: 'en',
+      product: true,
+      button: {
+        text: 'Start now',
+        href: '/start-now/',
+        skin: 'primary is-cutoff',
+      },
+      home: {
+        name: 'home',
+        imgLight: '/products/scepman/scepman-logo-all-white.svg',
+        img: '/products/scepman/scepman-logo-rgb.svg',
+        languages: {
+          en: {
+            title: 'Home EN',
+            url: '',
+            alt: 'alt text EN',
+          },
+        },
+      },
+      navigation: [
+        {
+          name: 'home',
+          languages: {
+            de: {
+              title: 'Home',
+              url: '',
+            },
+            en: {
+              title: 'Home EN',
+              url: '',
+            },
+          },
+        },
+        {
+          name: 'pricing',
+          languages: {
+            en: {
+              title: 'Pricing EN',
+              url: '',
+            },
+          },
+        },
+        {
+          name: 'partner',
+          languages: {
+            en: {
+              title: 'Partner EN',
+              url: '/iframe.html',
+            },
+          },
+        },
+        {
+          name: 'docs',
+          languages: {
+            en: {
+              title: 'Docs',
+              url: 'https://docs.radiusaas.com/',
+              target: '_blank',
+            },
+          },
+        },
+      ],
+      showSecondaryNavigation: true,
+      theme: 'radiusaas',
+    },
+    hero: {
+      headline: 'SCEPman',
+      subline: 'Lorem ipsum dolor sit',
+      bgColor: 'var(--color-primary)',
+      ctaList: [
+        {
+          ctaText: 'Try SCEPman now',
+          ctaHref: 'javascript:void(0);',
+          skin: 'primary is-cutoff',
+          icon: 'phone',
+          onSurface: true,
+        },
+        {
+          ctaText: 'Mail us',
+          ctaHref: 'javascript:void(0);',
+          skin: 'secondary is-cutoff',
+          icon: 'mail',
+          onSurface: true,
+        },
+      ],
+      shape: {
+        img: '/products/radius/radius-hero-screen.png',
+        alt: 'Home',
+        cloudinary: true,
+        mobileOrder: 5,
+      },
+    },
+  },
+};
