@@ -34,27 +34,31 @@ $font-style-map: (
   $important-string: is-important($important);
 
   @if $weight == 'bold' {
-    adbdasdas: test;
-    font-weight: bold #{$important-string};
+    & {
+      font-weight: bold #{$important-string};
+    }
   } @else if $weight == 'normal' {
-    font-weight: 400 #{$important-string};
+    & {
+      font-weight: 400 #{$important-string};
+    }
   } @else if $weight == 'light' {
     @include font-mods('light');
   }
 }
 
-// TODO: Migrate declarations that appear after nested rules – '& {}' or different solution
 @mixin line-height($height: 'normal', $important: false) {
   $important-string: is-important($important);
 
-  @if $height == 'thin' {
-    line-height: 1.2em #{$important-string};
-  } @else if $height == 'wide' {
-    line-height: 1.7em #{$important-string};
-  } @else if $height == 'middle' {
-    line-height: 1.4em #{$important-string};
-  } @else {
-    line-height: var(--type-default-line-height) #{$important-string};
+  & {
+    @if $height == 'thin' {
+      line-height: 1.2em #{$important-string};
+    } @else if $height == 'wide' {
+      line-height: 1.7em #{$important-string};
+    } @else if $height == 'middle' {
+      line-height: 1.4em #{$important-string};
+    } @else {
+      line-height: var(--type-default-line-height) #{$important-string};
+    }
   }
 }
 

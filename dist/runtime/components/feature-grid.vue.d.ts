@@ -20,12 +20,13 @@ declare namespace _default {
         let centered: BooleanConstructor;
         let headlineClasses: StringConstructor;
         let headlineLevel: StringConstructor;
+        let headlineRowClasses: StringConstructor;
         let spacing: StringConstructor;
     }
     function mounted(): void;
     namespace computed {
         function columnClass(): string;
-        function featureGridHeadlineRowClasses(): string;
+        function headlineRowClassesValue(): string;
         function containerClasses(): any[];
         function styleObject(): {
             backgroundColor: any;

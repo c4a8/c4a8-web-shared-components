@@ -21,7 +21,7 @@ declare namespace _default {
     }
     function mounted(): void;
     namespace computed {
-        function headlineRowClassesValue(): any;
+        function headlineRowClassesValue(): string;
         function containerClass(): "" | "container";
         function animationClass(): "" | "utility-animation";
         function animationStepClass(): "" | "fade-in-bottom";
