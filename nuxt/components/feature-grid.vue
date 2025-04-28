@@ -4,7 +4,8 @@
       <headline-row
         :text="headline"
         :centered="true"
-        :classes="featureGridHeadlineRowClasses"
+        :headlineClasses="headlineClasses"
+        :classes="headlineRowClassesValue"
         utilityAnimationStep="1"
         :noContainer="true"
         :level="headlineLevel"
@@ -56,6 +57,7 @@ export default {
     centered: Boolean,
     headlineClasses: String,
     headlineLevel: String,
+    headlineRowClasses: String,
     spacing: String,
   },
   mounted() {
@@ -67,8 +69,8 @@ export default {
     columnClass() {
       return 'col-lg-' + 12 / this.gridSize;
     },
-    featureGridHeadlineRowClasses() {
-      return ['fade-in-bottom', this.headlineClasses ? this.headlineClasses : null].join(' ');
+    headlineRowClassesValue() {
+      return ['fade-in-bottom', this.headlineRowClasses ? this.headlineRowClasses : null].join(' ');
     },
     containerClasses() {
       return ['container', this.spacing];

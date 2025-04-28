@@ -66,13 +66,14 @@ export const Default = {
   },
 };
 
-export const WithImage = {
+export const WithImageAndH4FontSize = {
   args: {
     image: {
       src: getAssetPath('img/image-placeholder-1.jpg'),
       alt: 'lorem ipsum dolor sit amet',
     },
     headline: 'Specifications',
+    headlineClasses: 'h4-font-size',
     features: [
       {
         title: 'Contact Sources',
@@ -176,7 +177,7 @@ export const WithAnimation = {
       lottie: lottie1,
     },
     headline: 'Specifications',
-    headlineClasses: 'text-left',
+    headlineRowClasses: 'text-left',
     features: [
       {
         title: 'Contact Sources',
