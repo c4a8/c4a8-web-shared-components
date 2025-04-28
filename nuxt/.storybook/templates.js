@@ -86,7 +86,9 @@ const getTitle = ({ page, title, docs, context, helper }) => {
 };
 
 const getAssetPath = (path) => {
-  return process.env.NODE_ENV === 'production' ? `../shared-components/${path}` : `${path}`;
+  return import.meta.env.NODE_ENV === 'production' && !import.meta.env.STORYBOOK_NODE_ENV
+    ? `../shared-components/${path}`
+    : `${path}`;
 };
 
 const getArgTypes = (defaultExport) => {
