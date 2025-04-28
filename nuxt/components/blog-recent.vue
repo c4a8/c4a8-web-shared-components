@@ -1,5 +1,5 @@
 <template>
-  <template v-if="showCompoent">
+  <template v-if="showComponent">
     <SharedContentList :data-list="postsArray" :query="query" v-slot="{ list }">
       <template v-if="list">
         <markdown-files
@@ -97,7 +97,7 @@ export default {
         'vue-component',
       ];
     },
-    showCompoent() {
+    showComponent() {
       return this.postsArray.length > 0 || this.query;
     },
     query() {
