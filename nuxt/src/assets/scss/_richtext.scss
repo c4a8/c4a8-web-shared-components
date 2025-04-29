@@ -6,7 +6,9 @@ $richtext-conclusion-spacing-lg: $spacing-content-default;
 .richtext {
   @include font-style($style: 'font-size-2', $line: 'wide');
 
-  container-type: inline-size;
+  & {
+    container-type: inline-size;
+  }
 
   &.richtext__small {
     @include font-style($style: 'font-size-1', $line: 'wide');
@@ -58,8 +60,10 @@ $richtext-conclusion-spacing-lg: $spacing-content-default;
     @include richtext-width;
     @include bulletpoints;
 
-    list-style: none;
-    margin-bottom: 0;
+    & {
+      list-style: none;
+      margin-bottom: 0;
+    }
 
     &.dashed {
       li {
@@ -103,10 +107,12 @@ $richtext-conclusion-spacing-lg: $spacing-content-default;
     &#conclusion {
       @include richtext-width;
 
-      background-color: var(--color-green-blue);
-      color: var(--color-white);
-      padding: $richtext-conclusion-spacing-sm $richtext-conclusion-spacing-sm spacing(10);
-      margin: $richtext-headline-top-spacing 0 0 0;
+      & {
+        background-color: var(--color-green-blue);
+        color: var(--color-white);
+        padding: $richtext-conclusion-spacing-sm $richtext-conclusion-spacing-sm spacing(10);
+        margin: $richtext-headline-top-spacing 0 0 0;
+      }
 
       ~ p {
         background-color: var(--color-green-blue);
