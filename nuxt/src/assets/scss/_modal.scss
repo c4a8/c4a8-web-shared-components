@@ -215,7 +215,9 @@
 .modal__success-text {
   @include font-style($style: 'font-size-1', $weight: 'light', $line: 'wide');
 
-  margin-bottom: spacing(8);
+  & {
+    margin-bottom: spacing(8);
+  }
 }
 
 .modal__error-headline,
@@ -242,7 +244,9 @@
 .modal__error-subline {
   @include font-style($style: 'font-size-2', $weight: 'bold', $line: 'wide');
 
-  margin-bottom: spacing(2);
+  & {
+    margin-bottom: spacing(2);
+  }
 }
 
 .modal__error-text {
