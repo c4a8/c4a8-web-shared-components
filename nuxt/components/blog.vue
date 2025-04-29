@@ -1,6 +1,6 @@
 <template>
-  <div class="container space-bottom-2 space-bottom-lg-3">
-    <div class="row justify-content-lg-between align-items-lg-center mb-7">
+  <div class="container space-bottom-2 space-bottom-lg-3" v-if="showComponent">
+    <div class="row justify-content-lg-between align-items-lg-center mb-7" v-if="false">
       <!-- Search is currently not used -->
     </div>
 
@@ -15,18 +15,17 @@
           :is-recent="true"
         >
           <template v-if="updateFiles(files)">
-            <div class="d-none d-lg-block">
-              {{ highlightPost.author }}
+            <div class="d-none d-lg-block" v-if="highlightPost">
               <card
                 :title="highlightPost.title"
-                :blogTitlePic="blogImagePath + highlightPost.blogtitlepic"
+                :blog-title-pic="blogTitleUrl(highlightPost)"
                 :excerpt="highlightPost.excerpt"
                 :date="highlightPost.date"
                 :url="highlightPost.url"
                 :author="highlightPost.author"
                 :large="true"
                 :hasAnimation="true"
-                :aaaaaexternalLanguage="$t('onlyLanguage')"
+                :externalLanguage="highlightPostExternalLanguage"
                 spacing="mt-n48"
               /></div
           ></template>
@@ -38,6 +37,7 @@
 </template>
 <script>
 import Tools from '../utils/tools.js';
+import useConfig from '../composables/useConfig.js';
 
 export default {
   tagName: 'blog',
@@ -46,24 +46,57 @@ export default {
       filesValue: [],
     };
   },
-  async created() {
-    const { data } = await useAsyncData('authors', () => queryContent('/').findOne());
-    console.log('🚀 ~ created ~ data:', data);
+  setup() {
+    const config = useConfig();
 
-    const contentQuery = queryContent().findOne();
-    console.log('🚀 ~ created ~ contentQuery:', contentQuery);
+    return {
+      config,
+    };
   },
+  // async created() {
+  // const { data } = await useAsyncData('authors', () => queryContent('/').findOne());
+  // console.log('🚀 ~ created ~ data:', data);
+  // const contentQuery = queryContent().findOne();
+  // console.log('🚀 ~ created ~ contentQuery:', contentQuery);
+  // },
   computed: {
-    blogImagePath() {
-      return Tools.getBlogImgPath();
+    imgUrl() {
+      return Tools.getBlogImgPath(this.config);
     },
     highlightPost() {
       const firstPostArray = this.filesValue.slice(0, 1);
 
       return firstPostArray ? firstPostArray[0] : null;
     },
+    highlightPostExternalLanguage() {
+      return this.highlightPost.lang !== lang ? this.$t('onlyLanguage') : null;
+    },
+    showComponent() {
+      return this.posts?.length > 0 || this.query;
+    },
+    query() {
+      let query = {};
+
+      query.limit = this.blogMaxBlogPosts;
+      query.sort = [{ moment: this.reversed ? 1 : -1 }];
+      query.reversed = this.reversed;
+
+      query.where = {
+        path: { LIKE: ['/posts/%'] },
+      };
+      query.path = 'posts';
+
+      return query;
+    },
   },
   methods: {
+    blogTitleUrl(post) {
+      if (post.image?.img) {
+        return post.image.img;
+      } else {
+        return this.imgUrl + post.blogtitlepic;
+      }
+    },
     updateFiles(files) {
       if (!files) return;
 
@@ -75,7 +108,7 @@ export default {
   props: {
     posts: {
       type: Array,
-      required: true,
+      required: [],
     },
     // paginatorPosts: {
     //   type: Array,

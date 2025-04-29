@@ -10,7 +10,7 @@
   >
     <template v-if="large">
       <div class="row no-gutters">
-        <div class="col-lg-8" v-if="blogTitlePic">
+        <div class="col-lg-8" v-if="blogtitlepic">
           <div class="card__img-top position-relative overflow-hidden is-foreground">
             <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :img-src-sets="imgSrcSets" :lazy="true" />
             <figure class="d-none d-lg-block">
@@ -54,7 +54,7 @@
     </template>
 
     <template v-else-if="productValue">
-      <div class="card__img-top card-img--products position-relative no-gutters is-foreground" v-if="blogTitlePic">
+      <div class="card__img-top card-img--products position-relative no-gutters is-foreground" v-if="blogtitlepic">
         <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :img-src-sets="imgSrcSets" :lazy="true" />
         <div class="card__img-headline-container">
           <template v-if="tag">
@@ -86,7 +86,7 @@
     </template>
 
     <template v-else-if="long">
-      <div class="card__img-top position-relative no-gutters is-foreground" v-if="blogTitlePic">
+      <div class="card__img-top position-relative no-gutters is-foreground" v-if="blogtitlepic">
         <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :img-src-sets="imgSrcSets" :lazy="true" />
       </div>
 
@@ -118,7 +118,7 @@
       </div>
     </template>
     <template v-else>
-      <div class="card__img-top position-relative is-foreground" v-if="blogTitlePic">
+      <div class="card__img-top position-relative is-foreground" v-if="blogtitlepic">
         <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :img-src-sets="imgSrcSets" :lazy="true" />
         <figure class="ie-curved-y position-absolute right-0 bottom-0 left-0 mb-n1">
           <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1920 100.1">
@@ -148,6 +148,7 @@
 import Tools from '../utils/tools.js';
 import Events from '../utils/events.js';
 import UtilityAnimation from '../utils/utility-animation.js';
+import { useBlogStore } from '../stores/blog';
 
 export default {
   tagName: 'card',
@@ -185,11 +186,11 @@ export default {
       return Tools.isTrue(this.row) === true;
     },
     variant() {
-      if (Tools.isTrue(this.long) === true) {
+      if (this.long === true) {
         return 'card--long';
       } else if (this.productValue) {
         return 'card--products';
-      } else if (Tools.isTrue(this.event) === true) {
+      } else if (this.event === true || this.webcast === true) {
         return 'card--event';
       } else if (this.rowValue) {
         return 'card--row';
@@ -229,10 +230,10 @@ export default {
       if (this.youtubeUrl) {
         return Tools.getYoutubeThumbnail(this.youtubeUrl);
       } else {
-        if (/^.+\.(jpg|webp|png)/.test(this.blogTitlePic)) {
-          return this.blogTitlePic;
+        if (/^.+\.(jpg|webp|png)/.test(this.blogtitlepic)) {
+          return this.blogtitlepic;
         } else {
-          return this.blogTitlePic + '.jpg';
+          return this.blogtitlepic + '.jpg';
         }
       }
     },
@@ -240,7 +241,7 @@ export default {
       return this.youtubeUrl ? false : true;
     },
     hasNoLink() {
-      return Tools.isTrue(this.webCast) ? true : false;
+      return Tools.isTrue(this.webcast) ? true : false;
     },
     ctaValue() {
       const cta = Tools.getJSON(this.cta);
@@ -266,15 +267,16 @@ export default {
   created() {
     if (Tools.isTrue(this.store) !== true) return;
 
-    const blogView = this.$root.StoreData.blogView;
+    const blogStore = useBlogStore();
+    this.activeView = blogStore.getBlogView;
 
-    if (!blogView) return null;
-
-    this.activeView = blogView();
-
-    blogView.subscribe((view) => {
-      this.activeView = view;
-    });
+    // Subscribe to view changes using watch
+    this.$watch(
+      () => blogStore.getBlogView,
+      (newView) => {
+        this.activeView = newView;
+      }
+    );
   },
   mounted() {
     if (!this.hasAnimationValue) return;
@@ -342,7 +344,7 @@ export default {
     },
   },
   props: {
-    blogTitlePic: String,
+    blogtitlepic: String,
     url: String,
     title: String,
     target: String,
@@ -370,7 +372,7 @@ export default {
     event: {
       default: null,
     },
-    webCast: {
+    webcast: {
       default: null,
     },
     youtubeUrl: String,

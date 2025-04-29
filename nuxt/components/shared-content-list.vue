@@ -1,5 +1,7 @@
 <template>
-  <template v-if="!isStorybook">
+  list : {{ list }}
+  <template v-if="list">
+    LIST LILST
     <slot v-bind:list="list" />
   </template>
   <slot v-bind:list="dataList" v-else></slot>
