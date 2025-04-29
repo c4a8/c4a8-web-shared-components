@@ -1,4 +1,35 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { defineNuxtConfig } from 'nuxt/config';
+
+declare module 'nuxt/config' {
+  interface NuxtConfig {
+    storybook?: {
+      port?: number;
+      [key: string]: any;
+    };
+    i18n?: {
+      detectBrowserLanguage?: boolean;
+      locale?: string;
+      legacy?: boolean;
+      fallbackLocale?: string;
+      defaultLocale?: string;
+      strategy?: string;
+      locales?: string[];
+      vueI18n?: string;
+      [key: string]: any;
+    };
+    content?: {
+      markdown?: {
+        anchorLinks?: boolean;
+        [key: string]: any;
+      };
+      locales?: string[];
+      defaultLocale?: string;
+      [key: string]: any;
+    };
+  }
+}
+
 export default defineNuxtConfig({
   compatibilityDate: '2024-08-03',
   devtools: { enabled: true },
