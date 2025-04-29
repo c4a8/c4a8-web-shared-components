@@ -24,7 +24,9 @@ $content-scroller-orientatio-breakpoint: 'md';
   .content-scroller__block-content {
     @include font-style($style: 'font-size-1', $weight: 'light');
 
-    margin-bottom: 0;
+    & {
+      margin-bottom: 0;
+    }
   }
 
   @include media-breakpoint-up($content-scroller-orientatio-breakpoint) {
