@@ -197,7 +197,7 @@ export default {
       default: null,
     },
     strokeWidth: {
-      default: 1,
+      default: null,
     },
   },
 };
