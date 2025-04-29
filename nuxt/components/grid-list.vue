@@ -1,20 +1,41 @@
-import UtilityAnimation from "../assets/js/utility-animation.js";
-import Events from "../assets/js/events.js";
+<template>
+  <div :class="classList" ref="group">
+    <template v-for="(item, index) in items" :key="index">
+      <div :class="columnClassList">
+        <card
+          @card-tag-clicked="handleCardTagClicked"
+          :title="item.title"
+          :url="item.url"
+          :blog-title-pic="blogImgUrl(item.blogtitlepic)"
+          :excerpt="item.excerpt"
+          :date="item.moment ? item.moment : item.date"
+          :author="item.author"
+          :hasAnimation="true"
+          :index="index"
+          :data-authors="dataAuthors"
+          :row="isRow"
+          :tags="item.tags"
+          ref="items"
+        />
+      </div>
+    </template>
+  </div>
+</template>
+<script>
+import UtilityAnimation from '../utils/utility-animation.js';
+import Events from '../utils/events.js';
 
 export default {
-  tagName: "grid-list",
+  tagName: 'grid-list',
   computed: {
     classList() {
-      return ["grid-list row mb-3 utility-animation__group vue-component"];
+      return ['grid-list row mb-3 utility-animation__group vue-component'];
     },
     columnClassList() {
-      return [
-        this.view === "tile-view" ? "col-sm-6 col-lg-4" : "col-sm-6 col-lg-12",
-        "mb-3 mb-sm-8",
-      ];
+      return [this.view === 'tile-view' ? 'col-sm-6 col-lg-4' : 'col-sm-6 col-lg-12', 'mb-3 mb-sm-8'];
     },
     isList() {
-      return this.view === "list-view";
+      return this.view === 'list-view';
     },
     isRow() {
       return this.isList ? true : false;
@@ -50,7 +71,7 @@ export default {
       UtilityAnimation.addObserver();
     },
     blogImgUrl(url) {
-      const blogPath = "blog/heads/";
+      const blogPath = 'blog/heads/';
 
       return !url.includes(blogPath) ? `${blogPath}${url}` : url;
     },
@@ -63,28 +84,5 @@ export default {
     view: String,
     dataAuthors: Array,
   },
-  template: `
-    <div :class="classList" ref="group">
-      <template v-for="(item, index) in items">
-        <div :class="columnClassList">
-          <card
-            @card-tag-clicked="handleCardTagClicked"
-            :title="item.title"
-            :url="item.url"
-            :blog-title-pic="blogImgUrl(item.blogtitlepic)"
-            :excerpt="item.excerpt"
-            :date="item.moment ? item.moment : item.date"
-            :url="item.url"
-            :author="item.author"
-            :hasAnimation="true"
-            :index="index"
-            :data-authors="dataAuthors"
-            :row="isRow"
-            :tags="item.tags"
-            ref="items"
-          />
-        </div>
-      </template>
-    </div>
-  `,
 };
+</script>
