@@ -1,5 +1,5 @@
-import TextImageComponent from '../../components/text-image.vue';
-import lottie1 from '../data/lottie1.json';
+import TextImageComponent from '../components/text-image.vue';
+import lottie1 from './data/lottie1.json';
 
 export default {
   title: 'Components/Text Image',
