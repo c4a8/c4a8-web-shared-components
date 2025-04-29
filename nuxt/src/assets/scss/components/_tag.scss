@@ -1,4 +1,36 @@
 .tags__btn {
+  color: #71869d;
+  background-color: rgba(113, 134, 157, 0.1);
+  border: 0.0625rem solid transparent;
+  border-color: transparent;
+  font-size: 0.75rem;
+  font-weight: 400;
+  padding: 0.275rem 0.75rem;
+  border-radius: 0.3125rem;
+  border-radius: 6.1875rem;
+
+  &.active,
+  &:active,
+  &:focus,
+  &:hover {
+    color: #fff;
+    background-color: #71869d;
+    box-shadow: 0 4px 11px rgba(113, 134, 157, 0.1);
+  }
+
+  &.disabled,
+  &:disabled {
+    color: #71869d;
+    background-color: rgba(113, 134, 157, 0.1);
+    box-shadow: none;
+  }
+
+  &:not(:disabled):not(.disabled).active,
+  &:not(:disabled):not(.disabled):active {
+    color: #fff;
+    background-color: #71869d;
+  }
+
   &.tag--small {
     padding: spacing(1) spacing(2);
     color: var(--color-copy-reduced);
