@@ -167,7 +167,9 @@
 .contact__notes {
   @include font-style('font-size-1');
 
-  flex: 1 0 100%;
+  & {
+    flex: 1 0 100%;
+  }
 }
 
 .contact__person {
