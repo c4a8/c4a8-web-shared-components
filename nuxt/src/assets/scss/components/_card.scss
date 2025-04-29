@@ -134,7 +134,9 @@
           .headline {
             @include font-style($style: 'font-size-4', $line: 'wide');
 
-            min-height: 70%;
+            & {
+              min-height: 70%;
+            }
           }
         }
       }
@@ -198,12 +200,14 @@
     .card__img-tag {
       @include font-style($style: 'font-size-3', $weight: 'bold');
 
-      display: inline-block;
-      position: absolute;
-      right: 13%;
-      line-height: 1em !important; // TODO there is an issue with font-style when this issue is fixed important can go away
-      padding: spacing(2) spacing(3);
-      text-transform: uppercase;
+      & {
+        display: inline-block;
+        position: absolute;
+        right: 13%;
+        line-height: 1em !important; // TODO there is an issue with font-style when this issue is fixed important can go away
+        padding: spacing(2) spacing(3);
+        text-transform: uppercase;
+      }
     }
 
     .card-img-cutoff {
