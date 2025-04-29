@@ -27,6 +27,10 @@ declare module 'nuxt/config' {
       defaultLocale?: string;
       [key: string]: any;
     };
+    data?: {
+      // Add data module options here if needed
+      [key: string]: any;
+    };
   }
 }
 
@@ -35,7 +39,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     '@nuxtjs/storybook',
-    '@nuxt/content',
+    // '@nuxt/content',
     '@nuxtjs/i18n',
     '@pinia/nuxt',
     // [
@@ -44,6 +48,7 @@ export default defineNuxtConfig({
     //     theme: 'gk',
     //   },
     // ],
+    '~/modules/data',
   ], // , '@nuxt/image'
   storybook: {
     port: 6006,

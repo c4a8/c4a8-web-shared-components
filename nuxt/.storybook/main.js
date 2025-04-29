@@ -14,11 +14,6 @@ const config = {
   },
   docs: {},
   staticDirs: ['../public', '../static'],
-  previewAnnotations: (entry = []) => {
-    entry.push(require.resolve('./middleware'));
-
-    return entry;
-  },
   async viteFinal(config) {
     return mergeConfig(config, {
       resolve: {
