@@ -92,6 +92,13 @@ const module = defineNuxtModule({
         file: resolve("./runtime/pages/[...slug].vue")
       });
     });
+    extendPages((pages) => {
+      pages.unshift({
+        name: "slug-posts",
+        path: "/posts/:slug(.*)*",
+        file: resolve("./runtime/pages/posts/[...slug].vue")
+      });
+    });
     addImportsDir(resolve("./runtime/composables"));
   }
 });

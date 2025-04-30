@@ -1,3 +1,13 @@
+<template>
+  <div :class="classList">
+    <div class="author__avatar-frame">
+      <div :style="style">
+        <v-img :img="imgUrl" :cloudinary="true" preset="avatar" :alt="author.display_name" />
+      </div>
+    </div>
+  </div>
+</template>
+<script>
 export default {
   tagName: 'author-avatar',
   data() {
@@ -25,13 +35,5 @@ export default {
     classes: String,
     imgUrl: String,
   },
-  template: `
-    <div :class="classList">
-      <div class="author__avatar-frame">
-        <div :style="style">
-          <v-img :img="imgUrl" :cloudinary="true" preset="avatar" :alt="author.display_name" />
-        </div>
-      </div>
-    </div>
-  `,
 };
+</script>
