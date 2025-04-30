@@ -3,18 +3,50 @@ declare namespace _default {
     function data(): {
         filesValue: never[];
     };
-    function created(): Promise<void>;
+    function setup(): {
+        config: {};
+        locale: any;
+        authors: any;
+    };
     namespace computed {
-        function blogImagePath(): any;
+        function imgUrl(): any;
         function highlightPost(): any;
+        function highlightPostExternalLanguage(): any;
+        function showComponent(): true | (() => {
+            limit: any;
+            sort: {
+                moment: number;
+            }[];
+            reversed: any;
+            where: {
+                path: {
+                    LIKE: string[];
+                };
+            };
+            path: string;
+        });
+        function query(): {
+            limit: any;
+            sort: {
+                moment: number;
+            }[];
+            reversed: any;
+            where: {
+                path: {
+                    LIKE: string[];
+                };
+            };
+            path: string;
+        };
     }
     namespace methods {
+        function blogTitleUrl(post: any): any;
         function updateFiles(files: any): true | undefined;
     }
     namespace props {
         namespace posts {
             let type: ArrayConstructor;
-            let required: boolean;
+            let required: never[];
         }
         namespace blogMaxBlogPosts {
             let type_1: NumberConstructor;
@@ -24,7 +56,6 @@ declare namespace _default {
             let required_1: boolean;
             export { required_1 as required };
         }
-        let lang: StringConstructor;
         let paginator_page: NumberConstructor;
         let paginator_total_pages: NumberConstructor;
         let paginator_previous_page: NumberConstructor;

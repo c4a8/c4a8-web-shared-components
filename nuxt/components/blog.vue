@@ -18,7 +18,7 @@
             <div class="d-none d-lg-block" v-if="highlightPost">
               <card
                 :title="highlightPost.title"
-                :blog-title-pic="blogTitleUrl(highlightPost)"
+                :blogtitlepic="blogTitleUrl(highlightPost)"
                 :excerpt="highlightPost.excerpt"
                 :date="highlightPost.date"
                 :url="highlightPost.url"
@@ -27,17 +27,21 @@
                 :hasAnimation="true"
                 :externalLanguage="highlightPostExternalLanguage"
                 spacing="mt-n48"
+                :dataAuthors="authors"
               /></div
           ></template>
+          <filter-bar :items="files" :maxBlogPosts="blogMaxBlogPosts" :dataAuthors="authors" />
         </markdown-files>
       </template>
     </SharedContentList>
-    <!-- <filter-bar :items="paginatorPosts" :maxBlogPosts="blogMaxBlogPosts" /> -->
   </div>
 </template>
 <script>
+import { useI18n } from '#imports';
+
 import Tools from '../utils/tools.js';
 import useConfig from '../composables/useConfig.js';
+import useAuthors from '../composables/useAuthors.js';
 
 export default {
   tagName: 'blog',
@@ -48,17 +52,15 @@ export default {
   },
   setup() {
     const config = useConfig();
+    const { locale } = useI18n();
+    const { authors } = useAuthors();
 
     return {
       config,
+      locale,
+      authors,
     };
   },
-  // async created() {
-  // const { data } = await useAsyncData('authors', () => queryContent('/').findOne());
-  // console.log('🚀 ~ created ~ data:', data);
-  // const contentQuery = queryContent().findOne();
-  // console.log('🚀 ~ created ~ contentQuery:', contentQuery);
-  // },
   computed: {
     imgUrl() {
       return Tools.getBlogImgPath(this.config);
@@ -69,7 +71,7 @@ export default {
       return firstPostArray ? firstPostArray[0] : null;
     },
     highlightPostExternalLanguage() {
-      return this.highlightPost.lang !== lang ? this.$t('onlyLanguage') : null;
+      return this.highlightPost.lang !== this.locale ? this.$t('onlyLanguage') : null;
     },
     showComponent() {
       return this.posts?.length > 0 || this.query;
@@ -110,16 +112,11 @@ export default {
       type: Array,
       required: [],
     },
-    // paginatorPosts: {
-    //   type: Array,
-    //   required: true,
-    // },
     blogMaxBlogPosts: {
       type: Number,
       default: 100,
       required: true,
     },
-    lang: String,
     paginator_page: Number,
     paginator_total_pages: Number,
     paginator_previous_page: Number,

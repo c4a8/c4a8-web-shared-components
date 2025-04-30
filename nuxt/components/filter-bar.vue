@@ -44,7 +44,7 @@
     <grid-list
       :items="filteredItems"
       :view="activeView"
-      :data-authors="dataAuthorsValue"
+      :data-authors="dataAuthors"
       @card-tag-clicked="handleCardTagClicked"
     />
   </div>
@@ -65,14 +65,11 @@ export default {
       const blogStore = useBlogStore();
       return blogStore.getBlogItems;
     },
-    dataAuthorsValue() {
-      return Tools.getJSON(this.dataAuthors);
-    },
     normalizedItems() {
       return this.storedItems.slice(this.itemStartPoint).map((item) => {
         return {
           ...item,
-          blogtitlepic: `${item.blog_image_path}${item.blogtitlepic}`,
+          blogtitlepic: `${item.blog_image_path || ''}${item.blogtitlepic}`,
         };
       });
     },

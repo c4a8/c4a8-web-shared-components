@@ -10,10 +10,11 @@ declare namespace _default {
     };
     function setup(): {
         config: {};
+        authors: any;
     };
     namespace computed {
         function classList(): (string | (() => any))[];
-        function showCompoent(): true | (() => {
+        function showComponent(): true | (() => {
             limit: any;
             sort: {
                 moment: number;

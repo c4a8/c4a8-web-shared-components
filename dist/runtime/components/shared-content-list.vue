@@ -1,5 +1,5 @@
 <template>
-  <template v-if="!isStorybook">
+  <template v-if="list">
     <slot v-bind:list="list" />
   </template>
   <slot v-bind:list="dataList" v-else></slot>
@@ -21,8 +21,6 @@ const props = defineProps({
     default: () => [],
   },
 });
-
-const isStorybook = computed(() => Tools.isStorybook());
 
 const { locale } = useI18n();
 

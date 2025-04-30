@@ -1,5 +1,5 @@
 <template>
-  <template v-if="showCompoent">
+  <template v-if="showComponent">
     <SharedContentList :data-list="postsArray" :query="query" v-slot="{ list }">
       <template v-if="list">
         <markdown-files
@@ -29,7 +29,7 @@
                     <card
                       v-bind="post"
                       :url="postUrl(post)"
-                      :blog-title-pic="blogTitleUrl(post)"
+                      :blogtitlepic="blogTitleUrl(post)"
                       :youtube-url="post.youtubeUrl"
                       :date="post.date"
                       :author="post.author"
@@ -60,14 +60,13 @@
   </template>
 </template>
 <script>
-import { useAsyncData, queryCollection } from '#imports';
-
 import Tools from '../utils/tools.js';
 import State from '../utils/state.js';
 import StickyScroller from '../utils/sticky-scroller.js';
 import UtilityAnimation from '../utils/utility-animation.js';
 import MarkdownFiles from './markdown-files.vue';
 import useConfig from '../composables/useConfig.js';
+import useAuthors from '../composables/useAuthors.js';
 
 export default {
   components: { MarkdownFiles },
@@ -81,9 +80,11 @@ export default {
   },
   setup() {
     const config = useConfig();
+    const { authors } = useAuthors();
 
     return {
       config,
+      authors,
     };
   },
   computed: {
@@ -97,7 +98,7 @@ export default {
         'vue-component',
       ];
     },
-    showCompoent() {
+    showComponent() {
       return this.postsArray.length > 0 || this.query;
     },
     query() {
@@ -254,13 +255,7 @@ export default {
     async getDataAuthors() {
       if (this.dataAuthors) return (this.dataAuthorsValue = this.dataAuthors);
 
-      const { data: authors } = await useAsyncData('authors_data', () => {
-        const query = queryCollection('authors_data');
-
-        return query.first();
-      });
-
-      this.dataAuthorsValue = authors?.value?.meta;
+      this.dataAuthorsValue = this.authors;
     },
     event(post) {
       return post.layout === 'post' ? false : true;

@@ -106,7 +106,7 @@ declare namespace _default {
             export { _default_11 as default };
         }
         namespace strokeWidth {
-            let _default_12: number;
+            let _default_12: null;
             export { _default_12 as default };
         }
     }

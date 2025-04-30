@@ -1,8 +1,6 @@
 <template>
   <template v-if="showComponent">
-    before shared content list
     <SharedContentList :data-list="postsArray" :query="query" v-slot="{ list }">
-      list: {{ list }}
       <template v-if="list">
         <markdown-files
           :list="list"

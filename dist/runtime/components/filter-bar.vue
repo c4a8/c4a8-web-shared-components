@@ -1,33 +1,81 @@
-import Tools from "../assets/js/tools.js";
-import State from "../assets/js/state.js";
+<template>
+  <div class="filter-bar">
+    <div class="filter-bar__controls">
+      <div class="filter-bar__selection">
+        <div class="filter-bar__dropdowns">
+          <dropdown
+            v-for="(dropdownItem, index) in filterDropdowns"
+            v-bind="dropdownItem"
+            @dropdown-changed="handleDropdownChange($event, index)"
+            @dropdown-opened="handleDropdownOpened"
+            ref="dropdowns"
+            :has-animation="true"
+            :key="index"
+            :index="index"
+          />
+        </div>
+        <div class="filter-bar__tags">
+          <tag
+            class="filter-bar__tag"
+            :tag="selection.text"
+            :key="index"
+            v-for="(selection, index) in flatSelections"
+            variant="icon"
+            @click="removeSelection($event, selection)"
+          />
+          <a class="filter-bar__reset" v-if="flatSelections.length >= 2" @click="clearAllSelections">
+            <icon icon="close" size="xs" /> {{ translationData?.clearAll }}
+          </a>
+        </div>
+      </div>
+      <div class="filter-bar__views">
+        <div class="filter-bar__toggle">
+          <div
+            :class="toggleIconClasses(view)"
+            @click="handleView(view)"
+            v-for="(view, viewIndex) in views"
+            :key="viewIndex"
+          >
+            <icon :icon="view" size="small" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <grid-list
+      :items="filteredItems"
+      :view="activeView"
+      :data-authors="dataAuthors"
+      @card-tag-clicked="handleCardTagClicked"
+    />
+  </div>
+</template>
+<script>
+import Tools from '../utils/tools.js';
+import State from '../utils/state.js';
+
+import { useBlogStore } from '../stores/blog';
 
 export default {
-  tagName: "filter-bar",
+  tagName: 'filter-bar',
   computed: {
     flatSelections() {
       return this.selections.flat();
     },
     storedItems() {
-      return this.$root.StoreData.blogItems
-        ? this.$root.StoreData.blogItems()
-        : [];
-    },
-    dataAuthorsValue() {
-      return Tools.getJSON(this.dataAuthors);
+      const blogStore = useBlogStore();
+      return blogStore.getBlogItems;
     },
     normalizedItems() {
       return this.storedItems.slice(this.itemStartPoint).map((item) => {
         return {
           ...item,
-          blogtitlepic: `${item.blog_image_path}${item.blogtitlepic}`,
+          blogtitlepic: `${item.blog_image_path || ''}${item.blogtitlepic}`,
         };
       });
     },
     filteredItems() {
       if (!this.selections.length)
-        return this.maxBlogPosts
-          ? this.normalizedItems.slice(0, this.maxBlogPosts)
-          : this.normalizedItems;
+        return this.maxBlogPosts ? this.normalizedItems.slice(0, this.maxBlogPosts) : this.normalizedItems;
 
       let filteredItems = [];
 
@@ -36,9 +84,7 @@ export default {
           this.filterDropdowns.forEach((dropdown) => {
             const key = dropdown.key;
             const matchingItems = this.normalizedItems.filter((item) => {
-              return Array.isArray(item[key])
-                ? item[key].includes(selection.value)
-                : item[key] === selection.value;
+              return Array.isArray(item[key]) ? item[key].includes(selection.value) : item[key] === selection.value;
             });
 
             filteredItems = [...filteredItems, ...matchingItems];
@@ -49,23 +95,23 @@ export default {
       return this.getMaxItems(filteredItems);
     },
     authors() {
-      return this.extractPropertyCounts("author");
+      return this.extractPropertyCounts('author');
     },
     topics() {
-      return this.extractPropertyCounts("categories");
+      return this.extractPropertyCounts('categories');
     },
     tags() {
-      return this.extractPropertyCounts("tags");
+      return this.extractPropertyCounts('tags');
     },
     dropdownCollection() {
       return [this.authors, this.topics, this.tags];
     },
   },
   created() {
-    this.$root.StoreData.blogItems = this.$root.Store(
-      Tools.getJSON(this.items)
-    );
-    this.$root.StoreData.blogView = this.$root.Store(this.activeView);
+    const blogStore = useBlogStore();
+
+    blogStore.setBlogItems(this.items);
+    blogStore.setBlogView(this.activeView);
   },
   beforeMount() {
     const hasLanguageLoader = window.i18n?.loader;
@@ -73,28 +119,28 @@ export default {
     if (hasLanguageLoader) {
       hasLanguageLoader.then(() => {
         this.translationData = window.i18n?.getTranslationData([
-          "onlyLanguage",
-          "filterAuthors",
-          "filterTopics",
-          "filterTags",
-          "clearAll",
+          'onlyLanguage',
+          'filterAuthors',
+          'filterTopics',
+          'filterTags',
+          'clearAll',
         ]);
 
         this.filterDropdowns = [
           {
             label: this.translationData?.filterAuthors,
             items: this.authors,
-            key: "author",
+            key: 'author',
           },
           {
             label: this.translationData?.filterTopics,
             items: this.topics,
-            key: "categories",
+            key: 'categories',
           },
           {
             label: this.translationData?.filterTags,
             items: this.getFilteredTags(),
-            key: "tags",
+            key: 'tags',
             filterable: true,
           },
         ];
@@ -102,12 +148,12 @@ export default {
     }
   },
   mounted() {
-    window.addEventListener("resize", this.handleResize);
+    window.addEventListener('resize', this.handleResize);
 
     this.handleResize();
   },
   beforeDestroy() {
-    window.removeEventListener("resize", this.handleResize);
+    window.removeEventListener('resize', this.handleResize);
   },
   methods: {
     getFilteredTags() {
@@ -157,9 +203,7 @@ export default {
       return results.sort((a, b) => a.text.localeCompare(b.text));
     },
     updatePropertyCount(accumulator, propertyValue) {
-      const existingProperty = accumulator.find(
-        (prop) => prop.text.toLowerCase() === propertyValue.toLowerCase()
-      );
+      const existingProperty = accumulator.find((prop) => prop.text.toLowerCase() === propertyValue.toLowerCase());
 
       if (existingProperty) {
         existingProperty.count += 1;
@@ -173,14 +217,11 @@ export default {
     },
     handleView(view) {
       this.activeView = view;
-
-      this.$root.StoreData.blogView(this.activeView);
+      const blogStore = useBlogStore();
+      blogStore.setBlogView(this.activeView);
     },
     toggleIconClasses(view) {
-      return [
-        "filter-bar__toggle-icon",
-        view === this.activeView ? State.ACTIVE : "",
-      ];
+      return ['filter-bar__toggle-icon', view === this.activeView ? State.ACTIVE : ''];
     },
     isArrayEmpty(array) {
       return Object.keys(array).length ? false : true;
@@ -256,9 +297,7 @@ export default {
         this.updateDropdownSelection(selectionArray || [], index);
       });
 
-      const result = this.selections.filter(
-        (selectionArray) => selectionArray.length > 0
-      );
+      const result = this.selections.filter((selectionArray) => selectionArray.length > 0);
 
       if (result.length === 0) return this.clearAllSelections();
     },
@@ -272,8 +311,8 @@ export default {
   },
   data() {
     return {
-      activeView: "tile-view",
-      views: ["tile-view", "list-view"],
+      activeView: 'tile-view',
+      views: ['tile-view', 'list-view'],
       filterDropdowns: [],
       selections: [],
       itemStartPoint: 0,
@@ -286,43 +325,5 @@ export default {
     maxBlogPosts: Number,
     dataAuthors: String,
   },
-  template: `
-    <div class="filter-bar" >
-      <div class="filter-bar__controls">
-        <div class="filter-bar__selection">
-          <div class="filter-bar__dropdowns">
-            <dropdown
-              v-for="(dropdownItem, index) in filterDropdowns"
-              v-bind="dropdownItem"
-              @dropdown-changed="handleDropdownChange($event, index)"
-              @dropdown-opened="handleDropdownOpened"
-              ref="dropdowns"
-              :has-animation="true"
-              :key="index"
-              :index="index"
-            />
-          </div>
-          <div class="filter-bar__tags">
-            <tag class="filter-bar__tag" :tag="selection.text" :key="index" v-for="(selection, index) in flatSelections" variant="icon" @click="removeSelection($event, selection)" />
-            <a class="filter-bar__reset" v-if="flatSelections.length >= 2" @click="clearAllSelections">
-              <icon icon="close" size="xs" /> {{ translationData?.clearAll }}
-            </a>
-          </div>
-        </div>
-        <div class="filter-bar__views">
-          <div class="filter-bar__toggle">
-            <div :class="toggleIconClasses(view)" @click="handleView(view)" v-for="view in views">
-              <icon :icon="view" size="small" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <grid-list
-        :items="filteredItems"
-        :view="activeView"
-        :data-authors="dataAuthorsValue"
-        @card-tag-clicked="handleCardTagClicked"
-      />
-    </div>
-  `,
 };
+</script>
