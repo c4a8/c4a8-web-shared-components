@@ -5,7 +5,7 @@ declare namespace _default {
     };
     namespace computed {
         function classList(): string[];
-        function seperator(): " & " | ", ";
+        function seperator(): "," | " &";
         function authorArray(): any;
         function hasDataAndAuthors(): any;
         function langValue(): any;

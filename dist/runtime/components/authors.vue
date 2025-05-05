@@ -15,7 +15,7 @@
       <template v-else>
         <span class="authors__name" itemprop="name">{{ authorStart(authorArray, author) }} {{ author }}</span>
       </template>
-      <template v-if="!authorsSeperator(authorArray, author)"> {{ seperator }}&nbsp; </template>
+      <template v-if="!authorsSeperator(authorArray, author)"> {{ seperator }}&nbsp;</template>
     </span>
   </template>
 </template>
@@ -40,7 +40,7 @@ export default {
       ];
     },
     seperator() {
-      return this.noLink ? ' & ' : ', ';
+      return this.noLink ? ' &' : ',';
     },
     authorArray() {
       return typeof this.authorsList === 'object' ? this.authorsList : [this.authorsList];

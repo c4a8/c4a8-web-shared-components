@@ -10,6 +10,7 @@ class Tools {
   });
   static storagePrefix = '@gab_'; // if you change this you need to change this in the index.html as well
   static storybookPath = '/shared-components';
+  static blogImagePath = '/blog/heads/';
 
   static decodeHTML = (input) => {
     if (!input) return '';
@@ -611,6 +612,53 @@ class Tools {
 
   static getBlogImgPath(config) {
     return config.public?.blogImagePath || 'blog/heads/';
+  }
+
+  static normalizeMarkdownItem(item, hideData) {
+    const { seo, path, date, moment, _dir, hideInRecent, webcast, meta, ...rest } = item;
+
+    const filteredRest = Object.keys({ ...rest, ...meta })
+      .filter((key) => !hideData || !hideData.includes(key))
+      .reduce((obj, key) => {
+        obj[key] = meta?.[key] || rest[key];
+        return obj;
+      }, {});
+
+    const dateValue = Tools.cleanDate(Tools.isDate(moment) ? moment : date ? date : Tools.extractDate(path));
+    const dateValueOrFallback = dateValue ? dateValue : '2000-01-01';
+
+    return {
+      url: path,
+      date: dateValueOrFallback,
+      moment: dateValueOrFallback,
+      excerpt: meta.customExcerpt || seo?.description,
+      ...filteredRest,
+    };
+  }
+
+  static extractDate(path) {
+    if (!path) return null;
+
+    return Tools.getDate(path);
+  }
+
+  static getDate(dateString) {
+    const datePattern = /\d{4}-\d{2}-\d{2}/;
+    const match = dateString.match(datePattern);
+
+    return match ? match[0] : null;
+  }
+
+  static isDate(dateString) {
+    return dateString ? Tools.getDate(dateString) !== null : null;
+  }
+
+  static cleanDate(date) {
+    if (typeof date === 'string' && date.includes('T')) {
+      return date.split('T')[0];
+    }
+
+    return date;
   }
 }
 
