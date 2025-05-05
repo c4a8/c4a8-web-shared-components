@@ -45201,6 +45201,9 @@ div.custom-control .custom-control-input,
     object-position: center;
   }
 }
+.hero.hero--small .hero__content {
+  min-height: 300px;
+}
 @media (min-width: 992px) {
   .hero.hero--small .hero__content {
     min-height: 400px;

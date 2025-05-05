@@ -1,6 +1,6 @@
 <template>
   <div class="blog container space-bottom-2 space-bottom-lg-3" v-if="showComponent">
-    <div class="row justify-content-lg-between align-items-lg-center mb-7" v-if="false">
+    <div class="row justify-content-lg-between align-items-lg-center mb-7 d-lg-none">
       <!-- Search is currently not used -->
     </div>
 

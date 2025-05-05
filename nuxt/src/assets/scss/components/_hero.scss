@@ -222,6 +222,8 @@
     }
 
     .hero__content {
+      min-height: 300px;
+
       @include media-breakpoint-up(lg) {
         min-height: 400px;
       }

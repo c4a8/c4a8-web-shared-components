@@ -4,7 +4,7 @@
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseDown"
   >
-    <teleport :to="teleportSelector">
+    <teleport :to="teleportSelector" v-if="!isStorybook">
       <div :class="{ 'dropdown__background-shim': true, show: isOpen }" @click="toggleDropdown"></div>
     </teleport>
     <div :class="dropdownLabelClasses" @click="handleClick" :style="style" data-utility-animation-step="1" ref="label">
@@ -21,7 +21,7 @@
           <icon @click="toggleDropdown" class="dropdown__items-close-icon" icon="close" size="medium" />
         </div>
         <div class="dropdown__search-container" v-if="filterableValue">
-          <input type="text" class="dropdown__search" v-model="filterText" :placeholder="translationData?.search" />
+          <input type="text" class="dropdown__search" v-model="filterText" :placeholder="$t('search')" />
           <icon class="dropdown__search-icon" icon="magnifier" size="small" />
           <icon @click="resetFilterText" class="dropdown__close-icon" icon="close" size="small" />
         </div>
@@ -46,9 +46,9 @@
           </div>
         </div>
         <div class="dropdown__buttons">
-          <cta :text="translationData?.apply" class="dropdown__apply-button" href="#apply" @click="applySelection" />
+          <cta :text="$t('apply')" class="dropdown__apply-button" href="#apply" @click="applySelection" />
           <cta
-            :text="translationData?.reset"
+            :text="$t('reset')"
             class="dropdown__reset-button"
             skin="secondary"
             :button="true"
@@ -80,8 +80,11 @@ export default {
     index: Number,
   },
   computed: {
+    isStorybook() {
+      return Tools.isStorybook();
+    },
     teleportSelector() {
-      return '[id="root"], [data-v-app]';
+      return '[id="app"]';
     },
     dropdownLabelClasses() {
       return ['dropdown__label font-size-sm', this.hasAnimation ? 'utility-animation fade-in-bottom' : ''];
@@ -187,14 +190,6 @@ export default {
     },
   },
   beforeMount() {
-    const hasLanguageLoader = window.i18n?.loader;
-
-    if (hasLanguageLoader) {
-      hasLanguageLoader.then(() => {
-        this.translationData = window.i18n?.getTranslationData(['search', 'apply', 'reset']);
-      });
-    }
-
     this.initActiveSelection();
   },
   mounted() {

@@ -14,6 +14,7 @@ declare namespace _default {
         let index: NumberConstructor;
     }
     namespace computed {
+        function isStorybook(): boolean;
         function teleportSelector(): string;
         function dropdownLabelClasses(): string[];
         function parsedItems(): any;

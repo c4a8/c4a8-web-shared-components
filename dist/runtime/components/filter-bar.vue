@@ -216,7 +216,9 @@ export default {
     },
     handleView(view) {
       this.activeView = view;
+
       const blogStore = useBlogStore();
+
       blogStore.setBlogView(this.activeView);
     },
     toggleIconClasses(view) {
