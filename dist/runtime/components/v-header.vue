@@ -89,7 +89,7 @@
               </div>
               <div class="header__button" v-if="button">
                 <cta
-                  :text="onSurfaceCta"
+                  :text="button.text"
                   :href="button.href"
                   :target="button.target"
                   :skin="button.skin"
