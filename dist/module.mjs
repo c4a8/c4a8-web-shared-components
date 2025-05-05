@@ -87,16 +87,16 @@ const module = defineNuxtModule({
     addPlugin({ src: resolve("./runtime/Vue3Lottie.client"), mode: "client" });
     extendPages((pages) => {
       pages.unshift({
-        name: "slug-all",
-        path: "/:slug(.*)*",
-        file: resolve("./runtime/pages/[...slug].vue")
+        name: "slug-posts",
+        path: "/posts/:slug(.*)*",
+        file: resolve("./runtime/pages/posts/[...slug].vue")
       });
     });
     extendPages((pages) => {
       pages.unshift({
-        name: "slug-posts",
-        path: "/posts/:slug(.*)*",
-        file: resolve("./runtime/pages/posts/[...slug].vue")
+        name: "slug-all",
+        path: "/:slug(.*)*",
+        file: resolve("./runtime/pages/[...slug].vue")
       });
     });
     addImportsDir(resolve("./runtime/composables"));

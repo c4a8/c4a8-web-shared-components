@@ -125,6 +125,14 @@ export default defineNuxtModule({
 
     extendPages((pages) => {
       pages.unshift({
+        name: 'slug-posts',
+        path: '/posts/:slug(.*)*',
+        file: resolve('./runtime/pages/posts/[...slug].vue'),
+      });
+    });
+
+    extendPages((pages) => {
+      pages.unshift({
         name: 'slug-all',
         path: '/:slug(.*)*',
         file: resolve('./runtime/pages/[...slug].vue'),
@@ -138,14 +146,6 @@ export default defineNuxtModule({
     //     file: resolve('./runtime/pages/events/[...slug].vue'),
     //   });
     // });
-
-    extendPages((pages) => {
-      pages.unshift({
-        name: 'slug-posts',
-        path: '/posts/:slug(.*)*',
-        file: resolve('./runtime/pages/posts/[...slug].vue'),
-      });
-    });
 
     addImportsDir(resolve('./runtime/composables'));
   },
