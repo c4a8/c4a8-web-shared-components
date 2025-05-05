@@ -131,13 +131,13 @@ export default defineNuxtModule({
       });
     });
 
-    extendPages((pages) => {
-      pages.unshift({
-        name: 'slug-all',
-        path: '/:slug(.*)*',
-        file: resolve('./runtime/pages/[...slug].vue'),
-      });
-    });
+    // extendPages((pages) => {
+    //   pages.unshift({
+    //     name: 'slug-all',
+    //     path: '/:slug(.*)*',
+    //     file: resolve('./runtime/pages/[...slug].vue'),
+    //   });
+    // });
 
     // extendPages((pages) => {
     //   pages.unshift({
