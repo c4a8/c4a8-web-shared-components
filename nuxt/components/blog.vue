@@ -1,5 +1,5 @@
 <template>
-  <div class="container space-bottom-2 space-bottom-lg-3" v-if="showComponent">
+  <div class="blog container space-bottom-2 space-bottom-lg-3" v-if="showComponent">
     <div class="row justify-content-lg-between align-items-lg-center mb-7" v-if="false">
       <!-- Search is currently not used -->
     </div>
@@ -15,7 +15,7 @@
           :is-recent="true"
         >
           <template v-if="updateFiles(files)">
-            <div class="d-none d-lg-block" v-if="highlightPost">
+            <div class="blog__highlight-post d-none d-lg-block" v-if="highlightPost">
               <card
                 :title="highlightPost.title"
                 :blogtitlepic="blogTitleUrl(highlightPost)"
