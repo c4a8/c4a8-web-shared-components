@@ -10,6 +10,9 @@ declare namespace _default {
         function tags(): any;
         function dropdownCollection(): (() => any)[];
     }
+    function setup(): {
+        locale: any;
+    };
     function created(): void;
     function beforeMount(): void;
     function mounted(): void;

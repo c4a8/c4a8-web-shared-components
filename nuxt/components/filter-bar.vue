@@ -50,6 +50,8 @@
   </div>
 </template>
 <script>
+import { useI18n } from '#imports';
+
 import Tools from '../utils/tools.js';
 import State from '../utils/state.js';
 
@@ -63,6 +65,7 @@ export default {
     },
     storedItems() {
       const blogStore = useBlogStore();
+
       return blogStore.getBlogItems;
     },
     normalizedItems() {
@@ -107,6 +110,11 @@ export default {
       return [this.authors, this.topics, this.tags];
     },
   },
+  setup() {
+    const { locale } = useI18n();
+
+    return { locale };
+  },
   created() {
     const blogStore = useBlogStore();
 
@@ -114,38 +122,28 @@ export default {
     blogStore.setBlogView(this.activeView);
   },
   beforeMount() {
-    const hasLanguageLoader = window.i18n?.loader;
-
-    if (hasLanguageLoader) {
-      hasLanguageLoader.then(() => {
-        this.translationData = window.i18n?.getTranslationData([
-          'onlyLanguage',
-          'filterAuthors',
-          'filterTopics',
-          'filterTags',
-          'clearAll',
-        ]);
-
-        this.filterDropdowns = [
-          {
-            label: this.translationData?.filterAuthors,
-            items: this.authors,
-            key: 'author',
-          },
-          {
-            label: this.translationData?.filterTopics,
-            items: this.topics,
-            key: 'categories',
-          },
-          {
-            label: this.translationData?.filterTags,
-            items: this.getFilteredTags(),
-            key: 'tags',
-            filterable: true,
-          },
-        ];
-      });
-    }
+    this.filterDropdowns = [
+      ...(this.authors.length > 0
+        ? [
+            {
+              label: this.$t('filterAuthors'),
+              items: this.authors,
+              key: 'author',
+            },
+          ]
+        : []),
+      {
+        label: this.$t('filterTopics'),
+        items: this.topics,
+        key: 'categories',
+      },
+      {
+        label: this.$t('filterTags'),
+        items: this.getFilteredTags(),
+        key: 'tags',
+        filterable: true,
+      },
+    ];
   },
   mounted() {
     window.addEventListener('resize', this.handleResize);
@@ -161,10 +159,10 @@ export default {
 
       if (!hash) return this.tags;
 
-      const filteredTag = decodeURIComponent(hash.substring(1)).toLowerCase();
+      const filteredTag = decodeURIComponent(hash.substring(1))?.toLowerCase();
 
       const tags = this.tags.map((tag) => {
-        if (tag.text.toLowerCase() === filteredTag) {
+        if (tag?.text?.toLowerCase() === filteredTag) {
           this.addTagToSelection(tag);
 
           return { ...tag, checked: true };
@@ -194,16 +192,17 @@ export default {
           item[property].forEach((propValue) => {
             this.updatePropertyCount(accumulator, propValue);
           });
-        } else {
+        } else if (item[property]) {
           this.updatePropertyCount(accumulator, item[property]);
         }
+
         return accumulator;
       }, []);
 
       return results.sort((a, b) => a.text.localeCompare(b.text));
     },
     updatePropertyCount(accumulator, propertyValue) {
-      const existingProperty = accumulator.find((prop) => prop.text.toLowerCase() === propertyValue.toLowerCase());
+      const existingProperty = accumulator.find((prop) => prop?.text?.toLowerCase() === propertyValue?.toLowerCase());
 
       if (existingProperty) {
         existingProperty.count += 1;

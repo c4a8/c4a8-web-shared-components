@@ -38957,7 +38957,7 @@ svg.streamline-icon {
 }
 
 .back-to-top {
-  z-index: 190;
+  z-index: 200;
   position: relative;
   width: 100%;
   pointer-events: none;
@@ -39136,6 +39136,11 @@ svg.streamline-icon {
 .blog-recent__cta-row {
   place-content: end;
   margin: 1.25rem 0;
+}
+
+.blog__highlight-post {
+  z-index: 60;
+  position: relative;
 }
 
 .card.vue-component.utility-animation[data-utility-animation-step] {
@@ -39839,7 +39844,7 @@ svg.streamline-icon {
 }
 
 .content-scroller {
-  z-index: 80;
+  z-index: 90;
   --content-scroller-spacing: 3.75rem;
   --content-scroller-spacing-small: 2.5rem;
   --content-scroller-background: var(--color-surface-background);
@@ -40566,7 +40571,7 @@ cta {
 }
 
 .dropdown__items {
-  z-index: 110;
+  z-index: 120;
   position: fixed;
   left: 50%;
   bottom: 0;
@@ -40807,7 +40812,7 @@ label.dropdown__checkbox-label::after {
 }
 
 .dropdown__background-shim {
-  z-index: 90;
+  z-index: 100;
   position: fixed;
   top: 0;
   left: 0;
@@ -40845,7 +40850,7 @@ label.dropdown__checkbox-label::after {
 }
 
 .event-list {
-  z-index: 170;
+  z-index: 180;
   position: relative;
 }
 .event-list.event-list--overlap {
@@ -40904,7 +40909,7 @@ label.dropdown__checkbox-label::after {
 }
 .event-overview.event-overview--overlap {
   --event-overview-vertical-padding: 0;
-  z-index: 140;
+  z-index: 150;
   position: relative;
   margin-top: -2.5rem;
 }
@@ -41816,7 +41821,7 @@ label.dropdown__checkbox-label::after {
 }
 
 .fab-button {
-  z-index: 200;
+  z-index: 210;
   position: relative;
   width: 100%;
 }
@@ -41942,7 +41947,7 @@ label.dropdown__checkbox-label::after {
 }
 
 .fab-hint {
-  z-index: 210;
+  z-index: 220;
   --fab-hint-icon-size: 4.5rem;
   --fab-hint-bg-color: var(--color-fab-background);
   --fab-hint-icon-color: var(--color-copy);
@@ -42014,7 +42019,7 @@ label.dropdown__checkbox-label::after {
 }
 
 .fab-hint__content {
-  z-index: 220;
+  z-index: 230;
   position: fixed;
   bottom: 0;
   right: 0;
@@ -44937,7 +44942,7 @@ div.custom-control .custom-control-input,
 }
 
 .hero-text-image__cta {
-  z-index: 120;
+  z-index: 130;
   position: relative;
   margin-top: -1.5rem;
   padding-bottom: 3.5rem;
@@ -44957,7 +44962,7 @@ div.custom-control .custom-control-input,
   }
 }
 .hero-text-image__icon .icon {
-  z-index: 130;
+  z-index: 140;
   color: var(--color-hero-icon);
   position: relative;
 }
@@ -46847,7 +46852,7 @@ job-list-detail {
 }
 .logo-list.logo-list--is-overlapping {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-  z-index: 70;
+  z-index: 80;
   background-color: var(--logo-list-background);
   position: absolute;
   left: 50%;
@@ -46981,7 +46986,7 @@ job-list-detail {
 }
 @media (min-width: 992px) {
   .people-square.people-square--absolute {
-    z-index: 180;
+    z-index: 190;
     position: absolute;
     width: 50%;
   }
@@ -47913,7 +47918,7 @@ job-list-detail {
 }
 
 .scroll-arrow {
-  z-index: 150;
+  z-index: 160;
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
   position: relative;
@@ -47964,7 +47969,7 @@ job-list-detail {
 }
 
 .service-overview {
-  z-index: 160;
+  z-index: 170;
   position: relative;
   margin-bottom: 2.5rem;
 }
@@ -50693,7 +50698,7 @@ shape {
 }
 
 .video-frame__container {
-  z-index: 60;
+  z-index: 70;
   position: relative;
 }
 .video-frame__container.video-frame__container--spacing:not(.video-frame--top-overflow) {
