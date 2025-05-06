@@ -1,23 +1,18 @@
 <template>
   <page-default>
     <content>
-      <br /><br /><br /><br /><br /><br /><br /><br /><br />POST 234
-
       <post-detail :post="post" />
     </content>
   </page-default>
 </template>
 
 <script setup>
-// import { useI18n } from 'vue-i18n';
 import { useRoute, useAsyncData, queryCollection, useNuxtApp } from '#imports';
 
 const route = useRoute();
 
 const nuxtApp = useNuxtApp();
 const currentLocale = nuxtApp.$i18n.locale;
-
-// const { locale } = useI18n();
 
 definePageMeta({
   footer: {
@@ -33,21 +28,5 @@ const { data: post } = await useAsyncData(dataKey, () => {
   const query = queryCollection(collectionName).path(path);
 
   return query.first();
-
-  // return {
-  //   body: {
-  //     value: [
-  //       [
-  //         'h2',
-  //         {
-  //           id: 'eine-cloud-region-die-alles-verändert',
-  //         },
-  //         'Eine Cloud-Region, die alles 123verändert!',
-  //       ],
-  //     ],
-  //   },
-  // };
 });
-
-console.log('post:', post);
 </script>
