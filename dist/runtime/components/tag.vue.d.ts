@@ -6,7 +6,6 @@ declare namespace _default {
     namespace computed {
         function lowerLang(): any;
         function classList(): any[];
-        function url(): string;
         function href(): string;
         function hasIcon(): boolean;
     }
