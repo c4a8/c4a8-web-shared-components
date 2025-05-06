@@ -10,12 +10,15 @@
 </template>
 
 <script setup>
-import { useI18n } from 'vue-i18n';
-import { useRoute, useAsyncData, queryCollection } from '#imports';
+// import { useI18n } from 'vue-i18n';
+import { useRoute, useAsyncData, queryCollection, useNuxtApp } from '#imports';
 
 const route = useRoute();
 
-const { locale } = useI18n();
+const nuxtApp = useNuxtApp();
+const currentLocale = nuxtApp.$i18n.locale;
+
+// const { locale } = useI18n();
 
 definePageMeta({
   footer: {
@@ -27,24 +30,24 @@ const path = route.path;
 const dataKey = 'post-' + path;
 
 const { data: post } = await useAsyncData(dataKey, () => {
-  const collectionName = 'content_' + locale.value;
-  // const query = queryCollection(collectionName).path(path);
+  const collectionName = 'content_' + currentLocale.value;
+  const query = queryCollection(collectionName).path(path);
 
-  // return query.first();
+  return query.first();
 
-  return {
-    body: {
-      value: [
-        [
-          'h2',
-          {
-            id: 'eine-cloud-region-die-alles-verändert',
-          },
-          'Eine Cloud-Region, die alles 123verändert!',
-        ],
-      ],
-    },
-  };
+  // return {
+  //   body: {
+  //     value: [
+  //       [
+  //         'h2',
+  //         {
+  //           id: 'eine-cloud-region-die-alles-verändert',
+  //         },
+  //         'Eine Cloud-Region, die alles 123verändert!',
+  //       ],
+  //     ],
+  //   },
+  // };
 });
 
 console.log('post:', post);
