@@ -26,23 +26,23 @@ const dataKey = 'post-' + path;
 
 const { data: post } = await useAsyncData(dataKey, () => {
   const collectionName = 'content_' + locale.value;
-  const query = queryCollection(collectionName).path(path);
+  // const query = queryCollection(collectionName).path(path);
 
-  return query.first();
+  // return query.first();
 
-  // return {
-  //   body: {
-  //     value: [
-  //       [
-  //         'h2',
-  //         {
-  //           id: 'eine-cloud-region-die-alles-verändert',
-  //         },
-  //         'Eine Cloud-Region, die alles verändert!',
-  //       ],
-  //     ],
-  //   },
-  // };
+  return {
+    body: {
+      value: [
+        [
+          'h2',
+          {
+            id: 'eine-cloud-region-die-alles-verändert',
+          },
+          'Eine Cloud-Region, die alles verändert!',
+        ],
+      ],
+    },
+  };
 });
 
 console.log('post:', post);
