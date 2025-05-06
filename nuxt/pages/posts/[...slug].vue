@@ -1,8 +1,8 @@
 <template>
   <page-default>
     <content>
-      <br /><br /><br /><br /><br /><br /><br /><br /><br />POST
-      <!-- <post-detail :post="post" /> -->
+      <br /><br /><br /><br /><br /><br /><br /><br /><br />POST 234
+      <post-detail :post="post" />
     </content>
   </page-default>
 </template>
@@ -24,10 +24,10 @@ definePageMeta({
 const path = route.path;
 const dataKey = 'post-' + path;
 
-// const { data: post } = await useAsyncData(dataKey, () => {
-//   const collectionName = 'content_' + locale.value;
-//   const query = queryCollection(collectionName).path(path);
+const { data: post } = await useAsyncData(dataKey, () => {
+  const collectionName = 'content_' + locale.value;
+  const query = queryCollection(collectionName).path(path);
 
-//   return query.first();
-// });
+  return query.first();
+});
 </script>
