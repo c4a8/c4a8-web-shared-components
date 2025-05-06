@@ -2,7 +2,7 @@
   <page-default>
     <content>
       <br /><br /><br /><br /><br /><br /><br /><br /><br />POST 234
-      <post-detail :post="post" />
+      <!-- <post-detail :post="post" /> -->
     </content>
   </page-default>
 </template>
