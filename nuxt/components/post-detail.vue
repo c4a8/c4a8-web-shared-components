@@ -67,11 +67,11 @@
                   stickyOffsetBottom: 20,
                 }"
               >
-                <socials :vertical="true" :hide-label="true" :author="null" />
+                <socials :vertical="true" :hide-label="true" :author="null" :share-url="shareUrl" />
               </div>
             </div>
           </div>
-          <ContentRenderer :value="applyKramdownAttrs(normalizedPost)" tag="main" class="richtext" />
+          <ContentRenderer :value="enhancedPost" tag="main" class="richtext" />
           <div id="js-sticky-block-end"></div>
           <div class="mt-5">
             <tag v-for="(tag, index) in normalizedPost.tags" :key="index" :tag="tag" variant="small" />
@@ -98,6 +98,15 @@ export default {
     };
   },
   computed: {
+    enhancedPost() {
+      return {
+        ...this.normalizedPost,
+        body: {
+          ...this.normalizedPost.body,
+          value: Tools.applyKramdownAttrs(this.normalizedPost.body.value),
+        },
+      };
+    },
     normalizedPost() {
       return Tools.normalizeMarkdownItem(this.post);
     },
@@ -117,15 +126,14 @@ export default {
       return date.toISOString();
     },
   },
-  methods: {
-    applyKramdownAttrs(body) {
-      return Tools.applyKramdownAttrs(body);
-    },
-  },
   props: {
     post: {
       type: Object,
       required: true,
+    },
+    shareUrl: {
+      type: String,
+      default: '',
     },
   },
 };

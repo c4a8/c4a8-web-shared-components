@@ -1,13 +1,13 @@
 <template>
   <page-default>
     <content>
-      <post-detail :post="post" />
+      <post-detail :post="post" :share-url="shareUrl" />
     </content>
   </page-default>
 </template>
 
 <script setup>
-import { useRoute, useAsyncData, queryCollection, useNuxtApp } from '#imports';
+import { useRoute, useAsyncData, queryCollection, useNuxtApp, useRequestURL } from '#imports';
 
 const route = useRoute();
 
@@ -22,6 +22,7 @@ definePageMeta({
 
 const path = route.path;
 const dataKey = 'post-' + path;
+const shareUrl = `${useRequestURL().origin}${path}`;
 
 const { data: post } = await useAsyncData(dataKey, () => {
   const collectionName = 'content_' + currentLocale.value;

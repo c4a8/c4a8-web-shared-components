@@ -4,6 +4,9 @@ declare namespace _default {
         authors: any;
     };
     namespace computed {
+        function enhancedPost(): {
+            body: any;
+        };
         function normalizedPost(): {
             url: any;
             date: any;
@@ -14,13 +17,16 @@ declare namespace _default {
         function formattedDate(): string;
         function formattedDateXml(): string;
     }
-    namespace methods {
-        function applyKramdownAttrs(body: any): any[];
-    }
     namespace props {
         namespace post {
             let type: ObjectConstructor;
             let required: boolean;
+        }
+        namespace shareUrl {
+            let type_1: StringConstructor;
+            export { type_1 as type };
+            let _default: string;
+            export { _default as default };
         }
     }
 }

@@ -679,17 +679,15 @@ class Tools {
         if (classMatch) {
           const className = classMatch[1];
 
-          // clone previous node and add class
           const prevNode = [...body[i - 1]];
           const prevAttrs = { ...(prevNode[1] || {}) };
 
           prevAttrs.class = prevAttrs.class ? prevAttrs.class + ' ' + className : className;
 
           prevNode[1] = prevAttrs;
-          newBody[newBody.length - 1] = prevNode; // replace previous node
+          newBody[newBody.length - 1] = prevNode;
         }
 
-        // skip adding the attribute paragraph
         continue;
       }
 
