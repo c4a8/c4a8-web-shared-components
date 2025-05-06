@@ -9,7 +9,7 @@
 
 <script setup>
 import { useI18n } from 'vue-i18n';
-// import { useRoute } from '#imports';
+import { useRoute } from '#imports';
 
 const route = useRoute();
 

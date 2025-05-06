@@ -10,6 +10,8 @@ export default {
 
       if (!this.list) return;
 
+      // TODO refactor this to use the helper i Tools
+
       const limitEvents = this.query?.limitEvents;
       const reversed = this.query?.reversed;
       const sort = this.query?.sort[0] || this.sort;
