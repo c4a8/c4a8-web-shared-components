@@ -80,4 +80,5 @@ declare class Tools {
     static getDate(dateString: any): any;
     static isDate(dateString: any): boolean | null;
     static cleanDate(date: any): any;
+    static applyKramdownAttrs(body: any): any[];
 }

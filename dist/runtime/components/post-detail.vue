@@ -67,11 +67,11 @@
                   stickyOffsetBottom: 20,
                 }"
               >
-                <!-- <socials :vertical="true" :hide-label="true" :author="null" /> -->
+                <socials :vertical="true" :hide-label="true" :author="null" />
               </div>
             </div>
           </div>
-          <ContentRenderer :value="post" tag="main" class="richtext" />
+          <ContentRenderer :value="applyKramdownAttrs(normalizedPost)" tag="main" class="richtext" />
           <div id="js-sticky-block-end"></div>
           <div class="mt-5">
             <tag v-for="(tag, index) in normalizedPost.tags" :key="index" :tag="tag" variant="small" />
@@ -86,6 +86,7 @@
 </template>
 <script>
 import Tools from '../utils/tools.js';
+import useAuthors from '../composables/useAuthors.js';
 
 export default {
   tagName: 'post-detail',
@@ -116,7 +117,11 @@ export default {
       return date.toISOString();
     },
   },
-  methods: {},
+  methods: {
+    applyKramdownAttrs(body) {
+      return Tools.applyKramdownAttrs(body);
+    },
+  },
   props: {
     post: {
       type: Object,

@@ -660,6 +660,44 @@ class Tools {
 
     return date;
   }
+
+  static applyKramdownAttrs(body) {
+    const newBody = [];
+
+    for (let i = 0; i < body.length; i++) {
+      const node = body[i];
+
+      const isAttrLine =
+        node[0] === 'p' &&
+        typeof node[2] === 'string' &&
+        node[2].trim().startsWith('{:') &&
+        node[2].trim().endsWith('}');
+
+      if (isAttrLine && i > 0) {
+        const classMatch = node[2].match(/\{\:\s*\.([a-zA-Z0-9-_ ]+)\s*\}/);
+
+        if (classMatch) {
+          const className = classMatch[1];
+
+          // clone previous node and add class
+          const prevNode = [...body[i - 1]];
+          const prevAttrs = { ...(prevNode[1] || {}) };
+
+          prevAttrs.class = prevAttrs.class ? prevAttrs.class + ' ' + className : className;
+
+          prevNode[1] = prevAttrs;
+          newBody[newBody.length - 1] = prevNode; // replace previous node
+        }
+
+        // skip adding the attribute paragraph
+        continue;
+      }
+
+      newBody.push(node);
+    }
+
+    return newBody;
+  }
 }
 
 export default Tools;

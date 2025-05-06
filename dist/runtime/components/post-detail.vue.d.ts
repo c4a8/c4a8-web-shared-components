@@ -14,7 +14,9 @@ declare namespace _default {
         function formattedDate(): string;
         function formattedDateXml(): string;
     }
-    let methods: {};
+    namespace methods {
+        function applyKramdownAttrs(body: any): any[];
+    }
     namespace props {
         namespace post {
             let type: ObjectConstructor;
