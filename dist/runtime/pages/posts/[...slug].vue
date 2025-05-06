@@ -2,7 +2,7 @@
   <page-default>
     <content>
       <br /><br /><br /><br /><br /><br /><br /><br /><br />POST 234
-      <!-- <post-detail :post="post" /> -->
+      <post-detail :post="post" />
     </content>
   </page-default>
 </template>
@@ -25,23 +25,24 @@ const path = route.path;
 const dataKey = 'post-' + path;
 
 const { data: post } = await useAsyncData(dataKey, () => {
-  // const collectionName = 'content_' + locale.value;
-  // const query = queryCollection(collectionName).path(path);
-  // return query.first();
+  const collectionName = 'content_' + locale.value;
+  const query = queryCollection(collectionName).path(path);
 
-  return {
-    body: {
-      value: [
-        [
-          'h2',
-          {
-            id: 'eine-cloud-region-die-alles-verändert',
-          },
-          'Eine Cloud-Region, die alles verändert!',
-        ],
-      ],
-    },
-  };
+  return query.first();
+
+  // return {
+  //   body: {
+  //     value: [
+  //       [
+  //         'h2',
+  //         {
+  //           id: 'eine-cloud-region-die-alles-verändert',
+  //         },
+  //         'Eine Cloud-Region, die alles verändert!',
+  //       ],
+  //     ],
+  //   },
+  // };
 });
 
 console.log('post:', post);
