@@ -30,11 +30,8 @@ export default {
         this.classes ? this.classes : null,
       ];
     },
-    url() {
-      return this.lowerLang === 'de' ? '' : `index-${this.lowerLang}/`;
-    },
     href() {
-      return '/blog/' + this.url + '#' + encodeURIComponent(this.tag);
+      return '/blog/#' + encodeURIComponent(this.tag);
     },
     hasIcon() {
       return this.variant === 'icon';
