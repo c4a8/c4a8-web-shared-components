@@ -3,8 +3,7 @@
     <content>
       <br /><br /><br /><br /><br /><br /><br /><br /><br />POST 234
 
-      {{ post.body }}
-      <!-- <post-detail :post="post" /> -->
+      <post-detail :post="post" />
     </content>
   </page-default>
 </template>
