@@ -631,7 +631,7 @@ class Tools {
       url: path,
       date: dateValueOrFallback,
       moment: dateValueOrFallback,
-      excerpt: meta.customExcerpt || seo?.description,
+      excerpt: meta?.customExcerpt || seo?.description,
       ...filteredRest,
     };
   }

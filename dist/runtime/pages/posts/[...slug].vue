@@ -24,10 +24,9 @@ definePageMeta({
 const path = route.path;
 const dataKey = 'post-' + path;
 
-// const { data: post } = await useAsyncData(dataKey, () => {
-//   const collectionName = 'content_' + locale.value;
-//   const query = queryCollection(collectionName).path(path);
-
-//   return query.first();
-// });
+const { data: post } = await useAsyncData(dataKey, () => {
+  //   const collectionName = 'content_' + locale.value;
+  //   const query = queryCollection(collectionName).path(path);
+  //   return query.first();
+});
 </script>
