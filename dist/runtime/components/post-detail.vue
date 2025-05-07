@@ -59,7 +59,8 @@
             :sticky-offset-top="100"
             :sticky-offset-bottom="20"
           >
-            <socials :vertical="true" :hide-label="true" :author="null" :share-url="shareUrl" />
+            <aside-nav v-if="asideNavValue" v-bind="asideNavValue" />
+            <socials :vertical="true" :hide-label="true" :author="null" :share-url="shareUrl" v-else />
           </sticky-block>
           <ContentRenderer :value="enhancedPost" tag="main" class="richtext" />
           <sticky-block-end v-model:is-at-end="isAtEnd" :sticky-offset-top="100" :sticky-offset-bottom="20" />
@@ -92,6 +93,9 @@ export default {
     };
   },
   computed: {
+    asideNavValue() {
+      return this.post.meta?.asideNav || null;
+    },
     enhancedPost() {
       return {
         ...this.normalizedPost,

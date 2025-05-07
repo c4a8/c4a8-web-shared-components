@@ -1,27 +1,40 @@
 <template>
   <aside class="aside-nav">
-    <ul>
-      <li v-for="(item, index) in menuItems" :key="index">
-        <NuxtLink :to="item.href">
-          <span>{{ item.text }}</span>
-        </NuxtLink>
+    <ul class="aside-nav__list none">
+      <li v-for="(item, index) in menuItems" :key="index" class="aside-nav__list-item">
+        <template v-if="isAnchorLink(item.href)">
+          <a :href="item.href" @click.prevent="handleAnchorClick(item.href)">
+            <span>{{ item.text }}</span>
+          </a>
+        </template>
+        <template v-else>
+          <NuxtLink :to="item.href" :target="item.target">
+            <span>{{ item.text }}</span>
+          </NuxtLink>
+        </template>
       </li>
     </ul>
   </aside>
 </template>
-<script>
-// import Tools from '../utils/tools.js';
-// import State from '../utils/state.js';
-// import UtilityAnimation from '../utils/utility-animation.js';
 
-export default {
-  tagName: 'aside-nav',
-  computed: {},
-  props: {
-    menuItems: {
-      type: Array,
-      required: true,
-    },
+<script setup>
+import Tools from '../utils/tools';
+
+const props = defineProps({
+  menuItems: {
+    type: Array,
+    required: true,
   },
+});
+
+const isAnchorLink = (href) => href.startsWith('#');
+
+const handleAnchorClick = (href) => {
+  const id = href.substring(1);
+  const idTarget = document.querySelector(`#${id}`);
+
+  if (idTarget) {
+    Tools.scrollIntoView(idTarget, true);
+  }
 };
 </script>

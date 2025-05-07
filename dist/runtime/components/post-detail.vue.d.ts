@@ -5,6 +5,7 @@ declare namespace _default {
         isAtEnd: import("vue").Ref<boolean, boolean>;
     };
     namespace computed {
+        function asideNavValue(): any;
         function enhancedPost(): {
             body: any;
         };
