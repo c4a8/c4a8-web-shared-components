@@ -53,11 +53,16 @@
             />
             <figcaption v-if="normalizedPost.blogtitlepicsubline">{{ normalizedPost.blogtitlepicsubline }}</figcaption>
           </div>
-          <sticky-block class="post__sticky-bar">
+          <sticky-block
+            v-model:is-at-end="isAtEnd"
+            class="post__sticky-bar"
+            :sticky-offset-top="100"
+            :sticky-offset-bottom="20"
+          >
             <socials :vertical="true" :hide-label="true" :author="null" :share-url="shareUrl" />
           </sticky-block>
           <ContentRenderer :value="enhancedPost" tag="main" class="richtext" />
-          <div id="js-sticky-block-end"></div>
+          <sticky-block-end v-model:is-at-end="isAtEnd" :sticky-offset-top="100" :sticky-offset-bottom="20" />
           <div class="mt-5">
             <tag v-for="(tag, index) in normalizedPost.tags" :key="index" :tag="tag" variant="small" />
           </div>
@@ -69,17 +74,21 @@
     </div>
   </div>
 </template>
+
 <script>
 import Tools from '../utils/tools.js';
 import useAuthors from '../composables/useAuthors.js';
+import { ref } from 'vue';
 
 export default {
   tagName: 'post-detail',
   setup() {
     const { authors } = useAuthors();
+    const isAtEnd = ref(false);
 
     return {
       authors,
+      isAtEnd,
     };
   },
   computed: {

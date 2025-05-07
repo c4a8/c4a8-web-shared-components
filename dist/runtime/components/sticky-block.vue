@@ -37,6 +37,9 @@ const props = defineProps({
 const startMarker = ref(null);
 const stickyBlock = ref(null);
 
+const scrollPosition = ref(0);
+const lastScrollPosition = ref(0);
+
 const isKilled = ref(false);
 const stickyStyles = ref({
   position: '',
@@ -56,6 +59,10 @@ const resolutionsList = {
   xl: 1200,
 };
 
+const calculateTopPositionAtEnd = (scrollY = window.scrollY) => {
+  return props.stickyOffsetTop + (lastScrollPosition.value - scrollY);
+};
+
 const updateStickyBlock = () => {
   if (!stickyBlock.value || !startMarker.value) return;
 
@@ -66,7 +73,6 @@ const updateStickyBlock = () => {
   const parentOffsetLeft = startMarker.value.getBoundingClientRect().left;
   const stickyHeight = stickyBlock.value.offsetHeight;
 
-  // Check if we should kill the sticky behavior based on breakpoint
   isKilled.value = window.innerWidth <= resolutionsList[props.breakpoint];
 
   if (isKilled.value) {
@@ -77,31 +83,35 @@ const updateStickyBlock = () => {
       left: '',
       width: '',
     };
+
     startMarker.value.style.height = '';
+
     return;
   }
 
-  // Calculate if we're in the sticky range
   const isInStickyRange = windowOffsetTop >= startPoint - props.stickyOffsetTop;
 
-  // Only update styles if we're entering/exiting sticky state or hitting bottom
   const currentPosition = stickyStyles.value.position;
   const currentTop = stickyStyles.value.top;
   const shouldUpdate =
-    (currentPosition === '' && isInStickyRange) || // Entering sticky
-    (currentPosition === 'fixed' && !isInStickyRange) || // Exiting sticky
-    (currentPosition === 'fixed' &&
-      ((currentTop === `${props.stickyOffsetTop}px` && props.isAtEnd) || // Hitting bottom
-        (currentTop !== `${props.stickyOffsetTop}px` && !props.isAtEnd))); // Leaving bottom
+    (currentPosition === '' && isInStickyRange) ||
+    (currentPosition === 'fixed' && !isInStickyRange) ||
+    (currentPosition === 'fixed' && props.isAtEnd) ||
+    (currentPosition === 'fixed' && !props.isAtEnd && currentTop !== `${props.stickyOffsetTop}px`);
 
   if (shouldUpdate) {
     if (isInStickyRange) {
-      // Always start with the default top position
       let topPosition = `${props.stickyOffsetTop}px`;
 
-      // Only change top position if we've hit the bottom
       if (props.isAtEnd) {
-        topPosition = `${props.stickyOffsetBottom}px`;
+        if (lastScrollPosition.value === null) {
+          lastScrollPosition.value = scrollPosition.value;
+        }
+
+        topPosition = `${calculateTopPositionAtEnd()}px`;
+      } else {
+        lastScrollPosition.value = null;
+        scrollPosition.value = windowOffsetTop;
       }
 
       stickyStyles.value = {
@@ -110,6 +120,7 @@ const updateStickyBlock = () => {
         width: `${parentWidth}px`,
         top: topPosition,
       };
+
       startMarker.value.style.height = `${stickyHeight}px`;
     } else {
       stickyStyles.value = {
@@ -119,6 +130,7 @@ const updateStickyBlock = () => {
         left: '',
         width: '',
       };
+
       startMarker.value.style.height = '';
     }
   }
