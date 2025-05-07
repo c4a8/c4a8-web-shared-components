@@ -67,7 +67,6 @@
             <tag v-for="(tag, index) in normalizedPost.tags" :key="index" :tag="tag" variant="small" />
           </div>
         </div>
-        <div style="height: 100vh"></div>
       </article>
       <div v-else>
         <h1>Post not found</h1>

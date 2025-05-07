@@ -7,18 +7,14 @@
 </template>
 
 <script setup>
-import { useRoute, useAsyncData, queryCollection, useNuxtApp, useRequestURL } from '#imports';
+import { useRoute, useAsyncData, queryCollection, useNuxtApp, useRequestURL, useDynamicPageMeta } from '#imports';
 
 const route = useRoute();
 
 const nuxtApp = useNuxtApp();
 const currentLocale = nuxtApp.$i18n.locale;
 
-definePageMeta({
-  footer: {
-    noMargin: true,
-  },
-});
+const dynamicMeta = useDynamicPageMeta();
 
 const path = route.path;
 const dataKey = 'post-' + path;
@@ -30,4 +26,8 @@ const { data: post } = await useAsyncData(dataKey, () => {
 
   return query.first();
 });
+
+dynamicMeta.value = {
+  footer: post.value?.meta?.footer,
+};
 </script>

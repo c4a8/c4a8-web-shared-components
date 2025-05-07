@@ -2,6 +2,7 @@ declare namespace _default {
     let tagName: string;
     function setup(): {
         authors: any;
+        isAtEnd: import("vue").Ref<boolean, boolean>;
     };
     namespace computed {
         function enhancedPost(): {
