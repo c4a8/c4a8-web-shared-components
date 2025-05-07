@@ -1,5 +1,5 @@
 <template>
-  <p class="prose-p my-prose">
+  <p class="prose-p">
     <slot />
   </p>
 </template>

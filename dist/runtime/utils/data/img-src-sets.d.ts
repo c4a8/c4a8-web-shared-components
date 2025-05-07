@@ -128,4 +128,14 @@ declare namespace ImgSrcSets {
         })[];
         export { srcSets_12 as srcSets };
     }
+    namespace postImages {
+        let srcSets_13: ({
+            params: string;
+            media: string;
+        } | {
+            params: string;
+            media?: undefined;
+        })[];
+        export { srcSets_13 as srcSets };
+    }
 }

@@ -29,6 +29,18 @@ $post-content-width-lg: 80%;
     left: 50%;
     transform: translateX(-50%);
   }
+
+  .sticky-block__start {
+    .socials {
+      padding-top: spacing(3);
+    }
+
+    @include media-breakpoint-up(xl) {
+      height: 10px !important; /* force the sticky plugin to not create a gap */
+      flex-shrink: 0;
+      flex-basis: $post-offset-spacing-xl;
+    }
+  }
 }
 
 .post__screenshot {
@@ -143,18 +155,6 @@ $post-content-width-lg: 80%;
     display: flex;
     margin-bottom: 0;
     margin-left: -#{$post-offset-spacing-xl};
-  }
-}
-
-.post__sticky-socials {
-  .socials {
-    padding-top: spacing(3);
-  }
-
-  @include media-breakpoint-up(xl) {
-    height: 10px !important; /* force the sticky plugin to not create a gap */
-    flex-shrink: 0;
-    flex-basis: $post-offset-spacing-xl;
   }
 }
 

@@ -47237,6 +47237,16 @@ job-list-detail {
   left: 50%;
   transform: translateX(-50%);
 }
+.post .sticky-block__start .socials {
+  padding-top: 0.75rem;
+}
+@media (min-width: 1200px) {
+  .post .sticky-block__start {
+    height: 10px !important; /* force the sticky plugin to not create a gap */
+    flex-shrink: 0;
+    flex-basis: 7.5rem;
+  }
+}
 
 .post__screenshot {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
@@ -47337,17 +47347,6 @@ job-list-detail {
     display: flex;
     margin-bottom: 0;
     margin-left: -7.5rem;
-  }
-}
-
-.post__sticky-socials .socials {
-  padding-top: 0.75rem;
-}
-@media (min-width: 1200px) {
-  .post__sticky-socials {
-    height: 10px !important; /* force the sticky plugin to not create a gap */
-    flex-shrink: 0;
-    flex-basis: 7.5rem;
   }
 }
 

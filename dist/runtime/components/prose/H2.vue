@@ -1,5 +1,5 @@
 <template>
-  <Headline class="prose-p my-prose">
+  <Headline class="prose-h2">
     <slot />
   </Headline>
 </template>

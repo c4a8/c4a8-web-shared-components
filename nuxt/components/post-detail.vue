@@ -8,8 +8,8 @@
           </h1>
           <div class="py-4 mt-5">
             <div class="row align-items-md-center">
-              <div class="col-md-7 mb-5 mb-md-0">
-                <div class="media align-items-center" aaav-if="post.author">
+              <div class="col-md-7 mb-5 mb-md-0" v-if="post.author">
+                <div class="media align-items-center">
                   <div v-for="person in normalizedPost.author" :key="person" class="avatar mr-2">
                     <author-avatar
                       v-if="authors[person]?.avatar"
@@ -22,8 +22,8 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-5 align-self-end pr-lg-0">
-                <div class="text-muted text-right font-size-1">
+              <div class="col-md-5 align-self-end pr-lg-0" :class="{ 'pl-lg-0': !post.author }">
+                <div class="text-muted font-size-1" :class="{ 'text-right': post.author }">
                   <time class="dt-published" :datetime="formattedDateXml" itemprop="datePublished">
                     {{ formattedDate }}
                   </time>
@@ -44,33 +44,18 @@
               />
             </slider>
           </div>
-          <div v-else-if="normalizedPost.blogtitlepic">
-            <div class="post__intro-img">
-              <v-img
-                :img="blogImagePath + normalizedPost.blogtitlepic"
-                :cloudinary="true"
-                :alt="normalizedPost.title"
-              />
-            </div>
+          <div v-else-if="normalizedPost.blogtitlepic" class="post__intro-img">
+            <v-img
+              :img="blogImagePath + normalizedPost.blogtitlepic"
+              :cloudinary="true"
+              :alt="normalizedPost.title"
+              img-src-sets="postImages"
+            />
             <figcaption v-if="normalizedPost.blogtitlepicsubline">{{ normalizedPost.blogtitlepicsubline }}</figcaption>
           </div>
-          <div class="post__sticky-bar">
-            <div id="js-sticky-block-start" class="post__sticky-socials pl-xl-2 pt-4">
-              <div
-                class="js-sticky-block"
-                :data-hs-sticky-block-options="{
-                  parentSelector: '#js-sticky-block-start',
-                  breakpoint: 'xl',
-                  startPoint: '#js-sticky-block-start',
-                  endPoint: '#js-sticky-block-end',
-                  stickyOffsetTop: 100,
-                  stickyOffsetBottom: 20,
-                }"
-              >
-                <socials :vertical="true" :hide-label="true" :author="null" :share-url="shareUrl" />
-              </div>
-            </div>
-          </div>
+          <sticky-block class="post__sticky-bar">
+            <socials :vertical="true" :hide-label="true" :author="null" :share-url="shareUrl" />
+          </sticky-block>
           <ContentRenderer :value="enhancedPost" tag="main" class="richtext" />
           <div id="js-sticky-block-end"></div>
           <div class="mt-5">

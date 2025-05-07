@@ -190,6 +190,25 @@ const ImgSrcSets = {
       },
     ],
   },
+  postImages: {
+    srcSets: [
+      {
+        params: 'c_fill,g_face,w_600,x_0,y_0/',
+        media: '(max-width: 576px)',
+      },
+      {
+        params: 'c_fill,g_face,w_800,x_0,y_0/',
+        media: '(max-width: 765px)',
+      },
+      {
+        params: 'c_fill,g_face,w_1000,x_0,y_0/',
+        media: '(max-width: 1200px)',
+      },
+      {
+        params: 'c_fill,g_face,w_1350,x_0,y_0/',
+      },
+    ],
+  },
 };
 
 export default ImgSrcSets;

@@ -1,7 +1,7 @@
 <template>
-  <p class="prose-p">
+  <Headline class="prose-h3">
     <slot />
-  </p>
+  </Headline>
 </template>
 
 <script setup></script>
