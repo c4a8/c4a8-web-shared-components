@@ -1,0 +1,5 @@
+.aside-nav__list-item {
+  + .aside-nav__list-item {
+    margin-top: spacing(3);
+  }
+}

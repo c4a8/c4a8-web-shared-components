@@ -5,6 +5,8 @@ declare namespace _default {
         isAtEnd: import("vue").Ref<boolean, boolean>;
     };
     namespace computed {
+        function stickyOffsetTop(): 100 | 124;
+        function shouldShowStickyBlocks(): boolean;
         function asideNavValue(): any;
         function enhancedPost(): {
             body: any;

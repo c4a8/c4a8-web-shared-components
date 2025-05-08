@@ -1,6 +1,6 @@
 <template>
   <div class="sticky-block" :class="externalClass">
-    <div ref="startMarker" class="sticky-block__start pl-xl-2 pt-4">
+    <div ref="startMarker" class="sticky-block__start pt-4" :class="{ 'pl-xl-2': hasPadding }">
       <div ref="stickyBlock" class="js-sticky-block" :class="{ 'hs-kill-sticky': isKilled }" :style="stickyStyles">
         <slot />
       </div>
@@ -31,6 +31,10 @@ const props = defineProps({
   isAtEnd: {
     type: Boolean,
     default: false,
+  },
+  hasPadding: {
+    type: Boolean,
+    default: true,
   },
 });
 
@@ -69,8 +73,8 @@ const updateStickyBlock = () => {
   const windowOffsetTop = window.scrollY;
   const startPoint = startMarker.value.getBoundingClientRect().top + windowOffsetTop;
   const parentWidth = startMarker.value.offsetWidth;
-  const parentPaddingLeft = parseInt(window.getComputedStyle(startMarker.value).paddingLeft);
   const parentOffsetLeft = startMarker.value.getBoundingClientRect().left;
+
   const stickyHeight = stickyBlock.value.offsetHeight;
 
   isKilled.value = window.innerWidth <= resolutionsList[props.breakpoint];
@@ -90,13 +94,14 @@ const updateStickyBlock = () => {
   }
 
   const isInStickyRange = windowOffsetTop >= startPoint - props.stickyOffsetTop;
-
   const currentPosition = stickyStyles.value.position;
   const currentTop = stickyStyles.value.top;
+  const currentLeft = stickyStyles.value.left;
   const shouldUpdate =
     (currentPosition === '' && isInStickyRange) ||
     (currentPosition === 'fixed' && !isInStickyRange) ||
     (currentPosition === 'fixed' && props.isAtEnd) ||
+    (currentPosition === 'fixed' && currentLeft !== `${parentOffsetLeft}px`) ||
     (currentPosition === 'fixed' && !props.isAtEnd && currentTop !== `${props.stickyOffsetTop}px`);
 
   if (shouldUpdate) {
@@ -116,7 +121,7 @@ const updateStickyBlock = () => {
 
       stickyStyles.value = {
         position: 'fixed',
-        left: `${parentOffsetLeft + parentPaddingLeft}px`,
+        left: `${parentOffsetLeft}px`,
         width: `${parentWidth}px`,
         top: topPosition,
       };

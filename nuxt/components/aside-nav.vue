@@ -1,7 +1,7 @@
 <template>
   <aside class="aside-nav">
     <ul class="aside-nav__list none">
-      <li v-for="(item, index) in menuItems" :key="index" class="aside-nav__list-item">
+      <li v-for="(item, index) in menuItems" :key="index" class="aside-nav__list-item font-size-1 bold">
         <template v-if="isAnchorLink(item.href)">
           <a :href="item.href" @click.prevent="handleAnchorClick(item.href)">
             <span>{{ item.text }}</span>

@@ -1,5 +1,5 @@
 <template>
-  <div class="post-detail container space-top-2 space-top-lg-4">
+  <div class="post-detail container space-top-2 space-top-lg-4" :class="{ 'post-detail--aside-nav': asideNavValue }">
     <div class="w-xl-80 mx-xl-auto">
       <article v-if="normalizedPost" class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
         <header class="post-header">
@@ -54,20 +54,28 @@
             <figcaption v-if="normalizedPost.blogtitlepicsubline">{{ normalizedPost.blogtitlepicsubline }}</figcaption>
           </div>
           <sticky-block
+            v-if="shouldShowStickyBlocks"
             v-model:is-at-end="isAtEnd"
             class="post__sticky-bar"
-            :sticky-offset-top="100"
+            :sticky-offset-top="stickyOffsetTop"
             :sticky-offset-bottom="20"
+            :has-padding="!asideNavValue"
           >
             <aside-nav v-if="asideNavValue" v-bind="asideNavValue" />
             <socials :vertical="true" :hide-label="true" :author="null" :share-url="shareUrl" v-else />
           </sticky-block>
           <ContentRenderer :value="enhancedPost" tag="main" class="richtext" />
-          <sticky-block-end v-model:is-at-end="isAtEnd" :sticky-offset-top="100" :sticky-offset-bottom="20" />
-          <div class="mt-5">
+          <sticky-block-end
+            v-if="shouldShowStickyBlocks"
+            v-model:is-at-end="isAtEnd"
+            :sticky-offset-top="stickyOffsetTop"
+            :sticky-offset-bottom="20"
+          />
+          <div class="post-detail__tags mt-5">
             <tag v-for="(tag, index) in normalizedPost.tags" :key="index" :tag="tag" variant="small" />
           </div>
         </div>
+        <aside-nav v-if="!shouldShowStickyBlocks && asideNavValue" v-bind="asideNavValue" />
       </article>
       <div v-else>
         <h1>Post not found</h1>
@@ -92,7 +100,27 @@ export default {
       isAtEnd,
     };
   },
+  data() {
+    return {
+      shouldShowStickyBlocks: false,
+    };
+  },
+  mounted() {
+    this.checkStickyBlocks();
+    window.addEventListener('resize', this.checkStickyBlocks);
+  },
+  unmounted() {
+    window.removeEventListener('resize', this.checkStickyBlocks);
+  },
+  methods: {
+    checkStickyBlocks() {
+      this.shouldShowStickyBlocks = !this.asideNavValue || !Tools.isBelowBreakpoint('lg');
+    },
+  },
   computed: {
+    stickyOffsetTop() {
+      return this.asideNavValue ? 124 : 100;
+    },
     asideNavValue() {
       return this.post.meta?.asideNav || null;
     },

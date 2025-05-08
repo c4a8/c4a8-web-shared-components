@@ -38816,6 +38816,10 @@ svg.streamline-icon {
   flex: 1;
 }
 
+.aside-nav__list-item + .aside-nav__list-item {
+  margin-top: 0.75rem;
+}
+
 .aside-wrapper {
   display: flex;
   gap: 3.5rem;
@@ -47208,6 +47212,26 @@ job-list-detail {
   line-height: 1.9em;
 }
 
+.post-detail {
+  --post-offset-spacing-xl: 7.5rem;
+  --post-content-width-lg: 80%;
+  overflow: clip;
+}
+@media (min-width: 992px) {
+  .post-detail.post-detail--aside-nav .post .sticky-block__start {
+    flex-basis: calc(2 * var(--post-offset-spacing-xl));
+  }
+  .post-detail.post-detail--aside-nav .post-detail__tags,
+  .post-detail.post-detail--aside-nav .richtext,
+  .post-detail.post-detail--aside-nav .post__sticky-excerpt,
+  .post-detail.post-detail--aside-nav .post-header {
+    padding-left: calc(var(--post-offset-spacing-xl) + 1rem);
+  }
+  .post-detail.post-detail--aside-nav .aside-nav {
+    padding-top: 0.75rem;
+  }
+}
+
 .post {
   container-type: normal;
 }
@@ -47244,7 +47268,7 @@ job-list-detail {
   .post .sticky-block__start {
     height: 10px !important; /* force the sticky plugin to not create a gap */
     flex-shrink: 0;
-    flex-basis: 7.5rem;
+    flex-basis: var(--post-offset-spacing-xl);
   }
 }
 
@@ -47286,7 +47310,7 @@ job-list-detail {
 }
 @media (min-width: 1200px) {
   .post-content > img:first-of-type + figcaption {
-    left: -7.5rem;
+    left: calc(-1 * var(--post-offset-spacing-xl));
   }
 }
 .post-content .post__title-images .slider,
@@ -47320,8 +47344,8 @@ job-list-detail {
   .post-content .post__intro-img > img,
   .post-content picture > img,
   .post-content p > img:not(.post__screenshot) {
-    left: -7.5rem;
-    max-width: calc(calc(1280px - 2 * 2rem) - (7.5rem));
+    left: calc(-1 * var(--post-offset-spacing-xl));
+    max-width: calc(calc(1280px - 2 * 2rem) - var(--post-offset-spacing-xl));
   }
 }
 @media (min-width: 1340px) {
@@ -47346,7 +47370,7 @@ job-list-detail {
   .post__sticky-bar {
     display: flex;
     margin-bottom: 0;
-    margin-left: -7.5rem;
+    margin-left: calc(-1 * var(--post-offset-spacing-xl));
   }
 }
 

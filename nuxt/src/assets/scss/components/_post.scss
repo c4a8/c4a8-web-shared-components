@@ -1,5 +1,30 @@
-$post-offset-spacing-xl: 7.5rem;
-$post-content-width-lg: 80%;
+// TODO rename this to post-detail
+
+.post-detail {
+  --post-offset-spacing-xl: 7.5rem;
+  --post-content-width-lg: 80%;
+
+  overflow: clip;
+
+  &.post-detail--aside-nav {
+    @include media-breakpoint-up(xl) {
+      .post .sticky-block__start {
+        flex-basis: calc(2 * var(--post-offset-spacing-xl));
+      }
+
+      .post-detail__tags,
+      .richtext,
+      .post__sticky-excerpt,
+      .post-header {
+        padding-left: calc(var(--post-offset-spacing-xl) + #{spacing(4)});
+      }
+
+      .aside-nav {
+        padding-top: spacing(3);
+      }
+    }
+  }
+}
 
 .post {
   container-type: normal;
@@ -38,7 +63,7 @@ $post-content-width-lg: 80%;
     @include media-breakpoint-up(xl) {
       height: 10px !important; /* force the sticky plugin to not create a gap */
       flex-shrink: 0;
-      flex-basis: $post-offset-spacing-xl;
+      flex-basis: var(--post-offset-spacing-xl);
     }
   }
 }
@@ -86,7 +111,7 @@ $post-content-width-lg: 80%;
         }
 
         @include media-breakpoint-up(xl) {
-          left: -#{$post-offset-spacing-xl};
+          left: calc(-1 * var(--post-offset-spacing-xl));
         }
       }
     }
@@ -126,8 +151,8 @@ $post-content-width-lg: 80%;
     .post__intro-img > img,
     picture > img,
     p > img:not(.post__screenshot) {
-      left: -#{$post-offset-spacing-xl};
-      max-width: calc(#{get-container-width($name: 'xl', $with-padding: true)} - (#{$post-offset-spacing-xl}));
+      left: calc(-1 * var(--post-offset-spacing-xl));
+      max-width: calc(#{get-container-width($name: 'xl', $with-padding: true)} - var(--post-offset-spacing-xl));
     }
   }
 
@@ -154,7 +179,7 @@ $post-content-width-lg: 80%;
   @include media-breakpoint-up(xl) {
     display: flex;
     margin-bottom: 0;
-    margin-left: -#{$post-offset-spacing-xl};
+    margin-left: calc(-1 * var(--post-offset-spacing-xl));
   }
 }
 
