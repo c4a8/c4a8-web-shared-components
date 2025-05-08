@@ -46,6 +46,7 @@ export default {
     reset: 'Zurücksetzen',
     jobListEmpty: 'Aktuell haben wir keine Stellenangebote in dieser Sprache.',
     imageCredits: 'Bildnachweis',
+    topicsOnPage: 'Themen auf der Seite',
   },
   en: {
     tags: 'Tags',
@@ -91,6 +92,7 @@ export default {
     reset: 'Reset',
     jobListEmpty: 'We currently have no positions in this language.',
     imageCredits: 'Picture Credits',
+    topicsOnPage: 'Topics on page',
   },
   es: {
     tags: 'Tags',
@@ -135,5 +137,6 @@ export default {
     reset: 'Reiniciar',
     jobListEmpty: 'Actualmente no tenemos posiciones en este idioma.',
     imageCredits: 'Créditos de las fotos',
+    topicsOnPage: 'Temas en la página',
   },
 };

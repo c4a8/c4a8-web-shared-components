@@ -4,9 +4,16 @@ declare namespace _default {
         authors: any;
         isAtEnd: import("vue").Ref<boolean, boolean>;
     };
+    function data(): {
+        shouldShowStickyBlocks: boolean;
+    };
+    function mounted(): void;
+    function unmounted(): void;
+    namespace methods {
+        function checkStickyBlocks(): void;
+    }
     namespace computed {
         function stickyOffsetTop(): 100 | 124;
-        function shouldShowStickyBlocks(): boolean;
         function asideNavValue(): any;
         function enhancedPost(): {
             body: any;

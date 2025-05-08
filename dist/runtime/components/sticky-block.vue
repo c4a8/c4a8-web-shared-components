@@ -22,7 +22,7 @@ const props = defineProps({
   },
   breakpoint: {
     type: String,
-    default: 'xl',
+    default: null,
   },
   class: {
     type: [String, Object, Array],
@@ -60,7 +60,7 @@ const resolutionsList = {
   sm: 576,
   md: 768,
   lg: 992,
-  xl: 1200,
+  xl: 1280,
 };
 
 const calculateTopPositionAtEnd = (scrollY = window.scrollY) => {
@@ -77,7 +77,7 @@ const updateStickyBlock = () => {
 
   const stickyHeight = stickyBlock.value.offsetHeight;
 
-  isKilled.value = window.innerWidth <= resolutionsList[props.breakpoint];
+  isKilled.value = props.breakpoint ? window.innerWidth <= resolutionsList[props.breakpoint] : false;
 
   if (isKilled.value) {
     stickyStyles.value = {

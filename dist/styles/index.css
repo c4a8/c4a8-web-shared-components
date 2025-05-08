@@ -38816,8 +38816,56 @@ svg.streamline-icon {
   flex: 1;
 }
 
+.aside-nav .slide-fade-enter-active,
+.aside-nav .slide-fade-leave-active {
+  transition: all 0.3s ease-out;
+}
+.aside-nav .slide-fade-enter-from,
+.aside-nav .slide-fade-leave-to {
+  transform: translateY(15px);
+  opacity: 0;
+}
+.aside-nav .slide-fade-enter-to,
+.aside-nav .slide-fade-leave-from {
+  transform: translateY(0);
+  opacity: 1;
+}
+@media (max-width: 1199.98px) {
+  .aside-nav {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 260;
+    margin: 2rem 0;
+    background-color: var(--color-surface-background);
+    padding: 1rem;
+    position: sticky;
+    bottom: 1rem;
+    width: min(90vw, 330px);
+  }
+}
+
 .aside-nav__list-item + .aside-nav__list-item {
   margin-top: 0.75rem;
+}
+@media (max-width: 1199.98px) {
+  .aside-nav__list-item:first-of-type {
+    margin-top: 2.25rem;
+  }
+}
+
+.aside-nav__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.aside-nav__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.aside-nav__toggle .aside-nav__icon-toggle.icon {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .aside-wrapper {
@@ -47217,7 +47265,7 @@ job-list-detail {
   --post-content-width-lg: 80%;
   overflow: clip;
 }
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .post-detail.post-detail--aside-nav .post .sticky-block__start {
     flex-basis: calc(2 * var(--post-offset-spacing-xl));
   }

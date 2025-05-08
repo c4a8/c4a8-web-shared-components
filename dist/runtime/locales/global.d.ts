@@ -32,6 +32,7 @@ declare namespace _default {
         let reset: string;
         let jobListEmpty: string;
         let imageCredits: string;
+        let topicsOnPage: string;
     }
     namespace en {
         let tags_1: string;
@@ -98,6 +99,8 @@ declare namespace _default {
         export { jobListEmpty_1 as jobListEmpty };
         let imageCredits_1: string;
         export { imageCredits_1 as imageCredits };
+        let topicsOnPage_1: string;
+        export { topicsOnPage_1 as topicsOnPage };
     }
     namespace es {
         let tags_2: string;
@@ -164,6 +167,8 @@ declare namespace _default {
         export { jobListEmpty_2 as jobListEmpty };
         let imageCredits_2: string;
         export { imageCredits_2 as imageCredits };
+        let topicsOnPage_2: string;
+        export { topicsOnPage_2 as topicsOnPage };
     }
 }
 export default _default;

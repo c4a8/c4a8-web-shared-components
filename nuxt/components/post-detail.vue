@@ -60,6 +60,7 @@
             :sticky-offset-top="stickyOffsetTop"
             :sticky-offset-bottom="20"
             :has-padding="!asideNavValue"
+            breakpoint="xl"
           >
             <aside-nav v-if="asideNavValue" v-bind="asideNavValue" />
             <socials :vertical="true" :hide-label="true" :author="null" :share-url="shareUrl" v-else />
@@ -74,8 +75,8 @@
           <div class="post-detail__tags mt-5">
             <tag v-for="(tag, index) in normalizedPost.tags" :key="index" :tag="tag" variant="small" />
           </div>
+          <aside-nav v-if="!shouldShowStickyBlocks && asideNavValue" v-bind="asideNavValue" />
         </div>
-        <aside-nav v-if="!shouldShowStickyBlocks && asideNavValue" v-bind="asideNavValue" />
       </article>
       <div v-else>
         <h1>Post not found</h1>
@@ -107,6 +108,7 @@ export default {
   },
   mounted() {
     this.checkStickyBlocks();
+
     window.addEventListener('resize', this.checkStickyBlocks);
   },
   unmounted() {
