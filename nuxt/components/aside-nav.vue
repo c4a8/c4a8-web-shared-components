@@ -42,7 +42,7 @@ const isMenuOpen = ref(false);
 const isMobile = ref(false);
 
 const checkBreakpoint = () => {
-  isMobile.value = Tools.isBelowBreakpoint('xl');
+  isMobile.value = Tools.isBelowBreakpoint('lg');
 
   if (!isMobile.value) {
     isMenuOpen.value = false;
