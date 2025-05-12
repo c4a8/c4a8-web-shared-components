@@ -696,6 +696,14 @@ class Tools {
 
     return newBody;
   }
+
+  static getExternalLanguageText(locale, lang, translateFn) {
+    if (lang !== locale) {
+      return translateFn('onlyLanguage' + lang?.toUpperCase());
+    }
+
+    return null;
+  }
 }
 
 export default Tools;
