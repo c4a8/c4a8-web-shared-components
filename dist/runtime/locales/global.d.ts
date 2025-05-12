@@ -18,6 +18,9 @@ declare namespace _default {
         let formAttachmentsMaxFiles: string;
         let formAttachmentsMaxSize: string;
         let onlyLanguage: string;
+        let onlyLanguageDE: string;
+        let onlyLanguageEN: string;
+        let onlyLanguageES: string;
         let moreEvents: string;
         let positionTypePermanently: string;
         let positionTypeInternship: string;
@@ -71,6 +74,12 @@ declare namespace _default {
         export { formAttachmentsMaxSize_1 as formAttachmentsMaxSize };
         let onlyLanguage_1: string;
         export { onlyLanguage_1 as onlyLanguage };
+        let onlyLanguageDE_1: string;
+        export { onlyLanguageDE_1 as onlyLanguageDE };
+        let onlyLanguageEN_1: string;
+        export { onlyLanguageEN_1 as onlyLanguageEN };
+        let onlyLanguageES_1: string;
+        export { onlyLanguageES_1 as onlyLanguageES };
         let moreEvents_1: string;
         export { moreEvents_1 as moreEvents };
         let positionTypePermanently_1: string;
@@ -139,6 +148,12 @@ declare namespace _default {
         export { formAttachmentsMaxSize_2 as formAttachmentsMaxSize };
         let onlyLanguage_2: string;
         export { onlyLanguage_2 as onlyLanguage };
+        let onlyLanguageDE_2: string;
+        export { onlyLanguageDE_2 as onlyLanguageDE };
+        let onlyLanguageEN_2: string;
+        export { onlyLanguageEN_2 as onlyLanguageEN };
+        let onlyLanguageES_2: string;
+        export { onlyLanguageES_2 as onlyLanguageES };
         let moreEvents_2: string;
         export { moreEvents_2 as moreEvents };
         let positionTypePermanently_2: string;

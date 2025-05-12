@@ -9,6 +9,7 @@ declare namespace _default {
         }[] | undefined;
     }
     namespace methods {
+        function addPathPrefix(path: any, lang: any, strategy: any): any;
         function extractDate(path: any): any;
         function getDate(dateString: any): any;
         function isDate(dateString: any): boolean | null;
@@ -30,6 +31,10 @@ declare namespace _default {
             export { type_1 as type };
             let _default_1: null;
             export { _default_1 as default };
+        }
+        namespace strategy {
+            let type_2: StringConstructor;
+            export { type_2 as type };
         }
     }
 }

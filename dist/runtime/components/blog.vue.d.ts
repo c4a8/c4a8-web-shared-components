@@ -6,6 +6,7 @@ declare namespace _default {
     function setup(): {
         config: {};
         locale: any;
+        strategy: any;
         authors: any;
     };
     namespace computed {
@@ -24,6 +25,7 @@ declare namespace _default {
                 };
             };
             path: string;
+            additionalCollections: string[];
         });
         function query(): {
             limit: any;
@@ -37,6 +39,7 @@ declare namespace _default {
                 };
             };
             path: string;
+            additionalCollections: string[];
         };
     }
     namespace methods {

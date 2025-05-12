@@ -23,7 +23,7 @@ declare namespace _default {
             date: any;
             moment: any;
             excerpt: any;
-        };
+        } | null;
         function blogImagePath(): string;
         function formattedDate(): string;
         function formattedDateXml(): string;
