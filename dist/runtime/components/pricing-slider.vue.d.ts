@@ -23,7 +23,7 @@ declare namespace _default {
             extra_classes: string;
         };
     };
-    function mounted(): any;
+    function mounted(): void;
     namespace computed {
         function pricingSliderRange(): any;
         function hsIonRangeSliderOptions(): {
@@ -41,6 +41,8 @@ declare namespace _default {
         function handleRangeSliderChange(slider: any): void;
         function bindEvents(): void;
         function initRangeSlider(): void;
+        function init(): void;
+        function pollForJQuery(): void;
     }
 }
 export default _default;

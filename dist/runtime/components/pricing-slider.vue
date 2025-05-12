@@ -65,25 +65,7 @@ export default {
     };
   },
   mounted() {
-    console.log(window.$);
-
-    if (!window.$) return;
-
-    const { min, max, from, step, unit } = this.pricingSliderRange;
-
-    Object.assign(this.options, { min, max, from, step, postfix: ` ${unit}` });
-
-    this.options.onStart = this.handleRangeSliderStart;
-    this.options.onChange = this.handleRangeSliderChange;
-
-    if (this.$refs.root) {
-      new PricingSlider(this.$refs.root, null, this.products?.pricing);
-    }
-    console.log('🚀 ~ mounted ~ Tools.isClientOnlyLibLoaded():', Tools.isClientOnlyLibLoaded());
-
-    if (Tools.isClientOnlyLibLoaded()) return this.initRangeSlider();
-
-    this.bindEvents();
+    this.pollForJQuery();
   },
   computed: {
     pricingSliderRange() {
@@ -124,6 +106,45 @@ export default {
 
       // TODO get rid of ionRangeSlider overall!!
       window.$(this.$refs.slider).ionRangeSlider(this.options);
+    },
+    init() {
+      const { min, max, from, step, unit } = this.pricingSliderRange;
+
+      Object.assign(this.options, { min, max, from, step, postfix: ` ${unit}` });
+
+      this.options.onStart = this.handleRangeSliderStart;
+      this.options.onChange = this.handleRangeSliderChange;
+
+      if (this.$refs.root) {
+        new PricingSlider(this.$refs.root, null, this.products?.pricing);
+      }
+
+      if (Tools.isClientOnlyLibLoaded()) {
+        this.initRangeSlider();
+      } else {
+        this.bindEvents();
+      }
+    },
+    pollForJQuery() {
+      const maxAttempts = 30;
+
+      let attempts = 0;
+
+      const checkJQuery = () => {
+        if (window.$) {
+          this.init();
+
+          return;
+        }
+
+        attempts++;
+
+        if (attempts < maxAttempts) {
+          setTimeout(checkJQuery, 100);
+        }
+      };
+
+      checkJQuery();
     },
   },
 };
