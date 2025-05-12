@@ -8,7 +8,7 @@
 
   --color-primary: #0072c6;
   --color-primary-accent: #00508b;
-  --color-primary-accent-light: var(--color-link-water);
+  --color-primary-accent-light: #cce3f4;
   --color-primary-on-surface: #7dc2b8;
   --color-primary-accent-on-surface: #60ada2;
 
@@ -21,7 +21,7 @@
   --color-highlight: #c2deda;
   --color-highlight-second: #8ebeb2;
 
-  --color-copy-highlight: red;
+  --color-copy-highlight: var(--color-highlight);
 
   --color-copy-on-primary: var(--color-copy-light);
   --color-copy-on-primary-accent: var(--color-copy-light);
