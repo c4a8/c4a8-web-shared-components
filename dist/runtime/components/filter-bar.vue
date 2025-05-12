@@ -70,6 +70,10 @@ export default {
     },
     normalizedItems() {
       return this.storedItems.slice(this.itemStartPoint).map((item) => {
+        if (item.lang !== this.locale) {
+          item.externalLanguage = Tools.getExternalLanguageText(this.locale, item.lang, this.$t);
+        }
+
         return {
           ...item,
           blogtitlepic: `${item.blog_image_path || ''}${item.blogtitlepic}`,

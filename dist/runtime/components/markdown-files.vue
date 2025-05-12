@@ -15,6 +15,7 @@ export default {
       const limitEvents = this.query?.limitEvents;
       const reversed = this.query?.reversed;
       const sort = this.query?.sort[0] || this.sort;
+      const defaultLang = 'de';
 
       let eventCount = 0;
 
@@ -50,6 +51,12 @@ export default {
           ...filteredRest,
         };
 
+        if (typeof processedItem.lang !== 'string') {
+          processedItem.lang = defaultLang;
+        }
+
+        processedItem.url = this.addPathPrefix(path, processedItem.lang, this.strategy);
+
         if (this.hideItems && this.hideItems(processedItem)) {
           continue;
         }
@@ -78,6 +85,9 @@ export default {
     },
   },
   methods: {
+    addPathPrefix(path, lang, strategy) {
+      return strategy === 'prefix' ? `/${lang}${path}` : path;
+    },
     extractDate(path) {
       if (!path) return null;
 
@@ -113,6 +123,9 @@ export default {
     hideItems: {
       type: Function,
       default: null,
+    },
+    strategy: {
+      type: String,
     },
   },
 };

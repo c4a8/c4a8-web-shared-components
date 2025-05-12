@@ -2,68 +2,44 @@
   <page-default>
     <content>
       <post-detail :post="post" :share-url="shareUrl" />
+      <contact
+        v-bind="contactInContent.infos"
+        :contact="contactInContent.infos"
+        :quote="contactInContent.quote"
+        spacing="mt-10"
+        v-if="contactInContent"
+      />
+      <text-image
+        v-bind="textImageTeaser"
+        :headline="null"
+        :headline-text="textImageTeaser.headline"
+        v-if="textImageTeaser"
+      />
+      <blog-recent v-bind="blogRecentData" v-if="showBlogRecent" />
     </content>
   </page-default>
 </template>
 <script setup>
-// {% if page.contactInContent %}
-//   {% assign postBlogRecentSpacing = '' %}
-
-//   {%
-//     include contact.html
-//     infos=page.contactInContent.infos
-//     quote=page.contactInContent.quote
-//     base=page.contactInContent.infos.base
-//     form=page.contactInContent.infos.form
-//     modalSuccess=page.contactInContent.infos.modalSuccess
-//     spacing="mt-10"
-//   %}
-// {% else %}
-//   {% assign postBlogRecentSpacing = 'mt-10' %}
-// {% endif %}
-
-// {% assign headline = site.data.lang[lang].similarPosts %}
-
-// {% if page.textImageTeaser %}
-//   {%
-//     include text-image.html
-//     image=page.textImageTeaser.image
-//     left=page.textImageTeaser.left
-//     bgColor=page.textImageTeaser.bgColor
-//     white=page.textImageTeaser.white
-//     copy=page.textImageTeaser.copy
-//     copyClasses=page.textImageTeaser.copyClasses
-//     firstColWidth=page.textImageTeaser.firstColWidth
-//     secondColWidth=page.textImageTeaser.secondColWidth
-//     reduceSpacing=page.textImageTeaser.reduceSpacing
-//     cta=page.textImageTeaser.cta
-//     spacing=page.textImageTeaser.spacing
-//     list=page.textImageTeaser.list
-//     subline=page.textImageTeaser.subline
-//     headline=page.textImageTeaser.headline
-//     cloudinary=page.textImageTeaser.cloudinary
-//   %}
-// {% endif %}
-
-// {%
-//   include blog-recent.html
-//   tag=page.tags
-//   limit=21
-//   headline=headline
-//   slider=true
-//   spacing=postBlogRecentSpacing
-// %}
-
-import { useRoute, useAsyncData, queryCollection, useNuxtApp, useRequestURL, useDynamicPageMeta } from '#imports';
+import {
+  useRoute,
+  useAsyncData,
+  queryCollection,
+  useNuxtApp,
+  useRequestURL,
+  useDynamicPageMeta,
+  useI18n,
+} from '#imports';
 
 const route = useRoute();
+
+const { t, strategy } = useI18n();
 
 const nuxtApp = useNuxtApp();
 const currentLocale = nuxtApp.$i18n.locale;
 
 const dynamicMeta = useDynamicPageMeta();
 
-const path = route.path;
+const path = route.path.replace(/^\/[a-z]{2}\//, '/');
 const dataKey = 'post-' + path;
 const shareUrl = `${useRequestURL().origin}${path}`;
 
@@ -72,6 +48,22 @@ const { data: post } = await useAsyncData(dataKey, () => {
   const query = queryCollection(collectionName).path(path);
 
   return query.first();
+});
+
+const contactInContent = computed(() => post.value?.meta?.contactInContent);
+const textImageTeaser = computed(() => post.value?.meta?.textImageTeaser);
+const blogRecentData = computed(() => {
+  return {
+    limit: 21,
+    headline: t('similarPosts'),
+    slider: true,
+    tag: post.value?.meta?.tags,
+    spacing: contactInContent.value ? '' : 'mt-10',
+  };
+});
+
+const showBlogRecent = computed(() => {
+  return strategy === 'prefix';
 });
 
 dynamicMeta.value = {

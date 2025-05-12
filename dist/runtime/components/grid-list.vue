@@ -4,17 +4,13 @@
       <div :class="columnClassList">
         <card
           @card-tag-clicked="handleCardTagClicked"
-          :title="item.title"
-          :url="item.url"
+          v-bind="item"
           :blogtitlepic="blogImgUrl(item.blogtitlepic)"
-          :excerpt="item.excerpt"
           :date="item.moment ? item.moment : item.date"
-          :author="item.author"
           :hasAnimation="true"
           :index="index"
           :data-authors="dataAuthors"
           :row="isRow"
-          :tags="item.tags"
           ref="items"
         />
       </div>

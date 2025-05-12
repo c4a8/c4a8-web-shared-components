@@ -13,6 +13,7 @@
           :query="query"
           :limit="limit"
           :is-recent="true"
+          :strategy="strategy"
         >
           <template v-if="updateFiles(files)">
             <div class="blog__highlight-post d-none d-lg-block" v-if="highlightPost">
@@ -52,12 +53,13 @@ export default {
   },
   setup() {
     const config = useConfig();
-    const { locale } = useI18n();
+    const { locale, strategy } = useI18n();
     const { authors } = useAuthors();
 
     return {
       config,
       locale,
+      strategy,
       authors,
     };
   },
@@ -71,7 +73,7 @@ export default {
       return firstPostArray ? firstPostArray[0] : null;
     },
     highlightPostExternalLanguage() {
-      return this.highlightPost.lang !== this.locale ? this.$t('onlyLanguage') : null;
+      return Tools.getExternalLanguageText(this.locale, this.highlightPost.lang, this.$t);
     },
     showComponent() {
       return this.posts?.length > 0 || this.query;
@@ -87,6 +89,11 @@ export default {
         path: { LIKE: ['/posts/%'] },
       };
       query.path = 'posts';
+
+      if (this.locale === 'es') {
+        // Add english posts to spanish ones
+        query.additionalCollections = ['content_en'];
+      }
 
       return query;
     },

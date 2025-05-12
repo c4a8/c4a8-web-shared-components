@@ -60,7 +60,7 @@
             :classes="textImageHeadlineClassesComputed"
             :text="headlineText"
           ></headline>
-          <span v-if="subline" class="richtext">{{ subline }}</span>
+          <span v-if="subline" class="richtext" v-html="subline"></span>
           <div v-if="subline" class="text-image__img text-image__img--subline mb-5 mt-5">
             <v-img
               :img="image"

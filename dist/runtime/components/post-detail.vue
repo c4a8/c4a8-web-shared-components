@@ -12,8 +12,8 @@
                 <div class="media align-items-center">
                   <div v-for="person in normalizedPost.author" :key="person" class="avatar mr-2">
                     <author-avatar
-                      v-if="authors[person]?.avatar"
-                      :img-url="authors[person].avatar"
+                      v-if="authors && authors[person]?.avatar"
+                      :img-url="authors[person]?.avatar"
                       :author="authors[person]"
                     />
                   </div>
@@ -33,7 +33,7 @@
           </div>
         </header>
         <div class="post-content e-content" itemprop="articleBody">
-          <p class="post__sticky-excerpt">{{ normalizedPost.excerpt }}</p>
+          <p class="post__sticky-excerpt">{{ normalizedPost.customExcerpt || normalizedPost.excerpt }}</p>
           <div v-if="post.blogTitleImages" class="post__title-images">
             <slider :hide-background="true">
               <v-img
@@ -124,7 +124,7 @@ export default {
       return this.asideNavValue ? 124 : 100;
     },
     asideNavValue() {
-      return this.post.meta?.asideNav || null;
+      return this.post?.meta?.asideNav || null;
     },
     enhancedPost() {
       return {
@@ -136,7 +136,7 @@ export default {
       };
     },
     normalizedPost() {
-      return Tools.normalizeMarkdownItem(this.post);
+      return this.post ? Tools.normalizeMarkdownItem(this.post) : null;
     },
     blogImagePath() {
       return Tools.blogImagePath;

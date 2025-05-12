@@ -6,7 +6,6 @@
 </template>
 
 <script setup>
-import Tools from '../utils/tools.js';
 import { useI18n } from 'vue-i18n';
 import { computed } from 'vue';
 import { useAsyncData, queryCollection } from '#imports';
@@ -33,8 +32,24 @@ const localeQuery = computed(() => ({
 
 const dataKey = props.query?.key || props.query?.path?.replace('/', 'content-') || 'content-list';
 
-const { data: list } = await useAsyncData(dataKey, () => {
-  const collectionName = 'content_' + locale.value;
+const filterDuplicateItems = (items) => {
+  const seen = new Map();
+
+  return items.filter((item) => {
+    const normalizedPath = item.path?.replace(/-(en|es)(\.md)?$/, '');
+
+    if (!normalizedPath) return true;
+
+    if (seen.has(normalizedPath)) {
+      return false;
+    }
+
+    seen.set(normalizedPath, true);
+    return true;
+  });
+};
+
+const buildQuery = (collectionName) => {
   const query = queryCollection(collectionName);
 
   let queryBuilder = query;
@@ -51,6 +66,27 @@ const { data: list } = await useAsyncData(dataKey, () => {
     });
   }
 
-  return queryBuilder.all();
+  return queryBuilder;
+};
+
+const { data: list } = await useAsyncData(dataKey, async () => {
+  const mainCollection = 'content_' + locale.value;
+  const mainResults = await buildQuery(mainCollection).all();
+
+  if (!props.query.additionalCollections?.length) {
+    return mainResults;
+  }
+
+  const additionalResults = await Promise.all(
+    props.query.additionalCollections.map(async (collection) => {
+      const collectionName = collection;
+
+      return buildQuery(collectionName).all();
+    })
+  );
+
+  const allResults = [...mainResults, ...additionalResults.flat()];
+
+  return filterDuplicateItems(allResults);
 });
 </script>
