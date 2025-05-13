@@ -30,6 +30,8 @@ import {
   useI18n,
 } from '#imports';
 
+import { computed } from 'vue';
+
 const route = useRoute();
 
 const { t, strategy } = useI18n();
