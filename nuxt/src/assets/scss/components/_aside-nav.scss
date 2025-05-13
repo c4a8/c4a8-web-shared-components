@@ -1,4 +1,6 @@
 .aside-nav {
+  --aside-nav-background-color: var(--color-black-2);
+
   .slide-fade-enter-active,
   .slide-fade-leave-active {
     transition: all 0.3s ease-out;
@@ -17,15 +19,33 @@
   }
 
   @include media-breakpoint-down(lg) {
+    --aside-nav-bottom-position: #{spacing(4)};
+    --aside-nav-shadow-width: 100%;
+
     @include shadow('super-light');
     @include z-index;
 
     margin: spacing(8) 0;
-    background-color: var(--color-surface-background);
+    background-color: var(--aside-nav-background-color);
     padding: spacing(4);
     position: sticky;
-    bottom: spacing(4);
-    width: min(90vw, 330px);
+    bottom: var(--aside-nav-bottom-position);
+    width: min(calc(100vw - (2 * var(--grid-gutter-half-width))), 380px);
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      width: var(--aside-nav-shadow-width);
+      left: spacing($size: 4, $negative: true);
+      height: var(--aside-nav-bottom-position);
+      bottom: calc(-1 * var(--aside-nav-bottom-position));
+      background-color: var(--color-background);
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    --aside-nav-shadow-width: 100vw;
   }
 }
 

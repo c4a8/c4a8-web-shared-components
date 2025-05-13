@@ -1,7 +1,12 @@
 <template>
   <div class="sticky-block" :class="externalClass">
-    <div ref="startMarker" class="sticky-block__start pt-4" :class="{ 'pl-xl-2': hasPadding }">
-      <div ref="stickyBlock" class="js-sticky-block" :class="{ 'hs-kill-sticky': isKilled }" :style="stickyStyles">
+    <div ref="startMarker" class="sticky-block__start">
+      <div
+        ref="stickyBlock"
+        class="js-sticky-block pt-2"
+        :class="{ 'hs-kill-sticky': isKilled, 'pl-xl-2': hasPadding }"
+        :style="stickyStyles"
+      >
         <slot />
       </div>
     </div>

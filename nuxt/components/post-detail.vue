@@ -60,7 +60,7 @@
             :sticky-offset-top="stickyOffsetTop"
             :sticky-offset-bottom="20"
             :has-padding="!asideNavValue"
-            breakpoint="xl"
+            breakpoint="lg"
           >
             <aside-nav v-if="asideNavValue" v-bind="asideNavValue" />
             <socials :vertical="true" :hide-label="true" :author="null" :share-url="shareUrl" v-else />

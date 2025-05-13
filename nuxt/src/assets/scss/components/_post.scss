@@ -8,15 +8,19 @@
 
   &.post-detail--aside-nav {
     @include media-breakpoint-up(xl) {
+      --post-detail-aside-left-offset: calc(var(--post-offset-spacing-xl) + #{spacing(4)});
+
       .post .sticky-block__start {
         flex-basis: calc(2 * var(--post-offset-spacing-xl));
       }
 
       .post-detail__tags,
-      .richtext,
-      .post__sticky-excerpt,
-      .post-header {
-        padding-left: calc(var(--post-offset-spacing-xl) + #{spacing(4)});
+      .richtext {
+        padding-left: var(--post-detail-aside-left-offset);
+      }
+
+      .richtext p img {
+        margin-left: calc(-1 * var(--post-detail-aside-left-offset));
       }
 
       .aside-nav {
