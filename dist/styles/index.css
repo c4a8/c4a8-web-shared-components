@@ -46606,10 +46606,12 @@ job-list-detail {
   color: var(--color-quotes-copy);
 }
 .quotes.quotes--no-image {
-  min-height: 100vh;
   display: flex;
   align-items: center;
   padding-bottom: 6rem;
+}
+.quotes.quotes--no-image:not(.quotes--no-fullscreenn) {
+  min-height: 100vh;
 }
 .quotes.quotes--no-image .quotes__entry-quote,
 .quotes.quotes--no-image .quotes__entry-infos,
@@ -46889,10 +46891,10 @@ job-list-detail {
   opacity: 0;
   pointer-events: none;
 }
-.quotes__entry.slick-active .quotes__entry-quote-wrapper, .quotes__entry.slick-current .quotes__entry-quote-wrapper {
+.slick-active .quotes__entry .quotes__entry-quote-wrapper, .slick-current .quotes__entry .quotes__entry-quote-wrapper {
   pointer-events: all;
 }
-.quotes__entry.slick-active .quotes__entry-quote-wrapper:not(.utility-animation), .quotes__entry.slick-current .quotes__entry-quote-wrapper:not(.utility-animation) {
+.slick-active .quotes__entry .quotes__entry-quote-wrapper:not(.utility-animation), .slick-current .quotes__entry .quotes__entry-quote-wrapper:not(.utility-animation) {
   opacity: 1;
 }
 

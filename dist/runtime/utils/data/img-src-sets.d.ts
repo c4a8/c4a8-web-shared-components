@@ -50,7 +50,7 @@ declare namespace ImgSrcSets {
         })[];
         export { srcSets_4 as srcSets };
     }
-    namespace testimonial {
+    namespace quotes {
         let srcSets_5: ({
             params: string;
             media: string;
@@ -60,7 +60,7 @@ declare namespace ImgSrcSets {
         })[];
         export { srcSets_5 as srcSets };
     }
-    namespace event {
+    namespace testimonial {
         let srcSets_6: ({
             params: string;
             media: string;
@@ -70,7 +70,7 @@ declare namespace ImgSrcSets {
         })[];
         export { srcSets_6 as srcSets };
     }
-    namespace eventTeaser {
+    namespace event {
         let srcSets_7: ({
             params: string;
             media: string;
@@ -80,7 +80,7 @@ declare namespace ImgSrcSets {
         })[];
         export { srcSets_7 as srcSets };
     }
-    namespace cardSmall {
+    namespace eventTeaser {
         let srcSets_8: ({
             params: string;
             media: string;
@@ -90,7 +90,7 @@ declare namespace ImgSrcSets {
         })[];
         export { srcSets_8 as srcSets };
     }
-    namespace textImageFloating {
+    namespace cardSmall {
         let srcSets_9: ({
             params: string;
             media: string;
@@ -100,35 +100,35 @@ declare namespace ImgSrcSets {
         })[];
         export { srcSets_9 as srcSets };
     }
-    namespace textImageFloatingSmallSquare {
-        let ratioClasses_1: string;
-        export { ratioClasses_1 as ratioClasses };
-        let srcSets_10: {
-            params: string;
-        }[];
-        export { srcSets_10 as srcSets };
-    }
-    namespace textImageFloatingSmall {
-        let ratioClasses_2: string;
-        export { ratioClasses_2 as ratioClasses };
-        let srcSets_11: {
-            params: string;
-        }[];
-        export { srcSets_11 as srcSets };
-    }
-    namespace postTeaser {
-        let ratioClasses_3: string;
-        export { ratioClasses_3 as ratioClasses };
-        let srcSets_12: ({
+    namespace textImageFloating {
+        let srcSets_10: ({
             params: string;
             media: string;
         } | {
             params: string;
             media?: undefined;
         })[];
+        export { srcSets_10 as srcSets };
+    }
+    namespace textImageFloatingSmallSquare {
+        let ratioClasses_1: string;
+        export { ratioClasses_1 as ratioClasses };
+        let srcSets_11: {
+            params: string;
+        }[];
+        export { srcSets_11 as srcSets };
+    }
+    namespace textImageFloatingSmall {
+        let ratioClasses_2: string;
+        export { ratioClasses_2 as ratioClasses };
+        let srcSets_12: {
+            params: string;
+        }[];
         export { srcSets_12 as srcSets };
     }
-    namespace postImages {
+    namespace postTeaser {
+        let ratioClasses_3: string;
+        export { ratioClasses_3 as ratioClasses };
         let srcSets_13: ({
             params: string;
             media: string;
@@ -137,5 +137,15 @@ declare namespace ImgSrcSets {
             media?: undefined;
         })[];
         export { srcSets_13 as srcSets };
+    }
+    namespace postImages {
+        let srcSets_14: ({
+            params: string;
+            media: string;
+        } | {
+            params: string;
+            media?: undefined;
+        })[];
+        export { srcSets_14 as srcSets };
     }
 }

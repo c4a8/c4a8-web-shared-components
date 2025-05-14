@@ -7,7 +7,10 @@
   color: var(--color-quotes-copy);
 
   &.quotes--no-image {
-    min-height: 100vh;
+    &:not(.quotes--no-fullscreenn) {
+      min-height: 100vh;
+    }
+
     display: flex;
     align-items: center;
     padding-bottom: spacing(24);
@@ -268,8 +271,8 @@
     pointer-events: none;
   }
 
-  &.slick-active,
-  &.slick-current {
+  .slick-active &,
+  .slick-current & {
     .quotes__entry-quote-wrapper {
       &:not(.utility-animation) {
         opacity: 1;
