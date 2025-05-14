@@ -45,9 +45,20 @@ const path = route.path.replace(/^\/[a-z]{2}\//, '/');
 const dataKey = 'post-' + path;
 const shareUrl = `${useRequestURL().origin}${path}`;
 
+const { data: postsMapping } = await useAsyncData('posts-mapping', async () => {
+  try {
+    const mapping = await import('~/content/posts-mapping.json');
+
+    return mapping.default;
+  } catch (_) {
+    return null;
+  }
+});
+
 const { data: post } = await useAsyncData(dataKey, () => {
   const collectionName = 'content_' + currentLocale.value;
-  const query = queryCollection(collectionName).path(path);
+  const queryPath = postsMapping.value?.[route.path] || path;
+  const query = queryCollection(collectionName).path(queryPath);
 
   return query.first();
 });
