@@ -19,7 +19,7 @@
         padding-left: var(--post-detail-aside-left-offset);
       }
 
-      .richtext p img {
+      .richtext > p img {
         margin-left: calc(-1 * var(--post-detail-aside-left-offset));
       }
 
@@ -122,10 +122,12 @@
   }
 
   .post__title-images .slider,
-  .img__picture-wrapper img,
+  .post__intro-img .img__picture-wrapper img,
   .post__intro-img > img,
-  picture > img,
-  p > img {
+  .richtext > picture > img,
+  .richtext > .img__picture-wrapper img,
+  .richtext > img,
+  p > img:not(.post__screenshot) {
     border-radius: 0;
     margin-top: 2.5rem;
     margin-bottom: 2.5rem;
@@ -133,10 +135,12 @@
 
   @include media-breakpoint-up(lg) {
     .post__title-images .slider,
-    .img__picture-wrapper img,
+    .post__intro-img .img__picture-wrapper img,
     .post__intro-img > img,
-    picture > img,
-    p > img {
+    .richtext > picture > img,
+    .richtext > .img__picture-wrapper img,
+    .richtext > img,
+    p > img:not(.post__screenshot) {
       margin-top: 3.5rem;
       margin-bottom: 3.5rem;
       left: 0;
@@ -151,9 +155,11 @@
 
   @include media-breakpoint-up(xl) {
     .post__title-images .slider,
-    .img__picture-wrapper img,
+    .post__intro-img .img__picture-wrapper img,
     .post__intro-img > img,
-    picture > img,
+    .richtext > picture > img,
+    .richtext > .img__picture-wrapper img,
+    .richtext > img,
     p > img:not(.post__screenshot) {
       left: calc(-1 * var(--post-offset-spacing-xl));
       max-width: calc(#{get-container-width($name: 'xl', $with-padding: true)} - var(--post-offset-spacing-xl));
@@ -162,9 +168,11 @@
 
   @include media-breakpoint-up(xxl) {
     .post__title-images .slider,
-    .img__picture-wrapper img,
+    .post__intro-img .img__picture-wrapper img,
     .post__intro-img > img,
-    picture > img,
+    .richtext > picture > img,
+    .richtext > .img__picture-wrapper img,
+    .richtext > img,
     p > img:not(.post__screenshot) {
       max-width: get-container-width($name: 'xl', $with-padding: true);
     }

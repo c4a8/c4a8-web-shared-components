@@ -101,12 +101,19 @@ const ImgSrcSets = {
         params: 'c_fill,g_face,h_800,w_800,x_0,y_0/',
         media: '(max-width: 765px)',
       },
-      // {
-      //   params: 'c_fill,g_face,h_1000,w_1000,x_0,y_0/',
-      //   media: '(max-width: 1200px)',
-      // },
       {
         params: 'c_fill,g_face,h_800,w_800,x_0,y_0/',
+      },
+    ],
+  },
+  quote: {
+    srcSets: [
+      {
+        params: 'c_crop,h_740,w_980,x_920,y_80/',
+        media: '(max-width: 765px)',
+      },
+      {
+        params: 'c_fill',
       },
     ],
   },

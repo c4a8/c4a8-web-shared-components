@@ -46254,7 +46254,7 @@ job-list-detail {
   .post-detail.post-detail--aside-nav .richtext {
     padding-left: var(--post-detail-aside-left-offset);
   }
-  .post-detail.post-detail--aside-nav .richtext p img {
+  .post-detail.post-detail--aside-nav .richtext > p img {
     margin-left: calc(-1 * var(--post-detail-aside-left-offset));
   }
   .post-detail.post-detail--aside-nav .aside-nav {
@@ -46344,20 +46344,24 @@ job-list-detail {
   }
 }
 .post-content .post__title-images .slider,
-.post-content .img__picture-wrapper img,
+.post-content .post__intro-img .img__picture-wrapper img,
 .post-content .post__intro-img > img,
-.post-content picture > img,
-.post-content p > img {
+.post-content .richtext > picture > img,
+.post-content .richtext > .img__picture-wrapper img,
+.post-content .richtext > img,
+.post-content p > img:not(.post__screenshot) {
   border-radius: 0;
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
 }
 @media (min-width: 992px) {
   .post-content .post__title-images .slider,
-  .post-content .img__picture-wrapper img,
+  .post-content .post__intro-img .img__picture-wrapper img,
   .post-content .post__intro-img > img,
-  .post-content picture > img,
-  .post-content p > img {
+  .post-content .richtext > picture > img,
+  .post-content .richtext > .img__picture-wrapper img,
+  .post-content .richtext > img,
+  .post-content p > img:not(.post__screenshot) {
     margin-top: 3.5rem;
     margin-bottom: 3.5rem;
     left: 0;
@@ -46370,9 +46374,11 @@ job-list-detail {
 }
 @media (min-width: 1200px) {
   .post-content .post__title-images .slider,
-  .post-content .img__picture-wrapper img,
+  .post-content .post__intro-img .img__picture-wrapper img,
   .post-content .post__intro-img > img,
-  .post-content picture > img,
+  .post-content .richtext > picture > img,
+  .post-content .richtext > .img__picture-wrapper img,
+  .post-content .richtext > img,
   .post-content p > img:not(.post__screenshot) {
     left: calc(-1 * var(--post-offset-spacing-xl));
     max-width: calc(calc(1280px - 2 * 2rem) - var(--post-offset-spacing-xl));
@@ -46380,9 +46386,11 @@ job-list-detail {
 }
 @media (min-width: 1340px) {
   .post-content .post__title-images .slider,
-  .post-content .img__picture-wrapper img,
+  .post-content .post__intro-img .img__picture-wrapper img,
   .post-content .post__intro-img > img,
-  .post-content picture > img,
+  .post-content .richtext > picture > img,
+  .post-content .richtext > .img__picture-wrapper img,
+  .post-content .richtext > img,
   .post-content p > img:not(.post__screenshot) {
     max-width: calc(1280px - 2 * 2rem);
   }
