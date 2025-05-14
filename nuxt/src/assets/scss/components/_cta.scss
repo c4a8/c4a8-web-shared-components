@@ -49,9 +49,6 @@
 
     &.on-surface:not(.is-loading),
     &:not(.is-loading) {
-      // border-color: var(--cta-btn-color);
-      // border-color: transparent;
-      // transition: border-color 0s;
       --cta-border-color: transparent;
     }
 
@@ -69,17 +66,6 @@
       --cta-btn-color: var(--color-primary-accent-on-surface);
       --cta-copy-color: var(--color-copy-on-primary-accent-on-surface);
       --cta-background-accent-color: var(--cta-btn-color);
-
-      // &:not(.is-loading) {
-      //   border-color: var(--cta-btn-color);
-      // }
-
-      // color: var(--color-copy-on-primary-on-surface);
-      // background-color: var(--cta-btn-color);
-
-      // &::before {
-      //   background-color: var(--cta-btn-color);
-      // }
 
       &::after {
         color: inherit;
@@ -100,8 +86,6 @@
     &:not(.is-loading) {
       --cta-border-color: var(--cta-btn-color);
     }
-
-    // color: var(--cta-btn-color);
 
     &.is-cutoff {
       &::before {
@@ -127,17 +111,6 @@
       --cta-btn-color: var(--color-secondary-accent-on-surface);
       --cta-copy-color: var(--color-copy-on-secondary-accent-on-surface);
       --cta-background-accent-color: var(--cta-btn-color);
-
-      // &:not(.is-loading) {
-      //   border-color: var(--cta-btn-color);
-      // }
-
-      // color: var(--color-copy-on-secondary-on-surface);
-      // background-color: var(--cta-btn-color);
-
-      &::before {
-        // background-color: var(--cta-btn-color);
-      }
 
       &::after {
         color: inherit;
@@ -456,21 +429,13 @@
         --cta-copy-color: var(--color-copy-on-primary-on-surface);
         --cta-background-color: var(--color-primary-on-surface);
 
-        // background-color: var(--color-primary-on-surface);
-        // color: var(--color-copy-on-primary-on-surface);
-
         &:not(.is-loading) {
           --cta-border-color: var(--color-primary-on-surface);
-          // border-color: var(--color-primary-on-surface);
         }
       }
     }
 
     &.btn-secondary {
-      // background-color: transparent;
-      // border-color: var(--color-secondary);
-      // color: var(--color-secondary);
-
       --cta-copy-color: var(--color-copy-on-secondary);
       --cta-background-accent-color: var(--color-secondary-accent);
       --cta-background-color: transparent;
@@ -507,19 +472,9 @@
 
       &.on-surface {
         --cta-copy-color: var(--color-copy-on-secondary-on-surface);
-        // --cta-background-color: var(--color-secondary-on-surface);
-
         --cta-background-accent-color: var(--color-secondary-accent-on-surface);
         --cta-background-color: transparent;
         --cta-border-color: var(--color-secondary-on-surface);
-
-        // border-color: var(--color-secondary-on-surface);
-        // color: var(--color-copy-on-secondary-on-surface);
-
-        // &::before {
-        //   background: var(--color-secondary-on-surface);
-        //   // background: transparent;
-        // }
       }
     }
 

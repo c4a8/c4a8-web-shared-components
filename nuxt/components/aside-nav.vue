@@ -8,11 +8,11 @@
         <li
           v-for="(item, index) in menuItems"
           :key="index"
-          class="aside-nav__list-item"
+          :class="getListItemClass(item)"
           :style="{ '--item-index': index }"
         >
           <template v-if="isAnchorLink(item.href)">
-            <a :href="item.href" @click.prevent="handleAnchorClick(item.href)">
+            <a :href="item.href" @click.prevent="handleAnchorClick(item.href)" class="font-size-1 link">
               <span>{{ item.text }}</span>
             </a>
           </template>
@@ -29,6 +29,7 @@
 
 <script setup>
 import Tools from '../utils/tools';
+import State from '../utils/state';
 import { ref, onMounted, onUnmounted } from 'vue';
 
 const props = defineProps({
@@ -40,6 +41,8 @@ const props = defineProps({
 
 const isMenuOpen = ref(false);
 const isMobile = ref(false);
+const activeSection = ref('');
+let observer = null;
 
 const checkBreakpoint = () => {
   isMobile.value = Tools.isBelowBreakpoint('lg');
@@ -68,13 +71,89 @@ const handleAnchorClick = (href) => {
   }
 };
 
+const getListItemClass = (item) => {
+  return {
+    'aside-nav__list-item': true,
+    [State.ACTIVE]: activeSection.value === item.href,
+  };
+};
+
+const setupIntersectionObserver = () => {
+  const headlines = props.menuItems
+    .filter((item) => isAnchorLink(item.href))
+    .map((item) => {
+      const id = item.href.substring(1);
+      const element = document.querySelector(`#${id}`);
+
+      return { id: item.href, element };
+    })
+    .filter((item) => item.element);
+
+  const topOffset = 200;
+  const enterTop = -window.innerHeight + topOffset;
+
+  const enterObserver = new IntersectionObserver(
+    (entries) => {
+      const visibleEntry = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.boundingClientRect.top - a.boundingClientRect.top)[0];
+
+      if (visibleEntry) {
+        const id = '#' + visibleEntry.target.id;
+
+        activeSection.value = id;
+      }
+    },
+    {
+      rootMargin: enterTop + 'px 0px 0px 0px',
+      threshold: 1,
+    }
+  );
+
+  const leaveObserver = new IntersectionObserver(
+    (entries) => {
+      const leavingEntry = entries
+        .filter((entry) => !entry.isIntersecting && entry.boundingClientRect.top > 0)
+        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+
+      if (leavingEntry) {
+        const currentIndex = headlines.findIndex((item) => item.element === leavingEntry.target);
+        if (currentIndex > 0) {
+          activeSection.value = headlines[currentIndex - 1].id;
+        }
+      }
+    },
+    {
+      rootMargin: '200px 0px 0px 0px',
+      threshold: 1,
+    }
+  );
+
+  headlines.forEach((item) => {
+    enterObserver.observe(item.element);
+    leaveObserver.observe(item.element);
+  });
+
+  observer = {
+    enter: enterObserver,
+    leave: leaveObserver,
+  };
+};
+
 onMounted(() => {
   checkBreakpoint();
 
   window.addEventListener('resize', checkBreakpoint);
+
+  setupIntersectionObserver();
 });
 
 onUnmounted(() => {
   window.removeEventListener('resize', checkBreakpoint);
+
+  if (observer) {
+    observer.enter.disconnect();
+    observer.leave.disconnect();
+  }
 });
 </script>
