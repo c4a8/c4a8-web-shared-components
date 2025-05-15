@@ -10,6 +10,8 @@ declare namespace _default {
         authors: any;
     };
     namespace computed {
+        function showNoPosts(): boolean;
+        function showFilter(): boolean;
         function imgUrl(): any;
         function highlightPost(): any;
         function highlightPostExternalLanguage(): any;

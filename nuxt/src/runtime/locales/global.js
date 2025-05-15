@@ -50,6 +50,7 @@ export default {
     jobListEmpty: 'Aktuell haben wir keine Stellenangebote in dieser Sprache.',
     imageCredits: 'Bildnachweis',
     topicsOnPage: 'Themen auf der Seite',
+    noPostsFound: 'Keine Artikel gefunden',
   },
   en: {
     tags: 'Tags',
@@ -99,6 +100,7 @@ export default {
     jobListEmpty: 'We currently have no positions in this language.',
     imageCredits: 'Picture Credits',
     topicsOnPage: 'Topics on page',
+    noPostsFound: 'No Posts founds',
   },
   es: {
     tags: 'Tags',
@@ -147,5 +149,6 @@ export default {
     jobListEmpty: 'Actualmente no tenemos posiciones en este idioma.',
     imageCredits: 'Créditos de las fotos',
     topicsOnPage: 'Temas en la página',
+    noPostsFound: 'No se encontraron artículos',
   },
 };

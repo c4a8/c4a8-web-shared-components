@@ -31,7 +31,12 @@
                 :dataAuthors="authors"
               /></div
           ></template>
-          <filter-bar :items="files" :maxBlogPosts="blogMaxBlogPosts" :dataAuthors="authors" />
+          <filter-bar :items="files" :maxBlogPosts="blogMaxBlogPosts" :dataAuthors="authors" v-if="showFilter" />
+          <div class="row" v-else-if="showNoPosts">
+            <div class="col-lg-12 mt-10 mb-n10">
+              <headline level="h3">{{ $t('noPostsFound') }}</headline>
+            </div>
+          </div>
         </markdown-files>
       </template>
     </SharedContentList>
@@ -64,6 +69,12 @@ export default {
     };
   },
   computed: {
+    showNoPosts() {
+      return this.filesValue.length === 0;
+    },
+    showFilter() {
+      return this.filesValue.length > 1;
+    },
     imgUrl() {
       return Tools.getBlogImgPath(this.config);
     },
