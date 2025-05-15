@@ -61,6 +61,7 @@
         :tooltip="stage.tooltip"
         :modal-id="stage.modalId"
         :products="products"
+        :light="light"
       />
       <modal
         v-else-if="stage.modalId && stage.tooltip"
@@ -77,7 +78,7 @@
       </modal>
 
       <div v-if="stage.additionalCopy" class="row justify-content-center py-6">
-        <div class="text-center" v-html="stage.additionalCopy"></div>
+        <div :class="['text-center', { 'text-white': light }]" v-html="stage.additionalCopy"></div>
       </div>
 
       <div v-if="stage.buttons" class="row justify-content-center py-6">

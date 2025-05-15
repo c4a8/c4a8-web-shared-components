@@ -46487,7 +46487,14 @@ job-list-detail {
 }
 
 .pricing-slider {
+  --pricing-copy-color: var(--color-copy);
+  --pricing-copy-color-hover: var(--color-copy-light);
   transition: opacity 0.5s ease-in;
+  color: var(--pricing-copy-color);
+}
+.pricing-slider.pricing-slider--light {
+  --pricing-copy-color: var(--color-copy-light);
+  --pricing-copy-color-hover: var(--color-copy);
 }
 .pricing-slider.pricing-slider--loading {
   opacity: 0;
@@ -46506,7 +46513,7 @@ job-list-detail {
 }
 .pricing-slider .range-slider-custom .irs-bar,
 .pricing-slider .range-slider-custom .irs-handle {
-  background-color: var(--color-midnight);
+  background-color: var(--color-primary-on-surface);
 }
 .pricing-slider .range-slider-custom .irs-handle {
   width: 50px;
@@ -46548,12 +46555,15 @@ job-list-detail {
   cursor: pointer;
   padding-left: 0.25rem;
 }
+.pricing-slider__info .icon svg path {
+  fill: var(--pricing-copy-color);
+}
 .pricing-slider__info:hover .icon svg path {
-  fill: var(--color-copy-light);
+  fill: var(--pricing-copy-color-hover);
 }
 .pricing-slider__info:hover .icon svg circle {
-  stroke: var(--color-copy);
-  fill: var(--color-copy);
+  stroke: var(--pricing-copy-color);
+  fill: var(--pricing-copy-color);
 }
 
 .product-blocks__block {

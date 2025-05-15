@@ -1,5 +1,5 @@
 <template>
-  <div :class="['pricing-slider', { 'pricing-slider--loading': loading }]" ref="root">
+  <div :class="['pricing-slider', { 'pricing-slider--loading': loading, 'pricing-slider--light': light }]" ref="root">
     <div
       v-if="pricingSliderRange"
       class="js-slider-data"
@@ -47,6 +47,10 @@ export default {
     tooltip: String,
     modalId: String,
     products: Object,
+    light: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {

@@ -9,6 +9,7 @@ export default {
 
 export const Default = {
   args: {
+    light: false,
     stage: {
       bgColor: 'var(--color-secondary)',
       headline: "A price that's right for you",
@@ -37,6 +38,7 @@ export const Default = {
           skin: 'primary is-cutoff',
           ctaText: 'Lorem ipsum dolor sit amet',
           ctaHref: 'javascript:void(0);',
+          onSurface: true,
         },
       ],
       tooltip: 'lorem ipsum dolor sit amet',

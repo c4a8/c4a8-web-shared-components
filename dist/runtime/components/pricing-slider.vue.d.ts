@@ -5,6 +5,11 @@ declare namespace _default {
         let tooltip: StringConstructor;
         let modalId: StringConstructor;
         let products: ObjectConstructor;
+        namespace light {
+            export let type: BooleanConstructor;
+            let _default: boolean;
+            export { _default as default };
+        }
     }
     function data(): {
         loading: boolean;

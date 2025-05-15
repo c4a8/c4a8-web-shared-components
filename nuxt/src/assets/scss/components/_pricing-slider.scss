@@ -1,5 +1,14 @@
 .pricing-slider {
+  --pricing-copy-color: var(--color-copy);
+  --pricing-copy-color-hover: var(--color-copy-light);
+
   transition: opacity 0.5s ease-in;
+  color: var(--pricing-copy-color);
+
+  &.pricing-slider--light {
+    --pricing-copy-color: var(--color-copy-light);
+    --pricing-copy-color-hover: var(--color-copy);
+  }
 
   &.pricing-slider--loading {
     opacity: 0;
@@ -22,7 +31,7 @@
 
     .irs-bar,
     .irs-handle {
-      background-color: var(--color-midnight);
+      background-color: var(--color-primary-on-surface);
     }
 
     .irs-handle {
@@ -70,15 +79,19 @@
   cursor: pointer;
   padding-left: spacing(1);
 
+  .icon svg path {
+    fill: var(--pricing-copy-color);
+  }
+
   &:hover {
     .icon svg {
       path {
-        fill: var(--color-copy-light);
+        fill: var(--pricing-copy-color-hover);
       }
 
       circle {
-        stroke: var(--color-copy);
-        fill: var(--color-copy);
+        stroke: var(--pricing-copy-color);
+        fill: var(--pricing-copy-color);
       }
     }
   }
