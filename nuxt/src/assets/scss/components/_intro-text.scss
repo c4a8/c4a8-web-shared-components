@@ -2,7 +2,7 @@
   &.intro-text--large {
     .intro-text__copy {
       @include media-breakpoint-up(lg) {
-        @include font-size-5;
+        @include font-size-breakpoints('font-size-5', 'lg');
         @include font-mods('light');
       }
     }

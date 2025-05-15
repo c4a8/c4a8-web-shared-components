@@ -2,7 +2,7 @@
   --hero-background-color: transparent;
   --hero-copy-color: var(--color-copy);
   --hero-copy-overline-color: var(--color-copy);
-  --hero-overline-background-color: var(--color-secondary);
+  --hero-overline-background-color: var(--color-highlight-second);
   --hero-background-width: 100%;
   --hero-background-width-middle: 50%;
   --hero-shape-offset-y: 0;
@@ -222,8 +222,10 @@
     }
 
     .hero__content {
+      min-height: 300px;
+
       @include media-breakpoint-up(lg) {
-        min-height: auto;
+        min-height: 400px;
       }
     }
   }
@@ -424,6 +426,10 @@
     object-position: right;
     position: relative;
     transform: translateY(var(--hero-shape-offset-y)) translateX(var(--hero-shape-offset-x));
+
+    &.is-svg {
+      width: 100%;
+    }
 
     &.lottie {
       display: inline-flex;

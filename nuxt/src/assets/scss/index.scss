@@ -33,6 +33,8 @@
 @import 'components/index';
 @import 'pages/index';
 
+$grid-gutter-half-width: 15px !default;
+
 html,
 html body {
   --scroll-top: 80px;
@@ -41,6 +43,7 @@ html body {
   --utility-animation-to-opacity: 1;
   --utility-animation-items-loaded: 0;
   --icon-scale: 1;
+  --grid-gutter-half-width: #{$grid-gutter-half-width};
 
   font-family: var(--font-family);
   color: var(--color-copy);
@@ -93,7 +96,14 @@ ul {
   &.dashed {
     @include bulletpoints;
   }
+
+  &.none {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
 }
+
 .drop-shadow {
   filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.2));
 }

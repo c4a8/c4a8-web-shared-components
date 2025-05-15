@@ -2,8 +2,29 @@ import '../src/assets/scss/index.scss';
 import '../src/assets/scss/themes/_gk.scss';
 
 import { h } from 'vue';
+import { createPinia } from 'pinia';
+import { setup } from '@storybook/vue3';
+import { createI18n } from 'vue-i18n';
 
 import GlobalApp from '../components/global-app.vue';
+
+// Create i18n instance
+const i18n = createI18n({
+  legacy: false,
+  defaultLocale: 'de',
+  fallbackLocale: 'en',
+  messages: {
+    de: {},
+    en: {},
+    es: {},
+  },
+});
+
+// Setup Vue plugins
+setup((app) => {
+  app.use(createPinia());
+  app.use(i18n);
+});
 
 const loadPlugins = () => {
   import('jquery')
@@ -42,7 +63,12 @@ export const decorators = [
 
     return {
       components: { GlobalApp },
+
       setup() {
+        if (params.parameters?.isPage) {
+          return () => h(storyFn(), params.args);
+        }
+
         return () => h(GlobalApp, {}, () => h(storyFn(), params.args));
       },
     };
@@ -59,5 +85,4 @@ const preview = {
     },
   },
 };
-
 export default preview;

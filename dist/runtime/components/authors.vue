@@ -15,15 +15,22 @@
       <template v-else>
         <span class="authors__name" itemprop="name">{{ authorStart(authorArray, author) }} {{ author }}</span>
       </template>
-      <template v-if="!authorsSeperator(authorArray, author)"> {{ seperator }}&nbsp; </template>
+      <template v-if="!authorsSeperator(authorArray, author)"> {{ seperator }}&nbsp;</template>
     </span>
   </template>
 </template>
 <script>
 import Tools from '../utils/tools.js';
 
+import { useI18n } from '#imports';
+
 export default {
   tagName: 'authors',
+  setup() {
+    const { locale } = useI18n();
+
+    return { locale };
+  },
   computed: {
     classList() {
       return [
@@ -33,7 +40,7 @@ export default {
       ];
     },
     seperator() {
-      return this.noLink ? ' & ' : ', ';
+      return this.noLink ? ' &' : ',';
     },
     authorArray() {
       return typeof this.authorsList === 'object' ? this.authorsList : [this.authorsList];
@@ -42,7 +49,7 @@ export default {
       return this.authorArray && this.dataAuthors;
     },
     langValue() {
-      return this.lang ? this.lang : Tools.getLang();
+      return this.lang ? this.lang : this.locale;
     },
   },
   methods: {
@@ -55,9 +62,9 @@ export default {
       }
     },
     authorLink(author) {
-      const folder = Tools.isNotDefaultLang() ? '/' + this.langValue : '';
-
-      return this.dataAuthors?.hasOwnProperty(author) ? `${folder}${this.dataAuthors[author].permalink}` : null;
+      return this.dataAuthors?.hasOwnProperty(author)
+        ? `/${this.langValue}${this.dataAuthors[author].permalink}`
+        : null;
     },
   },
   props: {

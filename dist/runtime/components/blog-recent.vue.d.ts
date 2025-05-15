@@ -3,24 +3,76 @@ declare namespace _default {
         export { MarkdownFiles };
     }
     let tagName: string;
+    function data(): {
+        hideData: string[];
+        filesValue: never[];
+        dataAuthorsValue: null;
+    };
     function setup(): {
         config: {};
+        authors: any;
     };
     namespace computed {
         function classList(): (string | (() => any))[];
-        function showCompoent(): true | (() => {
+        function showComponent(): true | (() => {
             limit: any;
             sort: {
-                date: number;
+                moment: number;
             }[];
-            path: string | RegExp;
+            reversed: any;
+            where: {
+                layout: {
+                    IN: string[];
+                };
+                path?: undefined;
+            } | {
+                path: {
+                    LIKE: string[];
+                };
+                layout?: undefined;
+            } | {
+                path: {
+                    LIKE: string[];
+                };
+                layout?: undefined;
+            } | {
+                path: {
+                    LIKE: string[];
+                };
+                layout?: undefined;
+            };
+            path: string;
+            limitEvents: any;
         });
         function query(): {
             limit: any;
             sort: {
-                date: number;
+                moment: number;
             }[];
-            path: string | RegExp;
+            reversed: any;
+            where: {
+                layout: {
+                    IN: string[];
+                };
+                path?: undefined;
+            } | {
+                path: {
+                    LIKE: string[];
+                };
+                layout?: undefined;
+            } | {
+                path: {
+                    LIKE: string[];
+                };
+                layout?: undefined;
+            } | {
+                path: {
+                    LIKE: string[];
+                };
+                layout?: undefined;
+            };
+            path: string;
+            limitEvents: any;
         };
         function getSpacing(): any;
         function hasBackground(): string;
@@ -35,12 +87,19 @@ declare namespace _default {
         function sublineClassesValue(): string;
         function imgUrl(): any;
     }
-    function mounted(): void;
+    namespace watch {
+        function filesValue(newValue: any): void;
+    }
+    function created(): void;
     namespace methods {
+        function init(): void;
+        function getDataAuthors(): Promise<any>;
         function event(post: any): boolean;
         function blogTitleUrl(post: any): any;
         function target(post: any): "_blank" | "_self";
         function postUrl(post: any): any;
+        function excerpt(post: any): any;
+        function updateFiles(files: any): true | undefined;
     }
     namespace props {
         namespace bgColor {
@@ -69,6 +128,7 @@ declare namespace _default {
             let _default_3: boolean;
             export { _default_3 as default };
         }
+        let limitEvents: NumberConstructor;
         namespace limit {
             let type_2: NumberConstructor;
             export { type_2 as type };
@@ -87,9 +147,7 @@ declare namespace _default {
         let events: BooleanConstructor;
         let combine: BooleanConstructor;
         let caseStudies: BooleanConstructor;
+        let reversed: BooleanConstructor;
     }
-    function data(): {
-        hideData: string[];
-    };
 }
 export default _default;

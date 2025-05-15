@@ -1,12 +1,11 @@
 <template>
-  <template v-if="!isStorybook">
+  <template v-if="list">
     <slot v-bind:list="list" />
   </template>
   <slot v-bind:list="dataList" v-else></slot>
 </template>
 
 <script setup>
-import Tools from '../utils/tools.js';
 import { useI18n } from 'vue-i18n';
 import { computed } from 'vue';
 import { useAsyncData, queryCollection } from '#imports';
@@ -22,11 +21,7 @@ const props = defineProps({
   },
 });
 
-const isStorybook = computed(() => Tools.isStorybook());
-
 const { locale } = useI18n();
-
-// TODO move query.path to collectionName and remove /
 
 const localeQuery = computed(() => ({
   ...props.query,
@@ -35,14 +30,63 @@ const localeQuery = computed(() => ({
   },
 }));
 
-const { data: list } = await useAsyncData('content-list', () => {
-  const collectionName = 'content_' + locale.value;
+const dataKey = props.query?.key || props.query?.path?.replace('/', 'content-') || 'content-list';
 
+const filterDuplicateItems = (items) => {
+  const seen = new Map();
+
+  return items.filter((item) => {
+    const normalizedPath = item.path?.replace(/-(en|es)(\.md)?$/, '');
+
+    if (!normalizedPath) return true;
+
+    if (seen.has(normalizedPath)) {
+      return false;
+    }
+
+    seen.set(normalizedPath, true);
+    return true;
+  });
+};
+
+const buildQuery = (collectionName) => {
   const query = queryCollection(collectionName);
 
-  if (localeQuery.value.where && Object.keys(localeQuery.value.where).length > 0)
-    return query.where(localeQuery.value.where).all();
+  let queryBuilder = query;
 
-  return query.all();
+  if (localeQuery.value.where && Object.keys(localeQuery.value.where).length > 0) {
+    Object.entries(localeQuery.value.where).forEach(([field, condition]) => {
+      if (typeof condition === 'object') {
+        Object.entries(condition).forEach(([operator, value]) => {
+          queryBuilder = queryBuilder.where(field, operator, value);
+        });
+      } else {
+        queryBuilder = queryBuilder.where(field, '=', condition);
+      }
+    });
+  }
+
+  return queryBuilder;
+};
+
+const { data: list } = await useAsyncData(dataKey, async () => {
+  const mainCollection = 'content_' + locale.value;
+  const mainResults = await buildQuery(mainCollection).all();
+
+  if (!props.query.additionalCollections?.length) {
+    return mainResults;
+  }
+
+  const additionalResults = await Promise.all(
+    props.query.additionalCollections.map(async (collection) => {
+      const collectionName = collection;
+
+      return buildQuery(collectionName).all();
+    })
+  );
+
+  const allResults = [...mainResults, ...additionalResults.flat()];
+
+  return filterDuplicateItems(allResults);
 });
 </script>

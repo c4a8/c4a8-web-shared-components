@@ -27,7 +27,7 @@ const module = defineNuxtModule({
     name: "shared-components",
     configKey: "sharedComponents",
     compatibility: {
-      nuxt: ">=3.0.0"
+      nuxt: ">=3.16.1"
     }
   },
   defaults: {
@@ -58,7 +58,7 @@ const module = defineNuxtModule({
     _nuxt.options.sitemap = sitemapOptions;
     await installModule("@nuxtjs/sitemap");
     const runtimeDir = resolve(__dirname, "./runtime");
-    const optimizeDeps = [runtimeDir, "node-html-parser", "jquery", "slick-carousel"];
+    const optimizeDeps = [runtimeDir, "node-html-parser", "jquery", "slick-carousel", "vue3-lottie"];
     _nuxt.options.build.transpile = _nuxt.options.build.transpile || [];
     _nuxt.options.build.transpile.push(...optimizeDeps);
     _nuxt.options.vite.optimizeDeps ||= {};
@@ -84,18 +84,19 @@ const module = defineNuxtModule({
       }
     });
     addPlugin(resolve("./runtime/plugin"));
+    addPlugin({ src: resolve("./runtime/Vue3Lottie.client"), mode: "client" });
+    extendPages((pages) => {
+      pages.unshift({
+        name: "slug-posts",
+        path: "/posts/:slug(.*)*",
+        file: resolve("./runtime/pages/posts/[...slug].vue")
+      });
+    });
     extendPages((pages) => {
       pages.unshift({
         name: "slug-all",
         path: "/:slug(.*)*",
         file: resolve("./runtime/pages/[...slug].vue")
-      });
-    });
-    extendPages((pages) => {
-      pages.unshift({
-        name: "slug-events",
-        path: "/events/:slug(.*)*",
-        file: resolve("./runtime/pages/events/[...slug].vue")
       });
     });
     addImportsDir(resolve("./runtime/composables"));

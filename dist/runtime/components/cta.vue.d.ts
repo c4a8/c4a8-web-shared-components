@@ -79,6 +79,12 @@ declare namespace _default {
             let type_2: StringConstructor;
             export { type_2 as type };
         }
+        namespace onSurface {
+            let _default_12: null;
+            export { _default_12 as default };
+            let type_3: BooleanConstructor;
+            export { type_3 as type };
+        }
     }
 }
 export default _default;

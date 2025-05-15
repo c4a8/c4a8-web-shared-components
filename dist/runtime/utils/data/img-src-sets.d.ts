@@ -1,6 +1,6 @@
 export default ImgSrcSets;
 declare namespace ImgSrcSets {
-    namespace heroStudy {
+    namespace highlightTeaser {
         let srcSets: ({
             params: string;
             media: string;
@@ -9,7 +9,7 @@ declare namespace ImgSrcSets {
             media?: undefined;
         })[];
     }
-    namespace testimonialTeaser16x9 {
+    namespace heroStudy {
         let srcSets_1: ({
             params: string;
             media: string;
@@ -19,7 +19,7 @@ declare namespace ImgSrcSets {
         })[];
         export { srcSets_1 as srcSets };
     }
-    namespace testimonialTeaser4xx3 {
+    namespace testimonialTeaser16x9 {
         let srcSets_2: ({
             params: string;
             media: string;
@@ -29,8 +29,7 @@ declare namespace ImgSrcSets {
         })[];
         export { srcSets_2 as srcSets };
     }
-    namespace square {
-        export let ratioClasses: string;
+    namespace testimonialTeaser4xx3 {
         let srcSets_3: ({
             params: string;
             media: string;
@@ -40,7 +39,8 @@ declare namespace ImgSrcSets {
         })[];
         export { srcSets_3 as srcSets };
     }
-    namespace testimonial {
+    namespace square {
+        export let ratioClasses: string;
         let srcSets_4: ({
             params: string;
             media: string;
@@ -50,7 +50,7 @@ declare namespace ImgSrcSets {
         })[];
         export { srcSets_4 as srcSets };
     }
-    namespace event {
+    namespace quotes {
         let srcSets_5: ({
             params: string;
             media: string;
@@ -60,7 +60,7 @@ declare namespace ImgSrcSets {
         })[];
         export { srcSets_5 as srcSets };
     }
-    namespace eventTeaser {
+    namespace quote {
         let srcSets_6: ({
             params: string;
             media: string;
@@ -70,7 +70,7 @@ declare namespace ImgSrcSets {
         })[];
         export { srcSets_6 as srcSets };
     }
-    namespace cardSmall {
+    namespace testimonial {
         let srcSets_7: ({
             params: string;
             media: string;
@@ -80,7 +80,7 @@ declare namespace ImgSrcSets {
         })[];
         export { srcSets_7 as srcSets };
     }
-    namespace textImageFloating {
+    namespace event {
         let srcSets_8: ({
             params: string;
             media: string;
@@ -90,25 +90,27 @@ declare namespace ImgSrcSets {
         })[];
         export { srcSets_8 as srcSets };
     }
-    namespace textImageFloatingSmallSquare {
-        let ratioClasses_1: string;
-        export { ratioClasses_1 as ratioClasses };
-        let srcSets_9: {
+    namespace eventTeaser {
+        let srcSets_9: ({
             params: string;
-        }[];
+            media: string;
+        } | {
+            params: string;
+            media?: undefined;
+        })[];
         export { srcSets_9 as srcSets };
     }
-    namespace textImageFloatingSmall {
-        let ratioClasses_2: string;
-        export { ratioClasses_2 as ratioClasses };
-        let srcSets_10: {
+    namespace cardSmall {
+        let srcSets_10: ({
             params: string;
-        }[];
+            media: string;
+        } | {
+            params: string;
+            media?: undefined;
+        })[];
         export { srcSets_10 as srcSets };
     }
-    namespace postTeaser {
-        let ratioClasses_3: string;
-        export { ratioClasses_3 as ratioClasses };
+    namespace textImageFloating {
         let srcSets_11: ({
             params: string;
             media: string;
@@ -117,5 +119,43 @@ declare namespace ImgSrcSets {
             media?: undefined;
         })[];
         export { srcSets_11 as srcSets };
+    }
+    namespace textImageFloatingSmallSquare {
+        let ratioClasses_1: string;
+        export { ratioClasses_1 as ratioClasses };
+        let srcSets_12: {
+            params: string;
+        }[];
+        export { srcSets_12 as srcSets };
+    }
+    namespace textImageFloatingSmall {
+        let ratioClasses_2: string;
+        export { ratioClasses_2 as ratioClasses };
+        let srcSets_13: {
+            params: string;
+        }[];
+        export { srcSets_13 as srcSets };
+    }
+    namespace postTeaser {
+        let ratioClasses_3: string;
+        export { ratioClasses_3 as ratioClasses };
+        let srcSets_14: ({
+            params: string;
+            media: string;
+        } | {
+            params: string;
+            media?: undefined;
+        })[];
+        export { srcSets_14 as srcSets };
+    }
+    namespace postImages {
+        let srcSets_15: ({
+            params: string;
+            media: string;
+        } | {
+            params: string;
+            media?: undefined;
+        })[];
+        export { srcSets_15 as srcSets };
     }
 }

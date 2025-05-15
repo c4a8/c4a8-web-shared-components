@@ -106,7 +106,9 @@ $event-teaser-content-width: calc(var(--container-width) * 0.6);
     .event-teaser__headline {
       @include h2;
 
-      margin-bottom: spacing(7);
+      & {
+        margin-bottom: spacing(7);
+      }
 
       @include media-breakpoint-up(lg) {
         @include h3-breakpoints($breakpoint: 'lg');
@@ -120,7 +122,9 @@ $event-teaser-content-width: calc(var(--container-width) * 0.6);
     .event-teaser__content {
       @include font-style($style: 'font-size-2', $weight: 'light');
 
-      padding-right: spacing(12);
+      & {
+        padding-right: spacing(12);
+      }
     }
 
     .event-teaser__footer {
@@ -286,7 +290,9 @@ $event-teaser-content-width: calc(var(--container-width) * 0.6);
   .event-teaser__headline {
     @include font-style($style: 'h3-font-size', $weight: 'lighter', $line: 'thin');
 
-    width: 100%;
+    & {
+      width: 100%;
+    }
   }
 
   .event-teaser__cta {

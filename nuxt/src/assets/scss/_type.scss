@@ -1,26 +1,28 @@
 $font-style-map: (
-  "font-size-sm": "%font-size-sm",
-  "font-size-1": "%font-size-1",
-  "font-size-2": "%font-size-2",
-  "font-size-3": "%font-size-3",
-  "font-size-4": "%font-size-4",
-  "font-size-5": "%font-size-5",
-  "font-size-6": "%font-size-6",
-  "font-size-7": "%font-size-7",
-  "font-size-8": "%font-size-8",
-  "h1-font-size": "%h1-font-size",
-  "h2-font-size": "%h2-font-size",
-  "h3-font-size": "%h3-font-size",
-  "h4-font-size": "%h4-font-size",
+  'font-size-sm': '%font-size-sm',
+  'font-size-1': '%font-size-1',
+  'font-size-2': '%font-size-2',
+  'font-size-3': '%font-size-3',
+  'font-size-4': '%font-size-4',
+  'font-size-5': '%font-size-5',
+  'font-size-6': '%font-size-6',
+  'font-size-7': '%font-size-7',
+  'font-size-8': '%font-size-8',
+  'h1-font-size': '%h1-font-size',
+  'h2-font-size': '%h2-font-size',
+  'h3-font-size': '%h3-font-size',
+  'h4-font-size': '%h4-font-size',
 );
 
 @function is-important($important) {
-  @return #{if($important, "!important", "")};
+  @return #{if($important, '!important', '')};
 }
 
-@mixin font-mods($weight: "light") {
-  @if $weight == "light" {
-    font-weight: 100 !important;
+@mixin font-mods($weight: 'light') {
+  @if $weight == 'light' {
+    & {
+      font-weight: 100 !important;
+    }
 
     strong {
       font-weight: inherit;
@@ -31,86 +33,219 @@ $font-style-map: (
 @mixin font-weight($weight, $important: false) {
   $important-string: is-important($important);
 
-  @if $weight == "bold" {
-    font-weight: bold #{$important-string};
-  } @else if $weight == "normal" {
-    font-weight: 400 #{$important-string};
-  } @else if $weight == "light" {
-    @include font-mods("light");
+  @if $weight == 'bold' {
+    & {
+      font-weight: bold #{$important-string};
+    }
+  } @else if $weight == 'normal' {
+    & {
+      font-weight: 400 #{$important-string};
+    }
+  } @else if $weight == 'light' {
+    @include font-mods('light');
   }
 }
 
-// TODO: Migrate declarations that appear after nested rules – '& {}' or different solution
-@mixin line-height($height: "normal", $important: false) {
+@mixin line-height($height: 'normal', $important: false) {
   $important-string: is-important($important);
 
-  @if $height == "thin" {
-    line-height: 1.2em #{$important-string};
-  } @else if $height == "wide" {
-    line-height: 1.7em #{$important-string};
-  } @else if $height == "middle" {
-    line-height: 1.4em #{$important-string};
-  } @else {
-    line-height: var(--type-default-line-height) #{$important-string};
+  & {
+    @if $height == 'thin' {
+      line-height: 1.2em #{$important-string};
+    } @else if $height == 'wide' {
+      line-height: 1.7em #{$important-string};
+    } @else if $height == 'middle' {
+      line-height: 1.4em #{$important-string};
+    } @else {
+      line-height: var(--type-default-line-height) #{$important-string};
+    }
   }
+}
+
+// Font size maps for each prefix
+$font-size-map: (
+  'h1-font-size': (
+    'xl': $h1-font-size-xl,
+    'lg': $h1-font-size-lg,
+    'sm': $h1-font-size-sm,
+  ),
+  'h2-font-size': (
+    'xl': $h2-font-size-xl,
+    'lg': $h2-font-size-lg,
+    'sm': $h2-font-size-sm,
+  ),
+  'h3-font-size': (
+    'xl': $h3-font-size-xl,
+    'lg': $h3-font-size-lg,
+    'sm': $h3-font-size-sm,
+  ),
+  'h4-font-size': (
+    'xl': $h4-font-size-xl,
+    'lg': $h4-font-size-lg,
+    'sm': $h4-font-size-sm,
+  ),
+  'font-size-1': (
+    'xl': $font-size-1-xl,
+    'lg': $font-size-1-lg,
+    'sm': $font-size-1-sm,
+  ),
+  'font-size-2': (
+    'xl': $font-size-2-xl,
+    'lg': $font-size-2-lg,
+    'sm': $font-size-2-sm,
+  ),
+  'font-size-3': (
+    'xl': $font-size-3-xl,
+    'lg': $font-size-3-lg,
+    'sm': $font-size-3-sm,
+  ),
+  'font-size-4': (
+    'xl': $font-size-4-xl,
+    'lg': $font-size-4-lg,
+    'sm': $font-size-4-sm,
+  ),
+  'font-size-5': (
+    'xl': $font-size-5-xl,
+    'lg': $font-size-5-lg,
+    'sm': $font-size-5-sm,
+  ),
+  'font-size-6': (
+    'xl': $font-size-6-xl,
+    'lg': $font-size-6-lg,
+    'sm': $font-size-6-sm,
+  ),
+  'font-size-7': (
+    'xl': $font-size-7-xl,
+    'lg': $font-size-7-lg,
+    'sm': $font-size-7-sm,
+  ),
+  'font-size-8': (
+    'xl': $font-size-8-xl,
+    'lg': $font-size-8-lg,
+    'sm': $font-size-8-sm,
+  ),
+);
+
+// Line height maps for each prefix
+$line-height-map: (
+  'h1-font-size': (
+    'xl': $h1-line-height-xl,
+    'lg': $h1-line-height-lg,
+    'sm': $h1-line-height-sm,
+  ),
+  'h2-font-size': (
+    'xl': $h2-line-height-xl,
+    'lg': $h2-line-height-lg,
+    'sm': $h2-line-height-sm,
+  ),
+  'h3-font-size': (
+    'xl': $h3-line-height-xl,
+    'lg': $h3-line-height-lg,
+    'sm': $h3-line-height-sm,
+  ),
+  'h4-font-size': (
+    'xl': $h4-line-height-xl,
+    'lg': $h4-line-height-lg,
+    'sm': $h4-line-height-sm,
+  ),
+  'font-size-1': (
+    'xl': $font-size-1-line-height-xl,
+    'lg': $font-size-1-line-height-lg,
+    'sm': $font-size-1-line-height-sm,
+  ),
+  'font-size-2': (
+    'xl': $font-size-2-line-height-xl,
+    'lg': $font-size-2-line-height-lg,
+    'sm': $font-size-2-line-height-sm,
+  ),
+  'font-size-3': (
+    'xl': $font-size-3-line-height-xl,
+    'lg': $font-size-3-line-height-lg,
+    'sm': $font-size-3-line-height-sm,
+  ),
+  'font-size-4': (
+    'xl': $font-size-4-line-height-xl,
+    'lg': $font-size-4-line-height-lg,
+    'sm': $font-size-4-line-height-sm,
+  ),
+  'font-size-5': (
+    'xl': $font-size-5-line-height-xl,
+    'lg': $font-size-5-line-height-lg,
+    'sm': $font-size-5-line-height-sm,
+  ),
+  'font-size-6': (
+    'xl': $font-size-6-line-height-xl,
+    'lg': $font-size-6-line-height-lg,
+    'sm': $font-size-6-line-height-sm,
+  ),
+  'font-size-7': (
+    'xl': $font-size-7-line-height-xl,
+    'lg': $font-size-7-line-height-lg,
+    'sm': $font-size-7-line-height-sm,
+  ),
+  'font-size-8': (
+    'xl': $font-size-8-line-height-xl,
+    'lg': $font-size-8-line-height-lg,
+    'sm': $font-size-8-line-height-sm,
+  ),
+);
+
+@mixin font-size-all-breakpoints($size-prefix) {
+  @include font-size-breakpoints($size-prefix, 'sm');
+
+  @include media-breakpoint-up(lg) {
+    @include font-size-breakpoints($size-prefix, 'lg');
+  }
+
+  @include media-breakpoint-up(xl) {
+    @include font-size-breakpoints($size-prefix, 'xl');
+  }
+}
+
+@mixin font-size-breakpoints($size-prefix, $breakpoint: false) {
+  $breakpoint-key: if($breakpoint == 'lg' or $breakpoint == 'xl', $breakpoint, 'sm');
+
+  font-size: map-get(map-get($font-size-map, $size-prefix), $breakpoint-key);
+  line-height: map-get(map-get($line-height-map, $size-prefix), $breakpoint-key);
 }
 
 @mixin h1-breakpoints($breakpoint: false) {
-  line-height: $h1-line-height;
-
-  @if $breakpoint == "lg" {
-    font-size: $h1-font-size-lg;
-  } @else if $breakpoint == "xl" {
-    font-size: $h1-font-size;
-  } @else {
-    font-size: $h1-font-size-sm;
-  }
+  @include font-size-breakpoints('h1-font-size', $breakpoint);
 }
 
 @mixin h2-breakpoints($breakpoint: false) {
-  @if $breakpoint == "lg" {
-    font-size: $h2-font-size-lg;
-  } @else if $breakpoint == "xl" {
-    font-size: $h2-font-size;
-  } @else {
-    font-size: $h2-font-size-sm;
+  @include font-size-breakpoints('h2-font-size', $breakpoint);
+
+  @if $breakpoint != 'lg' and $breakpoint != 'xl' {
     font-weight: lighter;
-    line-height: $h2-line-height;
   }
 }
 
 @mixin h3-breakpoints($breakpoint: false) {
-  @if $breakpoint == "lg" {
-    font-size: $h3-font-size-lg;
-  } @else if $breakpoint == "xl" {
-    font-size: $h3-font-size;
-  } @else {
-    font-size: $h3-font-size-sm;
+  @include font-size-breakpoints('h3-font-size', $breakpoint);
+
+  @if $breakpoint != 'lg' and $breakpoint != 'xl' {
     font-weight: lighter;
   }
 }
 
 @mixin h4-breakpoints($breakpoint: false) {
-  font-weight: normal;
+  @include font-size-breakpoints('h4-font-size', $breakpoint);
 
-  @if $breakpoint == "lg" {
-    font-size: $h4-font-size-lg;
-  } @else if $breakpoint == "xl" {
-    font-size: $h4-font-size;
-  } @else {
-    font-size: $h4-font-size-sm;
+  @if $breakpoint != 'lg' and $breakpoint != 'xl' {
+    font-weight: normal;
   }
 }
 
 @mixin h1 {
-  @include h1-breakpoints($breakpoint: "sm");
+  @include h1-breakpoints($breakpoint: 'sm');
 
   @include media-breakpoint-up(lg) {
-    @include h1-breakpoints($breakpoint: "lg");
+    @include h1-breakpoints($breakpoint: 'lg');
   }
 
   @include media-breakpoint-up(xl) {
-    @include h1-breakpoints($breakpoint: "xl");
+    @include h1-breakpoints($breakpoint: 'xl');
   }
 }
 
@@ -118,11 +253,11 @@ $font-style-map: (
   @include h2-breakpoints;
 
   @include media-breakpoint-up(lg) {
-    @include h2-breakpoints($breakpoint: "lg");
+    @include h2-breakpoints($breakpoint: 'lg');
   }
 
   @include media-breakpoint-up(xl) {
-    @include h2-breakpoints($breakpoint: "xl");
+    @include h2-breakpoints($breakpoint: 'xl');
   }
 }
 
@@ -130,11 +265,11 @@ $font-style-map: (
   @include h3-breakpoints;
 
   @include media-breakpoint-up(lg) {
-    @include h3-breakpoints($breakpoint: "lg");
+    @include h3-breakpoints($breakpoint: 'lg');
   }
 
   @include media-breakpoint-up(xl) {
-    @include h3-breakpoints($breakpoint: "xl");
+    @include h3-breakpoints($breakpoint: 'xl');
   }
 }
 
@@ -142,11 +277,11 @@ $font-style-map: (
   @include h4-breakpoints;
 
   @include media-breakpoint-up(lg) {
-    @include h4-breakpoints($breakpoint: "lg");
+    @include h4-breakpoints($breakpoint: 'lg');
   }
 
   @include media-breakpoint-up(xl) {
-    @include h4-breakpoints($breakpoint: "xl");
+    @include h4-breakpoints($breakpoint: 'xl');
   }
 }
 
@@ -158,69 +293,47 @@ $font-style-map: (
   font-size: $font-size-sm;
 }
 
-@mixin font-size-1($breakpoint: false) {
-  font-size: $font-size-1;
-  line-height: #{$default-line-height};
+@mixin font-size-1() {
+  @include font-size-all-breakpoints('font-size-1');
 }
 
-@mixin font-size-2($breakpoint: false) {
-  font-size: $font-size-2;
+@mixin font-size-2() {
+  @include font-size-all-breakpoints('font-size-2');
 }
 
-@mixin font-size-3($breakpoint: false) {
-  font-size: $font-size-2;
-  line-height: $font-size-3-line-height;
-
-  @include media-breakpoint-up(lg) {
-    font-size: $font-size-2;
-  }
-
-  @include media-breakpoint-up(xl) {
-    font-size: $font-size-3;
-  }
+@mixin font-size-3() {
+  @include font-size-all-breakpoints('font-size-3');
 }
 
-@mixin font-size-4($breakpoint: false) {
-  font-size: $font-size-3;
-  line-height: $font-size-4-line-height;
-
-  @include media-breakpoint-up(lg) {
-    font-size: $font-size-3;
-    line-height: $font-size-4-line-height-lg;
-  }
-
-  @include media-breakpoint-up(xl) {
-    font-size: $font-size-4;
-  }
+@mixin font-size-4() {
+  @include font-size-all-breakpoints('font-size-4');
 }
 
-@mixin font-size-5($breakpoint: false) {
-  font-size: $font-size-5;
+@mixin font-size-5() {
+  @include font-size-all-breakpoints('font-size-5');
 }
 
 @mixin font-size-6($breakpoint: false) {
-  font-size: $font-size-6-sm;
-  line-height: $font-size-6-line-height;
+  @include font-size-all-breakpoints('font-size-6');
 
-  @include media-breakpoint-up(lg) {
-    font-size: $font-size-6-lg;
+  @if $breakpoint == 'lg' {
     margin-left: -5px;
-  }
-
-  @include media-breakpoint-up(xl) {
-    font-size: $font-size-6;
   }
 }
 
 @mixin font-size-7($breakpoint: false) {
-  font-size: $font-size-7-sm;
-  line-height: $font-size-7-line-height;
-  margin-left: -5px;
-
-  @include media-breakpoint-up(lg) {
-    font-size: $font-size-7;
+  @if $breakpoint == 'lg' {
+    font-size: $font-size-7-lg;
     line-height: $font-size-7-line-height-lg;
     margin-left: -15px;
+  } @else if $breakpoint == 'xl' {
+    font-size: $font-size-7-xl;
+    line-height: $font-size-7-line-height-xl;
+    margin-left: -5px;
+  } @else {
+    font-size: $font-size-7-sm;
+    line-height: $font-size-7-line-height-sm;
+    margin-left: -5px;
   }
 }
 
@@ -229,52 +342,48 @@ $font-style-map: (
   $selector: map-get($map, $style);
   $valid-selector: map-has-key($map, $style);
 
-  @if $valid-selector {
-    @if $style == "font-size-sm" {
-      @include font-size-sm;
-    } @else if $style == "font-size-1" {
-      @include font-size-1;
-    } @else if $style == "font-size-2" {
-      @include font-size-2;
-    } @else if $style == "font-size-3" {
-      @include font-size-3;
-    } @else if $style == "font-size-4" {
-      @include font-size-4;
-    } @else if $style == "font-size-5" {
-      @include font-size-5;
-    } @else if $style == "font-size-6" {
-      @include font-size-6;
-    } @else if $style == "font-size-7" {
-      @include font-size-7;
-    } @else if $style == "h1-font-size" {
-      @include h1;
-    } @else if $style == "h2-font-size" {
-      @include h2;
-    } @else if $style == "h3-font-size" {
-      @include h3;
-    } @else if $style == "h4-font-size" {
-      @include h4;
-    } @else {
-      @extend #{$selector};
-    }
+  & {
+    @if $valid-selector {
+      @if $style == 'font-size-sm' {
+        @include font-size-sm;
+      } @else if $style == 'font-size-1' {
+        @include font-size-1;
+      } @else if $style == 'font-size-2' {
+        @include font-size-2;
+      } @else if $style == 'font-size-3' {
+        @include font-size-3;
+      } @else if $style == 'font-size-4' {
+        @include font-size-4;
+      } @else if $style == 'font-size-5' {
+        @include font-size-5;
+      } @else if $style == 'font-size-6' {
+        @include font-size-6;
+      } @else if $style == 'font-size-7' {
+        @include font-size-7;
+      } @else if $style == 'h1-font-size' {
+        @include h1;
+      } @else if $style == 'h2-font-size' {
+        @include h2;
+      } @else if $style == 'h3-font-size' {
+        @include h3;
+      } @else if $style == 'h4-font-size' {
+        @include h4;
+      } @else {
+        @extend #{$selector};
+      }
 
-    @if $weight {
-      @include font-weight($weight: $weight, $important: true);
-    }
+      @if $weight {
+        @include font-weight($weight: $weight, $important: true);
+      }
 
-    @if $line {
-      @include line-height($height: $line, $important: true);
+      @if $line {
+        @include line-height($height: $line, $important: true);
+      }
     }
   }
 }
 
-@mixin font-size-custom(
-  $sm: false,
-  $md: false,
-  $lg: false,
-  $xl: false,
-  $important: false
-) {
+@mixin font-size-custom($sm: false, $md: false, $lg: false, $xl: false, $important: false) {
   $important-string: is-important($important);
 
   @if ($sm) {
@@ -304,16 +413,7 @@ $font-style-map: (
   %h1,
   .h1,
   h1 {
-    font-size: $h1-font-size-sm;
-    line-height: 1.1;
-
-    @include media-breakpoint-up(lg) {
-      font-size: $h1-font-size-lg;
-    }
-
-    @include media-breakpoint-up(xl) {
-      font-size: $h1-font-size;
-    }
+    @include h1;
   }
 
   %h1,
@@ -381,19 +481,19 @@ $font-style-map: (
     }
 
     &.light {
-      @include font-mods("light");
+      @include font-mods('light');
     }
 
     &.wide {
-      @include line-height("wide");
+      @include line-height('wide');
     }
 
     &.middle {
-      @include line-height("middle");
+      @include line-height('middle');
     }
 
     &.thin {
-      @include line-height("thin");
+      @include line-height('thin');
     }
   }
 
@@ -487,10 +587,7 @@ $font-style-map: (
   }
 
   .highlight-animated {
-    @include background-grow(
-      $color: var(--color-highlight-animated),
-      $spacing: spacing(0)
-    );
+    @include background-grow($color: var(--color-highlight-animated), $spacing: spacing(0));
 
     &::before {
       max-width: 100%;

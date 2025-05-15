@@ -39,10 +39,11 @@ export default {
   },
   computed: {
     headlineRowClassesValue() {
-      if (this.classes && this.classes.includes('text-')) {
-        return this.classes;
-      }
-      return this.centered ? 'text-center' : '';
+      const baseClasses = this.classes?.includes('text-')
+        ? this.classes
+        : `${this.classes || ''}${this.centered ? ' text-center' : ''}`;
+
+      return `${baseClasses} headline-row__col`;
     },
     containerClass() {
       return this.noContainer ? '' : 'container';

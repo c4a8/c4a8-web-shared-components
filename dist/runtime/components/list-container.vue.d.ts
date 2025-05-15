@@ -4,6 +4,7 @@ declare namespace _default {
         function classValue(): string[];
         function colorStyling(): string[];
     }
+    function mounted(): void;
     namespace props {
         let classes: StringConstructor;
         let headline: StringConstructor;

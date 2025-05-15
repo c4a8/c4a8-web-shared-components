@@ -18,6 +18,9 @@ declare namespace _default {
         let formAttachmentsMaxFiles: string;
         let formAttachmentsMaxSize: string;
         let onlyLanguage: string;
+        let onlyLanguageDE: string;
+        let onlyLanguageEN: string;
+        let onlyLanguageES: string;
         let moreEvents: string;
         let positionTypePermanently: string;
         let positionTypeInternship: string;
@@ -32,6 +35,8 @@ declare namespace _default {
         let reset: string;
         let jobListEmpty: string;
         let imageCredits: string;
+        let topicsOnPage: string;
+        let noPostsFound: string;
     }
     namespace en {
         let tags_1: string;
@@ -70,6 +75,12 @@ declare namespace _default {
         export { formAttachmentsMaxSize_1 as formAttachmentsMaxSize };
         let onlyLanguage_1: string;
         export { onlyLanguage_1 as onlyLanguage };
+        let onlyLanguageDE_1: string;
+        export { onlyLanguageDE_1 as onlyLanguageDE };
+        let onlyLanguageEN_1: string;
+        export { onlyLanguageEN_1 as onlyLanguageEN };
+        let onlyLanguageES_1: string;
+        export { onlyLanguageES_1 as onlyLanguageES };
         let moreEvents_1: string;
         export { moreEvents_1 as moreEvents };
         let positionTypePermanently_1: string;
@@ -98,6 +109,10 @@ declare namespace _default {
         export { jobListEmpty_1 as jobListEmpty };
         let imageCredits_1: string;
         export { imageCredits_1 as imageCredits };
+        let topicsOnPage_1: string;
+        export { topicsOnPage_1 as topicsOnPage };
+        let noPostsFound_1: string;
+        export { noPostsFound_1 as noPostsFound };
     }
     namespace es {
         let tags_2: string;
@@ -136,6 +151,12 @@ declare namespace _default {
         export { formAttachmentsMaxSize_2 as formAttachmentsMaxSize };
         let onlyLanguage_2: string;
         export { onlyLanguage_2 as onlyLanguage };
+        let onlyLanguageDE_2: string;
+        export { onlyLanguageDE_2 as onlyLanguageDE };
+        let onlyLanguageEN_2: string;
+        export { onlyLanguageEN_2 as onlyLanguageEN };
+        let onlyLanguageES_2: string;
+        export { onlyLanguageES_2 as onlyLanguageES };
         let moreEvents_2: string;
         export { moreEvents_2 as moreEvents };
         let positionTypePermanently_2: string;
@@ -164,6 +185,10 @@ declare namespace _default {
         export { jobListEmpty_2 as jobListEmpty };
         let imageCredits_2: string;
         export { imageCredits_2 as imageCredits };
+        let topicsOnPage_2: string;
+        export { topicsOnPage_2 as topicsOnPage };
+        let noPostsFound_2: string;
+        export { noPostsFound_2 as noPostsFound };
     }
 }
 export default _default;

@@ -1,4 +1,23 @@
 const ImgSrcSets = {
+  highlightTeaser: {
+    srcSets: [
+      {
+        params: 'c_fill,g_face,h_600,w_600,x_0,y_0/',
+        media: '(max-width: 576px)',
+      },
+      {
+        params: 'c_fill,g_face,h_800,w_800,x_0,y_0/',
+        media: '(max-width: 765px)',
+      },
+      {
+        params: 'c_fill,g_face,h_1000,w_1000,x_0,y_0/',
+        media: '(max-width: 1200px)',
+      },
+      {
+        params: 'c_fill,g_face,h_1300,w_1300,x_0,y_0/',
+      },
+    ],
+  },
   heroStudy: {
     srcSets: [
       {
@@ -69,6 +88,32 @@ const ImgSrcSets = {
       },
       {
         params: 'c_fill,g_face,h_600,w_600,x_0,y_0/',
+      },
+    ],
+  },
+  quotes: {
+    srcSets: [
+      {
+        params: 'c_fill,g_face,h_600,w_600,x_0,y_0/',
+        media: '(max-width: 576px)',
+      },
+      {
+        params: 'c_fill,g_face,h_800,w_800,x_0,y_0/',
+        media: '(max-width: 765px)',
+      },
+      {
+        params: 'c_fill,g_face,h_800,w_800,x_0,y_0/',
+      },
+    ],
+  },
+  quote: {
+    srcSets: [
+      {
+        params: 'c_crop,h_740,w_980,x_920,y_80/',
+        media: '(max-width: 765px)',
+      },
+      {
+        params: 'c_fill',
       },
     ],
   },
@@ -168,6 +213,25 @@ const ImgSrcSets = {
       },
       {
         params: 'c_fill,g_face,h_500,w_500,x_0,y_0/',
+      },
+    ],
+  },
+  postImages: {
+    srcSets: [
+      {
+        params: 'c_fill,g_face,w_600,x_0,y_0/',
+        media: '(max-width: 576px)',
+      },
+      {
+        params: 'c_fill,g_face,w_800,x_0,y_0/',
+        media: '(max-width: 765px)',
+      },
+      {
+        params: 'c_fill,g_face,w_1000,x_0,y_0/',
+        media: '(max-width: 1200px)',
+      },
+      {
+        params: 'c_fill,g_face,w_1350,x_0,y_0/',
       },
     ],
   },

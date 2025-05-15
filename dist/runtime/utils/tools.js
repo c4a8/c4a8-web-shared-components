@@ -1,5 +1,5 @@
 import { parse } from 'node-html-parser';
-import { useRuntimeConfig, useRoute } from '#imports';
+import { useRoute } from '#imports';
 
 class Tools {
   static defaultLang = 'de';
@@ -10,6 +10,7 @@ class Tools {
   });
   static storagePrefix = '@gab_'; // if you change this you need to change this in the index.html as well
   static storybookPath = '/shared-components';
+  static blogImagePath = '/blog/heads/';
 
   static decodeHTML = (input) => {
     if (!input) return '';
@@ -61,14 +62,16 @@ class Tools {
   }
 
   static getLang() {
+    console.debug('TOOD remove me from componennt and use i18n');
+
     // TODO solve this via nuxt or i18n
     return 'en';
 
     return (document.querySelector('html').getAttribute('lang') || this.defaultLang).toLowerCase();
   }
 
-  static isNotDefaultLang() {
-    return this.getLang() !== this.defaultLang;
+  static isNotDefaultLang(lang) {
+    return lang !== this.defaultLang;
   }
 
   static scrollToTop() {
@@ -609,6 +612,97 @@ class Tools {
 
   static getBlogImgPath(config) {
     return config.public?.blogImagePath || 'blog/heads/';
+  }
+
+  static normalizeMarkdownItem(item, hideData) {
+    const { seo, path, date, moment, _dir, hideInRecent, webcast, meta, ...rest } = item;
+
+    const filteredRest = Object.keys({ ...rest, ...meta })
+      .filter((key) => !hideData || !hideData.includes(key))
+      .reduce((obj, key) => {
+        obj[key] = meta?.[key] || rest[key];
+        return obj;
+      }, {});
+
+    const dateValue = Tools.cleanDate(Tools.isDate(moment) ? moment : date ? date : Tools.extractDate(path));
+    const dateValueOrFallback = dateValue ? dateValue : '2000-01-01';
+
+    return {
+      url: path,
+      date: dateValueOrFallback,
+      moment: dateValueOrFallback,
+      excerpt: meta?.customExcerpt || seo?.description,
+      ...filteredRest,
+    };
+  }
+
+  static extractDate(path) {
+    if (!path) return null;
+
+    return Tools.getDate(path);
+  }
+
+  static getDate(dateString) {
+    const datePattern = /\d{4}-\d{2}-\d{2}/;
+    const match = dateString.match(datePattern);
+
+    return match ? match[0] : null;
+  }
+
+  static isDate(dateString) {
+    return dateString ? Tools.getDate(dateString) !== null : null;
+  }
+
+  static cleanDate(date) {
+    if (typeof date === 'string' && date.includes('T')) {
+      return date.split('T')[0];
+    }
+
+    return date;
+  }
+
+  static applyKramdownAttrs(body) {
+    const newBody = [];
+
+    for (let i = 0; i < body.length; i++) {
+      const node = body[i];
+
+      const isAttrLine =
+        node[0] === 'p' &&
+        typeof node[2] === 'string' &&
+        node[2].trim().startsWith('{:') &&
+        node[2].trim().endsWith('}');
+
+      if (isAttrLine && i > 0) {
+        const classMatch = node[2].match(/\{\:\s*\.([a-zA-Z0-9-_ ]+)\s*\}/);
+
+        if (classMatch) {
+          const className = classMatch[1];
+
+          const prevNode = [...body[i - 1]];
+          const prevAttrs = { ...(prevNode[1] || {}) };
+
+          prevAttrs.class = prevAttrs.class ? prevAttrs.class + ' ' + className : className;
+
+          prevNode[1] = prevAttrs;
+          newBody[newBody.length - 1] = prevNode;
+        }
+
+        continue;
+      }
+
+      newBody.push(node);
+    }
+
+    return newBody;
+  }
+
+  static getExternalLanguageText(locale, lang, translateFn) {
+    if (lang !== locale) {
+      return translateFn('onlyLanguage' + lang?.toUpperCase());
+    }
+
+    return null;
   }
 }
 

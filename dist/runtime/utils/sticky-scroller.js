@@ -6,6 +6,7 @@ class StickyScroller {
   static rootSelector = '.is-sticky-scroller';
   static instances = [];
 
+  // TODO update to work with height instead of clip path for performance issues
   constructor(root) {
     this.root = root;
 
@@ -261,7 +262,7 @@ class StickyScroller {
     const nextElement = this.spacer.nextSibling;
     const propertyName = '--color-sticky-scroller';
 
-    if (!nextElement) return;
+    if (!nextElement || nextElement.nodeType !== Node.ELEMENT_NODE) return;
 
     const backgroundColor = Tools.getElementBgColor(nextElement) || Tools.getElementBgColor(nextElement.firstChild);
 

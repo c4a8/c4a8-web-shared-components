@@ -25,16 +25,13 @@ export default {
     },
     classList() {
       return [
-        `tags__btn btn btn-xs btn-soft-secondary btn-pill mb-2 vue-component`,
+        `tags__btn btn btn-xs mb-2 vue-component`,
         this.variant ? 'tag--' + this.variant : `mx-sm-${this.props?.spacing}`,
         this.classes ? this.classes : null,
       ];
     },
-    url() {
-      return this.lowerLang === 'de' ? '' : `index-${this.lowerLang}/`;
-    },
     href() {
-      return '/blog/' + this.url + '#' + encodeURIComponent(this.tag);
+      return '/blog/#' + encodeURIComponent(this.tag);
     },
     hasIcon() {
       return this.variant === 'icon';

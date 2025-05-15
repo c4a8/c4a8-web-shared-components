@@ -3,17 +3,19 @@
     <headline class="event-overview__headline" :text="headline" :level="headlineLevel" v-if="headline" />
     <transition-group name="event-overview__item">
       <SharedContentList :data-list="eventsValue" :query="query" v-slot="{ list }" :key="0">
-        <markdown-files :list="list" v-slot="{ files }" :sort="sort" :limit="maxLimitValue" v-if="updateFiles(files)">
-          <template v-for="(event, index) in files" :key="index">
-            <div :class="{ 'is-visible': isVisible(index), 'event-overview__item': true }">
-              <div
-                class="fade-in-bottom"
-                data-utility-animation-step="1"
-                :style="{ '--utility-animation-index': index + 1 }"
-              >
-                <event :key="event.url" v-bind="updatedEvent(event)" />
+        <markdown-files :list="list" v-slot="{ files }" :sort="sort" :limit="maxLimitValue">
+          <template v-if="updateFiles(files)">
+            <template v-for="(event, index) in files" :key="index">
+              <div :class="{ 'is-visible': isVisible(index), 'event-overview__item': true }">
+                <div
+                  class="fade-in-bottom"
+                  data-utility-animation-step="1"
+                  :style="{ '--utility-animation-index': index + 1 }"
+                >
+                  <event :key="event.url" v-bind="updatedEvent(event)" />
+                </div>
               </div>
-            </div>
+            </template>
           </template>
         </markdown-files>
       </SharedContentList>
@@ -42,7 +44,7 @@ export default {
       defaultLimit: 3,
       maxLimitDefault: 6,
       showMore: false,
-      files: [],
+      filesValue: [],
     };
   },
   computed: {
@@ -69,14 +71,14 @@ export default {
       return this.events.slice(0, this.maxLimitValue) || [];
     },
     hasMore() {
-      return this.showMore ? false : this.files.length > this.limitValue;
+      return this.showMore ? false : this.filesValue.length > this.limitValue;
     },
     query() {
       let query = {};
 
       if (this.order && Array.isArray(this.order)) {
         query.where = {
-          eventid: { $in: this.order },
+          eventid: { IN: this.order },
         };
       }
 
@@ -111,7 +113,9 @@ export default {
       this.showMore = true;
     },
     updateFiles(files) {
-      this.files = files;
+      if (!files) return;
+
+      this.filesValue = files;
 
       return true;
     },

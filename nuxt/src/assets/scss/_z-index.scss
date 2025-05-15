@@ -4,6 +4,7 @@ $z-indexed-elements: (
   '.hero__background-shape',
   '.hero__container',
   '.hero__background-shape-wrapper',
+  '.blog__highlight-post',
   '.video-frame__container',
   '.logo-list.logo-list--is-overlapping',
   '.content-scroller',
@@ -22,7 +23,8 @@ $z-indexed-elements: (
   '.fab-hint',
   '.fab-hint__content',
   '.google-map-card',
-  '.tool-tip__content'
+  '.tool-tip__content',
+  '.aside-nav'
 );
 
 $static-z-indexed-elements: (

@@ -5,12 +5,33 @@
   // Theme colors
   --color-headlines: var(--color-blue-dark);
   --color-copy: var(--color-blue-dark);
-  --color-primary: var(--color-blue-light);
-  --color-primary-accent: var(--color-blue-medium);
+
+  --color-primary: #5cbbff;
+  --color-primary-accent: #4083b3;
   --color-primary-accent-light: var(--color-link-water);
-  --color-secondary: var(--color-yellow);
-  --color-secondary-accent: red;
+  --color-primary-on-surface: #ffffff;
+  --color-primary-accent-on-surface: #4c5063;
+
+  --color-secondary: #5cbbff;
+  --color-secondary-accent: #4083b3;
+  --color-secondary-accent-light: red;
+  --color-secondary-on-surface: #ffffff;
+  --color-secondary-accent-on-surface: #4c5063;
+
+  --color-highlight: var(--color-primary-accent);
+  --color-highlight-second: #fcd116;
+
   --color-copy-highlight: var(--color-orange);
+
+  --color-copy-on-primary: var(--color-copy-light);
+  --color-copy-on-primary-accent: var(--color-copy-light);
+  --color-copy-on-primary-on-surface: #5cbbff;
+  --color-copy-on-primary-accent-on-surface: #5cbbff;
+
+  --color-copy-on-secondary: var(--color-secondary);
+  --color-copy-on-secondary-accent: var(--color-secondary-accent);
+  --color-copy-on-secondary-on-surface: var(--color-secondary-on-surface);
+  --color-copy-on-secondary-accent-on-surface: var(--color-secondary-accent-on-surface);
 
   // Element colors
   --color-bg-grey: var(--color-porcelain);

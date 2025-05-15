@@ -4,8 +4,9 @@
 
 .hover__parent:hover .cta,
 .shared-components .cta:hover {
+  --cta-copy-color: var(--color-primary-accent);
+
   box-shadow: none;
-  color: var(--color-primary-accent);
 
   &.cta--external {
     .icon svg {
@@ -43,6 +44,14 @@
   }
 
   &.btn-primary {
+    --cta-btn-color: var(--color-primary-accent);
+    --cta-copy-color: var(--color-copy-on-primary-accent);
+
+    &.on-surface:not(.is-loading),
+    &:not(.is-loading) {
+      --cta-border-color: transparent;
+    }
+
     &.is-light {
       &:not(label.btn):not([href]) {
         background-color: var(--color-primary-accent-light);
@@ -53,6 +62,16 @@
       color: var(--color-primary-accent);
     }
 
+    &.on-surface {
+      --cta-btn-color: var(--color-primary-accent-on-surface);
+      --cta-copy-color: var(--color-copy-on-primary-accent-on-surface);
+      --cta-background-accent-color: var(--cta-btn-color);
+
+      &::after {
+        color: inherit;
+      }
+    }
+
     &::after {
       opacity: 1;
       background-position: left bottom;
@@ -60,18 +79,23 @@
   }
 
   &.btn-secondary {
-    border-color: var(--color-primary-accent);
-    color: var(--color-primary-accent);
+    --cta-btn-color: var(--color-secondary-accent);
+    --cta-copy-color: var(--color-copy-on-secondary-accent);
+
+    &.on-surface:not(.is-loading),
+    &:not(.is-loading) {
+      --cta-border-color: var(--cta-btn-color);
+    }
 
     &.is-cutoff {
       &::before {
-        background: var(--color-primary-accent);
+        background: var(--cta-btn-color);
       }
     }
 
     &.is-light {
       border-color: var(--color-white);
-      color: var(--color-primary-accent);
+      color: var(--color-secondary-accent-light);
 
       &::before {
         background: var(--color-white);
@@ -82,11 +106,22 @@
         background-position: left bottom;
       }
     }
+
+    &.on-surface {
+      --cta-btn-color: var(--color-secondary-accent-on-surface);
+      --cta-copy-color: var(--color-copy-on-secondary-accent-on-surface);
+      --cta-background-accent-color: var(--cta-btn-color);
+
+      &::after {
+        color: inherit;
+      }
+    }
   }
 }
 
 .cta {
   --cta-active-size: 3px;
+  --cta-border-width: 2px;
 
   position: relative;
   border-radius: 0;
@@ -194,8 +229,8 @@
     &:not(.link) {
       .icon {
         transform: translateY(-50%) rotate(135deg);
-        width: 14px;
-        height: 14px;
+        width: 15px;
+        height: 15px;
       }
     }
   }
@@ -203,18 +238,20 @@
   &.btn {
     @include font-style('font-size-1');
 
-    font-weight: bold;
-    display: inline-block;
-    padding: spacing(3) spacing(4);
-    text-align: center;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-color: transparent;
-    transition: all $transition-tween-t1;
-    border: 0.0625rem solid transparent;
+    & {
+      font-weight: bold;
+      display: inline-block;
+      padding: spacing(3) spacing(4);
+      text-align: center;
+      vertical-align: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      background-color: transparent;
+      transition: all $transition-tween-t1;
+      border: var(--cta-border-width) solid transparent;
+    }
 
     &:not(:disabled):not(.disabled) {
       cursor: pointer;
@@ -308,12 +345,19 @@
   $cutoffSize: 15px;
 
   .cta {
-    color: var(--color-primary);
+    --cta-background-accent-color: transparent;
+    --cta-copy-color: var(--color-primary);
+    --cta-background-color: transparent;
+    --cta-border-color: transparent;
+
+    color: var(--cta-copy-color);
     -webkit-appearance: none;
     appearance: none;
+    background-color: var(--cta-background-color);
+    border-color: var(--cta-border-color);
 
     &.cta--monochrome {
-      color: var(--color-copy);
+      --cta-copy-color: var(--color-copy);
     }
 
     &:not(.btn):not(.custom):not(.nav-link) {
@@ -328,54 +372,79 @@
     }
 
     &.btn-primary {
-      background-color: var(--color-primary);
-      color: var(--color-white);
-      border: 0;
+      --cta-copy-color: var(--color-copy-on-primary);
+      --cta-background-accent-color: var(--color-primary-accent);
+      --cta-background-color: var(--color-primary);
+      --cta-border-color: transparent;
+
       border-radius: 0;
 
-      &:not(label.btn):not([href]) {
-        background-color: var(--color-primary);
-        color: var(--color-white);
+      // TODO figure out what this case is
+      // &:not(label.btn):not([href]) {
+      //   --cta-copy-color: var(--color-copy-on-primary);
+      //   --cta-background-color: var(--color-primary);
+      // }
+
+      &:not(.is-loading) {
+        --cta-border-color: var(--color-primary);
       }
 
       &::after {
         position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
+        left: calc(-1 * var(--cta-border-width) / 2);
+        top: calc(-1 * var(--cta-border-width) / 2);
+        width: calc(100% + var(--cta-border-width));
+        height: calc(100% + var(--cta-border-width));
         content: attr(data-text);
-        color: var(--color-white);
+        color: var(--cta-copy-color);
         display: flex;
         justify-content: center;
         align-items: center;
-        background: linear-gradient(to right, var(--color-primary-accent) 50%, transparent 50%);
+        background: linear-gradient(to right, var(--cta-background-accent-color) 50%, transparent 50%);
         background-size: 200% 100%;
         background-position: right bottom;
         opacity: 0;
         transition: background 0.5s $animation-transition;
       }
 
-      &.is-light {
-        @include cta-btn-primary-is-light;
-      }
+      // &.is-light {
+      //   @include cta-btn-primary-is-light;
+      // }
 
       &.is-light-lg {
         @include media-breakpoint-up(lg) {
-          @include cta-btn-primary-is-light;
+          // @include cta-btn-primary-is-light;
+
+          background-color: var(--color-primary-on-surface);
+          color: var(--color-copy-on-primary-on-surface);
+
+          &:not(.is-loading) {
+            border-color: var(--color-primary-on-surface);
+          }
+        }
+      }
+
+      &.is-light,
+      &.on-surface {
+        --cta-copy-color: var(--color-copy-on-primary-on-surface);
+        --cta-background-color: var(--color-primary-on-surface);
+
+        &:not(.is-loading) {
+          --cta-border-color: var(--color-primary-on-surface);
         }
       }
     }
 
     &.btn-secondary {
-      background-color: transparent;
-      border-color: var(--color-primary);
-      color: var(--color-primary);
+      --cta-copy-color: var(--color-copy-on-secondary);
+      --cta-background-accent-color: var(--color-secondary-accent);
+      --cta-background-color: transparent;
+      --cta-border-color: var(--color-secondary);
 
       &.is-cutoff {
         &::before {
           clip-path: polygon(calc(100% - #{$cutoffSize} + 1px) 0, 100% calc(#{$cutoffSize} - 1px), 100% 100%, 100% 0);
-          background: var(--color-primary);
+          background: var(--cta-border-color);
           content: '';
           position: absolute;
           left: 0;
@@ -399,6 +468,13 @@
         @include media-breakpoint-up(lg) {
           @include cta-btn-secondary-is-light;
         }
+      }
+
+      &.on-surface {
+        --cta-copy-color: var(--color-copy-on-secondary-on-surface);
+        --cta-background-accent-color: var(--color-secondary-accent-on-surface);
+        --cta-background-color: transparent;
+        --cta-border-color: var(--color-secondary-on-surface);
       }
     }
 

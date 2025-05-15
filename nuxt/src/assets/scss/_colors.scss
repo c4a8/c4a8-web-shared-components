@@ -85,6 +85,8 @@ $gray-600: #8c98a4;
   --color-shuttle-gray: #666979;
   --color-waterloo: #80828f;
   --color-anakiwa: #97d4ff;
+  --color-butterfly-bush: #524fa3;
+  --color-kimberly: #716fa7;
 
   --color-white: #fff;
 
@@ -214,8 +216,8 @@ $gray-600: #8c98a4;
 
   --color-input-placeholder: var(--color-bombay);
 
-  --color-highlight-underline: var(--color-secondary);
-  --color-highlight-animated: var(--color-secondary);
+  --color-highlight-underline: var(--color-highlight-second);
+  --color-highlight-animated: var(--color-highlight-second);
 
   --color-link: var(--color-primary);
   --color-link-hover: var(--color-primary-accent);

@@ -1,18 +1,28 @@
-/* scepman theme related styling here */
-
 :root {
-  --site: 'scepman';
-  /* Theme colors */
+  --site: "scepman";
   --color-headlines: var(--color-midnight);
   --color-copy: var(--color-midnight);
-  --color-primary: var(--color-yellow);
-  --color-primary-accent: var(--color-ripe-lemon);
+  --color-primary: #fcd116;
+  --color-primary-accent: #caa712;
   --color-primary-accent-light: var(--color-varden);
-  --color-secondary: var(--color-cold-purple);
-  --color-secondary-accent: var(--color-cold-purple);
-  --color-copy-highlight: var(--color-cold-purple);
-
-  /* Element colors */
+  --color-primary-on-surface: #716fa7;
+  --color-primary-accent-on-surface: #4f4e75;
+  --color-secondary: #f7cb0b;
+  --color-secondary-accent: #caa712;
+  --color-secondary-accent-light: red;
+  --color-secondary-on-surface: #716fa7;
+  --color-secondary-accent-on-surface: #4f4e75;
+  --color-highlight: #a09edb;
+  --color-highlight-second: var(--color-highlight);
+  --color-copy-highlight: var(--color-highlight);
+  --color-copy-on-primary: var(--color-copy);
+  --color-copy-on-primary-accent: var(--color-copy);
+  --color-copy-on-primary-on-surface: var(--color-copy-light);
+  --color-copy-on-primary-accent-on-surface: var(--color-copy-light);
+  --color-copy-on-secondary: var(--color-secondary);
+  --color-copy-on-secondary-accent: var(--color-secondary-accent);
+  --color-copy-on-secondary-on-surface: var(--color-secondary-on-surface);
+  --color-copy-on-secondary-accent-on-surface: var(--color-secondary-accent-on-surface);
   --color-bg-grey: var(--color-porcelain);
   --color-bg-dark-grey: var(--color-regent-grey);
   --color-svg-icon: var(--color-primary);
@@ -24,7 +34,5 @@
   --color-loading--2: var(--color-yellow);
   --color-loading--3: var(--color-conifer);
   --color-loading--4: var(--color-orange);
-
-  /* fonts */
-  --font-family: 'Miriam Libre', sans-serif;
+  --font-family: "Miriam Libre", sans-serif;
 }

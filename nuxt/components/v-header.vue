@@ -94,6 +94,7 @@
                   :target="button.target"
                   :skin="button.skin"
                   :classes="ctaClassList"
+                  :on-surface="onSurfaceCta"
                 />
               </div>
               <div class="header__language-switch" v-if="hasLangSwitch">
@@ -114,6 +115,7 @@
               :target="button.target"
               :skin="button.skin"
               :classes="ctaClassList"
+              :on-surface="onSurfaceCta"
             />
           </div>
           <search v-if="searchValue" class="header__search" language="de" placeholder="search" />
@@ -205,6 +207,7 @@
 </template>
 
 <script>
+import { useAppStore } from '../stores/app.js';
 import Tools from '../utils/tools.js';
 import State from '../utils/state.js';
 import Events from '../utils/events.js';
@@ -212,6 +215,11 @@ import SecondaryNavigation from '../utils/data/secondary-navigation.js';
 
 export default {
   tagName: 'v-header',
+  setup() {
+    const store = useAppStore();
+
+    return { store };
+  },
   computed: {
     classList() {
       return [
@@ -222,6 +230,7 @@ export default {
         Tools.isTrue(this.product) ? 'header--product' : '',
         !Tools.isTrue(this.closed) ? State.EXPANDED : '',
         Tools.isTrue(this.blendMode) ? 'header--blending' : '',
+        this.onSurface ? State.ON_SURFACE : '',
         this.inUpdate ? 'is-updating' : '',
         'vue-component',
       ];
@@ -301,9 +310,25 @@ export default {
     hasMeta() {
       return this.meta && this.meta.length > 0;
     },
+    headerState() {
+      return this.store.getHeader;
+    },
+    onSurfaceCta() {
+      return this.hoverHeader || this.isScrolled ? null : this.onSurface || (this.isLight && this.onSurface);
+    },
   },
   created() {
     this.setActiveNavigation();
+
+    this.store.setHeader({
+      isScrolled: this.isScrolled,
+      isLight: this.isLight,
+      isHovering: this.hover,
+      isProduct: this.product,
+      isExpanded: !this.closed,
+      isBlending: this.blendMode,
+      isUpdating: this.inUpdate,
+    });
   },
   watch: {
     secondaryNavigationDimensions(newVal) {
@@ -312,6 +337,21 @@ export default {
           this.calculateLogoOffsetPosition();
         });
       }
+    },
+    isScrolled(newVal) {
+      this.store.setHeader({ ...this.headerState, isScrolled: newVal });
+    },
+    hover(newVal) {
+      this.store.setHeader({ ...this.headerState, isHovering: newVal });
+    },
+    closed(newVal) {
+      this.store.setHeader({ ...this.headerState, isExpanded: !newVal });
+    },
+    blendMode(newVal) {
+      this.store.setHeader({ ...this.headerState, isBlending: newVal });
+    },
+    inUpdate(newVal) {
+      this.store.setHeader({ ...this.headerState, isUpdating: newVal });
     },
   },
   mounted() {
@@ -792,17 +832,9 @@ export default {
     getFolderSwitchUrl(lang, currentPath, segment) {
       if (!segment) return currentPath;
 
-      let newPath;
+      const langPrefix = new RegExp(`^/${this.lowerLang}/`);
 
-      if (lang === this.defaultLang) {
-        const regex = new RegExp(`/${this.lowerLang}/`);
-
-        newPath = currentPath.replace(regex, '/');
-      } else {
-        newPath = currentPath.replace(segment, `${lang}/${segment}`);
-      }
-
-      return newPath;
+      return currentPath.replace(langPrefix, `/${lang}/`);
     },
     isBlogTagsUrl(currentPath) {
       const regex = /\/blog\/tags/;
@@ -888,9 +920,11 @@ export default {
       type: Boolean,
     },
     theme: String,
+    onSurface: Boolean,
   },
   data() {
     return {
+      hoverHeader: false,
       inUpdate: false,
       inTransition: false,
       defaultLang: 'de',

@@ -1,6 +1,13 @@
 <template>
   <span :class="classList" :style="parentStyle">
-    <component :is="icon" v-bind="settings" :color="props.color" :closed="closed" :step="step" />
+    <component
+      :is="icon"
+      v-bind="settings"
+      :color="props.color"
+      :closed="closed"
+      :step="step"
+      :stroke-width="strokeWidth"
+    />
   </span>
 </template>
 <script>
@@ -187,6 +194,9 @@ export default {
       default: null,
     },
     step: {
+      default: null,
+    },
+    strokeWidth: {
       default: null,
     },
   },

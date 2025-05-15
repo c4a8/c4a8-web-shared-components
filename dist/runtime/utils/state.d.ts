@@ -28,4 +28,5 @@ declare namespace State {
     let STICKY: string;
     let IN_TRANSITION: string;
     let IS_STARTING: string;
+    let ON_SURFACE: string;
 }

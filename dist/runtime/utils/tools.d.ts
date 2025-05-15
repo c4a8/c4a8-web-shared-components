@@ -5,13 +5,14 @@ declare class Tools {
     static priceFormatter: Intl.NumberFormat;
     static storagePrefix: string;
     static storybookPath: string;
+    static blogImagePath: string;
     static decodeHTML: (input: any) => string;
     static intersection: (r1: any, r2: any) => number;
     static isInViewportPercent(element: any, percent: any): boolean;
     static getScrollTop(element: any): number | undefined;
     static scrollIntoView(element: any, smooth: any): void;
     static getLang(): string;
-    static isNotDefaultLang(): boolean;
+    static isNotDefaultLang(lang: any): boolean;
     static scrollToTop(): void;
     static getParentComponent(element: any): any;
     static getParent(element: any, selector: any): any;
@@ -69,4 +70,16 @@ declare class Tools {
     static getPriceFormatter(pricingData: any): Intl.NumberFormat;
     static updateElementPrice(element: any, state: any, formatter: any): void;
     static getBlogImgPath(config: any): any;
+    static normalizeMarkdownItem(item: any, hideData: any): {
+        url: any;
+        date: any;
+        moment: any;
+        excerpt: any;
+    };
+    static extractDate(path: any): any;
+    static getDate(dateString: any): any;
+    static isDate(dateString: any): boolean | null;
+    static cleanDate(date: any): any;
+    static applyKramdownAttrs(body: any): any[];
+    static getExternalLanguageText(locale: any, lang: any, translateFn: any): any;
 }

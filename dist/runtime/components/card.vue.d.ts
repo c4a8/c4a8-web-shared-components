@@ -34,7 +34,8 @@ declare namespace _default {
             tags: any;
         };
     }
-    function created(): null | undefined;
+    function created(): void;
+    function mounted(): void;
     namespace methods {
         function isTags(target: any): boolean;
         function formatDate(date: any): any;
@@ -45,7 +46,7 @@ declare namespace _default {
         function isIncluded(include: any): "check-mark" | "x-mark";
     }
     namespace props {
-        let blogTitlePic: StringConstructor;
+        let blogtitlepic: StringConstructor;
         let url: StringConstructor;
         let title: StringConstructor;
         let target: StringConstructor;
@@ -79,7 +80,7 @@ declare namespace _default {
             let _default_5: null;
             export { _default_5 as default };
         }
-        namespace webCast {
+        namespace webcast {
             let _default_6: null;
             export { _default_6 as default };
         }

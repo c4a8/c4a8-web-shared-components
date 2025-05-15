@@ -35,6 +35,7 @@ declare namespace _default {
         function contactRowClass(): "" | "row justify-content-center";
         function styleObject(): {
             '--color-contact-background': any;
+            '--color-contact-quote-background': any;
             '--contact-copy-color': any;
             '--color-contact-box-background': any;
             '--contact-box-copy-color': any;
