@@ -346,6 +346,11 @@ export default {
     combine: Boolean,
     caseStudies: Boolean,
     reversed: Boolean,
+    tag: {
+      type: Array,
+      default: null,
+    },
+    // TODO implement the tag filter
   },
 };
 </script>

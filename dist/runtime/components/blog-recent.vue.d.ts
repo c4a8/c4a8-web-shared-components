@@ -7,6 +7,8 @@ declare namespace _default {
         hideData: string[];
         filesValue: never[];
         dataAuthorsValue: null;
+        retryLimit: number;
+        retryTimeout: number;
     };
     function setup(): {
         config: {};
@@ -92,7 +94,7 @@ declare namespace _default {
     }
     function created(): void;
     namespace methods {
-        function init(): void;
+        function init(): NodeJS.Timeout | undefined;
         function getDataAuthors(): Promise<any>;
         function event(post: any): boolean;
         function blogTitleUrl(post: any): any;
@@ -148,6 +150,12 @@ declare namespace _default {
         let combine: BooleanConstructor;
         let caseStudies: BooleanConstructor;
         let reversed: BooleanConstructor;
+        namespace tag {
+            let type_3: ArrayConstructor;
+            export { type_3 as type };
+            let _default_7: null;
+            export { _default_7 as default };
+        }
     }
 }
 export default _default;

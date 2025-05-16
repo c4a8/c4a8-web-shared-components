@@ -44,14 +44,14 @@ const dynamicMeta = useDynamicPageMeta();
 
 const path = route.path.replace(/^\/[a-z]{2}\//, '/');
 const dataKey = 'post-' + path;
-const shareUrl = `${useRequestURL().origin}${path}`;
+const shareUrl = `${useRequestURL().origin}${route.path}`;
 
 const config = useRuntimeConfig();
 const postsMapping = config.public.postsMapping || {};
 
 const { data: post } = await useAsyncData(dataKey, () => {
   const collectionName = 'content_' + currentLocale.value;
-  const queryPath = postsMapping[route.path] || path;
+  const queryPath = postsMapping[route.path] || postsMapping[route.path.replace(/\/$/, '')] || path;
   const query = queryCollection(collectionName).path(queryPath);
 
   return query.first();
