@@ -76,6 +76,8 @@ export default {
       hideData: ['tags'],
       filesValue: [],
       dataAuthorsValue: null,
+      retryLimit: 5,
+      retryTimeout: 200,
     };
   },
   setup() {
@@ -242,6 +244,13 @@ export default {
   },
   methods: {
     init() {
+      if (this.retryLimit > 0 && !this.$refs.container)
+        return setTimeout(() => {
+          this.retryLimit--;
+
+          this.init();
+        }, this.retryTimeout);
+
       Tools.initSlickSlider(this.$refs.container, this.carouselOptions);
 
       if (!this.$refs.root) return;
