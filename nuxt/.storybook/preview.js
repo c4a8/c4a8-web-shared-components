@@ -41,6 +41,12 @@ const loadPlugins = () => {
     })
     .then(() => {
       console.debug('All libraries loaded successfully.');
+
+      // document.dispatchEvent(new CustomEvent(Events.CLIENT_ONLY_LIB_LOADED));
+
+      window.sharedComponents = {
+        clientOnlyLibLoaded: true,
+      };
     })
     .catch((error) => {
       console.error('Failed to load a library:', error);
