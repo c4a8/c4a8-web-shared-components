@@ -632,6 +632,7 @@ class Tools {
       date: dateValueOrFallback,
       moment: dateValueOrFallback,
       excerpt: meta?.customExcerpt || seo?.description,
+      headlineText: meta?.headline,
       ...filteredRest,
     };
   }

@@ -1,23 +1,22 @@
 <template>
-  <page-default>
-    <content>
-      <post-detail :post="post" :share-url="shareUrl" />
-      <contact
-        v-bind="contactInContent.infos"
-        :contact="contactInContent.infos"
-        :quote="contactInContent.quote"
-        spacing="mt-10"
-        v-if="contactInContent"
-      />
-      <text-image
-        v-bind="textImageTeaser"
-        :headline="null"
-        :headline-text="textImageTeaser.headline"
-        v-if="textImageTeaser"
-      />
-      <blog-recent v-bind="blogRecentData" v-if="showBlogRecent" />
-    </content>
-  </page-default>
+  <tracking />
+  <content>
+    <post-detail :post="post" :share-url="shareUrl" />
+    <contact
+      v-bind="contactInContent.infos"
+      :contact="contactInContent.infos"
+      :quote="contactInContent.quote"
+      spacing="mt-10"
+      v-if="contactInContent"
+    />
+    <text-image
+      v-bind="textImageTeaser"
+      :headline="null"
+      :headline-text="textImageTeaser.headline"
+      v-if="textImageTeaser"
+    />
+    <blog-recent v-bind="blogRecentData" v-if="showBlogRecent" />
+  </content>
 </template>
 <script setup>
 import {

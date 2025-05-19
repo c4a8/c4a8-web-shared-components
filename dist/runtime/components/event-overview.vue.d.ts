@@ -40,7 +40,6 @@ declare namespace _default {
         let overlap: BooleanConstructor;
         let limit: NumberConstructor;
         let maxLimit: NumberConstructor;
-        let url: StringConstructor;
         let moreUrl: StringConstructor;
         let order: ArrayConstructor;
     }

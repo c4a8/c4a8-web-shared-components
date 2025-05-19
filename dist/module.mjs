@@ -94,6 +94,13 @@ const module = defineNuxtModule({
     });
     extendPages((pages) => {
       pages.unshift({
+        name: "slug-events",
+        path: "/events/:slug(.*)*",
+        file: resolve("./runtime/pages/events/[...slug].vue")
+      });
+    });
+    extendPages((pages) => {
+      pages.unshift({
         name: "slug-all",
         path: "/:slug(.*)*",
         file: resolve("./runtime/pages/[...slug].vue")
