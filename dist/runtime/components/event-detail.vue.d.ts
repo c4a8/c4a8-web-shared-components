@@ -26,7 +26,6 @@ declare namespace _default {
             let _default_3: string;
             export { _default_3 as default };
         }
-        let content: StringConstructor;
         let form: ObjectConstructor;
         namespace formAdditionalFields {
             let type_4: (ObjectConstructor | ArrayConstructor)[];
@@ -50,8 +49,19 @@ declare namespace _default {
             let _default_6: string;
             export { _default_6 as default };
         }
+        let body: ObjectConstructor;
     }
     namespace computed {
+        function introData(): {
+            badge: any;
+            image: any;
+            moment: any;
+            time: any;
+            headlineText: any;
+            headlineLevel: () => any;
+            headlineClasses: () => string;
+            name: any;
+        };
         function headlineLevelComputed(): any;
         function headlineClassesComputed(): string;
         function stickyOptions(): string;

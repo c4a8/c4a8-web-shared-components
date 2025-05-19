@@ -16,7 +16,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['update:isAtEnd']);
+const emit = defineEmits(['update:isAtEnd', 'update:endPoint']);
 
 const endMarker = ref(null);
 
@@ -25,9 +25,12 @@ const checkEndPosition = () => {
 
   const windowOffsetTop = window.scrollY;
   const endPoint = endMarker.value.getBoundingClientRect().top + windowOffsetTop;
+  console.log('🚀 ~ checkEndPosition ~ endPoint:', endPoint);
   const isAtEnd = windowOffsetTop >= endPoint - props.stickyOffsetTop - props.stickyOffsetBottom;
+  console.log('🚀 ~ checkEndPosition ~ isAtEnd:', isAtEnd);
 
   emit('update:isAtEnd', isAtEnd);
+  emit('update:endPoint', endPoint);
 };
 
 onMounted(() => {

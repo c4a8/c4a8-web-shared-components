@@ -59,7 +59,7 @@ export default {
     },
     name: {
       type: Array,
-      default: () => [],
+      default: null,
     },
   },
 };

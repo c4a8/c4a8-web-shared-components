@@ -1,5 +1,9 @@
 declare namespace _default {
     let name: string;
+    function setup(): {
+        authors: any;
+        isAtEnd: any;
+    };
     function data(): {
         hasBack: boolean;
         stickyPosition: number;
