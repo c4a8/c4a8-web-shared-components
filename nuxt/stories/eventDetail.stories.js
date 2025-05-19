@@ -1,4 +1,4 @@
-import EventDetailComponent from '../../../components/event-detail';
+import EventDetailComponent from '../components/event-detail.vue';
 
 export default {
   component: EventDetailComponent,
