@@ -1,8 +1,8 @@
 <template>
   <template v-if="list">
-    <slot v-bind:list="list" />
+    <slot v-bind:list="list" :strategy="strategy" />
   </template>
-  <slot v-bind:list="dataList" v-else></slot>
+  <slot v-bind:list="dataList" :strategy="strategy" v-else></slot>
 </template>
 
 <script setup>
@@ -21,7 +21,7 @@ const props = defineProps({
   },
 });
 
-const { locale } = useI18n();
+const { locale, strategy } = useI18n();
 
 const localeQuery = computed(() => ({
   ...props.query,
@@ -45,6 +45,7 @@ const filterDuplicateItems = (items) => {
     }
 
     seen.set(normalizedPath, true);
+
     return true;
   });
 };

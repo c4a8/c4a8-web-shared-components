@@ -2,8 +2,8 @@
   <wrapper :class="classList" ref="root">
     <headline class="event-overview__headline" :text="headline" :level="headlineLevel" v-if="headline" />
     <transition-group name="event-overview__item">
-      <SharedContentList :data-list="eventsValue" :query="query" v-slot="{ list }" :key="0">
-        <markdown-files :list="list" v-slot="{ files }" :sort="sort" :limit="maxLimitValue">
+      <SharedContentList :data-list="eventsValue" :query="query" v-slot="{ list, strategy }" :key="0">
+        <markdown-files :list="list" v-slot="{ files }" :sort="sort" :strategy="strategy" :limit="maxLimitValue">
           <template v-if="updateFiles(files)">
             <template v-for="(event, index) in files" :key="index">
               <div :class="{ 'is-visible': isVisible(index), 'event-overview__item': true }">
@@ -127,7 +127,6 @@ export default {
     overlap: Boolean,
     limit: Number,
     maxLimit: Number,
-    url: String,
     moreUrl: String,
     order: Array,
   },
