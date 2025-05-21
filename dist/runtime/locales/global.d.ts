@@ -37,6 +37,30 @@ declare namespace _default {
         let imageCredits: string;
         let topicsOnPage: string;
         let noPostsFound: string;
+        namespace form {
+            namespace event {
+                export let submit: string;
+                export let firstname: string;
+                export let firstnameRequired: string;
+                export let lastname: string;
+                export let lastnameRequired: string;
+                let _function: string;
+                export { _function as function };
+                export let functionRequired: string;
+                export let company: string;
+                export let companyRequired: string;
+                export let email: string;
+                export let emailRequired: string;
+                export let participants: string;
+                export let participantsRequired: string;
+                export let date: string;
+                export let dateRequired: string;
+                export let message: string;
+                export let messageRequired: string;
+                export let dataprotection: string;
+                export let dataprotectionRequired: string;
+            }
+        }
     }
     namespace en {
         let tags_1: string;
@@ -113,6 +137,50 @@ declare namespace _default {
         export { topicsOnPage_1 as topicsOnPage };
         let noPostsFound_1: string;
         export { noPostsFound_1 as noPostsFound };
+        export namespace form_1 {
+            export namespace event_1 {
+                let submit_1: string;
+                export { submit_1 as submit };
+                let firstname_1: string;
+                export { firstname_1 as firstname };
+                let firstnameRequired_1: string;
+                export { firstnameRequired_1 as firstnameRequired };
+                let lastname_1: string;
+                export { lastname_1 as lastname };
+                let lastnameRequired_1: string;
+                export { lastnameRequired_1 as lastnameRequired };
+                let _function_1: string;
+                export { _function_1 as function };
+                let functionRequired_1: string;
+                export { functionRequired_1 as functionRequired };
+                let company_1: string;
+                export { company_1 as company };
+                let companyRequired_1: string;
+                export { companyRequired_1 as companyRequired };
+                let email_1: string;
+                export { email_1 as email };
+                let emailRequired_1: string;
+                export { emailRequired_1 as emailRequired };
+                let participants_1: string;
+                export { participants_1 as participants };
+                let participantsRequired_1: string;
+                export { participantsRequired_1 as participantsRequired };
+                let date_1: string;
+                export { date_1 as date };
+                let dateRequired_1: string;
+                export { dateRequired_1 as dateRequired };
+                let message_1: string;
+                export { message_1 as message };
+                let messageRequired_1: string;
+                export { messageRequired_1 as messageRequired };
+                let dataprotection_1: string;
+                export { dataprotection_1 as dataprotection };
+                let dataprotectionRequired_1: string;
+                export { dataprotectionRequired_1 as dataprotectionRequired };
+            }
+            export { event_1 as event };
+        }
+        export { form_1 as form };
     }
     namespace es {
         let tags_2: string;
@@ -189,6 +257,50 @@ declare namespace _default {
         export { topicsOnPage_2 as topicsOnPage };
         let noPostsFound_2: string;
         export { noPostsFound_2 as noPostsFound };
+        export namespace form_2 {
+            export namespace event_2 {
+                let submit_2: string;
+                export { submit_2 as submit };
+                let firstname_2: string;
+                export { firstname_2 as firstname };
+                let firstnameRequired_2: string;
+                export { firstnameRequired_2 as firstnameRequired };
+                let lastname_2: string;
+                export { lastname_2 as lastname };
+                let lastnameRequired_2: string;
+                export { lastnameRequired_2 as lastnameRequired };
+                let _function_2: string;
+                export { _function_2 as function };
+                let functionRequired_2: string;
+                export { functionRequired_2 as functionRequired };
+                let company_2: string;
+                export { company_2 as company };
+                let companyRequired_2: string;
+                export { companyRequired_2 as companyRequired };
+                let email_2: string;
+                export { email_2 as email };
+                let emailRequired_2: string;
+                export { emailRequired_2 as emailRequired };
+                let participants_2: string;
+                export { participants_2 as participants };
+                let participantsRequired_2: string;
+                export { participantsRequired_2 as participantsRequired };
+                let date_2: string;
+                export { date_2 as date };
+                let dateRequired_2: string;
+                export { dateRequired_2 as dateRequired };
+                let message_2: string;
+                export { message_2 as message };
+                let messageRequired_2: string;
+                export { messageRequired_2 as messageRequired };
+                let dataprotection_2: string;
+                export { dataprotection_2 as dataprotection };
+                let dataprotectionRequired_2: string;
+                export { dataprotectionRequired_2 as dataprotectionRequired };
+            }
+            export { event_2 as event };
+        }
+        export { form_2 as form };
     }
 }
 export default _default;

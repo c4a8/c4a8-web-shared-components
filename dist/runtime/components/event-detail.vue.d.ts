@@ -13,7 +13,7 @@ declare namespace _default {
             export { _default_1 as default };
         }
         let headlineText: StringConstructor;
-        let name: ArrayConstructor;
+        let author: ArrayConstructor;
         namespace headlineLevel {
             let type_2: StringConstructor;
             export { type_2 as type };
@@ -27,27 +27,15 @@ declare namespace _default {
             export { _default_3 as default };
         }
         let form: ObjectConstructor;
-        namespace formAdditionalFields {
-            let type_4: (ObjectConstructor | ArrayConstructor)[];
-            export { type_4 as type };
-            let _default_4: null;
-            export { _default_4 as default };
-        }
-        namespace formReplaceValue {
-            let type_5: (ObjectConstructor | StringConstructor | NumberConstructor)[];
-            export { type_5 as type };
-            let _default_5: null;
-            export { _default_5 as default };
-        }
         let image: ObjectConstructor;
         let badge: ObjectConstructor;
         let moment: StringConstructor;
         let time: StringConstructor;
         namespace lang {
-            let type_6: StringConstructor;
-            export { type_6 as type };
-            let _default_6: string;
-            export { _default_6 as default };
+            let type_4: StringConstructor;
+            export { type_4 as type };
+            let _default_4: string;
+            export { _default_4 as default };
         }
         let body: ObjectConstructor;
     }

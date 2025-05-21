@@ -23,6 +23,7 @@ declare namespace _default {
     function created(): void;
     function mounted(): void;
     namespace methods {
+        function getTranslatedText(text: any): any;
         function hasError(field: any): any;
         function getOptions(field: any): any;
         function getBlockClassList(block: any): string[];
@@ -76,6 +77,11 @@ declare namespace _default {
         namespace hasAnimation {
             let _default_8: null;
             export { _default_8 as default };
+        }
+        namespace useTranslation {
+            export let type: BooleanConstructor;
+            let _default_9: boolean;
+            export { _default_9 as default };
         }
     }
 }
