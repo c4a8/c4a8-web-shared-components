@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref, onUnmounted, computed } from 'vue';
+import { onMounted, ref, onUnmounted, computed, watch } from 'vue';
 
 const props = defineProps({
   stickyOffsetTop: {

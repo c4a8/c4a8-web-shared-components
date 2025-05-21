@@ -97,10 +97,12 @@ export default {
   setup() {
     const { authors } = useAuthors();
     const isAtEnd = ref(false);
+    const endPoint = ref(null);
 
     return {
       authors,
       isAtEnd,
+      endPoint,
     };
   },
   data() {
