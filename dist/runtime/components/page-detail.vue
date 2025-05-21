@@ -27,9 +27,7 @@
           </sticky-block>
         </div>
         <div class="page-detail__content page-detail__animation-3 col-md-11 offset-lg-1 col-lg-6">
-          <div class="page-detail__description has-no-border richtext">
-            <slot name="body"></slot>
-          </div>
+          <slot name="body"></slot>
         </div>
       </div>
       <!-- <div class="page-detail__intro" ref="intro">
