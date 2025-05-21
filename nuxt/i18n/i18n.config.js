@@ -7,4 +7,7 @@ export default defineI18nConfig(() => ({
   locale: 'de',
   fallbackLocale: 'en',
   messages: translations,
+  bundle: {
+    optimizeTranslationDirective: false,
+  },
 }));

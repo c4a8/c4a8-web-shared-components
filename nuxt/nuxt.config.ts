@@ -8,6 +8,10 @@ declare module 'nuxt/config' {
       [key: string]: any;
     };
     i18n?: {
+      bundle?: {
+        optimizeTranslationDirective?: boolean;
+        [key: string]: any;
+      };
       detectBrowserLanguage?: boolean;
       locale?: string;
       legacy?: boolean;
@@ -54,6 +58,9 @@ export default defineNuxtConfig({
     port: 6006,
   },
   i18n: {
+    bundle: {
+      optimizeTranslationDirective: false,
+    },
     detectBrowserLanguage: false,
     locale: 'de',
     legacy: false,
