@@ -16,21 +16,34 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['update:isAtEnd', 'update:endPoint']);
+const emit = defineEmits(['update:isAtEnd', 'update:endPoint', 'update:distanceToEnd']);
 
 const endMarker = ref(null);
 
 const checkEndPosition = () => {
   if (!endMarker.value) return;
 
-  const windowOffsetTop = window.scrollY;
-  const endPoint = endMarker.value.getBoundingClientRect().top + windowOffsetTop;
-  console.log('🚀 ~ checkEndPosition ~ endPoint:', endPoint);
-  const isAtEnd = windowOffsetTop >= endPoint - props.stickyOffsetTop - props.stickyOffsetBottom;
-  console.log('🚀 ~ checkEndPosition ~ isAtEnd:', isAtEnd);
+  // console.group();
+  const scrollY = window.scrollY;
+  const endTopPosition = endMarker.value.getBoundingClientRect().top + scrollY;
+  // console.log(
+  //   '🚀 ~ checkEndPosition ~ endMarker.value.getBoundingClientRect().top:',
+  //   endMarker.value.getBoundingClientRect().top
+  // );
+  const isAtEnd = scrollY >= endTopPosition - props.stickyOffsetTop - props.stickyOffsetBottom;
+  // console.log('🚀 ~ checkEndPosition ~ isAtEnd:', isAtEnd);
+
+  const endPoint = endTopPosition - props.stickyOffsetTop - props.stickyOffsetBottom;
+  const distanceToEnd = endTopPosition - props.stickyOffsetTop - props.stickyOffsetBottom - scrollY;
+  // console.log('🚀 ~ checkEndPosition ~ scrollY:', scrollY);
+  // console.log('🚀 ~ checkEndPosition ~ endPoint:', endPoint);
+  // console.log('🚀 ~ checkEndPosition ~ distanceToEnd:', distanceToEnd);
+
+  // console.groupEnd();
 
   emit('update:isAtEnd', isAtEnd);
   emit('update:endPoint', endPoint);
+  emit('update:distanceToEnd', distanceToEnd);
 };
 
 onMounted(() => {

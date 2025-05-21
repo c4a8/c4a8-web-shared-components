@@ -56,6 +56,7 @@
           <sticky-block
             v-if="shouldShowStickyBlocks"
             v-model:is-at-end="isAtEnd"
+            v-model:end-point="endPoint"
             class="post__sticky-bar"
             :sticky-offset-top="stickyOffsetTop"
             :sticky-offset-bottom="20"
@@ -69,8 +70,9 @@
           <sticky-block-end
             v-if="shouldShowStickyBlocks"
             v-model:is-at-end="isAtEnd"
+            v-model:end-point="endPoint"
             :sticky-offset-top="stickyOffsetTop"
-            :sticky-offset-bottom="20"
+            :sticky-offset-bottom="60"
           />
           <div class="post-detail__tags mt-5">
             <tag v-for="(tag, index) in normalizedPost.tags" :key="index" :tag="tag" variant="small" />

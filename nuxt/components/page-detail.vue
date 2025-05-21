@@ -24,14 +24,41 @@
             :sticky-top-position="stickyTopPosition"
           >
             <back classes="page-detail__back page-detail__animation-3" />
-            <div style="position: fixed; top: 100px; left: 0; right: 0; bottom: 0; z-index: 100">
+            <div
+              style="
+                position: fixed;
+                top: 100px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 100;
+                background-color: white;
+                width: 250px;
+                height: 300px;
+              "
+            >
               isAtEnd : {{ isAtEnd }}<br />
               stickyUnstuckOffsetTop: {{ stickyUnstuckOffsetTop }}<br />
               stickyTopPosition: {{ stickyTopPosition }}<br />
               endPoint: {{ endPoint }}<br />
+              scrollY: {{ debugScrollY }}<br />
+              innerHeight: {{ debugInnerHeight }}<br />
+              top: {{ stickyOffsetTop + (endPoint - debugScrollY) }}<br />
             </div>
+
             <slot name="intro"></slot>
           </sticky-block>
+          <div
+            :style="{
+              position: 'fixed',
+              top: `${stickyOffsetTop + (endPoint - debugScrollY)}px`,
+              left: '300px',
+              zIndex: 100,
+              backgroundColor: `${isAtEnd ? 'red' : 'blue'}`,
+              width: '300px',
+              height: '300px',
+            }"
+          ></div>
         </div>
         <div class="page-detail__content page-detail__animation-3 col-md-11 offset-lg-1 col-lg-6">
           <div class="page-detail__description has-no-border richtext">
@@ -92,6 +119,8 @@ export default {
       stickyOffsetTop: 200,
       stickyUnstuckOffsetTop: 0,
       stickyTopPosition: null,
+      debugScrollY: 0,
+      debugInnerHeight: 0,
     };
   },
   props: {
@@ -126,30 +155,33 @@ export default {
         this.getDOMElement('.page-detail__intro-content .page-detail__headline')?.offsetHeight || 0;
 
       this.stickyPosition = badgeHeight + detailsHeight + headlineHeight - heightOffset;
-      console.log('############ 🚀 ~ setStickyPosition ~ this.stickyPosition:', this.stickyPosition);
+      // console.log('############ 🚀 ~ setStickyPosition ~ this.stickyPosition:', this.stickyPosition);
     },
     isInViewport() {
       return Tools.isInViewportPercent(this.$refs.root, this.percentageInViewport);
     },
     setShapePosition() {
+      this.debugScrollY = window.scrollY;
+      this.debugInnerHeight = window.innerHeight;
+
       if (!this.hasShape || !this.isInViewport()) return;
       if (!Tools.isUpperBreakpoint()) return this.resetShape();
 
       if (this.isStickyShapeEnd()) {
-        console.log('Sticky shape end reached');
+        // console.log('Sticky shape end reached');
 
         this.handleStickyShapeEnd();
       } else if (this.isSticky()) {
-        console.log('Sticky right now');
+        // console.log('Sticky right now');
 
         this.$refs.shape.classList.add(State.STICKY);
         this.$refs.shape.style.top = -this.stickyPosition + 'px';
-        console.log('🚀 ~ setShapePosition ~ this.$refs.shape.style.top:', this.$refs.shape.style.top);
+        // console.log('🚀 ~ setShapePosition ~ this.$refs.shape.style.top:', this.$refs.shape.style.top);
 
         // this.stickyTopPosition = -this.stickyPosition + 'px';
         this.isStickyEndReached = false;
       } else {
-        console.log('Not sticky right now');
+        // console.log('Not sticky right now');
 
         this.resetShape();
       }
@@ -157,7 +189,7 @@ export default {
     handleStickyShapeEnd() {
       // if (this.isStickyEnd()) {
       let relativePostion = this.getRelativePosition();
-      console.log('🚀 ~ handleStickyShapeEnd ~ relativePostion:', relativePostion);
+      // console.log('🚀 ~ handleStickyShapeEnd ~ relativePostion:', relativePostion);
 
       // const difference = Math.abs(relativePostion);
       // console.log('🚀 ~ handleStickyShapeEnd ~ difference:', difference);
@@ -180,7 +212,7 @@ export default {
 
       // this.stickyTopPosition = -this.stickyPosition - this.getRelativePosition() + 'px';
 
-      console.log('🚀 ~ handleStickyShapeEnd ~ this.$refs.shape.style.top:', this.$refs.shape.style.top);
+      // console.log('🚀 ~ handleStickyShapeEnd ~ this.$refs.shape.style.top:', this.$refs.shape.style.top);
 
       this.isStickyEndReached = true;
       // }
@@ -190,21 +222,21 @@ export default {
     },
     getRelativePosition() {
       const stickyBlock = this.getStickyBlock();
-      console.log('🚀 ~ getRelativePosition ~ stickyBlock:', stickyBlock);
+      // console.log('🚀 ~ getRelativePosition ~ stickyBlock:', stickyBlock);
 
       // stickyBlock.style.position = '';
 
       const stickyBlockTop = stickyBlock?.style.top.replace('px', '') || 0;
 
       // stickyBlock.style.position = 'fixed';
-      console.log('🚀 ~ getRelativePosition ~ stickyBlockTop:', stickyBlockTop);
-      console.log('🚀 ~ getRelativePosition ~ this.stickyOffsetTop:', this.stickyOffsetTop);
-      console.log(
-        '🚀 ~ getRelativePosition ~ stickyBlockTop',
-        stickyBlockTop >= 0
-          ? this.stickyOffsetTop - Math.abs(stickyBlockTop)
-          : this.stickyOffsetTop - parseFloat(stickyBlockTop)
-      );
+      // console.log('🚀 ~ getRelativePosition ~ stickyBlockTop:', stickyBlockTop);
+      // console.log('🚀 ~ getRelativePosition ~ this.stickyOffsetTop:', this.stickyOffsetTop);
+      // console.log(
+      //   '🚀 ~ getRelativePosition ~ stickyBlockTop',
+      //   stickyBlockTop >= 0
+      //     ? this.stickyOffsetTop - Math.abs(stickyBlockTop)
+      //     : this.stickyOffsetTop - parseFloat(stickyBlockTop)
+      // );
       return stickyBlockTop >= 0
         ? this.stickyOffsetTop - Math.abs(stickyBlockTop)
         : this.stickyOffsetTop - parseFloat(stickyBlockTop);
@@ -237,7 +269,7 @@ export default {
     },
     setStickyUnstuckOffsetTop() {
       this.stickyUnstuckOffsetTop = window.innerHeight;
-      console.log('🚀 ~ setStickyUnstuckOffsetTop ~ this.stickyUnstuckOffsetTop:', this.stickyUnstuckOffsetTop);
+      // console.log('🚀 ~ setStickyUnstuckOffsetTop ~ this.stickyUnstuckOffsetTop:', this.stickyUnstuckOffsetTop);
     },
     handleScroll() {
       this.setShapePosition();
