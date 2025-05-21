@@ -2,13 +2,6 @@
   <tracking />
   <content>
     <event-detail v-bind="eventNormalized" />
-    <!-- <event-detail
-    v-bind="page"
-    :headline="page?.title"
-    :name="page?.author"
-    :form-additional-fields="additionalFields"
-    :form-replace-value="page?.eventid"
-  /> -->
   </content>
 </template>
 <script setup>
@@ -16,11 +9,9 @@ import { useRoute, useAsyncData, queryCollection, useNuxtApp, useDynamicPageMeta
 import { computed } from 'vue';
 
 import Tools from '../../utils/tools.js';
+import EventForm from '../../utils/data/event-form.js';
 
 const route = useRoute();
-
-const { t, strategy } = useI18n();
-
 const nuxtApp = useNuxtApp();
 const currentLocale = nuxtApp.$i18n.locale;
 
@@ -36,50 +27,45 @@ const { data: event } = await useAsyncData(dataKey, () => {
   return query.first();
 });
 
+const getFormular = (event) => {
+  const additionalFields = [
+    {
+      type: 'hidden',
+      id: 'eventid',
+      value: '#form-field-replace-value#',
+    },
+  ];
+
+  const replaceValue = event?.eventid || 'no-event-id';
+
+  return event?.form
+    ? { form: { ...event.form, fields: [...event.form.fields, ...additionalFields] }, replaceValue }
+    : {
+        form: {
+          ...EventForm,
+          action: `/${currentLocale.value}${EventForm.action}`,
+          fields: [...EventForm.fields, ...additionalFields],
+        },
+        replaceValue,
+        useTranslation: true,
+      };
+};
+
 const eventNormalized = computed(() => {
   if (!event.value) return null;
 
   const normalizedEvent = Tools.normalizeMarkdownItem(event.value);
 
+  const form = normalizedEvent?.hideForm ? null : getFormular(normalizedEvent);
   return {
     ...normalizedEvent,
+    form,
     body: {
       ...normalizedEvent.body,
       value: Tools.applyKramdownAttrs(normalizedEvent.body.value),
     },
   };
 });
-
-// const additionalFields = [
-//   {
-//     type: 'hidden',
-//     id: 'eventid',
-//     value: '#form-field-replace-value#',
-//   },
-// ];
-
-// const page = ref({});
-// const eventForm = ref(null);
-
-// const route = useRoute();
-// const cleanPath = route.path.substring(0, route.path.length - 1);
-
-// // TODO adjust this so it works with multiple collections not just events
-// const { data } = await useAsyncData('events', () =>
-//   queryContent('events')
-//     .where({
-//       _path: cleanPath,
-//     })
-//     .findOne()
-// );
-
-// if (data.value) {
-//   page.value = data.value;
-
-//   if (data.value.hideForm) {
-//     eventForm.value = data.value.form;
-//   }
-// }
 
 dynamicMeta.value = {
   footer: event.value?.meta?.footer ?? { noMargin: true },

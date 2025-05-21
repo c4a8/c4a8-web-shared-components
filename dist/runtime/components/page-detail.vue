@@ -1,6 +1,6 @@
 <template>
   <div class="page-detail" :class="{ 'page-detail--has-back': hasBack }" ref="root">
-    <div v-if="$slots.shape" class="page-detail__shape page-detail__animation-3" ref="shape" style="aaadisplay: none">
+    <div v-if="$slots.shape" class="page-detail__shape page-detail__animation-3" ref="shape">
       <slot name="shape"></slot>
       <div class="page-detail__shape-corner">
         <div class="page-detail__shape-corner-desktop">
@@ -28,6 +28,7 @@
         </div>
         <div class="page-detail__content page-detail__animation-3 col-md-11 offset-lg-1 col-lg-6">
           <slot name="body"></slot>
+          <slot name="formular"></slot>
         </div>
       </div>
       <!-- <div class="page-detail__intro" ref="intro">

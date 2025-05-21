@@ -35,7 +35,7 @@
           </template>
           <div :class="formClassList">
             <cta
-              :text="form.ctaText"
+              :text="getTranslatedText(form.ctaText)"
               type="submit"
               :button="true"
               :skin="form.cta.skin"
@@ -116,6 +116,16 @@ export default {
       let tempBlock = [];
 
       this.form.fields.forEach((field) => {
+        if (this.useTranslation) {
+          if (field.label) {
+            field.label = this.$t(field.label);
+          }
+
+          if (field.requiredMsg) {
+            field.requiredMsg = this.$t(field.requiredMsg);
+          }
+        }
+
         if (field.rowStart || field.rowEnd) {
           if (field.rowStart) {
             blocks[index] = tempBlock;
@@ -160,6 +170,9 @@ export default {
     UtilityAnimation.init([this.$refs.headline]);
   },
   methods: {
+    getTranslatedText(text) {
+      return this.useTranslation ? this.$t(text) : text;
+    },
     hasError(field) {
       return this.errors[field.id];
     },
@@ -303,6 +316,10 @@ export default {
     },
     hasAnimation: {
       default: null,
+    },
+    useTranslation: {
+      type: Boolean,
+      default: false,
     },
   },
 };

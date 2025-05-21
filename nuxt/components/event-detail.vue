@@ -24,6 +24,9 @@
     <template #intro>
       <event-detail-intro v-bind="introData"></event-detail-intro>
     </template>
+    <template #formular v-if="form">
+      <formular v-bind="form" :has-animation="true" class="space-top-3 space-top-lg-1" />
+    </template>
   </page-detail>
 </template>
 <script>
@@ -39,7 +42,7 @@ export default {
       default: 'var(--color-event-detail-shape)',
     },
     headlineText: String,
-    name: Array,
+    author: Array,
     headlineLevel: {
       type: String,
       default: 'h1',
@@ -49,14 +52,6 @@ export default {
       default: 'bold',
     },
     form: Object,
-    formAdditionalFields: {
-      type: [Object, Array],
-      default: null,
-    },
-    formReplaceValue: {
-      type: [String, Number, Object],
-      default: null,
-    },
     image: Object,
     badge: Object,
     moment: String,
@@ -77,7 +72,7 @@ export default {
         headlineText: this.headlineText,
         headlineLevel: this.headlineLevelComputed,
         headlineClasses: this.headlineClassesComputed,
-        name: this.name,
+        name: this.author,
       };
     },
     headlineLevelComputed() {
