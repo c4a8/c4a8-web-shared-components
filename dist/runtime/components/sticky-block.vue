@@ -41,10 +41,6 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
-  stickyTopPosition: {
-    type: Number,
-    default: null,
-  },
   endPoint: {
     type: Number,
     default: null,
@@ -81,8 +77,6 @@ const calculateTopPositionAtEnd = (offsetY = window.scrollY) => {
 };
 
 const updateStickyBlock = () => {
-  // console.log('updateStickyBlock', props.isAtEnd + '###' + props.endPoint);
-
   if (!stickyBlock.value || !startMarker.value) return;
 
   const scrollY = window.scrollY;
@@ -91,17 +85,6 @@ const updateStickyBlock = () => {
   const parentOffsetLeft = startMarker.value.getBoundingClientRect().left;
 
   const stickyHeight = stickyBlock.value.offsetHeight;
-
-  // if (props.stickyTopPosition !== null) {
-  //   stickyStyles.value = {
-  //     position: 'fixed',
-  //     left: `${parentOffsetLeft}px`,
-  //     width: `${parentWidth}px`,
-  //     top: props.stickyTopPosition,
-  //   };
-
-  //   return;
-  // }
 
   isKilled.value = props.breakpoint ? window.innerWidth <= resolutionsList[props.breakpoint] : false;
 
@@ -135,31 +118,14 @@ const updateStickyBlock = () => {
       let topPosition = `${props.stickyOffsetTop}px`;
 
       if (props.isAtEnd) {
-        // console.log(
-        //   '-------------------------- ~ updateStickyBlock ~ lastScrollPosition.value:',
-        //   lastScrollPosition.value
-        // );
         if (lastScrollPosition.value === null) {
-          console.log('###############', scrollY);
-          console.log('############### real endpoint', props.endPoint - scrollY);
-
           if (scrollPosition.value === 0) {
-            console.log('###############', props.endPoint);
-
-            // scrollPosition.value = windowOffsetTop;
-            // scrollPosition.value =
-            //   props.endPoint - window.innerHeight - window.scrollY + props.stickyOffsetTop - props.stickyOffsetBottom;
-            // scrollPosition.value = props.endPoint - window.innerHeight; // - props.stickyOffsetBottom;
             scrollPosition.value = props.endPoint;
-            console.log('🚀 ~ updateStickyBlock ~ scrollPosition.value:', scrollPosition.value);
-            // scrollPosition.value = props.stickyOffsetTop;
           }
 
           lastScrollPosition.value = scrollPosition.value;
-          // console.log('++++++++++++++🚀 ~ updateStickyBlock ~ scrollPosition.value:', scrollPosition.value);
         }
 
-        // console.log('SET THE TOOP AT END');
         topPosition = `${calculateTopPositionAtEnd()}px`;
       } else {
         lastScrollPosition.value = null;
@@ -199,14 +165,6 @@ onUnmounted(() => {
   window.removeEventListener('resize', updateStickyBlock);
   window.removeEventListener('scroll', updateStickyBlock);
 });
-
-// // Add watchers for props changes
-// watch(
-//   () => props.isAtEnd,
-//   () => {
-//     updateStickyBlock();
-//   }
-// );
 
 watch(
   () => props.endPoint,
