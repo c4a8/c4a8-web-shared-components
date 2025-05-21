@@ -3,14 +3,16 @@ declare namespace _default {
     function setup(): {
         authors: any;
         isAtEnd: any;
+        endPoint: any;
     };
     function data(): {
         hasBack: boolean;
         stickyPosition: number;
-        isStickyEndReached: boolean;
         hsStickyBlockOptions: null;
         loadingDelay: number;
         percentageInViewport: number;
+        stickyOffsetTop: number;
+        stickyUnstuckOffsetTop: number;
     };
     namespace props {
         namespace detailColor {
@@ -26,17 +28,16 @@ declare namespace _default {
     }
     namespace methods {
         function showBackButton(): void;
+        function getDOMElement(selector: any): any;
         function setStickyPosition(): void;
         function isInViewport(): boolean;
         function setShapePosition(): void;
         function handleStickyShapeEnd(): void;
+        function getStickyBlock(): any;
         function getRelativePosition(): number;
         function resetShape(): void;
         function isSticky(): boolean;
-        function isStickyShapeEnd(): boolean;
-        function getHsStickyBlockOptions(): any;
-        function getStickyOffsetTop(): any;
-        function isStickyEnd(): boolean;
+        function setStickyUnstuckOffsetTop(): void;
         function handleScroll(): void;
         function handleResize(): void;
     }
