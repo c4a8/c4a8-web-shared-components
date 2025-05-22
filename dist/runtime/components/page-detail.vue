@@ -86,6 +86,7 @@ export default {
       stickyOffsetTop: 200,
       stickyUnstuckOffsetTop: 0,
       isLoading: true,
+      loadingDelay: 100,
     };
   },
   props: {
@@ -177,12 +178,14 @@ export default {
     this.setShapePosition();
     this.setStickyUnstuckOffsetTop();
 
-    this.store.setPageIsLoaded(true);
-
     document.addEventListener('scroll', this.handleScroll);
     document.addEventListener('resize', this.handleResize);
 
-    this.isLoading = false;
+    this.store.setPageIsLoaded(true);
+
+    setTimeout(() => {
+      this.isLoading = false;
+    }, this.loadingDelay);
   },
   beforeUnmount() {
     document.removeEventListener('scroll', this.handleScroll);
