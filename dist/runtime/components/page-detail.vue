@@ -1,5 +1,5 @@
 <template>
-  <div class="page-detail" :class="{ 'page-detail--has-back': hasBack }" ref="root">
+  <div class="page-detail" :class="{ 'page-detail--has-back': hasBack, [State.LOADING]: isLoading }" ref="root">
     <div v-if="$slots.shape" class="page-detail__shape page-detail__animation-3" ref="shape">
       <slot name="shape"></slot>
       <div class="page-detail__shape-corner">
@@ -57,6 +57,7 @@
 import State from '../utils/state.js';
 import Tools from '../utils/tools.js';
 
+import { useAppStore } from '../stores/app';
 import useAuthors from '../composables/useAuthors.js';
 import { ref } from 'vue';
 
@@ -66,11 +67,14 @@ export default {
     const { authors } = useAuthors();
     const isAtEnd = ref(false);
     const endPoint = ref(null);
+    const store = useAppStore();
 
     return {
       authors,
       isAtEnd,
       endPoint,
+      State,
+      store,
     };
   },
   data() {
@@ -78,10 +82,10 @@ export default {
       hasBack: false,
       stickyPosition: 0,
       hsStickyBlockOptions: null,
-      loadingDelay: 300,
       percentageInViewport: 1,
       stickyOffsetTop: 200,
       stickyUnstuckOffsetTop: 0,
+      isLoading: true,
     };
   },
   props: {
@@ -173,8 +177,12 @@ export default {
     this.setShapePosition();
     this.setStickyUnstuckOffsetTop();
 
+    this.store.setPageIsLoaded(true);
+
     document.addEventListener('scroll', this.handleScroll);
     document.addEventListener('resize', this.handleResize);
+
+    this.isLoading = false;
   },
   beforeUnmount() {
     document.removeEventListener('scroll', this.handleScroll);
