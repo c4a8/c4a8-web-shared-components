@@ -6,7 +6,7 @@ export const useAppStore = defineStore('app', {
   state: () => ({
     loading: false,
     hero: {},
-    page: {},
+    page: { isLoaded: false },
     header: {
       isScrolled: false,
       isLight: false,
@@ -52,6 +52,7 @@ export const useAppStore = defineStore('app', {
     getHeaderSearch: (state) => state.header.search,
     getHeaderTheme: (state) => state.header.theme,
     getHeaderSecondaryNavigation: (state) => state.header.showSecondaryNavigation,
+    getPageIsLoaded: (state) => state.page.isLoaded,
   },
   actions: {
     setLoading(loading) {
@@ -126,6 +127,9 @@ export const useAppStore = defineStore('app', {
         theme: null,
         showSecondaryNavigation: false,
       };
+    },
+    setPageIsLoaded(isLoaded) {
+      this.page.isLoaded = isLoaded;
     },
   },
 });

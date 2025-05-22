@@ -1,6 +1,6 @@
 <template>
   <tracking />
-  <div id="app" :class="classes">
+  <div id="app" :class="classList">
     <slot />
   </div>
 </template>
@@ -9,6 +9,7 @@
 import Anchor from '../utils/anchor.js';
 import Modal from '../utils/modal.js';
 import Events from '../utils/events.js';
+import State from '../utils/state.js';
 
 export default {
   tagName: 'global-app',
@@ -55,8 +56,17 @@ export default {
       document.dispatchEvent(customEvent);
     },
   },
+  computed: {
+    classList() {
+      return ['global-app', ...this.classes, this.isLoading && State.LOADING];
+    },
+  },
   props: {
     classes: Array,
+    isLoading: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -65,3 +75,9 @@ export default {
   },
 };
 </script>
+<style>
+.global-app.is-loading main,
+.global-app.is-loading footer {
+  opacity: 0;
+}
+</style>

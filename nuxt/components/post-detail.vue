@@ -89,6 +89,7 @@
 
 <script>
 import Tools from '../utils/tools.js';
+import { useAppStore } from '../stores/app';
 import useAuthors from '../composables/useAuthors.js';
 import { ref } from 'vue';
 
@@ -98,11 +99,13 @@ export default {
     const { authors } = useAuthors();
     const isAtEnd = ref(false);
     const endPoint = ref(null);
+    const store = useAppStore();
 
     return {
       authors,
       isAtEnd,
       endPoint,
+      store,
     };
   },
   data() {
@@ -114,6 +117,8 @@ export default {
     this.checkStickyBlocks();
 
     window.addEventListener('resize', this.checkStickyBlocks);
+
+    this.store.setPageIsLoaded(true);
   },
   unmounted() {
     window.removeEventListener('resize', this.checkStickyBlocks);

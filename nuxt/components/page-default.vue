@@ -1,5 +1,5 @@
 <template>
-  <global-app :classes="computedClass">
+  <global-app :classes="computedClass" :is-loading="isLoading">
     <v-header v-bind="headerDataSelected" :lang="langDataSelected" v-if="headerDataSelected"></v-header>
     <slot />
     <v-footer v-bind="footerDataSelected" :lang="langDataSelected" v-if="footerDataSelected"></v-footer>
@@ -7,7 +7,16 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { useRoute } from '#imports';
+import { computed, ref, onMounted } from 'vue';
+
+import { useAppStore } from '../stores/app';
+
+const store = useAppStore();
+const route = useRoute();
+const isLoadingRoute = route.name?.startsWith('slug-posts__');
+
+const isLoading = ref(isLoadingRoute ? true : false);
 
 const props = defineProps({
   headerData: Object,
@@ -44,5 +53,18 @@ const computedClass = computed(() => {
     { 'has-back-to-top': props.hasBackToTop },
     { 'has-fab-hint': props.hasFabHint },
   ];
+});
+
+onMounted(async () => {
+  if (isLoadingRoute) {
+    watch(
+      () => store.getPageIsLoaded,
+      (isLoaded) => {
+        if (isLoaded) {
+          isLoading.value = false;
+        }
+      }
+    );
+  }
 });
 </script>

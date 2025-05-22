@@ -3,6 +3,7 @@ declare namespace _default {
     function setup(): {
         authors: any;
         isAtEnd: import("vue").Ref<boolean, boolean>;
+        endPoint: import("vue").Ref<null, null>;
     };
     function data(): {
         shouldShowStickyBlocks: boolean;

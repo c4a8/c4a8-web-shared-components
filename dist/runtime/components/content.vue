@@ -1,5 +1,5 @@
 <template>
-  <main class="page-content" aria-label="Content">
+  <main class="page-content" :class="classes" aria-label="Content">
     <slot />
   </main>
   <slot name="below" />
@@ -8,6 +8,11 @@
 <script>
 export default {
   tagName: 'content',
-  props: {},
+  props: {
+    classes: {
+      type: String,
+      default: null,
+    },
+  },
 };
 </script>

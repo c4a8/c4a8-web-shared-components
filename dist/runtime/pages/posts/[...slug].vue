@@ -54,6 +54,12 @@ const { data: post } = await useAsyncData(dataKey, () => {
   const query = queryCollection(collectionName).path(queryPath);
 
   return query.first();
+  // return new Promise((resolve) => {
+  //   setTimeout(async () => {
+  //     const result = await query.first();
+  //     resolve(result);
+  //   }, 7000);
+  // });
 });
 
 const contactInContent = computed(() => post.value?.meta?.contactInContent);

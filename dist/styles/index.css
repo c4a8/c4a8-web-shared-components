@@ -37452,6 +37452,10 @@ p {
   max-width: 20rem !important;
 }
 
+.page-content.content--is-full-screen {
+  min-height: 100vh;
+}
+
 @media (min-width: 992px) {
   .is--desktop {
     display: block;
