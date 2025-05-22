@@ -8,7 +8,7 @@
 
 <script setup>
 import { useRoute } from '#imports';
-import { computed, ref, onMounted } from 'vue';
+import { computed, ref, onMounted, watch } from 'vue';
 
 import { useAppStore } from '../stores/app';
 
