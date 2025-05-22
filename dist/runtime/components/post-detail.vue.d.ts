@@ -935,7 +935,7 @@ declare namespace _default {
         function asideNavValue(): any;
         function enhancedPost(): {
             body: any;
-        };
+        } | null;
         function normalizedPost(): {
             url: any;
             date: any;

@@ -136,6 +136,8 @@ export default {
       return this.post?.meta?.asideNav || null;
     },
     enhancedPost() {
+      if (!this.normalizedPost) return null;
+
       return {
         ...this.normalizedPost,
         body: {
