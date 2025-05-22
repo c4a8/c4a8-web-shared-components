@@ -1,7 +1,9 @@
 export const useAppStore: import("pinia").StoreDefinition<"app", {
     loading: boolean;
     hero: {};
-    page: {};
+    page: {
+        isLoaded: boolean;
+    };
     header: {
         isScrolled: boolean;
         isLight: boolean;
@@ -22,7 +24,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     getLoading: (state: {
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -42,7 +46,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     } & import("pinia").PiniaCustomStateProperties<{
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -63,7 +69,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     getHero: (state: {
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -83,7 +91,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     } & import("pinia").PiniaCustomStateProperties<{
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -104,7 +114,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     getPage: (state: {
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -124,7 +136,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     } & import("pinia").PiniaCustomStateProperties<{
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -141,11 +155,15 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
             theme: null;
             showSecondaryNavigation: boolean;
         };
-    }>) => {};
+    }>) => {
+        isLoaded: boolean;
+    };
     getHeader: (state: {
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -165,7 +183,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     } & import("pinia").PiniaCustomStateProperties<{
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -201,7 +221,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     isHeaderScrolled: (state: {
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -221,7 +243,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     } & import("pinia").PiniaCustomStateProperties<{
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -242,7 +266,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     isHeaderLight: (state: {
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -262,7 +288,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     } & import("pinia").PiniaCustomStateProperties<{
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -283,7 +311,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     isHeaderHovering: (state: {
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -303,7 +333,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     } & import("pinia").PiniaCustomStateProperties<{
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -324,7 +356,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     isHeaderProduct: (state: {
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -344,7 +378,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     } & import("pinia").PiniaCustomStateProperties<{
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -365,7 +401,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     isHeaderExpanded: (state: {
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -385,7 +423,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     } & import("pinia").PiniaCustomStateProperties<{
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -406,7 +446,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     isHeaderBlending: (state: {
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -426,7 +468,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     } & import("pinia").PiniaCustomStateProperties<{
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -447,7 +491,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     isHeaderUpdating: (state: {
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -467,7 +513,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     } & import("pinia").PiniaCustomStateProperties<{
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -488,7 +536,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     getHeaderNavigation: (state: {
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -508,7 +558,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     } & import("pinia").PiniaCustomStateProperties<{
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -529,7 +581,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     getHeaderMeta: (state: {
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -549,7 +603,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     } & import("pinia").PiniaCustomStateProperties<{
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -570,7 +626,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     getHeaderContact: (state: {
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -590,7 +648,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     } & import("pinia").PiniaCustomStateProperties<{
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -611,7 +671,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     getHeaderButton: (state: {
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -631,7 +693,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     } & import("pinia").PiniaCustomStateProperties<{
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -652,7 +716,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     getHeaderSearch: (state: {
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -672,7 +738,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     } & import("pinia").PiniaCustomStateProperties<{
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -693,7 +761,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     getHeaderTheme: (state: {
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -713,7 +783,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     } & import("pinia").PiniaCustomStateProperties<{
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -734,7 +806,9 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     getHeaderSecondaryNavigation: (state: {
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -754,7 +828,54 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     } & import("pinia").PiniaCustomStateProperties<{
         loading: boolean;
         hero: {};
-        page: {};
+        page: {
+            isLoaded: boolean;
+        };
+        header: {
+            isScrolled: boolean;
+            isLight: boolean;
+            isHovering: boolean;
+            isProduct: boolean;
+            isExpanded: boolean;
+            isBlending: boolean;
+            isUpdating: boolean;
+            navigation: null;
+            meta: null;
+            contact: null;
+            button: null;
+            search: boolean;
+            theme: null;
+            showSecondaryNavigation: boolean;
+        };
+    }>) => boolean;
+    getPageIsLoaded: (state: {
+        loading: boolean;
+        hero: {};
+        page: {
+            isLoaded: boolean;
+        };
+        header: {
+            isScrolled: boolean;
+            isLight: boolean;
+            isHovering: boolean;
+            isProduct: boolean;
+            isExpanded: boolean;
+            isBlending: boolean;
+            isUpdating: boolean;
+            navigation: null;
+            meta: null;
+            contact: null;
+            button: null;
+            search: boolean;
+            theme: null;
+            showSecondaryNavigation: boolean;
+        };
+    } & import("pinia").PiniaCustomStateProperties<{
+        loading: boolean;
+        hero: {};
+        page: {
+            isLoaded: boolean;
+        };
         header: {
             isScrolled: boolean;
             isLight: boolean;
@@ -792,4 +913,5 @@ export const useAppStore: import("pinia").StoreDefinition<"app", {
     setHeaderTheme(theme: any): void;
     setHeaderSecondaryNavigation(showSecondaryNavigation: any): void;
     resetHeader(): void;
+    setPageIsLoaded(isLoaded: any): void;
 }>;

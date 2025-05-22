@@ -6,8 +6,16 @@ declare namespace _default {
         function handleBodyMutation(mutations: any): void;
         function triggerResizeEvent(): void;
     }
+    namespace computed {
+        function classList(): any[];
+    }
     namespace props {
         let classes: ArrayConstructor;
+        namespace isLoading {
+            export let type: BooleanConstructor;
+            let _default: boolean;
+            export { _default as default };
+        }
     }
     function data(): {
         lastBodyHeight: null;

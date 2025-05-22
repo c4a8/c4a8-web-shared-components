@@ -4,7 +4,9 @@ declare namespace _default {
         store: import("pinia").Store<"app", {
             loading: boolean;
             hero: {};
-            page: {};
+            page: {
+                isLoaded: boolean;
+            };
             header: {
                 isScrolled: boolean;
                 isLight: boolean;
@@ -25,7 +27,9 @@ declare namespace _default {
             getLoading: (state: {
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -45,7 +49,9 @@ declare namespace _default {
             } & import("pinia").PiniaCustomStateProperties<{
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -66,7 +72,9 @@ declare namespace _default {
             getHero: (state: {
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -86,7 +94,9 @@ declare namespace _default {
             } & import("pinia").PiniaCustomStateProperties<{
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -107,7 +117,9 @@ declare namespace _default {
             getPage: (state: {
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -127,7 +139,9 @@ declare namespace _default {
             } & import("pinia").PiniaCustomStateProperties<{
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -144,11 +158,15 @@ declare namespace _default {
                     theme: null;
                     showSecondaryNavigation: boolean;
                 };
-            }>) => {};
+            }>) => {
+                isLoaded: boolean;
+            };
             getHeader: (state: {
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -168,7 +186,9 @@ declare namespace _default {
             } & import("pinia").PiniaCustomStateProperties<{
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -204,7 +224,9 @@ declare namespace _default {
             isHeaderScrolled: (state: {
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -224,7 +246,9 @@ declare namespace _default {
             } & import("pinia").PiniaCustomStateProperties<{
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -245,7 +269,9 @@ declare namespace _default {
             isHeaderLight: (state: {
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -265,7 +291,9 @@ declare namespace _default {
             } & import("pinia").PiniaCustomStateProperties<{
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -286,7 +314,9 @@ declare namespace _default {
             isHeaderHovering: (state: {
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -306,7 +336,9 @@ declare namespace _default {
             } & import("pinia").PiniaCustomStateProperties<{
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -327,7 +359,9 @@ declare namespace _default {
             isHeaderProduct: (state: {
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -347,7 +381,9 @@ declare namespace _default {
             } & import("pinia").PiniaCustomStateProperties<{
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -368,7 +404,9 @@ declare namespace _default {
             isHeaderExpanded: (state: {
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -388,7 +426,9 @@ declare namespace _default {
             } & import("pinia").PiniaCustomStateProperties<{
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -409,7 +449,9 @@ declare namespace _default {
             isHeaderBlending: (state: {
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -429,7 +471,9 @@ declare namespace _default {
             } & import("pinia").PiniaCustomStateProperties<{
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -450,7 +494,9 @@ declare namespace _default {
             isHeaderUpdating: (state: {
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -470,7 +516,9 @@ declare namespace _default {
             } & import("pinia").PiniaCustomStateProperties<{
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -491,7 +539,9 @@ declare namespace _default {
             getHeaderNavigation: (state: {
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -511,7 +561,9 @@ declare namespace _default {
             } & import("pinia").PiniaCustomStateProperties<{
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -532,7 +584,9 @@ declare namespace _default {
             getHeaderMeta: (state: {
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -552,7 +606,9 @@ declare namespace _default {
             } & import("pinia").PiniaCustomStateProperties<{
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -573,7 +629,9 @@ declare namespace _default {
             getHeaderContact: (state: {
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -593,7 +651,9 @@ declare namespace _default {
             } & import("pinia").PiniaCustomStateProperties<{
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -614,7 +674,9 @@ declare namespace _default {
             getHeaderButton: (state: {
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -634,7 +696,9 @@ declare namespace _default {
             } & import("pinia").PiniaCustomStateProperties<{
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -655,7 +719,9 @@ declare namespace _default {
             getHeaderSearch: (state: {
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -675,7 +741,9 @@ declare namespace _default {
             } & import("pinia").PiniaCustomStateProperties<{
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -696,7 +764,9 @@ declare namespace _default {
             getHeaderTheme: (state: {
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -716,7 +786,9 @@ declare namespace _default {
             } & import("pinia").PiniaCustomStateProperties<{
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -737,7 +809,9 @@ declare namespace _default {
             getHeaderSecondaryNavigation: (state: {
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -757,7 +831,54 @@ declare namespace _default {
             } & import("pinia").PiniaCustomStateProperties<{
                 loading: boolean;
                 hero: {};
-                page: {};
+                page: {
+                    isLoaded: boolean;
+                };
+                header: {
+                    isScrolled: boolean;
+                    isLight: boolean;
+                    isHovering: boolean;
+                    isProduct: boolean;
+                    isExpanded: boolean;
+                    isBlending: boolean;
+                    isUpdating: boolean;
+                    navigation: null;
+                    meta: null;
+                    contact: null;
+                    button: null;
+                    search: boolean;
+                    theme: null;
+                    showSecondaryNavigation: boolean;
+                };
+            }>) => boolean;
+            getPageIsLoaded: (state: {
+                loading: boolean;
+                hero: {};
+                page: {
+                    isLoaded: boolean;
+                };
+                header: {
+                    isScrolled: boolean;
+                    isLight: boolean;
+                    isHovering: boolean;
+                    isProduct: boolean;
+                    isExpanded: boolean;
+                    isBlending: boolean;
+                    isUpdating: boolean;
+                    navigation: null;
+                    meta: null;
+                    contact: null;
+                    button: null;
+                    search: boolean;
+                    theme: null;
+                    showSecondaryNavigation: boolean;
+                };
+            } & import("pinia").PiniaCustomStateProperties<{
+                loading: boolean;
+                hero: {};
+                page: {
+                    isLoaded: boolean;
+                };
                 header: {
                     isScrolled: boolean;
                     isLight: boolean;
@@ -795,6 +916,7 @@ declare namespace _default {
             setHeaderTheme(theme: any): void;
             setHeaderSecondaryNavigation(showSecondaryNavigation: any): void;
             resetHeader(): void;
+            setPageIsLoaded(isLoaded: any): void;
         }>;
     };
     namespace computed {

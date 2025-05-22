@@ -76,8 +76,5 @@ export default {
 };
 </script>
 <style>
-.global-app.is-loading main,
-.global-app.is-loading footer {
-  opacity: 0;
-}
+.global-app.is-loading footer,.global-app.is-loading main{opacity:0}
 </style>
