@@ -69,6 +69,8 @@ import MarkdownFiles from './markdown-files.vue';
 import useConfig from '../composables/useConfig.js';
 import useAuthors from '../composables/useAuthors.js';
 
+import { useI18n } from 'vue-i18n';
+
 export default {
   components: { MarkdownFiles },
   tagName: 'blog-recent',
