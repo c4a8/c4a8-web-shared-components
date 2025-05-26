@@ -13,6 +13,7 @@ declare namespace _default {
     function setup(): {
         config: {};
         authors: any;
+        strategy: any;
     };
     namespace computed {
         function classList(): (string | (() => any))[];
