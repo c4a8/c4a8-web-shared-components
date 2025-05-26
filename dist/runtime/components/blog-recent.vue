@@ -10,6 +10,7 @@
           :limit="limit"
           :is-recent="true"
           :hide-items="(item) => new Date(item.date) > new Date()"
+          :strategy="strategy"
         >
           <div :class="classList" ref="root" v-if="updateFiles(files)">
             <div class="blog-recent__bg" :style="{ 'background-color': bgColor }" v-if="skinClass !== ''"></div>
@@ -83,10 +84,12 @@ export default {
   setup() {
     const config = useConfig();
     const { authors } = useAuthors();
+    const { strategy } = useI18n();
 
     return {
       config,
       authors,
+      strategy,
     };
   },
   computed: {
@@ -283,17 +286,6 @@ export default {
     },
     postUrl(post) {
       let url = post?.cta?.href || post.url;
-
-      if (url.includes('/posts/')) {
-        const urlParts = url.split('/posts/');
-        const dateAndSlug = urlParts[1].split('-');
-        const year = dateAndSlug[0];
-        const month = dateAndSlug[1];
-        const slug = dateAndSlug.slice(3).join('-');
-        const category = post.categories && post.categories.length > 0 ? `${post.categories[0].toLowerCase()}/` : '';
-
-        url = `/blog/${category}${year}/${month}/${slug}/`;
-      }
 
       return url;
     },
