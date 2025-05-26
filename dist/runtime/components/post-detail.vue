@@ -156,7 +156,12 @@ export default {
       if (!this.normalizedPost?.date) return '';
 
       const date = new Date(this.normalizedPost.date);
-      return date.toLocaleDateString('de-DE');
+
+      return date.toLocaleDateString('de-DE', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+      });
     },
     formattedDateXml() {
       if (!this.normalizedPost?.date) return '';
