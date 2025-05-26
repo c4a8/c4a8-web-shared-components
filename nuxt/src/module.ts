@@ -21,18 +21,6 @@ declare module '@nuxt/schema' {
 import type { NuxtTemplate } from '@nuxt/schema';
 
 export default defineNuxtModule({
-  // TODO prereder collections
-  // https://nuxt.com/docs/getting-started/prerendering#prerenderroutes-nuxt-hook
-  // hooks: {
-  //   async "prerender:routes"(ctx) {
-  //     const { pages } = await fetch("https://api.some-cms.com/pages").then(
-  //       (res) => res.json(),
-  //     );
-  //     for (const page of pages) {
-  //       ctx.routes.add(`/${page.name}`);
-  //     }
-  //   },
-  // },
   meta: {
     name: 'shared-components',
     configKey: 'sharedComponents',
@@ -73,15 +61,7 @@ export default defineNuxtModule({
 
     _nuxt.options.sitemap = sitemapOptions;
 
-    // const defaultSeoOptions = {};
-
-    // _nuxt.options.seo = {
-    //   ...defaultSeoOptions,
-    //   ..._nuxt.options.seo,
-    // };
-
     await installModule('@nuxtjs/sitemap');
-    // await installModule('nuxt-seo-utils');
 
     const runtimeDir = resolve(__dirname, './runtime');
 

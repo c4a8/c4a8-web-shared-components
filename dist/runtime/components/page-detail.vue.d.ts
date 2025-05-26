@@ -961,6 +961,7 @@ declare namespace _default {
         stickyOffsetTop: number;
         stickyUnstuckOffsetTop: number;
         isLoading: boolean;
+        loadingDelay: number;
     };
     namespace props {
         namespace detailColor {

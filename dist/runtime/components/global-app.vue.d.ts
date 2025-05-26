@@ -10,11 +10,16 @@ declare namespace _default {
         function classList(): any[];
     }
     namespace props {
-        let classes: ArrayConstructor;
-        namespace isLoading {
-            export let type: BooleanConstructor;
-            let _default: boolean;
+        namespace classes {
+            export let type: ArrayConstructor;
+            function _default(): never[];
             export { _default as default };
+        }
+        namespace isLoading {
+            let type_1: BooleanConstructor;
+            export { type_1 as type };
+            let _default_1: boolean;
+            export { _default_1 as default };
         }
     }
     function data(): {

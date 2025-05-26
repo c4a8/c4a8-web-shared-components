@@ -28,6 +28,7 @@ import {
   useDynamicPageMeta,
   useI18n,
   useRuntimeConfig,
+  useSeo,
 } from '#imports';
 
 import { computed } from 'vue';
@@ -75,4 +76,16 @@ const showBlogRecent = computed(() => {
 dynamicMeta.value = {
   footer: post.value?.meta?.footer,
 };
+
+if (post.value) {
+  const baseSocialImg = post.value.meta?.socialimg;
+  const socialImg = baseSocialImg?.startsWith('/') ? baseSocialImg.slice(1) : baseSocialImg;
+
+  useSeo({
+    title: post.value.meta?.seoTitle,
+    description: post.value.meta?.customExcerpt ?? null,
+    keywords: post.value.meta?.keywords ?? null,
+    image: socialImg ? `https://res.cloudinary.com/c4a8/image/upload/${socialImg}` : null,
+  });
+}
 </script>

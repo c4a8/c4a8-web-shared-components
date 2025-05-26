@@ -11,18 +11,6 @@ const __filename = __cjs_url__.fileURLToPath(import.meta.url);
 const __dirname = __cjs_path__.dirname(__filename);
 const require = __cjs_mod__.createRequire(import.meta.url);
 const module = defineNuxtModule({
-  // TODO prereder collections
-  // https://nuxt.com/docs/getting-started/prerendering#prerenderroutes-nuxt-hook
-  // hooks: {
-  //   async "prerender:routes"(ctx) {
-  //     const { pages } = await fetch("https://api.some-cms.com/pages").then(
-  //       (res) => res.json(),
-  //     );
-  //     for (const page of pages) {
-  //       ctx.routes.add(`/${page.name}`);
-  //     }
-  //   },
-  // },
   meta: {
     name: "shared-components",
     configKey: "sharedComponents",

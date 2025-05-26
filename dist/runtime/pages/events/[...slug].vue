@@ -5,7 +5,7 @@
   </content>
 </template>
 <script setup>
-import { useRoute, useAsyncData, queryCollection, useNuxtApp, useDynamicPageMeta, useI18n } from '#imports';
+import { useRoute, useAsyncData, queryCollection, useNuxtApp, useDynamicPageMeta, useSeo } from '#imports';
 import { computed } from 'vue';
 
 import Tools from '../../utils/tools.js';
@@ -70,4 +70,16 @@ const eventNormalized = computed(() => {
 dynamicMeta.value = {
   footer: event.value?.meta?.footer ?? { noMargin: true },
 };
+
+if (event.value && eventNormalized.value) {
+  const baseSocialImg = eventNormalized.value.socialimg;
+  const socialImg = baseSocialImg?.startsWith('/') ? baseSocialImg.slice(1) : baseSocialImg;
+
+  useSeo({
+    title: eventNormalized.value.title,
+    description: eventNormalized.value.customExcerpt ?? null,
+    keywords: eventNormalized.value.keywords ?? null,
+    image: socialImg ? `https://res.cloudinary.com/c4a8/image/upload/${socialImg}` : null,
+  });
+}
 </script>

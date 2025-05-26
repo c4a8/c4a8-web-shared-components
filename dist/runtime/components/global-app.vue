@@ -62,7 +62,10 @@ export default {
     },
   },
   props: {
-    classes: Array,
+    classes: {
+      type: Array,
+      default: () => [],
+    },
     isLoading: {
       type: Boolean,
       default: false,

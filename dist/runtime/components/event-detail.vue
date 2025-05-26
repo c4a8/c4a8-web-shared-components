@@ -19,7 +19,8 @@
       </div>
     </template>
     <template #body>
-      <ContentRenderer :value="body" tag="main" class="page-detail__description has-no-border richtext" />
+      <ContentRenderer :value="body" tag="main" class="page-detail__description has-no-border richtext" v-if="body" />
+      <div v-else><headline :level="h3">No Event found</headline></div>
     </template>
     <template #intro>
       <event-detail-intro v-bind="introData"></event-detail-intro>
