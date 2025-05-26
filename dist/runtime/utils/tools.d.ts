@@ -76,6 +76,7 @@ declare class Tools {
         moment: any;
         excerpt: any;
         headlineText: any;
+        author: any;
     };
     static extractDate(path: any): any;
     static getDate(dateString: any): any;

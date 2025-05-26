@@ -615,7 +615,7 @@ class Tools {
   }
 
   static normalizeMarkdownItem(item, hideData) {
-    const { seo, path, date, moment, _dir, hideInRecent, webcast, meta, ...rest } = item;
+    const { seo, path, date, moment, _dir, hideInRecent, webcast, author, meta, ...rest } = item;
 
     const filteredRest = Object.keys({ ...rest, ...meta })
       .filter((key) => !hideData || !hideData.includes(key))
@@ -633,6 +633,7 @@ class Tools {
       moment: dateValueOrFallback,
       excerpt: meta?.customExcerpt || seo?.description,
       headlineText: meta?.headline,
+      author: typeof author === 'string' ? [author] : author,
       ...filteredRest,
     };
   }

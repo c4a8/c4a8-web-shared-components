@@ -942,6 +942,7 @@ declare namespace _default {
             moment: any;
             excerpt: any;
             headlineText: any;
+            author: any;
         } | null;
         function blogImagePath(): string;
         function formattedDate(): string;
