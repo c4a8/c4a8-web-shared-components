@@ -1,8 +1,65 @@
-import State from "../assets/js/state.js";
-import Tools from "../assets/js/tools.js";
+<template>
+  <div :class="classList" :style="style" ref="root">
+    <div class="container">
+      <div class="timeline__row row">
+        <div class="timeline__col col">
+          <template v-if="subline">
+            <div class="timeline__header">
+              <headline :text="headline?.text" :level="headline?.level" :classes="headlineClasses" />
+              <div class="timeline__subline" v-if="subline">{{ subline }}</div>
+            </div>
+          </template>
+          <template v-else>
+            <headline :text="headline?.text" :level="headline?.level" :classes="headlineClasses" />
+          </template>
+
+          <div class="timeline__content">
+            <div class="timeline__line">
+              <div class="timeline__line-start">
+                <div class="timeline__line-corner">
+                  <span></span>
+                </div>
+              </div>
+              <div
+                :class="getEntryContainerClasses(index)"
+                v-for="(entry, index) in entries"
+                :style="getEntryContainerStyle(index)"
+                v-bind:key="index"
+              >
+                <div class="timeline__entry" :style="getEntryLineStyle(index)">
+                  <div class="timeline__entry-inner">
+                    <timeline-entry-inner-text :entry="entry" :simple="simpleValue" />
+                    <div class="timeline__entry-inner-line">
+                      <icon :icon="iconName" class="timeline__entry-inner-line-icon" v-if="simpleValue" />
+                    </div>
+                    <div class="timeline__entry-vertical-line" v-if="simpleValue"></div>
+                  </div>
+                </div>
+                <div class="timeline__entry-line" :style="getEntryLineStyle(index)" ref="entry-line"></div>
+                <div class="timeline__entry-spacer" :style="getEntryLineStyle(index)">
+                  <div class="timeline__entry-inner">
+                    <timeline-entry-inner-text :entry="entry" :simple="simpleValue" />
+                    <div class="timeline__entry-inner-line">
+                      <icon :icon="iconName" class="timeline__entry-inner-line-icon" v-if="simpleValue" />
+                    </div>
+                    <div class="timeline__entry-vertical-line" v-if="simpleValue"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="timeline__line-end" :style="lineEndStyle"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+import State from '../utils/state.js';
+import Tools from '../utils/tools.js';
 
 const timelineEntryInnerText = {
-  tagName: "timeline-entry-inner-text",
+  tagName: 'timeline-entry-inner-text',
   computed: {},
   template: `
     <div :class="['timeline__entry-inner-text', { 'timeline__entry-inner-text--simple': simple }]">
@@ -20,35 +77,35 @@ const timelineEntryInnerText = {
 };
 
 export default {
-  tagName: "timeline",
+  tagName: 'timeline',
   components: {
-    "timeline-entry-inner-text": timelineEntryInnerText,
+    'timeline-entry-inner-text': timelineEntryInnerText,
   },
   computed: {
     classList() {
       return [
-        "timeline",
-        "has-background",
-        "timeline--headline-sticky has-headline-sticky",
-        this.isReady ? State.READY : "",
-        this.expanded ? State.EXPANDED : "",
+        'timeline',
+        'has-background',
+        'timeline--headline-sticky has-headline-sticky',
+        this.isReady ? State.READY : '',
+        this.expanded ? State.EXPANDED : '',
         this.spacing,
-        this.simpleValue ? "timeline--simple" : "",
-        "vue-component",
+        this.simpleValue ? 'timeline--simple' : '',
+        'vue-component',
       ];
     },
     copyColor() {
-      return this.color ? this.color : "var(--color-copy-light)";
+      return this.color ? this.color : 'var(--color-copy-light)';
     },
     backgroundColor() {
-      return this.bgColor ? this.bgColor : "var(--color-blue-dark)";
+      return this.bgColor ? this.bgColor : 'var(--color-blue-dark)';
     },
     style() {
       return `--color-timeline-background: ${this.backgroundColor}; --color-timeline-color: ${this.copyColor};`;
     },
     headlineClasses() {
       return `timeline__headline headline-sticky__target h2-font-size light ${
-        this.headline?.classes ? this.headline.classes : ""
+        this.headline?.classes ? this.headline.classes : ''
       }`;
     },
     lineEndStyle() {
@@ -58,7 +115,7 @@ export default {
       return Tools.isTrue(this.simple);
     },
     iconName() {
-      return "strategy-split";
+      return 'strategy-split';
     },
   },
   mounted() {
@@ -80,7 +137,7 @@ export default {
   },
   methods: {
     bindEvents() {
-      document.addEventListener("scroll", this.handleScroll);
+      document.addEventListener('scroll', this.handleScroll);
     },
     startAnimation() {
       setTimeout(() => {
@@ -141,14 +198,10 @@ export default {
         const localPercentage = percentage - startPercentage;
         const showThreshold = 60;
 
-        currentPercentage =
-          this.maxPercentage - Math.ceil((localPercentage * 100) / end);
+        currentPercentage = this.maxPercentage - Math.ceil((localPercentage * 100) / end);
 
         if (currentPercentage < showThreshold) {
-          this.entryContainerStates[index] = [
-            State.SHOW,
-            "timeline__entry-container--visible",
-          ];
+          this.entryContainerStates[index] = [State.SHOW, 'timeline__entry-container--visible'];
         }
       } else if (percentage > endPercentage) {
         currentPercentage = minPercentage;
@@ -158,10 +211,7 @@ export default {
       }
 
       if (this.simpleValue) {
-        if (
-          currentPercentage < this.maxPercentage &&
-          currentPercentage > minPercentage
-        ) {
+        if (currentPercentage < this.maxPercentage && currentPercentage > minPercentage) {
           currentPercentage = 1;
         } else {
           currentPercentage = 0;
@@ -171,7 +221,7 @@ export default {
       this.entryContainerStyles[index] = `${currentPercentage}`;
     },
     getEntryContainerClasses(index) {
-      return ["timeline__entry-container", this.entryContainerStates[index]];
+      return ['timeline__entry-container', this.entryContainerStates[index]];
     },
     getEntryContainerStyle(index) {
       const minPercentage = 0;
@@ -179,13 +229,13 @@ export default {
       const percentage = this.entryContainerStyles[index]
         ? this.entryContainerStyles[index]
         : this.simpleValue
-          ? minPercentage
-          : this.maxPercentage;
+        ? minPercentage
+        : this.maxPercentage;
 
       return `--timeline-entry-container-percentage: ${percentage}`;
     },
     getScrollPercentage() {
-      const root = this.$refs["root"];
+      const root = this.$refs['root'];
       const height = root.getBoundingClientRect().height;
       const heightOffset = window.innerHeight / 3;
 
@@ -203,11 +253,8 @@ export default {
     isInViewport() {
       if (this.isVisible) return;
 
-      const root = this.$refs["root"];
-      const isInViewport = Tools.isInViewportPercent(
-        root,
-        this.percentageInViewport
-      );
+      const root = this.$refs['root'];
+      const isInViewport = Tools.isInViewportPercent(root, this.percentageInViewport);
 
       if (!isInViewport) return;
 
@@ -232,54 +279,5 @@ export default {
     },
     subline: String,
   },
-  template: `
-    <div :class="classList" :style="style" ref="root">
-      <div class="container">
-        <div class="timeline__row row">
-          <div class="timeline__col col">
-            <template v-if="subline">
-              <div class="timeline__header">
-                <headline :text="headline?.text" :level="headline?.level" :classes="headlineClasses" />
-                <div class="timeline__subline" v-if="subline">{{ subline }}</div>
-              </div>
-            </template>
-            <template v-else>
-              <headline :text="headline?.text" :level="headline?.level" :classes="headlineClasses" />
-            </template>
-
-            <div class="timeline__content">
-              <div class="timeline__line">
-                <div class="timeline__line-start">
-                  <div class="timeline__line-corner">
-                    <span></span>
-                  </div>
-                </div>
-                <div :class="getEntryContainerClasses(index)" v-for="(entry, index) in entries" :style="getEntryContainerStyle(index)">
-                  <div class="timeline__entry" :style="getEntryLineStyle(index)">
-                    <div class="timeline__entry-inner">
-                      <timeline-entry-inner-text :entry="entry" :simple="simpleValue" />
-                      <div class="timeline__entry-inner-line">
-                        <icon :icon="iconName" class="timeline__entry-inner-line-icon" v-if="simpleValue" />
-                      </div>
-                      <div class="timeline__entry-vertical-line" v-if="simpleValue"></div>
-                    </div>
-                  </div>
-                  <div class="timeline__entry-line" :style="getEntryLineStyle(index)" ref="entry-line"></div>
-                  <div class="timeline__entry-spacer" :style="getEntryLineStyle(index)">
-                    <div class="timeline__entry-inner">
-                      <timeline-entry-inner-text :entry="entry" :simple="simpleValue" />
-                      <div class="timeline__entry-inner-line">
-                        <icon :icon="iconName" class="timeline__entry-inner-line-icon" v-if="simpleValue" />
-                      </div>
-                      <div class="timeline__entry-vertical-line" v-if="simpleValue"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="timeline__line-end" :style="lineEndStyle"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>`,
 };
+</script>
