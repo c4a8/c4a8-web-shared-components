@@ -10,14 +10,14 @@
             <div class="row align-items-md-center">
               <div class="col-md-7 mb-5 mb-md-0" v-if="post.author">
                 <div class="media align-items-center">
-                  <div v-for="person in normalizedPost.author" :key="person" class="avatar mr-2">
+                  <div v-for="person in avatars" :key="person" class="avatar mr-2">
                     <author-avatar
                       v-if="authors && authors[person]?.avatar"
                       :img-url="authors[person]?.avatar"
                       :author="authors[person]"
                     />
                   </div>
-                  <div class="media-body font-size-1 ml-3">
+                  <div class="media-body font-size-1" :class="{ 'ml-3': avatars.length > 0 }">
                     <authors :authors-list="normalizedPost.author" :data-authors="authors" />
                   </div>
                 </div>
@@ -148,6 +148,11 @@ export default {
     },
     normalizedPost() {
       return this.post ? Tools.normalizeMarkdownItem(this.post) : null;
+    },
+    avatars() {
+      const authors = this.normalizedPost?.author;
+
+      return authors.filter((person) => this.authors && this.authors[person]?.avatar);
     },
     blogImagePath() {
       return Tools.blogImagePath;
