@@ -944,6 +944,7 @@ declare namespace _default {
             headlineText: any;
             author: any;
         } | null;
+        function avatars(): any;
         function blogImagePath(): string;
         function formattedDate(): string;
         function formattedDateXml(): string;

@@ -40279,18 +40279,18 @@ svg.streamline-icon {
   position: relative;
   border-radius: 0;
 }
-.cta.is-loading, .is-loading .cta {
+.cta.is-loading, .is-loading .cta:not(.header .cta) {
   --cta-loading-delay: 0.4s;
   --cta-loading-start-duration: 1.1s;
   pointer-events: none;
   opacity: 0.8;
   animation: ctaLoadingButton 1s forwards;
 }
-.cta.is-loading:active, .cta.is-loading:focus, .is-loading .cta:active, .is-loading .cta:focus {
+.cta.is-loading:active, .cta.is-loading:focus, .is-loading .cta:not(.header .cta):active, .is-loading .cta:not(.header .cta):focus {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   box-shadow: none;
 }
-.cta.is-loading::before, .is-loading .cta::before {
+.cta.is-loading::before, .is-loading .cta:not(.header .cta)::before {
   content: "";
   position: absolute;
   top: 0;
@@ -40301,7 +40301,7 @@ svg.streamline-icon {
   transform-origin: center;
   animation: ctaLoadingStart var(--cta-loading-start-duration) forwards var(--cta-loading-delay), ctaLoadingLoop calc(var(--cta-loading-start-duration) - 0.1s) ease-in-out infinite calc(var(--cta-loading-delay) + var(--cta-loading-start-duration) - 0.2s);
 }
-.cta.is-loading .cta__text, .is-loading .cta .cta__text {
+.cta.is-loading .cta__text, .is-loading .cta:not(.header .cta) .cta__text {
   position: relative;
   animation: ctaLoadingText var(--cta-loading-start-duration) forwards;
 }
