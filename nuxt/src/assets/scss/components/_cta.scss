@@ -127,7 +127,7 @@
   border-radius: 0;
 
   &.is-loading,
-  .is-loading & {
+  .is-loading &:not(.header .cta) {
     --cta-loading-delay: 0.4s;
     --cta-loading-start-duration: 1.1s;
 
