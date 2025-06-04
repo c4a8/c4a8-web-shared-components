@@ -57,6 +57,7 @@ export default defineNuxtModule({
     const sitemapOptions = {
       ...defaultSitemapOptions,
       ..._nuxt.options.sitemap,
+      exclude: ['/__nuxt_content/**', ...(_nuxt.options.sitemap?.exclude || [])],
     };
 
     _nuxt.options.sitemap = sitemapOptions;
