@@ -40183,6 +40183,10 @@ svg.streamline-icon {
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.19, 1, 0.2, 1);
 }
+.hover__parent:hover .cta.link,
+.shared-components .cta:hover.link {
+  --cta-copy-color: var(--color-primary-accent);
+}
 .hover__parent:hover .cta.link:not(.cta--external) svg,
 .shared-components .cta:hover.link:not(.cta--external) svg {
   animation: moveRightLeft;
@@ -40424,6 +40428,9 @@ svg.streamline-icon {
   appearance: none;
   background-color: var(--cta-background-color);
   border-color: var(--cta-border-color);
+}
+.shared-components .cta.link {
+  --cta-copy-color: var(--color-link);
 }
 .shared-components .cta.cta--monochrome {
   --cta-copy-color: var(--color-copy);

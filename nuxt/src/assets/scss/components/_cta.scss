@@ -24,6 +24,8 @@
   }
 
   &.link {
+    --cta-copy-color: var(--color-primary-accent);
+
     &:not(.cta--external) {
       svg {
         @include move-right-left;
@@ -355,6 +357,10 @@
     appearance: none;
     background-color: var(--cta-background-color);
     border-color: var(--cta-border-color);
+
+    &.link {
+      --cta-copy-color: var(--color-link);
+    }
 
     &.cta--monochrome {
       --cta-copy-color: var(--color-copy);
