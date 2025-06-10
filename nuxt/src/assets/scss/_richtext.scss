@@ -77,12 +77,6 @@ $richtext-conclusion-spacing-lg: $spacing-content-default;
     + * {
       margin-top: spacing(12);
     }
-
-    li {
-      &::before {
-        top: 16px;
-      }
-    }
   }
 
   blockquote {
