@@ -40,3 +40,18 @@ export const FontSize4LightCopy = {
     copy: '<strong>RADIUSaaS</strong> offers easy and <span class="highlight">secure authentication for accessing network resources</span>. It delivers the comfort, reliability, and scalability of a native cloud SaaS. From a protocol side, we support <span class="highlight">RADIUS</span> as well as <span class="highlight">RadSec.</span><br><br>Authentication is based on certificates. <strong>RADIUSaaS</strong> can validate any certificate which can be used for client authentication. However, to be able to lock someone out of your network with a revoked certificate, choose a <span class="highlight">Certificate Authority (CA)</span> that has an <span class="highlight">Online Certificate Status Protocol (OCSP)</span>. <strong>RADIUSaaS</strong> automatically generates XML configuration files for WIFI and LAN profiles. ',
   },
 };
+
+export const Lists = {
+  args: {
+    spacing: 'space-top-1',
+    variant: 'intro-text--large',
+    copy: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.<br/><br/><ul><li>lorem ipsum dolor sit<br>consetetuar sadipscing</li><li>consetetuar sadipscing</li><li>dolor sit amet</li></ul> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.<br><br><ul><li>lorem ipsum dolor sit</li><li>consetetuar sadipscing</li><li>dolor sit amet</li></ul>',
+  },
+};
+
+export const ListsSmall = {
+  args: {
+    copyClasses: 'font-size-2 light',
+    copy: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.<br/><br/><ul><li>lorem ipsum dolor sit</li><li>consetetuar sadipscing</li><li>dolor sit amet<br>consetetuar sadipscing</li></ul> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.<br><br><ul><li>lorem ipsum dolor sit</li><li>consetetuar sadipscing</li><li>dolor sit amet</li></ul>',
+  },
+};

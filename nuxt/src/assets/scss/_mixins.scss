@@ -23,22 +23,24 @@
 }
 
 @mixin bulletpoints() {
-  $dash-size: 20px;
+  $dash-size: 1em;
+
+  padding-left: $dash-size;
 
   li {
     position: relative;
+    padding-left: calc($dash-size / 1.25);
 
     &::before {
       content: '';
       position: absolute;
       display: inline-flex;
-      height: 2px;
+      height: 0.085em;
       width: $dash-size;
-      top: 12px;
+      top: calc(1.8em * 0.5);
       left: -$dash-size;
       background-color: var(--color-primary);
-      padding-right: $dash-size;
-      transform: translateX(-100%);
+      transform: translateY(-50%);
     }
   }
 }
