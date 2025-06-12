@@ -863,7 +863,8 @@ $header-border-size: 1px;
 }
 
 .header__spacer {
-  height: spacing(18);
+  // TODO find a way to calculate this
+  height: 64px;
   position: relative;
 
   &::after {
