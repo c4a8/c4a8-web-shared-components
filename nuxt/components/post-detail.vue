@@ -57,6 +57,7 @@
             v-if="shouldShowStickyBlocks"
             v-model:is-at-end="isAtEnd"
             v-model:end-point="endPoint"
+            v-model:content-height="stickyContentHeight"
             class="post__sticky-bar"
             :sticky-offset-top="stickyOffsetTop"
             :sticky-offset-bottom="20"
@@ -71,7 +72,7 @@
             v-if="shouldShowStickyBlocks"
             v-model:is-at-end="isAtEnd"
             v-model:end-point="endPoint"
-            :sticky-offset-top="stickyOffsetTop"
+            :content-height="stickyContentHeight"
             :sticky-offset-bottom="60"
           />
           <div class="post-detail__tags mt-5">
@@ -99,12 +100,14 @@ export default {
     const { authors } = useAuthors();
     const isAtEnd = ref(false);
     const endPoint = ref(null);
+    const stickyContentHeight = ref(0);
     const store = useAppStore();
 
     return {
       authors,
       isAtEnd,
       endPoint,
+      stickyContentHeight,
       store,
     };
   },
