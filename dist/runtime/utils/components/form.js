@@ -144,9 +144,30 @@ class Form extends BaseComponent {
   submit(e) {
     e.stopImmediatePropagation();
     e.preventDefault();
+    
+    const url = window.location.pathname;
+    const urlSegments = url.split('/').filter(Boolean);
+    const page = urlSegments[urlSegments.length - 1];
+    const lang = urlSegments[0];
+    const date = new Date().toISOString();
+    const formData = {
+      "name": this.form.querySelector('input[name="name"]')?.value || '',
+      "company": this.form.querySelector('input[name="company"]')?.value || '',
+      "email": this.form.querySelector('input[name="email"]')?.value || '',
+      "message": this.form.querySelector('textarea[name="message"]')?.value || '',
+      "dataprotection": this.form.querySelector('input[name="dataprotection"]')?.checked || false,
+      "_subject": page,
+      "submit_date": date,
+      "language": lang,
+      "url": url
+    };
+
+    const jsonDataInput = this.form.querySelector('input[name="jsonData"]');
+    if (jsonDataInput) {
+      jsonDataInput.value = JSON.stringify(formData);
+    }
 
     this.updateSubject();
-
     if (this.customSubmit) {
       this.customSubmit(e);
     } else if (this.hasAjaxSubmit()) {
