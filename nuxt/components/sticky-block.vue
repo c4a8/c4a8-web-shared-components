@@ -47,6 +47,8 @@ const props = defineProps({
   },
 });
 
+const emit = defineEmits(['update:isAtEnd', 'update:endPoint', 'update:contentHeight']);
+
 const startMarker = ref(null);
 const stickyBlock = ref(null);
 
@@ -85,6 +87,8 @@ const updateStickyBlock = () => {
   const parentOffsetLeft = startMarker.value.getBoundingClientRect().left;
 
   const stickyHeight = stickyBlock.value.offsetHeight;
+
+  emit('update:contentHeight', stickyHeight);
 
   isKilled.value = props.breakpoint ? window.innerWidth <= resolutionsList[props.breakpoint] : false;
 
