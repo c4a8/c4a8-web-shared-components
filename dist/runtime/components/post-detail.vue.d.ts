@@ -4,6 +4,7 @@ declare namespace _default {
         authors: any;
         isAtEnd: import("vue").Ref<boolean, boolean>;
         endPoint: import("vue").Ref<null, null>;
+        stickyContentHeight: import("vue").Ref<number, number>;
         store: import("pinia").Store<"app", {
             loading: boolean;
             hero: {};

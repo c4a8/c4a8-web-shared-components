@@ -23,6 +23,12 @@ declare namespace _default {
             let _default_2: number;
             export { _default_2 as default };
         }
+        namespace classes {
+            let type_4: StringConstructor;
+            export { type_4 as type };
+            let _default_3: string;
+            export { _default_3 as default };
+        }
     }
     namespace computed {
         function awardsColsValue(): "col-lg-12 justify-content-center" | "col-lg-6";
