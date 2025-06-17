@@ -1,3 +1,11 @@
+<template>
+  <wrapper :classes="classList">
+    <div class="mx-auto">
+      <v-img v-bind="imageWithCloudinary" />
+    </div>
+  </wrapper>
+</template>
+<script>
 export default {
   tagName: 'image-block',
   computed: {
@@ -19,11 +27,5 @@ export default {
       default: null,
     },
   },
-  template: `
-    <wrapper :classes="classList">
-      <div class="mx-auto">
-        <v-img v-bind="imageWithCloudinary" />
-      </div>
-    </wrapper>
-  `,
 };
+</script>
