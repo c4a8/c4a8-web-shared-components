@@ -10,6 +10,8 @@ class StickyScroller {
   constructor(root) {
     this.root = root;
 
+    if (this.root.nodeType !== Node.ELEMENT_NODE) return;
+
     this.setOffsets();
     this.setMarginTop();
 
