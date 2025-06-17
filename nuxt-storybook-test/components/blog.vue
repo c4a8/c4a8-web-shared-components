@@ -5,8 +5,6 @@
     </div>
 
     <SharedContentList :data-list="posts" :query="query" v-slot="{ list }">
-      list: {{ list }}
-
       <template v-if="list">
         <markdown-files
           :list="list"
