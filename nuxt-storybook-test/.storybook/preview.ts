@@ -8,6 +8,16 @@ import { h } from 'vue';
 
 import type { Preview } from '@nuxtjs/storybook';
 
+declare global {
+  interface Window {
+    jQuery: any;
+    $: any;
+    sharedComponents: {
+      clientOnlyLibLoaded: boolean;
+    };
+  }
+}
+
 import GlobalApp from '../components/global-app.vue';
 
 // Create i18n instance
@@ -56,16 +66,6 @@ const loadPlugins = () => {
 };
 
 loadPlugins();
-
-declare global {
-  interface Window {
-    jQuery: any;
-    $: any;
-    sharedComponents: {
-      clientOnlyLibLoaded: boolean;
-    };
-  }
-}
 
 export const decorators = [
   (storyFn, params) => {
