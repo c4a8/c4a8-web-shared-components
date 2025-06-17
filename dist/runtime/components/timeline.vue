@@ -236,6 +236,9 @@ export default {
     },
     getScrollPercentage() {
       const root = this.$refs['root'];
+
+      if (!root) return;
+
       const height = root.getBoundingClientRect().height;
       const heightOffset = window.innerHeight / 3;
 
@@ -254,6 +257,9 @@ export default {
       if (this.isVisible) return;
 
       const root = this.$refs['root'];
+
+      if (!root) return;
+
       const isInViewport = Tools.isInViewportPercent(root, this.percentageInViewport);
 
       if (!isInViewport) return;
