@@ -45,7 +45,7 @@ declare namespace _default {
         function updateNextStep(index: any, percentage: any, stepSize: any): void;
         function getEntryContainerClasses(index: any): any[];
         function getEntryContainerStyle(index: any): string;
-        function getScrollPercentage(): number;
+        function getScrollPercentage(): number | undefined;
         function isInViewport(): void;
     }
     namespace props {
