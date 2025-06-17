@@ -43,6 +43,9 @@ declare namespace _default {
                     LIKE: string[];
                 };
                 layout?: undefined;
+            } | {
+                layout?: undefined;
+                path?: undefined;
             };
             path: string;
             limitEvents: any;
@@ -73,6 +76,9 @@ declare namespace _default {
                     LIKE: string[];
                 };
                 layout?: undefined;
+            } | {
+                layout?: undefined;
+                path?: undefined;
             };
             path: string;
             limitEvents: any;
