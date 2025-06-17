@@ -1,7 +1,7 @@
-import Awards from '../../../components/awards';
+import AwardsComponent from '../components/awards.vue';
 
 export default {
-  component: Awards,
+  component: AwardsComponent,
   argTypes: {
     awards: {
       description: 'Award Object contains various Elements',
