@@ -142,6 +142,16 @@ export default {
         }
       }
 
+      if (this.tag) {
+        if (!query.where) {
+          query.where = {};
+        }
+
+        query.where.tags = {
+          LIKE: `%${this.tag}%`,
+        };
+      }
+
       return query;
     },
     getSpacing() {
@@ -344,7 +354,6 @@ export default {
       type: Array,
       default: null,
     },
-    // TODO implement the tag filter
   },
 };
 </script>
