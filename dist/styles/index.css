@@ -36969,7 +36969,7 @@ modal {
   .richtext h4,
   .richtext h5,
   .richtext h6 {
-    width: 80%;
+    width: var(--post-content-width-lg, 80%);
   }
 }
 .richtext > blockquote:first-of-type img,
@@ -36998,7 +36998,7 @@ modal {
 }
 @container (min-width: 600px) {
   .richtext ul {
-    width: 80%;
+    width: var(--post-content-width-lg, 80%);
   }
 }
 .richtext ul li {
@@ -37057,7 +37057,7 @@ modal {
   .richtext h4#fazit,
   .richtext h4#Conclusion,
   .richtext h4#conclusion {
-    width: 80%;
+    width: var(--post-content-width-lg, 80%);
   }
 }
 .richtext h2[id=über], .richtext h2[id=Über], .richtext h2[id^=über-], .richtext h2[id^=Über-], .richtext h2[id=about], .richtext h2[id=About], .richtext h2[id^=about-], .richtext h2[id^=About-], .richtext h2#Fazit, .richtext h2#fazit, .richtext h2#Conclusion, .richtext h2#conclusion,
@@ -45183,6 +45183,9 @@ job-list-detail {
   --post-content-width-lg: 80%;
   overflow: clip;
 }
+.post-detail .richtext.richtext--full-width {
+  --post-content-width-lg: 100%;
+}
 @media (min-width: 1200px) {
   .post-detail.post-detail--aside-nav {
     --post-detail-aside-left-offset: calc(var(--post-offset-spacing-xl) + 1rem);
@@ -45210,7 +45213,7 @@ job-list-detail {
 }
 @container (min-width: 600px) {
   .post .post-title {
-    width: 80%;
+    width: var(--post-content-width-lg, 80%);
   }
 }
 .post .post-title.h3-font-size {
@@ -45248,7 +45251,7 @@ job-list-detail {
 
 @container (min-width: 600px) {
   .post-content main > p {
-    width: 80%;
+    width: var(--post-content-width-lg, 80%);
   }
 }
 .post-content main > p:not(.post__sticky-excerpt) {
@@ -45379,7 +45382,7 @@ job-list-detail {
 }
 @container (min-width: 600px) {
   .post__sticky-excerpt {
-    width: 80%;
+    width: var(--post-content-width-lg, 80%);
   }
 }
 
