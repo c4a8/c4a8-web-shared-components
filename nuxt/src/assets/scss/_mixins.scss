@@ -376,7 +376,7 @@
 
 @mixin richtext-width {
   @container (min-width: 600px) {
-    width: $content-width-xxl;
+    width: var(--post-content-width-lg, $content-width-xxl);
   }
 }
 

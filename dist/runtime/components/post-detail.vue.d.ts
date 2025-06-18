@@ -1,5 +1,8 @@
 declare namespace _default {
     let tagName: string;
+    namespace components {
+        export { ContentRendererLink };
+    }
     function setup(): {
         authors: any;
         isAtEnd: import("vue").Ref<boolean, boolean>;
@@ -922,6 +925,7 @@ declare namespace _default {
             resetHeader(): void;
             setPageIsLoaded(isLoaded: any): void;
         }>;
+        ContentRendererLink: any;
     };
     function data(): {
         shouldShowStickyBlocks: boolean;
@@ -932,6 +936,7 @@ declare namespace _default {
         function checkStickyBlocks(): void;
     }
     namespace computed {
+        function contentWidth(): (string | null)[];
         function stickyOffsetTop(): 100 | 124;
         function asideNavValue(): any;
         function enhancedPost(): {

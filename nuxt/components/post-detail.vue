@@ -1,7 +1,13 @@
 <template>
   <div class="post-detail container space-top-2 space-top-lg-4" :class="{ 'post-detail--aside-nav': asideNavValue }">
     <div class="w-xl-80 mx-xl-auto">
-      <article v-if="normalizedPost" class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+      <article
+        v-if="normalizedPost"
+        class="post h-entry"
+        itemscope
+        itemtype="http://schema.org/BlogPosting"
+        ref="article"
+      >
         <header class="post-header">
           <h1 class="post-title p-name" :class="normalizedPost.titleClass || 'h2-font-size'" itemprop="name headline">
             {{ normalizedPost.title }}
@@ -67,7 +73,12 @@
             <aside-nav v-if="asideNavValue" v-bind="asideNavValue" />
             <socials :vertical="true" :hide-label="true" :author="null" :share-url="shareUrl" v-else />
           </sticky-block>
-          <ContentRenderer :value="enhancedPost" tag="main" class="richtext" />
+          <ContentRenderer
+            :value="enhancedPost"
+            tag="main"
+            :class="contentWidth"
+            :components="{ a: ContentRendererLink }"
+          />
           <sticky-block-end
             v-if="shouldShowStickyBlocks"
             v-model:is-at-end="isAtEnd"
@@ -93,9 +104,13 @@ import Tools from '../utils/tools.js';
 import { useAppStore } from '../stores/app';
 import useAuthors from '../composables/useAuthors.js';
 import { ref } from 'vue';
+import ContentRendererLink from './content-renderer-link.vue';
 
 export default {
   tagName: 'post-detail',
+  components: {
+    ContentRendererLink,
+  },
   setup() {
     const { authors } = useAuthors();
     const isAtEnd = ref(false);
@@ -109,6 +124,7 @@ export default {
       endPoint,
       stickyContentHeight,
       store,
+      ContentRendererLink,
     };
   },
   data() {
@@ -132,6 +148,9 @@ export default {
     },
   },
   computed: {
+    contentWidth() {
+      return ['richtext', this.post?.meta?.maxContent === true ? 'richtext--full-width' : null];
+    },
     stickyOffsetTop() {
       return this.asideNavValue ? 124 : 100;
     },
