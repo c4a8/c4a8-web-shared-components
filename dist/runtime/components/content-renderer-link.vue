@@ -11,7 +11,13 @@ const props = defineProps(['href']);
 
 const handleClick = (event) => {
   if (props.href) {
-    window.location.href = props.href;
+    const target = event.currentTarget.getAttribute('target');
+
+    if (target) {
+      window.open(props.href, target);
+    } else {
+      window.location.href = props.href;
+    }
   }
 };
 </script>
