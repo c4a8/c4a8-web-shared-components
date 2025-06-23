@@ -985,6 +985,7 @@ declare namespace _default {
         function shapeInContentValue(): boolean;
         function shapeInContent(): boolean;
         function shapeClasses(): any;
+        function shapeIsSVG(): any;
         function variant(): any;
         function pattern(): any;
         function ctaList(): any;
