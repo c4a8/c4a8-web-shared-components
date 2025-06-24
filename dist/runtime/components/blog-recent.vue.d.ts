@@ -158,7 +158,7 @@ declare namespace _default {
         let caseStudies: BooleanConstructor;
         let reversed: BooleanConstructor;
         namespace tag {
-            let type_3: ArrayConstructor;
+            let type_3: StringConstructor;
             export { type_3 as type };
             let _default_7: null;
             export { _default_7 as default };
