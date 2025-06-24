@@ -351,7 +351,7 @@ export default {
     caseStudies: Boolean,
     reversed: Boolean,
     tag: {
-      type: Array,
+      type: String,
       default: null,
     },
   },
