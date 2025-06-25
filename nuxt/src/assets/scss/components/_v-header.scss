@@ -130,12 +130,6 @@ $header-border-size: 1px;
         }
       }
 
-      .header__container {
-        &::after {
-          display: none;
-        }
-      }
-
       .header__row {
         @include media-breakpoint-up($header-expand-breakpoint) {
           padding-left: $header-floating-inner-padding-x;
@@ -191,12 +185,6 @@ $header-border-size: 1px;
 
         .header__logo-default {
           display: none;
-        }
-
-        .header__container {
-          &::after {
-            background-color: transparent;
-          }
         }
       }
     }
@@ -778,18 +766,6 @@ $header-border-size: 1px;
 .header__container {
   position: relative;
   z-index: 10;
-
-  &::after {
-    content: '';
-    display: block;
-    position: absolute;
-    bottom: 0px;
-    width: 100vw;
-    height: $header-border-size;
-    background-color: var(--color-header-container-border);
-    left: 50%;
-    transform: translateX(-50%);
-  }
 }
 
 .header__flyout-description {

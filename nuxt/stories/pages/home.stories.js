@@ -1,3 +1,4 @@
+import { getAssetPath } from '../.storybook/templates';
 import PageDefault from '../components/page-default.vue';
 import VHeader from '../components/v-header.vue';
 import Content from '../components/content.vue';
@@ -31,6 +32,45 @@ export default {
       `,
     }),
   ],
+};
+
+export const Home = {
+  args: {
+    header: {
+      home: HeaderData.home,
+      navigation: HeaderData.navigation,
+      theme: 'gk',
+    },
+    hero: {
+      overline: 'Cloud Managed Service Provider',
+      headline: 'We Manage and Protect Microsoft Ecosystems at Scale',
+      headlineClasses: 'h2-font-size bold',
+      subline: 'Azure | Security | Workplace | Companion Products',
+      bgColor: 'var(--color-blue-jeans)',
+      background: {
+        spacing: 'space-top-3 space-bottom-2',
+      },
+      light: false,
+      shape: {
+        img: getAssetPath('../svg/shapes/s-block.svg'),
+        alt: 'Shape Animation',
+        top: true,
+        mobileOrder: 4,
+        classes: 'space-top-lg-2',
+        fullscreen: true,
+      },
+      badges: [
+        {
+          img: '/logos/partner-badges-sw.svg',
+          alt: 'Logo representing an 8x Partner of the Year Award Winner or Finalist',
+        },
+      ],
+    },
+    introText: {
+      headline: 'Headline Lorem ipsum',
+      copy: '<strong>RADIUSaaS</strong> offers easy and <span class="highlight">secure authentication for accessing network resources</span>. It delivers the comfort, reliability, and scalability of a native cloud SaaS. From a protocol side, we support <span class="highlight">RADIUS</span> as well as <span class="highlight">RadSec.</span><br><br>Authentication is based on certificates. <strong>RADIUSaaS</strong> can validate any certificate which can be used for client authentication. However, to be able to lock someone out of your network with a revoked certificate, choose a <span class="highlight">Certificate Authority (CA)</span> that has an <span class="highlight">Online Certificate Status Protocol (OCSP)</span>. <strong>RADIUSaaS</strong> automatically generates XML configuration files for WIFI and LAN profiles. ',
+    },
+  },
 };
 
 export const HomeProduct = {
