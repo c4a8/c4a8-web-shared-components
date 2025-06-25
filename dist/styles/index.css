@@ -48593,9 +48593,6 @@ shape {
     margin-left: 6.5rem;
   }
 }
-.header.vue-component.header--product .header__container::after {
-  display: none;
-}
 @media (min-width: 992px) {
   .header.vue-component.header--product .header__row {
     padding-left: 2rem;
@@ -48638,9 +48635,6 @@ shape {
   }
   .header.vue-component:not(:hover):not(.is-scrolled).header--light .header__logo-default {
     display: none;
-  }
-  .header.vue-component:not(:hover):not(.is-scrolled).header--light .header__container::after {
-    background-color: transparent;
   }
 }
 @media (max-width: 991.98px) {
@@ -49162,17 +49156,6 @@ shape {
 .header__container {
   position: relative;
   z-index: 10;
-}
-.header__container::after {
-  content: "";
-  display: block;
-  position: absolute;
-  bottom: 0px;
-  width: 100vw;
-  height: 1px;
-  background-color: var(--color-header-container-border);
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 .header__flyout-description {
