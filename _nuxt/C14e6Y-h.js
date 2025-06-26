@@ -1,0 +1,1 @@
+class i{static getEmbedSrc(e,o){const t=encodeURIComponent(document.location.origin),n=encodeURIComponent(document.location.href);return`https://www.youtube-nocookie.com/embed/${e}?origin=${t}&autoplay=${o}&widget_referrer=${n}&enablejsapi=1&widgetid=1`}}export{i as Y};

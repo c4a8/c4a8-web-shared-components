@@ -1,0 +1,552 @@
+{
+  "appType": "custom",
+  "base": "./",
+  "build": {
+    "assetsDir": "_nuxt/",
+    "copyPublicDir": false,
+    "emptyOutDir": false,
+    "manifest": "manifest.json",
+    "outDir": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/.nuxt/dist/client",
+    "rollupOptions": {
+      "input": {
+        "entry": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/nuxt/dist/app/entry.js"
+      },
+      "output": {
+        "chunkFileNames": "_nuxt/[hash].js",
+        "entryFileNames": "_nuxt/[hash].js"
+      }
+    },
+    "sourcemap": false
+  },
+  "cacheDir": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/.cache/vite/client",
+  "clearScreen": true,
+  "configFile": false,
+  "css": {
+    "devSourcemap": false,
+    "postcss": {
+      "plugins": [
+        {
+          "options": {
+          },
+          "postcssPlugin": "autoprefixer"
+        },
+        {
+          "plugins": [
+            {
+              "postcssPlugin": "postcss-discard-comments"
+            },
+            {
+              "postcssPlugin": "postcss-minify-gradients"
+            },
+            {
+              "postcssPlugin": "postcss-reduce-initial"
+            },
+            {
+              "postcssPlugin": "postcss-svgo"
+            },
+            {
+              "postcssPlugin": "postcss-normalize-display-values"
+            },
+            {
+              "postcssPlugin": "postcss-reduce-transforms"
+            },
+            {
+              "postcssPlugin": "postcss-colormin"
+            },
+            {
+              "postcssPlugin": "postcss-normalize-timing-functions"
+            },
+            {
+              "postcssPlugin": "postcss-calc"
+            },
+            {
+              "postcssPlugin": "postcss-convert-values"
+            },
+            {
+              "postcssPlugin": "postcss-ordered-values"
+            },
+            {
+              "postcssPlugin": "postcss-minify-selectors"
+            },
+            {
+              "postcssPlugin": "postcss-minify-params"
+            },
+            {
+              "postcssPlugin": "postcss-normalize-charset"
+            },
+            {
+              "postcssPlugin": "postcss-discard-overridden"
+            },
+            {
+              "postcssPlugin": "postcss-normalize-string"
+            },
+            {
+              "postcssPlugin": "postcss-normalize-unicode"
+            },
+            {
+              "postcssPlugin": "postcss-minify-font-values"
+            },
+            {
+              "postcssPlugin": "postcss-normalize-url"
+            },
+            {
+              "postcssPlugin": "postcss-normalize-repeat-style"
+            },
+            {
+              "postcssPlugin": "postcss-normalize-positions"
+            },
+            {
+              "postcssPlugin": "postcss-normalize-whitespace"
+            },
+            {
+              "postcssPlugin": "postcss-merge-longhand"
+            },
+            {
+              "postcssPlugin": "postcss-discard-duplicates"
+            },
+            {
+              "postcssPlugin": "postcss-merge-rules"
+            },
+            {
+              "postcssPlugin": "postcss-discard-empty"
+            },
+            {
+              "postcssPlugin": "postcss-unique-selectors"
+            },
+            {
+              "postcssPlugin": "css-declaration-sorter"
+            },
+            {
+              "postcssPlugin": "cssnano-util-raw-cache"
+            }
+          ],
+          "version": "8.5.4"
+        }
+      ]
+    }
+  },
+  "customLogger": {
+    "hasWarned": false
+  },
+  "define": {
+    "__DEBUG__": "false",
+    "__NUXT_ASYNC_CONTEXT__": false,
+    "__NUXT_I18N_VERSION__": "\"9.5.5\"",
+    "__NUXT_VERSION__": "\"3.16.2\"",
+    "__TEST__": "undefined",
+    "__VUE_PROD_HYDRATION_MISMATCH_DETAILS__": false,
+    "import.meta.browser": true,
+    "import.meta.client": true,
+    "import.meta.dev": false,
+    "import.meta.nitro": false,
+    "import.meta.prerender": false,
+    "import.meta.server": false,
+    "import.meta.test": false,
+    "module.hot": false,
+    "process.browser": true,
+    "process.client": true,
+    "process.dev": false,
+    "process.env.NODE_ENV": "\"production\"",
+    "process.nitro": false,
+    "process.prerender": false,
+    "process.server": false,
+    "process.test": false
+  },
+  "esbuild": {
+    "jsxFactory": "h",
+    "jsxFragment": "Fragment",
+    "target": "esnext",
+    "tsconfigRaw": {
+    }
+  },
+  "experimental": {
+  },
+  "logLevel": "info",
+  "mode": "production",
+  "optimizeDeps": {
+    "entries": [
+      "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/nuxt/dist/app/entry.js"
+    ],
+    "esbuildOptions": {
+      "jsxFactory": "h",
+      "jsxFragment": "Fragment",
+      "target": "esnext",
+      "tsconfigRaw": {
+      }
+    },
+    "exclude": [
+      "vue-demi",
+      "@sqlite.org/sqlite-wasm",
+      "pinia",
+      "vue-i18n",
+      "@nuxtjs/mdc",
+      "vue",
+      "@vue/runtime-core",
+      "@vue/runtime-dom",
+      "@vue/reactivity",
+      "@vue/shared",
+      "@vue/devtools-api",
+      "vue-router",
+      "vue-demi",
+      "nuxt",
+      "nuxt/app",
+      "@unhead/vue",
+      "consola",
+      "defu",
+      "devalue",
+      "h3",
+      "hookable",
+      "klona",
+      "ofetch",
+      "pathe",
+      "ufo",
+      "unctx",
+      "unenv",
+      "#app-manifest"
+    ],
+    "include": [
+      "@nuxt/content > @nuxtjs/mdc > remark-gfm",
+      "@nuxt/content > @nuxtjs/mdc > remark-emoji",
+      "@nuxt/content > @nuxtjs/mdc > remark-mdc",
+      "@nuxt/content > @nuxtjs/mdc > remark-rehype",
+      "@nuxt/content > @nuxtjs/mdc > rehype-raw",
+      "@nuxt/content > @nuxtjs/mdc > parse5",
+      "@nuxt/content > @nuxtjs/mdc > unist-util-visit",
+      "@nuxt/content > @nuxtjs/mdc > unified",
+      "@nuxt/content > @nuxtjs/mdc > debug",
+      "@nuxt/content > slugify",
+      "@nuxtjs/storybook > @storybook-vue/nuxt > @storybook/vue3 > lodash/kebabCase",
+      "storybook > @storybook/core > jsdoc-type-pratt-parser"
+    ]
+  },
+  "plugins": [
+    {
+      "api": {
+        "options": {
+          "compiler": null,
+          "cssDevSourcemap": false,
+          "customElement": {
+          },
+          "features": {
+            "propsDestructure": true
+          },
+          "include": {
+          },
+          "isProduction": true,
+          "root": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test",
+          "script": {
+            "hoistStatic": {
+            }
+          },
+          "sourceMap": true,
+          "template": {
+            "compilerOptions": {
+              "nodeTransforms": [
+                null
+              ]
+            },
+            "transformAssetUrls": {
+              "image": [
+                "xlink:href",
+                "href"
+              ],
+              "img": [
+                "src"
+              ],
+              "source": [
+                "src"
+              ],
+              "use": [
+                "xlink:href",
+                "href"
+              ],
+              "video": [
+                "src",
+                "poster"
+              ]
+            }
+          }
+        },
+        "version": "5.2.4"
+      },
+      "name": "vite:vue"
+    },
+    {
+      "load": {
+        "filter": {
+          "id": {
+          }
+        }
+      },
+      "name": "vite:vue-jsx",
+      "resolveId": {
+        "filter": {
+          "id": {
+          }
+        }
+      },
+      "transform": {
+        "filter": {
+          "id": {
+            "include": {
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "ssr-styles",
+      "resolveId": {
+        "order": "pre"
+      }
+    },
+    {
+      "enforce": "pre",
+      "name": "nuxt:components-loader-pre"
+    },
+    {
+      "load": {
+        "enforce": "pre"
+      },
+      "name": "nuxt:vite-public-dir-resolution",
+      "resolveId": {
+        "enforce": "post"
+      },
+      "vite": {
+        "load": {
+          "enforce": "pre"
+        },
+        "resolveId": {
+          "enforce": "post"
+        }
+      }
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata"
+    },
+    {
+      "enforce": "post",
+      "name": "nuxt:composable-keys"
+    },
+    {
+      "name": "nuxt:prehydrate-transform"
+    },
+    {
+      "enforce": "pre",
+      "name": "nuxt:layer-aliasing",
+      "resolveId": {
+        "order": "pre"
+      },
+      "vite": {
+        "resolveId": {
+          "order": "pre"
+        }
+      }
+    },
+    {
+      "enforce": "pre",
+      "name": "nuxt:server-devonly:transform"
+    },
+    {
+      "enforce": "post",
+      "name": "nuxt:head:unhead-imports"
+    },
+    {
+      "enforce": "post",
+      "name": "nuxt:imports-transform"
+    },
+    {
+      "enforce": "post",
+      "name": "unctx:transform"
+    },
+    {
+      "enforce": "pre",
+      "name": "nuxtjs:i18n-resource"
+    },
+    {
+      "enforce": "pre",
+      "name": "unplugin-vue-i18n:resource",
+      "vite": {
+      }
+    },
+    {
+      "enforce": "pre",
+      "name": "nuxtjs:i18n-macros-transform"
+    },
+    {
+      "enforce": "post",
+      "handleHotUpdate": {
+        "order": "post"
+      },
+      "name": "nuxt:pages-macros-transform",
+      "vite": {
+        "handleHotUpdate": {
+          "order": "post"
+        }
+      }
+    },
+    {
+      "apply": "serve",
+      "enforce": "post",
+      "name": "nuxt:dev-style-ssr"
+    },
+    {
+      "enforce": "post",
+      "name": "nuxt:runtime-paths-dep"
+    },
+    {
+      "enforce": "post",
+      "name": "nuxt:vite-node-server"
+    },
+    {
+      "name": "nuxt:module-preload-polyfill"
+    },
+    {
+      "name": "nuxt:virtual"
+    },
+    {
+      "enforce": "pre",
+      "name": "impound"
+    },
+    {
+      "enforce": "pre",
+      "name": "nuxt:import-protection"
+    },
+    {
+      "enforce": "post",
+      "name": "nuxt:resolve-bare-imports"
+    },
+    {
+      "enforce": "post",
+      "name": "nuxt:route-injection-plugin"
+    },
+    {
+      "enforce": "post",
+      "name": "nuxt:components:imports"
+    },
+    {
+      "enforce": "post",
+      "name": "nuxt:components-loader"
+    },
+    {
+      "name": "nuxt-server-component-hmr"
+    },
+    {
+      "enforce": "post",
+      "name": "nuxt:tree-shake-composables:transform"
+    },
+    {
+      "name": "replace"
+    }
+  ],
+  "publicDir": false,
+  "resolve": {
+    "alias": {
+      "#app": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/nuxt/dist/app",
+      "#app-manifest": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/mocked-exports/lib/empty.mjs",
+      "#build": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/.nuxt",
+      "#content/components": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/.nuxt/content/components.ts",
+      "#content/manifest": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/.nuxt/content/manifest.ts",
+      "#i18n": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/@nuxtjs/i18n/dist/runtime/composables/index",
+      "#imports": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/.nuxt/imports",
+      "#internal-i18n-types": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/@nuxtjs/i18n/dist/types",
+      "#internal/nitro": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/.nuxt/nitro.client.mjs",
+      "#internal/nuxt/paths": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/.nuxt/paths.mjs",
+      "#mdc-configs": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/.nuxt/mdc-configs.mjs",
+      "#mdc-highlighter": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/.nuxt/mdc-highlighter.mjs",
+      "#mdc-imports": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/.nuxt/mdc-imports.mjs",
+      "#nuxt-i18n/logger": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/.nuxt/nuxt-i18n-logger.mjs",
+      "#shared": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/shared",
+      "#unhead/composables": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/nuxt/dist/head/runtime/composables/v3",
+      "#vue-router": "vue-router",
+      "@": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test",
+      "@@": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test",
+      "@intlify/core": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/@intlify/core/dist/core.node.mjs",
+      "@intlify/core-base": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/@intlify/core-base/dist/core-base.mjs",
+      "@intlify/message-compiler": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/@intlify/message-compiler/dist/message-compiler.mjs",
+      "@intlify/shared": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/@intlify/shared/dist/shared.mjs",
+      "@intlify/utils/h3": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/@intlify/utils/dist/h3.mjs",
+      "@vue/composition-api": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/nuxt/dist/app/compat/capi",
+      "abort-controller": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/mocked-exports/lib/empty.mjs",
+      "assets": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/assets",
+      "public": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/public",
+      "ufo": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/ufo/dist/index.mjs",
+      "vue-demi": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/nuxt/dist/app/compat/vue-demi",
+      "vue-i18n": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/vue-i18n/dist/vue-i18n.mjs",
+      "web-streams-polyfill/ponyfill/es2018": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/mocked-exports/lib/empty.mjs",
+      "~": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test",
+      "~~": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test"
+    },
+    "dedupe": [
+      "vue",
+      "vue-router"
+    ],
+    "extensions": [
+      ".mjs",
+      ".js",
+      ".ts",
+      ".jsx",
+      ".tsx",
+      ".json",
+      ".vue"
+    ]
+  },
+  "root": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test",
+  "server": {
+    "cors": false,
+    "fs": {
+      "allow": [
+        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components",
+        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/.nuxt",
+        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test",
+        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components"
+      ]
+    },
+    "hmr": false,
+    "middlewareMode": true,
+    "warmup": {
+      "clientFiles": [
+        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/nuxt/dist/app/entry.js"
+      ]
+    }
+  },
+  "vue": {
+    "features": {
+      "propsDestructure": true
+    },
+    "isProduction": true,
+    "script": {
+      "hoistStatic": {
+      }
+    },
+    "template": {
+      "compilerOptions": {
+        "nodeTransforms": [
+          null
+        ]
+      },
+      "transformAssetUrls": {
+        "image": [
+          "xlink:href",
+          "href"
+        ],
+        "img": [
+          "src"
+        ],
+        "source": [
+          "src"
+        ],
+        "use": [
+          "xlink:href",
+          "href"
+        ],
+        "video": [
+          "src",
+          "poster"
+        ]
+      }
+    }
+  },
+  "vueJsx": {
+  }
+}

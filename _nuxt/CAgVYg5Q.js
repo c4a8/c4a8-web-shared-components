@@ -1,0 +1,1 @@
+import{_ as o,p as s}from"./CV0-TAqy.js";const e={};function n(t,r){return s(t.$slots,"default")}const c=o(e,[["render",n]]);e.__docgenInfo={displayName:"event",description:"",tags:{},slots:[{name:"default"}],sourceFiles:["/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/layouts/event.vue"]};export{c as default};
