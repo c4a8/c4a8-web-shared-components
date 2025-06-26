@@ -16,17 +16,17 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install and Build
         run: |
-          cd nuxt-storybook-test
+          cd nuxt
           npm install
           npm run build-storybook-full
       - name: Add .nojekyll
         run: |
-          cd nuxt-storybook-test/storybook-static
+          cd nuxt/storybook-static
           touch .nojekyll
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages-nuxt
-          folder: nuxt-storybook-test/storybook-static
+          folder: nuxt/storybook-static
           clean: true
