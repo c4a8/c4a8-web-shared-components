@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install and Build
         run: |
-          cd nuxt-storybook-test
+          cd nuxt
           npm install
           npm run build-storybook-full
       - name: Add .nojekyll
