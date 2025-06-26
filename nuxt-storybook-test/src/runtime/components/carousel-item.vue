@@ -1,7 +1,7 @@
 <template>
-  <a :href="item.url" :target="item.target" class="carousel__item">
+  <component :is="item.url ? 'a' : 'span'" :href="item.url" :target="item.target" class="carousel__item">
     <v-img :cloudinary="true" v-bind="item" :class="item.classes"></v-img>
-  </a>
+  </component>
 </template>
 <script>
 export default {

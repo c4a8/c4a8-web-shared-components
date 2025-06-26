@@ -2,11 +2,12 @@
   <div
     :class="['icon-blocks', 'utility-animation', spacing, 'container-fluid', { 'is-sticky-scroller': sticky }]"
     :style="{ backgroundColor: iconBlocks.bgColor }"
+    v-if="iconBlocks"
   >
     <div class="container space-2">
       <div v-if="headline" class="row mt-5 mb-8 px-lg-3 fade-in-bottom" data-utility-animation-step="1">
         <div class="col">
-          <headline :text="headline" level="h3" />
+          <headline :text="headline" :level="level" />
         </div>
       </div>
       <div class="row">
@@ -17,8 +18,8 @@
           data-utility-animation-step="1"
           :style="{ '--utility-animation-index': index + 1 }"
         >
-          <div :class="['px-lg-3', { 'text-center': !item.copy }]">
-            <figure :class="['max-w-15rem', 'mb-4', { 'mx-auto': !item.copy }]">
+          <div :class="['px-lg-3', { 'text-center': item.copy === '' }]">
+            <figure :class="['max-w-15rem', 'mb-4', { 'mx-auto': item.copy === '' }]">
               <v-img :img="item.image" :cloudinary="item.cloudinary" :alt="iconBlocks.alt" />
             </figure>
             <headline :text="item.headline" :level="level" :classes="classes" />

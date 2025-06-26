@@ -305,6 +305,22 @@
     }
   }
 
+  &.hero--shape-svg {
+    .hero__content-shape {
+      &[style] {
+        align-self: flex-end;
+      }
+    }
+  }
+
+  &:not(.hero--shape-svg) {
+    .hero__content-shape {
+      &[style] {
+        left: calc((100vw - 100%) / 2);
+      }
+    }
+  }
+
   .hero__headline {
     margin-bottom: spacing(10);
   }
@@ -508,7 +524,6 @@
 
   &[style] {
     position: relative;
-    left: calc((100vw - 100%) / 2);
 
     &[style*='order: 5'],
     &[style*='order: 6'],
@@ -523,6 +538,10 @@
       ) {
       margin: spacing(8) 0;
     }
+  }
+
+  .is-svg {
+    width: 100%;
   }
 
   &:not([style]) {

@@ -630,7 +630,7 @@ class Tools {
     return {
       url: path,
       date: dateValueOrFallback,
-      moment: dateValueOrFallback,
+      moment: moment,
       excerpt: meta?.customExcerpt || seo?.description,
       headlineText: meta?.headline,
       author: typeof author === 'string' ? [author] : author,
