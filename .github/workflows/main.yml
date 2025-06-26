@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22.14
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install and Build
         run: |
           cd nuxt
@@ -22,7 +22,7 @@ jobs:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.6
         with:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          BRANCH: gh-pages-nuxt
-          FOLDER: storybook-static
-          CLEAN: true
+          token: ${{ secrets.GH_TOKEN }}
+          branch: gh-pages-nuxt
+          folder: storybook-static
+          clean: true
