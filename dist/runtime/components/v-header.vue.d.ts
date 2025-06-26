@@ -994,7 +994,7 @@ declare namespace _default {
     namespace methods {
         function getSecondaryNavigationDimensions(): void;
         function closeSecondaryNavigation(): void;
-        function toggleSecondaryNavigation(): void;
+        function toggleSecondaryNavigation(): any;
         function shrinkWidthSecondaryNavigation(): void;
         function shrinkSecondaryNavigation(secondaryNavigation: any): void;
         function expandWidthSecondaryNavigation(secondaryNavigation: any): void;

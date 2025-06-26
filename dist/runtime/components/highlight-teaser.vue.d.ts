@@ -11,7 +11,7 @@ declare namespace _default {
         function reducedAnimationValue(): boolean;
         function limitValue(): number;
         function isFirstEntry(): boolean;
-        function isLastEntry(): boolean;
+        function isLastEntry(): any;
         function activeEntry(): any;
         function currentPage(): any;
         function lastPage(): any;
@@ -39,7 +39,7 @@ declare namespace _default {
                 };
             }[];
         };
-        function rightDirection(): boolean;
+        function rightDirection(): any;
     }
     namespace methods {
         function handleTransitionsEnd(): void;

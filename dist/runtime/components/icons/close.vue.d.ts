@@ -1,7 +1,7 @@
 declare namespace _default {
     let tagName: string;
     namespace computed {
-        function outerPosition(): number;
+        function outerPosition(): any;
         function style(): string;
     }
     namespace props {

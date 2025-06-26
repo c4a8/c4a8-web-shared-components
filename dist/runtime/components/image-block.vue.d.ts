@@ -2,11 +2,7 @@ declare namespace _default {
     let tagName: string;
     namespace computed {
         function classList(): string[];
-        function imageWithCloudinary(): {
-            img: any;
-            cloudinary: boolean;
-            alt: any;
-        };
+        function imageWithCloudinary(): any;
     }
     namespace props {
         namespace imageBlock {

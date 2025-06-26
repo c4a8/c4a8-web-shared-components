@@ -29,27 +29,10 @@ declare namespace _default {
         function quotesSpacing(): any;
         function quotesNoFullscreen(): any;
         function quotesImagesCount(): any;
-        function quotesImage(): boolean;
+        function quotesImage(): any;
         function quotesSlidesToShow(): 1 | 1.05;
         function quotesColSize(): number;
-        function slickOptions(): {
-            rows: number;
-            centerMode: boolean;
-            centerPadding: string;
-            prevArrow: string;
-            nextArrow: string;
-            dots: boolean;
-            dotsClass: string;
-            slidesToShow: number;
-            slidesToScroll: number;
-            infinite: boolean;
-            responsive: {
-                breakpoint: number;
-                settings: {
-                    slidesToShow: () => 1 | 1.05;
-                };
-            }[];
-        };
+        function slickOptions(): any;
     }
 }
 export default _default;

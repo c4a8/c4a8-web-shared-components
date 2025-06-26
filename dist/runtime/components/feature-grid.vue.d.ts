@@ -26,11 +26,9 @@ declare namespace _default {
     function mounted(): void;
     namespace computed {
         function columnClass(): string;
-        function headlineRowClassesValue(): string;
+        function headlineRowClassesValue(): any;
         function containerClasses(): any[];
-        function styleObject(): {
-            backgroundColor: any;
-        };
+        function styleObject(): any;
     }
 }
 export default _default;

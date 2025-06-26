@@ -19,9 +19,7 @@ declare namespace _default {
         function classList(): (string | (() => any))[];
         function showComponent(): true | (() => {
             limit: any;
-            sort: {
-                moment: number;
-            }[];
+            sort: any;
             reversed: any;
             where: {
                 layout: {
@@ -52,9 +50,7 @@ declare namespace _default {
         });
         function query(): {
             limit: any;
-            sort: {
-                moment: number;
-            }[];
+            sort: any;
             reversed: any;
             where: {
                 layout: {
@@ -102,7 +98,7 @@ declare namespace _default {
     function created(): void;
     namespace methods {
         function init(): NodeJS.Timeout | undefined;
-        function getDataAuthors(): Promise<any>;
+        function getDataAuthors(): any;
         function event(post: any): boolean;
         function blogTitleUrl(post: any): any;
         function target(post: any): "_blank" | "_self";

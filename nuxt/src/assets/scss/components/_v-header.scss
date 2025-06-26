@@ -115,13 +115,13 @@ $header-border-size: 1px;
       }
 
       .header__link {
-        position: relative;
+        //   position: relative;
         border-bottom: 0;
 
-        @include media-breakpoint-up($header-expand-breakpoint) {
-          padding-top: spacing(2);
-          padding-bottom: spacing(2);
-        }
+        //   @include media-breakpoint-up($header-expand-breakpoint) {
+        //     padding-top: spacing(2);
+        //     padding-bottom: spacing(2);
+        //   }
       }
 
       .header__nav {
@@ -248,6 +248,7 @@ $header-border-size: 1px;
 
       @include media-breakpoint-up($header-expand-breakpoint) {
         bottom: 0;
+        transition: none;
 
         .header__item {
           &:hover {
@@ -327,6 +328,11 @@ $header-border-size: 1px;
         width: auto;
         border: 0;
         padding: 0;
+
+        @include media-breakpoint-up($header-expand-breakpoint) {
+          padding-top: spacing(2);
+          padding-bottom: spacing(2);
+        }
       }
 
       .header__link-content {

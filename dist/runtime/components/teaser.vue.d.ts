@@ -33,7 +33,7 @@ declare namespace _default {
     namespace computed {
         function classList(): any[];
         function computedText(): any;
-        function headlineClassesWithDefault(): string;
+        function headlineClassesWithDefault(): any;
     }
     function mounted(): void;
     namespace methods {

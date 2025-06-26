@@ -43,7 +43,7 @@ declare namespace _default {
         }
     }
     namespace computed {
-        function columnClass(): string;
+        function columnClass(): any;
     }
     function mounted(): void;
 }

@@ -13,13 +13,9 @@ declare namespace _default {
         function limitValue(): any;
         function maxLimitValue(): any;
         function eventsValue(): any;
-        function hasMore(): boolean;
+        function hasMore(): any;
         function query(): {
-            where: {
-                eventid: {
-                    IN: any;
-                };
-            };
+            where: any;
             path: string;
         };
         function sort(): {

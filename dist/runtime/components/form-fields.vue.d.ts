@@ -9,8 +9,8 @@ declare namespace _default {
         function showInClasses(): any;
         function groupClass(): "" | "mb-3" | "mb-8";
         function errorId(): string;
-        function readonly(): "readonly" | null;
-        function required(): "required" | null;
+        function readonly(): any;
+        function required(): any;
         function placeholder(): any;
         function value(): any;
     }

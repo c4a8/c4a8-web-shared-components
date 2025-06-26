@@ -22,41 +22,13 @@ declare module 'nuxt/config' {
       vueI18n?: string;
       [key: string]: any;
     };
-    content?: {
-      markdown?: {
-        anchorLinks?: boolean;
-        [key: string]: any;
-      };
-      locales?: string[];
-      defaultLocale?: string;
-      [key: string]: any;
-    };
-    data?: {
-      // Add data module options here if needed
-      [key: string]: any;
-    };
   }
 }
 
 export default defineNuxtConfig({
-  compatibilityDate: '2024-08-03',
+  compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: [
-    '@nuxtjs/storybook',
-    // '@nuxt/content',
-    '@nuxtjs/i18n',
-    '@pinia/nuxt',
-    // [
-    //   'shared-components',
-    //   {
-    //     theme: 'gk',
-    //   },
-    // ],
-    '~/modules/data',
-  ], // , '@nuxt/image'
-  storybook: {
-    port: 6006,
-  },
+  modules: ['@nuxtjs/storybook', '@nuxt/content', '@nuxtjs/i18n', '@pinia/nuxt'],
   i18n: {
     bundle: {
       optimizeTranslationDirective: false,
@@ -65,18 +37,9 @@ export default defineNuxtConfig({
     locale: 'de',
     legacy: false,
     fallbackLocale: 'en',
-    defaultLocale: 'de',
-    strategy: 'prefix',
+    // defaultLocale: 'de',
+    // strategy: 'prefix',
     locales: ['de', 'en', 'es'],
     vueI18n: './i18n.config.js',
   },
-  content: {
-    markdown: {
-      anchorLinks: false,
-    },
-    locales: ['de', 'en', 'es'],
-    defaultLocale: 'de',
-  },
 });
-
-// TODO try to fix nuxt content inside storybook. right now query is not working and returns a 404

@@ -26,7 +26,7 @@ declare namespace _default {
     }
     function mounted(): void;
     namespace computed {
-        function successStorySlider(): boolean;
+        function successStorySlider(): any;
         function successStoryLevel(): any;
         function successStorySticky(): any;
         function successStorySpacing(): any;
