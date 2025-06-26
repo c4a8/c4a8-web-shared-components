@@ -19,6 +19,10 @@ jobs:
           cd nuxt-storybook-test
           npm install
           npm run build-storybook-full
+      - name: Add .nojekyll
+        run: |
+          cd nuxt-storybook-test/storybook-static
+          touch .nojekyll
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
