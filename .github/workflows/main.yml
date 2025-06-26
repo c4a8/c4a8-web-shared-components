@@ -18,7 +18,7 @@ jobs:
         run: |
           cd nuxt-storybook-test
           npm install
-          npm run build-storybook
+          npm run build-storybook-full
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.6
         with:
