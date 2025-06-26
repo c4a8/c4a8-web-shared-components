@@ -120,6 +120,14 @@ export default defineNuxtModule({
       });
     });
 
+    // extendPages((pages) => {
+    //   pages.unshift({
+    //     name: 'slug-authors',
+    //     path: '/authors/:slug(.*)*',
+    //     file: resolve('./runtime/pages/authors/[...slug].vue'),
+    //   });
+    // });
+
     extendPages((pages) => {
       pages.unshift({
         name: 'slug-all',

@@ -1,8 +1,5 @@
 <template>
-  <template v-if="list">
-    <slot v-bind:list="list" :strategy="strategy" />
-  </template>
-  <slot v-bind:list="dataList" :strategy="strategy" v-else></slot>
+  <slot v-bind:list="contentList" :strategy="strategy" />
 </template>
 
 <script setup>
@@ -70,7 +67,15 @@ const buildQuery = (collectionName) => {
   return queryBuilder;
 };
 
-const { data: list } = await useAsyncData(dataKey, async () => {
+const list = computed(() => {
+  if (props.dataList.length > 0) return props.dataList;
+
+  return null;
+});
+
+const { data: asyncList } = await useAsyncData(dataKey, async () => {
+  if (props.dataList.length > 0) return null;
+
   const mainCollection = 'content_' + locale.value;
   const mainResults = await buildQuery(mainCollection).all();
 
@@ -90,4 +95,6 @@ const { data: list } = await useAsyncData(dataKey, async () => {
 
   return filterDuplicateItems(allResults);
 });
+
+const contentList = computed(() => list.value || asyncList.value);
 </script>

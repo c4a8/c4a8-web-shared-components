@@ -6,6 +6,12 @@
 
   overflow: clip;
 
+  .richtext {
+    &.richtext--full-width {
+      --post-content-width-lg: 100%;
+    }
+  }
+
   &.post-detail--aside-nav {
     @include media-breakpoint-up(xl) {
       --post-detail-aside-left-offset: calc(var(--post-offset-spacing-xl) + #{spacing(4)});

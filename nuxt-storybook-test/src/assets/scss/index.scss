@@ -2,7 +2,8 @@
 
 // TODO move this to real dependences or get rid of it
 // @layer vendor {
-@import '../front/assets/vendor/leaflet/dist/leaflet';
+// TODO when you migrate the component use the npm package instead of this
+// @import '../front/assets/vendor/leaflet/dist/leaflet';
 @import '../front/assets/css/theme';
 @import '../front/assets/vendor/slick-carousel/slick/slick';
 
