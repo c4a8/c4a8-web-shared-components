@@ -55,7 +55,7 @@ declare namespace _default {
         let headlineClasses: StringConstructor;
     }
     namespace computed {
-        function textImageLightText(): "" | "text-light";
+        function textImageLightText(): any;
         function textImageFirstColWidthXl(): any;
         function textImageFirstColWidthComputed(): any;
         function textImageSecondColWidthXl(): any;

@@ -40,16 +40,7 @@ declare namespace _default {
         let body: ObjectConstructor;
     }
     namespace computed {
-        function introData(): {
-            badge: any;
-            image: any;
-            moment: any;
-            time: any;
-            headlineText: any;
-            headlineLevel: () => any;
-            headlineClasses: () => string;
-            name: any;
-        };
+        function introData(): any;
         function headlineLevelComputed(): any;
         function headlineClassesComputed(): string;
         function stickyOptions(): string;

@@ -12,7 +12,7 @@ declare namespace _default {
         searchExpanded: boolean;
     };
     namespace methods {
-        function handleEnter(): void | Promise<void>;
+        function handleEnter(): any;
         function handleSearch(): void;
         function initSearchEngine(): void;
         function handleSearchBar(): void;

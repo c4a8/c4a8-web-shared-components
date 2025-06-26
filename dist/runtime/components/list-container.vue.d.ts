@@ -2,7 +2,7 @@ declare namespace _default {
     let tagName: string;
     namespace computed {
         function classValue(): string[];
-        function colorStyling(): string[];
+        function colorStyling(): any[];
     }
     function mounted(): void;
     namespace props {

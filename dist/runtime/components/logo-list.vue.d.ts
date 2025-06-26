@@ -7,7 +7,7 @@ declare namespace _default {
         function isOverlapping(): boolean;
         function columnsValue(): string;
         function aspectRatioValue(): string;
-        function styles(): string;
+        function styles(): any;
     }
     namespace props {
         let list: ArrayConstructor;

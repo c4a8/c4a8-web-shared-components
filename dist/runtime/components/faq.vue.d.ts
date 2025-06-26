@@ -5,7 +5,7 @@ declare namespace _default {
     };
     function beforeMount(): void;
     namespace computed {
-        function style(): string | null;
+        function style(): any;
         function classList(): string[];
         function headlineClasses(): string;
         function headlineLevel(): any;

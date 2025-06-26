@@ -2,7 +2,7 @@ declare namespace _default {
     let tagName: string;
     namespace computed {
         function otherId(): string;
-        function required(): "required" | null;
+        function required(): any;
         function message(): any;
     }
     namespace props {

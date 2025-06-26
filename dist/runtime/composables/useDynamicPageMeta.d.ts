@@ -1,1 +1,1 @@
-export function useDynamicPageMeta(): any;
+export function useDynamicPageMeta(): import("vue").Ref<{}, {}>;

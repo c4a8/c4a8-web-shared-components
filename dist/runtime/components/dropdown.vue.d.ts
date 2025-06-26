@@ -20,7 +20,7 @@ declare namespace _default {
         function parsedItems(): any;
         function filteredItems(): any;
         function filterableValue(): boolean;
-        function style(): string;
+        function style(): any;
     }
     namespace methods {
         function initActiveSelection(): void;

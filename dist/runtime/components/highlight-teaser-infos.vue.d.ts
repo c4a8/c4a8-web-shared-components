@@ -13,8 +13,8 @@ declare namespace _default {
         function logo(): any;
         function currentEntry(): any;
         function isInAnimation(): any;
-        function isFirstEntryOrInAnimation(): () => any;
-        function isLastEntryOrInAnimation(): () => any;
+        function isFirstEntryOrInAnimation(): any;
+        function isLastEntryOrInAnimation(): any;
     }
     function mounted(): void;
     function beforeDestroy(): void;

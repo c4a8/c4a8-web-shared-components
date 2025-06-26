@@ -70,3 +70,22 @@
     margin-top: 0;
   }
 </style>
+<script>
+  window.global = window;
+  /*
+    This "fix" is needed to avoid the __VUE_HMR_RUNTIME__  error
+    It brings you back to the days of autoreload browser extensions 👨‍🦳
+    TODO: Remove when this issue is fixed https://github.com/storybookjs/storybook/issues/31010
+  */
+  window.__VUE_HMR_RUNTIME__ = {
+    createRecord: () => {},
+    reload: () => {
+      console.log('Reloading the window due to HMR update...');
+      window.location.reload();
+    },
+    rerender: () => {
+      console.log('Rerendering due to HMR update...');
+      window.location.reload();
+    },
+  };
+</script>

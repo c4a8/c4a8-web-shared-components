@@ -40,7 +40,7 @@ declare namespace _default {
         function getSpacing(): any;
         function headlineLevelValue(): any;
         function headlineClassesValue(): string;
-        function centerPaddingValue(): string | null;
+        function centerPaddingValue(): any;
         function carouselOptions(): (() => any) | {
             rows: number;
             slidesToShow: number;

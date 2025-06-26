@@ -22,10 +22,10 @@ declare namespace _default {
     function mounted(): void;
     namespace computed {
         function headlineRowClassesValue(): string;
-        function containerClass(): "" | "container";
-        function animationClass(): "" | "utility-animation";
-        function animationStepClass(): "" | "fade-in-bottom";
-        function classList(): (string | (() => "" | "utility-animation"))[];
+        function containerClass(): any;
+        function animationClass(): any;
+        function animationStepClass(): any;
+        function classList(): (string | (() => any))[];
     }
 }
 export default _default;

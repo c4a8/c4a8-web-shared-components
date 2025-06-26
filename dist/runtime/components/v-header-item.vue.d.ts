@@ -5,7 +5,7 @@ declare namespace _default {
     }
     namespace methods {
         function headerItemClasses(item: any): any[];
-        function headerLinkClasses(item: any, index: any): any[];
+        function headerLinkClasses(item: any, index: any): any;
         function getListClasses(item: any, index: any, classes: any): any[];
         function isLinkListHidden(item: any, index: any): boolean;
         function navHighlightClasses(item: any, index: any): string[];

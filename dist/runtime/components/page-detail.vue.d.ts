@@ -973,13 +973,13 @@ declare namespace _default {
         }
     }
     namespace computed {
-        function hasShape(): boolean;
+        function hasShape(): any;
     }
     namespace methods {
         function showBackButton(): void;
         function getDOMElement(selector: any): any;
         function setStickyPosition(): void;
-        function isInViewport(): boolean;
+        function isInViewport(): any;
         function setShapePosition(): void;
         function handleStickyShapeEnd(): void;
         function getStickyBlock(): any;

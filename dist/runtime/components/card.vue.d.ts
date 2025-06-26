@@ -24,15 +24,7 @@ declare namespace _default {
         function hasBlogTitlePic(): boolean;
         function hasNoLink(): boolean;
         function ctaValue(): any;
-        function cardFooterData(): {
-            date: () => any;
-            author: any;
-            authorsList: any;
-            hasNoLink: () => boolean;
-            dataAuthors: any;
-            isRow: () => boolean;
-            tags: any;
-        };
+        function cardFooterData(): any;
     }
     function created(): void;
     function mounted(): void;

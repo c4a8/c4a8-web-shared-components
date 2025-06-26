@@ -5,7 +5,7 @@ declare namespace _default {
         function hasNoAnimation(): boolean;
         function classListTitle(): string[];
         function classListList(): string[];
-        function hasActiveItem(): boolean | undefined;
+        function hasActiveItem(): any;
         function isHidden(): boolean;
     }
     namespace watch {
@@ -17,7 +17,7 @@ declare namespace _default {
         function bindEvents(): void;
         function handleUpdate(event: any): void;
         function isLowerBreakpoint(): boolean;
-        function isExpandable(): boolean;
+        function isExpandable(): any;
         function updateHeight(): void;
         function handleClick(event: any): void;
     }

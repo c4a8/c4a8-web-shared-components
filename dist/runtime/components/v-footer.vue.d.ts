@@ -9,7 +9,7 @@ declare namespace _default {
         function style(): string[];
         function dataValue(): any;
         function links(): any;
-        function locations(): any[];
+        function locations(): any;
     }
     function mounted(): void;
     namespace methods {

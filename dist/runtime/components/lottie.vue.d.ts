@@ -9,15 +9,7 @@ declare namespace _default {
         function autoplayValue(): any;
         function nameValue(): any;
         function rendererValue(): any;
-        function options(): {
-            renderer: () => any;
-            loop: () => any;
-            autoplay: () => any;
-            width: any;
-            height: any;
-            animationData: any;
-            noMargin: boolean;
-        };
+        function options(): any;
     }
     function data(): {
         style: {};
