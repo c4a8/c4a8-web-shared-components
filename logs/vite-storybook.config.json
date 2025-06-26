@@ -2,7 +2,7 @@
   "base": "./",
   "build": {
     "emptyOutDir": false,
-    "outDir": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/storybook-static",
+    "outDir": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/storybook-static",
     "rollupOptions": {
       "external": [
         {
@@ -10,7 +10,7 @@
       ]
     }
   },
-  "cacheDir": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/.cache/storybook/default/sb-vite",
+  "cacheDir": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/.cache/storybook/default/sb-vite",
   "configFile": false,
   "envPrefix": [
     "VITE_",
@@ -69,5 +69,5 @@
       "development|production"
     ]
   },
-  "root": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test"
+  "root": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt"
 }

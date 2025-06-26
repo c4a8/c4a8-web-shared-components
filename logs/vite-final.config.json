@@ -6,14 +6,14 @@
     "copyPublicDir": false,
     "emptyOutDir": false,
     "manifest": "manifest.json",
-    "outDir": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/storybook-static",
+    "outDir": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/storybook-static",
     "rollupOptions": {
       "external": [
         {
         }
       ],
       "input": {
-        "entry": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/nuxt/dist/app/entry.js"
+        "entry": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/nuxt/dist/app/entry.js"
       },
       "output": {
         "chunkFileNames": "_nuxt/[hash].js",
@@ -22,7 +22,7 @@
     },
     "sourcemap": false
   },
-  "cacheDir": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/.cache/storybook/default/sb-vite",
+  "cacheDir": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/.cache/storybook/default/sb-vite",
   "clearScreen": true,
   "configFile": false,
   "css": {
@@ -174,7 +174,7 @@
   "mode": "production",
   "optimizeDeps": {
     "entries": [
-      "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/nuxt/dist/app/entry.js"
+      "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/nuxt/dist/app/entry.js"
     ],
     "esbuildOptions": {
       "jsxFactory": "h",
@@ -239,7 +239,7 @@
           "include": {
           },
           "isProduction": true,
-          "root": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test",
+          "root": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt",
           "sourceMap": true
         },
         "version": "5.2.3"
@@ -464,40 +464,40 @@
   "publicDir": false,
   "resolve": {
     "alias": {
-      "#app": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/nuxt/dist/app",
-      "#app-manifest": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/mocked-exports/lib/empty.mjs",
-      "#build": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/.nuxt",
-      "#content/components": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/.nuxt/content/components.ts",
-      "#content/manifest": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/.nuxt/content/manifest.ts",
-      "#i18n": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/@nuxtjs/i18n/dist/runtime/composables/index",
-      "#imports": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/.nuxt/imports",
-      "#internal-i18n-types": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/@nuxtjs/i18n/dist/types",
-      "#internal/nitro": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/.nuxt/nitro.client.mjs",
-      "#internal/nuxt/paths": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/.nuxt/paths.mjs",
-      "#mdc-configs": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/.nuxt/mdc-configs.mjs",
-      "#mdc-highlighter": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/.nuxt/mdc-highlighter.mjs",
-      "#mdc-imports": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/.nuxt/mdc-imports.mjs",
-      "#nuxt-i18n/logger": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/.nuxt/nuxt-i18n-logger.mjs",
-      "#shared": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/shared",
-      "#unhead/composables": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/nuxt/dist/head/runtime/composables/v3",
+      "#app": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/nuxt/dist/app",
+      "#app-manifest": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/mocked-exports/lib/empty.mjs",
+      "#build": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt",
+      "#content/components": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/content/components.ts",
+      "#content/manifest": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/content/manifest.ts",
+      "#i18n": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@nuxtjs/i18n/dist/runtime/composables/index",
+      "#imports": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/imports",
+      "#internal-i18n-types": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@nuxtjs/i18n/dist/types",
+      "#internal/nitro": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/nitro.client.mjs",
+      "#internal/nuxt/paths": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/paths.mjs",
+      "#mdc-configs": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/mdc-configs.mjs",
+      "#mdc-highlighter": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/mdc-highlighter.mjs",
+      "#mdc-imports": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/mdc-imports.mjs",
+      "#nuxt-i18n/logger": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/nuxt-i18n-logger.mjs",
+      "#shared": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/shared",
+      "#unhead/composables": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/nuxt/dist/head/runtime/composables/v3",
       "#vue-router": "vue-router",
-      "@": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test",
-      "@@": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test",
-      "@intlify/core": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/@intlify/core/dist/core.node.mjs",
-      "@intlify/core-base": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/@intlify/core-base/dist/core-base.mjs",
-      "@intlify/message-compiler": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/@intlify/message-compiler/dist/message-compiler.mjs",
-      "@intlify/shared": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/@intlify/shared/dist/shared.mjs",
-      "@intlify/utils/h3": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/@intlify/utils/dist/h3.mjs",
-      "@vue/composition-api": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/nuxt/dist/app/compat/capi",
-      "abort-controller": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/mocked-exports/lib/empty.mjs",
-      "assets": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/assets",
-      "public": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/public",
-      "ufo": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/ufo/dist/index.mjs",
-      "vue-demi": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/nuxt/dist/app/compat/vue-demi",
-      "vue-i18n": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/vue-i18n/dist/vue-i18n.mjs",
-      "web-streams-polyfill/ponyfill/es2018": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/mocked-exports/lib/empty.mjs",
-      "~": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test",
-      "~~": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test"
+      "@": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt",
+      "@@": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt",
+      "@intlify/core": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@intlify/core/dist/core.node.mjs",
+      "@intlify/core-base": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@intlify/core-base/dist/core-base.mjs",
+      "@intlify/message-compiler": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@intlify/message-compiler/dist/message-compiler.mjs",
+      "@intlify/shared": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@intlify/shared/dist/shared.mjs",
+      "@intlify/utils/h3": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@intlify/utils/dist/h3.mjs",
+      "@vue/composition-api": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/nuxt/dist/app/compat/capi",
+      "abort-controller": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/mocked-exports/lib/empty.mjs",
+      "assets": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/assets",
+      "public": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/public",
+      "ufo": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/ufo/dist/index.mjs",
+      "vue-demi": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/nuxt/dist/app/compat/vue-demi",
+      "vue-i18n": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/vue-i18n/dist/vue-i18n.mjs",
+      "web-streams-polyfill/ponyfill/es2018": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/mocked-exports/lib/empty.mjs",
+      "~": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt",
+      "~~": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt"
     },
     "conditions": [
       "storybook",
@@ -521,20 +521,20 @@
       ".vue"
     ]
   },
-  "root": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test",
+  "root": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt",
   "server": {
     "cors": true,
     "fs": {
       "allow": [
         "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components",
-        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/.nuxt",
-        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test",
+        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt",
+        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt",
         "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components",
-        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test",
-        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/@storybook-vue/nuxt/dist",
-        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/@storybook-vue/nuxt",
-        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/@storybook-vue/nuxt/dist/runtime/plugins",
-        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/@storybook-vue/nuxt/dist/runtime/components"
+        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt",
+        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@storybook-vue/nuxt/dist",
+        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@storybook-vue/nuxt",
+        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@storybook-vue/nuxt/dist/runtime/plugins",
+        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@storybook-vue/nuxt/dist/runtime/components"
       ]
     },
     "hmr": false,
@@ -555,7 +555,7 @@
     },
     "warmup": {
       "clientFiles": [
-        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/node_modules/nuxt/dist/app/entry.js"
+        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/nuxt/dist/app/entry.js"
       ]
     }
   },

@@ -1,1 +1,0 @@
-import{aM as n,aN as r}from"./CV0-TAqy.js";const g=()=>n("dynamicPageMeta",()=>({}));function m(i){const{title:t,description:a,image:e}=i;t&&(i.ogTitle=t,i.twitterTitle=t),a&&(i.ogDescription=a,i.twitterDescription=a),e&&(i.ogImage=e,i.twitterImage=e),r(i)}export{m as a,g as u};

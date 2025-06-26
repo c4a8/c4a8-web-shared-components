@@ -1,1 +1,0 @@
-import{_ as s,p as t}from"./CV0-TAqy.js";const e={};function n(o,r){return t(o.$slots,"default")}const c=s(e,[["render",n]]);e.__docgenInfo={displayName:"post",description:"",tags:{},slots:[{name:"default"}],sourceFiles:["/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt-storybook-test/layouts/post.vue"]};export{c as default};
