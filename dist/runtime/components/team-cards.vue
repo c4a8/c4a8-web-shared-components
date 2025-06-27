@@ -1,32 +1,25 @@
 <template>
-    <div v-if="teamCards">
-<<      <div class="team-card container space-2">
-        <div class="row mx-n2 mb-5">
-          <div v-for="(item, index) in teamCards.items" :key="index" class="col-sm-6 col-lg-4 px-2 mb-3">
-            <!-- Team -->
-            <div class="card h-100">
-              <div class="card-body has-card-background">
-                <div style="margin-bottom:50px;">
-                  <img v-if="item.img" :src="item.img" :alt="item.alt" class="img-fluid" />
-                </div>
-                <h3>{{ item.name }}</h3>
-                <h4>{{ item.job }}</h4>
-                <p>{{ item.description }}</p>
-                <!--
-              <div>
-                <p v-if="item.knowledge" class="list-inline-item">
-                  <span class="navbar-promo-icon">
-                    <i class="fas fa-certificate"></i>
-                  </span>
-                  {{ item.knowledge }}
-                </p>
-                <h3 v-if="item.webcasts" class="mb-3">
-                  <a class="text-dark" :href="item.href">{{ item.webcasts }}</a>
-                </h3>
-              </div>-->
+  <div v-if="teamCards">
+    <div class="team-cards container space-2">
+      <div class="row mx-n2 mb-5">
+        <div v-for="(item, index) in teamCards.items" :key="index" class="col-sm-6 col-lg-4 px-2 mb-3">
+          <!-- Team -->
+          <div class="card h-100">
+            <div class="card-body has-card-background">
+              <div style="margin-bottom:50px;">
+                <img v-if="item.img" :src="item.img" :alt="item.alt" class="img-fluid" />
               </div>
-              <!---
-            <div class="card-footer border-0 pt-0">
+              <h3>{{ item.name }}</h3>
+              <h4>{{ item.job }}</h4>
+              <p>{{ item.description }}</p>
+              <br>
+              <div style="display: flex; gap: 1rem;">         
+                <img src="https://res.cloudinary.com/c4a8/image/upload/icons/certified-ribbon.svg"  width="40" height="40" />
+                <div>{{ item.skills }}</div>
+              </div>
+            </div>
+           
+            <div class="card-footer">
               <ul class="list-inline mb-0">
                 <li v-if="item.twitter" class="list-inline-item">
                   <a :href="item.twitter">
@@ -39,45 +32,13 @@
                   </a>
                 </li>
               </ul>
-            </div> -->
-            </div>
-
+            </div> 
           </div>
+
         </div>
-      </div>>>
-    </div>
-
-
-
-    <!---
-    <template>
-      <div class="card__img-top position-relative no-gutters is-foreground" v-if="blogtitlepic">
-        <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :img-src-sets="imgSrcSets" :lazy="true" />
       </div>
-
-      <div class="card__body card-body richtext">
-        <div class="card__scope" v-if="scope">{{ scope }}</div>
-        <headline level="h4"><a ref="title" class="card__title text-inherit text-decoration-none text-reset mt-4 mb-4"
-            :href="url" :target="target">{{ combinedTitle }}</a></headline>
-        <p class="mb-4 mt-4" v-html="truncatedExcerpt"></p>
-
-        <ul class="card__points text-black">
-          <template v-for="(points, index) in subPointsList(subPoints)" v-bind:key="index">
-            <li class="mb-4">
-              <span>{{ points }}</span>
-            </li>
-          </template>
-</ul>
-<p class="card-warning" v-if="footer">{{ footer }}</p>
-
-<div class="card__link" v-if="cta">
-  <cta v-bind="ctaValue" />
-</div>
-</div>
-</template>
--->
-
-
+    </div>
+  </div>
 </template>
 <script>
 import Tools from '../utils/tools.js';
@@ -263,6 +224,10 @@ export default {
     },
   },
   props: {
+    teamCards: {
+      type: Object,
+      required: true,
+    },
     url: String,
     title: String,
     target: String,
