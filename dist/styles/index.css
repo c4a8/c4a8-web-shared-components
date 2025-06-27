@@ -47942,18 +47942,10 @@ shape {
     border: 0;
     padding: 0;
   }
-}
-@media (min-width: 992px) and (min-width: 992px) {
-  .header.vue-component .header__link {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-  }
-}
-@media (min-width: 992px) {
   .header.vue-component .header__link-content {
     width: auto;
     pointer-events: all;
-    padding: var(--header-vertical-spacing) 1rem;
+    padding: calc(var(--header-vertical-spacing) + 0.5rem) 1rem;
   }
   .header.vue-component.header--blending:not(.is-hovering):not(.is-scrolled):not(:hover) {
     mix-blend-mode: difference;
