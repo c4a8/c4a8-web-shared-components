@@ -115,13 +115,7 @@ $header-border-size: 1px;
       }
 
       .header__link {
-        //   position: relative;
         border-bottom: 0;
-
-        //   @include media-breakpoint-up($header-expand-breakpoint) {
-        //     padding-top: spacing(2);
-        //     padding-bottom: spacing(2);
-        //   }
       }
 
       .header__nav {
@@ -328,17 +322,12 @@ $header-border-size: 1px;
         width: auto;
         border: 0;
         padding: 0;
-
-        @include media-breakpoint-up($header-expand-breakpoint) {
-          padding-top: spacing(2);
-          padding-bottom: spacing(2);
-        }
       }
 
       .header__link-content {
         width: auto;
         pointer-events: all;
-        padding: var(--header-vertical-spacing) spacing(4);
+        padding: calc(var(--header-vertical-spacing) + spacing(2)) spacing(4);
       }
 
       &.header--blending:not(.is-hovering):not(.is-scrolled):not(:hover) {
