@@ -20,10 +20,7 @@ declare namespace _default {
     }
     namespace computed {
         function classList(): any[];
-        function style(): {
-            backgroundColor: any;
-            color: any;
-        };
+        function style(): any;
     }
 }
 export default _default;

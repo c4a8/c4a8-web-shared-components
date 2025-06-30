@@ -12,7 +12,7 @@ declare namespace _default {
         function secondCopy(): any;
         function list(): any;
         function secondList(): any;
-        function ctaClasses(): string | undefined;
+        function ctaClasses(): any;
     }
     let methods: {};
     namespace props {

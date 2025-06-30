@@ -1,0 +1,32 @@
+name: Storybook Deploy Nuxt
+
+on:
+  push:
+    branches: [feature/230-npm-bundled-shared-components]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.14
+      - uses: actions/checkout@v4
+      - name: Install and Build
+        run: |
+          cd nuxt
+          npm install
+          npm run build-storybook-full
+      - name: Add .nojekyll
+        run: |
+          cd nuxt/storybook-static
+          touch .nojekyll
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages-nuxt
+          folder: nuxt/storybook-static
+          clean: true

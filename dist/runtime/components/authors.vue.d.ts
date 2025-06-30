@@ -1,11 +1,11 @@
 declare namespace _default {
     let tagName: string;
     function setup(): {
-        locale: any;
+        locale: import("vue").WritableComputedRef<string, string>;
     };
     namespace computed {
         function classList(): string[];
-        function seperator(): "," | " &";
+        function seperator(): any;
         function authorArray(): any;
         function hasDataAndAuthors(): any;
         function langValue(): any;
@@ -13,7 +13,7 @@ declare namespace _default {
     namespace methods {
         function authorsSeperator(array: any, element: any): boolean;
         function authorStart(array: any, element: any): any;
-        function authorLink(author: any): string | null;
+        function authorLink(author: any): any;
     }
     namespace props {
         let authorsList: ArrayConstructor;

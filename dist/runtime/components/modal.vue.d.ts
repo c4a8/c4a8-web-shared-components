@@ -4,15 +4,7 @@ declare namespace _default {
         function modalErrorValue(): any;
         function classList(): string[];
         function dialogClassList(): string[];
-        function settings(): {
-            'data-client-name': any;
-            'data-api-url': any;
-            'data-job-id': any;
-            'data-modal-id': any;
-            'data-api-key': any;
-            'data-mock-apply-url': any;
-            'data-mock-documents-url': any;
-        };
+        function settings(): any;
         function isCenterSlim(): () => boolean;
         function modal(): any;
         function centerValue(): boolean;

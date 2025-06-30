@@ -3,7 +3,7 @@ declare namespace _default {
     namespace computed {
         function classList(): string[];
         function columnClassList(): string[];
-        function isList(): boolean;
+        function isList(): any;
         function isRow(): boolean;
     }
     namespace watch {

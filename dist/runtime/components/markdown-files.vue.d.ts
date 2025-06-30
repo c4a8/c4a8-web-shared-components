@@ -1,12 +1,7 @@
 declare namespace _default {
     let tagName: string;
     namespace computed {
-        function structuredList(): {
-            url: any;
-            date: any;
-            moment: any;
-            excerpt: any;
-        }[] | undefined;
+        function structuredList(): any;
     }
     namespace methods {
         function addPathPrefix(path: any, lang: any, strategy: any): any;

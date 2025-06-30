@@ -2,7 +2,7 @@
   <NuxtLayout name="error"><NuxtPage /></NuxtLayout>
 </template>
 <script setup>
-import { useRoute, createError } from '#imports';
+import { useRoute, createError, definePageMeta } from '#imports';
 /*
 <NuxtLayout :name="layout" :page="data" :footer-data="mergedFooterData"></NuxtLayout>*/
 definePageMeta({

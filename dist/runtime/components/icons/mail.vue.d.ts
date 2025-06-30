@@ -3,7 +3,7 @@ declare namespace _default {
     namespace computed {
         function style(): string;
         function pathStyle(): string;
-        function strokeWidthValue(): number;
+        function strokeWidthValue(): any;
     }
     namespace props {
         let settings: ObjectConstructor;

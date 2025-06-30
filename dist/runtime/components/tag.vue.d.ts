@@ -7,7 +7,7 @@ declare namespace _default {
         function lowerLang(): any;
         function classList(): any[];
         function href(): string;
-        function hasIcon(): boolean;
+        function hasIcon(): any;
     }
     namespace props {
         namespace tag {

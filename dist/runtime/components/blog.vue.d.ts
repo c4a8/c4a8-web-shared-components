@@ -5,7 +5,7 @@ declare namespace _default {
     };
     function setup(): {
         config: {};
-        locale: any;
+        locale: import("vue").WritableComputedRef<string, string>;
         strategy: any;
         authors: any;
     };
@@ -17,9 +17,7 @@ declare namespace _default {
         function highlightPostExternalLanguage(): any;
         function showComponent(): true | (() => {
             limit: any;
-            sort: {
-                moment: number;
-            }[];
+            sort: any;
             reversed: any;
             where: {
                 path: {
@@ -31,9 +29,7 @@ declare namespace _default {
         });
         function query(): {
             limit: any;
-            sort: {
-                moment: number;
-            }[];
+            sort: any;
             reversed: any;
             where: {
                 path: {

@@ -115,24 +115,12 @@ $header-border-size: 1px;
       }
 
       .header__link {
-        position: relative;
         border-bottom: 0;
-
-        @include media-breakpoint-up($header-expand-breakpoint) {
-          padding-top: spacing(2);
-          padding-bottom: spacing(2);
-        }
       }
 
       .header__nav {
         @include media-breakpoint-up($header-expand-breakpoint) {
           margin-left: spacing(26);
-        }
-      }
-
-      .header__container {
-        &::after {
-          display: none;
         }
       }
 
@@ -191,12 +179,6 @@ $header-border-size: 1px;
 
         .header__logo-default {
           display: none;
-        }
-
-        .header__container {
-          &::after {
-            background-color: transparent;
-          }
         }
       }
     }
@@ -260,6 +242,7 @@ $header-border-size: 1px;
 
       @include media-breakpoint-up($header-expand-breakpoint) {
         bottom: 0;
+        transition: none;
 
         .header__item {
           &:hover {
@@ -344,7 +327,7 @@ $header-border-size: 1px;
       .header__link-content {
         width: auto;
         pointer-events: all;
-        padding: var(--header-vertical-spacing) spacing(4);
+        padding: calc(var(--header-vertical-spacing) + spacing(2)) spacing(4);
       }
 
       &.header--blending:not(.is-hovering):not(.is-scrolled):not(:hover) {
@@ -778,18 +761,6 @@ $header-border-size: 1px;
 .header__container {
   position: relative;
   z-index: 10;
-
-  &::after {
-    content: '';
-    display: block;
-    position: absolute;
-    bottom: 0px;
-    width: 100vw;
-    height: $header-border-size;
-    background-color: var(--color-header-container-border);
-    left: 50%;
-    transform: translateX(-50%);
-  }
 }
 
 .header__flyout-description {
@@ -863,7 +834,8 @@ $header-border-size: 1px;
 }
 
 .header__spacer {
-  height: spacing(18);
+  // TODO find a way to calculate this
+  height: 64px;
   position: relative;
 
   &::after {

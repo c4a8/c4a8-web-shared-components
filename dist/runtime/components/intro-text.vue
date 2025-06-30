@@ -9,7 +9,7 @@
       <div class="row">
         <div class="col">
           <p
-            :class="['intro-text__copy fade-in-bottom', copyClasses]"
+            :class="['intro-text__copy fade-in-bottom richtext', copyClasses]"
             data-utility-animation-step="1"
             v-html="copy"
           ></p>

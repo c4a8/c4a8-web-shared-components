@@ -41,7 +41,8 @@ const module = defineNuxtModule({
     };
     const sitemapOptions = {
       ...defaultSitemapOptions,
-      ..._nuxt.options.sitemap
+      ..._nuxt.options.sitemap,
+      exclude: ["/__nuxt_content/**", ..._nuxt.options.sitemap?.exclude || []]
     };
     _nuxt.options.sitemap = sitemapOptions;
     await installModule("@nuxtjs/sitemap");

@@ -78,22 +78,8 @@ declare namespace _default {
         } | {
             '--video-frame-headline-color'?: undefined;
         };
-        function videoPlayerOptions(): {
-            videoId?: undefined;
-            parentSelector?: undefined;
-            targetSelector?: undefined;
-            isAutoplay?: undefined;
-            classMap?: undefined;
-        } | {
-            videoId: any;
-            parentSelector: string;
-            targetSelector: string;
-            isAutoplay: boolean;
-            classMap: {
-                toggle: string;
-            };
-        };
-        function embedSrc(): string;
+        function videoPlayerOptions(): any;
+        function embedSrc(): any;
     }
     namespace methods {
         function handleClick(): void;

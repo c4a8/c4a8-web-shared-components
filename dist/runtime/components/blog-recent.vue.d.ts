@@ -19,9 +19,7 @@ declare namespace _default {
         function classList(): (string | (() => any))[];
         function showComponent(): true | (() => {
             limit: any;
-            sort: {
-                moment: number;
-            }[];
+            sort: any;
             reversed: any;
             where: {
                 layout: {
@@ -43,15 +41,16 @@ declare namespace _default {
                     LIKE: string[];
                 };
                 layout?: undefined;
+            } | {
+                layout?: undefined;
+                path?: undefined;
             };
             path: string;
             limitEvents: any;
         });
         function query(): {
             limit: any;
-            sort: {
-                moment: number;
-            }[];
+            sort: any;
             reversed: any;
             where: {
                 layout: {
@@ -73,6 +72,9 @@ declare namespace _default {
                     LIKE: string[];
                 };
                 layout?: undefined;
+            } | {
+                layout?: undefined;
+                path?: undefined;
             };
             path: string;
             limitEvents: any;
@@ -96,7 +98,7 @@ declare namespace _default {
     function created(): void;
     namespace methods {
         function init(): NodeJS.Timeout | undefined;
-        function getDataAuthors(): Promise<any>;
+        function getDataAuthors(): any;
         function event(post: any): boolean;
         function blogTitleUrl(post: any): any;
         function target(post: any): "_blank" | "_self";
@@ -152,7 +154,7 @@ declare namespace _default {
         let caseStudies: BooleanConstructor;
         let reversed: BooleanConstructor;
         namespace tag {
-            let type_3: ArrayConstructor;
+            let type_3: StringConstructor;
             export { type_3 as type };
             let _default_7: null;
             export { _default_7 as default };

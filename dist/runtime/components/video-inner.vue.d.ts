@@ -5,9 +5,9 @@ declare namespace _default {
         function videoPlayerClass(): any[];
         function videoContentClass(): any[];
         function videoTextClasses(): string[];
-        function isCompact(): boolean;
-        function variantClasses(): "" | "bg-dark" | "col-md-6 order-md-2";
-        function isVariantRow(): boolean;
+        function isCompact(): any;
+        function variantClasses(): any;
+        function isVariantRow(): any;
         function videoParsed(): any;
         function onClickVideoContent(): "this.querySelector('a').click()" | null;
         function onClick(): "this.querySelector('a').click()" | null;
@@ -28,7 +28,7 @@ declare namespace _default {
     }
     function mounted(): void;
     namespace methods {
-        function isReversed(): boolean;
+        function isReversed(): any;
         function handleButtonClick(): void;
         function handleLightboxClick(): void;
         function handleLightboxClose(): void;

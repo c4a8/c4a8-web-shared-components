@@ -1,7 +1,7 @@
 declare namespace _default {
     let tagName: string;
     namespace computed {
-        function required(): "required" | null;
+        function required(): any;
         function message(): any;
         function groupId(): any;
     }

@@ -7,10 +7,7 @@ declare namespace _default {
         function classValue(): string[];
         function iconClasses(): string[];
         function socialItemClass(): (string | (() => string[]))[];
-        function getList(): {
-            link: string;
-            icon: any;
-        }[];
+        function getList(): any;
     }
     let methods: {};
     namespace props {

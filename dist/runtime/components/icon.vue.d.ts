@@ -46,15 +46,7 @@ declare namespace _default {
         function innerSize(): string;
         function parentStyle(): string;
         function rotation(): "180deg" | "90deg" | "0deg";
-        function settings(): {
-            width: () => string;
-            height: () => string;
-            padding: any;
-            'xml:space': string;
-            version: string;
-            xmlns: string;
-            'xmlns:link': string;
-        };
+        function settings(): any;
     }
     namespace props {
         namespace icon {

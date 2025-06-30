@@ -225,6 +225,7 @@ export default {
         this.shapeInContentValue ? 'hero--shape-in-content' : '',
         this.hasStickyScroller ? StickyScroller.getRootClass() : '',
         this.shapeMobileOrder ? 'hero--shape-mobile-order' : '',
+        this.shapeIsSVG ? 'hero--shape-svg' : '',
       ];
     },
     shape() {
@@ -374,6 +375,9 @@ export default {
     },
     shapeClasses() {
       return this.shape && this.shape.classes ? this.shape.classes : null;
+    },
+    shapeIsSVG() {
+      return this.shape && this.shape.img && this.shape.img.endsWith('.svg');
     },
     variant() {
       return this.heroJson && this.heroJson.variant ? this.heroJson.variant : null;

@@ -1,9 +1,13 @@
 declare namespace _default {
     let tagName: string;
+    namespace components {
+        export { ContentRendererLink };
+    }
     function setup(): {
         authors: any;
         isAtEnd: import("vue").Ref<boolean, boolean>;
         endPoint: import("vue").Ref<null, null>;
+        stickyContentHeight: import("vue").Ref<number, number>;
         store: import("pinia").Store<"app", {
             loading: boolean;
             hero: {};
@@ -921,6 +925,7 @@ declare namespace _default {
             resetHeader(): void;
             setPageIsLoaded(isLoaded: any): void;
         }>;
+        ContentRendererLink: any;
     };
     function data(): {
         shouldShowStickyBlocks: boolean;
@@ -931,6 +936,7 @@ declare namespace _default {
         function checkStickyBlocks(): void;
     }
     namespace computed {
+        function contentWidth(): (string | null)[];
         function stickyOffsetTop(): 100 | 124;
         function asideNavValue(): any;
         function enhancedPost(): {
@@ -944,6 +950,7 @@ declare namespace _default {
             headlineText: any;
             author: any;
         } | null;
+        function avatars(): any;
         function blogImagePath(): string;
         function formattedDate(): string;
         function formattedDateXml(): string;
