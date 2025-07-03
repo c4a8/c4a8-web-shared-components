@@ -71,7 +71,7 @@
           <span v-if="time" class="event-teaser__time font-size-1">{{ time }}</span>
         </div>
       </div>
-      <div class="event-teaser__headline font-size-4">
+      <div class="event-teaser__headline h4-font-size">
         <a v-if="url && !webcast && !teaser" :href="url">
           {{ headline }}
         </a>
