@@ -1,6 +1,11 @@
 <template>
-  <svg-shape v-if="svgShape" :align="svgShape.align" :peak="svgShape.peak" spacing="mt-8 mt-lg-10"
-    color="var(--color-bg-grey)" />
+  <svg-shape
+    v-if="svgShape"
+    :align="svgShape.align"
+    :peak="svgShape.peak"
+    spacing="mt-8 mt-lg-10"
+    color="var(--color-bg-grey)"
+  />
   <div :class="classList" :style="styleObject" v-if="contact">
     <div :class="contactContainerClass">
       <div :class="contactRowClass">
@@ -12,6 +17,7 @@
             <cta-list :list="contact.buttons" />
           </div>
         </div>
+
         <div :class="['contact__box', contactBoxClass]" data-utility-animation-step="1">
           <div :class="['contact__person', contactLight]">
             <template v-if="quote">
@@ -21,8 +27,13 @@
                 </div>
                 <div class="contact__image-quote">
                   <div class="contact__image-spacer">
-                    <v-img :img="contact.person.image" :cloudinary="contact.person.cloudinary" :alt="contact.person.alt"
-                      preset="cardSmall" lazy />
+                    <v-img
+                      :img="contact.person.image"
+                      :cloudinary="contact.person.cloudinary"
+                      :alt="contact.person.alt"
+                      preset="cardSmall"
+                      lazy
+                    />
                   </div>
                 </div>
                 <div class="contact__quote font-size-3 middle font-weight-light">{{ contact.person.quote }}</div>
@@ -34,14 +45,22 @@
             </template>
             <template v-else>
               <div class="contact__image">
-                <v-img :img="contact.person.image" :cloudinary="contact.person.cloudinary" :alt="contact.person.alt"
-                  preset="cardSmall" lazy />
+                <v-img
+                  :img="contact.person.image"
+                  :cloudinary="contact.person.cloudinary"
+                  :alt="contact.person.alt"
+                  preset="cardSmall"
+                  lazy
+                />
               </div>
               <div class="contact__name font-size-4 my-6 mx-5">{{ contact.person.name }}</div>
               <div class="contact__details font-size-2 position-relative py-2 d-flex align-items-center flex-wrap">
-                <div v-for="(detail, index) in contact.person.details" :key="index"
+                <div
+                  v-for="(detail, index) in contact.person.details"
+                  :key="index"
                   class="contact__detail w-100 px-5 d-flex align-items-center"
-                  :class="{ 'mb-3 mb-lg-4': index !== contact.person.details.length - 1 }">
+                  :class="{ 'mb-3 mb-lg-4': index !== contact.person.details.length - 1 }"
+                >
                   <a :href="detail.href" class="d-flex custom">
                     <span class="streamline-sm mr-4">
                       <site-icons v-if="detail.icon === 'site/mail'" icon="site/mail" />
@@ -57,8 +76,10 @@
                     {{ detail.notes }}
                   </div>
                 </div>
-                <div v-if="contact.person.number"
-                  class="contact__number w-100 px-5 d-flex align-items-center mb-3 mb-lg-4">
+                <div
+                  v-if="contact.person.number"
+                  class="contact__number w-100 px-5 d-flex align-items-center mb-3 mb-lg-4"
+                >
                   <a :href="'tel:' + contact.person.number" class="custom">
                     <site-icons icon="site/phone" />
                     {{ contact.person.number }}
@@ -75,9 +96,12 @@
 
           <div v-if="quote" class="contact__detail-quote">
             <headline :text="contact.person.detailsHeader" level="h4" classes="contact__detail-headline" />
-            <div v-for="(detail, index) in contact.person.details" :key="index"
+            <div
+              v-for="(detail, index) in contact.person.details"
+              :key="index"
               class="contact__detail font-size-2 w-100 d-flex align-items-center"
-              :class="{ 'mb-3 mb-lg-4': index !== contact.person.details.length - 1 }">
+              :class="{ 'mb-3 mb-lg-4': index !== contact.person.details.length - 1 }"
+            >
               <a :href="detail.href" class="custom">
                 <span class="streamline-sm mr-4">
                   <site-icons v-if="detail.icon === 'site/mail'" icon="site/mail" />

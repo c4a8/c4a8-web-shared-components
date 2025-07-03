@@ -144,7 +144,7 @@ class Form extends BaseComponent {
   submit(e) {
     e.stopImmediatePropagation();
     e.preventDefault();
-    
+
     const url = window.location.pathname;
     const urlSegments = url.split('/').filter(Boolean);
     const page = urlSegments[urlSegments.length - 1];
