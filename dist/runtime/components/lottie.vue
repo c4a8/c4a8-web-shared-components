@@ -1,6 +1,6 @@
 <template>
   <div :class="classList">
-    <Vue3Lottie class="lottie__container" :animationData="data" v-bind="options" />
+    <lottie-player class="lottie__container" :animationData="data" v-bind="options" />
   </div>
 </template>
 
