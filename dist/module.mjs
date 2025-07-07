@@ -47,7 +47,7 @@ const module = defineNuxtModule({
     _nuxt.options.sitemap = sitemapOptions;
     await installModule("@nuxtjs/sitemap");
     const runtimeDir = resolve(__dirname, "./runtime");
-    const optimizeDeps = [runtimeDir, "node-html-parser", "jquery", "slick-carousel", "vue3-lottie"];
+    const optimizeDeps = [runtimeDir, "node-html-parser", "jquery", "slick-carousel", "lottie-web"];
     _nuxt.options.build.transpile = _nuxt.options.build.transpile || [];
     _nuxt.options.build.transpile.push(...optimizeDeps);
     _nuxt.options.vite.optimizeDeps ||= {};
@@ -73,7 +73,6 @@ const module = defineNuxtModule({
       }
     });
     addPlugin(resolve("./runtime/plugin"));
-    addPlugin({ src: resolve("./runtime/Vue3Lottie.client"), mode: "client" });
     extendPages((pages) => {
       pages.unshift({
         name: "slug-posts",

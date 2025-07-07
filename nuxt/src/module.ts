@@ -66,7 +66,7 @@ export default defineNuxtModule({
 
     const runtimeDir = resolve(__dirname, './runtime');
 
-    const optimizeDeps = [runtimeDir, 'node-html-parser', 'jquery', 'slick-carousel', 'vue3-lottie'];
+    const optimizeDeps = [runtimeDir, 'node-html-parser', 'jquery', 'slick-carousel'];
 
     _nuxt.options.build.transpile = _nuxt.options.build.transpile || [];
     _nuxt.options.build.transpile.push(...optimizeDeps);
@@ -102,7 +102,6 @@ export default defineNuxtModule({
     });
 
     addPlugin(resolve('./runtime/plugin'));
-    addPlugin({ src: resolve('./runtime/Vue3Lottie.client'), mode: 'client' });
 
     extendPages((pages) => {
       pages.unshift({
