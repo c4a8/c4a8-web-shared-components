@@ -32,39 +32,29 @@
     </a>
 
 
-
-
     <a v-if="video" :class="[
         'testimonial-teaser',
+        'testimonial-teaser-vid',
         testimonialTeaserAspectRatioClass,
         { 'testimonial-teaser--aspect-ratio': aspectRatio },
         'utility-animation',
         'fade-in-bottom',
         'testimonialTeaserBgStyling',
-        'testimonialTeaserAspectRatioStyling'
+        'testimonialTeaserAspectRatioStyling',
     ]" data-utility-animation-step="1" ref="root"
         :style="{ ...testimonialTeaserBgStyling, ...testimonialTeaserAspectRatioStyling }">
-        <div class="testimonial-teaser__wrapper">
+        <div class="testimonial-teaser__wrapper" style="display: flex; flex-direction: column; align-items: center;">
             <div v-if="cornerImg" class="testimonial-teaser__corner" :class="cornerImg.position">
             </div>
-            <div class="testimonial-teaser__vid">
-                <div class="testimonial-teaser__img-wrapper">
-                    <video-frame ref="videoFrame"
-                        :thumb="video.thumb"
-                        :alt="video.alt"
-                        :id="video.id"
-                        :fullWidth="video.fullWidth"s
-                        :preset="fullscreen4k"
-                        @play="getVideoStatus(id)"
-                        @pause="isPlaying = false"
-                       
-                    />
-
+            <div class="testimonial-teaser__vid" style="width: 90%;">
+                <div class="testimonial-teaser__img-wrapper" ref="teaserVideo"
+                    :style="{ ...testimonialTeaserVideoPlaying }">
+                    <video-frame ref="video-frame" :thumb="video.thumb" :alt="video.alt" :id="video.id"
+                        :fullWidth="video.fullWidth" :preset="fullscreen4k" @click="getVideoState" />
                 </div>
             </div>
-            <div class="testimonial-teaser__content" v-if="getVideoStatus === false">
+            <div class="testimonial-teaser__content space-bottom-2" v-if="!videoPlaying" style="align-self: start">
                 <div class="testimonial-teaser__name font-size-4 bold">
-
                     <span v-for="(part, idx) in name.split(' ')" :key="idx">
                         <div class="testimonial-teaser__name-background">
                             {{ part }}
@@ -76,7 +66,6 @@
                         </div>
                         <template v-if="idx !== name.split(' ').length - 1"><br /></template>
                     </span>
-
                 </div>
                 <div class="testimonial-teaser__title font-size-1 bg">{{ title }}</div>
             </div>
@@ -87,19 +76,21 @@
 <style>
 /* style global anpassen */
 .testimonial-teaser:hover .testimonial-teaser__name-background {
-  text-decoration: underline;
+    text-decoration: underline;
 }
+
 .testimonial-teaser-vid {
-  max-width: min(700px, 130vw) !important;
+    max-width: 100% !important;
 }
 
 .testimonial-teaser__vid img {
-  transition: transform 0.7s cubic-bezier(0.19, 1, 0.2, 1);
-
+    transition: transform 0.7s cubic-bezier(0.19, 1, 0.2, 1);
 }
 </style>
 <script>
+import { noConflict } from 'jquery';
 import UtilityAnimation from '../utils/utility-animation.js';
+import { normalizeNewlines } from 'storybook/internal/docs-tools';
 export default {
     tagName: 'testimonial-teaser',
     props: {
@@ -140,13 +131,22 @@ export default {
             default: null,
         },
     },
+    data() {
+        return {
+            videoPlaying: false,
+        }
+
+    },
     mounted() {
         if (!this.$refs.root) return;
         UtilityAnimation.init([this.$refs.root]);
-
-         this.videoFrame = this.$refs['videoFrame'];
     },
 
+    methods: {
+        getVideoState() {
+            this.videoPlaying = this.$refs['video-frame'].isPlayed;
+        }
+    },
     computed: {
         testimonialTeaserImg() {
             return this.img || {};
@@ -189,12 +189,11 @@ export default {
             }
             return null;
         },
+        testimonialTeaserVideoPlaying() {
+            if (this.videoPlaying) {
+                this.$refs['teaserVideo'].querySelector('img').style.visibility = 'hidden';
+            }
 
- 
-    },
-    methods: {
-        getVideoStatus(id) {
-            return true;
         },
     },
 };
