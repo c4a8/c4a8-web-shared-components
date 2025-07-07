@@ -41,10 +41,20 @@
       width: 100%;
 
       @include media-breakpoint-up(lg) {
-        @include aspect-ratio(
-          var(--width-testimonial-teaser-aspect-ratio),
-          var(--height-testimonial-teaser-aspect-ratio)
-        );
+        @include aspect-ratio(var(--width-testimonial-teaser-aspect-ratio),
+          var(--height-testimonial-teaser-aspect-ratio));
+      }
+    }
+
+    .testimonial-teaser__video-wrapper {
+      @include aspect-ratio(16, 9);
+
+      height: 100%;
+      width: 100%;
+
+      @include media-breakpoint-up(lg) {
+        @include aspect-ratio(var(--width-testimonial-teaser-aspect-ratio),
+          var(--height-testimonial-teaser-aspect-ratio));
       }
     }
   }
@@ -69,6 +79,9 @@
 .testimonial-teaser__img-wrapper {
   overflow: hidden;
 }
+.testimonial-teaser__video-wrapper {
+  overflow: hidden;
+}
 
 .testimonial-teaser__img {
   padding-left: spacing(6);
@@ -78,6 +91,10 @@
     transition: transform 0.7s $animation-transition;
     will-change: transform;
   }
+}
+.testimonial-teaser__video {
+  padding-left: spacing(6);
+  padding-bottom: spacing(8);
 }
 
 .testimonial-teaser__corner {
@@ -164,7 +181,7 @@
   position: relative;
 
   // TODO refactor this selector because it is very fragile
-  + br + .testimonial-teaser__name-background {
+  +br+.testimonial-teaser__name-background {
     padding-top: 0;
   }
 }
