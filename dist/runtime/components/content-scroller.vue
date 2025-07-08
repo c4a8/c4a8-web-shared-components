@@ -1,52 +1,54 @@
 <template>
- <div :class="classList" :style="style">
-      <wrapper class="content-scroller__wrapper">
-        <div class="content-scroller__row">
-          <div class="content-scroller__grid col">
-            <div class="content-scroller__content-wrapper">
-              <div class="content-scroller__content">
-                <div class="content-scroller__header">
-                  <headline
-                  v-bind="headlineValue"
-                  />
-                  <p v-if="subline" class="content-scroller__subline">{{ subline }}</p>
-                </div>
-                <div class="content-scroller__footer">
-                  <h v-if="footerHeadline" class="content-scroller__headline-footer" v-html="footerHeadline"/>
-                  <p v-if="footerSubline" class="content-scroller__subline-footer" v-html="footerSubline"/>
-                </div>
+  <div :class="classList" :style="style">
+    <wrapper class="content-scroller__wrapper">
+      <div class="content-scroller__row">
+        <div class="content-scroller__grid col">
+          <div class="content-scroller__content-wrapper">
+            <div class="content-scroller__content">
+              <div class="content-scroller__header">
+                <headline v-bind="headlineValue" />
+                <p v-if="subline" :class="['content-scroller__subline', sublineClasses]">{{ subline }}</p>
+              </div>
+              <div class="content-scroller__footer" v-if="footerHeadline || footerSubline">
+                <span v-if="footerHeadline" class="content-scroller__headline-footer" v-html="footerHeadline"></span>
+                <p v-if="footerSubline" class="content-scroller__subline-footer" v-html="footerSubline"></p>
               </div>
             </div>
-            <div class="content-scroller__blocks">
-              <div class="content-scroller__blocks-placeholder" ref="placeholder">
-                <div class="content-scroller__blocks-frame">
-                  <section :class="['content-scroller__block', { 'is-left': block.isLeft }]" v-for="(block, index) in blocksValue" :key="index" ref="block" :style="calcBlockStyle(index)">
-                    <main>
-                      <div class="content-scroller__block-space">
-                        <headline
-                          v-if="block.headline"
-                          v-bind="block.headline"
-                          :level="block.headline.level || 'h3'"
-                          classes="content-scroller__block-headline"
-                        />
-                        <p class="content-scroller__block-content">{{ block.content }}</p>
-                      </div>
-                    </main>
-                  </section>
-                </div>
+          </div>
+          <div class="content-scroller__blocks">
+            <div class="content-scroller__blocks-placeholder" ref="placeholder">
+              <div class="content-scroller__blocks-frame">
+                <section
+                  :class="['content-scroller__block', { 'is-left': block.isLeft }]"
+                  v-for="(block, index) in blocksValue"
+                  :key="index"
+                  ref="block"
+                  :style="calcBlockStyle(index)"
+                >
+                  <main>
+                    <div class="content-scroller__block-space">
+                      <headline
+                        v-if="block.headline"
+                        v-bind="block.headline"
+                        :level="block.headline.level || 'h3'"
+                        classes="content-scroller__block-headline"
+                      />
+                      <p class="content-scroller__block-content">{{ block.content }}</p>
+                    </div>
+                  </main>
+                </section>
               </div>
             </div>
           </div>
         </div>
-      </wrapper>
-      <div class="content-scroller__background"></div>
-    </div>
+      </div>
+    </wrapper>
+    <div class="content-scroller__background"></div>
+  </div>
 </template>
 
 <script>
-import Tools from "../src/assets/js/tools.js";
-
-// TODO make a mobile version of the component
+import Tools from '../utils/tools.js';
 
 export default {
   tagName: 'content-scroller',
@@ -68,7 +70,7 @@ export default {
         this.skin ? `content-scroller--${this.skin}` : '',
       ];
     },
-    
+
     blocksValue() {
       return Tools.getJSON(this.blocks);
     },
@@ -81,7 +83,7 @@ export default {
         classes: `content-scroller__headline ${headline.classes || 'h3-font-size'}`,
       };
     },
-    
+
     overlappingSizeValue() {
       return this.overlappingSize || this.skin || 'mt-md-n10';
     },
@@ -98,6 +100,10 @@ export default {
     subline: {
       type: String,
       default: '',
+    },
+    sublineClasses: {
+      type: String,
+      default: null,
     },
     blocks: Array,
     overlappingSize: String,
@@ -249,5 +255,5 @@ export default {
       this.minHeight = placeholder.offsetHeight;
     },
   },
-}
+};
 </script>

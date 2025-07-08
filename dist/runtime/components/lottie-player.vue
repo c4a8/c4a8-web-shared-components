@@ -98,7 +98,7 @@ export default {
     },
   },
   async mounted() {
-    if (process.client) {
+    if (import.meta.client) {
       const lottieModule = await import('lottie-web/build/player/esm/lottie.min.js');
       this.lottie = lottieModule.default;
       this.initAnimation();
