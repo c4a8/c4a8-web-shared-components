@@ -1,0 +1,1 @@
+import{aN as n}from"./kGK-OPba.js";function c(i){const{title:t,description:r,image:g}=i;t&&(i.ogTitle=t,i.twitterTitle=t),r&&(i.ogDescription=r,i.twitterDescription=r),g&&(i.ogImage=g,i.twitterImage=g),n(i)}export{c as u};
