@@ -16,7 +16,7 @@ declare namespace _default {
             export { _default_1 as default };
         }
         namespace corner {
-            let type_2: (ObjectConstructor | BooleanConstructor)[];
+            let type_2: (BooleanConstructor | ObjectConstructor)[];
             export { type_2 as type };
             let _default_2: boolean;
             export { _default_2 as default };
@@ -34,7 +34,7 @@ declare namespace _default {
             export { _default_4 as default };
         }
         namespace headline {
-            let type_5: (ObjectConstructor | BooleanConstructor)[];
+            let type_5: (BooleanConstructor | ObjectConstructor)[];
             export { type_5 as type };
             let _default_5: boolean;
             export { _default_5 as default };

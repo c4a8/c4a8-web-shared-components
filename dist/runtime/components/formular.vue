@@ -210,6 +210,7 @@ export default {
     },
     handleSubmit(e) {
       if (!this.validate()) return e.preventDefault();
+      
     },
     handleFormFieldUpdate(e) {
       if (!e.id) return;

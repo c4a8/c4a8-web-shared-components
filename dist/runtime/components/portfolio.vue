@@ -21,35 +21,7 @@
 </div>
 </template>
 <style>
-.zoom:hover {
-  -ms-transform: scale(1.1); 
-  -webkit-transform: scale(1.1); 
-  transform: scale(1.1); 
-}
-
-.portfolio-items {
-    column-gap: 40px;
-}
-@media (min-width: 380px) {
-    .portfolio-items {
-        column-count: 1;
-    }
-}
-@media (min-width: 480px) {
-    .portfolio-items {
-        column-count: 2;
-    }
-}
-@media (min-width: 800px) {
-    .portfolio-items {
-        column-count: 3;
-    }
-}
-@media (min-width: 1100px) {
-    .portfolio-items {
-        column-count: 3;
-    }
-}
+.zoom:hover{transform:scale(1.1)}.portfolio-items{-moz-column-gap:40px;column-gap:40px}@media (min-width:380px){.portfolio-items{-moz-column-count:1;column-count:1}}@media (min-width:480px){.portfolio-items{-moz-column-count:2;column-count:2}}@media (min-width:800px){.portfolio-items{-moz-column-count:3;column-count:3}}@media (min-width:1100px){.portfolio-items{-moz-column-count:3;column-count:3}}
 </style>
 <script>
 export default {
