@@ -3,8 +3,6 @@ import Events from './utils/events.js';
 import translations from './locales/global.js';
 import { version } from '../../package.json';
 
-// import { Vue3Lottie } from 'vue3-lottie';
-
 export default defineNuxtPlugin((_nuxtApp) => {
   const i18n = _nuxtApp.$i18n;
 
@@ -13,8 +11,6 @@ export default defineNuxtPlugin((_nuxtApp) => {
       i18n?.mergeLocaleMessage(locale, messages);
     }
   }
-
-  // _nuxtApp.vueApp.component('Vue3Lottie', Vue3Lottie);
 
   addRouteMiddleware(
     'global-collection-layouts',
