@@ -2,6 +2,8 @@ $footer-orientation-breakpoint: 'lg';
 $footer-partner-orientation-breakpoint: 'sm';
 
 footer {
+  @include z-index;
+
   --color-footer-border: var(--color-white-50);
   --footer-spacing: #{spacing(10)};
   --footer-spacing-large: #{spacing(15)};
@@ -9,6 +11,7 @@ footer {
   --footer-content-spacing: var(--footer-spacing);
   --footer-icon-width: 22px;
 
+  position: relative;
   padding-top: var(--footer-spacing-large);
 
   &.footer--corporate {
