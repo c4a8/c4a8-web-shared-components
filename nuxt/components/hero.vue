@@ -20,7 +20,7 @@
         </letter-switcher>
         <div class="hero__intro row" v-if="overline || headlineText || subline" ref="intro">
           <div class="hero__intro-col col">
-            <p :class="overlineClassList" v-if="overline">{{ overline }}</p>
+            <span :class="overlineClassList" v-if="overline">{{ overline }}</span>
             <headline :class="headlineClassList" v-if="headlineText" :level="level" :text="headlineText"></headline>
             <div
               :class="['hero__content-shape', shapeClasses]"
