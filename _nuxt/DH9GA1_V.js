@@ -1,0 +1,1 @@
+import{u as s,q as o}from"./BVZ6AViQ.js";function c(){var r;const{data:t,pending:a,error:u,refresh:e}=s("authors_data",()=>o("authors_data").first());return{authors:((r=t.value)==null?void 0:r.meta)||null,pending:a,error:u,refresh:e}}export{c as u};
