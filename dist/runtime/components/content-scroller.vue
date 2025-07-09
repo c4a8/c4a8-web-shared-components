@@ -9,10 +9,6 @@
                 <headline v-bind="headlineValue" />
                 <p v-if="subline" :class="['content-scroller__subline', sublineClasses]">{{ subline }}</p>
               </div>
-              <div class="content-scroller__footer" v-if="footerHeadline || footerSubline">
-                <span v-if="footerHeadline" class="content-scroller__headline-footer" v-html="footerHeadline"></span>
-                <p v-if="footerSubline" class="content-scroller__subline-footer" v-html="footerSubline"></p>
-              </div>
             </div>
           </div>
           <div class="content-scroller__blocks">
@@ -108,14 +104,6 @@ export default {
     blocks: Array,
     overlappingSize: String,
     skin: {
-      type: String,
-      default: '',
-    },
-    footerHeadline: {
-      type: String,
-      default: '',
-    },
-    footerSubline: {
       type: String,
       default: '',
     },

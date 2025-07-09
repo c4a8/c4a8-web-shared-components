@@ -39,18 +39,6 @@ declare namespace _default {
             let _default_3: string;
             export { _default_3 as default };
         }
-        namespace footerHeadline {
-            let type_3: StringConstructor;
-            export { type_3 as type };
-            let _default_4: string;
-            export { _default_4 as default };
-        }
-        namespace footerSubline {
-            let type_4: StringConstructor;
-            export { type_4 as type };
-            let _default_5: string;
-            export { _default_5 as default };
-        }
     }
     function mounted(): void;
     function beforeDestroy(): void;
