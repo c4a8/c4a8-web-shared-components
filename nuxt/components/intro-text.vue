@@ -1,6 +1,6 @@
 <template>
   <figure :class="classList" ref="root">
-    <div class="container space-lg-2">
+    <div :class="containerClasses">
       <div v-if="headline" class="row mb-9 mt-9">
         <div :class="['col', headlineClasses, 'fade-in-bottom']" data-utility-animation-step="1">
           <headline :text="headline" />
@@ -27,6 +27,9 @@ export default {
     classList() {
       return ['intro-text', 'utility-animation', 'vue-component', this.variant, this.spacing];
     },
+    containerClasses() {
+      return ['container', this.containerSpacing || 'space-lg-2'];
+    },
   },
   mounted() {
     if (!this.$refs.root) return;
@@ -38,6 +41,10 @@ export default {
     variant: String,
     headline: String,
     spacing: String,
+    containerSpacing: {
+      type: String,
+      default: 'space-lg-2',
+    },
     headlineClasses: {
       type: String,
       default: 'text-center',
