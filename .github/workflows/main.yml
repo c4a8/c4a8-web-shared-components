@@ -2,7 +2,7 @@ name: Storybook Deploy Nuxt
 
 on:
   push:
-    branches: [feature/230-npm-bundled-shared-components]
+    branches: [master]
 
   workflow_dispatch:
 
