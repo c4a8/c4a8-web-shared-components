@@ -1,5 +1,52 @@
-# Vue 3 + Vite
+# Nuxt // Nuxt Module
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This project is a nuxt module that is consumed by several sites.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+Right now the nuxt project is located in the "nuxt" folder. In order to use storybook to develop you need to switch to "nuxt".
+
+There you can start storybook via:
+
+```
+npm run storybook
+```
+
+The first time you start storybook you need to create a valid nuxt build via:
+
+```
+npm run build
+```
+
+So a .nuxt folder is present, which holds the types that are extended.
+
+All the source files are located in "nuxt" too. Outside sites will use the
+dist (distribution) files that are generated when you create a new version
+and commit those files.
+
+// TODO automate the distribution on new commits of the source files.
+
+# Development
+
+While your site is linked to this package you can use the update command to
+update your distribution files and therefore reload your site by:
+
+```
+npm run update
+```
+
+# New Patch // New Version
+
+To force the sites that consume this nuxt module to update and use your changed
+code, you need to create a new patch or version otherwise you don't have consistent
+updates.
+
+You can do this by running:
+
+```
+npm run patch
+```
+
+or
+
+```
+npm run new-version
+```

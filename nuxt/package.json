@@ -24,9 +24,9 @@
     "build-storybook-full": "npm run build && storybook build",
     "module:after-build": "node scripts/prepare-styles.js",
     "module:build": "node scripts/copy-components.js && nuxt-module-build build && npm run module:after-build",
-    "temp": "npm run module:build && node scripts/move-module.js",
-    "new-version": "cd .. && npm version minor --no-git-tag-version && cd nuxt && npm run temp",
-    "patch": "cd .. && npm version patch --no-git-tag-version && cd nuxt && npm run temp"
+    "update": "npm run module:build && node scripts/move-module.js",
+    "new-version": "cd .. && npm version minor --no-git-tag-version && cd nuxt && npm run update",
+    "patch": "cd .. && npm version patch --no-git-tag-version && cd nuxt && npm run update"
   },
   "dependencies": {
     "@nuxt/content": "^3.4.0",
