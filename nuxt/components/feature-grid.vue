@@ -9,6 +9,7 @@
         utilityAnimationStep="1"
         :noContainer="true"
         :level="headlineLevel"
+        spacing=""
         v-if="headline"
       ></headline-row>
 
@@ -58,7 +59,10 @@ export default {
     headlineClasses: String,
     headlineLevel: String,
     headlineRowClasses: String,
-    spacing: String,
+    spacing: {
+      type: String,
+      default: 'space-top-2',
+    },
   },
   mounted() {
     if (!this.$refs.root) return;
