@@ -13,33 +13,18 @@
         <h1 class="author-header__name h2" itemprop="name">{{ author.display_name }}</h1>
       </span>
       <span class="author-header__post-count">{{ postCount }}</span>
-      <span class="ml-1">{{ translationData?.posts }}</span>
+      <span class="ml-1">{{ $t('posts') }}</span>
     </div>
   </div>
 </template>
 <script>
 export default {
   tagName: 'author-header',
-  data() {
-    return {
-      translationData: {},
-    };
-  },
   computed: {
     classList() {
       return ['author-header row mb-4 mb-lg-5 vue-component', this.classes ? this.classes : ''];
     },
   },
-  beforeMount() {
-    const hasLanguageLoader = window.i18n?.loader;
-
-    if (hasLanguageLoader) {
-      hasLanguageLoader.then(() => {
-        this.translationData = window.i18n?.getTranslationData(['posts']);
-      });
-    }
-  },
-  methods: {},
   props: {
     author: {
       default: null,

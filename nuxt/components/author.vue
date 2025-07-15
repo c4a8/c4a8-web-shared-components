@@ -1,0 +1,79 @@
+<template>
+  <div class="author" v-if="person">
+    <div v-if="personData">
+      <div class="row mb-4 mb-lg-5" style="display: none">
+        <author-avatar
+          class-list="col-6 col-sm-4 col-lg-2 pl-lg-0 mb-5 mb-lg-0"
+          :author="person"
+          :img-url="imageUrl"
+          v-if="imageUrl"
+        />
+        <div class="author__meta col-lg-8 mt-lg-5 mb-2 mb-lg-0">
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <headline level="h1" classes="author__name h2" itemprop="name">{{ personData.display_name }}</headline>
+          </span>
+        </div>
+      </div>
+      <author-header :img-url="imageUrl" :author="personData" :post-count="postCount" />
+      <div class="author__intro-block row">
+        <div class="author__intro font-size-2 col-lg-8 pl-lg-0">
+          <ContentRenderer :value="intro" tag="p" />
+        </div>
+        <div :class="['author__socials col-lg-4', hasSocials ? 'pt-lg-4' : '']" v-if="showSocials">
+          <services v-bind="servicesData" />
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+import { useI18n } from '#imports';
+
+export default {
+  tagName: 'author',
+  setup() {
+    const { locale } = useI18n();
+
+    return { locale };
+  },
+  computed: {
+    postCount() {
+      return this.posts?.length || 0;
+    },
+    introText() {
+      if (this.locale === 'de') return this.person?.description;
+
+      return this.person?.otherLanguages[this.locale];
+    },
+    intro() {
+      return {
+        body: { type: 'minimal', value: [this.introText] },
+      };
+    },
+    imageUrl() {
+      return this.personData ? '' + this.personData?.avatar : '';
+    },
+    hasSocials() {
+      return this.personData?.socials;
+    },
+    servicesData() {
+      return {
+        author: this.personData,
+        title: this.person.title,
+      };
+    },
+    showSocials() {
+      return this.personData?.twitter || this.personData?.linkedin;
+    },
+  },
+  props: {
+    person: {
+      type: Object,
+    },
+    personData: {
+      type: Object,
+    },
+    posts: Number,
+  },
+};
+</script>
