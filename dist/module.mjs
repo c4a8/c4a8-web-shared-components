@@ -89,6 +89,13 @@ const module = defineNuxtModule({
     });
     extendPages((pages) => {
       pages.unshift({
+        name: "slug-authors",
+        path: "/authors/:slug(.*)*",
+        file: resolve("./runtime/pages/authors/[...slug].vue")
+      });
+    });
+    extendPages((pages) => {
+      pages.unshift({
         name: "slug-all",
         path: "/:slug(.*)*",
         file: resolve("./runtime/pages/[...slug].vue")

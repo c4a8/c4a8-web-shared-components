@@ -78,6 +78,7 @@ declare class Tools {
         headlineText: any;
         author: any;
     };
+    static addPathPrefix(path: any, lang: any, strategy: any): any;
     static extractDate(path: any): any;
     static getDate(dateString: any): any;
     static isDate(dateString: any): boolean | null;

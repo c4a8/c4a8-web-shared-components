@@ -1,4 +1,4 @@
-import ServicesComponent from '../../components/services';
+import ServicesComponent from '../components/services.vue';
 
 export default {
   title: 'Components/Services',
