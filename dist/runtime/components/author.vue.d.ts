@@ -957,7 +957,7 @@ declare namespace _default {
             export { type_3 as type };
         }
         namespace dataAuthors {
-            let type_4: ArrayConstructor;
+            let type_4: ObjectConstructor;
             export { type_4 as type };
         }
     }

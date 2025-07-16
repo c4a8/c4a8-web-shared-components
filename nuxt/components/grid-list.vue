@@ -81,7 +81,7 @@ export default {
   props: {
     items: Array,
     view: String,
-    dataAuthors: Array,
+    dataAuthors: Object,
   },
 };
 </script>
