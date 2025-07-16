@@ -51,6 +51,10 @@ import Quote from './icons/quote.vue';
 import World from './icons/world.vue';
 import XMark from './icons/x-mark.vue';
 
+
+import Ribbon from './icons/ribbon.vue';
+
+
 export default {
   components: {
     'arrow-curl': ArrowCurl,
@@ -89,6 +93,8 @@ export default {
     quote: Quote,
     world: World,
     'x-mark': XMark,
+
+    'ribbon': Ribbon,
   },
   tagName: 'icon',
   data() {

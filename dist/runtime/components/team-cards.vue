@@ -14,7 +14,7 @@
               <p>{{ item.description }}</p>
               <br>
               <div style="display: flex; gap: 1rem;">         
-                <img src="https://res.cloudinary.com/c4a8/image/upload/icons/certified-ribbon.svg"  width="40" height="40" />
+                <icon icon="ribbon" size="medium"/>
                 <div>{{ item.skills }}</div>
               </div>
             </div>
