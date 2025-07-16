@@ -1,12 +1,9 @@
 <template>
-  <page-detail
-    :style="{
-      '--page-detail-color': `var(${detailColor})`,
-      '--color-icon-hover-color': `var(${detailColor})`,
-      '--color-page-detail-shape': detailShapeColor,
-    }"
-    :detail-shape-color="detailShapeColor"
-  >
+  <page-detail :style="{
+    '--page-detail-color': `var(${detailColor})`,
+    '--color-icon-hover-color': `var(${detailColor})`,
+    '--color-page-detail-shape': detailShapeColor,
+  }" :detail-shape-color="detailShapeColor">
     <template #shape>
       <div class="page-detail__shape-container container">
         <div class="row">
@@ -19,14 +16,20 @@
       </div>
     </template>
     <template #body>
+      <event-detail-content v-if="content" class="page-detail__description has-no-border richtext" tag="main"
+        v-bind="contentData"/>
       <ContentRenderer :value="body" tag="main" class="page-detail__description has-no-border richtext" v-if="body" />
-      <div v-else><headline :level="h3">No Event found</headline></div>
+      <div v-else>
+        <headline :level="h3">No Event found</headline>
+      </div>
+
     </template>
     <template #intro>
       <event-detail-intro v-bind="introData"></event-detail-intro>
     </template>
     <template #formular v-if="form">
-      <formular v-bind="form" :has-animation="true" class="space-top-3 space-top-lg-1" />
+      <headline level="h3">{{ bottomText }}</headline>
+      <formular v-bind="form" :has-animation="true"  />
     </template>
   </page-detail>
 </template>
@@ -55,6 +58,10 @@ export default {
     form: Object,
     image: Object,
     badge: Object,
+    showBadge: {
+      type: Boolean,
+      default: false,
+    },
     moment: String,
     time: String,
     lang: {
@@ -62,6 +69,9 @@ export default {
       default: 'de',
     },
     body: Object,
+    content: Object,
+    bottomText: String,
+    price: String
   },
   computed: {
     introData() {
@@ -70,10 +80,22 @@ export default {
         image: this.image,
         moment: this.moment,
         time: this.time,
+        price: this.price,
         headlineText: this.headlineText,
-        headlineLevel: this.headlineLevelComputed,
+        //headlineLevel: this.headlineLevelComputed,
         headlineClasses: this.headlineClassesComputed,
         name: this.author,
+        showBadge: this.showBadge,
+      };
+    },
+    contentData() {
+      return {
+        headline: this.content.headline,
+        intro: this.content.intro,
+        paragraphs: this.content.paragraphs,
+        bulletpoints: this.content.bulletpoints, 
+        headlineLevel: this.headlineLevelComputed,
+        headlineClasses: this.headlineClassesComputed,
       };
     },
     headlineLevelComputed() {

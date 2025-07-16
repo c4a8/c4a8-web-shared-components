@@ -1,6 +1,6 @@
 <template>
   <div class="event-detail-intro page-detail__intro-content">
-    <div class="page-detail__badge page-detail__animation-3" v-if="badge">
+    <div class="page-detail__badge page-detail__animation-3" v-if="showBadge && badge">
       <badge
         :text="badge.text"
         :icon="badge.icon"
@@ -9,11 +9,12 @@
         :overlapping="true"
       />
     </div>
-    <div class="page-detail__details mb-2 page-detail__animation-3" v-if="moment || time">
+    <div class="page-detail__details mb-2 page-detail__animation-3" v-if="moment || time || price">
       <span class="page-detail__moment font-size-1 bold" v-if="moment">{{ moment }}</span>
       <span class="page-detail__time font-size-1" v-if="time">{{ time }}</span>
+      <span class="page-detail__time font-size-1" v-if="price"> | {{ price }}</span>
     </div>
-    <headline :level="headlineLevel" :classes="headlineClasses">{{ headlineText }}</headline>
+    <headline level="h2" class="bold">{{ headlineText }}</headline>
     <div class="page-detail__img-wrapper" v-if="image">
       <div class="page-detail__img page-detail__animation-3">
         <v-img :img="image.img" :alt="image.alt" :cloudinary="image.cloudinary ?? true" img-src-sets="event" />
@@ -33,6 +34,7 @@ export default {
       type: Object,
       default: null,
     },
+    showBadge: Boolean,
     image: {
       type: Object,
       default: null,
@@ -59,6 +61,10 @@ export default {
     },
     name: {
       type: Array,
+      default: null,
+    },
+    price: {
+      type: String,
       default: null,
     },
   },

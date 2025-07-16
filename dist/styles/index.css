@@ -49592,3 +49592,40 @@ strong[id]:target::before {
   height: var(--scroll-top);
   margin: calc(-1 * (var(--scroll-top))) 0 0;
 }
+.circle-row {
+  display: flex;
+  gap: 1rem;
+  padding-bottom: 1rem;
+}
+
+.circle-container {
+  gap: 1rem;
+  display: flex;
+}
+
+.circle-content {
+  margin: 0;
+  font-weight: "normal";
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.circle-slot {
+  white-space: nowrap;
+
+}
+
+.icon-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  font-weight: lighter;
+
+}
+
+.icon-circle img {
+  width: 25px;
+  height: 25px;
+}
