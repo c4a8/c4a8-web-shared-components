@@ -5,16 +5,16 @@
         {{ title }}
       </div>
       <div class="services__items font-size-1">
-        <template v-for="item in itemsList">
+        <template v-for="(item, index) in itemsList" :key="index">
           <div class="services__item">
-            <cta v-bind="item" link="true" :external="authorHasSocials" />
+            <cta v-bind="item" :link="true" :external="authorHasSocials" />
           </div>
         </template>
       </div>
     </template>
     <div class="services__footer">
       <template v-if="author">
-        <socials :author="author" :message="followMessage" expand="true" :share-url="shareUrl" />
+        <socials :author="author" :expand="true" :share-url="shareUrl" />
       </template>
       <template v-else>
         <div class="services__label font-size-xs bold">{{ label }}</div>
