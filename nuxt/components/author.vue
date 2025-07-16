@@ -62,7 +62,14 @@ export default {
     introText() {
       if (this.locale === 'de') return this.person?.description;
 
-      return this.person?.otherLanguages[this.locale];
+      const fallbackLocale = 'en';
+      let description = this.person?.otherLanguages[this.locale];
+
+      if (description) return description;
+
+      description = this.person?.otherLanguages[fallbackLocale];
+
+      return description;
     },
     intro() {
       return {
