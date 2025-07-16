@@ -14,7 +14,7 @@
               <p>{{ item.description }}</p>
               <br>
               <div style="display: flex; gap: 1rem;">         
-                <icon icon="ribbon" size="medium"/>
+                 <icon icon="ribbon" size="medium"/>
                 <div>{{ item.skills }}</div>
               </div>
             </div>
