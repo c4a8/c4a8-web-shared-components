@@ -26,6 +26,11 @@
       <div class="author__events row mt-lg-5" v-if="events && events.length > 0">
         <event-overview :events="events" :sort-by="sortBy" />
       </div>
+      <div class="author__posts">
+        <div class="author__posts-list mt-6 pt-6">
+          <grid-list :items="posts" view="list-view" :data-authors="dataAuthors" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -87,6 +92,9 @@ export default {
       type: Array,
     },
     events: {
+      type: Array,
+    },
+    dataAuthors: {
       type: Array,
     },
   },

@@ -2,7 +2,14 @@
   <tracking />
   <content>
     <div class="container space-top-2 space-top-lg-4">
-      <author :person="person" :person-data="personData" :posts="posts" :events="events" v-if="personData" />
+      <author
+        :person="person"
+        :person-data="personData"
+        :posts="postsOrdered"
+        :events="events"
+        :data-authors="authors"
+        v-if="personData"
+      />
       <div v-else><headline>Author not found</headline></div>
     </div>
   </content>
@@ -14,6 +21,7 @@ import { computed } from 'vue';
 import Tools from '../../utils/tools.js';
 import useAuthors from '../../composables/useAuthors.js';
 
+const { strategy } = useI18n();
 const route = useRoute();
 const nuxtApp = useNuxtApp();
 const currentLocale = nuxtApp.$i18n.locale;
@@ -53,6 +61,25 @@ const { data: posts } = await useAsyncData(authorDataKey, async () => {
   return queryBuilder.all();
 });
 
+const postsOrdered = computed(() => {
+  if (!posts.value) return [];
+
+  return [...posts.value]
+    .map((item) => {
+      const newItem = Tools.normalizeMarkdownItem(item);
+
+      newItem.url = Tools.addPathPrefix(newItem.url, currentLocale.value, strategy);
+
+      return newItem;
+    })
+    .sort((a, b) => {
+      const momentA = new Date(a.moment);
+      const momentB = new Date(b.moment);
+
+      return momentB - momentA;
+    });
+});
+
 const eventsDataKey = 'content-events-' + currentLocale.value + '-' + person.value.stem;
 
 const { data: events } = await useAsyncData(eventsDataKey, async () => {
@@ -62,11 +89,6 @@ const { data: events } = await useAsyncData(eventsDataKey, async () => {
   let queryBuilder = query.where('path', 'LIKE', '/events/%');
 
   queryBuilder = queryBuilder.where('author', 'LIKE', `%${authorName.value}%`);
-  // queryBuilder = queryBuilder.sort = [{ moment: 1 }];
-  // queryBuilder = queryBuilder.reversed = true;
-  // queryBuilder = queryBuilder.order('moment', 'DESC');
-
-  // query.sort = [{ moment: this.reversed ? 1 : -1 }];
 
   return queryBuilder.all();
 });

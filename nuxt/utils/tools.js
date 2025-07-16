@@ -638,6 +638,10 @@ class Tools {
     };
   }
 
+  static addPathPrefix(path, lang, strategy) {
+    return strategy === 'prefix' ? `/${lang}${path}` : path;
+  }
+
   static extractDate(path) {
     if (!path) return null;
 
