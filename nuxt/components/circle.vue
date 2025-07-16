@@ -1,8 +1,7 @@
 <template>
     <div class="circle-row display-flex">
         <div class="circle-container align-items-center">
-            <div class="icon-circle align-items-center justify-content-center"
-                :style="[circleStyle]">
+            <div class="icon-circle align-items-center justify-content-center" :style="[circleStyle]">
                 <div class="circle-content">
                     <div v-if="circleContent" class="h4-font-size" >{{ circleContent }}</div>
                     <icon v-if="circleIcon" :icon='circleIcon' size="medium"/>
@@ -20,7 +19,6 @@ export default {
     props: {
         circleContent: String,
         circleIcon: String,
-        headline: String,
         color: {
             type: String,
             default: '#6BB8FF'
