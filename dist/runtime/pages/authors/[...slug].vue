@@ -13,7 +13,7 @@
   </content>
 </template>
 <script setup>
-import { useRoute, useAsyncData, queryCollection, useNuxtApp, useSeo } from '#imports';
+import { useRoute, useAsyncData, queryCollection, useNuxtApp, useSeo, useI18n } from '#imports';
 import { computed } from 'vue';
 
 import Tools from '../../utils/tools.js';
