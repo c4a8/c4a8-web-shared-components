@@ -22,7 +22,7 @@ declare namespace _default {
     namespace props {
         let items: ArrayConstructor;
         let view: StringConstructor;
-        let dataAuthors: ArrayConstructor;
+        let dataAuthors: ObjectConstructor;
     }
 }
 export default _default;

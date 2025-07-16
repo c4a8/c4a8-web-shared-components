@@ -109,7 +109,7 @@ export default {
       type: Array,
     },
     dataAuthors: {
-      type: Array,
+      type: Object,
     },
   },
 };
