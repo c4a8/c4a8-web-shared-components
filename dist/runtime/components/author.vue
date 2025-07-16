@@ -23,6 +23,9 @@
           <services v-bind="servicesData" />
         </div>
       </div>
+      <div class="author__events row mt-lg-5" v-if="events && events.length > 0">
+        <event-overview :events="events" :sort-by="sortBy" />
+      </div>
     </div>
   </div>
 </template>
@@ -31,6 +34,13 @@ import { useI18n } from '#imports';
 
 export default {
   tagName: 'author',
+  data() {
+    return {
+      sortBy: {
+        moment: -1,
+      },
+    };
+  },
   setup() {
     const { locale } = useI18n();
 
@@ -73,7 +83,12 @@ export default {
     personData: {
       type: Object,
     },
-    posts: Number,
+    posts: {
+      type: Array,
+    },
+    events: {
+      type: Array,
+    },
   },
 };
 </script>
