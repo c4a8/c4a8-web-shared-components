@@ -24,8 +24,11 @@ const route = useRoute();
 const nuxtApp = useNuxtApp();
 const currentLocale = nuxtApp.$i18n.locale;
 
-const path = route.path.replace(/^\/[a-z]{2}\//, '/').replace('/authors', '');
-const dataKey = 'author-' + path;
+let path = route.path.replace(/^\/[a-z]{2}\//, '/').replace('/authors', '');
+path = !path.endsWith('/') ? path + '/' : path;
+
+const cleanPath = path.replaceAll('/', '');
+const dataKey = 'author-' + cleanPath;
 
 const { data: person } = await useAsyncData(dataKey, () => {
   const collectionName = 'authors';
