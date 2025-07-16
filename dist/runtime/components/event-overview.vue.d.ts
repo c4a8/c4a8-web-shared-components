@@ -18,9 +18,7 @@ declare namespace _default {
             where: any;
             path: string;
         };
-        function sort(): {
-            moment: number;
-        };
+        function sort(): any;
     }
     function mounted(): void;
     namespace methods {
@@ -38,6 +36,7 @@ declare namespace _default {
         let maxLimit: NumberConstructor;
         let moreUrl: StringConstructor;
         let order: ArrayConstructor;
+        let sortBy: ObjectConstructor;
     }
 }
 export default _default;

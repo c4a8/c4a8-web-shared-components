@@ -87,7 +87,7 @@ export default {
       return query;
     },
     sort() {
-      return { moment: 1 };
+      return this.sortBy || { moment: 1 };
     },
   },
   mounted() {
@@ -129,6 +129,7 @@ export default {
     maxLimit: Number,
     moreUrl: String,
     order: Array,
+    sortBy: Object,
   },
 };
 </script>
