@@ -33,9 +33,12 @@
       </div>
     </div>
   </div>
+  <div v-else><headline>Author not found</headline></div>
 </template>
 <script>
 import { useI18n } from '#imports';
+
+import { useAppStore } from '../stores/app';
 
 export default {
   tagName: 'author',
@@ -48,8 +51,9 @@ export default {
   },
   setup() {
     const { locale } = useI18n();
+    const store = useAppStore();
 
-    return { locale };
+    return { locale, store };
   },
   computed: {
     postCount() {
@@ -80,6 +84,9 @@ export default {
     showSocials() {
       return this.personData?.twitter || this.personData?.linkedin;
     },
+  },
+  mounted() {
+    this.store.setPageIsLoaded(true);
   },
   props: {
     person: {

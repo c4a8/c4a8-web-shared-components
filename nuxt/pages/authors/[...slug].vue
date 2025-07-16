@@ -8,14 +8,12 @@
         :posts="postsOrdered"
         :events="events"
         :data-authors="authors"
-        v-if="personData"
       />
-      <div v-else><headline>Author not found</headline></div>
     </div>
   </content>
 </template>
 <script setup>
-import { useRoute, useAsyncData, queryCollection, useNuxtApp, useDynamicPageMeta, useSeo } from '#imports';
+import { useRoute, useAsyncData, queryCollection, useNuxtApp, useSeo } from '#imports';
 import { computed } from 'vue';
 
 import Tools from '../../utils/tools.js';
@@ -25,8 +23,6 @@ const { strategy } = useI18n();
 const route = useRoute();
 const nuxtApp = useNuxtApp();
 const currentLocale = nuxtApp.$i18n.locale;
-
-const dynamicMeta = useDynamicPageMeta();
 
 const path = route.path.replace(/^\/[a-z]{2}\//, '/').replace('/authors', '');
 const dataKey = 'author-' + path;
@@ -41,14 +37,14 @@ const { data: person } = await useAsyncData(dataKey, () => {
 const { authors } = useAuthors();
 
 const personData = computed(() => {
-  return authors ? authors[person?.value.title] : null;
+  return authors ? authors[person?.value?.title] : null;
 });
 
 const authorName = computed(() => {
-  return person?.value.title;
+  return person?.value?.title;
 });
 
-const authorDataKey = 'content-' + currentLocale.value + '-' + person.value.stem;
+const authorDataKey = 'content-' + currentLocale.value + '-' + person.value?.stem;
 
 const { data: posts } = await useAsyncData(authorDataKey, async () => {
   const collectionName = 'content_' + currentLocale.value;
@@ -80,7 +76,7 @@ const postsOrdered = computed(() => {
     });
 });
 
-const eventsDataKey = 'content-events-' + currentLocale.value + '-' + person.value.stem;
+const eventsDataKey = 'content-events-' + currentLocale.value + '-' + person.value?.stem;
 
 const { data: events } = await useAsyncData(eventsDataKey, async () => {
   const collectionName = 'content_' + currentLocale.value;
@@ -93,19 +89,13 @@ const { data: events } = await useAsyncData(eventsDataKey, async () => {
   return queryBuilder.all();
 });
 
-// dynamicMeta.value = {
-//   footer: event.value?.meta?.footer ?? { noMargin: true },
-// };
+const hasAuthor = computed(() => {
+  if (person.value && person.value.stem) return true;
+});
 
-// if (event.value && eventNormalized.value) {
-// const baseSocialImg = eventNormalized.value.socialimg;
-// const socialImg = baseSocialImg?.startsWith('/') ? baseSocialImg.slice(1) : baseSocialImg;
-
-// useSeo({
-//   title: eventNormalized.value.title,
-//   description: eventNormalized.value.customExcerpt ?? null,
-//   keywords: eventNormalized.value.keywords ?? null,
-//   image: socialImg ? `https://res.cloudinary.com/c4a8/image/upload/${socialImg}` : null,
-// });
-// }
+if (hasAuthor.value) {
+  useSeo({
+    title: authorName,
+  });
+}
 </script>
