@@ -272,3 +272,29 @@ export const WithAnimation = {
     copy: 'Unsere Consulting Services konzentrieren sich auf die wichtigsten Themen für unsere Kunden: <strong>Modern Workplace, Azure Datacenter, Transformation Services und DevOps</strong>. Sie arbeiten Hand in Hand mit unseren Experten, die Ihnen die Best Practices und Richtlinien für eine erfolgreiche Implementierung aufzeigen. Mit unserer tiefen technischen Expertise sorgen wir dafür, dass Ihre Cloud-Umgebung effizient, sicher und leistungsstark ist.',
   },
 };
+
+export const WithList = {
+  args: {
+    image: 'svg/icons/icon-products.svg',
+    alt: "Azure Training Timeline",
+    level: "h2",
+    headlineText: "Tag 1 - Tag 4",
+    overline: "10:00 - 17:00 Uhr",
+    listTitle: "Überblick",
+    listItems: [
+      "Azure Abonnements verwalten",
+      "Identitäten sichern",
+      "Infrastruktur verwalten",
+      "Virtuelle Netzwerke konfigurieren",
+      "Azure- und lokale Standorte verbinden",
+      "Netzwerkverkehr verwalten",
+      "Speicherlösungen implementieren",
+      "Virtuelle Maschinen erstellen und skalieren",
+      "Webanwendungen und Container implementieren",
+      "Daten sichern und teilen",
+      "Lösungen überwachen"
+    ],
+    copy: 'Das Training wird Remote über Microsoft Teams durchgeführt. Sie benötigen ein Windows 11 Notebook mit vorbereiteter Virtualisierung und entsprechender Festplattenkapazität. Zusätzlich brauchen Sie Microsoft Teams, eine stabile Internetverbindung, ein Headset und eine Webcam.',
+  },
+};
+
