@@ -1,13 +1,13 @@
-import TeamCards from "../components/team-cards.vue";
+import TeamCardsComponent from "../components/team-cards.vue";
 
 export default {
     title: 'Components/TeamCards',
-    component: TeamCards,
+    component: TeamCardsComponent,
     argTypes: {
     },
 };
 
-export const LinkedIn = {
+export const TeamCards = {
     args: {
         teamCards: {
             items: [

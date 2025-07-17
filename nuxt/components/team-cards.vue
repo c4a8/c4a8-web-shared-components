@@ -278,9 +278,6 @@ export default {
     },
     tags: Array,
   },
-  teamCards: {
-    type: Object,
-    required: true,
-  },
+
 };
 </script>
