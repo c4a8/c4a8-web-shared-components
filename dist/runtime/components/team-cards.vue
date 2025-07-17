@@ -7,10 +7,10 @@
           <div class="card h-100">
             <div class="card-body has-card-background">
               <div style="margin-bottom:50px;">
-                <img v-if="item.img" :src="item.img" :alt="item.alt" class="img-fluid" />
+                <v-img v-if="item.img" :src="item.img" :alt="item.alt" class="img-fluid"/>
               </div>
-              <h3>{{ item.name }}</h3>
-              <h4>{{ item.job }}</h4>
+              <headline level="h3" :text="item.name"/>
+              <headline level="h4" :text="item.job"/>
               <p>{{ item.description }}</p>
               <br>
               <div style="display: flex; gap: 1rem;">         
