@@ -1,7 +1,7 @@
 <template>
 <div class="container space-2">
   <div display="flex" class="portfolio-items">
-    <div v-for="item in items" v-if="items" style="width: 378px; left: 0px; top: 0px;">
+    <div v-for="item in items" v-if="items" class="portfolio-single" style="width: 378px; left: 0px; top: 0px;">
       <a :href="item.href" v-if="item.href">
         <div class="overflow-hidden">
           <div class="portfolio-img" style="transition: transform .2s;">
