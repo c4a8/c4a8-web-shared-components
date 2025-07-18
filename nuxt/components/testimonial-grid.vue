@@ -10,8 +10,7 @@
       <div v-for="(testimonial, idx) in contents.slice(0, toggleLimitValue)" :key="idx" :class="columnClass">
         <div class="testimonial-list__content-block">
           <testimonial-teaser :href="testimonial.href" :name="testimonial.name" :title="testimonial.title"
-            :img="testimonial.img" :video="testimonial.video" :bgColor="testimonial.bgColor"
-            :aspect-ratio="getAspectRatio(idx + 1)" />
+            :img="testimonial.img" :video="testimonial.video" :bgColor="testimonial.bgColor" />
         </div>
       </div>
     </div>
