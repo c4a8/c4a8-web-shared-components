@@ -3,7 +3,6 @@
     <div class="team-cards container space-2">
       <div class="row mx-n2 mb-5">
         <div v-for="(item, index) in teamCards.items" :key="index" class="col-sm-6 col-lg-4 px-2 mb-3">
-          <!-- Team -->
           <div class="card h-100">
             <div class="card-body has-card-background">
               <div style="margin-bottom:50px;">
@@ -17,8 +16,7 @@
                  <icon icon="ribbon" size="medium"/>
                 <div>{{ item.skills }}</div>
               </div>
-            </div>
-           
+            </div>          
             <div class="card-footer">
               <ul class="list-inline mb-0">
                 <li v-if="item.twitter" class="list-inline-item">
@@ -34,7 +32,6 @@
               </ul>
             </div> 
           </div>
-
         </div>
       </div>
     </div>

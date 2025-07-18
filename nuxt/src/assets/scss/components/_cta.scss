@@ -363,7 +363,8 @@
     }
 
     &.cta--monochrome {
-      --cta-copy-color: var(--color-copy);
+      --cta-copy-color: var(--color-copy) !important;
+      --cta-border-color: var(--color-copy) !important;
     }
 
     &:not(.btn):not(.custom):not(.nav-link) {

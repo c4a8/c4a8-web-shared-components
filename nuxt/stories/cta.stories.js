@@ -198,6 +198,15 @@ export const SecondaryButton = {
     button: true,
   },
 };
+export const SecondaryButtonMonochrome = {
+  args: {
+    text: 'Secondary Button',
+    href: 'javascript:void(0)',
+    skin: 'secondary',
+    button: true,
+    monochrome: true,
+  },
+};
 
 export const PrimaryLink = {
   args: {
