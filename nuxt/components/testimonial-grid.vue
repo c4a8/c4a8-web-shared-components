@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="space-top-2 d-flex justify-content-center mx-auto">
-      <cta :text="toggleCtaText" :skin="cta.skin" :monochrome="cta.monochrome" @click="toggleLimit"/>
+      <cta :text="toggleCtaText" :skin="cta.skin" :monochrome="cta.monochrome" @click="toggleLimit" />
     </div>
   </section>
 </template>
@@ -75,7 +75,6 @@ export default {
       toggleLimitValue: this.limit,
     };
   },
-
   computed: {
     columnClass() {
       return 'col-lg-' + 12 / this.gridSize;
@@ -89,20 +88,13 @@ export default {
     },
   },
   methods: {
-
-    getAspectRatio(idx) {
-      let aspect = '4x3';
-      return aspect;
-    },
     toggleLimit() {
       if (this.toggleLimitValue == this.limit) {
         this.toggleLimitValue = this.maxLimit;
       } else {
         this.toggleLimitValue = this.limit;
       }
-
     },
-
   },
 };
 </script>
