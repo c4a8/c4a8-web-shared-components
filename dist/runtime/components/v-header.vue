@@ -88,14 +88,7 @@
                 </a>
               </div>
               <div class="header__button" v-if="button">
-                <cta
-                  :text="button.text"
-                  :href="button.href"
-                  :target="button.target"
-                  :skin="button.skin"
-                  :classes="ctaClassList"
-                  :on-surface="onSurfaceCta"
-                />
+                <cta :classes="ctaClassList" :on-surface="onSurfaceCta" v-bind="button" />
               </div>
               <div class="header__language-switch" v-if="hasLangSwitch">
                 <a
@@ -109,14 +102,7 @@
             </div>
           </nav>
           <div class="header__button" v-if="button">
-            <cta
-              :text="button.text"
-              :href="button.href"
-              :target="button.target"
-              :skin="button.skin"
-              :classes="ctaClassList"
-              :on-surface="onSurfaceCta"
-            />
+            <cta :classes="ctaClassList" :on-surface="onSurfaceCta" v-bind="button" />
           </div>
           <search v-if="searchValue" class="header__search" language="de" placeholder="search" />
           <div
