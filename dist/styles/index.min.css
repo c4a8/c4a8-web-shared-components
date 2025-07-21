@@ -50495,6 +50495,7 @@ shape {
 
 .header__logo img {
     height: auto;
+    min-height: 40px;
     min-width: 100px;
     width: min(30%, 36vw)
 }
@@ -50506,6 +50507,21 @@ shape {
 
     .header__logo {
         flex: 0 1 25%
+    }
+}
+
+@media (max-width: 992px) {
+    .header__logo img {
+        min-height: 38px;
+        transform: scale(1.2);
+
+    }
+
+    .header__logo {
+        display: flex;
+
+        min-height: 38px;
+        transform: scale(1.2);
     }
 }
 
@@ -52267,40 +52283,41 @@ strong[id]:target:before {
     height: var(--scroll-top);
     margin: calc((var(--scroll-top))*-1) 0 0
 }
+
 .circle-row {
-  display: flex;
-  gap: 1rem;
-  padding-bottom: 1rem;
+    display: flex;
+    gap: 1rem;
+    padding-bottom: 1rem;
 }
 
 .circle-container {
-  gap: 1rem;
-  display: flex;
+    gap: 1rem;
+    display: flex;
 }
 
 .circle-content {
-  margin: 0;
-  font-weight: "normal";
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
+    margin: 0;
+    font-weight: "normal";
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
 }
 
 .circle-slot {
-  white-space: nowrap;
+    white-space: nowrap;
 
 }
 
 .icon-circle {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  display: flex;
-  font-weight: lighter;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    font-weight: lighter;
 
 }
 
 .icon-circle img {
-  width: 25px;
-  height: 25px;
+    width: 25px;
+    height: 25px;
 }

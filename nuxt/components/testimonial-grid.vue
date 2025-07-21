@@ -8,9 +8,11 @@
     </div>
     <div class="row row-cols-2">
       <div v-for="(testimonial, idx) in contents.slice(0, toggleLimitValue)" :key="idx" :class="columnClass">
-        <div class="testimonial-list__content-block">
-          <testimonial-teaser :href="testimonial.href" :name="testimonial.name" :title="testimonial.title"
-            :img="testimonial.img" :video="testimonial.video" :bgColor="testimonial.bgColor" />
+        <div class="testimonial-list__content-block" >
+ 
+            <testimonial-teaser :href="testimonial.href" :name="testimonial.name" :title="testimonial.title"
+              :img="testimonial.img" :video="testimonial.video" :bgColor="testimonial.bgColor" ref="teaser"/>
+    
         </div>
       </div>
     </div>

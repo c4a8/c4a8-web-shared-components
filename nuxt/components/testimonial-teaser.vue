@@ -1,43 +1,18 @@
 <template>
-    <a v-if="img" :class="[
-        'testimonial-teaser',
-        'testimonialTeaserAspectRatioClass',
-        'utility-animation',
-        'fade-in-bottom',
-        'testimonialTeaserBgStyling',
-        'testimonialTeaserAspectRatioStyling'
-    ]" data-utility-animation-step="1" ref="root">
-        <div class="testimonial-teaser__wrapper">
-            <div v-if="cornerImg" class="testimonial-teaser__corner" :class="cornerImg.position">
-            </div>
-            <div class="testimonial-teaser__img">
-                <div class="testimonial-teaser__img-wrapper">
-                    <v-img :img="img.img" :alt="img.alt" :cloudinary="img.cloudinary" />
+    <template v-if="img">
+        <a class="testimonial-teaser utility-animation fade-in-bottom" :class="[
+        ]" :style="bgStyling" :href="href" data-utility-animation-step="1" ref="root">
+            <div class="testimonial-teaser__wrapper">
+                <div v-if="cornerImg" class="testimonial-teaser__corner" :class="cornerPosition">
+                    <img-html :img="cornerImg.img" :alt="cornerImg.alt" :cloudinary="cornerImg.cloudinary" />
                 </div>
-            </div>
-            <div class="testimonial-teaser__content">
-                <div class="testimonial-teaser__name font-size-4 bold">
-
-                    <div class="testimonial-teaser__name-background">
-                        <div class="testimonial-teaser__name-background bg">{{ name }}</div>
-                        <div class="testimonial-teaser__name-icon">
-                            <icon icon="arrow" classes="testimonial-teaser__icon" size="large" />
-                        </div>
+                <div class="testimonial-teaser__img">
+                    <div class="testimonial-teaser__img-wrapper" :style="aspectRatioClass">
+                        <v-img :img="img.img" :alt="img.alt" :cloudinary="img.cloudinary" :imgSrcSets="imgSrcSet"
+                            class="testimonial-teaser-vimg" />
                     </div>
-
                 </div>
-                <div class="testimonial-teaser__title font-size-1 bg">{{ title }}</div>
-            </div>
-        </div>
-    </a>
-    <a v-if="video" class="testimonialTeaserAspectRatioStyling testimonialTeaserAspectRatioClass" :style="{ ...testimonialTeaserBgStyling, }">
-        <div @click="setVideoPlayed">
-            <div class="testimonial-teaser-video-wrapper">
-                <video-frame ref="video-frame" :thumb="video.thumb" :alt="video.alt" :id="video.id"
-                    :fullWidth="video.fullWidth" :preset="fullscreen4k" @click="getVideoState" />
-            </div>
-            <div class="testimonial-teaser">
-                <a class="testimonial-teaser__content"> 
+                <a class="testimonial-teaser__content">
                     <div class="testimonial-teaser__name font-size-4 bold">
                         <span v-for="(part, idx) in name.split(' ')" :key="idx">
                             <div class="testimonial-teaser__name-background">
@@ -54,11 +29,36 @@
                     <div class="testimonial-teaser__title font-size-1 bg">{{ title }}</div>
                 </a>
             </div>
-        </div>
-    </a>
-
+        </a>
+    </template>
+    <template v-if="video">
+        <a class=" utility-animation fade-in-bottom testimonial-video-teaser" :class="[
+        ]" :style="bgStyling" :href="href" data-utility-animation-step="1" ref="root">
+            <div class="testimonial-teaser-video">
+                <video-frame ref="video-frame" :thumb="video.thumb" :alt="video.alt" :id="video.id"
+                    :fullWidth="video.fullWidth" @click="getVideoState" />
+            </div>
+            <div>
+                <a class="testimonial-teaser__content" @click="setVideoPlayed">
+                    <div class="testimonial-teaser__name font-size-4 bold">
+                        <span v-for="(part, idx) in name.split(' ')" :key="idx">
+                            <div class="testimonial-teaser__name-background">
+                                {{ part }}
+                                <template v-if="idx === name.split(' ').length - 1">
+                                    <div class="testimonial-teaser__name-icon">
+                                        <icon icon="arrow" classes="testimonial-teaser__icon" size="large" />
+                                    </div>
+                                </template>
+                            </div>
+                            <template v-if="idx !== name.split(' ').length - 1"><br /></template>
+                        </span>
+                    </div>
+                    <div class="testimonial-teaser__title font-size-1 bg">{{ title }}</div>
+                </a>
+            </div>
+        </a>
+    </template>
 </template>
-
 <script>
 import { noConflict } from 'jquery';
 import UtilityAnimation from '../utils/utility-animation.js';
@@ -82,6 +82,10 @@ export default {
             type: Object,
             required: false,
         },
+        cloudinary: {
+            type: Boolean,
+            default: true,
+        },
         video: {
             type: Object,
             required: false,
@@ -100,20 +104,13 @@ export default {
         },
         aspectRatio: {
             type: String,
-            default: '4x3',
+            default: '16/9',
         },
-    },
-    data() {
-        return {
-            videoPlaying: false,
-        }
-
     },
     mounted() {
         if (!this.$refs.root) return;
         UtilityAnimation.init([this.$refs.root]);
     },
-
     methods: {
         getVideoState() {
             this.videoPlaying = this.$refs['video-frame'].isPlayed;
@@ -124,46 +121,27 @@ export default {
         },
     },
     computed: {
-        testimonialTeaserImg() {
-            return this.img || {};
+        aspectRatioClass() {
+            return `--testimonial-teaser-aspect-ratio: ${this.aspectRatio};`;
         },
-        testimonialTeaserImgCloudinary() {
-            return this.img?.cloudinary !== undefined ? this.img.cloudinary : true;
-        },
-        testimonialTeaserCornerImg() {
-            return this.cornerImg || null;
-        },
-        testimonialTeaserCornerPosition() {
+        cornerPosition() {
             return this.cornerImg?.position === 'left'
                 ? 'testimonial-teaser__corner--left'
                 : 'testimonial-teaser__corner--right';
         },
-        testimonialTeaserBgStyling() {
-            return {
-                '--color-testimonial-teaser-background': this.bgColor,
-                '--color-testimonial-teaser-background-hover': this.bgColorHover,
-                width: '100%',
-            };
+        bgStyling() {
+            return `--color-testimonial-teaser-background: ${this.bgColor}; --color-testimonial-teaser-background-hover: ${this.bgColorHover}; width: 100%;`;
         },
-        testimonialTeaserAspectRatioStyling() {
-            if (this.aspectRatio && this.aspectRatio.split('x').length === 2) {
-                const [width, height] = this.aspectRatio.split('x');
-                return {
-                    '--width-testimonial-teaser-aspect-ratio': width,
-                    '--height-testimonial-teaser-aspect-ratio': height,
-                };
-            }
-            return {};
+        nameReplaced() {
+            return this.name
+                .split(' ')
+                .map(word => `<div class="testimonial-teaser__name-background">${word}</div>`)
+                .join('<br/>');
         },
-        testimonialTeaserAspectRatioClass() {
-            return this.aspectRatio ? `testimonial-teaser--${this.aspectRatio}` : '';
-        },
-        testimonialTeaserSrcSet() {
-            if (this.aspectRatio) {
-                const srcSetName = `testimonialTeaser${this.aspectRatio}`;
-                return this.$root.$options.site?.data?.imgSrcSets?.[srcSetName] || null;
-            }
-            return null;
+        imgSrcSet() {
+            if (!this.aspectRatio) return false;
+            const key = `testimonialTeaser${this.aspectRatio}`;
+            return this.$site?.data?.imgSrcSets?.[key] || false;
         },
     },
 };

@@ -31,30 +31,39 @@ export const TestimonialGrid = {
                 bgColor: "var(--color-blue-light)",
             },
             {
-                name: "Rainer Zufall",
+                name: "Matti Puolitaival",
                 title: "Designer",
-                video: {
-                    thumb: "/thumbs/thumb-avd-foundation-webcast.jpg",
-
-                    id: "0U_mV706VKI",
-                    fullWidth: true,
+                img: {
+                    img: "/people/testimonials/matti-puolitaival.png",
+                    cloudinary: true,
+                    alt: "lorem ipsum",
                 },
-     
+
                 bgColor: "var(--color-blue-light)",
             },
+
             {
+                href: "glueckkanja.com",
+                name: "Sophie Luna",
+                title: "HR Specialist",
+                img: {
+                    img: "/people/people-sophie-luna.png",
+                    cloudinary: true,
+                    alt: "lorem ipsum",
+                }
+            }, {
                 name: "John Doe",
                 title: "Project Manager",
                 video: {
                     thumb: "/thumbs/thumb-avd-foundation-webcast.jpg",
-      
+
                     id: "0U_mV706VKI",
                     fullWidth: true,
                 },
 
                 bgColor: "var(--color-blue-light)",
             },
-                        {
+            {
                 name: "Erika Musterfrau",
                 title: "HR Manager",
                 video: {
@@ -63,6 +72,7 @@ export const TestimonialGrid = {
                     id: "0U_mV706VKI",
                     fullWidth: true,
                 },
+                bgColor: "var(--color-blue-light)",
 
                 bgColor: "var(--color-blue-light)",
             },
@@ -75,7 +85,7 @@ export const TestimonialGrid = {
                     id: "0U_mV706VKI",
                     fullWidth: true,
                 },
-     
+
                 bgColor: "var(--color-blue-light)",
             },
             {
@@ -83,7 +93,7 @@ export const TestimonialGrid = {
                 title: "Cloud Architect",
                 video: {
                     thumb: "/thumbs/thumb-avd-foundation-webcast.jpg",
-      
+
                     id: "0U_mV706VKI",
                     fullWidth: true,
                 },
