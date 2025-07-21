@@ -13,15 +13,16 @@ declare namespace _default {
     function created(): void;
     function updated(): void;
     namespace methods {
+        function getBlogTitlepic(item: any): any;
         function resetUtilityAnimation(): void;
         function reinitUtilityAnimation(): void;
         function blogImgUrl(url: any): any;
         function handleCardTagClicked(event: any): void;
     }
     namespace props {
-        let items: StringConstructor;
+        let items: ArrayConstructor;
         let view: StringConstructor;
-        let dataAuthors: ArrayConstructor;
+        let dataAuthors: ObjectConstructor;
     }
 }
 export default _default;

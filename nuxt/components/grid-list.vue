@@ -5,7 +5,7 @@
         <card
           @card-tag-clicked="handleCardTagClicked"
           v-bind="item"
-          :blogtitlepic="blogImgUrl(item.blogtitlepic)"
+          :blogtitlepic="blogImgUrl(getBlogTitlepic(item))"
           :date="item.moment ? item.moment : item.date"
           :hasAnimation="true"
           :index="index"
@@ -53,6 +53,9 @@ export default {
     this.reinitUtilityAnimation();
   },
   methods: {
+    getBlogTitlepic(item) {
+      return item.blogtitlepic || item.meta?.blogtitlepic;
+    },
     resetUtilityAnimation() {
       setTimeout(() => {
         // delay for view to be ready for the outside view manipulation
@@ -69,16 +72,16 @@ export default {
     blogImgUrl(url) {
       const blogPath = 'blog/heads/';
 
-      return !url.includes(blogPath) ? `${blogPath}${url}` : url;
+      return !url?.includes(blogPath) ? `${blogPath}${url}` : url;
     },
     handleCardTagClicked(event) {
       this.$emit(Events.CARD_TAG_CLICKED, event);
     },
   },
   props: {
-    items: String,
+    items: Array,
     view: String,
-    dataAuthors: Array,
+    dataAuthors: Object,
   },
 };
 </script>
