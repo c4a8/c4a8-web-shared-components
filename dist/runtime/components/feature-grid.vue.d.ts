@@ -21,7 +21,12 @@ declare namespace _default {
         let headlineClasses: StringConstructor;
         let headlineLevel: StringConstructor;
         let headlineRowClasses: StringConstructor;
-        let spacing: StringConstructor;
+        namespace spacing {
+            let type_2: StringConstructor;
+            export { type_2 as type };
+            let _default_2: string;
+            export { _default_2 as default };
+        }
     }
     function mounted(): void;
     namespace computed {
