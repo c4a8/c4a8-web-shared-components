@@ -457,6 +457,20 @@ class Tools {
     return null;
   }
 
+  static getFormattedDate(date, locale = 'de-DE') {
+    if (!date) return '';
+
+    const formattedDate = new Date(date);
+
+    if (isNaN(formattedDate.getTime())) return date;
+
+    return formattedDate.toLocaleDateString(locale, {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    });
+  }
+
   static XMLtoJSON(xml) {
     let obj = {};
 
