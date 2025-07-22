@@ -9,7 +9,7 @@
         :overlapping="true"/>
     </div>
     <div class="page-detail__details mb-2 page-detail__animation-3" v-if="moment || time || price">
-      <span class="page-detail__moment font-size-1 bold" v-if="moment">{{ moment }}</span>
+      <span class="page-detail__moment font-size-1 bold" v-if="moment">{{ formattedMoment }}</span>
       <span class="page-detail__time font-size-1" v-if="time">{{ time }}</span>
       <span class="page-detail__time font-size-1" v-if="price"> | {{ price }}</span>
     </div>
@@ -26,8 +26,15 @@
   </div>
 </template>
 <script>
+import useFormattedDate from '../composables/useFormattedDate.js';
+
 export default {
   name: 'event-detail-intro',
+  setup(props) {
+    return {
+      formattedMoment: useFormattedDate(props.moment),
+    };
+  },
   props: {
     badge: {
       type: Object,
