@@ -9,7 +9,7 @@
                 <div class="testimonial-teaser__img">
                     <div class="testimonial-teaser__img-wrapper" :style="aspectRatioClass">
                         <v-img :img="img.img" :alt="img.alt" :cloudinary="img.cloudinary" :imgSrcSets="imgSrcSet"
-                            class="testimonial-teaser-vimg" />
+                            class="testimonial-teaser-vimg"  :style="imgObjectPositionClass"/>
                     </div>
                 </div>
                 <a class="testimonial-teaser__content">
@@ -82,6 +82,10 @@ export default {
             type: Object,
             required: false,
         },
+        imgPosition: {
+            type: String,
+            default: '50% 50%',
+        },
         cloudinary: {
             type: Boolean,
             default: true,
@@ -123,6 +127,9 @@ export default {
     computed: {
         aspectRatioClass() {
             return `--testimonial-teaser-aspect-ratio: ${this.aspectRatio};`;
+        },
+        imgObjectPositionClass() {
+            return `--testimonial-teaser-img-object-position: ${this.imgPosition};`;
         },
         cornerPosition() {
             return this.cornerImg?.position === 'left'

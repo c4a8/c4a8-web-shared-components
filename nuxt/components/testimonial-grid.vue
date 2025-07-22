@@ -1,5 +1,5 @@
 <template>
-  <section class="testimonial-list col-lg-8 row-mt-4 mx-auto justify-content-center">
+  <section :class="containerClasses" class="testimonial-list col-lg-8 row-mt-4 mx-auto justify-content-center container">
     <component :is="'h' + headlineLevel" v-if="headline" class="testimonial-list__headline space-bottom-1">
       {{ headline }}
     </component>
@@ -8,11 +8,11 @@
     </div>
     <div class="row row-cols-2">
       <div v-for="(testimonial, idx) in contents.slice(0, toggleLimitValue)" :key="idx" :class="columnClass">
-        <div class="testimonial-list__content-block" >
- 
-            <testimonial-teaser :href="testimonial.href" :name="testimonial.name" :title="testimonial.title"
-              :img="testimonial.img" :video="testimonial.video" :bgColor="testimonial.bgColor" ref="teaser"/>
-    
+        <div class="testimonial-list__content-block">
+
+          <testimonial-teaser :href="testimonial.href" :name="testimonial.name" :title="testimonial.title"
+            :img="testimonial.img" :video="testimonial.video" :bgColor="testimonial.bgColor" ref="teaser" />
+
         </div>
       </div>
     </div>
@@ -26,6 +26,7 @@
 export default {
   tagName: 'testimonial-grid',
   props: {
+    spacing: { type: String, default: "space-top-2 space-bottom-2" },
     headline: {
       type: String,
       default: null,
@@ -77,6 +78,11 @@ export default {
     };
   },
   computed: {
+    containerClasses() {
+      return [
+        this.spacing,
+      ];
+    },
     columnClass() {
       return 'col-lg-' + 12 / this.gridSize;
     },

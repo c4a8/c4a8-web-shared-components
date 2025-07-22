@@ -1,34 +1,32 @@
 <template>
-
-
-    <section class="testimonial-list col-lg-8 row-mt-4 mx-auto justify-content-center">
+  <section :class="containerClasses" class="testimonial-list col-lg-8 row-mt-4 mx-auto justify-content-center container">
     <component :is="'h' + headlineLevel" v-if="headline" class="testimonial-list__headline space-bottom-1">
       {{ headline }}
     </component>
     <div v-if="subline" class="testimonial-list__subline space-bottom-2">
       {{ subline }}
     </div>
-    <div class="row row-cols-2 space-between-0">
-      <div v-for="(testimonial, idx) in contents.slice(0, limitValue)" :key="idx" :class="columnClass">
+    <div class="row row-cols-2">
+      <div v-for="(testimonial, idx) in contents.slice(0, toggleLimitValue)" :key="idx" :class="columnClass">
         <div class="testimonial-list__content-block">
-        <testimonial-teaser :href="testimonial.href" :name="testimonial.name" :title="testimonial.title"
-          :img="testimonial.img" :video="testimonial.video" :bgColor="testimonial.bgColor"
-          :aspect-ratio="getAspectRatio(idx + 1)" style="width: auto;" />
-      </div></div>
-      <div class="space-top-2 d-flex justify-content-center mx-auto" v-if="contents.length > limitValue">
-        <cta v-if="contents.length > limitValue" :text="cta.text" :href="cta.href" :skin="cta.skin" />    <!-- TODO: CTA action-->
+
+          <testimonial-teaser :href="testimonial.href" :name="testimonial.name" :title="testimonial.title"
+            :img="testimonial.img" :video="testimonial.video" :bgColor="testimonial.bgColor" ref="teaser" />
+
+        </div>
       </div>
-
     </div>
-
+    <div class="space-top-2 d-flex justify-content-center mx-auto">
+      <cta :text="toggleCtaText" :skin="cta.skin" :monochrome="cta.monochrome" @click="toggleLimit" />
+    </div>
   </section>
-
 </template>
 
 <script>
 export default {
   tagName: 'testimonial-grid',
   props: {
+    spacing: { type: String, default: "space-top-2 space-bottom-2" },
     headline: {
       type: String,
       default: null,
@@ -64,33 +62,45 @@ export default {
       type: Number,
       default: 4
     },
-    maxLimit: Number,
+    maxLimit: {
+      type: Number,
+      default: 10,
+    },
+
     gridSize: {
       type: Number,
       default: 2,
     },
   },
+  data() {
+    return {
+      toggleLimitValue: this.limit,
+    };
+  },
   computed: {
+    containerClasses() {
+      return [
+        this.spacing,
+      ];
+    },
     columnClass() {
       return 'col-lg-' + 12 / this.gridSize;
     },
-    limitValue() {
-      return this.limit ? this.limit : this.defaultLimit;
-    },
-    maxLimitValue() {
-      return this.maxLimit > 0 ? this.maxLimit : this.maxLimitDefault;
+    toggleCtaText() {
+      if (this.toggleLimitValue == this.limit) {
+        return this.cta.text;
+      } else {
+        return "Weniger anzeigen";
+      }
     },
   },
   methods: {
-    limitValue() {
-      return this.limit ? this.limit : this.defaultLimit;
-    },
-    maxLimitValue() {
-      return this.maxLimit > 0 ? this.maxLimit : this.maxLimitDefault;
-    },
-    getAspectRatio(idx) {
-      let aspect =  '4x3';
-      return aspect;
+    toggleLimit() {
+      if (this.toggleLimitValue == this.limit) {
+        this.toggleLimitValue = this.maxLimit;
+      } else {
+        this.toggleLimitValue = this.limit;
+      }
     },
   },
 };

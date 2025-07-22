@@ -48197,7 +48197,8 @@ shape {
 }
 
 .tab-list__tab {
-    display: block
+    display: block;
+    margin: 5px;
 }
 
 .tab-list__tab.active .tab-list__text {
@@ -48700,11 +48701,29 @@ shape {
     animation-timing-function: cubic-bezier(.19, 1, .2, 1)
 }
 
+.testimonial-video-teaser {
+  --color-testimonial-teaser-foreground: var(--color-white);
+  position: relative;
+  display: inline-block
+}
+
+.testimonial-video-teaser:hover .testimonial-teaser__name-background {
+    text-decoration: underline
+}
+
+.testimonial-video-teaser:hover .testimonial-teaser__name-background:before,
+.testimonial-video-teaser:hover .testimonial-teaser__title:before {
+    background-color: var(--color-testimonial-teaser-background-hover);
+    opacity: .9
+}
+
+
 .testimonial-teaser {
-    --color-testimonial-teaser-foreground: var(--color-white);
-    display: inline-block;
-    max-width: min(500px, 100vw);
-    position: relative
+  --color-testimonial-teaser-foreground: var(--color-white);
+
+  position: relative;
+  /*max-width: unquote('min(500px, 100vw)');*/
+  display: inline-block;
 }
 
 .testimonial-teaser:hover img {
@@ -48712,7 +48731,7 @@ shape {
     transform-origin: center center
 }
 
-.testimonial-teaser:hover .testimonial-teaser__name {
+.testimonial-teaser:hover .testimonial-teaser__name-background {
     text-decoration: underline
 }
 
@@ -48779,17 +48798,29 @@ shape {
 }
 
 .testimonial-teaser__img-wrapper {
-    overflow: hidden
+  overflow: hidden;
+  aspect-ratio: var(--testimonial-teaser-aspect-ratio);
+}
+
+.testimonial-teaser-video {
+    padding-left: 1.5rem;
+  padding-bottom: 2rem;
 }
 
 .testimonial-teaser__img {
-    padding-bottom: 2rem;
-    padding-left: 1.5rem
+   padding-left: 1.5rem;
+  padding-bottom: 2rem;
 }
 
 .testimonial-teaser__img img {
-    transition: transform .7s cubic-bezier(.19, 1, .2, 1);
-    will-change: transform
+    transition: transform 0.7s ;
+    will-change: transform;
+  }
+.testimonial-teaser-vimg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--testimonial-teaser-img-object-position);
 }
 
 .testimonial-teaser__corner {
