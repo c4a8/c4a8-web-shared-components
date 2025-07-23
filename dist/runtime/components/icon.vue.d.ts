@@ -36,6 +36,9 @@ declare namespace _default {
         quote: any;
         world: any;
         'x-mark': any;
+        user: any;
+        checkbox: any;
+        ribbon: any;
     };
     let tagName: string;
     function data(): {

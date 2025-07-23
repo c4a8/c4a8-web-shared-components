@@ -1,13 +1,6 @@
 <template>
   <span :class="classList" :style="parentStyle">
-    <component
-      :is="icon"
-      v-bind="settings"
-      :color="props.color"
-      :closed="closed"
-      :step="step"
-      :stroke-width="strokeWidth"
-    />
+    <component :is="icon" v-bind="settings" :color="props.color" :closed="closed" :step="step" />
   </span>
 </template>
 <script>
@@ -55,7 +48,6 @@ import User from './icons/user.vue';
 import Checkbox from './icons/checkbox.vue';
 import Ribbon from './icons/ribbon.vue';
 
-
 export default {
   components: {
     'arrow-curl': ArrowCurl,
@@ -94,9 +86,9 @@ export default {
     quote: Quote,
     world: World,
     'x-mark': XMark,
-    'user': User,
-    'checkbox': Checkbox,
-    'ribbon': Ribbon,
+    user: User,
+    checkbox: Checkbox,
+    ribbon: Ribbon,
   },
   tagName: 'icon',
   data() {
@@ -156,7 +148,7 @@ export default {
       }
     },
     settings() {
-      return {
+      const settingsObj = {
         width: this.innerSize,
         height: this.innerSize,
         padding: this.props.padding,
@@ -165,6 +157,12 @@ export default {
         xmlns: 'http://www.w3.org/2000/svg',
         'xmlns:link': 'http://www.w3.org/1999/xlink',
       };
+
+      if (this.strokeWidth) {
+        settingsObj.strokeWidth = this.strokeWidth;
+      }
+
+      return settingsObj;
     },
   },
   props: {

@@ -18,7 +18,6 @@
     <template #body>
       <event-detail-content v-if="content" class="page-detail__description has-no-border richtext" tag="main"
         v-bind="contentData"/>
-      <ContentRenderer :value="body" tag="main" class="page-detail__description has-no-border richtext" v-if="body" />
       <div v-else>
         <headline :level="h3">No Event found</headline>
       </div>
