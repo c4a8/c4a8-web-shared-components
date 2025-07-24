@@ -6,8 +6,7 @@
         :icon="badge.icon"
         :color="badge.color"
         :text-color="badge.textColor"
-        :overlapping="true"
-      />
+        :overlapping="true"/>
     </div>
     <div class="page-detail__details mb-2 page-detail__animation-3" v-if="moment || time || price">
       <span class="page-detail__moment font-size-1 bold" v-if="moment">{{ moment }}</span>

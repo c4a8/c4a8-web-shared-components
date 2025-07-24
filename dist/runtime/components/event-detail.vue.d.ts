@@ -29,18 +29,28 @@ declare namespace _default {
         let form: ObjectConstructor;
         let image: ObjectConstructor;
         let badge: ObjectConstructor;
+        namespace showBadge {
+            let type_4: BooleanConstructor;
+            export { type_4 as type };
+            let _default_4: boolean;
+            export { _default_4 as default };
+        }
         let moment: StringConstructor;
         let time: StringConstructor;
         namespace lang {
-            let type_4: StringConstructor;
-            export { type_4 as type };
-            let _default_4: string;
-            export { _default_4 as default };
+            let type_5: StringConstructor;
+            export { type_5 as type };
+            let _default_5: string;
+            export { _default_5 as default };
         }
         let body: ObjectConstructor;
+        let content: ObjectConstructor;
+        let bottomText: StringConstructor;
+        let price: StringConstructor;
     }
     namespace computed {
         function introData(): any;
+        function contentData(): any;
         function headlineLevelComputed(): any;
         function headlineClassesComputed(): string;
         function stickyOptions(): string;

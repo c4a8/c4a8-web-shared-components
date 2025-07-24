@@ -6,6 +6,7 @@ declare namespace _default {
             let _default: null;
             export { _default as default };
         }
+        export let showBadge: BooleanConstructor;
         export namespace image {
             let type_1: ObjectConstructor;
             export { type_1 as type };
@@ -48,6 +49,12 @@ declare namespace _default {
             export { _default_6 as default };
         }
         export { name_1 as name };
+        export namespace price {
+            let type_8: StringConstructor;
+            export { type_8 as type };
+            let _default_7: null;
+            export { _default_7 as default };
+        }
     }
 }
 export default _default;

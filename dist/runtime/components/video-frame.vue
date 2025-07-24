@@ -196,7 +196,6 @@ export default {
       this.setPlayed();
 
       this.openIframe = true;
-      
     },
     setPlayed() {
       this.isPlayed = true;

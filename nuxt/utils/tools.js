@@ -336,7 +336,7 @@ class Tools {
   static getAssetPath(path) {
     const absolutePath = '/_includes/shared-components/assets/';
 
-    return Tools.isStorybook() ? `../assets/${path}` : `${absolutePath}${path}`;
+    return Tools.isStorybook() ? `../${path}` : `${absolutePath}${path}`;
   }
 
   static findRecursive(obj, matcher, callback) {

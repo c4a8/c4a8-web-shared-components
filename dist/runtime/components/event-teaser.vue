@@ -70,12 +70,12 @@
           <span v-if="time" class="event-teaser__time font-size-1">{{ time }}</span>
         </div>
       </div>
-      <div class="event-teaser__headline h4-font-size">
-        <a v-if="url && !webcast && !teaser" :href="url">
+      <headline level="h4">
+          <a v-if="url && !webcast && !teaser" :href="url">
           {{ headline }}
         </a>
         <span v-else>{{ headline }}</span>
-      </div>
+      </headline>
       <div v-if="webcast || teaser" class="event-teaser__content richtext" v-html="content"></div>
     </main>
     <footer v-if="price || cta" class="event-teaser__footer">
