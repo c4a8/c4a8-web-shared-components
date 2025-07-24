@@ -235,6 +235,25 @@ const ImgSrcSets = {
       },
     ],
   },
+  teaserImages4x3: {
+    srcSets: [
+      {
+        params: 'c_fill,g_face,h_450,w_600,x_0,y_0/',
+        media: '(max-width: 576px)',
+      },
+      {
+        params: 'c_fill,g_face,h_600,w_800,x_0,y_0/',
+        media: '(max-width: 765px)',
+      },
+      {
+        params: 'c_fill,g_face,h_450,w_600,x_0,y_0/',
+        media: '(max-width: 1200px)',
+      },
+      {
+        params: 'c_fill,g_face,h_600,w_800,x_0,y_0/',
+      },
+    ],
+  },
 };
 
 export default ImgSrcSets;

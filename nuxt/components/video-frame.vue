@@ -25,7 +25,7 @@
                 <i class="fas fa-play"></i>
               </span>
             </div>
-            <v-img :img="thumb" :cloudinary="true" :alt="alt" :preset="preset" />
+            <v-img :img="thumb" :cloudinary="true" :alt="alt" :preset="preset" :img-src-sets="imgSrcSets" />
           </div>
         </div>
         <div v-if="corner" :class="cornerClass">
@@ -57,7 +57,7 @@
               <i class="fas fa-play"></i>
             </span>
           </div>
-          <v-img :img="thumb" :cloudinary="true" :alt="alt" :preset="preset" />
+          <v-img :img="thumb" :cloudinary="true" :alt="alt" :preset="preset" :img-src-sets="imgSrcSets" />
         </div>
       </div>
       <div v-if="corner" :class="cornerClass">
@@ -118,6 +118,9 @@ export default {
   computed: {
     hasVideo() {
       return !!this.id;
+    },
+    imgSrcSets() {
+      return this.hasVideo ? null : 'teaserImages4x3';
     },
     parentId() {
       return `video-frame__parent-id-${this.id}`;
