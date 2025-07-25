@@ -63,105 +63,73 @@ export const WithoutAnimation = {
 
 export const JobApplication = {
   args: {
-    image: 'svg/icons/icon-hand.svg',
-    left: true,
-    bgColor: 'var(--color-text-image-background)',
-    white: true,
-    copy: 'Komm zu uns, anderes Wording natürlich. Abschließende prominente Aufforderung die Stellenseite zu besuchen',
-    copyClasses: 'h2-font-size',
-    firstColWidth: 5,
-    secondColWidth: 7,
-    reduceSpacing: true,
+
+    copy: 'Keine passende offene Stelle gefunden? Kein Problem: Gerne lernen wir dich auch einfach so kennen. Vielleicht wissen wir nämlich nur noch nicht, dass wir dich brauchen, weil wir noch nicht wissen, dass es dich gibt!',
     cta: {
       text: 'Initiativbewerbung',
-      trigger: 'modal',
+      trigger: "modal",
+
     },
     modal: {
-      jobId: '1338121',
-      apiKey: import.meta.env.STORYBOOK_PERSONIO_API_KEY,
-      modalId: 'bewerbung1',
+      show: true,
+      application: true,
+
       form: {
-        headlineText: 'Bewerbungsformular (m/w/d)',
+        ctaText: "Absenden",
         cta: {
-          skin: 'primary',
-          width: 'w-100 w-lg-30',
+          skin: "primary is-light",
         },
-        ctaText: 'Bewerbung absenden',
-        method: 'post',
-        action: '',
+        method: "post",
+        action: "/successful/",
         fields: [
           {
-            label: 'Vorname',
-            type: 'text',
-            col: 6,
-            rowStart: true,
+            label: "Name*",
+            type: "text",
+            id: "name",
             required: true,
-            id: 'firstName',
+            requiredMsg: "Bitte Namen eingeben",
           },
           {
-            label: 'Nachname',
-            type: 'text',
-            col: 6,
-            rowEnd: true,
+            label: "Unternehmen*",
+            type: "text",
+            id: "company",
             required: true,
-            id: 'lastName',
+            requiredMsg: "Bitte Unternehmensnamen ausfüllen",
           },
           {
-            label: 'E-Mail Adresse',
-            type: 'email',
-            col: 6,
-            rowStart: true,
+            label: "Email-Adresse*",
+            type: "email",
+            id: "email",
             required: true,
-            id: 'email',
-          },
-          {
-            label: 'Telefon',
-            type: 'text',
-            col: 6,
-            rowEnd: true,
-            required: true,
-            id: 'phone',
-          },
-          {
-            label: 'Kündigungsfrist (optional)',
-            type: 'text',
-            col: 6,
-            rowStart: true,
-            id: 'cancellation',
-          },
-          {
-            label: 'Gehaltsvorstellung (optional)',
-            type: 'text',
-            col: 6,
-            rowEnd: true,
-            id: 'salary',
-          },
-          {
-            label: 'Nachricht (optional)',
-            type: 'textarea',
-            id: 'message',
-          },
-          {
-            type: 'file',
-            col: 12,
-            rowStart: true,
-            rowEnd: true,
-            formAttachments: {
-              required: true,
-              requiredMsg: 'Bitte einen Anhang hinzufügen',
-              id: 'file',
-              description: 'Anhänge wie Lebenslauf und Anschreiben hinzufügen',
-              text: 'Oder Dateien auswählen',
-              extensions: ['pdf'],
-              maxSize: 20000000,
-            },
+            requiredMsg: "Bitte E-Mail-Adresse eingeben",
           },
           {
             label:
-              "<small>Lorem ipsum dolor sit amet, consectetur adipiscing elit <a href='javascript:void()'>Lorem Ipsum</a>. Sit amet consectetur adipiscing elit.</small>",
-            type: 'checkbox',
-            id: 'privacy',
+              'Deine Daten werden zur Bearbeitung und Beantwortung deiner Anfrage bei uns gespeichert. Weitere Informationen zum Datenschutz findest du in unserer <a href="/de/datenschutz">Datenschutzerklärung</a>.',
+            type: "checkbox",
+            id: "dataprotection",
             required: true,
+            requiredMsg: "Bitte bestätigen",
+          },
+          {
+            type: "hidden",
+            id: "_subject",
+            value: "Form: Managed Red Tenant | DE",
+          },
+          {
+            type: "hidden",
+            id: "_topic",
+            value: "Security",
+          },
+
+          {
+            type: "hidden",
+            id: "inbox_key",
+            value: "gkgab-contact-form",
+          },
+          {
+            type: "hidden",
+            id: "_gotcha",
           },
         ],
       },
@@ -171,19 +139,31 @@ export const JobApplication = {
           width: 'w-100 w-lg-30',
           text: 'Schließen',
         },
-        headlineText: {
+        headline: {
           text: 'Vielen Dank',
         },
         subline:
           'Inhaltlich: Deine Bewerbung ist bei uns eingegangen. Super, wir freuen uns.  Eine Bestätigunsmail solltest du in deinem Postfach von dir angegebne Adresse finden.',
-        subheadlineText: {
+        subheadline: {
           text: 'So geht es nun weiter',
         },
         text: 'Text sollte beinhalten dass die Bewerbungsunterlagen sorgfältig geprüft werden und dass der Bewerber in der Regel innerhalb einer Woche Feedback erwarten kann',
       },
+
+
     },
-    // TODO add icon with animations
+      copyClasses: 'h3-font-size',
+       
+        white: true,
+        image: "/svg/icon-hand.svg",
+        cloudinary: false,
+        bgColor: 'var(--color-career-background)',
+        left: true,
+        spacing: 'space-top-2 space-bottom-2',
+
   },
+
+
 };
 
 export const LeftFloating = {

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :style="stickyClass">
     <div v-if="container" :class="containerClass" :style="headlineStyle" ref="root" @click="handleClick">
       <div :class="rowClass">
         <div :id="parentId" :class="mainClass" :style="headlineStyle">
@@ -133,7 +133,7 @@ export default {
         'video-frame__container',
         {
           'video-frame__container--spacing': this.spacingTop,
-          'is-sticky-scroller': this.sticky,
+          //'is-sticky-scroller': this.sticky,
           'video-frame--top-overflow': this.corner && this.corner.topOverflow,
           'video-frame--played': this.isPlayed,
         },
@@ -149,10 +149,13 @@ export default {
         this.container ? 'video-frame--container' : 'has-background utility-animation',
         {
           'video-frame--full-width': this.fullWidth,
-          'is-sticky-scroller': !this.container && this.sticky,
+          //'is-sticky-scroller': !this.container && this.sticky,
           'video-frame--played': this.isPlayed,
         },
       ];
+    },
+    stickyClass() {
+      return this.sticky ? { position: 'sticky', top: '0' } : {};
     },
     playerClass() {
       return ['video-frame__player', 'fade-in-bottom', this.hasVideo ? 'js-inline-video-player' : ''];
