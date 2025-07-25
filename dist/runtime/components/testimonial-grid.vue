@@ -11,7 +11,7 @@
         <div class="testimonial-list__content-block">
 
           <testimonial-teaser :href="testimonial.href" :name="testimonial.name" :title="testimonial.title"
-            :img="testimonial.img" :video="testimonial.video" :bgColor="testimonial.bgColor" ref="teaser" />
+            :img="testimonial.img" :video="testimonial.video" :bgColor="testimonial.bgColor"/>
 
         </div>
       </div>

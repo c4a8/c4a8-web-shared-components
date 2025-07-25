@@ -1,89 +1,115 @@
 <template>
-  <section class="testimonial-list col-lg-8 col-md-8 mt-6 mt-lg-8 mx-auto">
-    <component :is="'h' + headlineLevel" v-if="headline" class="testimonial-list__headline">
-      {{ headline }}
-    </component>
-    <div v-if="subline" class="testimonial-list__subline">
-      {{ subline }}
-    </div>
-    <div v-for="(testimonial, idx) in contents" :key="idx" class="space-top-2">
-      <div v-if="isOdd(idx)" class="testimonial-list__content-block row">
-        <div class="col-lg-8">
-          <testimonial-teaser 
-          :href="testimonial.href" 
+
+    <div
+      v-for="(testimonial, index) in contents"
+      :key="index"
+      class="testimonial-list__contents"
+    >
+      <div
+        v-if="isOdd(index)"
+        class="testimonial-list__content-block row"
+      >
+       
+          <testimonial-teaser
+            v-if="!testimonial.hidden"
+            :href="testimonial.url"
+            :name="testimonial.name"
+            :title="testimonial.title"
+            :img="testimonial.contentImg"
+            :corner-img="testimonial.cornerImg"
+            :bg-color="bgColor"
+            :bg-color-hover="bgColorHover"
+            :aspect-ratio="getAspectRatio(index)"
+          />
+        
+      </div>
+      <div
+        v-else
+        class="testimonial-list__content col-lg-6"
+      >
+        <testimonial-teaser
+          v-if="!testimonial.hidden"
+          :href="testimonial.url"
           :name="testimonial.name"
-          :title="testimonial.title" 
-          :img="testimonial.img"
-          :video="testimonial.video"
-          :bgColor="testimonial.bgColor"
-          :aspect-ratio="getAspectRatio(idx + 1)" />
-        </div>
-        <div v-if="hasNext(idx)" class="testimonial-list__content col-lg-6">
-          <testimonial-teaser 
-          :href="testimonial.href" 
-          :name="testimonial.name"
-          :title="testimonial.title" 
-          :img="testimonial.img"
-          :video="testimonial.video"
-          :bgColor="testimonial.bgColor"
-          :aspect-ratio="getAspectRatio(idx + 1)" />
-        </div>
+          :title="testimonial.title"
+          :img="testimonial.contentImg"
+          :corner-img="testimonial.cornerImg"
+          :bg-color="bgColor"
+          :bg-color-hover="bgColorHover"
+          :aspect-ratio="getAspectRatio(index)"
+        />
       </div>
     </div>
-  </section>
+
 </template>
 
 <script>
+import { get } from 'jquery';
+import State from '../utils/state.js';
+import Tools from '../utils/tools.js';
+
 export default {
-  tagName: 'testimonial-list',
   props: {
-    headline: {
-      type: String,
-      default: null,
-    },
-    headlineLevel: {
-      type: [String, Number],
-      default: 2,
-    },
-    subline: {
-      type: String,
-      default: null,
-    },
-    contents: {
-      type: Array,
-      required: true,
-    },
-    bgColor: {
-      type: String,
-      default: null,
-    },
-    bgColorHover: {
-      type: String,
-      default: null,
-    },
+    headline: { type: String, default: '' },
+    headlineLevel: { type: [String, Number], default: '2' },
+    subline: { type: String, default: '' },
+    contents: { type: Array, default: () => [] },
+    bgColor: { type: String, default: 'var(--color-blue-light)' },
+    bgColorHover: { type: String, default: 'var(--color-blue-medium)' },
   },
   computed: {
+    listSize() {
+      return this.contents.length;
+    },
     isEven() {
-      return this.contents.length % 2 === 0;
+      return this.listSize % 2 === 0;
     },
   },
   methods: {
-    isOdd(idx) {
-      return idx % 2 === 0;
+    isOdd(index) {
+      return (index + 1) % 2 !== 0;
     },
-    hasNext(idx) {
-      return idx + 1 < this.contents.length;
-    },
-    getAspectRatio(idx) {
-      const i = idx + 1;
-      const wide1 = i % 4 === 0;
-      const wide2 = (i - 1) % 4 === 0;
-      let aspect = (wide1 || wide2) ? '16x9' : '4x3';
-      if (i % 2 !== 0 && !this.isEven && i === this.contents.length) {
-        aspect = '4x3';
+    getAspectRatio(index) {
+      const idx = index + 1;
+      const wideValue1 = idx % 4;
+      const wideValue2 = (idx - 1) % 4;
+      let aspectRatio = (wideValue1 === 0 || wideValue2 === 0) ? '16/9' : '4/3';
+      if (
+        this.isOdd(index) &&
+        !this.isEven &&
+        idx === this.listSize
+      ) {
+        aspectRatio = '4/3';
       }
-      return aspect;
+      return aspectRatio;
     },
+    handleScrollEvent() {
+      
+      const hiddenTestimonials = document.querySelectorAll(`.testimonial-list__content:not(.${State.SHOW})`);
+      hiddenTestimonials.forEach((testimonial) => {
+        if (Tools.isInViewportPercent(testimonial, 30)) {
+          testimonial.classList.add(State.SHOW);
+        }
+      });
+      
+    },
+    currentlyInViewPort() {
+
+      const testimonials = document.querySelectorAll('.testimonial-list__content');
+      testimonials.forEach((testimonial) => {
+        if (Tools.isInViewportPercent(testimonial, 5)) {
+          testimonial.classList.add(State.SHOW);
+        }
+      });
+      
+    },
+  },
+  mounted() {
+    this.currentlyInViewPort();
+    document.addEventListener('scroll', this.handleScrollEvent);
+  },
+  beforeUnmount() {
+    document.removeEventListener('scroll', this.handleScrollEvent);
   },
 };
 </script>

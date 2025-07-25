@@ -3,6 +3,7 @@ declare namespace _default {
     namespace props {
         let animation: ObjectConstructor;
         let icon: StringConstructor;
+        let iconColor: StringConstructor;
         let fixed: BooleanConstructor;
         let cta: ObjectConstructor;
         let classes: StringConstructor;

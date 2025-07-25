@@ -6,8 +6,9 @@
                 <div v-if="cornerImg" class="testimonial-teaser__corner" :class="cornerPosition">
                     <img-html :img="cornerImg.img" :alt="cornerImg.alt" :cloudinary="cornerImg.cloudinary" />
                 </div>
-                <div class="testimonial-teaser__img">
+                <div class="testimonial-teaser__img"> 
                     <div class="testimonial-teaser__img-wrapper" :style="aspectRatioClass">
+                   
                         <v-img :img="img.img" :alt="img.alt" :cloudinary="img.cloudinary" :imgSrcSets="imgSrcSet"
                             class="testimonial-teaser-vimg"  :style="imgObjectPositionClass"/>
                     </div>
@@ -146,9 +147,9 @@ export default {
                 .join('<br/>');
         },
         imgSrcSet() {
-            if (!this.aspectRatio) return false;
-            const key = `testimonialTeaser${this.aspectRatio}`;
-            return this.$site?.data?.imgSrcSets?.[key] || false;
+            //if (!this.aspectRatio) return false;
+            //const key = `testimonialTeaser${this.aspectRatio}`;
+            //return this.$site?.data?.imgSrcSets?.[key] || false;
         },
     },
 };

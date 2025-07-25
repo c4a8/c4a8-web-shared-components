@@ -1,10 +1,10 @@
 <template>
 <div class="container space-2">
   <div display="flex" class="portfolio-items">
-    <div v-for="item in items" v-if="items" style="width: 378px; left: 0px; top: 0px;">
+    <div v-for="item in items" v-if="items" class="portfolio-single" style="width: 378px; left: 0px; top: 0px;">
       <a :href="item.href" v-if="item.href">
         <div class="overflow-hidden">
-          <div class="zoom" style="transition: transform .2s;">
+          <div class="portfolio-img" style="transition: transform .2s;">
             <v-img
               :img="item.image"
               :cloudinary="item.cloudinary"
@@ -20,9 +20,6 @@
   </div>
 </div>
 </template>
-<style>
-.zoom:hover{transform:scale(1.1)}.portfolio-items{-moz-column-gap:40px;column-gap:40px}@media (min-width:380px){.portfolio-items{-moz-column-count:1;column-count:1}}@media (min-width:480px){.portfolio-items{-moz-column-count:2;column-count:2}}@media (min-width:800px){.portfolio-items{-moz-column-count:3;column-count:3}}@media (min-width:1100px){.portfolio-items{-moz-column-count:3;column-count:3}}
-</style>
 <script>
 export default {
   tagName: 'portfolio',

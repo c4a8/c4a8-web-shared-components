@@ -59,7 +59,6 @@ declare namespace _default {
         function targetId(): string;
         function containerClass(): (string | {
             'video-frame__container--spacing': any;
-            'is-sticky-scroller': any;
             'video-frame--top-overflow': any;
             'video-frame--played': any;
         })[];
@@ -68,9 +67,15 @@ declare namespace _default {
         })[];
         function mainClass(): (string | {
             'video-frame--full-width': any;
-            'is-sticky-scroller': any;
             'video-frame--played': any;
         })[];
+        function stickyClass(): {
+            position: string;
+            top: string;
+        } | {
+            position?: undefined;
+            top?: undefined;
+        };
         function playerClass(): string[];
         function cornerClass(): any[];
         function headlineStyle(): {

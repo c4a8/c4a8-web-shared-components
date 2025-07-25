@@ -20,7 +20,9 @@
         </letter-switcher>
         <div class="hero__intro row" v-if="overline || headlineText || subline" ref="intro">
           <div class="hero__intro-col col">
+            <div class="hero__overline-wrapper" >
             <span :class="overlineClassList" v-if="overline">{{ overline }}</span>
+          </div>
             <headline :class="headlineClassList" v-if="headlineText" :level="level" :text="headlineText"></headline>
             <div
               :class="['hero__content-shape', shapeClasses]"
@@ -47,7 +49,7 @@
             </div>
           </div>
         </div>
-        <text-icon-animation v-if="animation" :animation="animation" :cta="cta" :icon="icon" classes="hero__animation">
+        <text-icon-animation v-if="animation" :animation="animation" :cta="cta" :icon="icon" :iconColor="iconColor" classes="hero__animation">
         </text-icon-animation>
       </main>
     </div>
@@ -294,6 +296,9 @@ export default {
     },
     icon() {
       return this.heroJson && this.background ? this.background.icon : null;
+    },
+    iconColor() {
+      return this.heroJson && this.background ? this.background.iconColor : null;
     },
     fullscreen() {
       return this.heroJson && this.heroJson.fullscreen ? true : false;

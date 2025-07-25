@@ -1,6 +1,6 @@
 declare namespace _default {
-    export let tagName: string;
-    export namespace computed {
+    let tagName: string;
+    namespace computed {
         function blogView(): any;
         function combinedTitle(): string;
         function noLink(): boolean;
@@ -21,9 +21,9 @@ declare namespace _default {
         function ctaValue(): any;
         function cardFooterData(): any;
     }
-    export function created(): void;
-    export function mounted(): void;
-    export namespace methods {
+    function created(): void;
+    function mounted(): void;
+    namespace methods {
         function isTags(target: any): boolean;
         function formatDate(date: any): any;
         function authorList(author: any): any;
@@ -32,7 +32,7 @@ declare namespace _default {
         function handleClick(e: any): void;
         function isIncluded(include: any): "check-mark" | "x-mark";
     }
-    export namespace props {
+    namespace props {
         namespace teamCards {
             let type: ObjectConstructor;
             let required: boolean;
@@ -99,12 +99,5 @@ declare namespace _default {
         }
         let tags: ArrayConstructor;
     }
-    export namespace teamCards_1 {
-        let type_2: ObjectConstructor;
-        export { type_2 as type };
-        let required_1: boolean;
-        export { required_1 as required };
-    }
-    export { teamCards_1 as teamCards };
 }
 export default _default;
