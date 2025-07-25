@@ -35,8 +35,8 @@ class BaseComponent {
   }
 
   static getInstance(element) {
-    const instances =
-      window[BaseComponent.namespacePrefix][this.getInstancesKey()];
+    const namespace = window[BaseComponent.namespacePrefix];
+    const instances = namespace ? namespace[this.getInstancesKey()] : [];
     const instance = instances.filter((value) => value?.root === element);
 
     return instance ? instance[0] : null;
