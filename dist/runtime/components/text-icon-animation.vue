@@ -11,7 +11,7 @@
       </text-animation>
     </div>
     <div class="text-icon-animation__icon-container col-lg-4">
-      <icon :icon="icon" :classes="iconClassList" :animation="animationData" :step="textAnimationStep"></icon>
+      <icon :icon="icon" :color="iconColor" :classes="iconClassList" :animation="animationData" :step="textAnimationStep"></icon>
     </div>
   </div>
 </template>
@@ -23,6 +23,7 @@ export default {
   props: {
     animation: Object,
     icon: String,
+    iconColor: String,
     fixed: Boolean,
     cta: Object,
     classes: String,

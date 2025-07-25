@@ -52,6 +52,7 @@ export const Career = {
       },
       cta: {
         text: 'Zu den Stellenanzeigen',
+        href: '/karriere',
       },
     },
   },

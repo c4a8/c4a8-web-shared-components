@@ -963,6 +963,7 @@ declare namespace _default {
         function animation(): any;
         function letterSwitcher(): any;
         function icon(): any;
+        function iconColor(): any;
         function fullscreen(): boolean;
         function spacing(): any;
         function img(): any;
