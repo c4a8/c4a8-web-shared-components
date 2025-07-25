@@ -253,7 +253,7 @@ export default {
 
       const placeholder = this.$refs.placeholder;
 
-      this.calculatedMaxHeight = placeholder.offsetHeight;
+      this.calculatedMaxHeight = placeholder?.offsetHeight;
     },
   },
   updated() {
