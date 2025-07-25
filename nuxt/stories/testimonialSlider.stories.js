@@ -51,6 +51,7 @@ export const TestimonialSlider = {
                     cloudinary: true,
                     alt: "lorem ipsum",
                 },
+                aspectRatio: "4/3",
             },
             {
                 hidden: false,
@@ -73,6 +74,7 @@ export const TestimonialSlider = {
                     cloudinary: true,
                     alt: "lorem ipsum",
                 },
+                aspectRatio: "4/3",
             },
             {
                 hidden: false,

@@ -15,7 +15,7 @@
                     :data-hs-slick-carousel-options="slickOptions">
                     <div v-for="testimonial in filteredSlides">
                         <testimonial-teaser v-if="!testimonial.hidden" :key="testimonial.uid" :href="testimonial.url"
-                            :name="testimonial.name" :title="testimonial.title" :img="testimonial.sliderImg" />
+                            :name="testimonial.name" :title="testimonial.title" :img="testimonial.sliderImg" :aspectRatio="testimonial.aspectRatio" />
                     </div>
                 </div>
             </div>

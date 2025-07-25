@@ -147,9 +147,9 @@ export default {
                 .join('<br/>');
         },
         imgSrcSet() {
-            if (!this.aspectRatio) return false;
-            const key = `testimonialTeaser${this.aspectRatio}`;
-            return this.$site?.data?.imgSrcSets?.[key] || false;
+            //if (!this.aspectRatio) return false;
+            //const key = `testimonialTeaser${this.aspectRatio}`;
+            //return this.$site?.data?.imgSrcSets?.[key] || false;
         },
     },
 };

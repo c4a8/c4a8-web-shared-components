@@ -9,7 +9,7 @@
         v-if="isOdd(index)"
         class="testimonial-list__content-block row"
       >
-        <div class="testimonial-list__content col-lg-6">
+       
           <testimonial-teaser
             v-if="!testimonial.hidden"
             :href="testimonial.url"
@@ -21,7 +21,7 @@
             :bg-color-hover="bgColorHover"
             :aspect-ratio="getAspectRatio(index)"
           />
-        </div>
+        
       </div>
       <div
         v-else
@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import { get } from 'jquery';
 import State from '../utils/state.js';
 import Tools from '../utils/tools.js';
 
@@ -52,9 +53,9 @@ export default {
     headline: { type: String, default: '' },
     headlineLevel: { type: [String, Number], default: '2' },
     subline: { type: String, default: '' },
-    contents: { type: Array, required: true },
-    bgColor: { type: String, default: '' },
-    bgColorHover: { type: String, default: '' },
+    contents: { type: Array, default: () => [] },
+    bgColor: { type: String, default: 'var(--color-blue-light)' },
+    bgColorHover: { type: String, default: 'var(--color-blue-medium)' },
   },
   computed: {
     listSize() {
@@ -72,13 +73,13 @@ export default {
       const idx = index + 1;
       const wideValue1 = idx % 4;
       const wideValue2 = (idx - 1) % 4;
-      let aspectRatio = (wideValue1 === 0 || wideValue2 === 0) ? '16x9' : '4x3';
+      let aspectRatio = (wideValue1 === 0 || wideValue2 === 0) ? '16/9' : '4/3';
       if (
         this.isOdd(index) &&
         !this.isEven &&
         idx === this.listSize
       ) {
-        aspectRatio = '4x3';
+        aspectRatio = '4/3';
       }
       return aspectRatio;
     },
