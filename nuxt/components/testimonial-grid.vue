@@ -24,7 +24,6 @@
 </template>
 
 <script>
-const localeData = useLocaleData();
 export default {
   tagName: 'testimonial-grid',
   props: {

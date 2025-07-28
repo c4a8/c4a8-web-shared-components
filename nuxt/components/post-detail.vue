@@ -39,7 +39,7 @@
           </div>
         </header>
         <div class="post-content e-content" itemprop="articleBody">
-          <p class="post__sticky-excerpt">{{ normalizedPost.customExcerpt || normalizedPost.excerpt }}</p>
+          <p class="post__sticky-excerpt" v-html="normalizedPost.customExcerpt || normalizedPost.excerpt"></p>
           <div v-if="post.blogTitleImages" class="post__title-images">
             <slider :hide-background="true">
               <v-img

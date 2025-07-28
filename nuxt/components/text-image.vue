@@ -58,7 +58,7 @@
   </div>
 </template>
 <script>
-import { str } from 'storybook/internal/docs-tools';
+//import { str } from 'storybook/internal/docs-tools';
 import StickyScroller from '../utils/sticky-scroller.js';
 import UtilityAnimation from '../utils/utility-animation.js';
 

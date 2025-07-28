@@ -61,9 +61,9 @@
     </template>
 </template>
 <script>
-import { noConflict } from 'jquery';
+//import { noConflict } from 'jquery';
 import UtilityAnimation from '../utils/utility-animation.js';
-import { normalizeNewlines } from 'storybook/internal/docs-tools';
+//import { normalizeNewlines } from 'storybook/internal/docs-tools';
 export default {
     tagName: 'testimonial-teaser',
     props: {
