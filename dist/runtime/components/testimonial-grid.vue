@@ -87,10 +87,15 @@ export default {
       return 'col-lg-' + 12 / this.gridSize;
     },
     toggleCtaText() {
+      const localeData = useLocaleData();
       if (this.toggleLimitValue == this.limit) {
         return this.cta.text;
       } else {
-        return "Weniger anzeigen";
+        return localeData({
+          de: "Weniger anzeigen",
+          en: "Show less",
+          es: "Mostrar menos",
+        }).value;
       }
     },
   },
