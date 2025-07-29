@@ -60,9 +60,12 @@ declare namespace _default {
             export { _default_5 as default };
         }
     }
+    function data(): {
+        videoPlaying: boolean;
+    };
     function mounted(): void;
     namespace methods {
-        function getVideoState(): void;
+        function getVideoState(): any;
         function setVideoPlayed(): void;
     }
     namespace computed {
@@ -71,7 +74,7 @@ declare namespace _default {
         function cornerPosition(): "testimonial-teaser__corner--left" | "testimonial-teaser__corner--right";
         function bgStyling(): string;
         function nameReplaced(): any;
-        function imgSrcSet(): void;
+        function imgSrcSet(): any;
     }
 }
 export default _default;

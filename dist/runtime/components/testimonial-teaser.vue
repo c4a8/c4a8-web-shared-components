@@ -35,12 +35,12 @@
     <template v-if="video">
         <a class=" utility-animation fade-in-bottom testimonial-video-teaser" :class="[
         ]" :style="bgStyling" :href="href" data-utility-animation-step="1" ref="root">
-            <div class="testimonial-teaser-video">
+            <div class="testimonial-teaser-video" @click="setVideoPlayed">
                 <video-frame ref="video-frame" :thumb="video.thumb" :alt="video.alt" :id="video.id"
-                    :fullWidth="video.fullWidth" @click="getVideoState" />
+                    :fullWidth="video.fullWidth" />
             </div>
             <div>
-                <a class="testimonial-teaser__content" @click="setVideoPlayed">
+                <a class="testimonial-teaser__content" @click="setVideoPlayed" v-if="videoPlaying == false">
                     <div class="testimonial-teaser__name font-size-4 bold">
                         <span v-for="(part, idx) in name.split(' ')" :key="idx">
                             <div class="testimonial-teaser__name-background">
@@ -112,6 +112,11 @@ export default {
             default: '16/9',
         },
     },
+    data() {
+        return {
+            videoPlaying: false,
+        };
+    },
     mounted() {
         if (!this.$refs.root) return;
         UtilityAnimation.init([this.$refs.root]);
@@ -119,6 +124,7 @@ export default {
     methods: {
         getVideoState() {
             this.videoPlaying = this.$refs['video-frame'].isPlayed;
+            return this.videoPlaying;
         },
         setVideoPlayed() {
             this.$refs['video-frame'].handleClick();
@@ -147,9 +153,9 @@ export default {
                 .join('<br/>');
         },
         imgSrcSet() {
-            //if (!this.aspectRatio) return false;
-            //const key = `testimonialTeaser${this.aspectRatio}`;
-            //return this.$site?.data?.imgSrcSets?.[key] || false;
+            if (!this.aspectRatio) return false;
+            const key = `testimonialTeaser${this.aspectRatio}`;
+            return this.$site?.data?.imgSrcSets?.[key] || false;
         },
     },
 };
