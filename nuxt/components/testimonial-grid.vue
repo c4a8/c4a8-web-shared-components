@@ -7,14 +7,10 @@
     <div v-if="subline" class="testimonial-list__subline space-bottom-2">
       {{ subline }}
     </div>
-    <div class="row my-8 testimonial-list__contents" >
+    <div class="row my-8" >
       <div v-for="(testimonial, idx) in contents.slice(0, toggleLimitValue)" :key="idx" :class="columnClass" class="testimonial-list__content-block">
-
-
           <testimonial-teaser :href="testimonial.href" :name="testimonial.name" :title="testimonial.title"
             :img="testimonial.img" :video="testimonial.video" :bgColor="testimonial.bgColor" />
-
-
       </div>
     </div>
     <div class="space-top-2 d-flex justify-content-center mx-auto">

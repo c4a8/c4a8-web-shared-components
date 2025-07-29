@@ -13845,6 +13845,7 @@ label.btn {
   backface-visibility: hidden;
   transform: perspective(1px) translateZ(0);
   transition: 0.3s;
+  box-shadow: 3px 3px 20px 3px #d1d1d1;
 }
 .video-player-centered {
   position: absolute;
