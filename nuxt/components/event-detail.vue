@@ -58,6 +58,7 @@ export default {
     },
     form: Object,
     image: Object,
+    teaserImage: Object,
     badge: Object,
     showBadge: {
       type: Boolean,
@@ -117,5 +118,4 @@ export default {
     },
   },
 };
-
 </script>

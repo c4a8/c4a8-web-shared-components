@@ -38,6 +38,10 @@ export default {
       type: Object,
       default: null,
     },
+    teaserImage: {
+      type: Object,
+      default: null,
+    },
     moment: {
       type: String,
       default: null,

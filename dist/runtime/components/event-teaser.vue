@@ -1,55 +1,34 @@
 <template>
-  <article
-    :class="[
-      'event-teaser utility-animation fade-in-bottom hover__parent',
-      `event-teaser--size-${variant}`,
-      eventTeaserImageFullWidth,
-      webcast ? 'event-teaser--webcast' : teaser ? 'event-teaser--teaser' : 'event-teaser--training',
-      textShadow ? 'event-teaser--text-shadow' : '',
-    ]"
-    @click="clickHandler"
-    data-utility-animation-step="1"
-    :style="computedStyles"
-    ref="root"
-  >
+  <article :class="[
+    'event-teaser utility-animation fade-in-bottom hover__parent',
+    `event-teaser--size-${variant}`,
+    eventTeaserImageFullWidth,
+    webcast ? 'event-teaser--webcast' : teaser ? 'event-teaser--teaser' : 'event-teaser--training',
+    textShadow ? 'event-teaser--text-shadow' : '',
+  ]" @click="clickHandler" data-utility-animation-step="1" :style="computedStyles" ref="root">
     <header class="event-teaser__header">
       <div class="event-teaser__background">
         <div class="event-teaser__shapes is-background" v-if="shapes">
-          <div
-            v-for="(shape, index) in shapes"
-            :key="index"
+          <div v-for="(shape, index) in shapes" :key="index"
             :class="['event-teaser__shape', getShapeSettings(index, webcast).peak]"
-            :style="{ width: getShapeSettings(index, webcast).width + '%' }"
-          >
-            <svg-shape
-              :color="shape.color"
-              :peak="getShapeSettings(index, webcast).peak"
+            :style="{ width: getShapeSettings(index, webcast).width + '%' }">
+            <svg-shape :color="shape.color" :peak="getShapeSettings(index, webcast).peak"
               :height="getShapeSettings(index, webcast).height"
-              :obliquity="getShapeSettings(index, webcast).obliquity"
-            />
+              :obliquity="getShapeSettings(index, webcast).obliquity" />
           </div>
         </div>
         <div class="event-teaser__image is-foreground">
-          <v-img
-            :img="image.img"
-            :alt="image.alt"
-            cloudinary
-            :imgSrcSets="imgSrcSets"
-            :lottie="image.lottie"
-            v-if="image"
-          />
+          <v-img :img="image.img" :alt="image.alt" cloudinary :imgSrcSets="imgSrcSets" :lottie="image.lottie"
+            v-if="image && !teaserImage" />
+            <v-img :img="teaserImage.img" :alt="teaserImage.alt" cloudinary :imgSrcSets="imgSrcSets" :lottie="teaserImage.lottie"
+            v-else-if="teaserImage" />
         </div>
       </div>
       <div class="event-teaser__foreground">
         <div class="event-teaser__details">
           <div class="event-teaser__badge">
-            <badge
-              :text="badge.text"
-              :icon="badge.icon"
-              :color="badge.color"
-              :textColor="badge.textColor"
-              v-if="badge"
-            />
+            <badge :text="badge.text" :icon="badge.icon" :color="badge.color" :textColor="badge.textColor"
+              v-if="badge" />
           </div>
           <div v-if="author" class="event-teaser__authors font-size-2 thin bold">
             <div class="event-teaser__authors-frame">
@@ -71,7 +50,7 @@
         </div>
       </div>
       <headline level="h4">
-          <a v-if="url && !webcast && !teaser" :href="url">
+        <a v-if="url && !webcast && !teaser" :href="url">
           {{ headline }}
         </a>
         <span v-else>{{ headline }}</span>
@@ -81,13 +60,8 @@
     <footer v-if="price || cta" class="event-teaser__footer">
       <div v-if="price" class="event-teaser__price font-size-2 bold">{{ price }}</div>
       <div v-if="cta" class="event-teaser__cta">
-        <cta
-          :text="cta.text"
-          :href="ctaHref"
-          :skin="cta.skin || 'primary'"
-          :width="cta.width || 'w-100 w-lg-auto'"
-          :external="cta.external"
-        />
+        <cta :text="cta.text" :href="ctaHref" :skin="cta.skin || 'primary'" :width="cta.width || 'w-100 w-lg-auto'"
+          :external="cta.external" />
       </div>
     </footer>
   </article>
@@ -108,6 +82,7 @@ export default {
     shapes: Array,
     author: Array,
     image: Object,
+    teaserImage: Object,
     badge: Object,
     price: String,
     cta: Object,
@@ -133,7 +108,12 @@ export default {
       return `${this.$t('withAuthor')} ${authorNames}`;
     },
     imgSrcSets() {
-      return this.image && this.image.lottie ? null : ImgSrcSets['eventTeaser'];
+      if (this.teaserImage && this.teaserImage.img) {
+        return this.teaserImage && this.teaserImage.lottie ? null : ImgSrcSets['eventTeaser'];
+      } else {
+        return this.image && this.image.lottie ? null : ImgSrcSets['eventTeaser'];
+      }
+
     },
     computedStyles() {
       return {
