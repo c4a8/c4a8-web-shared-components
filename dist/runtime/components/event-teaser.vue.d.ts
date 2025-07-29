@@ -9,6 +9,7 @@ declare namespace _default {
         let shapes: ArrayConstructor;
         let author: ArrayConstructor;
         let image: ObjectConstructor;
+        let teaserImage: ObjectConstructor;
         let badge: ObjectConstructor;
         let price: StringConstructor;
         let cta: ObjectConstructor;

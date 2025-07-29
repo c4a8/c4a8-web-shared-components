@@ -28,6 +28,7 @@ declare namespace _default {
         }
         let form: ObjectConstructor;
         let image: ObjectConstructor;
+        let teaserImage: ObjectConstructor;
         let badge: ObjectConstructor;
         namespace showBadge {
             let type_4: BooleanConstructor;

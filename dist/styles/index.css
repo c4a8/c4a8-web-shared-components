@@ -37920,9 +37920,6 @@ svg.streamline-icon {
   margin-top: 0 !important;
 }
 
-.video-frame + footer {
-  margin-top: 0 !important;
-}
 .contact__detail {
   flex-wrap: wrap;
 }
@@ -46377,10 +46374,8 @@ shape {
   animation-delay: 200ms;
 }
 
-@media (min-width: 992px) {
-  .testimonial-list__content-block {
-    margin-bottom: 3.75rem;
-  }
+.testimonial-list__content-block {
+  margin-bottom: 3.75rem;
 }
 
 .testimonial-list__content {
@@ -46895,6 +46890,9 @@ shape {
     opacity: 0;
     pointer-events: none;
   }
+}
+.text-image + footer {
+  margin-top: 0 !important;
 }
 
 .text-image__badge {

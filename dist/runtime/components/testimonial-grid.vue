@@ -1,19 +1,20 @@
 <template>
-  <section :class="containerClasses" class="testimonial-list col-lg-8 row-mt-4 mx-auto justify-content-center container">
+  <section :class="containerClasses"
+    class="testimonial-list col-lg-8 row-mt-4 mx-auto justify-content-center container">
     <component :is="'h' + headlineLevel" v-if="headline" class="testimonial-list__headline space-bottom-1">
       {{ headline }}
     </component>
     <div v-if="subline" class="testimonial-list__subline space-bottom-2">
       {{ subline }}
     </div>
-    <div class="row row-cols-2">
-      <div v-for="(testimonial, idx) in contents.slice(0, toggleLimitValue)" :key="idx" :class="columnClass">
-        <div class="testimonial-list__content-block">
+    <div class="row my-8 testimonial-list__contents" >
+      <div v-for="(testimonial, idx) in contents.slice(0, toggleLimitValue)" :key="idx" :class="columnClass" class="testimonial-list__content-block">
+
 
           <testimonial-teaser :href="testimonial.href" :name="testimonial.name" :title="testimonial.title"
-            :img="testimonial.img" :video="testimonial.video" :bgColor="testimonial.bgColor"/>
+            :img="testimonial.img" :video="testimonial.video" :bgColor="testimonial.bgColor" />
 
-        </div>
+
       </div>
     </div>
     <div class="space-top-2 d-flex justify-content-center mx-auto">

@@ -13,47 +13,53 @@ declare namespace _default {
             let _default_1: null;
             export { _default_1 as default };
         }
-        export namespace moment {
-            let type_2: StringConstructor;
+        export namespace teaserImage {
+            let type_2: ObjectConstructor;
             export { type_2 as type };
             let _default_2: null;
             export { _default_2 as default };
         }
-        export namespace time {
+        export namespace moment {
             let type_3: StringConstructor;
             export { type_3 as type };
             let _default_3: null;
             export { _default_3 as default };
         }
-        export namespace headlineText {
+        export namespace time {
             let type_4: StringConstructor;
             export { type_4 as type };
+            let _default_4: null;
+            export { _default_4 as default };
+        }
+        export namespace headlineText {
+            let type_5: StringConstructor;
+            export { type_5 as type };
             export let required: boolean;
         }
         export namespace headlineLevel {
-            let type_5: StringConstructor;
-            export { type_5 as type };
-            let _default_4: string;
-            export { _default_4 as default };
-        }
-        export namespace headlineClasses {
             let type_6: StringConstructor;
             export { type_6 as type };
             let _default_5: string;
             export { _default_5 as default };
         }
-        export namespace name_1 {
-            let type_7: ArrayConstructor;
+        export namespace headlineClasses {
+            let type_7: StringConstructor;
             export { type_7 as type };
-            let _default_6: null;
+            let _default_6: string;
             export { _default_6 as default };
         }
-        export { name_1 as name };
-        export namespace price {
-            let type_8: StringConstructor;
+        export namespace name_1 {
+            let type_8: ArrayConstructor;
             export { type_8 as type };
             let _default_7: null;
             export { _default_7 as default };
+        }
+        export { name_1 as name };
+        export namespace price {
+            let type_9: StringConstructor;
+            export { type_9 as type };
+            let _default_8: null;
+            export { _default_8 as default };
         }
     }
 }
