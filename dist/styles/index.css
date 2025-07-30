@@ -37920,9 +37920,6 @@ svg.streamline-icon {
   margin-top: 0 !important;
 }
 
-.video-frame + footer {
-  margin-top: 0 !important;
-}
 .contact__detail {
   flex-wrap: wrap;
 }
@@ -46896,6 +46893,9 @@ shape {
     pointer-events: none;
   }
 }
+.text-image + footer {
+  margin-top: 0 !important;
+}
 
 .text-image__badge {
   margin-bottom: 1rem;
@@ -49697,4 +49697,22 @@ strong[id]:target::before {
   .portfolio-items {
     column-count: 3;
   }
+}
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 10px;
+  max-width: 600px;
+}
+
+.gallery-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-item {
+  display: flex;
+  flex-direction: column;
 }
