@@ -341,8 +341,39 @@ $header-border-size: 1px;
   }
 }
 
-
 .header__logo {
+  flex: 0 1 auto;
+
+  img {
+    @include media-breakpoint-up($header-expand-breakpoint) {
+      height: 40px;
+      width: auto;
+    }
+
+    @include media-breakpoint-down($header-expand-breakpoint) {
+      height: 38px;
+      width: auto;
+    }
+  }
+
+  @include media-breakpoint-up($header-expand-breakpoint) {
+    flex: 0 1 25%;
+  }
+}
+
+.header__row {
+  @include media-breakpoint-down($header-expand-breakpoint) {
+    margin-left: 1rem !important
+  }
+}
+
+.header__logo-light {
+  display: none;
+}
+
+
+
+.header__logo-gk {
   flex: 0 1 auto;
 
   img {
@@ -353,27 +384,14 @@ $header-border-size: 1px;
     @include media-breakpoint-up($header-expand-breakpoint) {
       min-width: 140px;
     }
-
-    @include media-breakpoint-down($header-expand-breakpoint) {
-      min-height: 38px;
-      transform: scale(1.2);
-    }
   }
 
   @include media-breakpoint-up($header-expand-breakpoint) {
     flex: 0 1 25%;
   }
-
-  @include media-breakpoint-down($header-expand-breakpoint) {
-    display: flex;
-    min-height: 38px;
-    transform: scale(1.2);
-  }
 }
 
-.header__logo-light {
-  display: none;
-}
+
 
 .header__col {
   display: flex;

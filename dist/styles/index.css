@@ -47994,20 +47994,16 @@ shape {
 .header__logo {
   flex: 0 1 auto;
 }
-.header__logo img {
-  width: min(30%, 36vw);
-  min-width: 100px;
-  height: auto;
-}
 @media (min-width: 992px) {
   .header__logo img {
-    min-width: 140px;
+    height: 40px;
+    width: auto;
   }
 }
 @media (max-width: 1199.98px) {
   .header__logo img {
-    min-height: 38px;
-    transform: scale(1.2);
+    height: 38px;
+    width: auto;
   }
 }
 @media (min-width: 992px) {
@@ -48015,16 +48011,34 @@ shape {
     flex: 0 1 25%;
   }
 }
+
 @media (max-width: 1199.98px) {
-  .header__logo {
-    display: flex;
-    min-height: 38px;
-    transform: scale(1.2);
+  .header__row {
+    margin-left: 1rem !important;
   }
 }
 
 .header__logo-light {
   display: none;
+}
+
+.header__logo-gk {
+  flex: 0 1 auto;
+}
+.header__logo-gk img {
+  width: min(30%, 36vw);
+  min-width: 100px;
+  height: auto;
+}
+@media (min-width: 992px) {
+  .header__logo-gk img {
+    min-width: 140px;
+  }
+}
+@media (min-width: 992px) {
+  .header__logo-gk {
+    flex: 0 1 25%;
+  }
 }
 
 .header__col {

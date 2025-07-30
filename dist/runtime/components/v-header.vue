@@ -4,46 +4,36 @@
     <div :class="headerContainerClassList" ref="headerContainer">
       <div class="header__row row">
         <div class="header__col col">
-          <div
-            :class="secondaryNavigationClassList"
-            v-if="secondaryNavigation"
-            @transitionend="handleSecondaryNavigationTransitionEnd"
-            ref="secondaryNavigation"
-          >
-            <div
-              class="header__secondary-navigation-button"
-              ref="secondaryNavigationButton"
-              @click="toggleSecondaryNavigation"
-            >
+          <div :class="secondaryNavigationClassList" v-if="secondaryNavigation"
+            @transitionend="handleSecondaryNavigationTransitionEnd" ref="secondaryNavigation">
+            <div class="header__secondary-navigation-button" ref="secondaryNavigationButton"
+              @click="toggleSecondaryNavigation">
               <icon class="header__secondary-navigation-icon" icon="grid" />
               <span class="header__secondary-navigation-text">{{ secondaryNavigation.text }}</span>
             </div>
             <div class="header__secondary-navigation-content">
               <div class="header__secondary-navigation-inner-content" ref="secondaryNavigationInnerContent">
                 <template v-for="(item, index) in secondaryNavigation.children" :key="index">
-                  <a
-                    :href="getHref(child)"
-                    :target="getTarget(child)"
-                    class="header__secondary-navigation-item custom"
-                    v-for="(child, itemIndex) in item.children"
-                    :key="itemIndex"
-                  >
-                    <v-img
-                      :img="child.img"
-                      class="header__secondary-navigation-item-img"
-                      :cloudinary="true"
-                      :alt="child.languages[lowerLang]?.title"
-                    />
+                  <a :href="getHref(child)" :target="getTarget(child)" class="header__secondary-navigation-item custom"
+                    v-for="(child, itemIndex) in item.children" :key="itemIndex">
+                    <v-img :img="child.img" class="header__secondary-navigation-item-img" :cloudinary="true"
+                      :alt="child.languages[lowerLang]?.title" />
                     <span class="header__secondary-navigation-item-text">{{ child.languages[lowerLang]?.title }}</span>
                   </a>
                 </template>
               </div>
             </div>
           </div>
-          <div class="header__logo" :style="headerLogoStyle">
+          <div v-if="product" class="header__logo" :style="headerLogoStyle">
             <a :href="homeObj?.url">
-              <v-img :img="home?.imgLight" class="header__logo-light" :cloudinary="true" alt="logo" />
-              <v-img :img="home?.img" class="header__logo-default" :cloudinary="true" alt="logo" />
+                <v-img :img="home?.imgLight" class="header__logo-light" :cloudinary="true" alt="logo" />
+                <v-img :img="home?.img" class="header__logo-default" :cloudinary="true" alt="logo" />
+            </a>
+          </div>
+          <div v-else class="header__logo-gk" :style="headerLogoStyle">
+            <a :href="homeObj?.url">
+                <v-img :img="home?.imgLight" class="header__logo-light" :cloudinary="true" alt="logo" />
+                <v-img :img="home?.img" class="header__logo-default" :cloudinary="true" alt="logo" />
             </a>
           </div>
           <div class="header__menu" v-on:click="handleCloseClick">
@@ -51,34 +41,17 @@
           </div>
           <nav class="header__nav" v-on:mouseout="handleMouseOut">
             <ul class="header__list" ref="list">
-              <v-header-item
-                :activeNavigation="activeNavigation"
-                :lowerLang="lowerLang"
-                :handleMouseOver="handleMouseOver"
-                :handleClick="handleClick"
-                :getHref="getHref"
-                :getTarget="getTarget"
-                :linkLists="linkLists"
-                :getId="getId"
-                :inTransition="inTransition"
-                ref="headerItem"
-              ></v-header-item>
+              <v-header-item :activeNavigation="activeNavigation" :lowerLang="lowerLang"
+                :handleMouseOver="handleMouseOver" :handleClick="handleClick" :getHref="getHref" :getTarget="getTarget"
+                :linkLists="linkLists" :getId="getId" :inTransition="inTransition" ref="headerItem"></v-header-item>
             </ul>
             <div class="header__footer">
-              <link-list
-                :list="metaList"
-                :lang="lowerLang"
-                classes="header__meta-list"
-                :no-animation="true"
-                v-if="metaList && hasMeta"
-              />
+              <link-list :list="metaList" :lang="lowerLang" classes="header__meta-list" :no-animation="true"
+                v-if="metaList && hasMeta" />
 
               <div class="header__contact header__contact--mobile" v-if="hasContact">
-                <a
-                  class="header__contact-link custom"
-                  :href="contact.languages[lowerLang]?.url"
-                  v-if="contact?.languages"
-                >
+                <a class="header__contact-link custom" :href="contact.languages[lowerLang]?.url"
+                  v-if="contact?.languages">
                   <div class="header__contact-text">
                     <icon icon="phone-mail" size="medium" />
                     <span class="header__contact-title">
@@ -91,13 +64,9 @@
                 <cta :classes="ctaClassList" :on-surface="onSurfaceCta" v-bind="button" />
               </div>
               <div class="header__language-switch" v-if="hasLangSwitch">
-                <a
-                  :key="key"
-                  v-for="(_, key) in home.languages"
+                <a :key="key" v-for="(_, key) in home.languages"
                   :class="{ 'header__language-link custom': true, active: key === lowerLang }"
-                  v-on:click="handleLanguageSwitch(key)"
-                  >{{ key }}</a
-                >
+                  v-on:click="handleLanguageSwitch(key)">{{ key }}</a>
               </div>
             </div>
           </nav>
@@ -105,24 +74,15 @@
             <cta :classes="ctaClassList" :on-surface="onSurfaceCta" v-bind="button" />
           </div>
           <search v-if="searchValue" class="header__search" language="de" placeholder="search" />
-          <div
-            class="header__language-switch"
-            v-on:mouseover="handleLanguageOver"
-            v-on:mouseout="handleLanguageOut"
-            v-if="hasLangSwitch"
-            ref="languageSwitch"
-          >
+          <div class="header__language-switch" v-on:mouseover="handleLanguageOver" v-on:mouseout="handleLanguageOut"
+            v-if="hasLangSwitch" ref="languageSwitch">
             <span class="header__link-text">{{ lang }}</span>
             <span class="header__link-text-spacer">{{ lang }}</span>
             <icon class="header__link-icon" icon="expand" size="small" />
             <div class="header__language-switch-flyout" ref="languageSwitchFlyout">
-              <a
-                v-for="(_, key) in home.languages"
+              <a v-for="(_, key) in home.languages"
                 :class="{ 'header__language-link custom': true, 'd-none': key === lowerLang }"
-                v-on:click="handleLanguageSwitch(key)"
-                :key="key"
-                >{{ key }}</a
-              >
+                v-on:click="handleLanguageSwitch(key)" :key="key">{{ key }}</a>
             </div>
           </div>
         </div>
@@ -132,21 +92,16 @@
       <div :class="containerClass">
         <div class="row">
           <div class="col">
-            <div
-              class="header__flyout-content"
-              v-for="(item, itemIndex) in activeNavigation"
-              ref="flyout"
-              :key="itemIndex"
-            >
+            <div class="header__flyout-content" v-for="(item, itemIndex) in activeNavigation" ref="flyout"
+              :key="itemIndex">
               <div class="header__flyout-items" v-if="item.children">
                 <figure class="header__flyout-block" v-if="showFlyoutBlock(item.children)">
                   <figcaption class="header__flyout-caption">
                     {{ item.languages[lowerLang]?.title }}
                   </figcaption>
-                  <div
-                    class="header__flyout-description font-size-1 thin"
-                    v-html="item.languages[lowerLang]?.description"
-                  ></div>
+                  <div class="header__flyout-description font-size-1 thin"
+                    v-html="item.languages[lowerLang]?.description">
+                  </div>
                   <a class="header__link custom" :href="contact.languages[lowerLang]?.url" v-if="hasContactLink(item)">
                     <icon icon="phone-mail" size="medium" />
                     <span class="header__contact-title">
@@ -159,20 +114,12 @@
                 </figure>
 
                 <template v-for="(list, listIndex) in item.children" :key="listIndex">
-                  <link-list
-                    :list="list"
-                    :lang="lowerLang"
-                    :no-animation="true"
-                    v-if="item.children && !list.products"
-                  />
+                  <link-list :list="list" :lang="lowerLang" :no-animation="true"
+                    v-if="item.children && !list.products" />
                   <div class="header__product-list is-expanded" v-else>
-                    <a
-                      :href="subChild.languages[lowerLang]?.url"
-                      :target="subChild.target"
-                      class="header__product-list-item custom"
-                      v-for="(subChild, subchildIndex) in list.children"
-                      :key="subchildIndex"
-                    >
+                    <a :href="subChild.languages[lowerLang]?.url" :target="subChild.target"
+                      class="header__product-list-item custom" v-for="(subChild, subchildIndex) in list.children"
+                      :key="subchildIndex">
                       <v-img :img="subChild.img" class="header__product-list-image" :cloudinary="true" />
                       <div class="header__product-list-data">
                         <div class="header__product-list-title font-size-8 bold">
