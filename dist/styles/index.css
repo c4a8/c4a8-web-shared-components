@@ -41245,6 +41245,13 @@ div.custom-control .custom-control-input,
   animation-duration: 0.8s;
 }
 
+.google-map .leaflet-attribution-flag {
+  display: none !important;
+}
+.google-map .leaflet-popup-content-wrapper {
+  font-size: 0.7565rem;
+}
+
 .google-maps .leaflet-popup-content-wrapper {
   background-color: var(--color-google-maps-popup-background);
   color: var(--color-copy-light);
