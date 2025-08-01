@@ -11,8 +11,8 @@
     <div class="page-detail__details mb-2 page-detail__animation-3" v-if="moment || time || price">
       <span class="page-detail__moment font-size-1 bold" v-if="moment">{{ moment }}</span>
       <span class="page-detail__time font-size-1" v-if="time">{{ time }}</span>
-      <span class="page-detail__time font-size-1" v-if="price"><br>{{ price }}</span>
     </div>
+    <div v-if="price" class="event-teaser__price font-size-2 bold">{{ price }}</div>
     <headline level="h2" class="bold">{{ headlineText }}</headline>
     <div class="page-detail__img-wrapper" v-if="image">
       <div class="page-detail__img page-detail__animation-3">
