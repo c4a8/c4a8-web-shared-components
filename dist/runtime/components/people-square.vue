@@ -7,7 +7,7 @@
     }">
       <div v-for="(element, index) in grid" :key="index" class="people-square__element"
         :class="{ 'people-square__element--extended': isExtended(element) }" :style="getElementStyle(element, index)">
-        <img v-if="element.img" :src="element.img.src" :cloudinary="element.img.cloudinary"
+        <v-img v-if="element.img" :img="element.img.src" :cloudinary="element.img.cloudinary"
           :lottie="element.img.lottie" />
         <template v-else>
           <div class="people-square__background" :style="element.color ? { backgroundColor: element.color } : null">
