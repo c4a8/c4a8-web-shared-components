@@ -15,7 +15,7 @@
           </div>
           <div class="people-square__content">
             <div v-if="element.number" class="people-square__number" :class="playAnimation(element.number)">
-              {{ numberValue(element.number).toFixed(0) }}
+              {{ numberValue(element.number).toFixed(0) }} {{ element.numberSuffix || '' }}
             </div>
             <div v-if="element.number" class="people-square__text">
               {{ element.text }}
