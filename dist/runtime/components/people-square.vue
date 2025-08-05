@@ -14,7 +14,7 @@
             <img v-if="element.shape" :src="element.shape.src" :cloudinary="element.shape.cloudinary" />
           </div>
           <div class="people-square__content">
-            <div v-if="element.number" class="people-square__number" :class="playAnimation(element.number)">            
+            <div v-if="element.number" class="people-square__number" :class="playAnimation(element.number)">
               {{ numberValue(element.number).toFixed(0) }} {{ element.numberSuffix || '' }}
             </div>
             <div v-if="element.number" class="people-square__text">
