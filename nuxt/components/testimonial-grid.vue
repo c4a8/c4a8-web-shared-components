@@ -8,7 +8,7 @@
       {{ subline }}
     </div>
     <div class="row row-cols-2">
-      <div v-for="(testimonial, idx) in contents.slice(0, toggleLimitValue)" :key="idx" :class="columnClass">
+      <div v-if="contents" v-for="(testimonial, idx) in contents.slice(0, toggleLimitValue)" :key="idx" :class="columnClass">
         <div class="testimonial-list__content-block">
 
           <testimonial-teaser :href="testimonial.href" :name="testimonial.name" :title="testimonial.title"
@@ -55,7 +55,8 @@ export default {
     cta: {
       type: Object,
       default: () => ({
-        text: null,
+        text: "Mehr anzeigen",
+        toggleText: "Weniger anzeigen",
         href: null,
       }),
     },
@@ -88,15 +89,10 @@ export default {
       return 'col-lg-' + 12 / this.gridSize;
     },
     toggleCtaText() {
-      const localeData = useLocaleData();
       if (this.toggleLimitValue == this.limit) {
         return this.cta.text;
       } else {
-        return localeData({
-          de: "Weniger anzeigen",
-          en: "Show less",
-          es: "Mostrar menos",
-        }).value;
+         return this.cta.toggleText;
       }
     },
   },
