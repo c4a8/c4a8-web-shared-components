@@ -47752,6 +47752,9 @@ shape {
 .header {
   --header-vertical-spacing: 1rem;
   --header-secondary-navigation-shadow: 4px 0px 12px 0px rgba(0, 0, 0, 0.08);
+  --header-logo-height-small: 26px;
+  --header-logo-height-medium: 26px;
+  --header-logo-height-large: 24px;
 }
 .header.is-loading {
   opacity: 0;
@@ -47795,6 +47798,9 @@ shape {
   background-color: var(--color-black);
 }
 .header.vue-component.header--product {
+  --header-logo-height-small: 38px;
+  --header-logo-height-medium: 34px;
+  --header-logo-height-large: 40px;
   box-shadow: none;
 }
 .header.vue-component.header--product.is-scrolled, .header.vue-component.header--product:hover {
@@ -47829,11 +47835,6 @@ shape {
   border-bottom: 0;
 }
 @media (min-width: 992px) {
-  .header.vue-component.header--product .header__nav {
-    margin-left: 6.5rem;
-  }
-}
-@media (min-width: 992px) {
   .header.vue-component.header--product .header__row {
     padding-left: 2rem;
     padding-right: 2rem;
@@ -47842,6 +47843,11 @@ shape {
 }
 .header.vue-component.header--product nav {
   bottom: 0;
+}
+@media (min-width: 992px) {
+  .header.vue-component.header--product .header__logo {
+    flex-grow: 1;
+  }
 }
 .header.vue-component.is-expanded nav {
   overflow-y: auto;
@@ -47960,6 +47966,9 @@ shape {
   .header.vue-component nav {
     display: block;
   }
+  .header.vue-component .header__button {
+    flex-shrink: 0;
+  }
   .header.vue-component .header__language-switch {
     padding-top: var(--header-vertical-spacing);
     display: flex;
@@ -48013,31 +48022,24 @@ shape {
   flex: 0 1 auto;
 }
 .header__logo img {
-  width: min(30%, 36vw);
-  min-width: 100px;
-  height: auto;
+  height: var(--header-logo-height-small);
+  width: auto;
+  max-width: 40vw;
+}
+@media (min-width: 768px) {
+  .header__logo img {
+    height: var(--header-logo-height-medium);
+  }
 }
 @media (min-width: 992px) {
   .header__logo img {
-    min-width: 140px;
-  }
-}
-@media (max-width: 1199.98px) {
-  .header__logo img {
-    min-height: 38px;
-    transform: scale(1.2);
+    height: var(--header-logo-height-large);
   }
 }
 @media (min-width: 992px) {
   .header__logo {
     flex: 0 1 25%;
-  }
-}
-@media (max-width: 1199.98px) {
-  .header__logo {
-    display: flex;
-    min-height: 38px;
-    transform: scale(1.2);
+    margin-right: 2rem;
   }
 }
 
