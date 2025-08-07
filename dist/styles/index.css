@@ -15527,6 +15527,11 @@ label.btn {
   transform: scale(1.1);
 }
 
+.media-viewer-container:hover .video-player-icon {
+  color: #377dff;
+  transform: scale(1.1);
+}
+
 .video-player-icon {
   position: relative;
   display: inline-flex;
@@ -46674,6 +46679,38 @@ shape {
 @media (min-width: 576px) {
   .testimonials-slider__slides .testimonial-teaser__img {
     width: auto;
+  }
+}
+
+.testimonial-grid__content-block {
+  margin-bottom: 3.75rem;
+}
+
+.testimonial-grid__content {
+  display: flex;
+  justify-content: center;
+}
+@media (max-width: 991.98px) {
+  .testimonial-grid__content {
+    margin-bottom: 2.5rem;
+  }
+}
+
+.testimonial-grid__cta {
+  padding-top: 4rem !important;
+}
+@media (max-width: 991.98px) {
+  .testimonial-grid__cta {
+    padding-top: 0rem !important;
+  }
+}
+
+.testimonial-grid__subline {
+  padding-bottom: 4rem !important;
+}
+@media (max-width: 991.98px) {
+  .testimonial-grid__subline {
+    padding-bottom: 2rem !important;
   }
 }
 

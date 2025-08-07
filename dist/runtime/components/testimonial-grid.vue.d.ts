@@ -70,6 +70,7 @@ declare namespace _default {
         }
     }
     function data(): any;
+    function created(): void;
     namespace computed {
         function containerClasses(): any[];
         function columnClass(): any;

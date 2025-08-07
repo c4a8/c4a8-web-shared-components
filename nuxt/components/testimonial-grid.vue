@@ -1,19 +1,19 @@
 <template>
   <section :class="containerClasses"
-    class="testimonial-list col-lg-8 row-mt-4 mx-auto justify-content-center container">
-    <component :is="'h' + headlineLevel" v-if="headline" class="testimonial-list__headline space-bottom-1">
+    class="col-lg-8 row-mt-4 mx-auto justify-content-center container">
+    <component :is="'h' + headlineLevel" v-if="headline" class="space-bottom-1">
       {{ headline }}
     </component>
-    <div v-if="subline" class="testimonial-list__subline space-bottom-2">
+    <div v-if="subline" class="testimonial-grid__subline">
       {{ subline }}
     </div>
-    <div class="row my-8" >
-      <div v-for="(testimonial, idx) in contents.slice(0, toggleLimitValue)" :key="idx" :class="columnClass" class="testimonial-list__content-block">
+    <div class="row" >
+      <div v-for="(testimonial, idx) in contents.slice(0, toggleLimitValue)" :key="idx" :class="columnClass" class="testimonial-grid__content-block">
           <testimonial-teaser :href="testimonial.href" :name="testimonial.name" :title="testimonial.title"
             :img="testimonial.img" :video="testimonial.video" :bgColor="testimonial.bgColor" />
       </div>
     </div>
-    <div class="space-top-2 d-flex justify-content-center mx-auto">
+    <div class="testimonial-grid__cta d-flex justify-content-center mx-auto">
       <cta :text="toggleCtaText" :skin="cta.skin" :monochrome="cta.monochrome" @click="toggleLimit" />
     </div>
   </section>
@@ -74,6 +74,11 @@ export default {
       toggleLimitValue: this.limit,
     };
   },
+  created() {
+    if (window.screen.width < 768) {
+      this.toggleLimitValue = 3;
+    }
+  },
   computed: {
     containerClasses() {
       return [
@@ -107,3 +112,8 @@ export default {
   },
 };
 </script>
+
+/**
+testimonial-grid__subline - abstand bottom bei mobile
+testimonial-grid__cta - abstand top bei mobile
+*/

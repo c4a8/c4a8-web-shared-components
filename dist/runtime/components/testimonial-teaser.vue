@@ -35,12 +35,11 @@
     <template v-if="video">
         <a class=" utility-animation fade-in-bottom testimonial-video-teaser" :class="[
         ]" :style="bgStyling" :href="href" data-utility-animation-step="1" ref="root">
-            <div class="testimonial-teaser-video" @click="setVideoPlayed">
-                <video-frame ref="video-frame" :thumb="video.thumb" :alt="video.alt" :id="video.id"
-                    :fullWidth="video.fullWidth" />
+            <div class="testimonial-teaser-video" >
+                    <video-inner :video="video" ref="video-frame" />
             </div>
             <div>
-                <a class="testimonial-teaser__content" @click="setVideoPlayed" v-if="videoPlaying == false">
+                <a class="testimonial-teaser__content" @click="setVideoPlayed">
                     <div class="testimonial-teaser__name font-size-4 bold">
                         <span v-for="(part, idx) in name.split(' ')" :key="idx">
                             <div class="testimonial-teaser__name-background">
@@ -122,13 +121,8 @@ export default {
         UtilityAnimation.init([this.$refs.root]);
     },
     methods: {
-        getVideoState() {
-            this.videoPlaying = this.$refs['video-frame'].isPlayed;
-            return this.videoPlaying;
-        },
         setVideoPlayed() {
-            this.$refs['video-frame'].handleClick();
-            this.getVideoState();
+            this.$refs['video-frame'].handleLightboxClick();
         },
     },
     computed: {

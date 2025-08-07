@@ -21,13 +21,14 @@ export const TestimonialGrid = {
             {
                 name: "Max Mustermann",
                 title: "Developer",
+
                 video: {
+                    lightbox: true,
+                    large: true,
                     thumb: "/thumbs/thumb-avd-foundation-webcast.jpg",
-
+                    alt: 'Video Casestudy Franz Haniel',
                     id: "0U_mV706VKI",
-                    fullWidth: true,
                 },
-
                 bgColor: "var(--color-blue-light)",
             },
             {
@@ -55,10 +56,11 @@ export const TestimonialGrid = {
                 name: "John Doe",
                 title: "Project Manager",
                 video: {
+                    lightbox: true,
+                    large: true,
                     thumb: "/thumbs/thumb-avd-foundation-webcast.jpg",
-
+                    alt: 'Video Casestudy Franz Haniel',
                     id: "0U_mV706VKI",
-                    fullWidth: true,
                 },
 
                 bgColor: "var(--color-blue-light)",
@@ -80,10 +82,11 @@ export const TestimonialGrid = {
                 name: "Jane Doe",
                 title: "Azure Specialist",
                 video: {
+                    lightbox: true,
+                    large: true,
                     thumb: "/thumbs/thumb-avd-foundation-webcast.jpg",
-
+                    alt: 'Video Casestudy Franz Haniel',
                     id: "0U_mV706VKI",
-                    fullWidth: true,
                 },
 
                 bgColor: "var(--color-blue-light)",
@@ -92,10 +95,11 @@ export const TestimonialGrid = {
                 name: "John Smith",
                 title: "Cloud Architect",
                 video: {
+                    lightbox: true,
+                    large: true,
                     thumb: "/thumbs/thumb-avd-foundation-webcast.jpg",
-
+                    alt: 'Video Casestudy Franz Haniel',
                     id: "0U_mV706VKI",
-                    fullWidth: true,
                 },
 
                 bgColor: "var(--color-blue-light)",

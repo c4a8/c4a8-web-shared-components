@@ -1,0 +1,30 @@
+.testimonial-grid__content-block {
+    margin-bottom: spacing(15);
+}
+
+.testimonial-grid__content {
+    display: flex;
+    justify-content: center;
+
+
+
+    @include media-breakpoint-down(md) {
+        margin-bottom: spacing(10);
+    }
+}
+
+.testimonial-grid__cta {
+    padding-top: 4rem !important;
+
+    @include media-breakpoint-down(md) {
+        padding-top: 0rem !important;
+    }
+}
+
+.testimonial-grid__subline {
+    padding-bottom: 4rem !important;
+
+    @include media-breakpoint-down(md) {
+        padding-bottom: 2rem !important;
+    }
+}

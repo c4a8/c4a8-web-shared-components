@@ -65,7 +65,6 @@ declare namespace _default {
     };
     function mounted(): void;
     namespace methods {
-        function getVideoState(): any;
         function setVideoPlayed(): void;
     }
     namespace computed {
