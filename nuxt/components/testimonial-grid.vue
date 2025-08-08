@@ -51,8 +51,8 @@ export default {
     cta: {
       type: Object,
       default: () => ({
-        text: "Mehr anzeigen",
-        toggleText: "Weniger anzeigen",
+        text: "Show more",
+        toggleText: "Show less",
         href: null,
       }),
     },
@@ -91,20 +91,12 @@ export default {
       return 'col-lg-' + 12 / this.gridSize;
     },
     toggleCtaText() {
-      if (this.toggleLimitValue == this.limitValue) {
-        return this.cta.text;
-      } else {
-        return this.cta.toggleText;
-      }
+      return this.toggleLimitValue === this.limitValue ? this.cta.text : this.cta.toggleText;
     },
   },
   methods: {
     toggleLimit() {
-      if (this.toggleLimitValue == this.limitValue) {
-        this.toggleLimitValue = this.maxLimit;
-      } else {
-        this.toggleLimitValue = this.limitValue;
-      }
+      this.toggleLimitValue = (this.toggleLimitValue === this.limitValue) ? this.maxLimit : this.limitValue;
     },
   },
 };

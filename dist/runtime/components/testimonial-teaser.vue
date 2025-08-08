@@ -1,5 +1,5 @@
 <template>
-    <template v-if="img">
+    <template v-if="img && img.img">
         <a class="testimonial-teaser utility-animation fade-in-bottom" :class="[
         ]" :style="bgStyling" :href="href" data-utility-animation-step="1" ref="root">
             <div class="testimonial-teaser__wrapper">
@@ -32,7 +32,7 @@
             </div>
         </a>
     </template>
-    <template v-if="video">
+    <template v-if="video && video.thumb">
         <a class=" utility-animation fade-in-bottom testimonial-video-teaser" :class="[
         ]" :style="bgStyling" :href="href" data-utility-animation-step="1" ref="root">
             <div class="testimonial-teaser-video" >
@@ -60,23 +60,18 @@
     </template>
 </template>
 <script>
-//import { noConflict } from 'jquery';
 import UtilityAnimation from '../utils/utility-animation.js';
-//import { normalizeNewlines } from 'storybook/internal/docs-tools';
 export default {
     tagName: 'testimonial-teaser',
     props: {
         href: {
             type: String,
-
         },
         name: {
             type: String,
-
         },
         title: {
             type: String,
-
         },
         img: {
             type: Object,
