@@ -1,5 +1,5 @@
 <template>
-    <template v-if="img">
+    <template v-if="img && img.img">
         <a class="testimonial-teaser utility-animation fade-in-bottom" :class="[
         ]" :style="bgStyling" :href="href" data-utility-animation-step="1" ref="root">
             <div class="testimonial-teaser__wrapper">
@@ -32,14 +32,14 @@
             </div>
         </a>
     </template>
-    <template v-if="video">
+    <template v-if="video && video.thumb">
         <a class=" utility-animation fade-in-bottom testimonial-video-teaser" :class="[
         ]" :style="bgStyling" :href="href" data-utility-animation-step="1" ref="root">
             <div class="testimonial-teaser-video" >
                     <video-inner :video="video" ref="video-frame" />
             </div>
             <div>
-                <a class="testimonial-teaser__content" @click="setVideoPlayed">
+                <a class="testimonial-teaser__content">
                     <div class="testimonial-teaser__name font-size-4 bold">
                         <span v-for="(part, idx) in name.split(' ')" :key="idx">
                             <div class="testimonial-teaser__name-background">
@@ -114,11 +114,6 @@ export default {
     mounted() {
         if (!this.$refs.root) return;
         UtilityAnimation.init([this.$refs.root]);
-    },
-    methods: {
-        setVideoPlayed() {
-            this.$refs['video-frame'].handleLightboxClick();
-        },
     },
     computed: {
         aspectRatioClass() {

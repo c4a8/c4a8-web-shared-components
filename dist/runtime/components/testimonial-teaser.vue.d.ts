@@ -64,9 +64,6 @@ declare namespace _default {
         videoPlaying: boolean;
     };
     function mounted(): void;
-    namespace methods {
-        function setVideoPlayed(): void;
-    }
     namespace computed {
         function aspectRatioClass(): string;
         function imgObjectPositionClass(): string;

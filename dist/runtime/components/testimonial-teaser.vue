@@ -39,7 +39,7 @@
                     <video-inner :video="video" ref="video-frame" />
             </div>
             <div>
-                <a class="testimonial-teaser__content" @click="setVideoPlayed">
+                <a class="testimonial-teaser__content">
                     <div class="testimonial-teaser__name font-size-4 bold">
                         <span v-for="(part, idx) in name.split(' ')" :key="idx">
                             <div class="testimonial-teaser__name-background">
@@ -114,11 +114,6 @@ export default {
     mounted() {
         if (!this.$refs.root) return;
         UtilityAnimation.init([this.$refs.root]);
-    },
-    methods: {
-        setVideoPlayed() {
-            this.$refs['video-frame'].handleLightboxClick();
-        },
     },
     computed: {
         aspectRatioClass() {

@@ -46380,8 +46380,10 @@ shape {
   animation-delay: 200ms;
 }
 
-.testimonial-list__content-block {
-  margin-bottom: 3.75rem;
+@media (min-width: 992px) {
+  .testimonial-list__content-block {
+    margin-bottom: 3.75rem;
+  }
 }
 
 .testimonial-list__content {

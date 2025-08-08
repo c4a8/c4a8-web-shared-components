@@ -45,7 +45,8 @@ declare namespace _default {
             let type_7: ObjectConstructor;
             export { type_7 as type };
             function _default_6(): {
-                text: null;
+                text: string;
+                toggleText: string;
                 href: null;
             };
             export { _default_6 as default };
@@ -70,7 +71,7 @@ declare namespace _default {
         }
     }
     function data(): any;
-    function created(): void;
+    function mounted(): void;
     namespace computed {
         function containerClasses(): any[];
         function columnClass(): any;
