@@ -13,6 +13,7 @@ export const TestimonialGrid = {
         subline: 'In unserer Reihe "Inside glueckkanja" stellen sich Mitarbeitende vor und gewähren spannende Einblicke in ihre Aufgaben.',
         cta: {
             text: "Weitere Stories ansehen",
+            toggleText: "Weniger anzeigen",
             href: "https://www.glueckkanja.com",
             skin: "secondary",
             monochrome: true,
@@ -21,7 +22,6 @@ export const TestimonialGrid = {
             {
                 name: "Max Mustermann",
                 title: "Developer",
-
                 video: {
                     lightbox: true,
                     large: true,
