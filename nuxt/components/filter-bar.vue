@@ -126,28 +126,41 @@ export default {
     blogStore.setBlogView(this.activeView);
   },
   beforeMount() {
-    this.filterDropdowns = [
-      ...(this.authors.length > 0
-        ? [
-            {
-              label: this.$t('filterAuthors'),
-              items: this.authors,
-              key: 'author',
-            },
-          ]
-        : []),
-      {
+    this.activeView = this.defaultView;
+
+    const dropdownConfig = {
+      author: {
+        label: this.$t('filterAuthors'),
+        items: this.authors,
+        key: 'author',
+        condition: () => this.authors.length > 0,
+      },
+      categories: {
         label: this.$t('filterTopics'),
         items: this.topics,
         key: 'categories',
+        condition: () => true,
       },
-      {
+      tags: {
         label: this.$t('filterTags'),
         items: this.getFilteredTags(),
         key: 'tags',
         filterable: true,
+        condition: () => true,
       },
-    ];
+    };
+
+    this.filterDropdowns = this.enabledDropdowns
+      .filter((key) => dropdownConfig[key] && dropdownConfig[key].condition())
+      .map((key) => {
+        const config = dropdownConfig[key];
+        return {
+          label: config.label,
+          items: config.items,
+          key: config.key,
+          ...(config.filterable && { filterable: config.filterable }),
+        };
+      });
   },
   mounted() {
     window.addEventListener('resize', this.handleResize);
@@ -188,7 +201,7 @@ export default {
       return this.maxBlogPosts ? items.slice(0, this.maxBlogPosts) : items;
     },
     handleResize() {
-      this.itemStartPoint = Tools.isUpperBreakpoint() ? 1 : 0;
+      this.itemStartPoint = Tools.isUpperBreakpoint() && this.hasHighlight ? 1 : 0;
     },
     extractPropertyCounts(property) {
       const results = this.normalizedItems.reduce((accumulator, item) => {
@@ -316,7 +329,7 @@ export default {
   },
   data() {
     return {
-      activeView: 'tile-view',
+      activeView: '',
       views: ['tile-view', 'list-view'],
       filterDropdowns: [],
       selections: [],
@@ -326,9 +339,15 @@ export default {
   },
   props: {
     spacing: String,
-    items: String,
+    items: Array,
     maxBlogPosts: Number,
-    dataAuthors: String,
+    dataAuthors: Object,
+    defaultView: { type: String, default: 'tile-view' },
+    hasHighlight: { type: Boolean, default: true },
+    enabledDropdowns: {
+      type: Array,
+      default: () => ['author', 'categories', 'tags'],
+    },
   },
 };
 </script>

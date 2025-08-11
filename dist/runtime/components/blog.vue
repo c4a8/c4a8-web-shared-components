@@ -1,5 +1,5 @@
 <template>
-  <div class="blog container space-bottom-2 space-bottom-lg-3" v-if="showComponent">
+  <div :class="blogContainerClassList" v-if="showComponent">
     <div class="row justify-content-lg-between align-items-lg-center mb-7 d-lg-none">
       <!-- Search is currently not used -->
     </div>
@@ -31,7 +31,15 @@
                 :dataAuthors="authors"
               /></div
           ></template>
-          <filter-bar :items="files" :maxBlogPosts="blogMaxBlogPosts" :dataAuthors="authors" v-if="showFilter" />
+          <filter-bar
+            :items="files"
+            :maxBlogPosts="blogMaxBlogPosts"
+            :dataAuthors="authors"
+            v-if="showFilter"
+            :default-view="defaultView"
+            :has-highlight="hasHighlight"
+            :enabled-dropdowns="enabledDropdowns"
+          />
           <div class="row" v-else-if="showNoPosts">
             <div class="col-lg-12 mt-10 mb-n10">
               <headline level="h3">{{ $t('noPostsFound') }}</headline>
@@ -69,6 +77,9 @@ export default {
     };
   },
   computed: {
+    blogContainerClassList() {
+      return ['blog container space-bottom-2 space-bottom-lg-3', !this.hasHighlight ? 'mt-lg-7' : ''];
+    },
     showNoPosts() {
       return this.filesValue.length === 0;
     },
@@ -79,6 +90,8 @@ export default {
       return Tools.getBlogImgPath(this.config);
     },
     highlightPost() {
+      if (!this.hasHighlight) return;
+
       const firstPostArray = this.filesValue.slice(0, 1);
 
       return firstPostArray ? firstPostArray[0] : null;
@@ -141,6 +154,18 @@ export default {
     paginator_previous_page_path: String,
     paginator_next_page: Number,
     paginator_next_page_path: String,
+    hasHighlight: {
+      type: Boolean,
+      default: true,
+    },
+    defaultView: {
+      type: String,
+      default: 'tile-view',
+    },
+    enabledDropdowns: {
+      type: Array,
+      default: () => ['author', 'categories', 'tags'],
+    },
   },
 };
 </script>
