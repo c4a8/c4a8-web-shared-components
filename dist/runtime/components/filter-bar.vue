@@ -77,6 +77,7 @@ export default {
         return {
           ...item,
           blogtitlepic: `${item.blog_image_path || ''}${item.blogtitlepic}`,
+          footer: typeof item.footer === 'string' ? item.footer : undefined,
         };
       });
     },
