@@ -28,7 +28,7 @@
           </a>
         </div>
       </div>
-      <div class="filter-bar__views">
+      <div class="filter-bar__views" v-if="!onlyView">
         <div class="filter-bar__toggle">
           <div
             :class="toggleIconClasses(view)"
@@ -127,7 +127,7 @@ export default {
     blogStore.setBlogView(this.activeView);
   },
   beforeMount() {
-    this.activeView = this.defaultView;
+    this.activeView = this.onlyView ? this.onlyView : this.defaultView;
 
     const dropdownConfig = {
       author: {
@@ -344,6 +344,7 @@ export default {
     maxBlogPosts: Number,
     dataAuthors: Object,
     defaultView: { type: String, default: 'tile-view' },
+    onlyView: { type: String },
     hasHighlight: { type: Boolean, default: true },
     enabledDropdowns: {
       type: Array,

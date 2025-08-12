@@ -6,15 +6,7 @@
 
     <SharedContentList :data-list="posts" :query="query" v-slot="{ list }">
       <template v-if="list">
-        <markdown-files
-          :list="list"
-          v-slot="{ files }"
-          :hide-data="hideData"
-          :query="query"
-          :limit="limit"
-          :is-recent="true"
-          :strategy="strategy"
-        >
+        <markdown-files :list="list" v-slot="{ files }" :query="query" :is-recent="true" :strategy="strategy">
           <template v-if="updateFiles(files)">
             <div class="blog__highlight-post d-none d-lg-block" v-if="highlightPost">
               <card
@@ -39,6 +31,7 @@
             :default-view="defaultView"
             :has-highlight="hasHighlight"
             :enabled-dropdowns="enabledDropdowns"
+            :only-view="onlyView"
           />
           <div class="row" v-else-if="showNoPosts">
             <div class="col-lg-12 mt-10 mb-n10">
@@ -141,12 +134,10 @@ export default {
   props: {
     posts: {
       type: Array,
-      required: [],
     },
     blogMaxBlogPosts: {
       type: Number,
       default: 100,
-      required: true,
     },
     paginator_page: Number,
     paginator_total_pages: Number,
@@ -162,9 +153,16 @@ export default {
       type: String,
       default: 'tile-view',
     },
+    onlyView: {
+      type: String,
+    },
     enabledDropdowns: {
       type: Array,
       default: () => ['author', 'categories', 'tags'],
+    },
+    reversed: {
+      type: Boolean,
+      default: false,
     },
   },
 };
