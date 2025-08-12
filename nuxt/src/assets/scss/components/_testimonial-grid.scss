@@ -14,17 +14,17 @@
 }
 
 .testimonial-grid__cta {
-    padding-top: 4rem !important;
+    padding-top: 4rem;
 
     @include media-breakpoint-down(md) {
-        padding-top: 0rem !important;
+        padding-top: 0rem;
     }
 }
 
 .testimonial-grid__subline {
-    padding-bottom: 4rem !important;
+    padding-bottom: 4rem;
 
     @include media-breakpoint-down(md) {
-        padding-bottom: 2rem !important;
+        padding-bottom: 2rem ;
     }
 }
