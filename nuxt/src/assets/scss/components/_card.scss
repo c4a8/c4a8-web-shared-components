@@ -17,9 +17,11 @@
     }
 
     &.card--row {
-      .card__img-top {
-        img {
-          aspect-ratio: 16/9;
+      &:not(.card--no-aspect-ratio) {
+        .card__img-top {
+          img {
+            aspect-ratio: 16/9;
+          }
         }
       }
 
@@ -157,6 +159,12 @@
       }
     }
 
+    &:not(.card--no-aspect-ratio) {
+      .card__img-top {
+        @include aspect-ratio(16, 9);
+      }
+    }
+
     .richtext {
       p + .card__link {
         margin-top: spacing(2);
@@ -173,8 +181,6 @@
     }
 
     .card__img-top {
-      @include aspect-ratio(16, 9);
-
       overflow: hidden;
 
       &:not(.card-img--long) {

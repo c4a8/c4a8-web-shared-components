@@ -22,6 +22,7 @@ declare namespace _default {
         let items: ArrayConstructor;
         let view: StringConstructor;
         let dataAuthors: ObjectConstructor;
+        let hasNoAspectRatio: BooleanConstructor;
     }
 }
 export default _default;

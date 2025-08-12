@@ -1,6 +1,7 @@
 declare namespace _default {
     let tagName: string;
     namespace computed {
+        function hasNoAspectRatio(): true | undefined;
         function flatSelections(): any;
         function storedItems(): never[];
         function normalizedItems(): any;
