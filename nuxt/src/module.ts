@@ -63,6 +63,7 @@ export default defineNuxtModule({
     _nuxt.options.sitemap = sitemapOptions;
 
     await installModule('@nuxtjs/sitemap');
+    await installModule('nuxt-schema-org');
 
     const runtimeDir = resolve(__dirname, './runtime');
 

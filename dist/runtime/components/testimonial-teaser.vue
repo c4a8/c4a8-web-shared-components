@@ -106,11 +106,6 @@ export default {
             default: '16/9',
         },
     },
-    data() {
-        return {
-            videoPlaying: false,
-        };
-    },
     mounted() {
         if (!this.$refs.root) return;
         UtilityAnimation.init([this.$refs.root]);

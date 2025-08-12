@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import Tools from '../utils/tools.js';
+
 export default {
   tagName: 'testimonial-grid',
   props: {
@@ -27,7 +29,7 @@ export default {
       default: null,
     },
     headlineLevel: {
-      type: [String, Number],
+      type: Number,
       default: 2,
     },
     subline: {
@@ -49,8 +51,8 @@ export default {
     cta: {
       type: Object,
       default: () => ({
-        text: "Show more",
-        toggleText: "Show less",
+        text: null,
+        toggleText: null,
         href: null,
       }),
     },
@@ -71,12 +73,26 @@ export default {
     return {
       toggleLimitValue: this.limit,
       limitValue: this.limit,
+      lang: Tools.getLang(),
+      isMobile: Tools.isBelowBreakpoint('md'),
     };
   },
   mounted() {
-    if (window.screen.width < 768) {
+    if (this.isMobile) {
       this.limitValue = 3;
       this.toggleLimitValue = this.limitValue
+    }
+    const texts = {
+      en: { text: 'Show more', toggleText: 'Show less' },
+      de: { text: 'Mehr anzeigen', toggleText: 'Weniger anzeigen' },
+      es: { text: 'Mostrar más', toggleText: 'Mostrar menos' },
+    };
+    const langTexts = texts[this.lang] || texts['en'];
+    if (this.cta.text == null) {
+      this.cta.text = langTexts.text;
+    }
+    if (this.cta.toggleText == null) {
+      this.cta.toggleText = langTexts.toggleText;
     }
   },
   computed: {
@@ -102,5 +118,4 @@ export default {
   },
 };
 </script>
-
 
