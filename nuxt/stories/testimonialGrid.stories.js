@@ -13,6 +13,7 @@ export const TestimonialGrid = {
         subline: 'In unserer Reihe "Inside glueckkanja" stellen sich Mitarbeitende vor und gewähren spannende Einblicke in ihre Aufgaben.',
         cta: {
             text: "Weitere Stories ansehen",
+            toggleText: "Weniger anzeigen",
             href: "https://www.glueckkanja.com",
             skin: "secondary",
             monochrome: true,
@@ -22,12 +23,12 @@ export const TestimonialGrid = {
                 name: "Max Mustermann",
                 title: "Developer",
                 video: {
+                    lightbox: true,
+                    large: true,
                     thumb: "/thumbs/thumb-avd-foundation-webcast.jpg",
-
+                    alt: 'Video Casestudy Franz Haniel',
                     id: "0U_mV706VKI",
-                    fullWidth: true,
                 },
-
                 bgColor: "var(--color-blue-light)",
             },
             {
@@ -55,10 +56,11 @@ export const TestimonialGrid = {
                 name: "John Doe",
                 title: "Project Manager",
                 video: {
+                    lightbox: true,
+                    large: true,
                     thumb: "/thumbs/thumb-avd-foundation-webcast.jpg",
-
+                    alt: 'Video Casestudy Franz Haniel',
                     id: "0U_mV706VKI",
-                    fullWidth: true,
                 },
 
                 bgColor: "var(--color-blue-light)",
@@ -80,10 +82,11 @@ export const TestimonialGrid = {
                 name: "Jane Doe",
                 title: "Azure Specialist",
                 video: {
+                    lightbox: true,
+                    large: true,
                     thumb: "/thumbs/thumb-avd-foundation-webcast.jpg",
-
+                    alt: 'Video Casestudy Franz Haniel',
                     id: "0U_mV706VKI",
-                    fullWidth: true,
                 },
 
                 bgColor: "var(--color-blue-light)",
@@ -92,10 +95,11 @@ export const TestimonialGrid = {
                 name: "John Smith",
                 title: "Cloud Architect",
                 video: {
+                    lightbox: true,
+                    large: true,
                     thumb: "/thumbs/thumb-avd-foundation-webcast.jpg",
-
+                    alt: 'Video Casestudy Franz Haniel',
                     id: "0U_mV706VKI",
-                    fullWidth: true,
                 },
 
                 bgColor: "var(--color-blue-light)",

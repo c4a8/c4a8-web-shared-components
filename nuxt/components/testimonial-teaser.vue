@@ -1,5 +1,5 @@
 <template>
-    <template v-if="img">
+    <template v-if="img && img.img">
         <a class="testimonial-teaser utility-animation fade-in-bottom" :class="[
         ]" :style="bgStyling" :href="href" data-utility-animation-step="1" ref="root">
             <div class="testimonial-teaser__wrapper">
@@ -32,15 +32,14 @@
             </div>
         </a>
     </template>
-    <template v-if="video">
+    <template v-if="video && video.thumb">
         <a class=" utility-animation fade-in-bottom testimonial-video-teaser" :class="[
         ]" :style="bgStyling" :href="href" data-utility-animation-step="1" ref="root">
-            <div class="testimonial-teaser-video">
-                <video-frame ref="video-frame" :thumb="video.thumb" :alt="video.alt" :id="video.id"
-                    :fullWidth="video.fullWidth" @click="getVideoState" />
+            <div class="testimonial-teaser-video" >
+                    <video-inner :video="video" ref="video-frame" />
             </div>
             <div>
-                <a class="testimonial-teaser__content" @click="setVideoPlayed">
+                <a class="testimonial-teaser__content">
                     <div class="testimonial-teaser__name font-size-4 bold">
                         <span v-for="(part, idx) in name.split(' ')" :key="idx">
                             <div class="testimonial-teaser__name-background">
@@ -61,23 +60,18 @@
     </template>
 </template>
 <script>
-//import { noConflict } from 'jquery';
 import UtilityAnimation from '../utils/utility-animation.js';
-//import { normalizeNewlines } from 'storybook/internal/docs-tools';
 export default {
     tagName: 'testimonial-teaser',
     props: {
         href: {
             type: String,
-
         },
         name: {
             type: String,
-
         },
         title: {
             type: String,
-
         },
         img: {
             type: Object,
@@ -116,15 +110,6 @@ export default {
         if (!this.$refs.root) return;
         UtilityAnimation.init([this.$refs.root]);
     },
-    methods: {
-        getVideoState() {
-            this.videoPlaying = this.$refs['video-frame'].isPlayed;
-        },
-        setVideoPlayed() {
-            this.$refs['video-frame'].handleClick();
-            this.getVideoState();
-        },
-    },
     computed: {
         aspectRatioClass() {
             return `--testimonial-teaser-aspect-ratio: ${this.aspectRatio};`;
@@ -147,9 +132,9 @@ export default {
                 .join('<br/>');
         },
         imgSrcSet() {
-            //if (!this.aspectRatio) return false;
-            //const key = `testimonialTeaser${this.aspectRatio}`;
-            //return this.$site?.data?.imgSrcSets?.[key] || false;
+            if (!this.aspectRatio) return false;
+            const key = `testimonialTeaser${this.aspectRatio}`;
+            return this.$site?.data?.imgSrcSets?.[key] || false;
         },
     },
 };

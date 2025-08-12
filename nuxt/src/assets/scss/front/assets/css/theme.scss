@@ -13828,6 +13828,10 @@ label.btn {
   color: #377dff;
   transform: scale(1.1);
 }
+.media-viewer-container:hover .video-player-icon {
+  color: #377dff;
+  transform: scale(1.1);
+}
 .video-player-icon {
   position: relative;
   display: inline-flex;
@@ -13845,6 +13849,7 @@ label.btn {
   backface-visibility: hidden;
   transform: perspective(1px) translateZ(0);
   transition: 0.3s;
+  box-shadow: 3px 3px 20px 3px #d1d1d1;
 }
 .video-player-centered {
   position: absolute;
