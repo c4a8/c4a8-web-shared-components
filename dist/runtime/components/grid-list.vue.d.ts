@@ -10,7 +10,6 @@ declare namespace _default {
         function view(): void;
         function items(): void;
     }
-    function created(): void;
     function updated(): void;
     namespace methods {
         function getBlogTitlepic(item: any): any;

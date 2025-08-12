@@ -54,15 +54,19 @@ declare namespace _default {
             let _default: string;
             export { _default as default };
         }
-        namespace hasHighlight {
-            let type_1: BooleanConstructor;
+        namespace onlyView {
+            let type_1: StringConstructor;
             export { type_1 as type };
+        }
+        namespace hasHighlight {
+            let type_2: BooleanConstructor;
+            export { type_2 as type };
             let _default_1: boolean;
             export { _default_1 as default };
         }
         namespace enabledDropdowns {
-            let type_2: ArrayConstructor;
-            export { type_2 as type };
+            let type_3: ArrayConstructor;
+            export { type_3 as type };
             function _default_2(): string[];
             export { _default_2 as default };
         }
