@@ -45,6 +45,7 @@
       :items="filteredItems"
       :view="activeView"
       :data-authors="dataAuthors"
+      :has-no-aspect-ratio="hasNoAspectRatio"
       @card-tag-clicked="handleCardTagClicked"
     />
   </div>
@@ -60,6 +61,11 @@ import { useBlogStore } from '../stores/blog';
 export default {
   tagName: 'filter-bar',
   computed: {
+    hasNoAspectRatio() {
+      if (!this.onlyView) return;
+
+      return true;
+    },
     flatSelections() {
       return this.selections.flat();
     },

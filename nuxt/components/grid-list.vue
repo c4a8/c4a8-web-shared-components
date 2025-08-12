@@ -12,6 +12,7 @@
           :data-authors="dataAuthors"
           :row="isRow"
           ref="items"
+          :has-no-aspect-ratio="hasNoAspectRatio"
         />
       </div>
     </template>
@@ -85,6 +86,7 @@ export default {
     items: Array,
     view: String,
     dataAuthors: Object,
+    hasNoAspectRatio: Boolean,
   },
 };
 </script>
