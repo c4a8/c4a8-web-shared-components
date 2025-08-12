@@ -1,5 +1,8 @@
 declare namespace _default {
     let name: string;
+    function setup(props: any): {
+        formattedMoment: import("vue").ComputedRef<any>;
+    };
     namespace props {
         export namespace badge {
             export let type: ObjectConstructor;

@@ -1,16 +1,14 @@
 <template>
   <section :class="containerClasses" class="col-lg-8 row-mt-4 mx-auto justify-content-center container">
-    <component :is="'h' + headlineLevel" v-if="headline" class="space-bottom-1">
-      {{ headline }}
-    </component>
+    <headline :level="'h' + headlineLevel" v-if="headline" class="space-bottom-1">{{ headline }}</headline>
+
     <div v-if="subline" class="testimonial-grid__subline">
       {{ subline }}
     </div>
     <div class="row">
-      <div v-if="contents" v-for="(testimonial, idx) in contents.slice(0, toggleLimitValue)" :key="idx" :class="columnClass"
-        class="testimonial-grid__content-block">
-        <testimonial-teaser :href="testimonial.href" :name="testimonial.name" :title="testimonial.title"
-          :img="testimonial.img" :video="testimonial.video" :bgColor="testimonial.bgColor" />
+      <div v-if="contents" v-for="(testimonial, idx) in slicedContents" :key="idx"
+        :class="columnClass" class="testimonial-grid__content-block">
+        <testimonial-teaser v-bind="testimonial" />
       </div>
     </div>
     <div class="testimonial-grid__cta d-flex justify-content-center mx-auto">
@@ -93,6 +91,9 @@ export default {
     toggleCtaText() {
       return this.toggleLimitValue === this.limitValue ? this.cta.text : this.cta.toggleText;
     },
+    slicedContents() {
+      return this.contents.slice(0, this.toggleLimitValue);
+    }
   },
   methods: {
     toggleLimit() {
@@ -101,4 +102,5 @@ export default {
   },
 };
 </script>
+
 

@@ -1,5 +1,6 @@
 import BaseComponent from './base-component.js';
 
+// TODO propably deprecated because google-maps is not used anymore. google-map is used instead.
 class GoogleMaps extends BaseComponent {
   static rootSelector = '.google-maps';
 

@@ -336,7 +336,7 @@ class Tools {
   static getAssetPath(path) {
     const absolutePath = '/_includes/shared-components/assets/';
 
-    return Tools.isStorybook() ? `../assets/${path}` : `${absolutePath}${path}`;
+    return Tools.isStorybook() ? `../${path}` : `${absolutePath}${path}`;
   }
 
   static findRecursive(obj, matcher, callback) {
@@ -455,6 +455,20 @@ class Tools {
     }
 
     return null;
+  }
+
+  static getFormattedDate(date, locale = 'de-DE') {
+    if (!date) return '';
+
+    const formattedDate = new Date(date);
+
+    if (isNaN(formattedDate.getTime())) return date;
+
+    return formattedDate.toLocaleDateString(locale, {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    });
   }
 
   static XMLtoJSON(xml) {
