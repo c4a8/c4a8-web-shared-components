@@ -19,7 +19,6 @@
 
 <script>
 import Tools from '../utils/tools.js';
-import { useI18n } from '#imports';
 
 export default {
   tagName: 'testimonial-grid',
