@@ -23,7 +23,7 @@
           </div>
         </div>
         <div :class="textImageSecondColClasses" data-utility-animation-step="1">
-          <slot />
+          <slot v-if="top" />
           <badge v-if="badge" :text="badge.text" :icon="badge.icon" :uppercase="!badge.noUppercase"
             classes="text-image__badge" />
           <span v-if="overline" class="text-image__overline d-inline-block mb-2 font-size-2">
@@ -43,10 +43,12 @@
             </ul>
           </div>
           <div :class="textImageLightTextClass" v-html="copy"></div>
+
+          <slot v-if="!top" />
+
           <div v-if="list" class="pt-4 pt-lg-6 pb-6">
             <cta-list :list="list" />
           </div>
-
         </div>
         <div v-if="cta" class="text-image__cta col-lg-12">
           <cta :text="cta.text" button :href="cta.href" :trigger="cta.trigger" />
@@ -100,6 +102,7 @@ export default {
     headlineClasses: String,
     listTitle: String,
     listItems: Array,
+    top: { type: Boolean, default: false },
   },
   computed: {
     textImageLightText() {
