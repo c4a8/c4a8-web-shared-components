@@ -1,6 +1,7 @@
 declare namespace _default {
     let tagName: string;
     namespace computed {
+        function hasNoAspectRatio(): true | undefined;
         function flatSelections(): any;
         function storedItems(): never[];
         function normalizedItems(): any;
@@ -46,9 +47,30 @@ declare namespace _default {
     };
     namespace props {
         let spacing: StringConstructor;
-        let items: StringConstructor;
+        let items: ArrayConstructor;
         let maxBlogPosts: NumberConstructor;
-        let dataAuthors: StringConstructor;
+        let dataAuthors: ObjectConstructor;
+        namespace defaultView {
+            export let type: StringConstructor;
+            let _default: string;
+            export { _default as default };
+        }
+        namespace onlyView {
+            let type_1: StringConstructor;
+            export { type_1 as type };
+        }
+        namespace hasHighlight {
+            let type_2: BooleanConstructor;
+            export { type_2 as type };
+            let _default_1: boolean;
+            export { _default_1 as default };
+        }
+        namespace enabledDropdowns {
+            let type_3: ArrayConstructor;
+            export { type_3 as type };
+            function _default_2(): string[];
+            export { _default_2 as default };
+        }
     }
 }
 export default _default;

@@ -13,7 +13,7 @@ declare namespace _default {
             export { _default_1 as default };
         }
         namespace headlineLevel {
-            let type_2: (StringConstructor | NumberConstructor)[];
+            let type_2: NumberConstructor;
             export { type_2 as type };
             let _default_2: number;
             export { _default_2 as default };
@@ -45,8 +45,8 @@ declare namespace _default {
             let type_7: ObjectConstructor;
             export { type_7 as type };
             function _default_6(): {
-                text: string;
-                toggleText: string;
+                text: null;
+                toggleText: null;
                 href: null;
             };
             export { _default_6 as default };
@@ -74,8 +74,9 @@ declare namespace _default {
     function mounted(): void;
     namespace computed {
         function containerClasses(): any[];
-        function columnClass(): any;
+        function columnClass(): string;
         function toggleCtaText(): any;
+        function slicedContents(): any;
     }
     namespace methods {
         function toggleLimit(): void;
