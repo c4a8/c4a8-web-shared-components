@@ -77,7 +77,7 @@ declare namespace _default {
         function columnClass(): string;
         function toggleCtaText(): any;
         function slicedContents(): any;
-        function showCta(): boolean;
+        function showCta(): any;
     }
     namespace methods {
         function toggleLimit(): void;

@@ -110,11 +110,8 @@ export default {
     slicedContents() {
       return this.contents.slice(0, this.toggleLimitValue);
     },
-    showCta(){
-      if(this.contents.length > this.limitValue){
-        return true;
-      }
-      return false;
+    showCta() {
+      return this.contents.length > this.limitValue;
     }
   },
   methods: {
