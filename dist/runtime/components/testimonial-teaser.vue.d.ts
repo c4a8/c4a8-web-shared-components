@@ -61,17 +61,13 @@ declare namespace _default {
         }
     }
     function mounted(): void;
-    namespace methods {
-        function getVideoState(): void;
-        function setVideoPlayed(): void;
-    }
     namespace computed {
         function aspectRatioClass(): string;
         function imgObjectPositionClass(): string;
         function cornerPosition(): "testimonial-teaser__corner--left" | "testimonial-teaser__corner--right";
         function bgStyling(): string;
         function nameReplaced(): any;
-        function imgSrcSet(): void;
+        function imgSrcSet(): any;
     }
 }
 export default _default;
