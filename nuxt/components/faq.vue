@@ -60,7 +60,7 @@ export default {
       return this.index ? `--utility-animation-index: ${this.index}` : null;
     },
     classList() {
-      return ['faq', 'utility-animation', 'container space-top-2', 'vue-component'];
+      return ['faq', 'utility-animation', 'container space-top-2', 'vue-component',  this.spacing];
     },
     headlineClasses() {
       return `faq__headline fade-in-bottom ${this.headline?.classes ? this.headline.classes : ''}`;
@@ -144,6 +144,7 @@ export default {
     headline: Object,
     entries: Array,
     index: Number,
+    spacing: String
   },
 };
 </script>

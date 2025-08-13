@@ -6,7 +6,7 @@ declare namespace _default {
     function beforeMount(): void;
     namespace computed {
         function style(): any;
-        function classList(): string[];
+        function classList(): any[];
         function headlineClasses(): string;
         function headlineLevel(): any;
     }
@@ -23,6 +23,7 @@ declare namespace _default {
         let headline: ObjectConstructor;
         let entries: ArrayConstructor;
         let index: NumberConstructor;
+        let spacing: StringConstructor;
     }
 }
 export default _default;
