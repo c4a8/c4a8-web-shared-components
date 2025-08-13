@@ -60,9 +60,6 @@ declare namespace _default {
             export { _default_5 as default };
         }
     }
-    function data(): {
-        videoPlaying: boolean;
-    };
     function mounted(): void;
     namespace computed {
         function aspectRatioClass(): string;

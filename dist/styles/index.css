@@ -37383,7 +37383,7 @@ svg.streamline-icon {
 .card.vue-component:not(.card--no-link):hover {
   cursor: pointer;
 }
-.card.vue-component.card--row .card__img-top img {
+.card.vue-component.card--row:not(.card--no-aspect-ratio) .card__img-top img {
   aspect-ratio: 16/9;
 }
 .card.vue-component.card--row .card__body {
@@ -37505,6 +37505,22 @@ svg.streamline-icon {
     height: 100%;
   }
 }
+.card.vue-component:not(.card--no-aspect-ratio) .card__img-top {
+  position: relative;
+}
+.card.vue-component:not(.card--no-aspect-ratio) .card__img-top:before {
+  content: "";
+  display: block;
+  width: 100%;
+  padding-top: calc(9 / 16 * 100%);
+}
+.card.vue-component:not(.card--no-aspect-ratio) .card__img-top > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 .card.vue-component .richtext p + .card__link {
   margin-top: 0.5rem;
 }
@@ -37516,21 +37532,7 @@ svg.streamline-icon {
   display: none;
 }
 .card.vue-component .card__img-top {
-  position: relative;
   overflow: hidden;
-}
-.card.vue-component .card__img-top:before {
-  content: "";
-  display: block;
-  width: 100%;
-  padding-top: calc(9 / 16 * 100%);
-}
-.card.vue-component .card__img-top > * {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
 }
 .card.vue-component .card__img-top:not(.card-img--long) img {
   width: 100%;
@@ -46706,20 +46708,20 @@ shape {
 }
 
 .testimonial-grid__cta {
-  padding-top: 4rem !important;
+  padding-top: 4rem;
 }
 @media (max-width: 991.98px) {
   .testimonial-grid__cta {
-    padding-top: 0rem !important;
+    padding-top: 0rem;
   }
 }
 
 .testimonial-grid__subline {
-  padding-bottom: 4rem !important;
+  padding-bottom: 4rem;
 }
 @media (max-width: 991.98px) {
   .testimonial-grid__subline {
-    padding-bottom: 2rem !important;
+    padding-bottom: 2rem;
   }
 }
 

@@ -10,7 +10,6 @@ declare namespace _default {
         function view(): void;
         function items(): void;
     }
-    function created(): void;
     function updated(): void;
     namespace methods {
         function getBlogTitlepic(item: any): any;
@@ -23,6 +22,7 @@ declare namespace _default {
         let items: ArrayConstructor;
         let view: StringConstructor;
         let dataAuthors: ObjectConstructor;
+        let hasNoAspectRatio: BooleanConstructor;
     }
 }
 export default _default;

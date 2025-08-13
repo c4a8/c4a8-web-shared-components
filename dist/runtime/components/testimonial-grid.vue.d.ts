@@ -78,6 +78,7 @@ declare namespace _default {
         function toggleCtaText(): any;
         function slicedContents(): any;
         function showCta(): any;
+
     }
     namespace methods {
         function toggleLimit(): void;

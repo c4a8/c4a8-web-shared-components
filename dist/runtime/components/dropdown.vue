@@ -70,7 +70,7 @@ export default {
   tagName: 'dropdown',
   props: {
     label: String,
-    items: String,
+    items: Array,
     filterable: {
       default: null,
     },
