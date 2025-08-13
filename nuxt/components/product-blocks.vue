@@ -22,7 +22,7 @@
               <figure :class="['product-blocks__img', { 'mx-auto': item.copy === '' }, 'mb-4']">
                 <v-img :img="item.image" :cloudinary="item.cloudinary" :alt="item.alt" v-if="item.image" />
               </figure>
-              <h3 v-if="item - headline">{{ item.headline }}</h3>
+              <h3 v-if="item.headline">{{ item.headline }}</h3>
               <p v-if="item.copy">{{ item.copy }}</p>
               <ul v-if="item.bulletList" class="dashed">
                 <li v-for="(bulletListItem, bulletListIndex) in item.bulletList" :key="bulletListIndex">
