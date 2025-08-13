@@ -172,3 +172,61 @@ strong[id] {
   height: 25px;
 }
 
+.portfolio-img:hover {
+  -ms-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.portfolio-items {
+  column-gap: 40px;
+}
+
+.portfolio-single {
+  width: 378px;
+  left: 0px;
+  top: 0px;
+}
+
+@media (min-width: 380px) {
+  .portfolio-items {
+    column-count: 1;
+  }
+}
+
+@media (min-width: 480px) {
+  .portfolio-items {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 800px) {
+  .portfolio-items {
+    column-count: 3;
+  }
+}
+
+@media (min-width: 1100px) {
+  .portfolio-items {
+    column-count: 3;
+  }
+}
+
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 10px;
+  max-width: 600px;
+}
+
+.gallery-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-item {
+  display: flex;
+  flex-direction: column;
+}

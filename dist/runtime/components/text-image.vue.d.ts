@@ -53,6 +53,8 @@ declare namespace _default {
             export { _default_3 as default };
         }
         let headlineClasses: StringConstructor;
+        let listTitle: StringConstructor;
+        let listItems: ArrayConstructor;
     }
     namespace computed {
         function textImageLightText(): any;

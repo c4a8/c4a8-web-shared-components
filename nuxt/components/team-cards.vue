@@ -3,22 +3,20 @@
     <div class="team-cards container space-2">
       <div class="row mx-n2 mb-5">
         <div v-for="(item, index) in teamCards.items" :key="index" class="col-sm-6 col-lg-4 px-2 mb-3">
-          <!-- Team -->
           <div class="card h-100">
             <div class="card-body has-card-background">
               <div style="margin-bottom:50px;">
-                <img v-if="item.img" :src="item.img" :alt="item.alt" class="img-fluid" />
+                <v-img v-if="item.img" :src="item.img" :alt="item.alt" class="img-fluid"/>
               </div>
-              <h3>{{ item.name }}</h3>
-              <h4>{{ item.job }}</h4>
+              <headline level="h3" :text="item.name"/>
+              <headline level="h4" :text="item.job"/>
               <p>{{ item.description }}</p>
               <br>
               <div style="display: flex; gap: 1rem;">         
                  <icon icon="ribbon" size="medium"/>
                 <div>{{ item.skills }}</div>
               </div>
-            </div>
-           
+            </div>          
             <div class="card-footer">
               <ul class="list-inline mb-0">
                 <li v-if="item.twitter" class="list-inline-item">
@@ -34,7 +32,6 @@
               </ul>
             </div> 
           </div>
-
         </div>
       </div>
     </div>
@@ -278,9 +275,6 @@ export default {
     },
     tags: Array,
   },
-  teamCards: {
-    type: Object,
-    required: true,
-  },
+
 };
 </script>
