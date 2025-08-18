@@ -1,9 +1,13 @@
 <template>
-  <page-detail :style="{
-    '--page-detail-color': `var(${detailColor})`,
-    '--color-icon-hover-color': `var(${detailColor})`,
-    '--color-page-detail-shape': detailShapeColor,
-  }" :detail-shape-color="detailShapeColor">
+  <page-detail
+    :style="{
+      '--page-detail-color': `var(${detailColor})`,
+      '--color-icon-hover-color': `var(${detailColor})`,
+      '--color-page-detail-shape': detailShapeColor,
+    }"
+    :detail-shape-color="detailShapeColor"
+    :no-content="!hasContent"
+  >
     <template #shape>
       <div class="page-detail__shape-container container">
         <div class="row">
@@ -16,9 +20,13 @@
       </div>
     </template>
     <template #body>
-      <div v-if="content || body">
-        <event-detail-content v-if="content" class="page-detail__description has-no-border richtext" tag="main"
-          v-bind="contentData" />
+      <div v-if="hasContent">
+        <event-detail-content
+          v-if="content"
+          class="page-detail__description has-no-border richtext"
+          tag="main"
+          v-bind="contentData"
+        />
         <ContentRenderer :value="body" tag="main" class="page-detail__description has-no-border richtext" />
       </div>
       <div v-else>
@@ -73,9 +81,12 @@ export default {
     body: Object,
     content: Object,
     bottomText: String,
-    price: String
+    price: String,
   },
   computed: {
+    hasContent() {
+      return this.content || this.body;
+    },
     introData() {
       return {
         badge: this.badge,
@@ -84,7 +95,6 @@ export default {
         time: this.time,
         price: this.price,
         headlineText: this.headlineText,
-        //headlineLevel: this.headlineLevelComputed,
         headlineClasses: this.headlineClassesComputed,
         name: this.author,
         showBadge: this.showBadge,
