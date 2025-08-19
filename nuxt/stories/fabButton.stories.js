@@ -53,7 +53,7 @@ export const Contact = {
               {
                 text: '+49 69 4005520',
                 href: 'tel:+49 69 4005520',
-                details: 'lorem ipsum dolor sit amet lore',
+                notes: 'lorem ipsum dolor sit amet lore lorem ipsum dolor sit amet lore',
                 icon: 'site/phone',
               },
             ],
