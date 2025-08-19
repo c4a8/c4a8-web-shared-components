@@ -12,20 +12,12 @@ export default {
       description: 'The Modal that gets called after fab Button is pressed',
       type: 'object',
     },
-    noSticky: {
-      description: 'Disables Sticky for the fab Button',
-      type: 'boolean',
-    },
     bgColor: {
       description: 'Sets the Background Color of the fab Button',
       type: 'string',
     },
     iconColor: {
       description: 'Sets the color of the Icon',
-      type: 'string',
-    },
-    trigger: {
-      description: 'Trigger for the Modal',
       type: 'string',
     },
   },
