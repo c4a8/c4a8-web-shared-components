@@ -34,8 +34,6 @@ export default {
 export const Contact = {
   args: {
     modal: {
-      show: true,
-      application: true,
       contact: {
         headline: 'Hast du Fragen? Sprich uns gerne an!',
         infos: {
