@@ -42,9 +42,7 @@ declare namespace _default {
     namespace methods {
         function bindEvents(): void;
         function unbindEvents(): void;
-        function onIconClick(e: any): void;
         function handleOutsideClick(e: any): void;
-        function handleClose(): void;
         function toggleModal(): void;
     }
 }

@@ -5,8 +5,9 @@
         <div class="fab-button__close" ref="close" @click="toggleModal">
           <icon icon="close" :circle="true" :hover="true" size="medium" />
         </div>
+        <contact v-if="modal.contact" :contact="modal.contact.infos" :collapsed="true" />     
         <span v-if="modal.content">{{ modal.content }}</span>
-        <contact v-if="modal.contact" :contact="modal.contact.infos" :collapsed="true" />
+        <slot></slot>
       </div>
       <div class="fab-button__icon sticky-bottom" :style="fabButtonIconStyle" ref="icon" @click="toggleModal">
         <icon :icon="icon" size="large" />
@@ -16,7 +17,6 @@
 </template>
 
 <script>
-import Events from '../utils/events.js';
 import Tools from '../utils/tools.js';
 
 export default {
@@ -64,7 +64,6 @@ export default {
     },
   },
   mounted() {
-    this.resetDelay = 300;
     this.bindEvents();
   },
   beforeDestroy() {
@@ -72,19 +71,10 @@ export default {
   },
   methods: {
     bindEvents() {
-      document.addEventListener(Events.FORM_AJAX_SUBMIT, this.handleSubmit);
       window.addEventListener('click', this.handleOutsideClick);
     },
     unbindEvents() {
-      document.removeEventListener(Events.FORM_AJAX_SUBMIT, this.handleSubmit);
       window.removeEventListener('click', this.handleOutsideClick);
-    },
-    onIconClick(e) {
-      if (this.hasTrigger()) {
-        this.handleTriggerClick(e);
-      } else {
-        this.toggleModal();
-      }
     },
     handleOutsideClick(e) {
       if (
@@ -92,18 +82,8 @@ export default {
         Tools.isOutsideOf('fab-button', e) &&
         Tools.isOutsideOf('fab-trigger', e)
       ) {
-        this.handleClose();
+        this.toggleModal();
       }
-    },
-    handleClose() {
-      this.toggleModal();
-      setTimeout(() => {
-        document.dispatchEvent(
-          new CustomEvent(Events.FAB_BUTTON_CLOSE, {
-            detail: { target: this.$refs.root },
-          })
-        );
-      }, this.resetDelay);
     },
     toggleModal() {
       const isOpen = this.modalDisplay === 'block';
