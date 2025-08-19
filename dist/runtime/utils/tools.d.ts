@@ -86,4 +86,5 @@ declare class Tools {
     static cleanDate(date: any): any;
     static applyKramdownAttrs(body: any): any[];
     static getExternalLanguageText(locale: any, lang: any, translateFn: any): any;
+    static gotoHome(): void;
 }

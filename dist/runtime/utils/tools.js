@@ -724,6 +724,10 @@ class Tools {
 
     return null;
   }
+
+  static gotoHome() {
+    window.location.href = '/';
+  }
 }
 
 export default Tools;

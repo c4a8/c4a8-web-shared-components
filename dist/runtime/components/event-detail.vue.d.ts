@@ -50,6 +50,7 @@ declare namespace _default {
         let price: StringConstructor;
     }
     namespace computed {
+        function hasContent(): any;
         function introData(): any;
         function contentData(): any;
         function headlineLevelComputed(): any;

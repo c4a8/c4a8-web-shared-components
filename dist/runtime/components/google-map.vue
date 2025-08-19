@@ -19,20 +19,22 @@
 
     <div class="position-md-absolute top-0 right-0 bottom-0 left-0">
       <div class="google-map__container min-h-300rem h-100 rounded-lg">
-        <l-map
-          ref="map"
-          v-model:zoom="zoom"
-          :options="leafletOptions"
-          :center="center"
-          :useGlobalLeaflet="false"
-          class="min-h-300rem"
-          v-if="loaded"
-        >
-          <l-tile-layer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"></l-tile-layer>
-          <l-marker :lat-lng="center" :icon="markerIcon"
-            ><l-popup>{{ location?.street }}<br />{{ location?.city }}</l-popup></l-marker
+        <ClientOnly>
+          <l-map
+            ref="map"
+            v-model:zoom="zoom"
+            :options="leafletOptions"
+            :center="center"
+            :useGlobalLeaflet="false"
+            class="min-h-300rem"
+            v-if="loaded"
           >
-        </l-map>
+            <l-tile-layer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"></l-tile-layer>
+            <l-marker :lat-lng="center" :icon="markerIcon"
+              ><l-popup>{{ location?.street }}<br />{{ location?.city }}</l-popup></l-marker
+            >
+          </l-map>
+        </ClientOnly>
       </div>
     </div>
   </div>
