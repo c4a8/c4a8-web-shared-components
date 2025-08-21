@@ -165,12 +165,12 @@
 }
 
 .contact__notes {
-  display: flex;
   @include font-style('font-size-1');
 
   & {
     flex: 1 0 100%;
-  }
+  }  
+  display: flex;
 }
 
 .contact__person {
