@@ -14,6 +14,7 @@
                     <icon :icon="icon" size="large" />
                 </div>
             </div>
+            
         </sticky-block>
         <a class="fab-trigger" ref="link"></a>
     </div>
