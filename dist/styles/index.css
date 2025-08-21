@@ -40042,6 +40042,7 @@ label.dropdown__checkbox-label::after {
   z-index: 230;
   position: relative;
   width: 100%;
+  right: 1em;
 }
 .fab-button.fab-button--sticky:not([style^=height]) .fab-button__modal.is-off-screen {
   transform: translateX(0);

@@ -8,6 +8,7 @@ $fab-button-scroll-top: 200px;
 
   position: relative;
   width: 100%;
+  right: 1em;
 
   &.fab-button--sticky {
     &:not([style^='height']) {
