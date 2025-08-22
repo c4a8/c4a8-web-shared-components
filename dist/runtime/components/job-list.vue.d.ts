@@ -25,6 +25,7 @@ declare namespace _default {
         function getDetailUrl(data: any): any;
     }
     function data(): {
+        translationData: null;
         loadingDelay: number;
         sleepDelay: number;
         loading: {};
