@@ -12,6 +12,9 @@ declare namespace _default {
         sizes: null;
     };
     let expose: string[];
+    function setup(): {
+        config: {};
+    };
     namespace computed {
         function classList(): (string | (() => any[]))[];
         function classListComponent(): any[];
