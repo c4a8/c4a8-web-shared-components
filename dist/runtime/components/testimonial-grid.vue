@@ -11,7 +11,7 @@
         <testimonial-teaser v-bind="testimonial" />
       </div>
     </div>
-    <div class="testimonial-grid__cta d-flex justify-content-center mx-auto">
+    <div v-if="showCta" class="testimonial-grid__cta d-flex justify-content-center mx-auto">
       <cta :text="toggleCtaText" :skin="cta.skin" :monochrome="cta.monochrome" @click="toggleLimit" />
     </div>
   </section>
@@ -109,6 +109,9 @@ export default {
     },
     slicedContents() {
       return this.contents.slice(0, this.toggleLimitValue);
+    },
+    showCta() {
+      return this.contents.length > this.limitValue;
     }
   },
   methods: {

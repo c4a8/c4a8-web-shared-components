@@ -106,6 +106,15 @@ const Cloudinary = {
       figure: 'never',
       loading: 'auto',
     },
+    animated: {
+      min_width: 320,
+      max_width: 650,
+      fallback_max_width: 650,
+      steps: 5,
+      sizes: '(min-width: 50rem) 50rem, 90vw',
+      figure: 'never',
+      loading: 'auto',
+    },
   },
 };
 
