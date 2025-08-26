@@ -228,6 +228,7 @@ export default {
         this.hasStickyScroller ? StickyScroller.getRootClass() : '',
         this.shapeMobileOrder ? 'hero--shape-mobile-order' : '',
         this.shapeIsSVG ? 'hero--shape-svg' : '',
+        this.shapeMobileSmall ? 'hero--shape-mobile-small' : '',
       ];
     },
     shape() {
@@ -361,6 +362,9 @@ export default {
     },
     shapeMobileOrder() {
       return this.shape && this.shape.mobileOrder ? this.shape.mobileOrder : null;
+    },
+    shapeMobileSmall() {
+      return this.shape && (this.shape.mobileSmall || this.shape.mobileSmall) ? true : false;
     },
     shapePosition() {
       if (!this.shape) return null;
