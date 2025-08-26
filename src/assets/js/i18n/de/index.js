@@ -24,6 +24,7 @@ const de = {
   apply: 'Anwenden',
   reset: 'Zurücksetzen',
   jobListEmpty: 'Aktuell haben wir keine Stellenangebote in dieser Sprache.',
+  jobListYoungProfessionalsEmpty: 'Wir haben derzeit keine freien Stellenangebote für Young Professionals. Hast du trotzdem Lust, uns näher kennenzulernen? Dann schicke uns gerne eine Initiativbewerbung.',
   imageCredits: 'Bildnachweis',
 };
 

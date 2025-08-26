@@ -37938,6 +37938,9 @@ svg.streamline-icon {
 }
 
 .contact__notes {
+  display: flex;
+}
+.contact__notes {
   font-size: 1rem;
   line-height: 1.6;
 }
@@ -40039,6 +40042,7 @@ label.dropdown__checkbox-label::after {
   z-index: 230;
   position: relative;
   width: 100%;
+  right: 1em;
 }
 .fab-button.fab-button--sticky:not([style^=height]) .fab-button__modal.is-off-screen {
   transform: translateX(0);
@@ -42255,6 +42259,9 @@ div.custom-control .custom-control-input,
   .hero.hero--shape-mobile-order .hero__background-shape-wrapper.hero__background-shape-wrapper {
     display: none;
   }
+}
+.hero.hero--shape-mobile-small .hero__content-shape img {
+  width: 50%;
 }
 .hero.is-light {
   --hero-copy-color: var(--color-copy-light);
