@@ -1,0 +1,5 @@
+import{G as r}from"./EWO9lN4n.js";import"./mAevt-_-.js";import"./C8TDqIAT.js";const p={component:r,argTypes:{address:{description:"Contains Information like (Name/Street/Postal Code/City)",type:"object"},coords:{description:"Coordinates split into Latitude and Longitude",type:"object"},marker:{description:"Coordinates split into Latitude and Longitude for the marker",type:"object"},headline:{description:"Headline for the Google Map Component",type:"object"}},title:"Components/Google Maps"},s={headline:{text:"Hier sind wir",level:"h3"},coords:{latitude:"50.10343087097074",longitude:"8.760059035466721"},marker:{latitude:"50.10343087097074",longitude:"8.760059035466721"},address:{name:"glueckkanja AG",street:"Kaiserstraße 39",postalCode:"63065",city:"Offenbach am Main"}},e={args:{...s}};var o,t,a;e.parameters={...e.parameters,docs:{...(o=e.parameters)==null?void 0:o.docs,source:{originalSource:`{
+  args: {
+    ...baseArgs
+  }
+}`,...(a=(t=e.parameters)==null?void 0:t.docs)==null?void 0:a.source}}};const c=["GoogleMaps"];export{e as GoogleMaps,c as __namedExportsOrder,p as default};
