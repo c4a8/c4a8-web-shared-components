@@ -8,19 +8,23 @@ declare namespace _default {
             "--color-copy": string | null;
             "--color-headlines": string | null;
         };
-        function itemsValue(): any;
     }
+    function mounted(): void;
     namespace methods {
-        function getItemStyle(index: any): any;
+        function getItemStyle(index: any): string;
     }
     namespace props {
-        let items: StringConstructor;
+        namespace items {
+            export let type: ArrayConstructor;
+            function _default(): never[];
+            export { _default as default };
+        }
         let headline: StringConstructor;
         let headlineLevel: StringConstructor;
         let headlineClasses: StringConstructor;
         namespace light {
-            let _default: boolean;
-            export { _default as default };
+            let _default_1: boolean;
+            export { _default_1 as default };
         }
         let bgColor: StringConstructor;
     }
