@@ -183,7 +183,7 @@ export default {
     getBaseAssetPath() {
       if (Tools.isTestingStorybook()) return this.img;
 
-      const baseURL = this.config.public.baseURL ?? '/';
+      const baseURL = this.config.public.baseURL && this.config.public.baseURL != '' ? this.config.public.baseURL : '/';
 
       return this.img?.indexOf('/assets/') !== -1
         ? this.img
