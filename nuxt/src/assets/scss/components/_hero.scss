@@ -61,6 +61,12 @@
     }
   }
 
+  &.hero--shape-mobile-small {
+    .hero__content-shape img {
+    width: 50%;
+}
+  }
+
   &.is-light {
     --hero-copy-color: var(--color-copy-light);
 

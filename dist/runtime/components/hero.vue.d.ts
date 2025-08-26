@@ -981,6 +981,7 @@ declare namespace _default {
         function shapeBottom(): any;
         function shapeTop(): any;
         function shapeMobileOrder(): any;
+        function shapeMobileSmall(): boolean;
         function shapePosition(): "hero--shape-top" | "hero--shape-bottom" | "hero--shape-center" | null;
         function shapeInContentMobile(): boolean;
         function shapeInContentValue(): boolean;

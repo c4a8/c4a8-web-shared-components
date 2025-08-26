@@ -42260,6 +42260,9 @@ div.custom-control .custom-control-input,
     display: none;
   }
 }
+.hero.hero--shape-mobile-small .hero__content-shape img {
+  width: 50%;
+}
 .hero.is-light {
   --hero-copy-color: var(--color-copy-light);
 }
