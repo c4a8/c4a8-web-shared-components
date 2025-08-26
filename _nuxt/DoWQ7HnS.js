@@ -1,1 +1,0 @@
-import{a3 as t}from"./F2yXClI3.js";const s=t("blog",{state:()=>({blogItems:[],blogView:"tile-view"}),getters:{getBlogItems:e=>e.blogItems,getBlogView:e=>e.blogView},actions:{setBlogItems(e){this.blogItems=e},setBlogView(e){this.blogView=e}}});export{s as u};
