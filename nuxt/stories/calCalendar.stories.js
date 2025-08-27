@@ -7,5 +7,7 @@ export default {
 };
 
 export const Default = {
-  args: {},
+  args: {
+    show: true,
+  },
 };

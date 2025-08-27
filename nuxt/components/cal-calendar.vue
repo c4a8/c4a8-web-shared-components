@@ -1,5 +1,13 @@
 <template>
-  <div style="width: 100%; height: 100%; overflow: scroll" :id="calendarElementId"></div>
+  <div class="cal-calendar">
+    <modal :show="show" class="cal-calendar__modal" :modal-id="modalId">
+      <div class="container">
+        <div class="row">
+          <div style="width: 100%; height: 100%; overflow: scroll" :id="calendarElementId"></div>
+        </div>
+      </div>
+    </modal>
+  </div>
 </template>
 
 <script>
@@ -22,10 +30,16 @@ export default {
       type: String,
       default: '#fafafa',
     },
+    show: {
+      type: Boolean,
+    },
   },
   computed: {
     calendarElementId() {
       return `my-cal-inline-${this.calendarId}`;
+    },
+    modalId() {
+      return `modal-${this.calendarId}`;
     },
   },
   mounted() {

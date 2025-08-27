@@ -24,9 +24,14 @@ declare namespace _default {
             let _default_3: string;
             export { _default_3 as default };
         }
+        namespace show {
+            let type_4: BooleanConstructor;
+            export { type_4 as type };
+        }
     }
     namespace computed {
         function calendarElementId(): string;
+        function modalId(): string;
     }
     function mounted(): void;
     namespace methods {

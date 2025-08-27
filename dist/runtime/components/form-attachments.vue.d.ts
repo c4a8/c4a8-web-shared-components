@@ -4,7 +4,7 @@ declare namespace _default {
         isDragging: boolean;
         hasError: boolean;
         filesLength: number;
-        files: DataTransfer;
+        files: null;
     };
     namespace computed {
         function filesList(): any[] | null;
