@@ -182,7 +182,8 @@ export default {
         filterJobs(data, orderedList) {
             this.data.objects = orderedList;
 
-            const gender = window.i18n?.translate("gender");
+            const gender = this.$t('gender');
+
             const filteredList = [];
             
             let counter = 0;
