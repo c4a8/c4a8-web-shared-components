@@ -3,7 +3,9 @@
     <modal :show="show" class="cal-calendar__modal" :modal-id="modalId">
       <div class="container">
         <div class="row">
-          <div style="width: 100%; height: 100%; overflow: scroll" :id="calendarElementId"></div>
+          <div class="col">
+            <div style="width: 100%; height: 80vh; overflow: scroll" :id="calendarElementId"></div>
+          </div>
         </div>
       </div>
     </modal>
