@@ -45901,6 +45901,20 @@ shape {
   background-color: var(--color-table-mark);
 }
 
+.agenda {
+  width: 100%;
+  border-collapse: collapse;
+}
+.agenda td {
+  padding: 10px;
+  border-top: 1px solid #fcd116;
+  text-align: left;
+  vertical-align: top;
+}
+.agenda tr:nth-child(even) {
+  background-color: rgba(252, 209, 22, 0.2);
+}
+
 .tab-content p {
   font-size: 1.125rem;
   line-height: 1.6667em;
