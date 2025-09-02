@@ -8,6 +8,8 @@ export default {
 
 export const Default = {
   args: {
-    targetDate: new Date(Date.now() + 1000 * 60 * 60 * 24), // 1 day from now
+    targetDate: new Date(2025, 10, 25),
+    bgColor: '#feda46',
+
   },
 };
