@@ -1,47 +1,61 @@
 <template>
-  <nav class="sidebar" :class="{ 'is-ready': isReady }">
-    <div class="sidebar__controls">
-      <template v-for="(item, idx) in sections" :key="idx">
-        <button
-          class="sidebar__button"
-          aria-haspopup="dialog"
-          :style="{
-            '--sidebar-section-color': item.color,
-            '--sidebar-section-width': item.width,
-            '--sidebar-section-index': idx,
-          }"
-          @click="openDialog(idx)"
-        >
-          <div class="sidebar__section-bar"></div>
-          <div class="sidebar__section-content">
-            <div class="sidebar__section-name">
-              <div class="sidebar__section-overline">{{ item.overline }}</div>
-              <div class="sidebar__section-title">{{ item.title }}</div>
-            </div>
-          </div>
-        </button>
-        <dialog
-          class="sidebar__dialog"
-          :ref="`dialog${idx}`"
-          :style="{
-            '--sidebar-dialog-background-color': item.color,
-            '--sidebar-dialog-text-color': item.textColor,
-          }"
-        >
-          <icon class="sidebar__dialog-close" name="close" @click="closeDialog(idx)" :hover="true" :circle="true" />
-          <div class="sidebar__dialog-content">
-            <div class="sidebar__dialog-wrapper">
-              <div class="sidebar__dialog-section">
-                <div class="sidebar__dialog-section-overline">{{ item.overline }}</div>
-                <div class="sidebar__dialog-section-title">{{ item.title }}</div>
+  <div class="sidebar" :class="{ [State.READY]: isReady }">
+    <nav class="sidebar__nav">
+      <div class="sidebar__controls">
+        <template v-for="(item, idx) in sections" :key="idx">
+          <button
+            class="sidebar__button"
+            aria-haspopup="dialog"
+            :style="{
+              '--sidebar-section-color': item.color,
+              '--sidebar-section-width': item.width,
+              '--sidebar-section-index': idx,
+            }"
+            @click="openDialog(idx)"
+          >
+            <div class="sidebar__section-bar"></div>
+            <div class="sidebar__section-content">
+              <div class="sidebar__section-name">
+                <div class="sidebar__section-overline">{{ item.overline }}</div>
+                <div class="sidebar__section-title">{{ item.title }}</div>
               </div>
-              <div class="sidebar__dialog-text" v-html="item.text"></div>
             </div>
-          </div>
-        </dialog>
-      </template>
-    </div>
-  </nav>
+          </button>
+          <dialog
+            class="sidebar__dialog"
+            :ref="`dialog${idx}`"
+            :style="{
+              '--sidebar-dialog-background-color': item.color,
+              '--sidebar-dialog-text-color': item.textColor,
+            }"
+          >
+            <icon class="sidebar__dialog-close" name="close" @click="closeDialog(idx)" :hover="true" :circle="true" />
+            <div class="sidebar__dialog-content">
+              <div class="sidebar__dialog-wrapper">
+                <div class="sidebar__dialog-section">
+                  <div class="sidebar__dialog-section-overline">{{ item.overline }}</div>
+                  <div class="sidebar__dialog-section-title">
+                    {{ item.title }}
+                  </div>
+                </div>
+                <div class="sidebar__dialog-infos">
+                  <div class="sidebar__dialog-text" v-html="item.text"></div>
+                  <cta class="sidebar__dialog-cta" v-if="item.cta" v-bind="item.cta" />
+                </div>
+              </div>
+            </div>
+          </dialog>
+        </template>
+      </div>
+    </nav>
+    <wrapper class="sidebar__main" :style="mainStyle">
+      <div class="sidebar__row row">
+        <div class="col">
+          <headline level="h1" class="sidebar__headline"><span v-html="headlineText"></span></headline>
+        </div>
+      </div>
+    </wrapper>
+  </div>
 </template>
 <script>
 import State from '../utils/state.js';
@@ -52,16 +66,44 @@ export default {
     sections: {
       type: Array,
     },
+    headlineText: {
+      type: String,
+    },
+    color: {
+      type: String,
+    },
+  },
+  computed: {
+    mainStyle() {
+      return {
+        '--color-headlines': this.color,
+      };
+    },
   },
   data() {
     return {
       isReady: false,
+      State,
     };
   },
   mounted() {
     this.isReady = true;
+
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  beforeUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
+    handleScroll() {
+      this.sections.forEach((_, index) => {
+        const dialog = this.getDialogByIndex(index);
+
+        if (dialog && dialog.open) {
+          dialog.close();
+        }
+      });
+    },
     getDialogByIndex(index) {
       const ref = this.$refs[`dialog${index}`];
 
