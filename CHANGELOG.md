@@ -1,5 +1,11 @@
 # Releases
 
+# Release 0.4.18
+
+- Adds Composable for Structured Data
+- Adds html formatting to list items
+- Fix to Job List Translation
+
 # Release 0.4.16
 
 - v-img uses baseURL now for their paths
