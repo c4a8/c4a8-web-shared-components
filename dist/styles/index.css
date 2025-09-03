@@ -49153,13 +49153,13 @@ shape {
 
 .upper-card {
   height: auto;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  border-top-left-radius: 0.1em;
+  border-top-right-radius: 0.1em;
 }
 
 .lower-card {
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 0.1em;
+  border-bottom-right-radius: 0.1em;
 }
 
 .flip-card {
@@ -49170,7 +49170,7 @@ shape {
 .flip-card.first {
   top: 0;
   transform-origin: bottom;
-  border-top-left-radius: 15px;
+  border-top-left-radius: 10px;
   border-top-right-radius: 15px;
 }
 
@@ -49178,8 +49178,8 @@ shape {
   bottom: 0;
   transform-origin: top;
   transform: rotateX(180deg);
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .flip-card.animate.first {
@@ -49191,39 +49191,19 @@ shape {
 }
 
 .upper-card,
-.flip-card.first,
+.flip-card.first {
+  overflow: hidden;
+  padding: 0.8em 0.25em 0 0.25em;
+  border-bottom: 0.1rem solid #fff;
+  line-height: 0;
+}
+
 .lower-card,
 .flip-card.second {
   overflow: hidden;
-  height: 0.8em;
-  padding-left: 1vw;
-  padding-right: 1vw;
-}
-
-.upper-card,
-.flip-card.first {
-  align-content: bottom;
-  padding-top: 0.4rem;
-  border-bottom: 0.1rem solid #fff;
-}
-@media (max-width: 991.98px) {
-  .upper-card,
-  .flip-card.first {
-    border-top: 0.1vw solid #fff;
-  }
-}
-
-.lower-card,
-.flip-card.second {
-  align-content: top;
-  line-height: 0em;
+  padding: 0 0.25em 0.8em 0.25em;
   border-top: 0.1rem solid #fff;
-}
-@media (max-width: 991.98px) {
-  .lower-card,
-  .flip-card.second {
-    border-top: 0.1vw solid #fff;
-  }
+  line-height: 0;
 }
 
 .label {

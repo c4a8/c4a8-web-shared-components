@@ -24,10 +24,10 @@
 
               <div :class="['contact__person-quote', contactPersonClass]">
                 <div class="contact__icon">
-                  <icon icon="quote" />
+                  <icon icon="quote" :color="quoteColor" />
                 </div>
                 <div class="contact__image-quote">
-                  <div class="contact__image-spacer">
+                  <div class="contact__image-spacer" v-if="!small">
                     <v-img
                       :img="contact.person.image"
                       :cloudinary="contact.person.cloudinary"
@@ -38,9 +38,19 @@
                   </div>
                 </div>
                 <div class="contact__quote font-size-3 middle font-weight-light">{{ contact.person.quote }}</div>
+                <div class="contact__image-spacer w-30 row mr-4 ml-auto" v-if="small">
+                    <v-img
+                      :img="contact.person.image"
+                      :cloudinary="contact.person.cloudinary"
+                      :alt="contact.person.alt"
+                      preset="cardSmall"
+                      lazy
+                    />
+                  </div>
                 <div class="d-flex flex-column">
                   <span>{{ contact.person.quotee }}</span>
                   <span class="font-weight-light">{{ contact.person.quoteeTitle }}</span>
+                           
                 </div>
               </div>
             </template>
@@ -152,7 +162,8 @@ export default {
     light: Boolean,
     hasGreyBackground: Boolean,
     svgShape: Object,
-    small: {type: Boolean, default: false}
+    small: {type: Boolean, default: false},
+    quoteColor: { type: String, default: 'var(--color-yellow)' },
   },
   computed: {
     classList() {

@@ -1,6 +1,6 @@
 .flip-unit {
-  margin-right: 0.5rem;
-  margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
 }
 
 .flip-unit-container {
@@ -12,7 +12,7 @@
 .lower-card,
 .flip-card.first,
 .flip-card.second {
-    --flip-unit-background-color: var(--color-yellow);     
+    --flip-unit-background-color: var(--color-yellow);
     --flip-unit-font-color: var(--color-black);
 
     background: var(--flip-unit-background-color);
@@ -21,13 +21,13 @@
 
 .upper-card {
     height: auto;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    border-top-left-radius: 0.1em;
+    border-top-right-radius: 0.1em;
 }
 
 .lower-card {
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 0.1em;
+    border-bottom-right-radius: 0.1em;
 }
 
 .flip-card {
@@ -38,7 +38,7 @@
 .flip-card.first {
     top: 0;
     transform-origin: bottom;
-    border-top-left-radius: 15px;
+    border-top-left-radius: 10px;
     border-top-right-radius: 15px;
 
 }
@@ -47,8 +47,8 @@
     bottom: 0;
     transform-origin: top;
     transform: rotateX(180deg);
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .flip-card.animate.first {
@@ -60,37 +60,20 @@
     animation: flipBottom 0.6s forwards;
 }
 
-
 .upper-card,
-.flip-card.first,
+.flip-card.first {
+    overflow: hidden;
+    padding: 0.8em 0.25em 0 0.25em;
+    border-bottom: 0.1rem solid #fff;
+    line-height: 0;
+}
+
 .lower-card,
 .flip-card.second {
     overflow: hidden;
-    height: 0.8em;
-    padding-left: calc(1vw);
-    padding-right: calc(1vw);
-}
-
-.upper-card,
-.flip-card.first {
-    align-content: bottom;
-    padding-top: 0.4rem;
-    border-bottom: 0.1rem solid #fff;
-
-    @include media-breakpoint-down(md) {
-         border-top: calc(0.1 * 1vw) solid #fff;
-    }
-}
-
-.lower-card,
-.flip-card.second {
-    align-content: top;
-    line-height: 0em;
+    padding: 0 0.25em 0.8em 0.25em;
     border-top: 0.1rem solid #fff;
-
-    @include media-breakpoint-down(md) {
-         border-top: calc(0.1 * 1vw) solid #fff;
-    }
+    line-height: 0;
 }
 
 .label {

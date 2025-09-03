@@ -1,11 +1,11 @@
 <template>
     <div class="display-flex">
         <div class="flip-unit-container h1">
-            <div class="upper-card" :style="style">{{ next }}</div>
-            <div class="lower-card" :style="style">{{ current }}</div>
-            <div class="flip-card first" :style="style" :class="{ animate: isFlipping }"><span>{{ current }}</span></div>
-            <div class="flip-card second" :style="style" :class="{ animate: isFlipping }"><span>{{ next }}</span></div>
-        </div>
+            <div class="upper-card" :style="style"><div >{{ next }}</div></div>
+          <div class="lower-card" :style="style"><div class="lower_num">{{ current }}</div></div>
+            <div class="flip-card first" :style="style" :class="{ animate: isFlipping }"><div class="upper_num">{{ current }}</div></div>
+          <div class="flip-card second" :style="style" :class="{ animate: isFlipping }"><span>{{ next }}</span></div>
+          </div>
         <div class="label font-size-4">{{ label }}</div>
     </div>
 </template>

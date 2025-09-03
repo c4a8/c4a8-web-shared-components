@@ -30,6 +30,12 @@ declare namespace _default {
             let _default_1: boolean;
             export { _default_1 as default };
         }
+        namespace quoteColor {
+            let type_2: StringConstructor;
+            export { type_2 as type };
+            let _default_2: string;
+            export { _default_2 as default };
+        }
     }
     namespace computed {
         function classList(): any[];

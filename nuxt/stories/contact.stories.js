@@ -358,6 +358,9 @@ export const Small = {
     small: true,
     quote: true,
     collapsed: true,
+    color: 'var(--color-black)',
+    boxBgColor: 'var(--color-yellow)',
+    quoteColor: 'var(--color-blue-jeans)',
     contact: {
       headline: 'Jetzt Gesprächstermin vereinbaren',
       level: 'h2',
