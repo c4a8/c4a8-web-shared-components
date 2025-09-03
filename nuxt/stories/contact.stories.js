@@ -353,4 +353,42 @@ export const WithQuoteBgColor = {
   },
 };
 
+export const Small = {
+  args: {
+    small: true,
+    quote: true,
+    collapsed: true,
+    contact: {
+      headline: 'Jetzt Gesprächstermin vereinbaren',
+      level: 'h2',
+      person: {
+        image: '/people/people-jan-geisbauer-csoc.jpg',
+        mail: 'sales@glueckkanja.com',
+        number: '+49694005520',
+        cloudinary: true,
+        alt: 'Quotation Svg/Picture Platzhalter',
+        name: 'Platzhalter',
+        quotee: 'Jan Geisbauer',
+        quoteeTitle: 'Cyber Security Lead',
+        quote:
+          'Bei den meisten unserer Emergency-Einsätze stellen wir immer wieder fest, dass die IT nicht gut genug auf Angriffe vorbereitet war. Ein pro-aktiver Security Check ist deshalb eine effiziente Investition in mehr Sicherheit zur Reduzierung der Ausfallzeiten.',
+        detailsHeader: 'Wir freuen uns darauf, von Ihnen zu hören',
+        details: [
+          {
+            text: '+49 69 4005520',
+            href: 'tel:+49 69 4005520',
+            details: 'lorem ipsum dolor sit amet lore',
+            icon: 'site/phone',
+          },
+          {
+            text: 'kontakt@glueckkanja.com',
+            href: 'mailto:kontakt@glueckkanja.com',
+            icon: 'site/mail',
+          },
+        ],
+      },
+    },
+  },
+};
+
 // TODO add shape variant without form
