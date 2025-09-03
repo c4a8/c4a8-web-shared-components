@@ -30,6 +30,7 @@ declare namespace _default {
         function contactVariantClass(): string[];
         function contactLight(): any;
         function contactBoxClass(): any;
+        function contactPersonClass(): any;
         function contactFormClass(): any;
         function contactContainerClass(): any;
         function contactRowClass(): any;

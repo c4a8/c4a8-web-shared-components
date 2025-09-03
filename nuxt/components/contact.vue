@@ -21,7 +21,8 @@
         <div :class="['contact__box', contactBoxClass]" data-utility-animation-step="1">
           <div :class="['contact__person', contactLight]">
             <template v-if="quote">
-              <div class="contact__person-quote">
+
+              <div :class="['contact__person-quote', contactPersonClass]">
                 <div class="contact__icon">
                   <icon icon="quote" />
                 </div>
@@ -175,6 +176,9 @@ export default {
     },
     contactBoxClass() {
       return this.collapsed ? '' : `col-md-10 col-lg-5 offset-lg-1 order-2`;
+    },
+    contactPersonClass() {
+      return this.small ? '' : `contact--small`;
     },
     contactFormClass() {
       return this.collapsed ? '' : 'col-md-10 col-lg-6 order-1';
