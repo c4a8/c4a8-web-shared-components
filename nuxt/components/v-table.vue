@@ -19,15 +19,13 @@
           <table v-else :class="['v-table table', styleClass]">
             <thead v-if="head && table.length">
               <tr>
-                <th v-for="(col, colIndex) in table[0]" :key="'head-' + colIndex">
-                  {{ col }}
+                <th v-for="(col, colIndex) in table[0]" :key="'head-' + colIndex" v-html="col">
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="(row, rowIndex) in tableRows" :key="'row-' + rowIndex">
-                <td v-for="(col, colIndex) in row" :key="'cell-' + rowIndex + '-' + colIndex">
-                  {{ col }}
+                <td v-for="(col, colIndex) in row" :key="'cell-' + rowIndex + '-' + colIndex" v-html="col">
                 </td>
               </tr>
             </tbody>
