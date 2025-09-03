@@ -96,6 +96,9 @@ export default {
     detailShapeColor: {
       type: String,
     },
+    noContent: {
+      type: Boolean,
+    },
   },
   computed: {
     hasShape() {
@@ -180,6 +183,8 @@ export default {
 
     document.addEventListener('scroll', this.handleScroll);
     document.addEventListener('resize', this.handleResize);
+
+    if (this.noContent) return Tools.gotoHome();
 
     this.store.setPageIsLoaded(true);
 

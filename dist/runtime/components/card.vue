@@ -206,6 +206,7 @@ export default {
         `${Tools.isTrue(this.large) === true ? 'card--large mb-11' : 'h-100'}`,
         this.variant,
         this.spacing,
+        this.hasNoAspectRatio ? 'card--no-aspect-ratio' : '',
         'vue-component',
       ];
     },
@@ -394,6 +395,9 @@ export default {
       default: null,
     },
     tags: Array,
+    hasNoAspectRatio: {
+      type: Boolean,
+    },
   },
 };
 </script>

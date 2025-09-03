@@ -2,7 +2,7 @@ declare namespace _default {
     let tagName: string;
     namespace props {
         let label: StringConstructor;
-        let items: StringConstructor;
+        let items: ArrayConstructor;
         namespace filterable {
             let _default: null;
             export { _default as default };

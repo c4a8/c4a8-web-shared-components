@@ -37383,7 +37383,7 @@ svg.streamline-icon {
 .card.vue-component:not(.card--no-link):hover {
   cursor: pointer;
 }
-.card.vue-component.card--row .card__img-top img {
+.card.vue-component.card--row:not(.card--no-aspect-ratio) .card__img-top img {
   aspect-ratio: 16/9;
 }
 .card.vue-component.card--row .card__body {
@@ -37505,6 +37505,22 @@ svg.streamline-icon {
     height: 100%;
   }
 }
+.card.vue-component:not(.card--no-aspect-ratio) .card__img-top {
+  position: relative;
+}
+.card.vue-component:not(.card--no-aspect-ratio) .card__img-top:before {
+  content: "";
+  display: block;
+  width: 100%;
+  padding-top: calc(9 / 16 * 100%);
+}
+.card.vue-component:not(.card--no-aspect-ratio) .card__img-top > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 .card.vue-component .richtext p + .card__link {
   margin-top: 0.5rem;
 }
@@ -37516,21 +37532,7 @@ svg.streamline-icon {
   display: none;
 }
 .card.vue-component .card__img-top {
-  position: relative;
   overflow: hidden;
-}
-.card.vue-component .card__img-top:before {
-  content: "";
-  display: block;
-  width: 100%;
-  padding-top: calc(9 / 16 * 100%);
-}
-.card.vue-component .card__img-top > * {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
 }
 .card.vue-component .card__img-top:not(.card-img--long) img {
   width: 100%;
@@ -37935,6 +37937,9 @@ svg.streamline-icon {
   pointer-events: none;
 }
 
+.contact__notes {
+  display: flex;
+}
 .contact__notes {
   font-size: 1rem;
   line-height: 1.6;
@@ -40037,6 +40042,7 @@ label.dropdown__checkbox-label::after {
   z-index: 230;
   position: relative;
   width: 100%;
+  right: 1em;
 }
 .fab-button.fab-button--sticky:not([style^=height]) .fab-button__modal.is-off-screen {
   transform: translateX(0);
@@ -42253,6 +42259,9 @@ div.custom-control .custom-control-input,
   .hero.hero--shape-mobile-order .hero__background-shape-wrapper.hero__background-shape-wrapper {
     display: none;
   }
+}
+.hero.hero--shape-mobile-small .hero__content-shape img {
+  width: 50%;
 }
 .hero.is-light {
   --hero-copy-color: var(--color-copy-light);

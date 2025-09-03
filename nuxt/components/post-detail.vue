@@ -137,6 +137,8 @@ export default {
 
     window.addEventListener('resize', this.checkStickyBlocks);
 
+    if (!this.normalizedPost) return Tools.gotoHome();
+
     this.store.setPageIsLoaded(true);
   },
   unmounted() {

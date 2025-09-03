@@ -39,7 +39,7 @@
           <div v-if="listItems">
             <headline level="h5" :text="listTitle"/>
             <ul class='dashed space-bottom-1'>
-              <li v-for="item in listItems" :key="item ">{{ item }}</li>
+              <li v-for="item in listItems" :key="item " v-html="item"></li>
             </ul>
           </div>
           <div :class="textImageLightTextClass" v-html="copy"></div>

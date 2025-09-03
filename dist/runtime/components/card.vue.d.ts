@@ -99,6 +99,10 @@ declare namespace _default {
             export { _default_10 as default };
         }
         let tags: ArrayConstructor;
+        namespace hasNoAspectRatio {
+            let type_1: BooleanConstructor;
+            export { type_1 as type };
+        }
     }
 }
 export default _default;

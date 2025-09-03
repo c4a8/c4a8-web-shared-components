@@ -12,6 +12,7 @@
           :data-authors="dataAuthors"
           :row="isRow"
           ref="items"
+          :has-no-aspect-ratio="hasNoAspectRatio"
         />
       </div>
     </template>
@@ -45,7 +46,6 @@ export default {
       this.itemsChanged = true;
     },
   },
-  created() {},
   updated() {
     if (!this.itemsChanged) return;
     this.itemsChanged = false;
@@ -58,8 +58,12 @@ export default {
     },
     resetUtilityAnimation() {
       setTimeout(() => {
-        // delay for view to be ready for the outside view manipulation
-        UtilityAnimation.resetGroup(this.$refs.group);
+        if (this.$refs?.items?.length !== UtilityAnimation.instances.length) {
+          this.reinitUtilityAnimation();
+        } else {
+          // delay for view to be ready for the outside view manipulation
+          UtilityAnimation.resetGroup(this.$refs.group);
+        }
       }, 100);
     },
     reinitUtilityAnimation() {
@@ -82,6 +86,7 @@ export default {
     items: Array,
     view: String,
     dataAuthors: Object,
+    hasNoAspectRatio: Boolean,
   },
 };
 </script>

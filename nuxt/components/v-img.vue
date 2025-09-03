@@ -48,6 +48,7 @@ import Cloudinary from '../utils/cloudinary.js';
 import CloudinaryTools from '../utils/cloudinary-tools.js';
 import Tools from '../utils/tools.js';
 import ImgSrcSets from '../utils/data/img-src-sets.js';
+import useConfig from '../composables/useConfig.js';
 
 const basePath = 'https://res.cloudinary.com/c4a8/image/upload/';
 
@@ -74,6 +75,13 @@ export default {
     };
   },
   expose: ['imgSrcSetImg'],
+  setup() {
+    const config = useConfig();
+
+    return {
+      config,
+    };
+  },
   computed: {
     classList() {
       return ['v-img', 'vue-component', this.classListComponent];
@@ -175,7 +183,13 @@ export default {
     getBaseAssetPath() {
       if (Tools.isTestingStorybook()) return this.img;
 
-      return this.img?.indexOf('/assets/') !== -1 ? this.img : this.hasProtocol() ? this.img : `/assets/${this.img}`;
+      const baseURL = this.config.public.baseURL && this.config.public.baseURL != '' ? this.config.public.baseURL : '/';
+
+      return this.img?.indexOf('/assets/') !== -1
+        ? this.img
+        : this.hasProtocol()
+        ? this.img
+        : `${baseURL}assets/${this.img}`;
     },
     getCloudinaryBasePathLink(srcSet) {
       return srcSet && srcSet.src ? `${srcSet.src}` : `${basePath}${srcSet ? srcSet.params : ''}${this.img}`;
