@@ -24,6 +24,12 @@ declare namespace _default {
         let light: BooleanConstructor;
         let hasGreyBackground: BooleanConstructor;
         let svgShape: ObjectConstructor;
+        namespace small {
+            let type_1: BooleanConstructor;
+            export { type_1 as type };
+            let _default_1: boolean;
+            export { _default_1 as default };
+        }
     }
     namespace computed {
         function classList(): any[];
