@@ -12,7 +12,7 @@
               <headline level="h4" :text="item.job"/>
               <p>{{ item.description }}</p>
               <br>
-              <div style="display: flex; gap: 1rem;">         
+              <div style="display: flex; gap: 1rem;" v-if="item.skills">         
                  <icon icon="ribbon" size="medium"/>
                 <div>{{ item.skills }}</div>
               </div>
