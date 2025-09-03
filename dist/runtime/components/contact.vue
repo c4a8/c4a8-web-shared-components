@@ -95,7 +95,7 @@
             </template>
           </div>
 
-          <div v-if="quote" class="contact__detail-quote">
+            <div v-if="quote && !small" class="contact__detail-quote">
             <headline :text="contact.person.detailsHeader" level="h4" classes="contact__detail-headline" />
             <div
               v-for="(detail, index) in contact.person.details"
@@ -152,6 +152,7 @@ export default {
     light: Boolean,
     hasGreyBackground: Boolean,
     svgShape: Object,
+    small: {type: Boolean, default: false}
   },
   computed: {
     classList() {
@@ -178,7 +179,7 @@ export default {
       return this.collapsed ? '' : `col-md-10 col-lg-5 offset-lg-1 order-2`;
     },
     contactPersonClass() {
-      return this.small ? '' : `contact--small`;
+      return this.small ? 'contact--small' : ``;
     },
     contactFormClass() {
       return this.collapsed ? '' : 'col-md-10 col-lg-6 order-1';
