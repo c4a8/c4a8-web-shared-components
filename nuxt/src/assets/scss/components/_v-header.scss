@@ -371,7 +371,7 @@ $header-border-size: 1px;
 
   @include media-breakpoint-up($header-expand-breakpoint) {
     flex: 0 1 25%;
-    padding-right: spacing(8);
+    margin-right: spacing(8);
   }
 }
 
