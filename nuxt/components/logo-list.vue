@@ -1,18 +1,13 @@
 <template>
-  <div style="overflow: visible;">
-  <div :class="classList" :style="styles" ref="root" style="overflow: visible;">
+  <div :class="classList" :style="styles" ref="root">
     <div class="logo-list__row row">
       <wrapper classes="logo-list__scroller" :hide-container="!isOverlapping" :hide-container-class="true">
         <div :class="['logo-list__col col d-flex', { 'flex-wrap': !isOverlapping }]">
           <logo-list-items :list="list" :is-overlapping="isOverlapping" />
           <logo-list-items :list="list" is-clone="true" :is-overlapping="isOverlapping" v-if="isOverlapping" />
         </div>
-      </wrapper>  
-    </div>  
-    <a v-if="contact == true" href="" class="logo-list__contact">
-      <Circle :circleIcon="'phone-mail'" :color="'var(--color-yellow)'" />
-    </a>
-  </div>
+      </wrapper>
+    </div>
   </div>
 </template>
 <script>
@@ -85,9 +80,6 @@ export default {
       default: false,
     },
     bgColor: String,
-    contact: {
-      default: false,
-    },
   },
 };
 </script>

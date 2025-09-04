@@ -26,10 +26,6 @@ declare namespace _default {
             export { _default_2 as default };
         }
         let bgColor: StringConstructor;
-        namespace contact {
-            let _default_3: boolean;
-            export { _default_3 as default };
-        }
     }
 }
 export default _default;
