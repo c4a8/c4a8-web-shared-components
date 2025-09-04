@@ -45432,18 +45432,19 @@ shape {
   --sidebar-section-name-width: 0;
   --sidebar-section-content-opacity: 0;
   --sidebar-section-content-delay: 0.4s;
-  --sidebar-section-on-off-multiplcator: 0;
+  --sidebar-section-on-off-multiplicator: 0;
   --sidebar-section-gap: 0;
   --sidebar-section-on-gap: 1rem;
   --sidebar-dialog-background-color: transparent;
   --sidebar-dialog-animation-delay-1: 0.5s;
   --sidebar-dialog-animation-delay-2: 0.85s;
   --sidebar-dialog-animation-delay-3: 1.5s;
-  --sidebar-main-animation-delay-1: 1s;
+  --sidebar-main-animation-delay-1: 1.7s;
+  --sidebar-main-animation-delay-2: 2.7s;
   --sidebar-height-lg: 650px;
   --sidebar-height-xs: 500px;
   --sidebar-section-factor: 0.2vw;
-  --sidebar-section-scale-factor-min: 1;
+  --sidebar-section-scale-factor-min: 0;
   --sidebar-section-scale-factor-max: 3;
   --sidebar-controls-gap: 0.5rem;
   --sidebar-height: var(--sidebar-height-xs);
@@ -45453,7 +45454,8 @@ shape {
   opacity: 0;
   display: flex;
   align-items: center;
-  min-height: var(--sidebar-height);
+  padding-top: 2.5rem;
+  padding-bottom: 0.5rem;
 }
 .sidebar .sidebar__section-title,
 .sidebar .sidebar__section-overline {
@@ -45466,7 +45468,7 @@ shape {
   --sidebar-animation-delay: calc(var(--sidebar-section-index, 0) * var(--sidebar-stagger-delay, 0.1s) + 0.1s);
   opacity: 1;
   transition: opacity 0s var(--sidebar-animation-delay) cubic-bezier(0.19, 1, 0.2, 1);
-  animation: sidebar-intro 2s cubic-bezier(0.19, 1, 0.2, 1);
+  animation: sidebar-intro 2s cubic-bezier(0.19, 1, 0.2, 1) forwards;
   animation-delay: var(--sidebar-animation-delay);
 }
 .sidebar.is-ready .sidebar__button:hover .sidebar__section-content {
@@ -45476,12 +45478,19 @@ shape {
   opacity: 1;
   transform: none;
 }
+.sidebar.is-ready .sidebar__row.sidebar__row--left {
+  opacity: 1;
+}
 @media (min-width: 992px) {
   .sidebar {
     --sidebar-height: var(--sidebar-height-lg);
     --sidebar-section-factor: 1px;
     --sidebar-section-scale-factor-max: 4.2;
     --sidebar-controls-gap: 1.5rem;
+    --sidebar-section-scale-factor-min: 1;
+    --sidebar-main-animation-delay-1: 1s;
+    --sidebar-main-animation-delay-2: 2s;
+    min-height: var(--sidebar-height);
   }
   .sidebar .sidebar__dialog-infos,
   .sidebar .sidebar__dialog-section {
@@ -45499,17 +45508,31 @@ shape {
     top: -5px;
     transform: translateY(-100%);
   }
+  .sidebar .sidebar__button:nth-of-type(1) {
+    --sidebar-section-on-off-multiplicator: 1;
+  }
+  .sidebar .sidebar__hint {
+    right: 0;
+    bottom: 0;
+    transform: translateX(50%) translateX(28px) translateY(-10px);
+  }
+  .sidebar .sidebar__row.sidebar__row--left {
+    margin-top: 2rem;
+  }
+  .sidebar.is-ready .sidebar__button {
+    animation-fill-mode: none;
+  }
 }
 
 .sidebar__nav {
   z-index: 290;
   position: fixed;
   top: 0;
-  display: flex;
   align-items: center;
   height: var(--sidebar-height);
   width: 100%;
   pointer-events: none;
+  display: flex;
 }
 
 .sidebar__controls {
@@ -45529,9 +45552,6 @@ shape {
   position: relative;
   opacity: 0;
   gap: var(--sidebar-section-gap);
-}
-.sidebar__button:nth-of-type(1) {
-  --sidebar-section-on-off-multiplcator: 1;
 }
 .sidebar__button:nth-of-type(1) .sidebar__section-content, .sidebar__button:hover .sidebar__section-content {
   transform: translateY(0) translateX(0);
@@ -45701,6 +45721,7 @@ shape {
   top: -5px;
   opacity: 0;
   animation: 1.5s cubic-bezier(0.19, 1, 0.2, 1) var(--sidebar-dialog-animation-delay-1) fadeIn forwards;
+  width: calc(100% - 70px);
 }
 
 .sidebar__dialog-infos {
@@ -45736,9 +45757,17 @@ shape {
   --cta-copy-color: var(--color-link);
 }
 
-.sidebar__row {
+.sidebar__row:not(.sidebar__row--left) {
   justify-content: flex-end;
   text-align: right;
+}
+.sidebar__row.sidebar__row--left {
+  margin-top: 3.5rem;
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 0.9s;
+  transition-delay: var(--sidebar-main-animation-delay-2);
+  transition-timing-function: cubic-bezier(0.19, 1, 0.2, 1);
 }
 
 .sidebar__headline {
@@ -45748,6 +45777,57 @@ shape {
   transition-duration: 1.15s, 0.9s;
   transition-delay: var(--sidebar-main-animation-delay-1);
   transition-timing-function: cubic-bezier(0.19, 1, 0.2, 1);
+}
+
+.sidebar__date,
+.sidebar__location {
+  color: var(--color-waterloo);
+}
+.sidebar__date,
+.sidebar__location {
+  font-size: 1.125rem;
+  line-height: 1.6667em;
+}
+@media (min-width: 992px) {
+  .sidebar__date,
+  .sidebar__location {
+    font-size: 1.25rem;
+    line-height: 1.7em;
+  }
+}
+@media (min-width: 1200px) {
+  .sidebar__date,
+  .sidebar__location {
+    font-size: 1.25rem;
+    line-height: 1.7em;
+  }
+}
+.sidebar__date,
+.sidebar__location {
+  font-weight: bold !important;
+}
+
+.sidebar__location {
+  position: relative;
+}
+
+.sidebar__hint {
+  position: absolute;
+  right: 10px;
+  bottom: 0;
+  transform: translateY(-60%) translateX(20px);
+  color: var(--color-copy);
+  display: flex;
+  flex-direction: column;
+}
+.sidebar__hint {
+  font-size: 0.85rem;
+}
+.sidebar__hint {
+  font-weight: 400 !important;
+}
+.sidebar__hint .icon {
+  color: var(--color-orange);
 }
 
 @keyframes sidebar-slide-in-background {
@@ -45761,16 +45841,16 @@ shape {
 @keyframes sidebar-intro {
   0% {
     --sidebar-section-name-width: auto;
-    --sidebar-section-content-opacity: calc(1 * var(--sidebar-section-on-off-multiplcator));
-    --sidebar-section-gap: calc(var(--sidebar-section-on-gap) * var(--sidebar-section-on-off-multiplcator));
+    --sidebar-section-content-opacity: calc(1 * var(--sidebar-section-on-off-multiplicator));
+    --sidebar-section-gap: calc(var(--sidebar-section-on-gap) * var(--sidebar-section-on-off-multiplicator));
     --sidebar-section-content-delay: 0s;
     transform: translateX(100vw);
     pointer-events: none;
   }
   60% {
     --sidebar-section-name-width: auto;
-    --sidebar-section-content-opacity: calc(1 * var(--sidebar-section-on-off-multiplcator));
-    --sidebar-section-gap: calc(var(--sidebar-section-on-gap) * var(--sidebar-section-on-off-multiplcator));
+    --sidebar-section-content-opacity: calc(1 * var(--sidebar-section-on-off-multiplicator));
+    --sidebar-section-gap: calc(var(--sidebar-section-on-gap) * var(--sidebar-section-on-off-multiplicator));
     --sidebar-section-scale: var(--sidebar-section-scale-factor-max);
     --sidebar-section-content-delay: 0s;
     pointer-events: none;

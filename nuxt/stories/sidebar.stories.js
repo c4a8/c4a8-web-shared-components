@@ -24,6 +24,9 @@ export const Default = {
   args: {
     headlineText: 'Visit us at<br />it-sa 2025<br/> in Nürnberg!',
     color: 'var(--color-orange)',
+    date: 'October 7-9',
+    location: 'Exhibition Center | Hall 6, Booth 232',
+    hint: 'Follow the Footsteps!',
     sections: [
       {
         color: 'var(--color-celery)',

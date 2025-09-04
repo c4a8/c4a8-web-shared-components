@@ -12,6 +12,18 @@ declare namespace _default {
             let type_2: StringConstructor;
             export { type_2 as type };
         }
+        namespace date {
+            let type_3: StringConstructor;
+            export { type_3 as type };
+        }
+        namespace location {
+            let type_4: StringConstructor;
+            export { type_4 as type };
+        }
+        namespace hint {
+            let type_5: StringConstructor;
+            export { type_5 as type };
+        }
     }
     namespace computed {
         function mainStyle(): any;

@@ -51,7 +51,19 @@
     <wrapper class="sidebar__main" :style="mainStyle">
       <div class="sidebar__row row">
         <div class="col">
-          <headline level="h1" class="sidebar__headline"><span v-html="headlineText"></span></headline>
+          <headline level="h1" class="sidebar__headline font-size-6"><span v-html="headlineText"></span></headline>
+        </div>
+      </div>
+      <div class="sidebar__row sidebar__row--left row">
+        <div class="col">
+          <div class="sidebar__date">{{ date }}</div>
+          <span class="sidebar__location">
+            {{ location }}
+            <div class="sidebar__hint">
+              {{ hint }}
+              <icon icon="arrow-curl" size="medium" direction="left" />
+            </div>
+          </span>
         </div>
       </div>
     </wrapper>
@@ -70,6 +82,15 @@ export default {
       type: String,
     },
     color: {
+      type: String,
+    },
+    date: {
+      type: String,
+    },
+    location: {
+      type: String,
+    },
+    hint: {
       type: String,
     },
   },
