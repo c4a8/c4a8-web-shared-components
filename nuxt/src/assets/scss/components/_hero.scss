@@ -181,9 +181,11 @@
     }
 
     @include media-breakpoint-up(lg) {
-      background: linear-gradient(to right,
-          var(--hero-background-color) var(--hero-background-width-middle),
-          transparent var(--hero-background-width-middle));
+      background: linear-gradient(
+        to right,
+        var(--hero-background-color) var(--hero-background-width-middle),
+        transparent var(--hero-background-width-middle)
+      );
 
       .hero__background-shape {
         width: 100%;
@@ -194,9 +196,11 @@
       }
 
       .hero__content {
-        background: linear-gradient(to right,
-            var(--hero-background-color) var(--hero-background-width),
-            transparent var(--hero-background-width));
+        background: linear-gradient(
+          to right,
+          var(--hero-background-color) var(--hero-background-width),
+          transparent var(--hero-background-width)
+        );
         grid-template-columns: 1fr 1fr;
       }
     }
@@ -211,7 +215,7 @@
         left: 50%;
         transform: translateX(-50%);
 
-        &>* {
+        & > * {
           object-position: center;
         }
       }
@@ -353,9 +357,8 @@
 }
 
 .hero__overline-wrapper {
-  display: block;
+    display: block;
 }
-
 .hero__content {
   min-height: 400px;
 
@@ -412,7 +415,7 @@
 .hero__headline {
   --color--headlines: var(--hero-copy-color);
 
-  .highlight {
+    .highlight {
     background-color: initial;
     background-image: linear-gradient(to bottom, var(--color-orange) 0, var(--color-orange) 100%);
     background-position-x: -7em;
@@ -445,7 +448,7 @@
     display: flex;
   }
 
-  >* {
+  > * {
     object-fit: contain;
     object-position: right;
     position: relative;
@@ -541,7 +544,9 @@
       margin-top: spacing(8);
     }
 
-    &:not([style*='order: 5']):not([style*='order: 6']):not([style*='order: 7']):not([style*='order: 8']):not([style*='order: 9']) {
+    &:not([style*='order: 5']):not([style*='order: 6']):not([style*='order: 7']):not([style*='order: 8']):not(
+        [style*='order: 9']
+      ) {
       margin: spacing(8) 0;
     }
   }
@@ -551,7 +556,7 @@
   }
 
   &:not([style]) {
-    >* {
+    > * {
       margin: spacing($size: 8, $negative: true) 0;
     }
   }
@@ -569,7 +574,7 @@
   width: 100%;
   overflow: hidden;
 
-  >* {
+  > * {
     flex: 0 1 auto;
     width: auto;
   }

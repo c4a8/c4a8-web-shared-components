@@ -55,12 +55,6 @@ declare namespace _default {
         let headlineClasses: StringConstructor;
         let listTitle: StringConstructor;
         let listItems: ArrayConstructor;
-        namespace top {
-            let type_4: BooleanConstructor;
-            export { type_4 as type };
-            let _default_4: boolean;
-            export { _default_4 as default };
-        }
     }
     namespace computed {
         function textImageLightText(): any;
