@@ -26,8 +26,8 @@
                 <div class="contact__icon">
                   <icon icon="quote" :color="quoteColor" />
                 </div>
-                <div class="contact__image-quote">
-                  <div class="contact__image-spacer" v-if="!small">
+                <div class="contact__image-quote" v-if="!small">
+                  <div class="contact__image-spacer" >
                     <v-img
                       :img="contact.person.image"
                       :cloudinary="contact.person.cloudinary"
@@ -174,6 +174,7 @@ export default {
         !this.collapsed ? 'space-bottom-2 utility-animation utility-animation--percentage-offset' : '',
         { 'bg-grey': this.hasGreyBackground },
         !(this.noTopSpacing || this.svgShape || this.collapsed) ? this.spacing : '',
+        this.small ? 'col-4 h-100' : '',
       ];
     },
     contactVariantClass() {
