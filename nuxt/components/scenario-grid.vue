@@ -24,7 +24,7 @@ import UtilityAnimation from '../utils/utility-animation.js';
 // TODO replace outer container with wrapper when feature "wrapper-background" is finished
 
 export default {
-  tagName: "szenario-grid",
+  tagName: "scenario-grid",
   computed: {
     headlineLevelValue() {
       return this.headlineLevel ? this.headlineLevel : "h2";
