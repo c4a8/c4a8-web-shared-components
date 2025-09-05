@@ -191,56 +191,36 @@ export const Webcast = {
 
 export const Product = {
   args: {
-    title: 'Unified Contact',
-    blogtitlepic: 'products/unified-contacts/unified-contacts-products-header.png',
-    tag: {
-      text: 'Free',
-      color: 'white',
-      bgColor: 'var(--color-cream-can)',
-    },
-    product: [
-      {
-        title: 'Tenant',
-        subpoints: [
+        title: 'SCEPman',
+        blogtitlepic: 'products/scepman/scepman-about-us-header.jpg',
+        logo: {
+          img: "/products/scepman/scepman-logo-all-white.svg",
+          cloudinary: true,
+          alt: 'SCEPman Logo',
+        },
+        cta: {
+          text: 'Learn more',
+          href: 'https://scepman.com/',
+        },
+        product: [
           {
-            hideIcon: true,
-            subpoint: 'Lorem Ipsum 1',
-          },
-          {
-            included: true,
-            subpoint: 'Lorem Ipsum 2',
-          },
-        ],
-      },
-      {
-        title: 'Contact',
-        subpoints: [
-          {
-            included: true,
-            subpoint: 'Lorem Ipsum 1',
-          },
-          {
-            included: true,
-            subpoint: 'Lorem Ipsu 2m',
-          },
-          {
-            subpoint: 'Lorem Ipsum 3',
+            subpoints: [
+              {
+                included: true,
+                subpoint: 'Find all your contacts in Microsoft Teams',
+              },
+              {
+                included: true,
+                subpoint: 'Initiate calls, chats, or emails directly from the contact card',
+              },
+              {
+                included: true,
+                subpoint: 'Mark your contacts as favorites',
+              },
+            ],
           },
         ],
       },
-      {
-        title: 'Other',
-        subpoints: [
-          {
-            subpoint: 'Lorem Ipsum 1',
-          },
-          {
-            subpoint: 'Lorem Ipsum 2',
-          },
-        ],
-      },
-    ],
-  },
 };
 
 export const Row = {

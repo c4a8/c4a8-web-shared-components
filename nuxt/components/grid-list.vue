@@ -5,7 +5,7 @@
         <card
           @card-tag-clicked="handleCardTagClicked"
           v-bind="item"
-          :blogtitlepic="blogImgUrl(getBlogTitlepic(item))"
+          :blogtitlepic="blogImgUrl(getBlogTitlepic(item)) || item.blogtitlepic"
           :date="item.moment ? item.moment : item.date"
           :hasAnimation="true"
           :index="index"
@@ -13,6 +13,7 @@
           :row="isRow"
           ref="items"
           :has-no-aspect-ratio="hasNoAspectRatio"
+          :log="item.logo"
         />
       </div>
     </template>
@@ -21,6 +22,7 @@
 <script>
 import UtilityAnimation from '../utils/utility-animation.js';
 import Events from '../utils/events.js';
+import { logDOM } from '@storybook/test';
 
 export default {
   tagName: 'grid-list',

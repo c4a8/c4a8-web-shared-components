@@ -57,16 +57,9 @@
       <div class="card__img-top card-img--products position-relative no-gutters is-foreground" v-if="blogtitlepic">
         <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :img-src-sets="imgSrcSets" :lazy="true" />
         <div class="card__img-headline-container">
-          <template v-if="tag">
-            <span class="card__img-tag" :style="{ 'background-color': tag.bgColor, color: tag.color }">
-              {{ tag.text }}
-            </span>
-          </template>
-          <headline level="h4" classes="card__img-headline text-light text-center">
-            <p class="w-100 pt-5 mb-0 no-gutters">
-              {{ title }}
-            </p>
-          </headline>
+          <div class="pb-5" style="display: flex; justify-content: center;">
+            <v-img img="/products/scepman/scepman-logo-all-white.svg" cloudinary="true" style="width: 300px; "/>
+          </div>
           <div class="card-img-cutoff" />
         </div>
       </div>
