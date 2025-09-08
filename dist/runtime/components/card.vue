@@ -1,38 +1,20 @@
 <template>
-  <article
-    :class="classList"
-    itemscope
-    itemtype="http://schema.org/BlogPosting"
-    @click="handleClick"
-    :data-utility-animation-step="utilityAnimationStep"
-    :style="style"
-    ref="root"
-  >
+  <article :class="classList" itemscope itemtype="http://schema.org/BlogPosting" @click="handleClick"
+    :data-utility-animation-step="utilityAnimationStep" :style="style" ref="root">
     <template v-if="large">
       <div class="row no-gutters">
         <div class="col-lg-8" v-if="blogtitlepic">
           <div class="card__img-top position-relative overflow-hidden is-foreground">
             <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :img-src-sets="imgSrcSets" :lazy="true" />
             <figure class="d-none d-lg-block">
-              <svg
-                class="ie-curved-x position-absolute top-0 right-0 bottom-0 mr-n1"
-                xmlns="http://www.w3.org/2000/svg"
-                x="0px"
-                y="0px"
-                viewBox="0 0 100.1 1920"
-                height="101%"
-              >
+              <svg class="ie-curved-x position-absolute top-0 right-0 bottom-0 mr-n1" xmlns="http://www.w3.org/2000/svg"
+                x="0px" y="0px" viewBox="0 0 100.1 1920" height="101%">
                 <path fill="#fff" d="M0,1920c0,0,93.4-934.4,0-1920h100.1v1920H0z"></path>
               </svg>
             </figure>
             <figure class="d-lg-none mb-n1">
-              <svg
-                class="ie-curved-y position-absolute right-0 bottom-0 left-0"
-                xmlns="http://www.w3.org/2000/svg"
-                x="0px"
-                y="0px"
-                viewBox="0 0 1920 100.1"
-              >
+              <svg class="ie-curved-y position-absolute right-0 bottom-0 left-0" xmlns="http://www.w3.org/2000/svg"
+                x="0px" y="0px" viewBox="0 0 1920 100.1">
                 <path fill="#fff" d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"></path>
               </svg>
             </figure>
@@ -41,11 +23,9 @@
 
         <div class="col-lg-4">
           <div class="card__body card-body d-flex flex-column h-100 p-4 p-lg-5">
-            <headline level="h3"
-              ><a class="card__title text-inherit" ref="title" :href="url" :target="target">{{
-                combinedTitle
-              }}</a></headline
-            >
+            <headline level="h3"><a class="card__title text-inherit" ref="title" :href="url" :target="target">{{
+              combinedTitle
+                }}</a></headline>
             <p v-html="truncatedExcerpt"></p>
             <card-footer v-bind="cardFooterData" />
           </div>
@@ -54,17 +34,22 @@
     </template>
 
     <template v-else-if="productValue">
-      <div class="card__img-top card-img--products position-relative no-gutters is-foreground" v-if="blogtitlepic">
-        <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :img-src-sets="imgSrcSets" :lazy="true" />
-        <div class="card__img-headline-container">
-          <div class="pb-5" style="display: flex; justify-content: center;">
-            <v-img img="/products/scepman/scepman-logo-all-white.svg" cloudinary="true" style="width: 300px; "/>
+      <div class=" card-img--products position-relative no-gutters is-foreground" v-if="blogtitlepic">
+        <div class="card__img-headline-container"
+          :style="{ backgroundColor: logo && logo.bgColor ? logo.bgColor : undefined }">
+            <svg class="position-absolute" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M94.1198 230.968L142.596 -11.466L-161.213 -32.5347L-199.287 73.8931L94.1198 230.968Z"
+                fill="#f5f5f5" fill-opacity="0.2" />
+              <path d="M407.393 173.918L298.222 -11.7818L115.754 124.245L119.845 276.308L407.393 173.918Z" fill="#f5f5f5"
+                fill-opacity="0.2" />
+            </svg>
+          <div class="pb-5 pt-5 mx-11" style="display: flex; justify-content: center;">
+            <v-img :img="logo.img" :cloudinary="logo.cloudinary" class="w-100" />
           </div>
-          <div class="card-img-cutoff" />
+          <div class="card-img-cutoff"  />
         </div>
       </div>
-
-      <div class="card__body card-body mt-0 pt-0 z-index-2">
+      <div class="card__body card-body mt-0 pt-0 z-index-2" style="display: flex; flex-direction: column;">
         <template v-for="(info, index) in subPointsList(productValue)" v-bind:key="index">
           <headline :class="headlineClassValue(index)" level="h6">{{ info.title }}</headline>
           <template v-for="(point, pointIndex) in info.subpoints" v-bind:key="pointIndex">
@@ -75,6 +60,9 @@
             </div>
           </template>
         </template>
+        <div class="card__link mt-auto" v-if="cta">
+          <cta v-bind="ctaValue" class="font-weight-bold mt-5" style="color: var(--color-highlight);" />
+        </div>
       </div>
     </template>
 
@@ -85,15 +73,8 @@
 
       <div class="card__body card-body richtext">
         <div class="card__scope" v-if="scope">{{ scope }}</div>
-        <headline level="h4"
-          ><a
-            ref="title"
-            class="card__title text-inherit text-decoration-none text-reset mt-4 mb-4"
-            :href="url"
-            :target="target"
-            >{{ combinedTitle }}</a
-          ></headline
-        >
+        <headline level="h4"><a ref="title" class="card__title text-inherit text-decoration-none text-reset mt-4 mb-4"
+            :href="url" :target="target">{{ combinedTitle }}</a></headline>
         <p class="mb-4 mt-4" v-html="truncatedExcerpt"></p>
 
         <ul class="card__points text-black">
@@ -122,11 +103,9 @@
 
       <div class="card__content">
         <div class="card__body card-body">
-          <headline level="h4"
-            ><a ref="title" class="card__title text-inherit" :href="url" :target="target">{{
-              combinedTitle
-            }}</a></headline
-          >
+          <headline level="h4"><a ref="title" class="card__title text-inherit" :href="url" :target="target">{{
+            combinedTitle
+              }}</a></headline>
           <p v-html="truncatedExcerpt"></p>
         </div>
 
@@ -391,6 +370,7 @@ export default {
     hasNoAspectRatio: {
       type: Boolean,
     },
+    logo: Object,
   },
 };
 </script>

@@ -192,15 +192,15 @@ export const Webcast = {
 export const Product = {
   args: {
         title: 'SCEPman',
-        blogtitlepic: 'products/scepman/scepman-about-us-header.jpg',
         logo: {
           img: "/products/scepman/scepman-logo-all-white.svg",
           cloudinary: true,
           alt: 'SCEPman Logo',
+          bgColor: 'var(--color-yellow)',
         },
         cta: {
           text: 'Learn more',
-          href: 'https://scepman.com/',
+          href: '',
         },
         product: [
           {

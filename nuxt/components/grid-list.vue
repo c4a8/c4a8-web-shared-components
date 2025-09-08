@@ -5,7 +5,7 @@
         <card
           @card-tag-clicked="handleCardTagClicked"
           v-bind="item"
-          :blogtitlepic="blogImgUrl(getBlogTitlepic(item)) || item.blogtitlepic"
+          :blogtitlepic="blogImgUrl(getBlogTitlepic(item)) ? item.blogtitlepic : item.blogtitlepic"
           :date="item.moment ? item.moment : item.date"
           :hasAnimation="true"
           :index="index"
@@ -13,7 +13,7 @@
           :row="isRow"
           ref="items"
           :has-no-aspect-ratio="hasNoAspectRatio"
-          :log="item.logo"
+          :logo="item.logo"
         />
       </div>
     </template>

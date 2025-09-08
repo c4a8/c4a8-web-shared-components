@@ -103,6 +103,7 @@ declare namespace _default {
             let type_1: BooleanConstructor;
             export { type_1 as type };
         }
+        let logo: ObjectConstructor;
     }
 }
 export default _default;
