@@ -29,7 +29,7 @@
               '--sidebar-dialog-text-color': item.textColor,
             }"
           >
-            <icon class="sidebar__dialog-close" name="close" @click="closeDialog(idx)" :hover="true" :circle="true" />
+            <icon class="sidebar__dialog-close" icon="close" @click="closeDialog(idx)" :hover="true" :circle="true" />
             <div class="sidebar__dialog-content">
               <div class="sidebar__dialog-wrapper">
                 <div class="sidebar__dialog-section">
@@ -71,6 +71,7 @@
 </template>
 <script>
 import State from '../utils/state.js';
+import { useModalStore } from '../stores/modal.js';
 
 export default {
   tagName: 'sidebar',
@@ -105,17 +106,39 @@ export default {
     return {
       isReady: false,
       State,
+      modalStore: null,
     };
   },
   mounted() {
     this.isReady = true;
+    this.modalStore = useModalStore();
+
+    this.$nextTick(() => {
+      this.registerDialogs();
+    });
 
     window.addEventListener('scroll', this.handleScroll);
   },
   beforeUnmount() {
+    if (this.modalStore && this.sections) {
+      this.sections.forEach((section) => {
+        this.modalStore.unregisterModal(section.title);
+      });
+    }
+
     window.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
+    registerDialogs() {
+      if (!this.sections || !this.modalStore) return;
+
+      this.sections.forEach((section, index) => {
+        this.modalStore.registerModal(section.title, {
+          open: () => this.openDialog(index),
+          close: () => this.closeDialog(index),
+        });
+      });
+    },
     handleScroll() {
       this.sections.forEach((_, index) => {
         const dialog = this.getDialogByIndex(index);

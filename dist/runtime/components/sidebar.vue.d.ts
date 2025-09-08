@@ -61,10 +61,12 @@ declare namespace _default {
             IS_STARTING: string;
             ON_SURFACE: string;
         };
+        modalStore: null;
     };
     function mounted(): void;
     function beforeUnmount(): void;
     namespace methods {
+        function registerDialogs(): void;
         function handleScroll(): void;
         function getDialogByIndex(index: any): any;
         function openDialog(index: any): void;
