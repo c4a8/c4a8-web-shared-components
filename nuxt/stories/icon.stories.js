@@ -278,3 +278,10 @@ export const Grid = {
     size: 'xxl',
   },
 };
+
+export const Calendar = {
+  args: {
+    icon: 'calendar',
+    size: 'xxl',
+  },
+};
