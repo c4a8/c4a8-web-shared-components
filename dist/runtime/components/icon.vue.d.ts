@@ -39,6 +39,7 @@ declare namespace _default {
         user: any;
         checkbox: any;
         ribbon: any;
+        booking: any;
     };
     let tagName: string;
     function data(): {
