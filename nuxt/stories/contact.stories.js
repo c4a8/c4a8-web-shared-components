@@ -267,7 +267,7 @@ export const WithQuoteBgColor = {
     boxBgColor: 'var(--color-gigas)',
     boxColor: 'var(--color-white)',
     quote: true,
-    infos: {
+    contact: {
       headline: 'Jetzt Gesprächstermin vereinbaren',
       level: 'h2',
       person: {
