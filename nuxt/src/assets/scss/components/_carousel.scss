@@ -36,6 +36,12 @@
       }
     }
   }
+
+  &.carousel--tile {
+    .carousel__row {
+      animation-duration: 20s;
+    }
+  }
 }
 
 .carousel__container {

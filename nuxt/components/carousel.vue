@@ -54,7 +54,11 @@ export default {
       return Tools.getJSON(this.items);
     },
     classList() {
-      return ['carousel vue-component', this.bgColor ? State.HAS_BACKGROUND : ''];
+      return [
+        'carousel vue-component',
+        this.bgColor ? State.HAS_BACKGROUND : '',
+        this.component ? 'carousel--' + this.component : '',
+      ];
     },
     style() {
       return [
