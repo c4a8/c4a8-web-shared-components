@@ -1,11 +1,17 @@
 <template>
     <div>
-        <div class="flip-unit-container h1">
-            <div class="upper-card" :style="style"><div >{{ next }}</div></div>
-          <div class="lower-card" :style="style"><div class="lower_num">{{ current }}</div></div>
-            <div class="flip-card first" :style="style" :class="{ animate: isFlipping }"><div class="upper_num">{{ current }}</div></div>
-          <div class="flip-card second" :style="style" :class="{ animate: isFlipping }"><span>{{ next }}</span></div>
-          </div>
+        <div class="flip-unit-container h1" :style="style">
+            <div class="upper-card">
+                <div>{{ next }}</div>
+            </div>
+            <div class="lower-card">
+                <div class="lower_num">{{ current }}</div>
+            </div>
+            <div class="flip-card first" :class="{ animate: isFlipping }">
+                <div class="upper_num">{{ current }}</div>
+            </div>
+            <div class="flip-card second" :class="{ animate: isFlipping }"><span>{{ next }}</span></div>
+        </div>
         <div class="label font-size-4">{{ label }}</div>
     </div>
 </template>
@@ -51,22 +57,15 @@ export default {
             }
         }
     },
-    methods: {
-        setStyle() {
+    computed: {
+        color() {
+            return this.bgColor ? this.bgColor : null;
+        },
+        style() {
             this.style = [
                 this.bgColor ? `--flip-unit-background-color: ${this.bgColor};` : '',
                 this.fontColor ? `--flip-unit-font-color: ${this.fontColor};` : ''
             ];
-        },
-    },
-
-    mounted() {
-        this.setStyle();
-    },
-
-    computed: {
-        color() {
-            return this.bgColor ? this.bgColor : null;
         },
     },
 }
