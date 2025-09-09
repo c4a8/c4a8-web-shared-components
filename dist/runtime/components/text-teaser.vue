@@ -1,7 +1,6 @@
 <template>
   <div :class="classList" :style="style" ref="root">
     <div class="container">
-      <slot></slot>
       <div :class="rowBackgroundClass">
         <div :class="colBackgroundClass">
           <div class="mb-4 w-100 fade-in-bottom" data-utility-animation-step="1" v-if="logo">
