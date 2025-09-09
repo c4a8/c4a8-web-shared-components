@@ -1,5 +1,5 @@
 <template>
-    <div class="display-flex">
+    <div>
         <div class="flip-unit-container h1">
             <div class="upper-card" :style="style"><div >{{ next }}</div></div>
           <div class="lower-card" :style="style"><div class="lower_num">{{ current }}</div></div>
