@@ -5,6 +5,7 @@ declare namespace _default {
         'arrow-narrow': any;
         arrow: any;
         bin: any;
+        calendar: any;
         'check-mark': any;
         check: any;
         close: any;

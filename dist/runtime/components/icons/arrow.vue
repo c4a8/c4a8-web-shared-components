@@ -6,7 +6,7 @@
         transform="translate(0 7)"
         fill="none"
         fill-rule="evenodd"
-        stroke-width="1.5"
+        :stroke-width="strokeWidthValue"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
@@ -15,7 +15,7 @@
         transform="translate(19 0)"
         fill="none"
         fill-rule="evenodd"
-        stroke-width="1.5"
+        :stroke-width="strokeWidthValue"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
@@ -27,12 +27,19 @@ export default {
   tagName: 'arrow',
   computed: {
     style() {
-      return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
+      return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale))};`;
+    },
+    strokeWidthValue() {
+      return this.strokeWidth / 2.66666666;
     },
   },
   props: {
     settings: Object,
     color: String,
+    strokeWidth: {
+      type: Number,
+      default: 4,
+    },
   },
 };
 </script>

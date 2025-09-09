@@ -56,12 +56,12 @@ export default {
       isDragging: false,
       hasError: false,
       filesLength: 0,
-      files: new DataTransfer(),
+      files: null,
     };
   },
   computed: {
     filesList() {
-      if (!this.files.files) return null;
+      if (!this.files?.files) return null;
 
       const filesArray = Array.from(this.files.files);
 
@@ -123,6 +123,8 @@ export default {
     maxFiles: Number,
   },
   mounted() {
+    this.files = new DataTransfer();
+
     this.root = this.$refs['root'];
     this.interactable = this.$refs['interactable'];
     this.button = this.$refs['button'];

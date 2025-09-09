@@ -24,20 +24,13 @@ declare namespace _default {
             export { required_3 as required };
         }
     }
-    function data(): {
-        current: any;
-        next: any;
-        isFlipping: boolean;
-    };
+    function data(): any;
     namespace watch {
         function value(newVal: any, oldVal: any): void;
     }
-    namespace methods {
-        function setStyle(): void;
-    }
-    function mounted(): void;
     namespace computed {
         function color(): any;
+        function style(): void;
     }
 }
 export default _default;

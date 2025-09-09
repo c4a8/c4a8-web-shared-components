@@ -3,10 +3,22 @@
     <div class="carousel__container">
       <div class="carousel__row">
         <section class="carousel__row-section" ref="row-section">
-          <carousel-item :item="item" v-for="(item, index) in jsonItems" :key="index" />
+          <carousel-item
+            :item="item"
+            :component="component"
+            @click="handleItemClick"
+            v-for="(item, index) in jsonItems"
+            :key="index"
+          />
         </section>
         <section class="carousel__row-section">
-          <carousel-item :item="item" v-for="(item, index) in jsonItems" :key="index" />
+          <carousel-item
+            :item="item"
+            :component="component"
+            @click="handleItemClick"
+            v-for="(item, index) in jsonItems"
+            :key="index"
+          />
         </section>
       </div>
     </div>
@@ -16,6 +28,8 @@
 import Tools from '../utils/tools.js';
 import State from '../utils/state.js';
 
+import { useModalStore } from '../stores/modal.js';
+
 export default {
   tagName: 'carousel',
   data() {
@@ -24,12 +38,27 @@ export default {
       resizeObserver: null,
     };
   },
+  setup(props) {
+    if (!props.component) return {};
+
+    const modalStore = useModalStore();
+
+    const openSidebarModal = (sectionTitle) => {
+      modalStore.openModal(sectionTitle);
+    };
+
+    return { openSidebarModal };
+  },
   computed: {
     jsonItems() {
       return Tools.getJSON(this.items);
     },
     classList() {
-      return ['carousel vue-component', this.bgColor ? State.HAS_BACKGROUND : ''];
+      return [
+        'carousel vue-component',
+        this.bgColor ? State.HAS_BACKGROUND : '',
+        this.component ? 'carousel--' + this.component : '',
+      ];
     },
     style() {
       return [
@@ -62,10 +91,16 @@ export default {
     updateClientWidth() {
       this.clientWidth = this.$refs['row-section']?.clientWidth;
     },
+    handleItemClick(item) {
+      if (!(this.component && this.openSidebarModal && item.title)) return;
+
+      this.openSidebarModal(item.title);
+    },
   },
   props: {
     items: Array,
     bgColor: String,
+    component: String,
   },
 };
 </script>

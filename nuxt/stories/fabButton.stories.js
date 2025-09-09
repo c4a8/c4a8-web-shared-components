@@ -29,6 +29,15 @@ export default {
       type: 'string',
     },
   },
+  decorators: [
+    (story) => ({
+      components: { story },
+      template: `
+        <story />
+        <div style="height: 200vh;" class="dummy-content"></div>
+      `,
+    }),
+  ],
 };
 
 export const Contact = {

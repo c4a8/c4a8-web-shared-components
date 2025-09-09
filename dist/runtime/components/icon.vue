@@ -12,6 +12,7 @@ import ArrowExternal from './icons/arrow-external.vue';
 import ArrowNarrow from './icons/arrow-narrow.vue';
 import Arrow from './icons/arrow.vue';
 import Bin from './icons/bin.vue';
+import Calendar from './icons/calendar.vue';
 import CheckMark from './icons/check-mark.vue';
 import Check from './icons/check.vue';
 import Close from './icons/close.vue';
@@ -56,6 +57,7 @@ export default {
     'arrow-narrow': ArrowNarrow,
     arrow: Arrow,
     bin: Bin,
+    calendar: Calendar,
     'check-mark': CheckMark,
     check: Check,
     close: Close,
