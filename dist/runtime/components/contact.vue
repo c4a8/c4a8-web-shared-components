@@ -21,12 +21,13 @@
         <div :class="['contact__box', contactBoxClass]" data-utility-animation-step="1">
           <div :class="['contact__person', contactLight]">
             <template v-if="quote">
-              <div class="contact__person-quote">
+
+              <div :class="['contact__person-quote', contactPersonClass]">
                 <div class="contact__icon">
-                  <icon icon="quote" />
+                  <icon icon="quote" :color="quoteColor" />
                 </div>
-                <div class="contact__image-quote">
-                  <div class="contact__image-spacer">
+                <div class="contact__image-quote" v-if="!small">
+                  <div class="contact__image-spacer" >
                     <v-img
                       :img="contact.person.image"
                       :cloudinary="contact.person.cloudinary"
@@ -37,9 +38,19 @@
                   </div>
                 </div>
                 <div class="contact__quote font-size-3 middle font-weight-light">{{ contact.person.quote }}</div>
+                <div class="contact__image-spacer w-30 row mr-4 ml-auto" v-if="small">
+                    <v-img
+                      :img="contact.person.image"
+                      :cloudinary="contact.person.cloudinary"
+                      :alt="contact.person.alt"
+                      preset="cardSmall"
+                      lazy
+                    />
+                  </div>
                 <div class="d-flex flex-column">
                   <span>{{ contact.person.quotee }}</span>
                   <span class="font-weight-light">{{ contact.person.quoteeTitle }}</span>
+                           
                 </div>
               </div>
             </template>
@@ -94,7 +105,7 @@
             </template>
           </div>
 
-          <div v-if="quote" class="contact__detail-quote">
+            <div v-if="quote && !small" class="contact__detail-quote">
             <headline :text="contact.person.detailsHeader" level="h4" classes="contact__detail-headline" />
             <div
               v-for="(detail, index) in contact.person.details"
@@ -151,6 +162,8 @@ export default {
     light: Boolean,
     hasGreyBackground: Boolean,
     svgShape: Object,
+    small: {type: Boolean, default: false},
+    quoteColor: { type: String, default: 'var(--color-yellow)' },
   },
   computed: {
     classList() {
@@ -161,6 +174,7 @@ export default {
         !this.collapsed ? 'space-bottom-2 utility-animation utility-animation--percentage-offset' : '',
         { 'bg-grey': this.hasGreyBackground },
         !(this.noTopSpacing || this.svgShape || this.collapsed) ? this.spacing : '',
+        this.small ? 'col-4 h-100' : '',
       ];
     },
     contactVariantClass() {
@@ -175,6 +189,9 @@ export default {
     },
     contactBoxClass() {
       return this.collapsed ? '' : `col-md-10 col-lg-5 offset-lg-1 order-2`;
+    },
+    contactPersonClass() {
+      return this.small ? 'contact--small' : ``;
     },
     contactFormClass() {
       return this.collapsed ? '' : 'col-md-10 col-lg-6 order-1';

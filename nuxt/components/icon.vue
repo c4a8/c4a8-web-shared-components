@@ -47,6 +47,7 @@ import XMark from './icons/x-mark.vue';
 import User from './icons/user.vue';
 import Checkbox from './icons/checkbox.vue';
 import Ribbon from './icons/ribbon.vue';
+import Booking from './icons/booking.vue';
 
 export default {
   components: {
@@ -89,6 +90,7 @@ export default {
     user: User,
     checkbox: Checkbox,
     ribbon: Ribbon,
+    booking: Booking,
   },
   tagName: 'icon',
   data() {
