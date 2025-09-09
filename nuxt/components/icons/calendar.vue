@@ -47,10 +47,10 @@
 </template>
 <script>
 export default {
-  tagName: 'arrow',
+  tagName: 'calendar',
   computed: {
     style() {
-      return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale))};`;
+      return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
     },
     strokeWidthValue() {
       return this.strokeWidth / 2;
