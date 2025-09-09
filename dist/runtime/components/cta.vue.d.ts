@@ -42,6 +42,7 @@ declare namespace _default {
             export { _default_3 as default };
         }
         let trigger: StringConstructor;
+        let triggerId: StringConstructor;
         let icon: StringConstructor;
         namespace download {
             let _default_4: null;
