@@ -279,9 +279,9 @@ export const Grid = {
   },
 };
 
-export const Calendar = {
+export const Booking = {
   args: {
-    icon: 'calendar',
+    icon: 'booking',
     size: 'xxl',
   },
 };

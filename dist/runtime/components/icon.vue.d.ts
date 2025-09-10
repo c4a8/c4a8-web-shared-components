@@ -5,9 +5,10 @@ declare namespace _default {
         'arrow-narrow': any;
         arrow: any;
         bin: any;
-        calendar: any;
+        booking: any;
         'check-mark': any;
         check: any;
+        checkbox: any;
         close: any;
         'computer-shield': any;
         'email-action-unread': any;
@@ -31,16 +32,14 @@ declare namespace _default {
         'plus-minus': any;
         rocket: any;
         reload: any;
+        ribbon: any;
         smile: any;
         'strategy-split': any;
         'tile-view': any;
+        user: any;
         quote: any;
         world: any;
         'x-mark': any;
-        user: any;
-        checkbox: any;
-        ribbon: any;
-        booking: any;
     };
     let tagName: string;
     function data(): {
