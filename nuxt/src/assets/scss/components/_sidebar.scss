@@ -12,7 +12,7 @@
   --sidebar-dialog-animation-delay-3: 1.5s;
   --sidebar-main-animation-delay-1: 1.7s;
   --sidebar-main-animation-delay-2: 2.7s;
-  --sidebar-height-lg: 650px;
+  --sidebar-height-lg: 600px;
   --sidebar-height-xs: 500px;
   --sidebar-section-factor: 0.2vw;
   --sidebar-section-scale-factor-min: 0;
@@ -26,7 +26,7 @@
   overflow: clip;
   opacity: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   padding-top: spacing(10);
   padding-bottom: spacing(2);
 
