@@ -87,13 +87,6 @@
       text-align: right;
     }
 
-    // .sidebar__dialog-section-overline {
-    //   position: absolute;
-    //   right: 0;
-    //   top: -5px;
-    //   transform: translateY(-100%);
-    // }
-
     .sidebar__button {
       &:nth-of-type(1) {
         --sidebar-section-on-off-multiplicator: 1;
@@ -168,6 +161,10 @@
     .sidebar__section-content {
       --sidebar-section-content-opacity: 1;
     }
+
+    .sidebar__section-name {
+      overflow: visible;
+    }
   }
 }
 
@@ -220,6 +217,22 @@
 .sidebar__section-name {
   width: var(--sidebar-section-name-width);
   overflow: hidden;
+  position: relative;
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    transform: translateX(-10px) translateY(-10px);
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    background-color: var(--color-background);
+    z-index: -1;
+    filter: blur(60px);
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+  }
 }
 
 .sidebar__dialog {

@@ -45652,6 +45652,9 @@ shape {
 .sidebar__button:hover .sidebar__section-content {
   --sidebar-section-content-opacity: 1;
 }
+.sidebar__button:hover .sidebar__section-name {
+  overflow: visible;
+}
 
 .sidebar__section-bar {
   width: calc(var(--sidebar-section-factor) * (var(--sidebar-section-width, 50px)) * var(--sidebar-section-scale, 1));
@@ -45764,6 +45767,21 @@ shape {
 .sidebar__section-name {
   width: var(--sidebar-section-name-width);
   overflow: hidden;
+  position: relative;
+}
+.sidebar__section-name::after {
+  content: "";
+  display: block;
+  position: absolute;
+  transform: translateX(-10px) translateY(-10px);
+  width: calc(100% + 20px);
+  height: calc(100% + 20px);
+  background-color: var(--color-background);
+  z-index: -1;
+  filter: blur(60px);
+  top: 0;
+  left: 0;
+  opacity: 0.5;
 }
 
 .sidebar__dialog {
