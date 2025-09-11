@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.22
+
+- Itsa components
+
 # Release 0.4.19
 
 - Fix for Dependency Issue with Peer Dependency + Vue
