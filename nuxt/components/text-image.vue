@@ -2,30 +2,55 @@
   <div :class="textImageClass" :style="textImageStyle" ref="root">
     <div class="container">
       <div class="row" :class="{ 'flex-row-reverse': left }">
-        <div v-if="float" :class="[
-          'text-image__floating-col',
-          'justify-content-end',
-          'text-image__floating-img',
-          'position-absolute',
-          'top-0',
-          'right-0',
-          'col-lg-' + textImageFirstColWidthComputed,
-          'col-xl-' + textImageFirstColWidthXl,
-        ]" @click="handleClick" :style="{ cursor: href ? 'pointer' : undefined }">
-          <v-img :img="image" :cloudinary="cloudinary" :alt="alt" imgSrcSets="textImageFloating"
-            preset="textImageFloating" :lottie="lottie" />
+        <div
+          v-if="float"
+          :class="[
+            'text-image__floating-col',
+            'justify-content-end',
+            'text-image__floating-img',
+            'position-absolute',
+            'top-0',
+            'right-0',
+            'col-lg-' + textImageFirstColWidthComputed,
+            'col-xl-' + textImageFirstColWidthXl,
+          ]"
+          @click="handleClick"
+          :style="{ cursor: href ? 'pointer' : undefined }"
+        >
+          <v-img
+            :img="image"
+            :cloudinary="cloudinary"
+            :alt="alt"
+            imgSrcSets="textImageFloating"
+            preset="textImageFloating"
+            :lottie="lottie"
+          />
         </div>
         <div :class="textImageFirstColClasses" @click="handleClick" :style="{ cursor: href ? 'pointer' : undefined }">
-          <div class="text-image__first-col-wrapper" :class="{ 'fade-in-bottom': !noAnimation }"
-            data-utility-animation-step="1">
-            <v-img :img="image" :cloudinary="cloudinary" :imgSrcSets="textImageImgSrcSets" :preset="textImagePreset"
-              :alt="alt" :lottie="lottie" />
+          <div
+            class="text-image__first-col-wrapper"
+            :class="{ 'fade-in-bottom': !noAnimation }"
+            data-utility-animation-step="1"
+          >
+            <v-img
+              :img="image"
+              :cloudinary="cloudinary"
+              :imgSrcSets="textImageImgSrcSets"
+              :preset="textImagePreset"
+              :alt="alt"
+              :lottie="lottie"
+            />
           </div>
         </div>
         <div :class="textImageSecondColClasses" data-utility-animation-step="1">
           <slot />
-          <badge v-if="badge" :text="badge.text" :icon="badge.icon" :uppercase="!badge.noUppercase"
-            classes="text-image__badge" />
+          <badge
+            v-if="badge"
+            :text="badge.text"
+            :icon="badge.icon"
+            :uppercase="!badge.noUppercase"
+            classes="text-image__badge"
+          />
           <span v-if="overline" class="text-image__overline d-inline-block mb-2 font-size-2">
             {{ overline }}
           </span>
@@ -33,8 +58,14 @@
           </headline>
           <span v-if="subline" class="richtext" v-html="subline"></span>
           <div v-if="subline" class="text-image__img text-image__img--subline mb-5 mt-5">
-            <v-img :img="image" :cloudinary="cloudinary" :imgSrcSets="textImageImgSrcSets" :preset="textImagePreset"
-              :alt="alt" :lottie="lottie" />
+            <v-img
+              :img="image"
+              :cloudinary="cloudinary"
+              :imgSrcSets="textImageImgSrcSets"
+              :preset="textImagePreset"
+              :alt="alt"
+              :lottie="lottie"
+            />
           </div>
           <div v-if="listItems">
             <headline level="h5" :text="listTitle"/>
@@ -46,15 +77,23 @@
           <div v-if="list" class="pt-4 pt-lg-6 pb-6">
             <cta-list :list="list" />
           </div>
-
         </div>
         <div v-if="cta" class="text-image__cta col-lg-12">
-          <cta :text="cta.text" button :href="cta.href" :trigger="cta.trigger" />
+          <cta :text="cta.text" button :href="cta.href" :trigger="cta.trigger" :trigger-id="cta.triggerId" />
         </div>
       </div>
     </div>
-    <modal v-if="modal" :form="modal.form" :success="modal.success" :error="modal.error" :application="true"
-      :clientName="modal.clientName" :jobId="modal.jobId" :apiUrl="modal.apiUrl" :apiKey="modal.apiKey" />
+    <modal
+      v-if="modal"
+      :form="modal.form"
+      :success="modal.success"
+      :error="modal.error"
+      :application="true"
+      :clientName="modal.clientName"
+      :jobId="modal.jobId"
+      :apiUrl="modal.apiUrl"
+      :apiKey="modal.apiKey"
+    />
   </div>
 </template>
 <script>
@@ -166,9 +205,10 @@ export default {
         'text-image__img',
         'justify-content-center',
         this.imageClasses,
-        `col-lg-${this.float
-          ? this.textImageFirstColWidthComputed
-          : this.offset
+        `col-lg-${
+          this.float
+            ? this.textImageFirstColWidthComputed
+            : this.offset
             ? this.textImageFirstColWidthComputed - 1
             : this.textImageFirstColWidthComputed
         }`,

@@ -24,12 +24,25 @@ declare namespace _default {
         let light: BooleanConstructor;
         let hasGreyBackground: BooleanConstructor;
         let svgShape: ObjectConstructor;
+        namespace small {
+            let type_1: BooleanConstructor;
+            export { type_1 as type };
+            let _default_1: boolean;
+            export { _default_1 as default };
+        }
+        namespace quoteColor {
+            let type_2: StringConstructor;
+            export { type_2 as type };
+            let _default_2: string;
+            export { _default_2 as default };
+        }
     }
     namespace computed {
         function classList(): any[];
         function contactVariantClass(): string[];
         function contactLight(): any;
         function contactBoxClass(): any;
+        function contactPersonClass(): any;
         function contactFormClass(): any;
         function contactContainerClass(): any;
         function contactRowClass(): any;

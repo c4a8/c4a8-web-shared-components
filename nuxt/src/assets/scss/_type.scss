@@ -54,6 +54,8 @@ $font-style-map: (
       line-height: 1.2em #{$important-string};
     } @else if $height == 'wide' {
       line-height: 1.7em #{$important-string};
+    } @else if $height == 'extra-wide' {
+      line-height: 1.9em #{$important-string};
     } @else if $height == 'middle' {
       line-height: 1.4em #{$important-string};
     } @else {

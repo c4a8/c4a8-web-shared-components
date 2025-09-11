@@ -4,6 +4,11 @@ declare namespace _default {
         clientWidth: null;
         resizeObserver: null;
     };
+    function setup(props: any): {
+        openSidebarModal?: undefined;
+    } | {
+        openSidebarModal: (sectionTitle: any) => void;
+    };
     namespace computed {
         function jsonItems(): any;
         function classList(): string[];
@@ -13,10 +18,12 @@ declare namespace _default {
     function beforeDestroy(): void;
     namespace methods {
         function updateClientWidth(): void;
+        function handleItemClick(item: any): void;
     }
     namespace props {
         let items: ArrayConstructor;
         let bgColor: StringConstructor;
+        let component: StringConstructor;
     }
 }
 export default _default;

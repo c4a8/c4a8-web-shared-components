@@ -9,7 +9,7 @@
             <div class="tab-list__arrow-icon"></div>
           </div>
         </div>
-        <ul :class="listClassList" role="tablist" ref="tabList" @scroll="handleScroll">
+        <ul :class="listClassList" role="tablist" ref="tabList" @scroll="handleScroll" class="justify-content-center">
           <li v-for="(tab, index) in list" :class="columnClassList" ref="tab">
             <a v-bind="linkAttributes(tab, index)"
               :class="tabClassList(index)" @click="handleClick" ref="tabLink">
@@ -241,5 +241,4 @@ export default {
 
 
 };
-
 </script>

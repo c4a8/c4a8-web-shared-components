@@ -278,3 +278,10 @@ export const Grid = {
     size: 'xxl',
   },
 };
+
+export const Booking = {
+  args: {
+    icon: 'booking',
+    size: 'xxl',
+  },
+};
