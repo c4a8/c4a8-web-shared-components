@@ -42575,13 +42575,6 @@ div.custom-control .custom-control-input,
 .hero__headline {
   --color--headlines: var(--hero-copy-color);
 }
-.hero__headline .highlight {
-  background-color: initial;
-  background-image: linear-gradient(to bottom, var(--color-orange) 0, var(--color-orange) 100%);
-  background-position-x: -7em;
-  background-position-y: 0.9em;
-  background-repeat: no-repeat;
-}
 
 .hero__subline {
   font-size: 1.125rem;
