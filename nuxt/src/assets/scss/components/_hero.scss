@@ -8,6 +8,8 @@
   --hero-shape-offset-y: 0;
   --hero-shape-offset-x: 0;
 
+  --hero-background-img-fit: cover;
+
   background: var(--hero-background-color);
   color: var(--hero-copy-color);
   position: relative;
@@ -415,7 +417,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: var(--hero-background-img-fit);
 }
 
 .hero__headline {
