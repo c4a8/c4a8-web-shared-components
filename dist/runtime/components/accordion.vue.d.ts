@@ -1,6 +1,8 @@
 declare namespace _default {
     let tagName: string;
     namespace computed {
+        function outsidePreset(): "animated" | null;
+        function isOutsideImageWebpOrGif(): any;
         function imageWrapperClasses(): (string | null)[];
         function containerClasses(): any[];
         function accordionClasses(): (string | null)[];

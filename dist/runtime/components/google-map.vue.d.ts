@@ -19,6 +19,11 @@ declare namespace _default {
             scrollWheelZoom: boolean;
             id: string;
         };
+        function sliderOptions(): {
+            dots: boolean;
+            prevArrow: string;
+            nextArrow: string;
+        };
     }
     function beforeMount(): Promise<void>;
     function mounted(): void;
@@ -31,6 +36,10 @@ declare namespace _default {
         namespace entries {
             let _default_1: null;
             export { _default_1 as default };
+        }
+        namespace images {
+            let _default_2: null;
+            export { _default_2 as default };
         }
     }
 }

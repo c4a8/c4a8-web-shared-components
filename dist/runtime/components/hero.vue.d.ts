@@ -929,6 +929,7 @@ declare namespace _default {
         introHeight: null;
         style: null;
         isUpperBreakpoint: null;
+        backgroundImgStyle: null;
     };
     function created(): void;
     function mounted(): void;
@@ -937,6 +938,7 @@ declare namespace _default {
         function preloadKeyAsset(): void;
         function handleResize(): void;
         function setStyle(): void;
+        function setBackgroundImgStyle(): void;
         function setIntroStyle(): void;
         function handleLetterSwitcherEnded(): void;
     }
@@ -950,6 +952,7 @@ declare namespace _default {
         function isLightOverline(): any;
         function background(): any;
         function bgColor(): any;
+        function bgFit(): any;
         function bgWidth(): any;
         function overline(): any;
         function overlineBgColor(): any;
@@ -981,11 +984,13 @@ declare namespace _default {
         function shapeBottom(): any;
         function shapeTop(): any;
         function shapeMobileOrder(): any;
+        function shapeMobileSmall(): boolean;
         function shapePosition(): "hero--shape-top" | "hero--shape-bottom" | "hero--shape-center" | null;
         function shapeInContentMobile(): boolean;
         function shapeInContentValue(): boolean;
         function shapeInContent(): boolean;
         function shapeClasses(): any;
+        function mobileShapeClasses(): any;
         function shapeIsSVG(): any;
         function variant(): any;
         function pattern(): any;
@@ -997,6 +1002,7 @@ declare namespace _default {
         function badges(): any;
         function hasBack(): any;
         function heroJson(): any;
+        function isMobile(): any;
     }
     namespace props {
         let hero: ObjectConstructor;

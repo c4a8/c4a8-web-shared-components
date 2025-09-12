@@ -12,8 +12,10 @@ import ArrowExternal from './icons/arrow-external.vue';
 import ArrowNarrow from './icons/arrow-narrow.vue';
 import Arrow from './icons/arrow.vue';
 import Bin from './icons/bin.vue';
+import Booking from './icons/booking.vue';
 import CheckMark from './icons/check-mark.vue';
 import Check from './icons/check.vue';
+import Checkbox from './icons/checkbox.vue';
 import Close from './icons/close.vue';
 import ComputerShield from './icons/computer-shield.vue';
 import EmailActionUnread from './icons/email-action-unread.vue';
@@ -37,16 +39,14 @@ import VMenu from './icons/v-menu.vue';
 import PlusMinus from './icons/plus-minus.vue';
 import Rocket from './icons/rocket.vue';
 import Reload from './icons/reload.vue';
+import Ribbon from './icons/ribbon.vue';
 import Smile from './icons/smile.vue';
 import StrategySplit from './icons/strategy-split.vue';
 import TileView from './icons/tile-view.vue';
+import User from './icons/user.vue';
 import Quote from './icons/quote.vue';
 import World from './icons/world.vue';
 import XMark from './icons/x-mark.vue';
-
-import User from './icons/user.vue';
-import Checkbox from './icons/checkbox.vue';
-import Ribbon from './icons/ribbon.vue';
 
 export default {
   components: {
@@ -55,8 +55,10 @@ export default {
     'arrow-narrow': ArrowNarrow,
     arrow: Arrow,
     bin: Bin,
+    booking: Booking,
     'check-mark': CheckMark,
     check: Check,
+    checkbox: Checkbox,
     close: Close,
     'computer-shield': ComputerShield,
     'email-action-unread': EmailActionUnread,
@@ -80,15 +82,14 @@ export default {
     'plus-minus': PlusMinus,
     rocket: Rocket,
     reload: Reload,
+    ribbon: Ribbon,
     smile: Smile,
     'strategy-split': StrategySplit,
     'tile-view': TileView,
+    user: User,
     quote: Quote,
     world: World,
     'x-mark': XMark,
-    user: User,
-    checkbox: Checkbox,
-    ribbon: Ribbon,
   },
   tagName: 'icon',
   data() {

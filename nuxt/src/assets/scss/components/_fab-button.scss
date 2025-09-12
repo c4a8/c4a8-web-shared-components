@@ -1,6 +1,6 @@
 $fab-button-icon-size: 72px;
-$fab-button-bottom-offset-lg: 16px;
-$fab-button-bottom-offset-xs: 32px;
+$fab-button-bottom-offset-lg: 4px;
+$fab-button-bottom-offset-xs: 0px;
 $fab-button-scroll-top: 200px;
 
 .fab-button {
@@ -8,6 +8,7 @@ $fab-button-scroll-top: 200px;
 
   position: relative;
   width: 100%;
+  right: 0;
 
   &.fab-button--sticky {
     &:not([style^='height']) {
@@ -92,6 +93,10 @@ $fab-button-scroll-top: 200px;
   right: 0;
   overflow: hidden;
 
+  .icon--calendar {
+    --icon-scale: 0.85;
+  }
+
   svg {
     width: 90%;
   }
@@ -101,9 +106,7 @@ $fab-button-scroll-top: 200px;
   @include shadow('light');
 
   background-color: var(--color-fab-background);
-  transition:
-    transform 0.7s $animation-transition,
-    opacity 0.7s $animation-transition,
+  transition: transform 0.7s $animation-transition, opacity 0.7s $animation-transition,
     height 0.7s $animation-transition;
   right: 0;
   bottom: 0;

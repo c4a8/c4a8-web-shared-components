@@ -1,29 +1,25 @@
 <template>
-  <section :class="containerClasses"
-    class="testimonial-list col-lg-8 row-mt-4 mx-auto justify-content-center container">
-    <component :is="'h' + headlineLevel" v-if="headline" class="testimonial-list__headline space-bottom-1">
-      {{ headline }}
-    </component>
-    <div v-if="subline" class="testimonial-list__subline space-bottom-2">
+  <section :class="containerClasses" class="col-lg-8 row-mt-4 mx-auto justify-content-center container">
+    <headline :level="'h' + headlineLevel" v-if="headline" class="space-bottom-1">{{ headline }}</headline>
+
+    <div v-if="subline" class="testimonial-grid__subline">
       {{ subline }}
     </div>
-    <div class="row row-cols-2">
-      <div v-if="contents" v-for="(testimonial, idx) in contents.slice(0, toggleLimitValue)" :key="idx" :class="columnClass">
-        <div class="testimonial-list__content-block">
-
-          <testimonial-teaser :href="testimonial.href" :name="testimonial.name" :title="testimonial.title"
-            :img="testimonial.img" :video="testimonial.video" :bgColor="testimonial.bgColor" />
-
-        </div>
+    <div class="row">
+      <div v-if="contents" v-for="(testimonial, idx) in slicedContents" :key="idx"
+        :class="columnClass" class="testimonial-grid__content-block">
+        <testimonial-teaser v-bind="testimonial" />
       </div>
     </div>
-    <div class="space-top-2 d-flex justify-content-center mx-auto">
+    <div v-if="showCta" class="testimonial-grid__cta d-flex justify-content-center mx-auto">
       <cta :text="toggleCtaText" :skin="cta.skin" :monochrome="cta.monochrome" @click="toggleLimit" />
     </div>
   </section>
 </template>
 
 <script>
+import Tools from '../utils/tools.js';
+
 export default {
   tagName: 'testimonial-grid',
   props: {
@@ -33,7 +29,7 @@ export default {
       default: null,
     },
     headlineLevel: {
-      type: [String, Number],
+      type: Number,
       default: 2,
     },
     subline: {
@@ -55,8 +51,8 @@ export default {
     cta: {
       type: Object,
       default: () => ({
-        text: "Mehr anzeigen",
-        toggleText: "Weniger anzeigen",
+        text: null,
+        toggleText: null,
         href: null,
       }),
     },
@@ -68,7 +64,6 @@ export default {
       type: Number,
       default: 10,
     },
-
     gridSize: {
       type: Number,
       default: 2,
@@ -77,7 +72,28 @@ export default {
   data() {
     return {
       toggleLimitValue: this.limit,
+      limitValue: this.limit,
+      lang: Tools.getLang(),
+      isMobile: Tools.isBelowBreakpoint('md'),
     };
+  },
+  mounted() {
+    if (this.isMobile) {
+      this.limitValue = 3;
+      this.toggleLimitValue = this.limitValue
+    }
+    const texts = {
+      en: { text: 'Show more', toggleText: 'Show less' },
+      de: { text: 'Mehr anzeigen', toggleText: 'Weniger anzeigen' },
+      es: { text: 'Mostrar más', toggleText: 'Mostrar menos' },
+    };
+    const langTexts = texts[this.lang] || texts['en'];
+    if (this.cta.text == null) {
+      this.cta.text = langTexts.text;
+    }
+    if (this.cta.toggleText == null) {
+      this.cta.toggleText = langTexts.toggleText;
+    }
   },
   computed: {
     containerClasses() {
@@ -89,21 +105,20 @@ export default {
       return 'col-lg-' + 12 / this.gridSize;
     },
     toggleCtaText() {
-      if (this.toggleLimitValue == this.limit) {
-        return this.cta.text;
-      } else {
-         return this.cta.toggleText;
-      }
+      return this.toggleLimitValue === this.limitValue ? this.cta.text : this.cta.toggleText;
     },
+    slicedContents() {
+      return this.contents.slice(0, this.toggleLimitValue);
+    },
+    showCta() {
+      return this.contents.length > this.limitValue;
+    }
   },
   methods: {
     toggleLimit() {
-      if (this.toggleLimitValue == this.limit) {
-        this.toggleLimitValue = this.maxLimit;
-      } else {
-        this.toggleLimitValue = this.limit;
-      }
+      this.toggleLimitValue = (this.toggleLimitValue === this.limitValue) ? this.maxLimit : this.limitValue;
     },
   },
 };
 </script>
+

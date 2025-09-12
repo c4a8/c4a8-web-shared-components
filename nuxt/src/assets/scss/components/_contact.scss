@@ -169,7 +169,8 @@
 
   & {
     flex: 1 0 100%;
-  }
+  }  
+  display: flex;
 }
 
 .contact__person {
@@ -273,4 +274,8 @@
       }
     }
   }
+}
+
+.contact--small {
+  padding-top: 6rem; padding-bottom: 2rem;
 }

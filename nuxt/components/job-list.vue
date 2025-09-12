@@ -12,7 +12,10 @@
             <div class="col-lg-12">
                 <div class="job-list__entries">
                     <div class="job-list__message h3-font-size" v-if="isEmpty">
-                        {{ translationData?.jobListEmpty }}
+                        <div v-if="tagList.includes('young_professionals')">{{ $t('jobListYoungProfessionalsEmpty') }}
+                        </div>
+                        <div v-else>{{ $t('jobListEmpty') }}</div>
+
                     </div>
                     <template v-for="entry in entries" :key="entry?.id">
                         <job-list-entry v-if="entry" :title="entry?.title" :gender="entry?.gender" :city="entry?.city"
@@ -179,9 +182,10 @@ export default {
         filterJobs(data, orderedList) {
             this.data.objects = orderedList;
 
-            const gender = window.i18n?.translate("gender");
-            const filteredList = [];
+            const gender = this.$t('gender');
 
+            const filteredList = [];
+            
             let counter = 0;
 
             for (let i = 0; i < orderedList?.length; i++) {
@@ -209,11 +213,11 @@ export default {
                     counter++;
                 }
             }
-
+            
             this.entries = filteredList;
 
             if (this.entries.length === 0) {
-                this.isEmpty = true;
+            this.isEmpty = true;
             }
 
             if (this.maxItems > 0 && data.objects?.length > this.maxItems) {
@@ -288,6 +292,7 @@ export default {
     },
     data() {
         return {
+            translationData: null,
             loadingDelay: 300,
             sleepDelay: 1300,
             loading: {},

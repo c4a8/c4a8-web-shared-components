@@ -10,6 +10,7 @@
     :target="targetValue ? targetValue : null"
     :data-alternative-href="alternativeHref ? alternativeHref : null"
     :data-trigger="trigger ? trigger : null"
+    :data-trigger-id="triggerId ? triggerId : null"
     @click="handleClick"
   >
     <span class="cta__text">{{ text }}</span>
@@ -134,6 +135,7 @@ export default {
       default: null,
     },
     trigger: String,
+    triggerId: String,
     icon: String,
     download: {
       default: null,

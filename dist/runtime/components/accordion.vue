@@ -24,6 +24,7 @@
           :lazy="true"
           :alt="accordion.alt"
           :animated="outsideAnimated"
+          :preset="outsidePreset"
           v-if="outsideImage"
         />
       </div>
@@ -36,10 +37,16 @@
               :lazy="true"
               :alt="accordion.alt"
               :animated="outsideAnimated"
+              :preset="outsidePreset"
             />
           </div>
         </div>
-        <div :class="cardClasses(index)" v-for="(tab, index) in accordion.tabs" :style="cardStyle(index)">
+        <div
+          :class="cardClasses(index)"
+          v-for="(tab, index) in accordion.tabs"
+          :style="cardStyle(index)"
+          v-bind:key="index"
+        >
           <div class="accordion__card-header card-collapse" :id="getId(accordion, index, 'Heading')">
             <button
               type="button"
@@ -92,6 +99,14 @@ import UtilityAnimation from '../utils/utility-animation.js';
 export default {
   tagName: 'accordion',
   computed: {
+    outsidePreset() {
+      return this.isOutsideImageWebpOrGif ? 'animated' : null;
+    },
+    isOutsideImageWebpOrGif() {
+      if (!this.outsideImage) return false;
+
+      return this.outsideImage.endsWith('.webp') || this.outsideImage.endsWith('.gif');
+    },
     imageWrapperClasses() {
       return ['accordion__floating-image-wrapper', Tools.isTrue(this.shadowless) === true ? null : 'drop-shadow'];
     },

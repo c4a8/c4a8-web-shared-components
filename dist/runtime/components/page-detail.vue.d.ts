@@ -971,6 +971,10 @@ declare namespace _default {
             let type_1: StringConstructor;
             export { type_1 as type };
         }
+        namespace noContent {
+            let type_2: BooleanConstructor;
+            export { type_2 as type };
+        }
     }
     namespace computed {
         function hasShape(): any;

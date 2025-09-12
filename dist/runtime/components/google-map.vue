@@ -3,36 +3,33 @@
     <div class="container space-1 space-lg-3">
       <div class="row justify-content-md-end" v-if="location">
         <div class="col-md-6 col-lg-5">
-          <div class="bg-white position-relative z-index-999 p-5 p-sm-7">
-            <div class="mb-5">
-              <span class="d-block font-size-2 text-dark text-lh-sm">{{ location?.office }},</span>
-              <span class="d-block font-size-4 text-dark font-weight-bold text-lh-sm">{{ location?.city }}</span>
+          <div class="bg-white position-relative z-index-999">
+            <slider :hide-background="true" :hideContainer="true" :options="sliderOptions">
+              <v-img v-for="img in images" :key="index" :cloudinary="img.cloudinary" :img="img.img"/>
+            </slider>
+            <div class="p-5 p-sm-7">
+              <div class="mb-5">
+                <span class="d-block font-size-2 text-dark text-lh-sm">{{ location?.office }},</span>
+                <span class="d-block font-size-4 text-dark font-weight-bold text-lh-sm">{{ location?.city }}</span>
+              </div>
+              <template v-for="(entry, index) in entries" v-bind:key="index">
+                <google-map-entry v-bind="entry" />
+              </template>
             </div>
-
-            <template v-for="(entry, index) in entries" v-bind:key="index">
-              <google-map-entry v-bind="entry" />
-            </template>
           </div>
         </div>
       </div>
     </div>
-
     <div class="position-md-absolute top-0 right-0 bottom-0 left-0">
       <div class="google-map__container min-h-300rem h-100 rounded-lg">
-        <l-map
-          ref="map"
-          v-model:zoom="zoom"
-          :options="leafletOptions"
-          :center="center"
-          :useGlobalLeaflet="false"
-          class="min-h-300rem"
-          v-if="loaded"
-        >
-          <l-tile-layer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"></l-tile-layer>
-          <l-marker :lat-lng="center" :icon="markerIcon"
-            ><l-popup>{{ location?.street }}<br />{{ location?.city }}</l-popup></l-marker
-          >
-        </l-map>
+        <ClientOnly>
+          <l-map ref="map" v-model:zoom="zoom" :options="leafletOptions" :center="center" :useGlobalLeaflet="false"
+            class="min-h-300rem" v-if="loaded">
+            <l-tile-layer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"></l-tile-layer>
+            <l-marker :lat-lng="center" :icon="markerIcon"><l-popup>{{ location?.street }}<br />{{
+              location?.city }}</l-popup></l-marker>
+          </l-map>
+        </ClientOnly>
       </div>
     </div>
   </div>
@@ -79,6 +76,13 @@ export default {
         id: 'mapbox/streets-v11',
       };
     },
+    sliderOptions() {
+      return {
+        dots: false,
+        prevArrow: '<span class="slick__arrow-left rounded-circle mx-11 bg-white"></span>',
+        nextArrow: '<span class="slick__arrow-right rounded-circle mx-11 bg-white"></span>',
+      };
+    },
   },
   async beforeMount() {
     const { icon } = await import('leaflet/dist/leaflet-src.esm');
@@ -96,6 +100,9 @@ export default {
     entries: {
       default: null,
     },
+    images: {
+      default: null,
+    }
   },
 };
 </script>

@@ -34,6 +34,7 @@ declare namespace _default {
         let apply: string;
         let reset: string;
         let jobListEmpty: string;
+        let jobListYoungProfessionalsEmpty: string;
         let imageCredits: string;
         let topicsOnPage: string;
         let noPostsFound: string;
