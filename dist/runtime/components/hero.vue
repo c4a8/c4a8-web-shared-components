@@ -1,9 +1,7 @@
 <template>
   <div :class="classList" :style="style">
     <hero-pattern class="hero__pattern" v-if="pattern" />
-
       <v-img v-if="img" class="hero__background-img " :cloudinary="background.cloudinary" :img="img" :style="backgroundImgStyle"></v-img>
-
     <div class="hero__container container">
       <main :class="contentClassList">
         <div class="hero__back-row row" v-if="hasBack">
@@ -31,7 +29,6 @@
               <v-img v-if="showShape && !shape.imgMobile && isMobile" :cloudinary="shape.cloudinary" :img="shape.img" :alt="shape.alt"
                 :lottie="lottieFileData" :lottie-settings="lottieSettings" :img-src-sets="imgSrcSets">
               </v-img>
-
             </div>
             <p class="hero__subline lead" v-if="subline" v-html="subline"></p>
             <cta-list v-if="ctaList" classes="hero__cta-list" :list="ctaList"> </cta-list>
@@ -47,7 +44,6 @@
         </text-icon-animation>
       </main>
     </div>
-
     <wrapper classes="hero__background-shape-wrapper" v-if="shape" :hideContainer="!showShapeContainer">
       <wrapper classes="hero__background-shape-content" :hideContainer="!showShapeContainer" :hideContainerClass="true">
         <div :class="['hero__background-shape', shapeClasses, shapeOffsetX ? 'hero__background-shape--overflow' : '']"
@@ -113,7 +109,6 @@ const heroPattern = {
 };
 
 const isMobile = ref(false);
-
 
 export default {
   tagName: 'hero',
@@ -390,9 +385,6 @@ export default {
     },
     mobileShapeClasses() {
       return this.shape && this.shape.mobileClasses ? this.shape.mobileClasses : null;
-    },
-    backgroundImgClasses() {
-      return this.background && this.background.classes ? this.background.classes : null;
     },
     shapeIsSVG() {
       return this.shape && this.shape.img && this.shape.img.endsWith('.svg');
