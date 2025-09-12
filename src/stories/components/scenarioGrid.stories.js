@@ -1,4 +1,4 @@
-import GridComponent from "../../components/grid";
+import GridComponent from "../../components/scenario-grid";
 import { getAssetPath } from "../../../.storybook/templates";
 
 export default {
