@@ -172,7 +172,7 @@ export default {
         !this.collapsed ? 'space-bottom-2 utility-animation utility-animation--percentage-offset' : '',
         { 'bg-grey': this.hasGreyBackground },
         !(this.noTopSpacing || this.svgShape || this.collapsed) ? this.spacing : '',
-        this.small ? 'col-4' : '',
+        this.small ? 'col-4 col-md-6 col-xl-4' : '',
       ];
     },
     contactVariantClass() {
