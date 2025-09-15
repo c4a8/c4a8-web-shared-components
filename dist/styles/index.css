@@ -49364,16 +49364,6 @@ shape {
 .video-frame .video-frame__headline-container {
   display: none;
 }
-@media (min-width: 768px) {
-  .video-frame .video-frame__headline-container {
-    display: block;
-    position: absolute;
-    top: 25%;
-    left: 50%;
-    width: 100%;
-    transform: translate(-50%, -50%);
-  }
-}
 .video-frame .video-frame__headline-container .video-frame__headline {
   filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.35));
   color: var(--video-frame-headline-color);
@@ -49400,6 +49390,27 @@ shape {
 }
 .video-frame .video-frame__headline-container .video-frame__headline {
   line-height: 1.2em !important;
+}
+@media (min-width: 768px) {
+  .video-frame .video-frame__headline-container {
+    display: block;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+  }
+  .video-frame .video-frame__headline-container.align-items-end {
+    display: flex;
+    bottom: 1rem;
+    height: 100%;
+    left: auto;
+    top: auto;
+    transform: none;
+  }
+  .video-frame .video-frame__headline-container.align-items-end.text-center {
+    justify-content: center;
+  }
 }
 
 .video-frame__player,
