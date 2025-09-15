@@ -1,7 +1,10 @@
 <template>
   <template v-if="!hideContainer">
     <div :class="classList">
-      <slot></slot>
+      <div v-if="row" class="wrapper__row row flex-column flex-lg-row">
+        <slot></slot>
+      </div>
+      <slot v-else></slot>
     </div>
   </template>
 
@@ -26,6 +29,10 @@ export default {
     },
     classes: {
       default: '',
+    },
+    row: {
+      type: Boolean,
+      default: false,
     },
   },
 };

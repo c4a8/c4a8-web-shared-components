@@ -16,6 +16,11 @@ declare namespace _default {
             let _default_2: string;
             export { _default_2 as default };
         }
+        namespace row {
+            export let type: BooleanConstructor;
+            let _default_3: boolean;
+            export { _default_3 as default };
+        }
     }
 }
 export default _default;
