@@ -45600,7 +45600,8 @@ shape {
   }
   .sidebar .sidebar__hint {
     right: 0;
-    bottom: 0;
+    bottom: 5px;
+    top: auto;
     transform: translateX(50%) translateX(28px) translateY(-10px);
   }
   .sidebar .sidebar__row.sidebar__row--left {
@@ -45913,13 +45914,14 @@ shape {
 
 .sidebar__location {
   position: relative;
+  display: inline-block;
 }
 
 .sidebar__hint {
   position: absolute;
-  right: 10px;
-  bottom: 0;
-  transform: translateY(-60%) translateX(20px);
+  right: 15px;
+  top: -15px;
+  transform: translateY(-80%) translateX(20px);
   color: var(--color-copy);
   display: flex;
   flex-direction: column;
