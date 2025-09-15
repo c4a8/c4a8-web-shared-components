@@ -35,6 +35,10 @@ export default {
     show: {
       type: Boolean,
     },
+    layout: {
+      type: String,
+      default: 'column_view',
+    },
   },
   computed: {
     calendarElementId() {
@@ -89,7 +93,7 @@ export default {
 
         window.Cal.ns[this.calendarId]('inline', {
           elementOrSelector: `#${this.calendarElementId}`,
-          config: { layout: 'week_view', theme: 'auto' },
+          config: { layout: this.layout, theme: 'auto' },
           calLink: this.calLink,
         });
 
@@ -99,7 +103,7 @@ export default {
             dark: { 'cal-brand': this.darkBrandColor },
           },
           hideEventTypeDetails: false,
-          layout: 'week_view',
+          layout: this.layout,
         });
       }
     },
