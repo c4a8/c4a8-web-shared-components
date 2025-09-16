@@ -1,13 +1,13 @@
 <template>
-  <div class="team-cards-item col-sm-6 col-lg-4 px-2 mb-3" style="max-width: 300px">
+  <div class="team-cards-item px-2 mb-3" :class="{ 'team-cards-item--default col-sm-6 col-lg-4': !noRow }">
     <div class="card h-100">
-      <div class="card-body has-card-background">
+      <div class="team-cards-item__body card-body has-card-background">
         <div style="margin-bottom: 50px">
           <v-img v-if="img" :src="img" :alt="alt" class="img-fluid" />
         </div>
         <headline level="h3" :text="name" />
         <headline level="h4" :text="job" />
-        <p>{{ description }}</p>
+        <p class="team-cards-item__description">{{ description }}</p>
         <br />
         <div style="display: flex; gap: 1rem" v-if="skills">
           <icon icon="ribbon" size="medium" />
@@ -44,6 +44,26 @@ export default {
     skills: String,
     twitter: String,
     linkedin: String,
+    noRow: {
+      type: Boolean,
+      default: false,
+    },
   },
 };
 </script>
+<style lang="scss" scoped>
+.team-cards-item {
+  &.team-cards-item--default {
+    max-width: 300px;
+  }
+}
+
+.team-cards-item__description {
+  flex-grow: 1;
+}
+
+.team-cards-item__body {
+  display: flex;
+  flex-direction: column;
+}
+</style>

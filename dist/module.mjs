@@ -47,6 +47,9 @@ const module = defineNuxtModule({
     _nuxt.options.sitemap = sitemapOptions;
     await installModule("@nuxtjs/sitemap");
     await installModule("nuxt-schema-org");
+    if (!_nuxt.options.modules.includes("nuxt-swiper")) {
+      _nuxt.options.modules.push("nuxt-swiper");
+    }
     const runtimeDir = resolve(__dirname, "./runtime");
     const optimizeDeps = [runtimeDir, "node-html-parser", "jquery", "slick-carousel"];
     _nuxt.options.build.transpile = _nuxt.options.build.transpile || [];

@@ -74,6 +74,7 @@ declare namespace _default {
         } | null;
         function childrenLength(): number;
         function children(): any;
+        function subChilds(): any;
         function hideBackgroundValue(): boolean;
         function hideContainerValue(): boolean;
         function backgroundClass(): string;
@@ -104,6 +105,17 @@ declare namespace _default {
         let bgColor: StringConstructor;
         let centerPadding: NumberConstructor;
         let options: ObjectConstructor;
+        namespace wrapped {
+            export let type: BooleanConstructor;
+            let _default_2: boolean;
+            export { _default_2 as default };
+        }
+        namespace v2 {
+            let type_1: BooleanConstructor;
+            export { type_1 as type };
+            let _default_3: boolean;
+            export { _default_3 as default };
+        }
     }
 }
 export default _default;

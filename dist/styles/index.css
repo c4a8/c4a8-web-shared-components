@@ -46127,6 +46127,15 @@ shape {
     left: 0;
   }
 }
+.slider swiper-container::part(container) {
+  overflow: visible;
+}
+.slider swiper-slide {
+  height: auto;
+}
+.slider swiper-slide > * {
+  height: 100%;
+}
 @media (min-width: 992px) {
   .slider .is--desktop,
   .slider .slider__item--desktop {

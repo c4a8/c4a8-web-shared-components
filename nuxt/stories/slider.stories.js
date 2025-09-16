@@ -34,42 +34,27 @@ export const Slider = {
 export const TeamCardsSlider = {
   args: {
     hideBackground: true,
-    // options: {
-    //   rows: 0,
-    //   slidesToShow: 1,
-    //   slidesToScroll: 1,
-    //   dots: false,
-    //   centerMode: false,
-    //   fade: true,
-    //   dotsClass: 'slick-pagination is-default',
-    //   // arrows: false,
-    //   responsive: [
-    //     {
-    //       breakpoint: 992,
-    //       settings: {
-    //         centerMode: true,
-    //         infinite: false,
-    //         centerPadding: '30px',
-    //         slidesToShow: 1,
-    //         slidesToScroll: 1,
-    //         dots: false,
-    //         fade: false,
-    //       },
-    //     },
-    //     {
-    //       breakpoint: 576,
-    //       settings: {
-    //         centerMode: true,
-    //         infinite: false,
-    //         centerPadding: '20px',
-    //         slidesToShow: 1,
-    //         slidesToScroll: 1,
-    //         dots: false,
-    //         fade: false,
-    //       },
-    //     },
-    //   ],
-    // },
+    wrapped: false,
+    options: {
+      loop: true,
+      // navigation: true,
+      breakpoints: {
+        320: {
+          slidesPerView: 1.5,
+        },
+        576: {
+          slidesPerView: 2,
+        },
+        992: {
+          slidesPerView: 3,
+        },
+        1200: {
+          slidesPerView: 4,
+          loopAdditionalSlides: 2,
+        },
+      },
+    },
+    v2: true,
   },
   render: sliderRender(
     `
@@ -89,8 +74,8 @@ export const TeamCardsSlider = {
     [
       {
         img: 'https://res.cloudinary.com/c4a8/image/upload/q_auto:best/people/people-patrick-treptau.png',
-        alt: 'John Doe',
-        name: 'John Doe',
+        alt: 'John Doe 1',
+        name: 'John Doe 1',
         job: 'Frontend Developer',
         description:
           'Passionate about creating beautiful and functional user interfaces. Specializes in Vue.js and modern web technologies.',
@@ -100,8 +85,8 @@ export const TeamCardsSlider = {
       },
       {
         img: 'https://res.cloudinary.com/c4a8/image/upload/q_auto:best/people/people-matti-puolitaival.png',
-        alt: 'Jane Smith',
-        name: 'Jane Smith',
+        alt: 'Jane Smith 2',
+        name: 'Jane Smith 2',
         job: 'Backend Developer',
         description:
           'Experienced in building scalable server-side applications and APIs. Loves working with Node.js and databases.',
@@ -111,8 +96,8 @@ export const TeamCardsSlider = {
       },
       {
         img: 'https://res.cloudinary.com/c4a8/image/upload/q_auto:best/people/people-patrick-treptau.png',
-        alt: 'Mike Johnson',
-        name: 'Mike Johnson',
+        alt: 'Mike Johnson 3',
+        name: 'Mike Johnson 3',
         job: 'UI/UX Designer',
         description:
           'Creative designer focused on user experience and visual design. Brings ideas to life through thoughtful design.',
@@ -122,8 +107,8 @@ export const TeamCardsSlider = {
       },
       {
         img: 'https://res.cloudinary.com/c4a8/image/upload/q_auto:best/people/people-matti-puolitaival.png',
-        alt: 'Sarah Wilson',
-        name: 'Sarah Wilson',
+        alt: 'Sarah Wilson 4',
+        name: 'Sarah Wilson 4',
         job: 'DevOps Engineer',
         description:
           'Expert in cloud infrastructure and deployment automation. Ensures smooth and reliable application delivery.',
@@ -133,9 +118,42 @@ export const TeamCardsSlider = {
       },
       {
         img: 'https://res.cloudinary.com/c4a8/image/upload/q_auto:best/people/people-patrick-treptau.png',
-        alt: 'John Doe 2',
-        name: 'John Doe 2',
-        job: 'Frontend Developer 2',
+        alt: 'John Doe 5',
+        name: 'John Doe 5',
+        job: 'Frontend Developer',
+        description:
+          'Passionate about creating beautiful and functional user interfaces. Specializes in Vue.js and modern web technologies.',
+        skills: 'Vue.js, JavaScript, CSS, HTML',
+        twitter: 'https://twitter.com/johndoe',
+        linkedin: 'https://linkedin.com/in/johndoe',
+      },
+      {
+        img: 'https://res.cloudinary.com/c4a8/image/upload/q_auto:best/people/people-patrick-treptau.png',
+        alt: 'Mike Johnson 6',
+        name: 'Mike Johnson 6',
+        job: 'UI/UX Designer',
+        description:
+          'Creative designer focused on user experience and visual design. Brings ideas to life through thoughtful design.',
+        skills: 'Figma, Adobe Creative Suite, User Research',
+        twitter: 'https://twitter.com/mikejohnson',
+        linkedin: 'https://linkedin.com/in/mikejohnson',
+      },
+      {
+        img: 'https://res.cloudinary.com/c4a8/image/upload/q_auto:best/people/people-matti-puolitaival.png',
+        alt: 'Sarah Wilson 7',
+        name: 'Sarah Wilson 7',
+        job: 'DevOps Engineer',
+        description:
+          'Expert in cloud infrastructure and deployment automation. Ensures smooth and reliable application delivery.',
+        skills: 'AWS, Kubernetes, CI/CD, Terraform',
+        twitter: 'https://twitter.com/sarahwilson',
+        linkedin: 'https://linkedin.com/in/sarahwilson',
+      },
+      {
+        img: 'https://res.cloudinary.com/c4a8/image/upload/q_auto:best/people/people-patrick-treptau.png',
+        alt: 'John Doe 8',
+        name: 'John Doe 8',
+        job: 'Frontend Developer',
         description:
           'Passionate about creating beautiful and functional user interfaces. Specializes in Vue.js and modern web technologies.',
         skills: 'Vue.js, JavaScript, CSS, HTML',

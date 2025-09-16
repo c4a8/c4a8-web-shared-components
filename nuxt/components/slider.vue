@@ -14,8 +14,18 @@
           <span v-if="subline" :class="sublineClassesValue">{{ subline }}</span>
         </div>
       </div>
-      <div class="slider__container js-slick-carousel" ref="container">
-        <wrapper-slot-items :items="$slots.default"></wrapper-slot-items>
+      <div class="slider__container js-slick-carousel" ref="container" v-if="!v2">
+        <wrapper-slot-items v-if="wrapped" :items="$slots?.default"></wrapper-slot-items>
+        <slot v-else></slot>
+      </div>
+      <div class="slider__container" v-else>
+        <ClientOnly>
+          <swiper-container class="slider__swiper-container" ref="containerRef" v-bind="options">
+            <swiper-slide v-for="(item, index) in subChilds" :key="index">
+              <component :is="item" :no-row="true" />
+            </swiper-slide>
+          </swiper-container>
+        </ClientOnly>
       </div>
     </wrapper>
   </div>
@@ -128,7 +138,10 @@ export default {
       return this.children?.length || 0;
     },
     children() {
-      return this.$slots.default();
+      return this.$slots?.default ? this.$slots?.default() : [];
+    },
+    subChilds() {
+      return this.children ? this.children[0].children : [];
     },
     hideBackgroundValue() {
       return Tools.isTrue(this.hideBackground);
@@ -174,6 +187,14 @@ export default {
     bgColor: String,
     centerPadding: Number,
     options: Object,
+    wrapped: {
+      type: Boolean,
+      default: true,
+    },
+    v2: {
+      type: Boolean,
+      default: false,
+    },
   },
 };
 </script>
