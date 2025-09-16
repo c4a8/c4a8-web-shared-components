@@ -49486,6 +49486,27 @@ shape {
   right: 0;
   width: 23%;
 }
+@media (min-width: 768px) {
+  .video-frame:not(.video-frame--played) .video-frame__headline-container {
+    display: block;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+  }
+  .video-frame:not(.video-frame--played) .video-frame__headline-container.align-items-end {
+    display: flex;
+    bottom: 1rem;
+    height: 100%;
+    left: auto;
+    top: auto;
+    transform: none;
+  }
+  .video-frame:not(.video-frame--played) .video-frame__headline-container.align-items-end.text-center {
+    justify-content: center;
+  }
+}
 .video-frame.video-frame--has-video .video-frame__play-wrapper {
   display: inline-block;
 }
@@ -49536,17 +49557,6 @@ shape {
     left: 50%;
     width: 100%;
     transform: translate(-50%, -50%);
-  }
-  .video-frame .video-frame__headline-container.align-items-end {
-    display: flex;
-    bottom: 1rem;
-    height: 100%;
-    left: auto;
-    top: auto;
-    transform: none;
-  }
-  .video-frame .video-frame__headline-container.align-items-end.text-center {
-    justify-content: center;
   }
 }
 
