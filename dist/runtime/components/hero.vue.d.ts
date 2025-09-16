@@ -1002,7 +1002,6 @@ declare namespace _default {
         function badges(): any;
         function hasBack(): any;
         function heroJson(): any;
-        function isMobile(): any;
     }
     namespace props {
         let hero: ObjectConstructor;
