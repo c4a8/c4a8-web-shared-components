@@ -42677,7 +42677,7 @@ div.custom-control .custom-control-input,
   grid-area: intro-right/content-right;
 }
 .hero__background-shape.hero__background-shape--overflow {
-  overflow-x: clip;
+  left: 0;
 }
 .hero__background-shape:not(.is--mobile) {
   display: flex;

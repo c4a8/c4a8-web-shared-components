@@ -341,6 +341,7 @@
   }
 }
 
+
 .hero__back-row {
   @include media-breakpoint-up(lg) {
     position: absolute;
@@ -441,7 +442,8 @@
   grid-area: intro-right / content-right;
 
   &.hero__background-shape--overflow {
-    overflow-x: clip;
+   // overflow-x: clip;
+   left: 0;
   }
 
   &:not(.is--mobile) {
