@@ -28,6 +28,12 @@ declare namespace _default {
             let type_4: BooleanConstructor;
             export { type_4 as type };
         }
+        namespace layout {
+            let type_5: StringConstructor;
+            export { type_5 as type };
+            let _default_4: string;
+            export { _default_4 as default };
+        }
     }
     namespace computed {
         function calendarElementId(): string;
