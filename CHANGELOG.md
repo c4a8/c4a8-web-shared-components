@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.25
+
+- Fixes issues with Hero
+
 # Release 0.4.24
 
 - Adds swiperjs as our new standard slider
