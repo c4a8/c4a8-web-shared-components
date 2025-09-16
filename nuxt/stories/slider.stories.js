@@ -1,0 +1,165 @@
+import SliderComponent from '../components/slider.vue';
+import TeamCardsItem from '../components/team-cards-item.vue';
+
+const sliderRender = (content, items) => (args) => ({
+  components: { SliderComponent, TeamCardsItem },
+  setup() {
+    return { args, items };
+  },
+  template: `
+    <SliderComponent v-bind="args">
+      ${content}
+    </SliderComponent>
+  `,
+});
+
+export default {
+  component: SliderComponent,
+  argTypes: {},
+  title: 'Components/Slider',
+};
+
+export const Slider = {
+  args: {},
+  render: sliderRender(
+    `
+    <div class="slider-item" style="padding: 20px; background: #f0f0f0; margin: 10px; border-radius: 8px;" v-for="item in items" :key="item.text">
+      {{ item.text }}
+    </div>
+  `,
+    [{ text: 1 }, { text: 2 }, { text: 3 }]
+  ),
+};
+
+export const TeamCardsSlider = {
+  args: {
+    hideBackground: true,
+    wrapped: false,
+    options: {
+      loop: true,
+      // navigation: true,
+      breakpoints: {
+        320: {
+          slidesPerView: 1.5,
+        },
+        576: {
+          slidesPerView: 2,
+        },
+        992: {
+          slidesPerView: 3,
+        },
+        1200: {
+          slidesPerView: 4,
+          loopAdditionalSlides: 2,
+        },
+      },
+    },
+    v2: true,
+  },
+  render: sliderRender(
+    `
+    <team-cards-item
+      v-for="(member, index) in items"
+      :key="index"
+      :img="member.img"
+      :alt="member.alt"
+      :name="member.name"
+      :job="member.job"
+      :description="member.description"
+      :skills="member.skills"
+      :twitter="member.twitter"
+      :linkedin="member.linkedin"
+    />
+  `,
+    [
+      {
+        img: 'https://res.cloudinary.com/c4a8/image/upload/q_auto:best/people/people-patrick-treptau.png',
+        alt: 'John Doe 1',
+        name: 'John Doe 1',
+        job: 'Frontend Developer',
+        description:
+          'Passionate about creating beautiful and functional user interfaces. Specializes in Vue.js and modern web technologies.',
+        skills: 'Vue.js, JavaScript, CSS, HTML',
+        twitter: 'https://twitter.com/johndoe',
+        linkedin: 'https://linkedin.com/in/johndoe',
+      },
+      {
+        img: 'https://res.cloudinary.com/c4a8/image/upload/q_auto:best/people/people-matti-puolitaival.png',
+        alt: 'Jane Smith 2',
+        name: 'Jane Smith 2',
+        job: 'Backend Developer',
+        description:
+          'Experienced in building scalable server-side applications and APIs. Loves working with Node.js and databases.',
+        skills: 'Node.js, Python, PostgreSQL, Docker',
+        twitter: 'https://twitter.com/janesmith',
+        linkedin: 'https://linkedin.com/in/janesmith',
+      },
+      {
+        img: 'https://res.cloudinary.com/c4a8/image/upload/q_auto:best/people/people-patrick-treptau.png',
+        alt: 'Mike Johnson 3',
+        name: 'Mike Johnson 3',
+        job: 'UI/UX Designer',
+        description:
+          'Creative designer focused on user experience and visual design. Brings ideas to life through thoughtful design.',
+        skills: 'Figma, Adobe Creative Suite, User Research',
+        twitter: 'https://twitter.com/mikejohnson',
+        linkedin: 'https://linkedin.com/in/mikejohnson',
+      },
+      {
+        img: 'https://res.cloudinary.com/c4a8/image/upload/q_auto:best/people/people-matti-puolitaival.png',
+        alt: 'Sarah Wilson 4',
+        name: 'Sarah Wilson 4',
+        job: 'DevOps Engineer',
+        description:
+          'Expert in cloud infrastructure and deployment automation. Ensures smooth and reliable application delivery.',
+        skills: 'AWS, Kubernetes, CI/CD, Terraform',
+        twitter: 'https://twitter.com/sarahwilson',
+        linkedin: 'https://linkedin.com/in/sarahwilson',
+      },
+      {
+        img: 'https://res.cloudinary.com/c4a8/image/upload/q_auto:best/people/people-patrick-treptau.png',
+        alt: 'John Doe 5',
+        name: 'John Doe 5',
+        job: 'Frontend Developer',
+        description:
+          'Passionate about creating beautiful and functional user interfaces. Specializes in Vue.js and modern web technologies.',
+        skills: 'Vue.js, JavaScript, CSS, HTML',
+        twitter: 'https://twitter.com/johndoe',
+        linkedin: 'https://linkedin.com/in/johndoe',
+      },
+      {
+        img: 'https://res.cloudinary.com/c4a8/image/upload/q_auto:best/people/people-patrick-treptau.png',
+        alt: 'Mike Johnson 6',
+        name: 'Mike Johnson 6',
+        job: 'UI/UX Designer',
+        description:
+          'Creative designer focused on user experience and visual design. Brings ideas to life through thoughtful design.',
+        skills: 'Figma, Adobe Creative Suite, User Research',
+        twitter: 'https://twitter.com/mikejohnson',
+        linkedin: 'https://linkedin.com/in/mikejohnson',
+      },
+      {
+        img: 'https://res.cloudinary.com/c4a8/image/upload/q_auto:best/people/people-matti-puolitaival.png',
+        alt: 'Sarah Wilson 7',
+        name: 'Sarah Wilson 7',
+        job: 'DevOps Engineer',
+        description:
+          'Expert in cloud infrastructure and deployment automation. Ensures smooth and reliable application delivery.',
+        skills: 'AWS, Kubernetes, CI/CD, Terraform',
+        twitter: 'https://twitter.com/sarahwilson',
+        linkedin: 'https://linkedin.com/in/sarahwilson',
+      },
+      {
+        img: 'https://res.cloudinary.com/c4a8/image/upload/q_auto:best/people/people-patrick-treptau.png',
+        alt: 'John Doe 8',
+        name: 'John Doe 8',
+        job: 'Frontend Developer',
+        description:
+          'Passionate about creating beautiful and functional user interfaces. Specializes in Vue.js and modern web technologies.',
+        skills: 'Vue.js, JavaScript, CSS, HTML',
+        twitter: 'https://twitter.com/johndoe',
+        linkedin: 'https://linkedin.com/in/johndoe',
+      },
+    ]
+  ),
+};

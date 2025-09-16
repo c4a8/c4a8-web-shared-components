@@ -37,6 +37,18 @@
     }
   }
 
+  swiper-container::part(container) {
+    overflow: visible;
+  }
+
+  swiper-slide {
+    height: auto;
+
+    > * {
+      height: 100%;
+    }
+  }
+
   @include media-breakpoint-up(lg) {
     .is--desktop,
     .slider__item--desktop {

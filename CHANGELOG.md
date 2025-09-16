@@ -1,5 +1,11 @@
 # Releases
 
+# Release 0.4.24
+
+- Adds swiperjs as our new standard slider
+- Fies sidebar hint
+- Adjusts contact small variant to work within a flexbox
+
 # Release 0.4.22
 
 - Itsa components

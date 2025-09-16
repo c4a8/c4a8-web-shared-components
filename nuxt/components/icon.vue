@@ -21,7 +21,7 @@ import ComputerShield from './icons/computer-shield.vue';
 import EmailActionUnread from './icons/email-action-unread.vue';
 import Emergency from './icons/emergency.vue';
 import Expand from './icons/expand.vue';
-import Grid from './icons/grid.vue';
+import Grid from './icons/grid-icon.vue';
 import Hand from './icons/hand.vue';
 import ImageCredits from './icons/image-credits.vue';
 import Info from './icons/info.vue';

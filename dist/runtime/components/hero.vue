@@ -1,7 +1,7 @@
 <template>
   <div :class="classList" :style="style">
     <hero-pattern class="hero__pattern" v-if="pattern" />
-    <v-img v-if="img" class="hero__background-img" :cloudinary="background.cloudinary" :img="img"></v-img>
+      <v-img v-if="img" class="hero__background-img " :cloudinary="background.cloudinary" :img="img" :style="backgroundImgStyle"></v-img>
     <div class="hero__container container">
       <main :class="contentClassList">
         <div class="hero__back-row row" v-if="hasBack">
@@ -11,33 +11,23 @@
             </div>
           </div>
         </div>
-        <letter-switcher
-          v-if="letterSwitcher"
-          v-bind="letterSwitcher"
-          class="hero__letter-switcher"
-          @ended="handleLetterSwitcherEnded"
-        >
+        <letter-switcher v-if="letterSwitcher" v-bind="letterSwitcher" class="hero__letter-switcher"
+          @ended="handleLetterSwitcherEnded">
         </letter-switcher>
         <div class="hero__intro row" v-if="overline || headlineText || subline" ref="intro">
           <div class="hero__intro-col col">
-            <div class="hero__overline-wrapper" >
-            <span :class="overlineClassList" v-if="overline">{{ overline }}</span>
-          </div>
+            <div class="hero__overline-wrapper">
+              <span :class="overlineClassList" v-if="overline">{{ overline }}</span>
+            </div>
             <headline :class="headlineClassList" v-if="headlineText" :level="level" :text="headlineText"></headline>
-            <div
-              :class="['hero__content-shape', shapeClasses]"
-              v-if="shapeInContentValue"
-              :style="{ order: shapeMobileOrder !== false ? shapeMobileOrder : undefined }"
-            >
+            <div :class="['hero__content-shape', shapeClasses]" v-if="shapeInContentValue"
+              :style="{ order: shapeMobileOrder !== false ? shapeMobileOrder : undefined }"> 
               <v-img
-                v-if="showShape"
-                :cloudinary="shape.cloudinary"
-                :img="shape.img"
-                :alt="shape.alt"
-                :lottie="lottieFileData"
-                :lottie-settings="lottieSettings"
-                :img-src-sets="imgSrcSets"
-              >
+                v-if="showShape && shape.imgMobile && isMobile" :cloudinary="shape.cloudinary" :img="shape.imgMobile"
+                :alt="shape.alt" :lottie="lottieFileData" :lottie-settings="lottieSettings" :img-src-sets="imgSrcSets" :class="mobileShapeClasses">
+              </v-img>
+              <v-img v-if="showShape && !shape.imgMobile && isMobile" :cloudinary="shape.cloudinary" :img="shape.img" :alt="shape.alt"
+                :lottie="lottieFileData" :lottie-settings="lottieSettings" :img-src-sets="imgSrcSets">
               </v-img>
             </div>
             <p class="hero__subline lead" v-if="subline" v-html="subline"></p>
@@ -49,27 +39,17 @@
             </div>
           </div>
         </div>
-        <text-icon-animation v-if="animation" :animation="animation" :cta="cta" :icon="icon" :iconColor="iconColor" classes="hero__animation">
+        <text-icon-animation v-if="animation" :animation="animation" :cta="cta" :icon="icon" :iconColor="iconColor"
+          classes="hero__animation">
         </text-icon-animation>
       </main>
     </div>
-
     <wrapper classes="hero__background-shape-wrapper" v-if="shape" :hideContainer="!showShapeContainer">
       <wrapper classes="hero__background-shape-content" :hideContainer="!showShapeContainer" :hideContainerClass="true">
-        <div
-          :class="['hero__background-shape', shapeClasses, shapeOffsetX ? 'hero__background-shape--overflow' : '']"
-          :style="shapeStyle"
-        >
-          <v-img
-            v-if="showShape"
-            :cloudinary="shape.cloudinary"
-            :img="shape.img"
-            :alt="shape.alt"
-            :lottie="lottieFileData"
-            :lottie-settings="lottieSettings"
-            :img-src-sets="imgSrcSets"
-            :lazy="true"
-          >
+        <div :class="['hero__background-shape', shapeClasses, shapeOffsetX ? 'hero__background-shape--overflow' : '']"
+          :style="shapeStyle">
+          <v-img v-if="showShape" :cloudinary="shape.cloudinary" :img="shape.img" :alt="shape.alt"
+            :lottie="lottieFileData" :lottie-settings="lottieSettings" :img-src-sets="imgSrcSets" :lazy="true">
           </v-img>
         </div>
       </wrapper>
@@ -128,6 +108,8 @@ const heroPattern = {
   `,
 };
 
+const isMobile = ref(false);
+
 export default {
   tagName: 'hero',
   components: {
@@ -143,6 +125,7 @@ export default {
       introHeight: null,
       style: null,
       isUpperBreakpoint: null,
+      backgroundImgStyle: null,
     };
   },
   created() {
@@ -152,6 +135,8 @@ export default {
   mounted() {
     this.setIntroStyle();
     this.setStyle();
+    this.setBackgroundImgStyle();
+
 
     window.addEventListener('resize', this.handleResize);
   },
@@ -188,8 +173,15 @@ export default {
           : '',
         this.bgWidth ? `--hero-background-width: ${this.bgWidth}%;` : '',
         this.overlineBgColor ? `--hero-overline-background-color: ${this.overlineBgColor};` : '',
+        
       ];
     },
+    setBackgroundImgStyle() {
+      this.backgroundImgStyle = [
+        this.bgFit ? `--hero-background-img-fit: ${this.bgFit};` : '',
+      ];
+    },
+
     setIntroStyle() {
       if (!this.isCentered) return;
 
@@ -209,8 +201,10 @@ export default {
       intro.style.height = `${this.introHeight}px`;
       intro.style.opacity = 1;
     },
+
   },
   computed: {
+
     classList() {
       return [
         'hero vue-component',
@@ -258,6 +252,9 @@ export default {
     },
     bgColor() {
       return this.heroJson ? this.heroJson.bgColor : null;
+    },
+    bgFit() {
+      return this.heroJson ? this.heroJson.bgFit : 'cover';
     },
     bgWidth() {
       return this.heroJson ? this.heroJson.bgWidth : null;
@@ -354,6 +351,7 @@ export default {
 
       return style;
     },
+
     shapeBottom() {
       return (this.shape && this.shape.bottom) || null;
     },
@@ -384,6 +382,9 @@ export default {
     },
     shapeClasses() {
       return this.shape && this.shape.classes ? this.shape.classes : null;
+    },
+    mobileShapeClasses() {
+      return this.shape && this.shape.mobileClasses ? this.shape.mobileClasses : null;
     },
     shapeIsSVG() {
       return this.shape && this.shape.img && this.shape.img.endsWith('.svg');
@@ -422,6 +423,16 @@ export default {
     heroJson() {
       return Tools.getJSON(this.hero);
     },
+    isMobile() {
+      isMobile.value = Tools.isBelowBreakpoint('lg');
+
+      if (!isMobile.value) {
+        isMenuOpen.value = false;
+      }
+
+      return isMobile.value;
+    },
+
   },
   props: {
     hero: Object,
