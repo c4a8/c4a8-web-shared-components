@@ -40,12 +40,12 @@ declare namespace _default {
     namespace computed {
         function classList(): any[];
         function contactVariantClass(): string[];
-        function contactLight(): any;
-        function contactBoxClass(): any;
-        function contactPersonClass(): any;
-        function contactFormClass(): any;
-        function contactContainerClass(): any;
-        function contactRowClass(): any;
+        function contactLight(): "" | "contact__person--light";
+        function contactBoxClass(): "" | "col-md-10 col-lg-5 offset-lg-1 order-2";
+        function contactPersonClass(): "" | "contact__person--small";
+        function contactFormClass(): "" | "col-md-10 col-lg-6 order-1";
+        function contactContainerClass(): string;
+        function contactRowClass(): string[];
         function styleObject(): any;
     }
 }

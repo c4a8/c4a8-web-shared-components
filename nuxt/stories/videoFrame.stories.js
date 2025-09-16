@@ -73,7 +73,21 @@ export const FullWidth = {
     headline: {
       text: 'Himmelsstürmer gesucht: <br/> glueckkanja sucht Verstärkung',
       color: '--color-white',
-      alignment: 'text-center', // text-right, text-left
+      alignment: 'text-center',
+    },
+  },
+};
+
+export const HeadlineAlignment = {
+  args: {
+    thumb: 'thumbs/career-corporate-video.png',
+    alt: 'Video Casestudy Uniper',
+    id: 'ThxpyUOz2R8',
+    fullWidth: true,
+    headline: {
+      text: 'Himmelsstürmer gesucht: <br/> glueckkanja sucht Verstärkung',
+      color: '--color-white',
+      alignment: 'text-left align-items-end',
     },
   },
 };
