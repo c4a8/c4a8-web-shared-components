@@ -41,6 +41,8 @@ declare namespace _default {
     }
     function mounted(): void;
     namespace methods {
+        function hasCal(): any;
+        function initCalendar(): void;
         function initCal(): void;
     }
 }
