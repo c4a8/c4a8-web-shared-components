@@ -1,5 +1,10 @@
 # Releases
 
+# Release 0.4.26
+
+- Updates Default Calendar
+- Adjusts team-cards-item layout
+
 # Release 0.4.25
 
 - Fixes issues with Hero

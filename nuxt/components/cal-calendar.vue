@@ -22,7 +22,7 @@ export default {
     },
     calLink: {
       type: String,
-      default: 'glueckkanja/it-sa-termin',
+      default: 'glueckkanja',
     },
     lightBrandColor: {
       type: String,
@@ -50,10 +50,34 @@ export default {
   },
   mounted() {
     this.initCal();
+    this.initCalendar();
   },
   methods: {
+    hasCal() {
+      return typeof window !== 'undefined' && window.Cal;
+    },
+    initCalendar() {
+      if (!this.hasCal()) return;
+
+      window.Cal('init', this.calendarId, { origin: 'https://app.cal.com' });
+
+      window.Cal.ns[this.calendarId]('inline', {
+        elementOrSelector: `#${this.calendarElementId}`,
+        config: { layout: this.layout, theme: 'auto' },
+        calLink: this.calLink,
+      });
+
+      window.Cal.ns[this.calendarId]('ui', {
+        cssVarsPerTheme: {
+          light: { 'cal-brand': this.lightBrandColor },
+          dark: { 'cal-brand': this.darkBrandColor },
+        },
+        hideEventTypeDetails: false,
+        layout: this.layout,
+      });
+    },
     initCal() {
-      if (typeof window !== 'undefined' && !window.Cal) {
+      if (!this.hasCal()) {
         (function (C, A, L) {
           let p = function (a, ar) {
             a.q.push(ar);
@@ -86,25 +110,6 @@ export default {
               p(cal, ar);
             };
         })(window, 'https://app.cal.com/embed/embed.js', 'init');
-      }
-
-      if (typeof window !== 'undefined' && window.Cal) {
-        window.Cal('init', this.calendarId, { origin: 'https://app.cal.com' });
-
-        window.Cal.ns[this.calendarId]('inline', {
-          elementOrSelector: `#${this.calendarElementId}`,
-          config: { layout: this.layout, theme: 'auto' },
-          calLink: this.calLink,
-        });
-
-        window.Cal.ns[this.calendarId]('ui', {
-          cssVarsPerTheme: {
-            light: { 'cal-brand': this.lightBrandColor },
-            dark: { 'cal-brand': this.darkBrandColor },
-          },
-          hideEventTypeDetails: false,
-          layout: this.layout,
-        });
       }
     },
   },
