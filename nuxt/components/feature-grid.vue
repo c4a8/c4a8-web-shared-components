@@ -15,8 +15,12 @@
 
       <p class="feature-grid__description w-lg-50 text-center mt-3 mx-auto" v-if="description">{{ description }}</p>
 
-      <figure v-if="image" class="d-flex mt-8 justify-content-center fade-in-bottom" data-utility-animation-step="1">
-        <v-img v-bind="image" :img="image.src" />
+      <figure
+        v-if="image"
+        class="feature-grid__figure d-flex mt-8 justify-content-center fade-in-bottom"
+        data-utility-animation-step="1"
+      >
+        <v-img v-bind="image" :img="image.src" class="somehowhier" />
       </figure>
 
       <div class="my-8" v-if="features">
