@@ -35,7 +35,7 @@
               :img="outsideImage"
               :cloudinary="cloudinary(accordion)"
               :lazy="true"
-              :alt="accordion.alt"
+              :alt="outsideAlt"
               :animated="outsideAnimated"
               :preset="outsidePreset"
             />
@@ -146,6 +146,7 @@ export default {
       this.changeOutsideImage();
     } else {
       this.outsideImage = this.fallbackImage;
+      this.outsideAlt = this.fallbackAlt;
     }
 
     this.accordion.tabs.forEach((element) => {
@@ -170,6 +171,7 @@ export default {
 
         this.fallbackImage = this.accordion.image || activeTab?.image;
         this.fallbackAnimated = this.accordion.image ? this.accordion.animated : activeTab.animated;
+        this.fallbackAlt = this.accordion.image ? this.accordion.alt : activeTab?.alt;
       }
     },
     getActiveTab() {
@@ -197,6 +199,7 @@ export default {
       this.accordion.image = this.fallbackImage;
       this.outsideImage = this.fallbackImage;
       this.outsideAnimated = this.fallbackAnimated;
+      this.outsideAlt = this.fallbackAlt;
     },
     changeOutsideImage(index) {
       const tab = this.getTabByIndex(index);
@@ -204,6 +207,7 @@ export default {
       this.showOutsideImage = true;
       this.outsideImage = tab?.image || this.fallbackImage;
       this.outsideAnimated = tab?.image ? tab.animated : this.fallbackAnimated;
+      this.outsideAlt = tab?.image ? tab.alt : this.fallbackAlt;
     },
     getTabByIndex(index) {
       if (typeof index === 'undefined') return this.getActiveTab();
@@ -261,9 +265,11 @@ export default {
       showOutsideImage: false,
       outsideImage: false,
       outsideAnimated: false,
+      outsideAlt: '',
       states: [],
       fallbackImage: false,
       fallbackAnimated: false,
+      fallbackAlt: '',
     };
   },
   props: {

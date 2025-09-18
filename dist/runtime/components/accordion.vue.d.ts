@@ -36,9 +36,11 @@ declare namespace _default {
         showOutsideImage: boolean;
         outsideImage: boolean;
         outsideAnimated: boolean;
+        outsideAlt: string;
         states: never[];
         fallbackImage: boolean;
         fallbackAnimated: boolean;
+        fallbackAlt: string;
     };
     namespace props {
         let accordion: ObjectConstructor;
