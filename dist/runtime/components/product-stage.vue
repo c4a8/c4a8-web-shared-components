@@ -19,119 +19,110 @@
       </svg>
     </div>
 
-    <div v-if="stage.cutoff" class="d-flex justify-content-center">
-      <div class="row row-cols-3 position-relative ">
-        <div class="col-2"></div>
-
-        <div class="product-stage__content col-6">
-          <div
-            :class="['space-top-2 space-top-lg-4 space-top-xl-5 space-bottom-1 space-bottom-lg-2', { 'text-white': light }]">
-            <headline :classes="stage.headlineClasses" :level="stage.headlineLevel || 'h1'">{{ stage.headline }}
-            </headline>
-            <p v-if="stage.description" class="lead mt-5 px-0" v-html="stage.description"></p>
+    <div :class="stage.cutoff ? 'd-flex justify-content-center' : 'product-stage__content container position-relative'">
+      <div class="row position-relative justify-content-end" v-if="stage.cutoff">
+      <div class="product-stage__content col col-md-6 px-10">
+        <div
+        :class="['space-top-2 space-top-lg-4 space-top-xl-5 space-bottom-1 space-bottom-lg-2', { 'text-white': light }]">
+        <headline :classes="stage.headlineClasses" :level="stage.headlineLevel || 'h1'">{{ stage.headline }}</headline>
+        <p v-if="stage.description" class="lead mt-5 px-0" v-html="stage.description"></p>
+        </div>
+        <pricing-slider v-if="stage.slider && products" :slider="stage.slider" :tooltip="stage.tooltip"
+        :modal-id="stage.modalId" :products="products" :light="light" />
+        <modal v-else-if="stage.modalId && stage.tooltip" :slim="true" :center="true" class="pricing-slider__modal"
+        :modal-id="stage.modalId">
+        <div class="container">
+          <div class="row">
+          <div class="col" v-html="stage.tooltip"></div>
           </div>
-          <pricing-slider v-if="stage.slider && products" :slider="stage.slider" :tooltip="stage.tooltip"
-            :modal-id="stage.modalId" :products="products" :light="light" />
-          <modal v-else-if="stage.modalId && stage.tooltip" :slim="true" :center="true" class="pricing-slider__modal"
-            :modal-id="stage.modalId">
-            <div class="container">
-              <div class="row">
-                <div class="col" v-html="stage.tooltip"></div>
-              </div>
+        </div>
+        </modal>
+        <div v-if="stage.additionalCopy" class="row justify-content-center py-6">
+        <div :class="['text-center', { 'text-white': light }]" v-html="stage.additionalCopy"></div>
+        </div>
+        <div v-if="stage.buttons" class="row justify-content-center py-6">
+        <cta-list :list="stage.buttons" />
+        </div>
+        <div v-else class="space-bottom-2 space-bottom-lg-3"></div>
+        <ul v-if="cards" class="row nav nav-pills" :class="{ 'px-1 px-lg-0': cards.tabs }" role="tablist">
+        <li v-for="(card, index) in cards.list" :key="index" :class="cardWrapperClasses">
+          <conditional-link :link="hasLink(card)" :href="card?.link?.href" :target="card?.link?.target"
+          class="product-stage__tab h-100 rounded position-relative d-block"
+          :class="{ active: cards.tabs && index === 0 }" :id="card?.id ? card?.id + '-tab' : ''"
+          data-toggle="pill" role="tab" :aria-controls="card?.id" :aria-selected="cards.tabs && index === 0">
+          <div class="product-stage__tab-content position-relative h-100"
+            :class="{ 'product-stage__tab-content--alternative-border': cards.tabs }">
+            <div :class="['rounded', { 'p-2 p-lg-8': card.link, 'p-8 bg-white shadow-lg': !card.link }]">
+            <div class="d-flex flex-column align-items-center position-relative z-index-2">
+              <h2 v-if="card.title"
+              :class="['font-size-3 mb-2 mb-md-6 text-center', { 'text-primary': card.link }]">
+              {{ card.title }}
+              </h2>
+              <p v-if="card.description" class="mb-6 flex-grow-1">{{ card.description }}</p>
+              <cta v-if="card.cta !== card.href" :text="card.cta.text" :href="card.cta.href"
+              :target="card.cta.target" :skin="card.cta.skin" classes="align-self-center z-index-2" />
             </div>
-          </modal>
-          <div v-if="stage.additionalCopy" class="row justify-content-center py-6">
-            <div :class="['text-center', { 'text-white': light }]" v-html="stage.additionalCopy"></div>
+            </div>
           </div>
-
-          <div v-if="stage.buttons" class="row justify-content-center py-6">
-            <cta-list :list="stage.buttons" />
-          </div>
-          <div v-else class="space-bottom-2 space-bottom-lg-3"></div>
-          <ul v-if="cards" class="row nav nav-pills" :class="{ 'px-1 px-lg-0': cards.tabs }" role="tablist">
-            <li v-for="(card, index) in cards.list" :key="index" :class="cardWrapperClasses">
-              <conditional-link :link="hasLink(card)" :href="card?.link?.href" :target="card?.link?.target"
-                class="product-stage__tab h-100 rounded position-relative d-block"
-                :class="{ active: cards.tabs && index === 0 }" :id="card?.id ? card?.id + '-tab' : ''"
-                data-toggle="pill" role="tab" :aria-controls="card?.id" :aria-selected="cards.tabs && index === 0">
-                <div class="product-stage__tab-content position-relative h-100"
-                  :class="{ 'product-stage__tab-content--alternative-border': cards.tabs }">
-                  <div :class="['rounded', { 'p-2 p-lg-8': card.link, 'p-8 bg-white shadow-lg': !card.link }]">
-                    <div class="d-flex flex-column align-items-center position-relative z-index-2">
-                      <h2 v-if="card.title"
-                        :class="['font-size-3 mb-2 mb-md-6 text-center', { 'text-primary': card.link }]">
-                        {{ card.title }}
-                      </h2>
-                      <p v-if="card.description" class="mb-6 flex-grow-1">{{ card.description }}</p>
-                      <cta v-if="card.cta !== card.href" :text="card.cta.text" :href="card.cta.href"
-                        :target="card.cta.target" :skin="card.cta.skin" classes="align-self-center z-index-2" />
-                    </div>
-                  </div>
-                </div>
-              </conditional-link>
-            </li>
-          </ul>
-        </div>
-        <div v-if="stage.cutoff" class="align-items-center d-flex flex-column justify-content-center text-center"
-          style="background-color: var(--color-black-4);">
-          <headline level="h2">{{ stage.cutoff.headline }}</headline>
-          <p class="font-size-3">{{ stage.cutoff.subline }}</p>
-          <cta v-bind="stage.cutoff.cta" class="mt-4 mb-8" :width="'w-60'" />
-          <p class="font-size-1 w-50">{{ stage.cutoff.copy }}</p>
-        </div>
+          </conditional-link>
+        </li>
+        </ul>
       </div>
-    </div>
-
-    <div v-else class="product-stage__content container position-relative">
+      <div class="align-items-center d-flex flex-column justify-content-center text-center col-4"
+        style="background-color: var(--color-black-4);">
+        <headline level="h2">{{ stage.cutoff.headline }}</headline>
+        <p class="font-size-3">{{ stage.cutoff.subline }}</p>
+        <cta v-bind="stage.cutoff.cta" class="mt-4 mb-8" :width="'w-60'" />
+        <p class="font-size-1 w-50">{{ stage.cutoff.copy }}</p>
+      </div>
+      </div>
+      <template v-else>
       <div
         :class="['space-top-2 space-top-lg-4 space-top-xl-5 space-bottom-1 space-bottom-lg-2', { 'text-white': light }]">
         <headline :classes="stage.headlineClasses" :level="stage.headlineLevel || 'h1'">{{ stage.headline }}</headline>
         <p v-if="stage.description" class="col-lg-8 lead mt-5 px-0" v-html="stage.description"></p>
       </div>
-
       <pricing-slider v-if="stage.slider && products" :slider="stage.slider" :tooltip="stage.tooltip"
         :modal-id="stage.modalId" :products="products" :light="light" />
       <modal v-else-if="stage.modalId && stage.tooltip" :slim="true" :center="true" class="pricing-slider__modal"
         :modal-id="stage.modalId">
         <div class="container">
-          <div class="row">
-            <div class="col" v-html="stage.tooltip"></div>
-          </div>
+        <div class="row">
+          <div class="col" v-html="stage.tooltip"></div>
+        </div>
         </div>
       </modal>
-
       <div v-if="stage.additionalCopy" class="row justify-content-center py-6">
         <div :class="['text-center', { 'text-white': light }]" v-html="stage.additionalCopy"></div>
       </div>
-
       <div v-if="stage.buttons" class="row justify-content-center py-6">
         <cta-list :list="stage.buttons" />
       </div>
       <div v-else class="space-bottom-2 space-bottom-lg-3"></div>
-
       <ul v-if="cards" class="row nav nav-pills" :class="{ 'px-1 px-lg-0': cards.tabs }" role="tablist">
         <li v-for="(card, index) in cards.list" :key="index" :class="cardWrapperClasses">
-          <conditional-link :link="hasLink(card)" :href="card?.link?.href" :target="card?.link?.target"
-            class="product-stage__tab h-100 rounded position-relative d-block"
-            :class="{ active: cards.tabs && index === 0 }" :id="card?.id ? card?.id + '-tab' : ''" data-toggle="pill"
-            role="tab" :aria-controls="card?.id" :aria-selected="cards.tabs && index === 0">
-            <div class="product-stage__tab-content position-relative h-100"
-              :class="{ 'product-stage__tab-content--alternative-border': cards.tabs }">
-              <div :class="['rounded', { 'p-2 p-lg-8': card.link, 'p-8 bg-white shadow-lg': !card.link }]">
-                <div class="d-flex flex-column align-items-center position-relative z-index-2">
-                  <h2 v-if="card.title"
-                    :class="['font-size-3 mb-2 mb-md-6 text-center', { 'text-primary': card.link }]">
-                    {{ card.title }}
-                  </h2>
-                  <p v-if="card.description" class="mb-6 flex-grow-1">{{ card.description }}</p>
-                  <cta v-if="card.cta !== card.href" :text="card.cta.text" :href="card.cta.href"
-                    :target="card.cta.target" :skin="card.cta.skin" classes="align-self-center z-index-2" />
-                </div>
-              </div>
+        <conditional-link :link="hasLink(card)" :href="card?.link?.href" :target="card?.link?.target"
+          class="product-stage__tab h-100 rounded position-relative d-block"
+          :class="{ active: cards.tabs && index === 0 }" :id="card?.id ? card?.id + '-tab' : ''" data-toggle="pill"
+          role="tab" :aria-controls="card?.id" :aria-selected="cards.tabs && index === 0">
+          <div class="product-stage__tab-content position-relative h-100"
+          :class="{ 'product-stage__tab-content--alternative-border': cards.tabs }">
+          <div :class="['rounded', { 'p-2 p-lg-8': card.link, 'p-8 bg-white shadow-lg': !card.link }]">
+            <div class="d-flex flex-column align-items-center position-relative z-index-2">
+            <h2 v-if="card.title"
+              :class="['font-size-3 mb-2 mb-md-6 text-center', { 'text-primary': card.link }]">
+              {{ card.title }}
+            </h2>
+            <p v-if="card.description" class="mb-6 flex-grow-1">{{ card.description }}</p>
+            <cta v-if="card.cta !== card.href" :text="card.cta.text" :href="card.cta.href"
+              :target="card.cta.target" :skin="card.cta.skin" classes="align-self-center z-index-2" />
             </div>
-          </conditional-link>
+          </div>
+          </div>
+        </conditional-link>
         </li>
       </ul>
+      </template>
     </div>
 
     <template v-if="shape">
