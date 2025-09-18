@@ -165,3 +165,33 @@ export const Cards = {
     },
   },
 };
+
+export const Slice = {
+  args: {
+    stage: {
+      bgColor: 'var(--color-orange);',
+      headline: 'Start now',
+      description:
+        'When signing up you get access to the RJ Portal within your Microsoft 365 tenant to find out about all the awesome possibilities to manage Windows and Mac applications without leaving the platform. But also managing all devices, users and groups, get access to open source remediations scripts and automation and so much more...<br></br><a>Book 30 minutes with Ugur now</a>',
+      background: {
+        img: 'svg/product-backgrounds/radiusaas-background.svg',
+        alt: 'Alt text',
+      },
+      /*
+      bottomImg: {
+        src: 'https://res.cloudinary.com/c4a8/image/upload/v1758200483/products/realmjoin/macbook.svg',
+        alt: 'MacBook showing the RealmJoin portal',
+      },
+      */
+      cutoff: {
+        headline: 'Ready to Explore?',
+        subline: 'Welcome to our Portal!',
+        copy: 'This sign in button redirects you to the basic Entra login within your tenant and asks you to consent only basic profile access to allow us to read your name and email address.',
+        cta: {
+          text: 'Sign in',
+          skin: 'primary is-cutoff',
+        },
+      },
+    },
+  },
+};
