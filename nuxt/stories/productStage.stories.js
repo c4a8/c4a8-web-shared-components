@@ -165,3 +165,27 @@ export const Cards = {
     },
   },
 };
+
+export const Cutoff = {
+  args: {
+    stage: {
+      bgColor: 'var(--color-orange);',
+      headline: 'Start now',
+      description:
+        'When signing up you get access to the RJ Portal within your Microsoft 365 tenant to find out about all the awesome possibilities to manage Windows and Mac applications without leaving the platform. But also managing all devices, users and groups, get access to open source remediations scripts and automation and so much more...<br></br><a>Book 30 minutes with Ugur now</a>',
+      cutoff: {
+        headline: 'Ready to Explore?',
+        subline: 'Welcome to our Portal!',
+        copy: 'This sign in button redirects you to the basic Entra login within your tenant and asks you to consent only basic profile access to allow us to read your name and email address.',
+      },
+      cta: {
+        text: 'Book 30 minutes with Ugur now',
+        href: '',
+        icon: 'booking',
+        color: 'var(--color-sahara-sand)',
+        link: true,
+        underline: true,
+      },
+    },
+  },
+};
