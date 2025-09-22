@@ -1,7 +1,7 @@
 <template>
   <section class="product-stage position-relative overflow-hidden" :class="stage.cutoff ? 'product-stage--cutoff' : ''" :style="{ backgroundColor: bgColor }">
     <div class="svg-shape-animation">
-      <svg class="position-absolute w-60" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 1440 965"
+      <svg class="position-absolute" :class="stage.cutoff ? 'w-60' : ''" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 1440 965"
         fill="none" xmlns="http://www.w3.org/2000/svg">
         <path opacity="0.0591615" fill-rule="evenodd" clip-rule="evenodd" d="M0 0L316 695L1441 965L0 840V0Z"
           fill="url(#paint0_linear)" />
@@ -81,7 +81,7 @@
             <p v-if="stage.cutoff.subline" class="col-lg-8 lead mt-5 px-0"> {{ stage.cutoff.subline }}</p>
             <cta v-if="stage.cutoff.button" v-bind="stage.cutoff.button" class="my-4" :width="'w-80'" />
             <p v-if="stage.cutoff.description" class="col-lg-8 mt-5 px-0" v-html="stage.cutoff.description"></p>
-            <cta v-if="stage.cutoff.cta" v-bind="stage.cutoff.cta" class="mt-11 pt-11 bold" :style="{ color: stage.cutoff.cta.color, textDecoration: 'underline' }"/>
+            <cta v-if="stage.cutoff.cta" v-bind="stage.cutoff.cta" class="mt-11 pt-11 bold z-index-2" :style="{ color: stage.cutoff.cta.color, textDecoration: 'underline' }"/>
           </div>
         </div>
       </div>
@@ -91,7 +91,7 @@
         :color="shape.color" />
     </template>
     </section>
-    <div class="container position-relative product-stage__bottom-img">
+    <div class="container position-relative product-stage__bottom-img ">
       <v-img v-if="stage.image" :src="stage.image.src" :alt="stage.image.alt" :cloudinary="stage.image.cloudinary"
         class="w-60" :style="stage.image.style" />
     </div>
