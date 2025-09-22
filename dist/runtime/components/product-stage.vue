@@ -34,7 +34,7 @@
             <headline :classes="stage.headlineClasses" :level="stage.headlineLevel || 'h1'">{{ stage.headline }}
             </headline>
             <p v-if="stage.description" class="lead mt-5 px-0" v-html="stage.description"></p>
-            <cta v-bind="stage.cta" :style="{ color: stage.cta.color }"/>
+            <cta v-if="stage.cta" v-bind="stage.cta" :style="{ color: stage.cta.color }"/>
           </div>
           <pricing-slider v-if="stage.slider && products" :slider="stage.slider" :tooltip="stage.tooltip"
             :modal-id="stage.modalId" :products="products" :light="light" />
