@@ -1,8 +1,7 @@
 <template>
-
-  <section class="product-stage position-relative overflow-hidden" :style="{ backgroundColor: bgColor }">
+  <section class="product-stage position-relative overflow-hidden" :class="stage.cutoff ? 'product-stage--cutoff' : ''" :style="{ backgroundColor: bgColor }">
     <div class="svg-shape-animation">
-      <svg class="position-absolute" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 1440 965"
+      <svg class="position-absolute w-60" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 1440 965"
         fill="none" xmlns="http://www.w3.org/2000/svg">
         <path opacity="0.0591615" fill-rule="evenodd" clip-rule="evenodd" d="M0 0L316 695L1441 965L0 840V0Z"
           fill="url(#paint0_linear)" />
@@ -19,23 +18,17 @@
         </defs>
       </svg>
     </div>
+    <div :class="stage.cutoff ? 'container' : ''">
 
-    <div :class="[
-      'product-stage__content',
-      'position-relative',
-      { 'container': !stage.cutoff },
-      { 'd-flex justify-content-center': stage.cutoff }
-    ]">
-      <div :class="stage.cutoff ? 'row position-relative justify-content-end' : ''">
-        <div :class="stage.cutoff ? 'col col-lg-6 px-10' : ''">
-
+      <div :class="stage.cutoff ? 'row' : ''">
+        <div class="product-stage__content position-relative"  :class="stage.cutoff ? 'col-7' : 'container'">
           <div
             :class="['space-top-2 space-top-lg-4 space-top-xl-5 space-bottom-1 space-bottom-lg-2', { 'text-white': light }]">
             <headline :classes="stage.headlineClasses" :level="stage.headlineLevel || 'h1'">{{ stage.headline }}
             </headline>
-            <p v-if="stage.description" class="lead mt-5 px-0" v-html="stage.description"></p>
-            <cta v-bind="stage.cta" :style="{ color: stage.cta.color }"/>
+            <p v-if="stage.description" class="lead mt-5 px-0" :class="stage.cutoff ? 'col-lg-10' : 'col-lg-8'" v-html="stage.description"></p>
           </div>
+
           <pricing-slider v-if="stage.slider && products" :slider="stage.slider" :tooltip="stage.tooltip"
             :modal-id="stage.modalId" :products="products" :light="light" />
           <modal v-else-if="stage.modalId && stage.tooltip" :slim="true" :center="true" class="pricing-slider__modal"
@@ -46,13 +39,16 @@
               </div>
             </div>
           </modal>
+
           <div v-if="stage.additionalCopy" class="row justify-content-center py-6">
             <div :class="['text-center', { 'text-white': light }]" v-html="stage.additionalCopy"></div>
           </div>
+
           <div v-if="stage.buttons" class="row justify-content-center py-6">
             <cta-list :list="stage.buttons" />
           </div>
           <div v-else class="space-bottom-2 space-bottom-lg-3"></div>
+
           <ul v-if="cards" class="row nav nav-pills" :class="{ 'px-1 px-lg-0': cards.tabs }" role="tablist">
             <li v-for="(card, index) in cards.list" :key="index" :class="cardWrapperClasses">
               <conditional-link :link="hasLink(card)" :href="card?.link?.href" :target="card?.link?.target"
@@ -77,24 +73,28 @@
             </li>
           </ul>
         </div>
-
-        <div v-if="stage.cutoff"
-          class="align-items-center d-flex flex-column justify-content-center text-center col-md-4 py-10"
-          style="background-color: var(--color-black-4);">
-          <headline level="h2">{{ stage.cutoff.headline }}</headline>
-          <p class="font-size-3">{{ stage.cutoff.subline }}</p>
-          <cta v-bind="stage.cutoff.cta" class="mt-4 mb-8" :width="'w-60'" />
-          <p class="font-size-1 w-50">{{ stage.cutoff.copy }}</p>
+        <div v-if="stage.cutoff" class="cutoff__content" :class="stage.cutoff ? 'col-5' : ''" :style="{ backgroundColor: cutoffBgColor }">
+          <div
+            :class="['space-top-2 space-top-lg-4 space-top-xl-5 space-bottom-1 space-bottom-lg-2 text-center align-items-center d-flex flex-column']">
+            <headline v-if="stage.cutoff.headline" :classes="stage.cutoff.headlineClasses"
+              :level="stage.cutoff.headlineLevel || 'h1'">{{ stage.cutoff.headline }}</headline>
+            <p v-if="stage.cutoff.subline" class="col-lg-8 lead mt-5 px-0"> {{ stage.cutoff.subline }}</p>
+            <cta v-if="stage.cutoff.button" v-bind="stage.cutoff.button" class="my-4" :width="'w-80'" />
+            <p v-if="stage.cutoff.description" class="col-lg-8 mt-5 px-0" v-html="stage.cutoff.description"></p>
+            <cta v-if="stage.cutoff.cta" v-bind="stage.cutoff.cta" class="mt-11 pt-11 bold" :style="{ color: stage.cutoff.cta.color, textDecoration: 'underline' }"/>
+          </div>
         </div>
       </div>
-
     </div>
-
     <template v-if="shape">
       <svg-shape v-if="shape.isActive !== false" align="bottom" peak="left" :obliquity="4" :classes="shapeClasses"
         :color="shape.color" />
     </template>
-  </section>
+    </section>
+    <div class="container position-relative product-stage__bottom-img">
+      <v-img v-if="stage.image" :src="stage.image.src" :alt="stage.image.alt" :cloudinary="stage.image.cloudinary"
+        class="w-60" :style="stage.image.style" />
+    </div>
 </template>
 <script>
 export default {
@@ -124,6 +124,11 @@ export default {
       const bgColor = this.stage.bgColor || 'var(--color-primary)';
 
       return bgColor.replace(';', '');
+    },
+    cutoffBgColor() {
+      const cutoffBgColor = this.stage.cutoff.bgColor || 'var(--color-black-4)';
+
+      return cutoffBgColor.replace(';', '');
     },
     shape() {
       return this.stage.shape || null;

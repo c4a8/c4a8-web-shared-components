@@ -16,6 +16,7 @@ declare namespace _default {
             'mb-6 mb-md-8 mb-lg-0': boolean;
         })[];
         function bgColor(): any;
+        function cutoffBgColor(): any;
         function shape(): any;
         function cards(): any;
         function overlapping(): any;
