@@ -7,7 +7,7 @@
             <div class="service-overview__logo">
               <a :href="logo.url" target="_blank" class="service-overview__logo-frame">
                 <div class="service-overview__img">
-                  <v-img v-bind="logo" v-if="logo.img" />
+                  <v-img v-bind="logo" :cloudinary="logo.cloudinary || true" v-if="logo.img" />
                 </div>
                 <icon icon="arrow-external" color="var(--color-primary)" />
               </a>
