@@ -7,6 +7,19 @@
       <div class="w-xl-80 mx-xl-auto">
         <article class="post" itemscope itemtype="http://schema.org/TechArticle">
           <div class="post-content e-content" itemprop="articleBody">
+            <sticky-block
+              v-model:is-at-end="isAtEnd"
+              v-model:end-point="endPoint"
+              v-model:content-height="stickyContentHeight"
+              class="post__sticky-bar post__sticky-bar--lg-only"
+              :sticky-offset-top="100"
+              :sticky-offset-bottom="20"
+              :has-padding="false"
+              breakpoint="lg"
+            >
+              <socials :vertical="true" :hide-label="true" :author="null" :share-url="shareUrl" />
+            </sticky-block>
+
             <ContentRenderer
               class="mt-xl-n4 richtext"
               :value="casestudyNormalized"
@@ -30,6 +43,10 @@ import Tools from '../../utils/tools.js';
 const route = useRoute();
 const nuxtApp = useNuxtApp();
 const currentLocale = nuxtApp.$i18n.locale;
+const isAtEnd = ref(false);
+const endPoint = ref(null);
+const stickyContentHeight = ref(0);
+const shareUrl = 'TESTURL';
 
 const dynamicMeta = useDynamicPageMeta();
 
