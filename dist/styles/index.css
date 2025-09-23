@@ -44973,6 +44973,14 @@ job-list-detail {
   border-bottom-right-radius: 0;
 }
 
+.product-stage--cutoff {
+  background: linear-gradient(90deg, transparent 0%, transparent 60%, var(--color-black-4) 60%, var(--color-black-4) 100%);
+}
+
+.product-stage__bottom-img {
+  margin-top: -10em;
+}
+
 .quotes {
   --color-quotes-highlight: var(--color-yellow);
   --color-quotes-background: var(--color-green-blue);
