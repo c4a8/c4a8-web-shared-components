@@ -91,8 +91,8 @@
         :color="shape.color" />
     </template>
     </section>
-    <div class="container position-relative product-stage__bottom-img ">
-      <v-img v-if="stage.image" :src="stage.image.src" :alt="stage.image.alt" :cloudinary="stage.image.cloudinary"
+    <div v-if="stage.image" class="container position-relative product-stage__bottom-img ">
+      <v-img  :src="stage.image.src" :alt="stage.image.alt" :cloudinary="stage.image.cloudinary"
         class="w-60" :style="stage.image.style" />
     </div>
 </template>
