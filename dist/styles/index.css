@@ -40499,6 +40499,10 @@ ul.dashed li.feature-grid-item__text::before,
   max-height: 400px;
 }
 
+.feature-grid__figure > .img__picture-wrapper {
+  width: 100%;
+}
+
 .filter-bar__controls {
   position: relative;
   display: flex;
@@ -44967,6 +44971,14 @@ job-list-detail {
 .product-stage__tab-content--alternative-border::before {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+.product-stage--cutoff {
+  background: linear-gradient(90deg, transparent 0%, transparent 60%, var(--color-black-4) 60%, var(--color-black-4) 100%);
+}
+
+.product-stage__bottom-img {
+  margin-top: -10em;
 }
 
 .quotes {
