@@ -1,17 +1,50 @@
 <template>
-  <section class="product-stage position-relative overflow-hidden" :class="stage.cutoff ? 'product-stage--cutoff' : ''" :style="{ backgroundColor: bgColor }">
+  <section
+    class="product-stage position-relative overflow-hidden"
+    :class="stage.cutoff ? 'product-stage--cutoff' : ''"
+    :style="{ backgroundColor: bgColor }"
+  >
     <div class="svg-shape-animation">
-      <svg class="position-absolute" :class="stage.cutoff ? 'w-60' : ''" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 1440 965"
-        fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path opacity="0.0591615" fill-rule="evenodd" clip-rule="evenodd" d="M0 0L316 695L1441 965L0 840V0Z"
-          fill="url(#paint0_linear)" />
-        <path opacity="0.0339753" fill-rule="evenodd" clip-rule="evenodd" d="M747 147L1439 965L1440 0H340L747 147Z"
-          fill="black" />
-        <path opacity="0.174464" fill-rule="evenodd" clip-rule="evenodd" d="M646 0L1261 222L1368 685L628 890L646 0Z"
-          fill="white" />
+      <svg
+        class="position-absolute"
+        :class="stage.cutoff ? 'w-md-60' : ''"
+        width="100%"
+        height="100%"
+        preserveAspectRatio="none"
+        viewBox="0 0 1440 965"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          opacity="0.0591615"
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M0 0L316 695L1441 965L0 840V0Z"
+          fill="url(#paint0_linear)"
+        />
+        <path
+          opacity="0.0339753"
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M747 147L1439 965L1440 0H340L747 147Z"
+          fill="black"
+        />
+        <path
+          opacity="0.174464"
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M646 0L1261 222L1368 685L628 890L646 0Z"
+          fill="white"
+        />
         <defs>
-          <linearGradient id="paint0_linear" x1="-327.295" y1="767.888" x2="135.719" y2="1396.04"
-            gradientUnits="userSpaceOnUse">
+          <linearGradient
+            id="paint0_linear"
+            x1="-327.295"
+            y1="767.888"
+            x2="135.719"
+            y2="1396.04"
+            gradientUnits="userSpaceOnUse"
+          >
             <stop />
             <stop offset="1" stop-color="white" stop-opacity="0.01" />
           </linearGradient>
@@ -19,19 +52,39 @@
       </svg>
     </div>
     <div :class="stage.cutoff ? 'container' : ''">
-
       <div :class="stage.cutoff ? 'row' : ''">
-        <div class="product-stage__content position-relative"  :class="stage.cutoff ? 'col-7' : 'container'">
+        <div class="product-stage__content position-relative" :class="stage.cutoff ? 'col-md-7' : 'container'">
           <div
-            :class="['space-top-2 space-top-lg-4 space-top-xl-5 space-bottom-1 space-bottom-lg-2', { 'text-white': light }]">
-            <headline :classes="stage.headlineClasses" :level="stage.headlineLevel || 'h1'">{{ stage.headline }}
+            :class="[
+              'space-top-2 space-top-lg-4 space-top-xl-5 space-bottom-1 space-bottom-lg-2',
+              { 'text-white': light },
+            ]"
+          >
+            <headline :classes="stage.headlineClasses" :level="stage.headlineLevel || 'h1'"
+              >{{ stage.headline }}
             </headline>
-            <p v-if="stage.description" class="lead mt-5 px-0" :class="stage.cutoff ? 'col-lg-10' : 'col-lg-8'" v-html="stage.description"></p>
+            <p
+              v-if="stage.description"
+              class="lead mt-5 px-0"
+              :class="stage.cutoff ? 'col-lg-10' : 'col-lg-8'"
+              v-html="stage.description"
+            ></p>
           </div>
-          <pricing-slider v-if="stage.slider && products" :slider="stage.slider" :tooltip="stage.tooltip"
-            :modal-id="stage.modalId" :products="products" :light="light" />
-          <modal v-else-if="stage.modalId && stage.tooltip" :slim="true" :center="true" class="pricing-slider__modal"
-            :modal-id="stage.modalId">
+          <pricing-slider
+            v-if="stage.slider && products"
+            :slider="stage.slider"
+            :tooltip="stage.tooltip"
+            :modal-id="stage.modalId"
+            :products="products"
+            :light="light"
+          />
+          <modal
+            v-else-if="stage.modalId && stage.tooltip"
+            :slim="true"
+            :center="true"
+            class="pricing-slider__modal"
+            :modal-id="stage.modalId"
+          >
             <div class="container">
               <div class="row">
                 <div class="col" v-html="stage.tooltip"></div>
@@ -50,21 +103,39 @@
 
           <ul v-if="cards" class="row nav nav-pills" :class="{ 'px-1 px-lg-0': cards.tabs }" role="tablist">
             <li v-for="(card, index) in cards.list" :key="index" :class="cardWrapperClasses">
-              <conditional-link :link="hasLink(card)" :href="card?.link?.href" :target="card?.link?.target"
+              <conditional-link
+                :link="hasLink(card)"
+                :href="card?.link?.href"
+                :target="card?.link?.target"
                 class="product-stage__tab h-100 rounded position-relative d-block"
-                :class="{ active: cards.tabs && index === 0 }" :id="card?.id ? card?.id + '-tab' : ''"
-                data-toggle="pill" role="tab" :aria-controls="card?.id" :aria-selected="cards.tabs && index === 0">
-                <div class="product-stage__tab-content position-relative h-100"
-                  :class="{ 'product-stage__tab-content--alternative-border': cards.tabs }">
+                :class="{ active: cards.tabs && index === 0 }"
+                :id="card?.id ? card?.id + '-tab' : ''"
+                data-toggle="pill"
+                role="tab"
+                :aria-controls="card?.id"
+                :aria-selected="cards.tabs && index === 0"
+              >
+                <div
+                  class="product-stage__tab-content position-relative h-100"
+                  :class="{ 'product-stage__tab-content--alternative-border': cards.tabs }"
+                >
                   <div :class="['rounded', { 'p-2 p-lg-8': card.link, 'p-8 bg-white shadow-lg': !card.link }]">
                     <div class="d-flex flex-column align-items-center position-relative z-index-2">
-                      <h2 v-if="card.title"
-                        :class="['font-size-3 mb-2 mb-md-6 text-center', { 'text-primary': card.link }]">
+                      <h2
+                        v-if="card.title"
+                        :class="['font-size-3 mb-2 mb-md-6 text-center', { 'text-primary': card.link }]"
+                      >
                         {{ card.title }}
                       </h2>
                       <p v-if="card.description" class="mb-6 flex-grow-1">{{ card.description }}</p>
-                      <cta v-if="card.cta !== card.href" :text="card.cta.text" :href="card.cta.href"
-                        :target="card.cta.target" :skin="card.cta.skin" classes="align-self-center z-index-2" />
+                      <cta
+                        v-if="card.cta !== card.href"
+                        :text="card.cta.text"
+                        :href="card.cta.href"
+                        :target="card.cta.target"
+                        :skin="card.cta.skin"
+                        classes="align-self-center z-index-2"
+                      />
                     </div>
                   </div>
                 </div>
@@ -72,28 +143,56 @@
             </li>
           </ul>
         </div>
-        <div v-if="stage.cutoff" class="cutoff__content" :class="stage.cutoff ? 'col-5' : ''" :style="{ backgroundColor: cutoffBgColor }">
+        <div
+          v-if="stage.cutoff"
+          class="cutoff__content"
+          :class="stage.cutoff ? 'col-md-5' : ''"
+          :style="{ backgroundColor: cutoffBgColor }"
+        >
           <div
-            :class="['space-top-2 space-top-lg-4 space-top-xl-5 space-bottom-1 space-bottom-lg-2 text-center align-items-center d-flex flex-column']">
-            <headline v-if="stage.cutoff.headline" :classes="stage.cutoff.headlineClasses"
-              :level="stage.cutoff.headlineLevel || 'h1'">{{ stage.cutoff.headline }}</headline>
-            <p v-if="stage.cutoff.subline" class="col-lg-8 lead mt-5 px-0"> {{ stage.cutoff.subline }}</p>
+            :class="[
+              'space-top-2 space-top-lg-4 space-top-xl-5 space-bottom-1 space-bottom-lg-2 text-center align-items-center d-flex flex-column',
+            ]"
+          >
+            <headline
+              v-if="stage.cutoff.headline"
+              :classes="stage.cutoff.headlineClasses"
+              :level="stage.cutoff.headlineLevel || 'h1'"
+              >{{ stage.cutoff.headline }}</headline
+            >
+            <p v-if="stage.cutoff.subline" class="col-lg-8 lead mt-5 px-0">{{ stage.cutoff.subline }}</p>
             <cta v-if="stage.cutoff.button" v-bind="stage.cutoff.button" class="my-4" :width="'w-80'" />
             <p v-if="stage.cutoff.description" class="col-lg-8 mt-5 px-0" v-html="stage.cutoff.description"></p>
-            <cta v-if="stage.cutoff.cta" v-bind="stage.cutoff.cta" class="mt-11 pt-11 bold z-index-2" :style="{ color: stage.cutoff.cta.color, textDecoration: 'underline' }"/>
+            <cta
+              v-if="stage.cutoff.cta"
+              v-bind="stage.cutoff.cta"
+              class="mt-11 pt-11 bold z-index-2"
+              :style="{ color: stage.cutoff.cta.color, textDecoration: 'underline' }"
+            />
           </div>
         </div>
       </div>
     </div>
     <template v-if="shape">
-      <svg-shape v-if="shape.isActive !== false" align="bottom" peak="left" :obliquity="4" :classes="shapeClasses"
-        :color="shape.color" />
+      <svg-shape
+        v-if="shape.isActive !== false"
+        align="bottom"
+        peak="left"
+        :obliquity="4"
+        :classes="shapeClasses"
+        :color="shape.color"
+      />
     </template>
-    </section>
-    <div v-if="stage.image" class="container position-relative product-stage__bottom-img pt-8 pt-lg-0">
-      <v-img  :src="stage.image.src" :alt="stage.image.alt" :cloudinary="stage.image.cloudinary"
-        class="w-60" :style="stage.image.style" />
-    </div>
+  </section>
+  <div v-if="stage.image" class="container position-relative product-stage__bottom-img pt-8 pt-lg-0">
+    <v-img
+      :src="stage.image.src"
+      :alt="stage.image.alt"
+      :cloudinary="stage.image.cloudinary"
+      class="w-md-60"
+      :style="stage.image.style"
+    />
+  </div>
 </template>
 <script>
 export default {
