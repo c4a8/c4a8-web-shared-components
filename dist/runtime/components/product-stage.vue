@@ -28,7 +28,6 @@
             </headline>
             <p v-if="stage.description" class="lead mt-5 px-0" :class="stage.cutoff ? 'col-lg-10' : 'col-lg-8'" v-html="stage.description"></p>
           </div>
-
           <pricing-slider v-if="stage.slider && products" :slider="stage.slider" :tooltip="stage.tooltip"
             :modal-id="stage.modalId" :products="products" :light="light" />
           <modal v-else-if="stage.modalId && stage.tooltip" :slim="true" :center="true" class="pricing-slider__modal"

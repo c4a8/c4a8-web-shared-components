@@ -40499,6 +40499,10 @@ ul.dashed li.feature-grid-item__text::before,
   max-height: 400px;
 }
 
+.feature-grid__figure > .img__picture-wrapper {
+  width: 100%;
+}
+
 .filter-bar__controls {
   position: relative;
   display: flex;
