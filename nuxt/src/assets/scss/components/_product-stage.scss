@@ -54,9 +54,15 @@
 
   @include media-breakpoint-up(md) {
     --product-stage-background-width: 60%;
+
+    + .product-stage__bottom-container .product-stage__bottom-image {
+      margin-left: -6%;
+    }
   }
 }
 
-.product-stage__bottom-img {
-  margin-top: -10em;
+.product-stage__bottom-container {
+  @include media-breakpoint-up(md) {
+    margin-top: -10em;
+  }
 }
