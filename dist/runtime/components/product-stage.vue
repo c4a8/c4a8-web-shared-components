@@ -166,7 +166,7 @@
             <cta
               v-if="stage.cutoff.cta"
               v-bind="stage.cutoff.cta"
-              class="mt-11 pt-11 bold z-index-2"
+              class="mt-md-11 pt-11 bold z-index-2"
               :style="{ color: stage.cutoff.cta.color, textDecoration: 'underline' }"
             />
           </div>
@@ -183,11 +183,16 @@
         :color="shape.color"
       />
     </template>
-    </section>
-    <div v-if="stage.image" class="container position-relative product-stage__bottom-img pt-8 pt-lg-0">
-      <v-img  :src="stage.image.src" :alt="stage.image.alt" :cloudinary="stage.image.cloudinary"
-        class="w-md-60" :style="stage.image.style" />
-    </div>
+  </section>
+  <div v-if="stage.image" class="product-stage__bottom-container container position-relative pt-8 pt-lg-0">
+    <v-img
+      :src="stage.image.src"
+      :alt="stage.image.alt"
+      :cloudinary="stage.image.cloudinary"
+      class="product-stage__bottom-image w-md-60"
+      :style="stage.image.style"
+    />
+  </div>
 </template>
 <script>
 export default {

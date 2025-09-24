@@ -180,27 +180,26 @@ export const Cutoff = {
         headlineLevel: 'h3',
         headlineClasses: 'bold',
         subline: 'Welcome to our Portal!',
-        description: 'This sign in button redirects you to the basic Entra login within your tenant and asks you to consent only basic profile access to allow us to read your name and email address.',
+        description:
+          'This sign in button redirects you to the basic Entra login within your tenant and asks you to consent only basic profile access to allow us to read your name and email address.',
         button: {
           text: 'Sign in',
           skin: 'primary is-cutoff',
-
         },
         cta: {
           text: 'Book 30 Minutes with Ugur now',
           link: true,
           icon: 'booking',
-          color: 'var(--color-black)', 
+          color: 'var(--color-black)',
         },
-
-      },   
-       image: {
-           src: 'https://res.cloudinary.com/c4a8/image/upload/v1758548434/products/realmjoin/realmjoin-laptop.svg',
-          alt: 'Illustration of the RJ Portal',
-          style: {
-            marginLeft: '-6%',
-          },
-        },
+      },
+      image: {
+        src: 'https://res.cloudinary.com/c4a8/image/upload/v1758548434/products/realmjoin/realmjoin-laptop.svg',
+        alt: 'Illustration of the RJ Portal',
+        // style: {
+        //   marginLeft: '-6%',
+        // },
+      },
     },
   },
 };

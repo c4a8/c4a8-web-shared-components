@@ -44981,10 +44981,15 @@ job-list-detail {
   .product-stage--cutoff {
     --product-stage-background-width: 60%;
   }
+  .product-stage--cutoff + .product-stage__bottom-container .product-stage__bottom-image {
+    margin-left: -6%;
+  }
 }
 
-.product-stage__bottom-img {
-  margin-top: -10em;
+@media (min-width: 768px) {
+  .product-stage__bottom-container {
+    margin-top: -10em;
+  }
 }
 
 .quotes {
