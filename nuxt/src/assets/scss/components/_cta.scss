@@ -261,7 +261,7 @@
   }
 
   &.link {
-    font-size: $font-size-base;
+    font-size: var(--cta-custom-font-size, #{$font-size-base});
     display: inline-flex;
     align-items: center;
 
