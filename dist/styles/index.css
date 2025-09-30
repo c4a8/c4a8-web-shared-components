@@ -49490,15 +49490,21 @@ shape {
 
 .video-frame__sticky.video-frame--cover {
   height: 100%;
+  width: 100%;
 }
 .video-frame__sticky.video-frame--cover .video-frame img,
 .video-frame__sticky.video-frame--cover .video-frame__player,
 .video-frame__sticky.video-frame--cover .video-frame,
 .video-frame__sticky.video-frame--cover .video-frame__container {
   height: inherit;
+  width: inherit;
 }
 .video-frame__sticky.video-frame--cover .video-frame img {
   object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 .video-frame__sticky.video-frame--cover .video-frame__play-wrapper {
   top: auto;
