@@ -1,7 +1,7 @@
 <template>
   <div :class="classList" ref="root">
     <div :class="rowClassList">
-      <div :class="wrapperClassList">
+      <div :class="wrapperClassList" v-if="form">
         <div v-if="form.headline" :class="headlineClassList" data-utility-animation-step="1" ref="headline">
           <div class="row">
             <div class="col-sm-12">
@@ -157,10 +157,8 @@ export default {
       return blocks;
     },
   },
-  created() {
-    this.originalAction = this.formAction = this.form.action;
-  },
   mounted() {
+    this.originalAction = this.formAction = this.form?.action;
     this.formInstance = new Form(this.$refs.root, null, this.validate.bind(this));
 
     this.novalidateValue = 'novalidate';
@@ -210,7 +208,6 @@ export default {
     },
     handleSubmit(e) {
       if (!this.validate()) return e.preventDefault();
-      
     },
     handleFormFieldUpdate(e) {
       if (!e.id) return;

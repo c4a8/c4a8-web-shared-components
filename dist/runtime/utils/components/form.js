@@ -33,6 +33,8 @@ class Form extends BaseComponent {
     this.options = options;
     this.vueValidate = vueValidate;
 
+    if (!this.form) return console.debug('From root has no form', this.root);
+
     this.addCustomValidationRules();
 
     this.updateGotcha();
@@ -151,15 +153,15 @@ class Form extends BaseComponent {
     const lang = urlSegments[0];
     const date = new Date().toISOString();
     const formData = {
-      "name": this.form.querySelector('input[name="name"]')?.value || '',
-      "company": this.form.querySelector('input[name="company"]')?.value || '',
-      "email": this.form.querySelector('input[name="email"]')?.value || '',
-      "message": this.form.querySelector('textarea[name="message"]')?.value || '',
-      "dataprotection": this.form.querySelector('input[name="dataprotection"]')?.checked || false,
-      "_subject": page,
-      "submit_date": date,
-      "language": lang,
-      "url": url
+      name: this.form.querySelector('input[name="name"]')?.value || '',
+      company: this.form.querySelector('input[name="company"]')?.value || '',
+      email: this.form.querySelector('input[name="email"]')?.value || '',
+      message: this.form.querySelector('textarea[name="message"]')?.value || '',
+      dataprotection: this.form.querySelector('input[name="dataprotection"]')?.checked || false,
+      _subject: page,
+      submit_date: date,
+      language: lang,
+      url: url,
     };
 
     const jsonDataInput = this.form.querySelector('input[name="jsonData"]');
