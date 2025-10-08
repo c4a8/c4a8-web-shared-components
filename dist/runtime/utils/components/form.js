@@ -12,7 +12,7 @@ class Form extends BaseComponent {
   static regularExpression =
     /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z]{2,6})+$/;
 
-  constructor(root, options, vueValidate) {
+  constructor(root, options, vueValidate, hasRecaptcha) {
     super(root, options);
 
     if (!root) return;
@@ -32,6 +32,8 @@ class Form extends BaseComponent {
     this.minLengthOther = 1;
     this.options = options;
     this.vueValidate = vueValidate;
+    this.hasRecaptcha = hasRecaptcha;
+    this.hasSubmitHandling = false;
 
     if (!this.form) return console.debug('From root has no form', this.root);
 
@@ -102,11 +104,13 @@ class Form extends BaseComponent {
     if (Object.keys(this.groups).length || this.hasCustomValidation() || this.hasAjaxSubmit() || this.isCompanyForm()) {
       this.form.addEventListener('submit', this.handleSubmit.bind(this));
       this.form.addEventListener('reset', this.handleReset.bind(this));
+      this.hasSubmitHandling = true;
     }
   }
 
   addSubjectListener() {
     this.form.addEventListener('submit', this.handleSubmit.bind(this));
+    this.hasSubmitHandling = true;
   }
 
   handleReset() {
@@ -128,10 +132,15 @@ class Form extends BaseComponent {
   }
 
   handleDefaultSubmit(e) {
+    console.log('hier???');
+
+    e.stopImmediatePropagation();
     e.preventDefault();
   }
 
   handleSubmit(e) {
+    console.log('hier');
+
     if (this.validate(e)) {
       this.submit(e);
     }
@@ -143,40 +152,59 @@ class Form extends BaseComponent {
     this.subject.value = this.subject.value + ': ' + this.company.value;
   }
 
+  handleRecaptcha() {
+    console.log('🚀 ~ Form ~ handleRecaptcha ~ grecaptcha:', window.grecaptcha);
+    return new Promise((resolve) => {
+      if (!this.hasRecaptcha) {
+        resolve(true);
+      } else {
+        if (!window.grecaptcha) return resolve(true);
+
+        window.grecaptcha.ready(function () {
+          console.log('recpatcha ready');
+        });
+      }
+    });
+  }
+
   submit(e) {
+    console.log('WTF');
+
     e.stopImmediatePropagation();
     e.preventDefault();
 
-    const url = window.location.pathname;
-    const urlSegments = url.split('/').filter(Boolean);
-    const page = urlSegments[urlSegments.length - 1];
-    const lang = urlSegments[0];
-    const date = new Date().toISOString();
-    const formData = {
-      name: this.form.querySelector('input[name="name"]')?.value || '',
-      company: this.form.querySelector('input[name="company"]')?.value || '',
-      email: this.form.querySelector('input[name="email"]')?.value || '',
-      message: this.form.querySelector('textarea[name="message"]')?.value || '',
-      dataprotection: this.form.querySelector('input[name="dataprotection"]')?.checked || false,
-      _subject: page,
-      submit_date: date,
-      language: lang,
-      url: url,
-    };
+    this.handleRecaptcha().then(() => {
+      const url = window.location.pathname;
+      const urlSegments = url.split('/').filter(Boolean);
+      const page = urlSegments[urlSegments.length - 1];
+      const lang = urlSegments[0];
+      const date = new Date().toISOString();
+      const formData = {
+        name: this.form.querySelector('input[name="name"]')?.value || '',
+        company: this.form.querySelector('input[name="company"]')?.value || '',
+        email: this.form.querySelector('input[name="email"]')?.value || '',
+        message: this.form.querySelector('textarea[name="message"]')?.value || '',
+        dataprotection: this.form.querySelector('input[name="dataprotection"]')?.checked || false,
+        _subject: page,
+        submit_date: date,
+        language: lang,
+        url: url,
+      };
 
-    const jsonDataInput = this.form.querySelector('input[name="jsonData"]');
-    if (jsonDataInput) {
-      jsonDataInput.value = JSON.stringify(formData);
-    }
+      const jsonDataInput = this.form.querySelector('input[name="jsonData"]');
+      if (jsonDataInput) {
+        jsonDataInput.value = JSON.stringify(formData);
+      }
 
-    this.updateSubject();
-    if (this.customSubmit) {
-      this.customSubmit(e);
-    } else if (this.hasAjaxSubmit()) {
-      this.ajaxSubmit();
-    } else {
-      this.form.submit();
-    }
+      this.updateSubject();
+      if (this.customSubmit) {
+        this.customSubmit(e);
+      } else if (this.hasAjaxSubmit()) {
+        this.ajaxSubmit();
+      } else {
+        this.form.submit();
+      }
+    });
   }
 
   static getId(fieldId) {

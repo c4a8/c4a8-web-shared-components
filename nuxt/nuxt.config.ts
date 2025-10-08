@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { defineNuxtConfig } from 'nuxt/config';
 
+const recaptchaSiteKey = process.env.NUXT_PUBLIC_RECAPTCHA_SITE_KEY ?? null;
 declare module 'nuxt/config' {
   interface NuxtConfig {
     storybook?: {
@@ -28,13 +29,7 @@ declare module 'nuxt/config' {
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: [
-    '@nuxtjs/storybook',
-    '@nuxt/content',
-    '@nuxtjs/i18n',
-    '@pinia/nuxt',
-    'nuxt-swiper'
-  ],
+  modules: ['@nuxtjs/storybook', '@nuxt/content', '@nuxtjs/i18n', '@pinia/nuxt', 'nuxt-swiper'],
   i18n: {
     bundle: {
       optimizeTranslationDirective: false,
@@ -47,5 +42,10 @@ export default defineNuxtConfig({
     // strategy: 'prefix',
     locales: ['de', 'en', 'es'],
     vueI18n: './i18n.config.js',
+  },
+  runtimeConfig: {
+    public: {
+      recaptchaSiteKey,
+    },
   },
 });

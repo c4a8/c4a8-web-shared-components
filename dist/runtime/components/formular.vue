@@ -44,12 +44,16 @@
             />
           </div>
           <input type="text" class="form__super-field" name="_gotcha" />
+          <input v-if="reCaptchaField" name="g-recaptcha-response" type="text" />
         </form>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { useHead } from '#imports';
+
+import useConfig from '../composables/useConfig';
 import State from '../utils/state.js';
 import Tools from '../utils/tools.js';
 import Form from '../utils/components/form.js';
@@ -66,6 +70,13 @@ export default {
       errors: [],
     };
   },
+  setup() {
+    const config = useConfig();
+
+    return {
+      config,
+    };
+  },
   computed: {
     classList() {
       return [
@@ -77,6 +88,9 @@ export default {
         this.form?.noCustomSubmit === true ? Form.noCustomSubmitClass : '',
         'vue-component',
       ];
+    },
+    reCaptchaField() {
+      return this.formInstance?.reCaptchaField;
     },
     novalidate() {
       return this.novalidateValue;
@@ -167,7 +181,28 @@ export default {
 
     UtilityAnimation.init([this.$refs.headline]);
   },
+  created() {
+    if (!this.hasRecaptcha) return;
+
+    this.loadRecaptchaScript();
+  },
   methods: {
+    loadRecaptchaScript() {
+      const siteKey = this.config?.public?.recaptchaSiteKey;
+      console.log('🚀 ~ loadRecaptchaScript ~ siteKey:', siteKey);
+
+      if (siteKey) {
+        useHead({
+          script: [
+            {
+              src: `https://www.google.com/recaptcha/api.js?render=${siteKey}`,
+              async: true,
+              defer: true,
+            },
+          ],
+        });
+      }
+    },
     getTranslatedText(text) {
       return this.useTranslation ? this.$t(text) : text;
     },
@@ -207,7 +242,27 @@ export default {
       }
     },
     handleSubmit(e) {
-      if (!this.validate()) return e.preventDefault();
+      console.log('handle sub');
+
+      // this.handleRecaptcha().then(() => {
+
+      // });
+
+      if (!this.validate()) {
+        e.preventDefault();
+      } else {
+        if (this.formInstance.hasSubmitHandling) return;
+
+        e.preventDefault();
+
+        this.formInstance.handleRecaptcha().then((response) => {
+          console.log('🚀 ~ handleSubmit ~ response:', response);
+        });
+
+        console.log('TELL ME', this.formInstance.hasSubmitHandling);
+
+        console.log('Validation passed, submitting form');
+      }
     },
     handleFormFieldUpdate(e) {
       if (!e.id) return;
@@ -218,6 +273,20 @@ export default {
 
       this.validateField(field);
     },
+    // async handleRecaptcha() {
+    //   console.log('🚀 ~ Form ~ handleRecaptcha ~ grecaptcha:', grecaptcha);
+    //   return new Promise((resolve) => {
+    //     if (!this.hasRecaptcha) {
+    //       resolve(true);
+    //     } else {
+    //       if (!window.grecaptcha) return resolve(true);
+
+    //       window.grecaptcha.ready(function () {
+    //         console.log('recpatcha ready');
+    //       });
+    //     }
+    //   });
+    // },
     validateField(field) {
       const value = field.value;
       const type = field.getAttribute('type');
@@ -268,6 +337,8 @@ export default {
       field.classList.add(State.ERROR);
     },
     validate() {
+      console.log('validate');
+
       const formFields = this.$refs.root.querySelectorAll(
         `.form-field:not(.${State.HIDDEN}) .form-control[required],
         .form-field:not(.${State.HIDDEN}) .form__checkbox[required]`
@@ -318,6 +389,10 @@ export default {
     useTranslation: {
       type: Boolean,
       default: false,
+    },
+    hasRecaptcha: {
+      type: Boolean,
+      default: true,
     },
   },
 };
