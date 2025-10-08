@@ -153,17 +153,13 @@ strong[id] {
   align-content: center;
 }
 
-.circle-slot {
-  white-space: nowrap;
-
-}
-
 .icon-circle {
   width: 52px;
   height: 52px;
   border-radius: 50%;
   display: flex;
   font-weight: lighter;
+  aspect-ratio: 1 / 1;
 
 }
 

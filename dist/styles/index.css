@@ -15270,6 +15270,7 @@ label.btn {
 
 .icon-circle {
   border-radius: 50%;
+  aspect-ratio: 1/1;
 }
 
 .icon.icon-xs {
@@ -50395,16 +50396,13 @@ strong[id]:target::before {
   align-content: center;
 }
 
-.circle-slot {
-  white-space: nowrap;
-}
-
 .icon-circle {
   width: 52px;
   height: 52px;
   border-radius: 50%;
   display: flex;
   font-weight: lighter;
+  aspect-ratio: 1/1;
 }
 
 .icon-circle img {
