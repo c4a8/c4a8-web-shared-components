@@ -15270,6 +15270,7 @@ label.btn {
 
 .icon-circle {
   border-radius: 50%;
+  aspect-ratio: 1/1;
 }
 
 .icon.icon-xs {
@@ -44974,11 +44975,22 @@ job-list-detail {
 }
 
 .product-stage--cutoff {
-  background: linear-gradient(90deg, transparent 0%, transparent 60%, var(--color-black-4) 60%, var(--color-black-4) 100%);
+  --product-stage-background-width: 100%;
+  background: linear-gradient(90deg, transparent 0%, transparent var(--product-stage-background-width), var(--color-black-4) var(--product-stage-background-width), var(--color-black-4) 100%);
+}
+@media (min-width: 768px) {
+  .product-stage--cutoff {
+    --product-stage-background-width: 60%;
+  }
+  .product-stage--cutoff + .product-stage__bottom-container .product-stage__bottom-image {
+    margin-left: -6%;
+  }
 }
 
-.product-stage__bottom-img {
-  margin-top: -10em;
+@media (min-width: 768px) {
+  .product-stage__bottom-container {
+    margin-top: -10em;
+  }
 }
 
 .quotes {
@@ -50384,16 +50396,13 @@ strong[id]:target::before {
   align-content: center;
 }
 
-.circle-slot {
-  white-space: nowrap;
-}
-
 .icon-circle {
   width: 52px;
   height: 52px;
   border-radius: 50%;
   display: flex;
   font-weight: lighter;
+  aspect-ratio: 1/1;
 }
 
 .icon-circle img {

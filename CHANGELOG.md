@@ -1,5 +1,13 @@
 # Releases
 
+# Release 0.4.28
+
+- Fixes Feature Grid Item svg handling
+
+# Release 0.4.27
+
+- Product Stage fixes
+
 # Release 0.4.26
 
 - Updates Default Calendar
