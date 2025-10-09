@@ -46,11 +46,7 @@ import TileView from './icons/tile-view.vue';
 import User from './icons/user.vue';
 import Quote from './icons/quote.vue';
 import World from './icons/world.vue';
-import XMark from './icons/x-mark.vue';
-import User from './icons/user.vue';
-import Checkbox from './icons/checkbox.vue';
-import Ribbon from './icons/ribbon.vue';
-import OrigamiBird from './icons/origami-bird.vue';
+
 
 export default {
   components: {

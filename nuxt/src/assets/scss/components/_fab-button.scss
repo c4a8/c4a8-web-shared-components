@@ -110,9 +110,9 @@ $fab-button-scroll-top: 200px;
     height 0.7s $animation-transition;
   right: 0;
   bottom: 0;
-  position: fixed;
   width: unquote('min(460px, 100vw)');
   overflow: hidden;
+  position: fixed;
   will-change: transform, opacity, height;
   display: flex;
   flex-direction: column;
@@ -132,8 +132,33 @@ $fab-button-scroll-top: 200px;
     bottom: -#{$fab-button-icon-size};
     position: absolute;
   }
+    
 }
 
+.fab-button__newsletter {
+  @include shadow('light');
+
+  background-color: var(--color-fab-background);
+  transition: transform 0.7s $animation-transition, opacity 0.7s $animation-transition,
+    height 0.7s $animation-transition;
+
+  position: fixed;
+
+  justify-self: center;
+  align-self: end;
+  
+  will-change: transform, opacity, height;
+  display: flex;
+  flex-direction: column;
+
+  &.is-off-screen {
+    opacity: 0;
+    transform: translateX(120%);
+  }
+
+
+    
+}
 .fab-button__close {
   position: absolute;
   right: 0;

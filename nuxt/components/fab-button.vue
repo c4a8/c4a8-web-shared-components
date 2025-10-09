@@ -1,5 +1,5 @@
 <template>
-  <div :class="classList" ref="root">
+  <div v-if="!newsletter" :class="classList" ref="root">
     <div class="fab-button__start"></div>
     <sticky-block :sticky-offset-top="offsetTop">
       <div class="fab-button__wrapper" :class="['fab-button__wrapper', !noSticky ? 'js-sticky-block' : '']">
@@ -21,12 +21,39 @@
     </sticky-block>
     <a class="fab-trigger" ref="link"></a>
   </div>
+
+  <div v-else :class="classList" ref="root">
+    <div class="fab-button__start"></div>
+    <sticky-block :sticky-offset-top="offsetTop">
+      <div class="fab-button__wrapper" :class="['fab-button__wrapper', !noSticky ? 'js-sticky-block' : '']" >
+        <div  class="fab-button__newsletter is-off-screen" ref="modal" >
+          <div class="fab-button__close" ref="close">
+            <icon icon="close" :circle="true" :hover="true" size="medium" />
+          </div>
+          <newsletter v-bind="newsletter" :ajax="true" :success="success" />
+        </div>
+        <div
+          class="fab-button__icon"
+          ref="icon"
+          :style="iconStyle"
+          v-bind="trigger ? { 'data-trigger-id': trigger } : {}"
+        >
+          <icon :icon="icon" size="large" />
+        </div>
+      </div>
+    </sticky-block>
+    <a class="fab-trigger" ref="link"></a>
+  </div>
+          
+
+
 </template>
 
 <script>
 import State from '../utils/state.js';
 import Events from '../utils/events.js';
 import Tools from '../utils/tools.js';
+
 
 export default {
   tagName: 'fab-button',
@@ -36,6 +63,10 @@ export default {
       default: 'phone-mail',
     },
     modal: {
+      type: Object,
+      default: null,
+    },
+    newsletter: {
       type: Object,
       default: null,
     },
@@ -77,6 +108,9 @@ export default {
     offsetTop() {
       return window ? window.innerHeight * 0.97 : null;
     },
+    success() {
+      return this.success;
+    },
   },
   data() {
     return {
@@ -86,6 +120,7 @@ export default {
       expandedClass: State.EXPANDED,
       offScreenClass: State.OFF_SCREEN,
       hasTriggerClass: 'fab-button--has-trigger',
+      success: false,
     };
   },
   mounted() {
@@ -140,7 +175,8 @@ export default {
       }
     },
     handleSubmit() {
-      this.handleClose();
+      //this.handleClose();
+       this.success = true;
     },
     handleClose() {
       this.handleClick();
