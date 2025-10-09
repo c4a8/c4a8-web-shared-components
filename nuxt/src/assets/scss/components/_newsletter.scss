@@ -113,21 +113,5 @@ $newsletter-scroll-top: 200px;
   }
 }
 
-.newsletter__close {
-  position: absolute;
-  right: 0;
-  z-index: 1;
-  width: 78px;
-  height: 78px;
 
-  > .icon {
-    margin: spacing(5);
-    padding: spacing(1);
-    cursor: pointer;
-
-    &.icon--circle svg {
-      width: 80%;
-    }
-  }
-}
 
