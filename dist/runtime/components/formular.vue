@@ -16,6 +16,7 @@
           :action="formAction"
           :novalidate="novalidate"
           @submit="handleSubmit"
+          ref="form"
         >
           <template v-for="block in preparedBlocks">
             <div :class="getBlockClassList(block[0])" v-if="block.length > 0">
@@ -44,7 +45,7 @@
             />
           </div>
           <input type="text" class="form__super-field" name="_gotcha" />
-          <input v-if="reCaptchaField" name="g-recaptcha-response" type="text" />
+          <input v-if="reCaptchaField" name="g-recaptcha-response" type="hidden" v-bind="reCaptchaField" />
         </form>
       </div>
     </div>
@@ -68,6 +69,7 @@ export default {
       formInstance: null,
       novalidateValue: null,
       errors: [],
+      siteKey: null,
     };
   },
   setup() {
@@ -173,7 +175,7 @@ export default {
   },
   mounted() {
     this.originalAction = this.formAction = this.form?.action;
-    this.formInstance = new Form(this.$refs.root, null, this.validate.bind(this));
+    this.formInstance = new Form(this.$refs.root, null, this.validate.bind(this), this.hasRecaptcha, this.siteKey);
 
     this.novalidateValue = 'novalidate';
 
@@ -188,14 +190,13 @@ export default {
   },
   methods: {
     loadRecaptchaScript() {
-      const siteKey = this.config?.public?.recaptchaSiteKey;
-      console.log('🚀 ~ loadRecaptchaScript ~ siteKey:', siteKey);
+      this.siteKey = this.config?.public?.recaptchaSiteKey;
 
-      if (siteKey) {
+      if (this.siteKey) {
         useHead({
           script: [
             {
-              src: `https://www.google.com/recaptcha/api.js?render=${siteKey}`,
+              src: `https://www.google.com/recaptcha/api.js?render=${this.siteKey}`,
               async: true,
               defer: true,
             },
@@ -242,12 +243,6 @@ export default {
       }
     },
     handleSubmit(e) {
-      console.log('handle sub');
-
-      // this.handleRecaptcha().then(() => {
-
-      // });
-
       if (!this.validate()) {
         e.preventDefault();
       } else {
@@ -255,13 +250,13 @@ export default {
 
         e.preventDefault();
 
-        this.formInstance.handleRecaptcha().then((response) => {
-          console.log('🚀 ~ handleSubmit ~ response:', response);
+        this.formInstance.handleRecaptcha().then(() => {
+          const form = this.$refs['form'];
+
+          if (!form) return console.debug('Form reference missing');
+
+          form.submit();
         });
-
-        console.log('TELL ME', this.formInstance.hasSubmitHandling);
-
-        console.log('Validation passed, submitting form');
       }
     },
     handleFormFieldUpdate(e) {
@@ -273,20 +268,6 @@ export default {
 
       this.validateField(field);
     },
-    // async handleRecaptcha() {
-    //   console.log('🚀 ~ Form ~ handleRecaptcha ~ grecaptcha:', grecaptcha);
-    //   return new Promise((resolve) => {
-    //     if (!this.hasRecaptcha) {
-    //       resolve(true);
-    //     } else {
-    //       if (!window.grecaptcha) return resolve(true);
-
-    //       window.grecaptcha.ready(function () {
-    //         console.log('recpatcha ready');
-    //       });
-    //     }
-    //   });
-    // },
     validateField(field) {
       const value = field.value;
       const type = field.getAttribute('type');
@@ -337,8 +318,6 @@ export default {
       field.classList.add(State.ERROR);
     },
     validate() {
-      console.log('validate');
-
       const formFields = this.$refs.root.querySelectorAll(
         `.form-field:not(.${State.HIDDEN}) .form-control[required],
         .form-field:not(.${State.HIDDEN}) .form__checkbox[required]`

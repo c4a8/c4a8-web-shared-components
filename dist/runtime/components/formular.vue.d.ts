@@ -6,6 +6,7 @@ declare namespace _default {
         formInstance: null;
         novalidateValue: null;
         errors: never[];
+        siteKey: null;
     };
     function setup(): {
         config: {};

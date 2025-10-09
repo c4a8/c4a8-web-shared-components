@@ -332,7 +332,7 @@ export const WithCheckboxes = {
           radios: [
             {
               id: 'not_1',
-              label: 'change action',
+              label: 'CHANGES ACTION!!',
               changeAction: 'www.google.com',
             },
             {

@@ -11,7 +11,7 @@ declare class Form extends BaseComponent {
         input: any;
         value: any;
     }[];
-    constructor(root: any, options: any, vueValidate: any, hasRecaptcha: any);
+    constructor(root: any, options: any, vueValidate: any, hasRecaptcha: any, siteKey: any);
     formSelector: string | undefined;
     gotchaSelector: string | undefined;
     attachmentSelector: string | undefined;
@@ -24,6 +24,8 @@ declare class Form extends BaseComponent {
     minLengthOther: number | undefined;
     vueValidate: any;
     hasRecaptcha: any;
+    recaptchaName: string | undefined;
+    siteKey: any;
     hasSubmitHandling: boolean | undefined;
     addCustomValidationRules(): void;
     isCompanyForm(): boolean;
@@ -39,6 +41,10 @@ declare class Form extends BaseComponent {
     handleSubmit(e: any): void;
     updateSubject(): void;
     handleRecaptcha(): Promise<any>;
+    reCaptchaField: {
+        value: any;
+    } | undefined;
+    addRecaptchaField(): void;
     submit(e: any): void;
     ajaxSubmit(): void;
     ajaxSubmitCompleted(): void;
