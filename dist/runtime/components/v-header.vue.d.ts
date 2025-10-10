@@ -1062,7 +1062,6 @@ declare namespace _default {
         }
         let lang: StringConstructor;
         let contact: ObjectConstructor;
-        let newsletter: ObjectConstructor;
         let bgColor: StringConstructor;
         namespace product {
             let _default_2: null;

@@ -47,6 +47,7 @@ import User from './icons/user.vue';
 import Quote from './icons/quote.vue';
 import World from './icons/world.vue';
 import XMark from './icons/x-mark.vue';
+import origamiBird from './icons/origami-bird.vue';
 
 
 
@@ -91,6 +92,7 @@ export default {
     user: User,
     quote: Quote,
     world: World,
+    origamiBird: origamiBird,
 
   },
   tagName: 'icon',
@@ -133,6 +135,9 @@ export default {
         default:
         case 'large':
           innerSize = '48px';
+          break;
+        case 'custom':
+          innerSize = this.props.customSize;
           break;
       }
 
@@ -206,6 +211,10 @@ export default {
       default: null,
     },
     strokeWidth: {
+      default: null,
+    },
+    customSize: {
+      type: String,
       default: null,
     },
   },

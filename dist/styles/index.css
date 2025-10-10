@@ -40162,6 +40162,16 @@ label.dropdown__checkbox-label::after {
   border-width: 0;
   pointer-events: none;
 }
+.fab-button.is-expanded .fab-button__banner {
+  visibility: collapse;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-width: 0;
+  pointer-events: none;
+}
 .fab-button.is-expanded .fab-button__modal {
   opacity: 1;
   transform: translateX(0%);
@@ -40206,9 +40216,9 @@ label.dropdown__checkbox-label::after {
   transition: transform 0.7s cubic-bezier(0.19, 1, 0.2, 1), opacity 0.7s cubic-bezier(0.19, 1, 0.2, 1), height 0.7s cubic-bezier(0.19, 1, 0.2, 1);
   right: 0;
   bottom: 0;
-  position: fixed;
   width: min(460px, 100vw);
   overflow: hidden;
+  position: fixed;
   will-change: transform, opacity, height;
   display: flex;
   flex-direction: column;
@@ -40227,6 +40237,23 @@ label.dropdown__checkbox-label::after {
     bottom: -72px;
     position: absolute;
   }
+}
+
+.fab-button__newsletter {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  top: calc(20vh - 1px);
+  background-color: var(--color-fab-background);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  position: fixed;
+  transition: transform 0.7s cubic-bezier(0.19, 1, 0.2, 1), opacity 0.7s cubic-bezier(0.19, 1, 0.2, 1), height 0.7s cubic-bezier(0.19, 1, 0.2, 1);
+  will-change: transform, opacity, height;
+}
+.fab-button__newsletter.is-off-screen {
+  opacity: 0;
+  transform: translateX(120%);
 }
 
 .fab-button__close {

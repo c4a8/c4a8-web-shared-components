@@ -39,7 +39,7 @@ declare namespace _default {
         user: any;
         quote: any;
         world: any;
-        'x-mark': any;
+        origamiBird: any;
     };
     let tagName: string;
     function data(): {
@@ -47,7 +47,7 @@ declare namespace _default {
     };
     namespace computed {
         function classList(): string[];
-        function innerSize(): string;
+        function innerSize(): any;
         function parentStyle(): string;
         function rotation(): "180deg" | "90deg" | "0deg";
         function settings(): any;
@@ -104,6 +104,11 @@ declare namespace _default {
         namespace strokeWidth {
             let _default_12: null;
             export { _default_12 as default };
+        }
+        namespace customSize {
+            export let type: StringConstructor;
+            let _default_13: null;
+            export { _default_13 as default };
         }
     }
 }

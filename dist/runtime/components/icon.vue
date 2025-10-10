@@ -46,6 +46,9 @@ import TileView from './icons/tile-view.vue';
 import User from './icons/user.vue';
 import Quote from './icons/quote.vue';
 import World from './icons/world.vue';
+import XMark from './icons/x-mark.vue';
+import origamiBird from './icons/origami-bird.vue';
+
 
 
 export default {
@@ -89,11 +92,8 @@ export default {
     user: User,
     quote: Quote,
     world: World,
-    'x-mark': XMark,
-    user: User,
-    checkbox: Checkbox,
-    ribbon: Ribbon,
-    origamiBird: OrigamiBird,
+    origamiBird: origamiBird,
+
   },
   tagName: 'icon',
   data() {
@@ -135,6 +135,9 @@ export default {
         default:
         case 'large':
           innerSize = '48px';
+          break;
+        case 'custom':
+          innerSize = this.props.customSize;
           break;
       }
 
@@ -208,6 +211,10 @@ export default {
       default: null,
     },
     strokeWidth: {
+      default: null,
+    },
+    customSize: {
+      type: String,
       default: null,
     },
   },
