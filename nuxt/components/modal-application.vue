@@ -1,7 +1,13 @@
 <template>
   <div class="modal__application">
     <div class="modal__body-default">
-      <formular :form="form" :space="' '" :container="true" :customValidation="true" :hasUuid="true" />
+      <formular
+        :form="form"
+        :space="' '"
+        :container="true"
+        :customValidation="true"
+        :hasUuid="form.hasUuid !== undefined ? form.hasUuid : true"
+      />
     </div>
     <div class="modal__success container" v-if="success">
       <div class="modal__success-row row">
