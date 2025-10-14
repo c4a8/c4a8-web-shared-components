@@ -378,7 +378,7 @@ export default {
     },
     hasRecaptcha: {
       type: Boolean,
-      default: true,
+      default: false,
     },
   },
 };
