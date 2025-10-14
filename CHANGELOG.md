@@ -1,5 +1,10 @@
 # Releases
 
+# Release 0.4.29
+
+- Adds recaptcha
+- Adds onSurface Param to Contact
+
 # Release 0.4.28
 
 - Fixes Feature Grid Item svg handling
