@@ -162,6 +162,7 @@ export default {
     svgShape: Object,
     small: { type: Boolean, default: false },
     quoteColor: { type: String, default: 'var(--color-yellow)' },
+    onSurface: { type: Boolean, default: false },
   },
   computed: {
     classList() {
@@ -173,6 +174,7 @@ export default {
         { 'bg-grey': this.hasGreyBackground },
         !(this.noTopSpacing || this.svgShape || this.collapsed) ? this.spacing : '',
         this.small ? 'col-4 col-md-6 col-xl-4' : '',
+        this.onSurface ? State.ON_SURFACE : '',
       ];
     },
     contactVariantClass() {

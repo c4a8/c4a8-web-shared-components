@@ -6,9 +6,14 @@ declare namespace _default {
         formInstance: null;
         novalidateValue: null;
         errors: never[];
+        siteKey: null;
+    };
+    function setup(): {
+        config: {};
     };
     namespace computed {
         function classList(): string[];
+        function reCaptchaField(): any;
         function novalidate(): any;
         function hasAnimationValue(): boolean;
         function rowClassList(): string[];
@@ -20,9 +25,10 @@ declare namespace _default {
         function method(): any;
         function preparedBlocks(): any[];
     }
-    function created(): void;
     function mounted(): void;
+    function created(): void;
     namespace methods {
+        function loadRecaptchaScript(): void;
         function getTranslatedText(text: any): any;
         function hasError(field: any): any;
         function getOptions(field: any): any;
@@ -30,7 +36,7 @@ declare namespace _default {
         function getFieldClassList(field: any): string[];
         function getId(field: any): any;
         function updateAction(newAction: any): void;
-        function handleSubmit(e: any): any;
+        function handleSubmit(e: any): void;
         function handleFormFieldUpdate(e: any): void;
         function validateField(field: any): boolean;
         function addFieldValid(field: any): void;
@@ -82,6 +88,12 @@ declare namespace _default {
             export let type: BooleanConstructor;
             let _default_9: boolean;
             export { _default_9 as default };
+        }
+        namespace hasRecaptcha {
+            let type_1: BooleanConstructor;
+            export { type_1 as type };
+            let _default_10: boolean;
+            export { _default_10 as default };
         }
     }
 }

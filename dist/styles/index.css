@@ -15270,6 +15270,7 @@ label.btn {
 
 .icon-circle {
   border-radius: 50%;
+  aspect-ratio: 1/1;
 }
 
 .icon.icon-xs {
@@ -41440,6 +41441,14 @@ div.custom-control .custom-control-input,
   animation-duration: 0.8s;
 }
 
+.form__recaptcha-infos {
+  font-size: 0.7565rem;
+}
+
+.grecaptcha-badge {
+  visibility: hidden !important;
+}
+
 .google-map .leaflet-attribution-flag {
   display: none !important;
 }
@@ -44129,9 +44138,21 @@ job-list-detail {
   color: var(--color-link-hover);
 }
 
+.on-surface .active a.link:not(.btn):not(.custom):not(.nav-link):not(.cta):not(.page-link):not(.dropdown-item),
+.on-surface .hover__parent:hover .link:not(.btn):not(.custom):not(.nav-link):not(.cta):not(.page-link):not(.dropdown-item),
+.on-surface .hover__parent:hover a:not(.btn):not(.custom):not(.nav-link):not(.cta):not(.page-link):not(.dropdown-item),
+.shared-components .on-surface .link:hover:not(.btn):not(.custom):not(.nav-link):not(.cta):not(.page-link):not(.dropdown-item),
+.shared-components .on-surface a:hover:not(.btn):not(.custom):not(.nav-link):not(.cta):not(.page-link):not(.dropdown-item) {
+  color: var(--color-primary-accent-on-surface);
+}
+
 .shared-components .link:not(.btn):not(.custom):not(.nav-link):not(.cta):not(.page-link):not(.dropdown-item),
 .shared-components a:not(.btn):not(.custom):not(.nav-link):not(.cta):not(.page-link):not(.dropdown-item) {
   color: var(--color-link);
+}
+.shared-components .on-surface .link:not(.btn):not(.custom):not(.nav-link):not(.cta):not(.page-link):not(.dropdown-item),
+.shared-components .on-surface a:not(.btn):not(.custom):not(.nav-link):not(.cta):not(.page-link):not(.dropdown-item) {
+  color: var(--color-primary-on-surface);
 }
 
 .list-container {
@@ -50395,16 +50416,13 @@ strong[id]:target::before {
   align-content: center;
 }
 
-.circle-slot {
-  white-space: nowrap;
-}
-
 .icon-circle {
   width: 52px;
   height: 52px;
   border-radius: 50%;
   display: flex;
   font-weight: lighter;
+  aspect-ratio: 1/1;
 }
 
 .icon-circle img {

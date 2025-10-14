@@ -7,7 +7,7 @@
                     <icon v-if="circleIcon" :icon='circleIcon' size="medium"/>
                 </div>
             </div>
-            <div class="circle-slot align-items-center h4-font-size">
+            <div class="align-items-center h4-font-size">
                 <slot />
             </div>
         </div>
