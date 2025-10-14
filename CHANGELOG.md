@@ -1,5 +1,9 @@
 # Releases
 
+# Hotfix 0.4.30
+
+- Disables default recaptcha
+
 # Release 0.4.29
 
 - Adds recaptcha
