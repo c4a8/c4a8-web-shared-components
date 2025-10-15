@@ -7,11 +7,8 @@
           <template v-if="updateFiles(files)">
             <template v-for="(event, index) in files" :key="index">
               <div :class="{ 'is-visible': isVisible(index), 'event-overview__item': true }">
-                <div
-                  class="fade-in-bottom"
-                  data-utility-animation-step="1"
-                  :style="{ '--utility-animation-index': index + 1 }"
-                >
+                <div class="fade-in-bottom" data-utility-animation-step="1"
+                  :style="{ '--utility-animation-index': index + 1 }">
                   <event :key="event.url" v-bind="updatedEvent(event)" />
                 </div>
               </div>
@@ -21,13 +18,8 @@
       </SharedContentList>
     </transition-group>
 
-    <div
-      class="event-overview__more font-size-1 bold fade-in-bottom"
-      v-show="hasMore"
-      @click="handleShowMore"
-      data-utility-animation-step="1"
-      :style="{ '--utility-animation-index': lastIndex }"
-    >
+    <div class="event-overview__more font-size-1 bold fade-in-bottom" v-show="hasMore" @click="handleShowMore"
+      data-utility-animation-step="1" :style="{ '--utility-animation-index': lastIndex }">
       {{ $t('moreEvents') }}
     </div>
   </wrapper>
@@ -95,10 +87,17 @@ export default {
   },
   methods: {
     updatedEvent(event) {
+      const route = useRoute().path.split("/").filter(Boolean);
+      
+
       if (event.cta) {
         event.url = event.cta.href;
         event.external = event.cta.external || false;
-      } else {
+        /*
+        if(route[0] !== event.url.split("/").filter(Boolean)[0]) {
+          event.url = event.url.replace(event.url.split("/").filter(Boolean)[0], route[0]);
+        } 
+*/
         event.external = false;
       }
 

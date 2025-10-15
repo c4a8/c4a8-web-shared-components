@@ -1,28 +1,30 @@
-import NewsletterBannerComponent from '../components/newsletter-banner.vue';
+import NewsletterComponent from '../components/newsletter.vue';
 import lottieFile from '/Users/lisa.nagl/Code/c4a8-web-shared-components/src/stories/data/lottie-azure.json'
 
 export default {
-  component: NewsletterBannerComponent,
-  title: 'Components/NewsletterBanner',
+  component: NewsletterComponent,
+  title: 'Components/Newsletter',
 
 };
 
 export const Default = {
   args: {
     bgColor: 'var(--color-yellow)',
-    iconColor: 'var(--color-white)',
-    icon: 'origamiBird',   
-    bannertext: 'Jetzt zum Newsletter anmelden Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore .',
-    ctaText: 'Abbonieren',
-      cta: {
-        skin: 'primary',
-       
-      },
-    newsletter: {
+    iconColor: 'var(--color-orange)',
+    //light: false,
+    text: 'Jetzt zum Newsletter anmelden Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore .',
+    cta: {
+      text: 'Abbonieren',
+      skin: 'primary',
+
+    },
+    modal: {
       headline: 'Newsletter Subscription',
       text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est ',
-      confirmHeadline: 'Danke für deine Anmeldung!',
-      confirmText: 'Du hast dich erfolgreich für unseren Newsletter angemeldet. Wir freuen uns, dich als Abonnent:in begrüßen zu dürfen! Schau gerne in deinem Posteingang nach einer Bestätigungs-E-Mail von uns.',
+      confirmation: {
+        headline: 'Danke für deine Anmeldung!',
+        text: 'Du hast dich erfolgreich für unseren Newsletter angemeldet. Wir freuen uns, dich als Abonnent:in begrüßen zu dürfen! Schau gerne in deinem Posteingang nach einer Bestätigungs-E-Mail von uns.',
+      }, 
       formular: {
         form: {
           cta: {
@@ -56,7 +58,7 @@ export const Default = {
           ],
         },
       },
-      lottie: lottieFile,
+      //lottie: lottieFile,
     }
   },
 

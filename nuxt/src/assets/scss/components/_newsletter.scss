@@ -1,8 +1,3 @@
-$newsletter-icon-size: 72px;
-$newsletter-bottom-offset-lg: 16px;
-$newsletter-bottom-offset-xs: 32px;
-$newsletter-scroll-top: 200px;
-
 .newsletter {
   @include z-index;
 
@@ -10,108 +5,55 @@ $newsletter-scroll-top: 200px;
   width: 100%;
   right: 1em;
 
-  &.newsletter--sticky {
-    &:not([style^='height']) {
-      .newsletter__modal {
-        &.is-off-screen {
-          transform: translateX(0);
-          opacity: 0;
-          transition-duration: 0s;
-          pointer-events: none;
-          width: 0;
-        }
-      }
-    }
-
-    .newsletter__start {
-      top: calc(-100vh + (#{$newsletter-bottom-offset-xs} * 2));
-    }
-
-    &[style^='height'] {
-      .newsletter__wrapper {
-        top: calc(100vh - (#{$newsletter-icon-size} + #{$newsletter-bottom-offset-xs})) !important;
-      }
-    }
-
-    .newsletter__wrapper {
-      top: calc(-#{$newsletter-icon-size} + #{$newsletter-bottom-offset-xs});
-    }
-
-    @include media-breakpoint-up(lg) {
-      .newsletter__start {
-        top: calc(-100vh + (#{$newsletter-bottom-offset-lg} * 2));
-      }
-
-      &[style^='height'] {
-        .newsletter__wrapper {
-          top: calc(100vh - (#{$newsletter-icon-size} + #{$newsletter-bottom-offset-lg})) !important;
-        }
-      }
-
-      .newsletter__wrapper {
-        top: calc(-#{$newsletter-icon-size} + #{$newsletter-bottom-offset-lg});
-      }
-    }
-  }
-
   &.is-expanded {
-    .newsletter__icon {
-      @include is-invisible;
+    .newsletter-banner {
+      @include is-invisible
     }
-
-    .newsletter__modal {
+    .fab-button__modal {
       opacity: 1;
       transform: translateX(0%);
     }
   }
 }
 
-.newsletter__start {
+.newsletter-close {
   position: absolute;
-}
-
-.newsletter__wrapper {
-  position: relative;
-  width: 100% !important;
-  margin-left: auto;
-  right: spacing(4);
-}
-
-
-
-.newsletter__modal {
-  @include shadow('light');
-
-  background-color: var(--color-fab-background);
-  transition:
-    transform 0.7s $animation-transition,
-    opacity 0.7s $animation-transition,
-    height 0.7s $animation-transition;
   right: 0;
-  bottom: 0;
-  position: fixed;
-  width: unquote('min(460px, 100vw)');
-  overflow: hidden;
-  will-change: transform, opacity, height;
+  z-index: 1;
+  width: 78px;
+  height: 78px;
+
+  >.icon {
+    margin: spacing(5);
+    padding: spacing(1);
+    cursor: pointer;
+
+    &.icon--circle svg {
+      width: 80%;
+    }
+  }
+}
+
+.newsletter-modal {
+  @include shadow('light');
+  top: calc(20vh - 1px);
+  background-color: var(--color-fab-background);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .25);
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-self: center;
+  position: fixed;
+  transition: transform .7s cubic-bezier(.19, 1, .2, 1), opacity .7s cubic-bezier(.19, 1, .2, 1), height .7s cubic-bezier(.19, 1, .2, 1);
+  will-change: transform, opacity, height;
 
   &.is-off-screen {
-    opacity: 0;
-    transform: translateX(120%);
+             transform: translateX(0);
+          opacity: 0;
+          transition-duration: 0s;
+          pointer-events: none;
+          width: 0;
+
   }
 
-  .contact {
-    --color-contact-box-background: var(--color-fab-background);
-  }
 
-  @include media-breakpoint-up(lg) {
-    right: spacing($size: 4, $negative: true);
-    flex-direction: row;
-    bottom: -#{$newsletter-icon-size};
-    position: absolute;
-  }
 }
-
-
-

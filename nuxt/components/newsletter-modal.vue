@@ -1,26 +1,62 @@
 <template>
-        <div class="container d-flex flex-column justify-content-center" :style="newsletterStyle" >
-            <div class="d-flex p-10">
-                <div class="col-10">
-                    <headline level="h2">{{ success ? confirmHeadline : headline }}</headline>
-                    <p class="font-size-3 pt-8">{{ success ? confirmText : text }}</p>
-                    <formular v-if="!success" v-bind="formular" :ajax="ajax" />
-                </div>
-                <div class="col-4 d-flex align-items-center z-index-1 align-content-center">
-                    <v-img v-if="!success" :lottie="lottie" :lazy="true" />
-                    <v-img v-if="success" src="https://res.cloudinary.com/c4a8/image/upload/v1760085223/visuals/icon-heart.svg" />
-                </div>
+    <div class="container d-flex flex-column justify-content-center" :style="newsletterStyle" ref="root">
+        <div class="d-flex align-items-center p-10">
+            <div class="col-10">
+                <headline :style="{ color: contrastColor }" level="h2">{{ success ? confirmation.headline : headline }}
+                </headline>
+
+                <p class="font-size-3 light pt-8">{{ success ? confirmation.text : text }}</p>
+                <formular v-if="!success" v-bind="formular" :ajax="ajax" ref="form" @success="handleSuccess" />
+
+            </div>
+            <div class="col-4 d-flex align-items-center z-index-1 align-content-center">
+                <icon class="iconBird" icon="origami-bird" :color="iconColor" :strokeColor="contrastColor" size="custom"
+                    customSize="20em" />
+                <icon class="iconHeart position-absolute" icon="heart" color="var(--color-red)"
+                    :strokeColor="contrastColor" size="custom" customSize="20em" style="opacity: 0;" />
             </div>
         </div>
+
+    </div>
 </template>
+<style>
+@keyframes fade-out {
+    from {
+        opacity: 100;
+    }
+    to {
+        opacity: 0;
+        margin-left: 150%
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        margin-left: -100%
+    }
+    to {
+        opacity: 100;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .fade-in-animation {
+        animation: fade-in 4s 1 forwards;
+    }
+
+    .fade-out-animation {
+        animation: fade-out 3s 1 forwards;
+    }
+}
+</style>
 <script>
 
 export default {
-    tagName: 'newsletter',
+    tagName: 'newsletter-modal',
     props: {
         bgColor: {
             type: String,
-            default: "var(--color-yellow)",
         },
         headline: {
             type: String,
@@ -34,23 +70,41 @@ export default {
         lottie: {
             type: Object,
         },
-        confirmHeadline: {
+        iconColor: {
             type: String,
-       
+            default: 'var(--color-orange)',
         },
-        confirmText: {
-            type: String,
+        confirmation: {
+            type: Object,
+            default: null,
         },
-        success: Boolean,
-        ajax: Boolean,
+        light: {
+            type: Boolean,
+            default: false,
+        },
+    },
+    data() {
+        return {
+            success: false,
+            contrastColor: this.light ? 'var(--color-white)' : 'var(--color-black)',
+        }
     },
     computed: {
         newsletterStyle() {
             return {
                 backgroundColor: this.bgColor,
                 height: "50rem",
+                color: this.contrastColor,
             }
         },
+    },
+    methods: {
+        handleSuccess() {
+            document.querySelector('.iconBird').classList.add('fade-out-animation');
+            document.querySelector('.iconHeart').classList.add('fade-in-animation');
+            this.success = true;
+        },
+  
     },
 }
 

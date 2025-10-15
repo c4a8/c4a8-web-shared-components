@@ -1,37 +1,41 @@
 <template>
-    <svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g clip-path="url(#clip0_1035_30)">
-            <path
-                d="M163.516 95.9789H239.49L281.275 137.765C286.34 142.83 285.074 146.628 277.477 146.628H212.899L163.516 241.596L35.6259 292.245C29.2948 294.778 26.7623 292.245 30.561 285.914L72.3467 226.401L3.97006 44.0633C1.43759 37.7321 3.97006 35.1997 10.3012 38.9984L74.8792 76.9854V20.0048C74.8792 13.6737 78.6779 11.1412 83.7428 16.2061L163.516 95.9789Z"
-                fill="#5CBBFF" />
-            <path d="M227.871 139.323H292.45C299.424 139.323 301.097 135.278 296.165 130.345L254.41 88.54H178.331"
-                stroke="#000520" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-            <path
-                d="M254.411 88.54L178.332 234.143M178.332 234.143L49.987 284.722C43.4949 287.258 41.4534 284.722 45.4476 278.978L178.332 88.6034V234.143Z"
-                stroke="#000520" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M178.333 88.6029L98.5388 8.8341C93.6064 3.90164 89.5742 5.57538 89.5742 12.5493V215.756"
-                stroke="#000520" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M89.5732 69.3041L24.4623 31.5816C18.4267 28.082 15.5104 30.5672 17.9702 37.0847L86.7964 219.497"
-                stroke="#000520" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-        </g>
-        <defs>
-            <clipPath id="clip0_1035_30">
-                <rect width="300" height="300" fill="white" />
-            </clipPath>
-        </defs>
+    <svg width="252" height="242" viewBox="0 0 252 242" fill="none" xmlns="http://www.w3.org/2000/svg" >
+        <path
+            d="M135.149 76.0783H199.117L234.299 111.203C238.563 115.461 237.497 118.654 231.1 118.654H176.728L135.149 198.484L27.4705 241.059C22.1399 243.188 20.0077 241.059 23.206 235.737L58.3881 185.711L0.817413 32.4382C-1.31483 27.1162 0.817413 24.9874 6.14804 28.1806L60.5204 60.1124V12.2147C60.5204 6.89272 63.7188 4.76393 67.9833 9.02151L135.149 76.0783Z"
+            :style="fillStyle"  style="box-shadow: 10px 5px 5px"/>
+        <path d="M190.113 114.07H244.486C250.358 114.07 251.767 110.67 247.614 106.524L212.458 71.3826H148.402"
+            :style="strokeStyle" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <path
+            d="M212.458 71.3826L148.402 193.776M148.402 193.776L40.3401 236.293C34.874 238.425 33.1552 236.293 36.5181 231.465L148.402 71.4359V193.776Z"
+            :style="strokeStyle" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M148.401 71.4358L81.2175 4.38233C77.0646 0.236126 73.6696 1.64307 73.6696 7.50531V178.321"
+            :style="strokeStyle" stroke="#000520" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M73.6699 55.2133L18.8489 23.5039C13.7671 20.5621 11.3116 22.6512 13.3827 28.1297L71.3319 181.465"
+             :style="strokeStyle" stroke="#000520" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
     </svg>
+
 </template>
 <script>
 export default {
     tagName: 'origami-bird',
     computed: {
-        style() {
-            return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
+        fillStyle() {
+                 return `fill: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
+        },
+        strokeStyle() {
+            return `stroke: ${this.strokeColor};`;
         },
     },
     props: {
         settings: Object,
-        color: String,
-    },
+        color: {
+            String,
+            default: 'var(--color-orange)'
+        },
+        strokeColor: {
+            String,
+            default: 'var(--color-black)'
+        },
+    }
 };
 </script>

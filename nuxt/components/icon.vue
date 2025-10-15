@@ -1,6 +1,6 @@
 <template>
   <span :class="classList" :style="parentStyle">
-    <component :is="icon" v-bind="settings" :color="props.color" :closed="closed" :step="step" />
+    <component :is="icon" v-bind="settings" :color="props.color" :strokeColor="props.strokeColor" :closed="closed" :step="step" />
   </span>
 </template>
 <script>
@@ -48,6 +48,7 @@ import Quote from './icons/quote.vue';
 import World from './icons/world.vue';
 import XMark from './icons/x-mark.vue';
 import origamiBird from './icons/origami-bird.vue';
+import heart from './icons/heart.vue';
 
 
 
@@ -93,6 +94,7 @@ export default {
     quote: Quote,
     world: World,
     origamiBird: origamiBird,
+    heart: heart,
 
   },
   tagName: 'icon',
@@ -212,6 +214,9 @@ export default {
     },
     strokeWidth: {
       default: null,
+    },
+    strokeColor: {
+      String,
     },
     customSize: {
       type: String,
