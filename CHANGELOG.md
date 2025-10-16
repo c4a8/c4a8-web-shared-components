@@ -1,5 +1,9 @@
 # Releases
 
+# Hotfix 0.4.33
+
+- Adds a temp fix for the issue with the rerendering of the ContentRenderer https://github.com/nuxt/content/pull/3544
+
 # Release 0.4.32
 
 - Enables default recaptcha
