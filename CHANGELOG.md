@@ -1,5 +1,22 @@
 # Releases
 
+# Hotfix 0.4.33
+
+- Adds a temp fix for the issue with the rerendering of the ContentRenderer https://github.com/nuxt/content/pull/3544
+
+# Release 0.4.32
+
+- Enables default recaptcha
+
+# Hotfix 0.4.30 - Hotfix 0.4.31
+
+- Disables default recaptcha
+
+# Release 0.4.29
+
+- Adds recaptcha
+- Adds onSurface Param to Contact
+
 # Release 0.4.28
 
 - Fixes Feature Grid Item svg handling

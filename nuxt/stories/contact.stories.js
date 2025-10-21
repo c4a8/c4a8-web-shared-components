@@ -39,6 +39,7 @@ export const Expanded = {
   args: {
     contact: Contact.infos,
     // light: true,
+    onSurface: true,
   },
 };
 
@@ -262,6 +263,7 @@ export const WithQuote = {
 
 export const WithQuoteBgColor = {
   args: {
+    onSurface: true,
     bgColor: 'var(--color-blue-jeans)',
     color: 'var(--color-copy)',
     boxBgColor: 'var(--color-gigas)',

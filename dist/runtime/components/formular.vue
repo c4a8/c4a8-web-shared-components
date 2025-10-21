@@ -1,7 +1,7 @@
 <template>
   <div :class="classList" ref="root">
     <div :class="rowClassList">
-      <div :class="wrapperClassList">
+      <div :class="wrapperClassList" v-if="form">
         <div v-if="form.headline" :class="headlineClassList" data-utility-animation-step="1" ref="headline">
           <div class="row">
             <div class="col-sm-12">
@@ -16,6 +16,7 @@
           :action="formAction"
           :novalidate="novalidate"
           @submit="handleSubmit"
+          ref="form"
         >
           <template v-for="block in preparedBlocks">
             <div :class="getBlockClassList(block[0])" v-if="block.length > 0">
@@ -33,6 +34,13 @@
               </div>
             </div>
           </template>
+          <div v-if="hasRecaptcha" class="form__recaptcha-infos">
+            <span class="form__recaptcha-copy">This site is protected by reCAPTCHA and the Google </span>
+            <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a
+            ><span class="form__recaptcha-copy"> and </span>
+            <a href="https://policies.google.com/terms" target="_blank">Terms of Service</a
+            ><span class="form__recaptcha-copy"> apply.</span>
+          </div>
           <div :class="formClassList">
             <cta
               :text="getTranslatedText(form.ctaText)"
@@ -44,12 +52,16 @@
             />
           </div>
           <input type="text" class="form__super-field" name="_gotcha" />
+          <input v-if="reCaptchaField" name="g-recaptcha-response" type="hidden" v-bind="reCaptchaField" />
         </form>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { useHead } from '#imports';
+
+import useConfig from '../composables/useConfig';
 import State from '../utils/state.js';
 import Tools from '../utils/tools.js';
 import Form from '../utils/components/form.js';
@@ -64,6 +76,14 @@ export default {
       formInstance: null,
       novalidateValue: null,
       errors: [],
+      siteKey: null,
+    };
+  },
+  setup() {
+    const config = useConfig();
+
+    return {
+      config,
     };
   },
   computed: {
@@ -77,6 +97,9 @@ export default {
         this.form?.noCustomSubmit === true ? Form.noCustomSubmitClass : '',
         'vue-component',
       ];
+    },
+    reCaptchaField() {
+      return this.formInstance?.reCaptchaField;
     },
     novalidate() {
       return this.novalidateValue;
@@ -157,11 +180,9 @@ export default {
       return blocks;
     },
   },
-  created() {
-    this.originalAction = this.formAction = this.form.action;
-  },
   mounted() {
-    this.formInstance = new Form(this.$refs.root, null, this.validate.bind(this));
+    this.originalAction = this.formAction = this.form?.action;
+    this.formInstance = new Form(this.$refs.root, null, this.validate.bind(this), this.hasRecaptcha, this.siteKey);
 
     this.novalidateValue = 'novalidate';
 
@@ -169,7 +190,27 @@ export default {
 
     UtilityAnimation.init([this.$refs.headline]);
   },
+  created() {
+    if (!this.hasRecaptcha) return;
+
+    this.loadRecaptchaScript();
+  },
   methods: {
+    loadRecaptchaScript() {
+      this.siteKey = this.config?.public?.recaptchaSiteKey;
+
+      if (this.siteKey) {
+        useHead({
+          script: [
+            {
+              src: `https://www.google.com/recaptcha/api.js?render=${this.siteKey}`,
+              async: true,
+              defer: true,
+            },
+          ],
+        });
+      }
+    },
     getTranslatedText(text) {
       return this.useTranslation ? this.$t(text) : text;
     },
@@ -209,8 +250,21 @@ export default {
       }
     },
     handleSubmit(e) {
-      if (!this.validate()) return e.preventDefault();
-      
+      if (!this.validate()) {
+        e.preventDefault();
+      } else {
+        if (this.formInstance.hasSubmitHandling) return;
+
+        e.preventDefault();
+
+        this.formInstance.handleRecaptcha().then(() => {
+          const form = this.$refs['form'];
+
+          if (!form) return console.debug('Form reference missing');
+
+          form.submit();
+        });
+      }
     },
     handleFormFieldUpdate(e) {
       if (!e.id) return;
@@ -321,6 +375,10 @@ export default {
     useTranslation: {
       type: Boolean,
       default: false,
+    },
+    hasRecaptcha: {
+      type: Boolean,
+      default: true,
     },
   },
 };
