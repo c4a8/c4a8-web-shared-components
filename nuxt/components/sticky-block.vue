@@ -48,15 +48,17 @@ const styles = computed(() => {
   return {
     position: 'sticky',
     top: `${props.stickyOffsetTop}px`,
-    float: 'left',
-    height: `${rootHeight.value}px`,
+    height: rootHeight.value ?? `${rootHeight.value}px`,
   };
 });
 
 const handleResize = () => {
+  rootHeight.value = 0;
+
   if (stickyBlock.value) {
     rootHeight.value = stickyBlock.value.offsetHeight;
   }
+
   updateBreakpointState();
 };
 
