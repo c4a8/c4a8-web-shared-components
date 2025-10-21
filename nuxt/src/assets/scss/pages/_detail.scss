@@ -50,7 +50,7 @@ $page-detail-subline-background-color: $white-30;
 .page-detail {
   min-height: 100vh;
   position: relative;
-  overflow: hidden;
+  overflow: clip;
 
   &.page-detail--image {
     .page-detail__description {
@@ -211,7 +211,7 @@ $page-detail-subline-background-color: $white-30;
 .page-detail__content {
   margin-bottom: spacing(10);
   margin-top: spacing(16);
-  padding-top: spacing(8);
+  padding-top: spacing(36);
   position: relative;
 
   &::before {
@@ -260,7 +260,7 @@ $page-detail-subline-background-color: $white-30;
   }
 
   @include media-breakpoint-up(lg) {
-    margin-bottom: 0;
+    margin-bottom: spacing(8);
   }
 }
 
