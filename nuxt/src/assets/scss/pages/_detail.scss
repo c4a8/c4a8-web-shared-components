@@ -260,7 +260,8 @@ $page-detail-subline-background-color: $white-30;
   }
 
   @include media-breakpoint-up(lg) {
-    margin-bottom: spacing(8);
+    padding-bottom: spacing(8);
+    margin-bottom: 0;
   }
 }
 
