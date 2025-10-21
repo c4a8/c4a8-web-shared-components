@@ -37,14 +37,13 @@ const checkEndPosition = () => {
 };
 
 onMounted(() => {
-  window.addEventListener('scroll', checkEndPosition);
-  window.addEventListener('resize', checkEndPosition);
-
-  checkEndPosition();
+  // window.addEventListener('scroll', checkEndPosition);
+  // window.addEventListener('resize', checkEndPosition);
+  // checkEndPosition();
 });
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', checkEndPosition);
-  window.removeEventListener('resize', checkEndPosition);
+  // window.removeEventListener('scroll', checkEndPosition);
+  // window.removeEventListener('resize', checkEndPosition);
 });
 </script>
