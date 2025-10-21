@@ -194,6 +194,10 @@
     }
   }
 
+  @include media-breakpoint-up(lg) {
+    float: left;
+  }
+
   @include media-breakpoint-up(xl) {
     display: flex;
     margin-bottom: 0;
