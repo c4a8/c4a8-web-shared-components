@@ -161,6 +161,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    subtitles: {
+      type: String,
+      default: null,
+    },
     color: {
       type: String,
     },
@@ -291,7 +295,8 @@ export default {
       return YoutubePlayer.getEmbedSrc(
         this.videoPlayerOptions.videoId,
         this.videoPlayerOptions.isAutoplay,
-        this.playlist
+        this.playlist,
+        this.subtitles
       );
     },
     showIframe() {
