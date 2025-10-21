@@ -284,8 +284,9 @@ class Tools {
   static isAboveBreakpoint(breakpoint) {
     const currentBreakpoint = Tools.getBreakpoint();
     const breakpointIndex = Tools.breakpointArray.indexOf(breakpoint);
+    const currentIndex = Tools.breakpointArray.indexOf(currentBreakpoint);
 
-    return Tools.breakpointArray.indexOf(currentBreakpoint) > breakpointIndex;
+    return currentIndex >= breakpointIndex;
   }
 
   static isUpperBreakpoint() {
