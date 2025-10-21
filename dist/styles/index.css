@@ -44757,6 +44757,11 @@ job-list-detail {
     display: flex;
   }
 }
+@media (min-width: 992px) {
+  .post__sticky-bar {
+    float: left;
+  }
+}
 @media (min-width: 1200px) {
   .post__sticky-bar {
     display: flex;
@@ -49818,7 +49823,7 @@ shape {
 .page-detail {
   min-height: 100vh;
   position: relative;
-  overflow: hidden;
+  overflow: clip;
 }
 .page-detail.page-detail--image .page-detail__description {
   margin-top: 5rem;
@@ -50010,7 +50015,7 @@ shape {
 .page-detail__content {
   margin-bottom: 2.5rem;
   margin-top: 4rem;
-  padding-top: 2rem;
+  padding-top: 9rem;
   position: relative;
 }
 .page-detail__content::before {
@@ -50059,7 +50064,7 @@ shape {
 }
 @media (min-width: 992px) {
   .page-detail__img {
-    margin-bottom: 0;
+    margin-bottom: 2rem;
   }
 }
 
