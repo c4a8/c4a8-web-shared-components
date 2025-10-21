@@ -55,25 +55,31 @@ declare namespace _default {
             let _default_7: boolean;
             export { _default_7 as default };
         }
-        namespace color {
+        namespace subtitles {
             let type_9: StringConstructor;
             export { type_9 as type };
+            let _default_8: null;
+            export { _default_8 as default };
         }
-        namespace fontSize {
+        namespace color {
             let type_10: StringConstructor;
             export { type_10 as type };
         }
-        namespace cover {
-            let type_11: BooleanConstructor;
+        namespace fontSize {
+            let type_11: StringConstructor;
             export { type_11 as type };
-            let _default_8: boolean;
-            export { _default_8 as default };
         }
-        namespace lightbox {
+        namespace cover {
             let type_12: BooleanConstructor;
             export { type_12 as type };
             let _default_9: boolean;
             export { _default_9 as default };
+        }
+        namespace lightbox {
+            let type_13: BooleanConstructor;
+            export { type_13 as type };
+            let _default_10: boolean;
+            export { _default_10 as default };
         }
     }
     function mounted(): void;

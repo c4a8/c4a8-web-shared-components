@@ -135,3 +135,12 @@ export const Cta = {
     fontSize: '30px',
   },
 };
+
+export const WithSubtitles = {
+  args: {
+    thumb: 'shared-components/teaser-dekra.png',
+    alt: 'work @ glueckkanja',
+    id: "zef-39mP_XQ",
+    subtitles: 'en',
+  },
+};
