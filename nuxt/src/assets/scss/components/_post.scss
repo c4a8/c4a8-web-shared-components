@@ -1,9 +1,12 @@
 // TODO rename this to post-detail
 
+.post,
 .post-detail {
   --post-offset-spacing-xl: 7.5rem;
   --post-content-width-lg: 80%;
+}
 
+.post-detail {
   overflow: clip;
 
   .richtext {
