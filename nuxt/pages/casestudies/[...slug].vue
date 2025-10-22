@@ -1,6 +1,7 @@
 <template>
   <tracking />
   <content>
+    <!-- <fab-hint v-if="fabHintData" /> -->
     <hero :hero="casestudyNormalized?.hero" />
     <service-overview v-if="casestudyNormalized?.serviceOverview" v-bind="casestudyNormalized?.serviceOverview" />
     <div class="container space-top-1 space-top-lg-2">
@@ -27,6 +28,8 @@
         </article>
       </div>
     </div>
+    <quotes v-bind="quotesData" v-if="quotesData" spacing="mt-8 mt-lg-10" />
+    <!-- <blog-recent v-bind="blogRecentData" v-if="showBlogRecent" /> -->
   </content>
 </template>
 <script setup>
@@ -74,6 +77,24 @@ const casestudyNormalized = computed(() => {
       value: Tools.applyKramdownAttrs(normalizedCasestudy.body.value),
     },
   };
+});
+
+// const blogRecentData = computed(() => {
+//   return {
+//     limit: 21,
+//     headline: t('similarPosts'),
+//     slider: true,
+//     tag: post.value?.meta?.tags,
+//     spacing: contactInContent.value ? '' : 'mt-10',
+//   };
+// });
+
+const quotesData = computed(() => {
+  return event.value?.meta?.quote ? { quotes: event.value.meta.quote } : null;
+});
+
+const fabHintData = computed(() => {
+  return event.value?.meta?.fabHint ? event.value.meta.fabHint : null;
 });
 
 dynamicMeta.value = {
