@@ -6,6 +6,7 @@ declare class Tools {
     static storagePrefix: string;
     static storybookPath: string;
     static blogImagePath: string;
+    static breakpointArray: string[];
     static decodeHTML: (input: any) => string;
     static intersection: (r1: any, r2: any) => number;
     static isInViewportPercent(element: any, percent: any): boolean;
@@ -36,6 +37,7 @@ declare class Tools {
     static uuid(): string;
     static getBreakpoint(): string;
     static isBelowBreakpoint(breakpoint: any): boolean;
+    static isAboveBreakpoint(breakpoint: any): boolean;
     static isUpperBreakpoint(): boolean;
     static getYoutubeThumbnail(videoURL: any): string;
     static truncateWords(string: any, number: any): any;

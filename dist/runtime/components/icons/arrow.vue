@@ -27,7 +27,7 @@ export default {
   tagName: 'arrow',
   computed: {
     style() {
-      return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale))};`;
+      return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
     },
     strokeWidthValue() {
       return this.strokeWidth / 2.66666666;

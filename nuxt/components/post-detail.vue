@@ -61,12 +61,8 @@
           </div>
           <!-- <sticky-block
             v-if="shouldShowStickyBlocks"
-            v-model:is-at-end="isAtEnd"
-            v-model:end-point="endPoint"
-            v-model:content-height="stickyContentHeight"
             class="post__sticky-bar"
             :sticky-offset-top="stickyOffsetTop"
-            :sticky-offset-bottom="20"
             :has-padding="!asideNavValue"
             breakpoint="lg"
           >
