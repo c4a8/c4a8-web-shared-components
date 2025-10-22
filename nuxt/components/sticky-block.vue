@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref, onUnmounted, computed, watch } from 'vue';
+import { onMounted, ref, onUnmounted, computed, nextTick } from 'vue';
 import Tools from '../utils/tools.js';
 
 const props = defineProps({
@@ -24,6 +24,10 @@ const props = defineProps({
   hasPadding: {
     type: Boolean,
     default: true,
+  },
+  calculateHeight: {
+    type: Boolean,
+    default: false,
   },
 });
 
@@ -48,26 +52,27 @@ const styles = computed(() => {
   return {
     position: 'sticky',
     top: `${props.stickyOffsetTop}px`,
-    height: rootHeight.value ?? `${rootHeight.value}px`,
+    height: rootHeight.value > 0 ? `${rootHeight.value}px` : null,
   };
 });
 
 const handleResize = () => {
-  rootHeight.value = 0;
+  if (props.calculateHeight) {
+    rootHeight.value = 0;
 
-  if (stickyBlock.value) {
-    rootHeight.value = stickyBlock.value.offsetHeight;
+    if (stickyBlock.value) {
+      rootHeight.value = stickyBlock.value.offsetHeight;
+    }
   }
 
   updateBreakpointState();
 };
 
 onMounted(() => {
-  if (stickyBlock.value) {
-    rootHeight.value = stickyBlock.value.offsetHeight;
-  }
+  nextTick(() => {
+    handleResize();
+  });
 
-  updateBreakpointState();
   window.addEventListener('resize', handleResize);
 });
 
