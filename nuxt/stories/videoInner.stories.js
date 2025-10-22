@@ -104,3 +104,15 @@ export const VideoCompact = {
     },
   },
 };
+
+export const VideoWithSubtitles = {
+  args: {
+    subtitles: "en",
+    video: {
+      thumb: 'thumbs/video-thumb-haniel.jpg',
+      alt: 'work @ glueckkanja',
+      id: "zef-39mP_XQ",
+      headline: 'work @ glueckkanja',
+   },
+  },
+};

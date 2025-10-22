@@ -171,24 +171,34 @@ export const Cutoff = {
     stage: {
       bgColor: 'var(--color-orange);',
       headline: 'Start now',
+      headlineLevel: 'h3',
+      headlineClasses: 'bold',
       description:
         'When signing up you get access to the RJ Portal within your Microsoft 365 tenant to find out about all the awesome possibilities to manage Windows and Mac applications without leaving the platform. But also managing all devices, users and groups, get access to open source remediations scripts and automation and so much more...',
       cutoff: {
         headline: 'Ready to Explore?',
+        headlineLevel: 'h3',
+        headlineClasses: 'bold',
         subline: 'Welcome to our Portal!',
-        copy: 'This sign in button redirects you to the basic Entra login within your tenant and asks you to consent only basic profile access to allow us to read your name and email address.',
-                cta: {
+        description:
+          'This sign in button redirects you to the basic Entra login within your tenant and asks you to consent only basic profile access to allow us to read your name and email address.',
+        button: {
           text: 'Sign in',
           skin: 'primary is-cutoff',
         },
+        cta: {
+          text: 'Book 30 Minutes with Ugur now',
+          link: true,
+          icon: 'booking',
+          color: 'var(--color-black)',
+        },
       },
-      cta: {
-        text: 'Book 30 minutes with Ugur now',
-        href: '',
-        icon: 'booking',
-        color: 'var(--color-sahara-sand)',
-        link: true,
-      
+      image: {
+        src: 'https://res.cloudinary.com/c4a8/image/upload/v1758548434/products/realmjoin/realmjoin-laptop.svg',
+        alt: 'Illustration of the RJ Portal',
+        // style: {
+        //   marginLeft: '-6%',
+        // },
       },
     },
   },

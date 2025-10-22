@@ -8,6 +8,16 @@
   }
 }
 
+.on-surface .active a.link,
+.on-surface .hover__parent:hover .link,
+.on-surface .hover__parent:hover a,
+.shared-components .on-surface .link:hover,
+.shared-components .on-surface a:hover {
+  &:not(.btn):not(.custom):not(.nav-link):not(.cta):not(.page-link):not(.dropdown-item) {
+    color: var(--color-primary-accent-on-surface);
+  }
+}
+
 .shared-components {
   .link,
   a {
@@ -28,6 +38,15 @@
       //     }
       //   }
       // }
+    }
+  }
+
+  .on-surface {
+    .link,
+    a {
+      &:not(.btn):not(.custom):not(.nav-link):not(.cta):not(.page-link):not(.dropdown-item) {
+        color: var(--color-primary-on-surface);
+      }
     }
   }
 }

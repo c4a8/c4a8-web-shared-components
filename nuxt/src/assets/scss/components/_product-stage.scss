@@ -40,3 +40,29 @@
     }
   }
 }
+
+.product-stage--cutoff {
+  --product-stage-background-width: 100%;
+
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent var(--product-stage-background-width),
+    var(--color-black-4) var(--product-stage-background-width),
+    var(--color-black-4) 100%
+  );
+
+  @include media-breakpoint-up(md) {
+    --product-stage-background-width: 60%;
+
+    + .product-stage__bottom-container .product-stage__bottom-image {
+      margin-left: -6%;
+    }
+  }
+}
+
+.product-stage__bottom-container {
+  @include media-breakpoint-up(md) {
+    margin-top: -10em;
+  }
+}

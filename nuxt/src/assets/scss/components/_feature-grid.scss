@@ -5,3 +5,9 @@
     max-height: 400px;
   }
 }
+
+.feature-grid__figure {
+  > .img__picture-wrapper {
+    width: 100%;
+  }
+}
