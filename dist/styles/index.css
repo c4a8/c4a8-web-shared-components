@@ -44613,9 +44613,13 @@ job-list-detail {
   line-height: 1.9em;
 }
 
+.post,
 .post-detail {
   --post-offset-spacing-xl: 7.5rem;
   --post-content-width-lg: 80%;
+}
+
+.post-detail {
   overflow: clip;
 }
 .post-detail .richtext.richtext--full-width {
@@ -50145,7 +50149,6 @@ shape {
 }
 @media (min-width: 992px) {
   .page-detail__img {
-    padding-bottom: 2rem;
     margin-bottom: 0;
   }
 }
