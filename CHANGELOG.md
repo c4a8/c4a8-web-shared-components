@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.35
+
+- Fix Video Frame inside of posts cut of controls
+
 # Release 0.4.34
 
 - Migrates casestudies page

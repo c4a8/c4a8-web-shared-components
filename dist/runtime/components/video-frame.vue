@@ -7,6 +7,7 @@
             <div class="video-frame__target embed-responsive">
               <div :id="targetId" v-if="openIframe">
                 <iframe
+                  class="video-frame__iframe"
                   frameborder="0"
                   allowfullscreen="1"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -47,6 +48,7 @@
           <div class="video-frame__target embed-responsive">
             <div :id="targetId" v-if="showIframe">
               <iframe
+                class="video-frame__iframe"
                 frameborder="0"
                 allowfullscreen="1"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -66,6 +68,7 @@
             >
               <template #lightbox-content>
                 <iframe
+                  class="video-frame__iframe"
                   frameborder="0"
                   allowfullscreen="1"
                   allow="autoplay; fullscreen"
