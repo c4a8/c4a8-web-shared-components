@@ -28,8 +28,7 @@
         </article>
       </div>
     </div>
-    <quotes v-bind="quotesData" v-if="quotesData" spacing="mt-8 mt-lg-10" />
-    <!-- <blog-recent v-bind="blogRecentData" v-if="showBlogRecent" /> -->
+    <component-list :list="componentListData" />
   </content>
 </template>
 <script setup>
@@ -79,22 +78,12 @@ const casestudyNormalized = computed(() => {
   };
 });
 
-// const blogRecentData = computed(() => {
-//   return {
-//     limit: 21,
-//     headline: t('similarPosts'),
-//     slider: true,
-//     tag: post.value?.meta?.tags,
-//     spacing: contactInContent.value ? '' : 'mt-10',
-//   };
+// const fabHintData = computed(() => {
+//   return event.value?.meta?.fabHint ? event.value.meta.fabHint : null;
 // });
 
-const quotesData = computed(() => {
-  return event.value?.meta?.quote ? { quotes: event.value.meta.quote } : null;
-});
-
-const fabHintData = computed(() => {
-  return event.value?.meta?.fabHint ? event.value.meta.fabHint : null;
+const componentListData = computed(() => {
+  return event.value?.meta?.componentList;
 });
 
 dynamicMeta.value = {
