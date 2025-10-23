@@ -14,8 +14,9 @@
                         <cta v-bind="cta" class="mx-2"/>       
                     </div>
                 </div>    
-                <div class="ml-n11">
-                    <icon :icon="icon" :color="iconColor" :strokeColor="getContrastColor()" size="custom" customSize="10em" />
+                <div class="ml-n11 w-20">
+                    <lottie-player v-if="modal.lottie" :animationData="modal.lottie.fly" :loop="true" :autoplay="true" />
+                    <!---<icon :icon="icon" :color="iconColor" :strokeColor="getContrastColor()" size="custom" customSize="10em" />-->
                 </div>
             </div>
         </div>

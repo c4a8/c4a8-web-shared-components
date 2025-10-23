@@ -1,29 +1,26 @@
 <template>
-    <div :class="classList" ref="root">
-        <div class="fab-button__newsletter is-off-screen" ref="modal">
-            <div class="fab-button__close" ref="close">
-                <icon icon="close" :circle="true" :hover="true" size="medium" />
+    <div :class="classList" ref="root" style="top: 200px !important;">
+        <div class="newsletter-modal is-off-screen" ref="modal">
+            <div class="newsletter-close" ref="close">
+                <icon icon="close" :circle="true" :hover="true" size="medium" :color="getContrastColor()" />
             </div>
-            <newsletter-modal v-bind="newsletter" :ajax="true" :success="success" />
+            <newsletter-modal v-bind="modal" :ajax="true" :success="success" :iconColor="iconColor" :bgColor="bgColor" :light="light" />
         </div>
-        <div class="banner-wrapper">
-            <div style="width:80rem; height: auto" class="fab-button__banner d-flex align-items-center mx-auto banner" ref="icon">
-                <div class="position-absolute">
-                    <icon :icon="icon" :color="iconColor" size="custom" customSize="10em" />
-                </div>
-                <div class="my-8 ml-11 py-3 pr-5 pl-11" style="background-color: var(--color-fab-background);">
-                    <div class="d-flex align-items-center">
-                        <div class="mx-2">
-                            <span class="font-size-2 text-dark">{{ bannertext }}</span>
-                        </div>
-                        <div class="mx-2" v-bind="trigger ? { 'data-trigger-id': trigger } : {}">
-                            <cta v-bind="cta" :text="ctaText" />
-                        </div>
+        <div class="newsletter-banner__wrapper">
+            <div style="width:80rem; height: auto;" class="newsletter-banner d-flex align-items-center mx-auto" ref="icon">
+                <div class="p-3" :style="bannerStyle">
+                    <div class="d-flex align-items-center pr-11">
+                        <span class="mx-2 font-size-2 light" :class="light ? 'text-light' : 'text-dark'">{{ text }}</span>
+                        <cta v-bind="cta" class="mx-2"/>       
                     </div>
+                </div>    
+                <div class="ml-n11 w-20">
+                    <lottie-player v-if="modal.lottie" :animationData="modal.lottie.fly" :loop="true" :autoplay="true" />
+                    <!---<icon :icon="icon" :color="iconColor" :strokeColor="getContrastColor()" size="custom" customSize="10em" />-->
                 </div>
             </div>
         </div>
-        <a class="fab-trigger" ref="link"></a>
+        <a class="newsletter-trigger" ref="link"></a>
     </div>
 </template>
 <style>
@@ -35,17 +32,17 @@ import Events from '../utils/events.js';
 import Tools from '../utils/tools.js';
 
 export default {
-    tagName: 'newsletter-banner',
-    props: {
+    tagName: 'newsletter',
+    props: { 
+        bgColor: {
+            type: String,
+            default: "var(--color-yellow)",
+        },
         icon: {
             type: String,
-            default: 'phone-mail',
+            default: 'origami-bird',
         },
         modal: {
-            type: Object,
-            default: null,
-        },
-        newsletter: {
             type: Object,
             default: null,
         },
@@ -53,46 +50,43 @@ export default {
             type: Boolean,
             default: false,
         },
-        bgColor: {
-            type: String,
-            default: null,
-        },
+       
         iconColor: {
             type: String,
             default: null,
         },
-        trigger: {
-            type: [String, Number],
-            default: null,
-        },
-        bannertext: {
-            type: String,
-        },
-        ctaText: {
+        text: {
             type: String,
         },
         cta: {
             type: Object,
             default: null,
         },
+        light: {
+            type: Boolean,
+            default: false,
+        },
     },
 
     computed: {
         classList() {
             return [
-                'fab-button',
-                !this.noSticky ? 'fab-button--sticky' : '',
-                this.trigger ? 'fab-button--has-trigger' : '',
+                'newsletter',
                 { [this.expandedClass]: this.isExpanded },
-                { [this.hasTriggerClass]: this.hasTrigger },
             ];
         },
         iconStyle() {
             let style = {};
-            if (this.bgColor) style['--color-fab-background'] = this.bgColor;
+            if (this.bgColor) style = this.bgColor;
             if (this.iconColor) style.color = this.iconColor;
 
             return style;
+        },
+        bannerStyle() {
+            return {
+                backgroundColor: this.bgColor,
+      
+            }
         },
         offsetTop() {
             return window ? window.innerHeight * 0.7 : null; // TODO
@@ -106,18 +100,15 @@ export default {
         return {
             resetDelay: 300,
             isExpanded: false,
-            hasTrigger: false,
             expandedClass: State.EXPANDED,
             offScreenClass: State.OFF_SCREEN,
-            hasTriggerClass: 'fab-button--has-trigger',
             success: false,
         };
     },
     mounted() {
-        
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
-                const banner = entry.target.querySelector('.banner');
+                const banner = entry.target.querySelector('.newsletter-banner');
                 if (entry.isIntersecting) {
                     banner.classList.add('banner-animation');
                     return; 
@@ -125,16 +116,13 @@ export default {
                 banner.classList.remove('banner-animation');
             });
         });
-        observer.observe(document.querySelector('.banner-wrapper'));
+        observer.observe(document.querySelector('.newsletter-banner__wrapper'));
 
         this.iconElement = this.$refs.icon;
         this.linkElement = this.$refs.link instanceof NodeList ? this.$refs.link : [this.$refs.link];
         this.modalElement = this.$refs.modal;
         this.closeElement = this.$refs.close;
         this.root = this.$refs.root;
-
-        this.hasTrigger = this.root.classList.contains(this.hasTriggerClass);
-
         this.init();
     },
     methods: {
@@ -142,7 +130,7 @@ export default {
             this.bindEvents();
         },
         bindEvents() {
-            if (!this.iconElement || !this.modalElement || this.hasTrigger) return this.bindTriggerEvent();
+            if (!this.iconElement || !this.modalElement ) return this.bindTriggerEvent();
 
             this.linkElement.forEach((link) => {
                 link.addEventListener('click', this.handleClick);
@@ -168,18 +156,17 @@ export default {
         handleOutsideClick(e) {
             if (
                 this.root.classList.contains(this.expandedClass) &&
-                Tools.isOutsideOf('fab-button', e) &&
-                Tools.isOutsideOf('fab-trigger', e)
+                Tools.isOutsideOf('newsletter', e) &&
+                Tools.isOutsideOf('newsletter-trigger', e)
             ) {
                 this.handleClose();
             }
-            if (!Tools.isOutsideOf('fab-trigger', e)) {
+            if (!Tools.isOutsideOf('newsletter-trigger', e)) {
                 this.handleClick();
             }
         },
         handleSubmit() {
-            //this.handleClose();
-            this.success = true;
+           //
         },
         handleClose() {
             this.handleClick();
@@ -199,6 +186,12 @@ export default {
             if (this.modalElement.classList.contains(this.offScreenClass)) {
                 this.modalElement.style.opacity = '';
             }
+        },
+        getContrastColor() {
+            if (this.light) {
+                return 'var(--color-white)';
+            }
+            return 'var(--color-black)';
         },
     },
     beforeDestroy() {

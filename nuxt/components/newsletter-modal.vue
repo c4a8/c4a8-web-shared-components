@@ -10,8 +10,12 @@
 
             </div>
             <div class="col-4 d-flex align-items-center z-index-1 align-content-center">
-                <icon class="iconBird" icon="origami-bird" :color="iconColor" :strokeColor="contrastColor" size="custom"
-                    customSize="20em" />
+
+                <lottie-player class="iconBird" v-if="lottie" :animationData="success ? lottie.fly : lottie.idle" :loop="true" :autoplay="true" />
+
+                <!-- <v-img  v-if="lottie" :lottie="lottie.idle" :lazy="true" style="width: 20em;" />
+               <icon  icon="origami-bird" :color="iconColor" :strokeColor="contrastColor" size="custom" 
+                    customSize="20em" />-->
                 <icon class="iconHeart position-absolute" icon="heart" color="var(--color-red)"
                     :strokeColor="contrastColor" size="custom" customSize="20em" style="opacity: 0;" />
             </div>
@@ -25,8 +29,10 @@
         opacity: 100;
     }
     to {
+      
         opacity: 0;
         margin-left: 150%
+        
     }
 }
 
@@ -46,7 +52,7 @@
     }
 
     .fade-out-animation {
-        animation: fade-out 3s 1 forwards;
+        animation: fade-out 8s 1 forwards;
     }
 }
 </style>

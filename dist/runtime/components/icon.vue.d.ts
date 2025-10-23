@@ -40,6 +40,7 @@ declare namespace _default {
         quote: any;
         world: any;
         origamiBird: any;
+        heart: any;
     };
     let tagName: string;
     function data(): {
@@ -104,6 +105,9 @@ declare namespace _default {
         namespace strokeWidth {
             let _default_12: null;
             export { _default_12 as default };
+        }
+        namespace strokeColor {
+            let String: StringConstructor;
         }
         namespace customSize {
             export let type: StringConstructor;

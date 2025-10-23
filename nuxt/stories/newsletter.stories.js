@@ -1,5 +1,6 @@
 import NewsletterComponent from '../components/newsletter.vue';
-import lottieFile from '/Users/lisa.nagl/Code/c4a8-web-shared-components/src/stories/data/lottie-azure.json'
+import birdIdle from '/Users/lisa.nagl/Code/c4a8-web-shared-components/nuxt/stories/data/BirdieNoflap.json';
+import birdFly from '/Users/lisa.nagl/Code/c4a8-web-shared-components/nuxt/stories/data/BirdieFlap.json';
 
 export default {
   component: NewsletterComponent,
@@ -58,7 +59,10 @@ export const Default = {
           ],
         },
       },
-      //lottie: lottieFile,
+      lottie: {
+        idle: birdIdle,
+        fly: birdFly,
+      }
     }
   },
 
