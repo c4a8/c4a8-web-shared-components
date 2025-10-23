@@ -72,8 +72,8 @@ const casestudyNormalized = computed(() => {
   return {
     ...normalizedCasestudy,
     body: {
-      ...normalizedCasestudy.body,
-      value: Tools.applyKramdownAttrs(normalizedCasestudy.body.value),
+      ...normalizedCasestudy?.body,
+      value: Tools.applyKramdownAttrs(normalizedCasestudy?.body?.value),
     },
   };
 });
