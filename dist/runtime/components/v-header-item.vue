@@ -33,7 +33,12 @@
           v-for="(subChild, subChildIndex) in list.children"
           :key="subChildIndex"
         >
-          <v-img :img="subChild.img" class="header__product-list-image" :cloudinary="true" />
+          <v-img
+            :img="subChild.img"
+            class="header__product-list-image"
+            :cloudinary="true"
+            :alt="subChild.languages[lowerLang]?.alt || subChild.languages[lowerLang]?.title"
+          />
           <div class="header__product-list-data">
             <div :class="['header__product-list-title', !item.isMobile ? 'font-size-8 bold' : '']">
               {{ subChild?.languages[lowerLang]?.title }}
