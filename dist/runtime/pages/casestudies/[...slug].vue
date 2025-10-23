@@ -1,6 +1,7 @@
 <template>
   <tracking />
   <content>
+    <!-- <fab-hint v-if="fabHintData" /> -->
     <hero :hero="casestudyNormalized?.hero" />
     <service-overview v-if="casestudyNormalized?.serviceOverview" v-bind="casestudyNormalized?.serviceOverview" />
     <div class="container space-top-1 space-top-lg-2">
@@ -8,14 +9,11 @@
         <article class="post" itemscope itemtype="http://schema.org/TechArticle">
           <div class="post-content e-content" itemprop="articleBody">
             <sticky-block
-              v-model:is-at-end="isAtEnd"
-              v-model:end-point="endPoint"
-              v-model:content-height="stickyContentHeight"
               class="post__sticky-bar post__sticky-bar--lg-only"
               :sticky-offset-top="100"
-              :sticky-offset-bottom="20"
               :has-padding="false"
               breakpoint="lg"
+              :calculate-height="true"
             >
               <socials :vertical="true" :hide-label="true" :author="null" :share-url="shareUrl" />
             </sticky-block>
@@ -30,10 +28,19 @@
         </article>
       </div>
     </div>
+    <component-list :list="componentListData" />
   </content>
 </template>
 <script setup>
-import { useRoute, useAsyncData, queryCollection, useNuxtApp, useDynamicPageMeta, useSeo } from '#imports';
+import {
+  useRoute,
+  useAsyncData,
+  queryCollection,
+  useNuxtApp,
+  useRequestURL,
+  useDynamicPageMeta,
+  useSeo,
+} from '#imports';
 import { computed } from 'vue';
 
 import ContentRendererLink from '../../components/content-renderer-link.vue';
@@ -43,10 +50,7 @@ import Tools from '../../utils/tools.js';
 const route = useRoute();
 const nuxtApp = useNuxtApp();
 const currentLocale = nuxtApp.$i18n.locale;
-const isAtEnd = ref(false);
-const endPoint = ref(null);
-const stickyContentHeight = ref(0);
-const shareUrl = 'TESTURL';
+const shareUrl = `${useRequestURL().origin}${route.path}`;
 
 const dynamicMeta = useDynamicPageMeta();
 
@@ -72,6 +76,14 @@ const casestudyNormalized = computed(() => {
       value: Tools.applyKramdownAttrs(normalizedCasestudy.body.value),
     },
   };
+});
+
+// const fabHintData = computed(() => {
+//   return event.value?.meta?.fabHint ? event.value.meta.fabHint : null;
+// });
+
+const componentListData = computed(() => {
+  return event.value?.meta?.componentList;
 });
 
 dynamicMeta.value = {

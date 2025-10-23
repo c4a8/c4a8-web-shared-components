@@ -59,32 +59,17 @@
             />
             <figcaption v-if="normalizedPost.blogtitlepicsubline">{{ normalizedPost.blogtitlepicsubline }}</figcaption>
           </div>
-          <!-- <sticky-block
+          <sticky-block
             v-if="shouldShowStickyBlocks"
             class="post__sticky-bar"
             :sticky-offset-top="stickyOffsetTop"
             :has-padding="!asideNavValue"
             breakpoint="lg"
+            :calculate-height="true"
           >
             <aside-nav v-if="asideNavValue" v-bind="asideNavValue" />
             <socials :vertical="true" :hide-label="true" :author="null" :share-url="shareUrl" v-else />
-          </sticky-block> -->
-
-          <!-- TODO remove QUICK fix solution and replace with a real one -->
-          <div
-            class="post__sticky-bar d-none d-xl-block"
-            v-if="shouldShowStickyBlocks"
-            style="position: sticky; top: 120px"
-          >
-            <div style="position: absolute">
-              <aside-nav v-if="asideNavValue" v-bind="asideNavValue" />
-              <socials :vertical="true" :hide-label="true" :author="null" :share-url="shareUrl" v-else />
-            </div>
-          </div>
-          <div v-if="shouldShowStickyBlocks" class="post__sticky-bar d-xl-none">
-            <aside-nav v-if="asideNavValue" v-bind="asideNavValue" />
-            <socials :vertical="true" :hide-label="true" :author="null" :share-url="shareUrl" v-else />
-          </div>
+          </sticky-block>
 
           <ContentRenderer
             :value="enhancedPost"
@@ -92,13 +77,6 @@
             :class="contentWidth"
             :components="{ a: ContentRendererLink }"
           />
-          <!-- <sticky-block-end
-            v-if="shouldShowStickyBlocks"
-            v-model:is-at-end="isAtEnd"
-            v-model:end-point="endPoint"
-            :content-height="stickyContentHeight"
-            :sticky-offset-bottom="60"
-          /> -->
           <div class="post-detail__tags mt-5">
             <tag v-for="(tag, index) in normalizedPost.tags" :key="index" :tag="tag" variant="small" />
           </div>
