@@ -44702,7 +44702,7 @@ job-list-detail {
 .post-content main > p:last-of-type img {
   margin-bottom: 0;
 }
-.post-content iframe {
+.post-content iframe:not(.video-frame__iframe):not(.video__iframe) {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
 }
@@ -44749,7 +44749,7 @@ job-list-detail {
     left: 0;
     position: relative;
   }
-  .post-content iframe {
+  .post-content iframe:not(.video-frame__iframe):not(.video__iframe) {
     margin-top: 2rem;
     margin-bottom: 2rem;
   }

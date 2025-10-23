@@ -1,15 +1,32 @@
 <template>
   <div :class="videoClass" :onclick="onClick" ref="root" data-utility-animation-ref="root">
     <wrapper classes="row align-items-end no-gutters" :hideContainer="!isVariantRow">
-      <div :class="videoPlayerClass" :id="videoId" data-utility-animation-step="1"
-        data-utility-animation-ref="video-player">
+      <div
+        :class="videoPlayerClass"
+        :id="videoId"
+        data-utility-animation-step="1"
+        data-utility-animation-ref="video-player"
+      >
         <template v-if="videoParsed.lightbox">
-          <lightbox classes="video__lightbox-frame media-viewer" :source="dataSrc" :source-caption="dataCaption"
-            :cloudinary="cloudinary" @click="handleLightboxClick" @lightbox-close="handleLightboxClose">
+          <lightbox
+            classes="video__lightbox-frame media-viewer"
+            :source="dataSrc"
+            :source-caption="dataCaption"
+            :cloudinary="cloudinary"
+            @click="handleLightboxClick"
+            @lightbox-close="handleLightboxClose"
+          >
             <template #lightbox-content>
-              <iframe v-if="isPlayed" frameborder="0" allowfullscreen="1" allow="autoplay; fullscreen" :src="embedSrc"
+              <iframe
+                class="video__iframe"
+                v-if="isPlayed"
+                frameborder="0"
+                allowfullscreen="1"
+                allow="autoplay; fullscreen"
+                :src="embedSrc"
                 sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-presentation"
-                scrolling="no"></iframe>
+                scrolling="no"
+              ></iframe>
             </template>
             <div class="img-fluid">
               <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt" />
@@ -21,9 +38,16 @@
             </span>
           </lightbox>
 
-          <a class="js-video-button media-viewer video-player-btn" href="javascript:;" :data-src="dataSrc"
-            :data-caption="dataCaption" :data-hs-fancybox-options="dataOptionsLightBox" ref="lightbox"
-            @click="handleLightboxClick" style="display: none">
+          <a
+            class="js-video-button media-viewer video-player-btn"
+            href="javascript:;"
+            :data-src="dataSrc"
+            :data-caption="dataCaption"
+            :data-hs-fancybox-options="dataOptionsLightBox"
+            ref="lightbox"
+            @click="handleLightboxClick"
+            style="display: none"
+          >
             <div class="img-fluid">
               <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt" />
             </div>
@@ -39,25 +63,40 @@
             <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt" />
           </div>
           <template v-if="videoParsed.id">
-            <a class="js-inline-video-player video__player-btn video-player-btn video-player-centered"
-              href="javascript:;" :data-hs-video-player-options="dataOptionsRegular" ref="video-player"
-              :onclick="handleButtonClick">
+            <a
+              class="js-inline-video-player video__player-btn video-player-btn video-player-centered"
+              href="javascript:;"
+              :data-hs-video-player-options="dataOptionsRegular"
+              ref="video-player"
+              :onclick="handleButtonClick"
+            >
               <span class="video-player-icon video__player-icon">
                 <i class="fas fa-play"></i>
               </span>
             </a>
           </template>
           <div class="embed-responsive embed-responsive-16by9">
-            <iframe v-if="isPlayed" frameborder="0" allowfullscreen="1"
+            <iframe
+              class="video__iframe"
+              v-if="isPlayed"
+              frameborder="0"
+              allowfullscreen="1"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              width="640" height="360" :src="embedSrc"
-              sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-presentation"></iframe>
+              width="640"
+              height="360"
+              :src="embedSrc"
+              sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-presentation"
+            ></iframe>
           </div>
         </template>
       </div>
       <template v-if="videoParsed.headline">
-        <div :class="videoContentClass" :onclick="onClickVideoContent" data-utility-animation-step="1"
-          data-utility-animation-ref="video-content">
+        <div
+          :class="videoContentClass"
+          :onclick="onClickVideoContent"
+          data-utility-animation-step="1"
+          data-utility-animation-ref="video-content"
+        >
           <div class="row no-gutters d-flex flex-wrap">
             <template v-if="videoParsed.logo">
               <div class="video__logo col-lg-5 order-lg-2 pb-3 pb-lg-0">
@@ -78,8 +117,13 @@
             </div>
           </div>
           <div class="pt-4 pt-lg-6 pb-6" v-if="videoParsed.ctaText">
-            <cta :text="videoParsed?.ctaText" :href="videoParsed?.ctaHref" :link="videoParsed?.link"
-              :target="videoParsed?.target" :type="videoParsed?.type" />
+            <cta
+              :text="videoParsed?.ctaText"
+              :href="videoParsed?.ctaHref"
+              :link="videoParsed?.link"
+              :target="videoParsed?.target"
+              :type="videoParsed?.type"
+            />
           </div>
         </div>
       </template>
@@ -196,12 +240,7 @@ export default {
       return 'https://www.youtube-nocookie.com/' + this.videoParsed.id;
     },
     embedSrc() {
-      return YoutubePlayer.getEmbedSrc(
-        this.videoParsed.id,
-        this.options.isAutoplay,
-        this.playlist,
-        this.subtitles
-      );
+      return YoutubePlayer.getEmbedSrc(this.videoParsed.id, this.options.isAutoplay, this.playlist, this.subtitles);
     },
     dataCaption() {
       return this.videoParsed.headline;

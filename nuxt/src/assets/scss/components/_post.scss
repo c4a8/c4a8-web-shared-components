@@ -104,7 +104,7 @@
     }
   }
 
-  iframe {
+  iframe:not(.video-frame__iframe):not(.video__iframe) {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
   }
@@ -156,7 +156,7 @@
       position: relative;
     }
 
-    iframe {
+    iframe:not(.video-frame__iframe):not(.video__iframe) {
       margin-top: 2rem;
       margin-bottom: 2rem;
     }
