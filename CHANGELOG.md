@@ -1,5 +1,12 @@
 # Releases
 
+# Release 0.4.34
+
+- Migrates casestudies page
+- Adds alt attributes to hero + v-header
+- Fixes sticky-block to work correctly and without an external model
+- Video has now subtitles option
+
 # Hotfix 0.4.33
 
 - Adds a temp fix for the issue with the rerendering of the ContentRenderer https://github.com/nuxt/content/pull/3544
