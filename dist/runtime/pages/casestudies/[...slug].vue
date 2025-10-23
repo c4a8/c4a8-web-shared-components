@@ -17,6 +17,13 @@
             >
               <socials :vertical="true" :hide-label="true" :author="null" :share-url="shareUrl" />
             </sticky-block>
+
+            <ContentRenderer
+              class="mt-xl-n4 richtext"
+              :value="casestudyNormalized"
+              tag="main"
+              :components="{ a: ContentRendererLink }"
+            />
           </div>
         </article>
       </div>
@@ -61,6 +68,8 @@ const casestudyNormalized = computed(() => {
   if (!event.value) return null;
 
   const normalizedCasestudy = Tools.normalizeMarkdownItem(event.value);
+
+  if (!normalizedCasestudy) return null;
 
   return {
     ...normalizedCasestudy,
