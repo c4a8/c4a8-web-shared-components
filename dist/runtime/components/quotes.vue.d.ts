@@ -1,25 +1,19 @@
 declare namespace _default {
     let tagName: string;
     namespace props {
-        namespace page {
+        namespace quotes {
             let type: ObjectConstructor;
             let required: boolean;
         }
-        namespace quotes {
-            let type_1: ObjectConstructor;
-            export { type_1 as type };
-            let required_1: boolean;
-            export { required_1 as required };
-        }
         namespace spacing {
-            let type_2: StringConstructor;
-            export { type_2 as type };
+            let type_1: StringConstructor;
+            export { type_1 as type };
             let _default: string;
             export { _default as default };
         }
         namespace noFullscreen {
-            let type_3: BooleanConstructor;
-            export { type_3 as type };
+            let type_2: BooleanConstructor;
+            export { type_2 as type };
             let _default_1: boolean;
             export { _default_1 as default };
         }

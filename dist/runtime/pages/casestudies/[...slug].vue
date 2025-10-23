@@ -2,11 +2,11 @@
   <tracking />
   <content>
     <!-- <fab-hint v-if="fabHintData" /> -->
-    <hero :hero="casestudyNormalized?.hero" />
+    <hero :hero="casestudyNormalized?.hero" v-if="casestudyNormalized" />
     <service-overview v-if="casestudyNormalized?.serviceOverview" v-bind="casestudyNormalized?.serviceOverview" />
     <div class="container space-top-1 space-top-lg-2">
       <div class="w-xl-80 mx-xl-auto">
-        <article class="post" itemscope itemtype="http://schema.org/TechArticle">
+        <article class="post" itemscope itemtype="http://schema.org/TechArticle" v-if="casestudyNormalized">
           <div class="post-content e-content" itemprop="articleBody">
             <sticky-block
               class="post__sticky-bar post__sticky-bar--lg-only"
@@ -26,8 +26,10 @@
             />
           </div>
         </article>
+        <div class="space-top-2 space-bottom-2 min-h-620rem" v-else></div>
       </div>
     </div>
+
     <component-list :list="componentListData" />
   </content>
 </template>
@@ -40,13 +42,16 @@ import {
   useRequestURL,
   useDynamicPageMeta,
   useSeo,
+  onMounted,
 } from '#imports';
-import { computed } from 'vue';
+import { computed, nextTick } from 'vue';
 
 import ContentRendererLink from '../../components/content-renderer-link.vue';
 
 import Tools from '../../utils/tools.js';
+import { useAppStore } from '../../stores/app';
 
+const store = useAppStore();
 const route = useRoute();
 const nuxtApp = useNuxtApp();
 const currentLocale = nuxtApp.$i18n.locale;
@@ -69,11 +74,13 @@ const casestudyNormalized = computed(() => {
 
   const normalizedCasestudy = Tools.normalizeMarkdownItem(event.value);
 
+  if (!normalizedCasestudy) return null;
+
   return {
     ...normalizedCasestudy,
     body: {
-      ...normalizedCasestudy.body,
-      value: Tools.applyKramdownAttrs(normalizedCasestudy.body.value),
+      ...normalizedCasestudy?.body,
+      value: Tools.applyKramdownAttrs(normalizedCasestudy?.body?.value),
     },
   };
 });
@@ -101,4 +108,10 @@ if (event.value && casestudyNormalized.value) {
     image: socialImg ? `https://res.cloudinary.com/c4a8/image/upload/${socialImg}` : null,
   });
 }
+
+onMounted(() => {
+  nextTick(() => {
+    store.setPageIsLoaded(true);
+  });
+});
 </script>
