@@ -1,10 +1,6 @@
 .newsletter {
   @include z-index;
 
-  position: relative;
-  width: 100%;
-  right: 1em;
-
   &.is-expanded {
     .newsletter-banner {
       @include is-invisible
@@ -23,7 +19,6 @@
         width: 0;
       }
     }
-  
 }
 
 .newsletter-close {
@@ -44,12 +39,20 @@
   }
 }
 
+.newsletter-banner { 
+  height: auto;
+  width: auto;
+  max-width: 80rem;
+
+}
+
+
 .newsletter-modal {
-  @include shadow('light');
   justify-self: center;
+
   transition: transform 0.7s $animation-transition, opacity 0.7s $animation-transition;
-  position: absolute;
-  will-change: transform, opacity, height;
+  position: fixed;
+
   display: flex;
   flex-direction: column;
 

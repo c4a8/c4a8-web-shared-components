@@ -1,22 +1,29 @@
 <template>
-    <div :class="classList" ref="root" style="top: 200px !important;">
-        <div class="newsletter-modal is-off-screen" ref="modal">
-            <div class="newsletter-close" ref="close">
-                <icon icon="close" :circle="true" :hover="true" size="medium" :color="getContrastColor()" />
+    <div :class="classList" ref="root">
+
+
+            <div class="newsletter-modal-wrapper js-sticky-block">
+                <div class="newsletter-modal is-off-screen" ref="modal">
+                    <div class="newsletter-close" ref="close">
+                        <icon icon="close" :circle="true" :hover="true" size="medium" :color="getContrastColor()" />
+                    </div>
+                    <newsletter-modal v-bind="modal" :ajax="true" :success="success" :iconColor="iconColor"
+                        :bgColor="bgColor" :light="light" />
+                </div>
             </div>
-            <newsletter-modal v-bind="modal" :ajax="true" :success="success" :iconColor="iconColor" :bgColor="bgColor" :light="light" />
-        </div>
+   
         <div class="newsletter-banner__wrapper">
-            <div style="width:80rem; height: auto;" class="newsletter-banner d-flex align-items-center mx-auto" ref="icon">
+            <div class="newsletter-banner d-flex align-items-center mx-auto" ref="icon">
                 <div class="p-3" :style="bannerStyle">
                     <div class="d-flex align-items-center pr-11">
-                        <span class="mx-2 font-size-2 light" :class="light ? 'text-light' : 'text-dark'">{{ text }}</span>
-                        <cta v-bind="cta" class="mx-2"/>       
+                        <span class="mx-2 font-size-2 light" :class="light ? 'text-light' : 'text-dark'">{{ text
+                        }}</span>
+                        <cta v-bind="cta" class="mx-2" />
                     </div>
-                </div>    
-                <div class="ml-n11 w-20">
-                    <lottie-player v-if="modal.lottie" :animationData="modal.lottie.fly" :loop="true" :autoplay="true" />
-                    <!---<icon :icon="icon" :color="iconColor" :strokeColor="getContrastColor()" size="custom" customSize="10em" />-->
+                </div>
+                <div class="ml-n11">
+                    <lottie-player v-if="modal.lottie" :animationData="idle ? modal.lottie.idle : modal.lottie.fly"
+                        :loop="true" :onLoopComplete="setIdle" :speed="setSpeed()" width="170" />
                 </div>
             </div>
         </div>
@@ -24,7 +31,21 @@
     </div>
 </template>
 <style>
-@keyframes fly{0%{transform:translateX(-100vw)}to{transform:translateX(0)}}@media (prefers-reduced-motion:no-preference){.banner-animation{animation:fly 4s 1}}
+@keyframes fly {
+    0% {
+        transform: translateX(-100vw)
+    }
+
+    to {
+        transform: translateX(0)
+    }
+}
+
+@media (prefers-reduced-motion:no-preference) {
+    .banner-animation {
+        animation: fly 4s 1
+    }
+}
 </style>
 <script>
 import State from '../utils/state.js';
@@ -33,7 +54,7 @@ import Tools from '../utils/tools.js';
 
 export default {
     tagName: 'newsletter',
-    props: { 
+    props: {
         bgColor: {
             type: String,
             default: "var(--color-yellow)",
@@ -50,7 +71,7 @@ export default {
             type: Boolean,
             default: false,
         },
-       
+
         iconColor: {
             type: String,
             default: null,
@@ -85,14 +106,15 @@ export default {
         bannerStyle() {
             return {
                 backgroundColor: this.bgColor,
-      
+
             }
-        },
-        offsetTop() {
-            return window ? window.innerHeight * 0.7 : null; // TODO
         },
         success() {
             return this.success;
+        },
+        offsetTop() {
+            //return window ? window.innerHeight * 0.97 : null;
+            return 2000;
         },
 
     },
@@ -103,6 +125,7 @@ export default {
             expandedClass: State.EXPANDED,
             offScreenClass: State.OFF_SCREEN,
             success: false,
+            idle: false,
         };
     },
     mounted() {
@@ -111,7 +134,7 @@ export default {
                 const banner = entry.target.querySelector('.newsletter-banner');
                 if (entry.isIntersecting) {
                     banner.classList.add('banner-animation');
-                    return; 
+                    return;
                 }
                 banner.classList.remove('banner-animation');
             });
@@ -126,11 +149,18 @@ export default {
         this.init();
     },
     methods: {
+        setIdle() {
+            this.idle = true;
+        },
+        setSpeed() {
+            return '1.5';
+        },
+
         init() {
             this.bindEvents();
         },
         bindEvents() {
-            if (!this.iconElement || !this.modalElement ) return this.bindTriggerEvent();
+            if (!this.iconElement || !this.modalElement) return this.bindTriggerEvent();
 
             this.linkElement.forEach((link) => {
                 link.addEventListener('click', this.handleClick);
@@ -164,9 +194,6 @@ export default {
             if (!Tools.isOutsideOf('newsletter-trigger', e)) {
                 this.handleClick();
             }
-        },
-        handleSubmit() {
-           //
         },
         handleClose() {
             this.handleClick();

@@ -10,21 +10,16 @@
 
             </div>
             <div class="col-4 d-flex align-items-center z-index-1 align-content-center">
-
-                <lottie-player class="iconBird" v-if="lottie" :animationData="success ? lottie.fly : lottie.idle" :loop="true" :autoplay="true" />
-
-                <!-- <v-img  v-if="lottie" :lottie="lottie.idle" :lazy="true" style="width: 20em;" />
-               <icon  icon="origami-bird" :color="iconColor" :strokeColor="contrastColor" size="custom" 
-                    customSize="20em" />-->
+                <lottie-player class="iconBird" v-if="lottie" :animationData="idle ? lottie.idle : lottie.fly"
+                    :loop="true" :autoplay="true" :onLoopComplete="setIdle" :speed="setSpeed()" />
                 <icon class="iconHeart position-absolute" icon="heart" color="var(--color-red)"
                     :strokeColor="contrastColor" size="custom" customSize="20em" style="opacity: 0;" />
             </div>
         </div>
-
     </div>
 </template>
 <style>
-@keyframes fade-out{0%{opacity:1}to{margin-left:150%;opacity:0}}@keyframes fade-in{0%{margin-left:-100%;opacity:0}to{opacity:1}}@media (prefers-reduced-motion:no-preference){.fade-in-animation{animation:fade-in 4s 1 forwards}.fade-out-animation{animation:fade-out 8s 1 forwards}}
+@keyframes fade-out{0%{transform:translateX(0) translateY(0)}to{transform:translateX(100vw) translateY(-100vh)}}@keyframes fade-in{0%{margin-left:-100%;opacity:0}to{opacity:1}}@media (prefers-reduced-motion:no-preference){.fade-in-animation{animation:fade-in 4s 1 forwards}.fade-out-animation{animation:fade-out 8s 1 forwards}}
 </style>
 <script>
 export default {
@@ -62,6 +57,7 @@ export default {
         return {
             success: false,
             contrastColor: this.light ? 'var(--color-white)' : 'var(--color-black)',
+            idle: true,
         }
     },
     computed: {
@@ -79,7 +75,17 @@ export default {
             document.querySelector('.iconHeart').classList.add('fade-in-animation');
             this.success = true;
         },
-  
+        setIdle() {
+            if (this.success) {
+
+                this.idle = false;
+
+            }
+        },
+        setSpeed() {
+            return this.success ? '15' : '1.5';
+        }
+
     },
 }
 </script>

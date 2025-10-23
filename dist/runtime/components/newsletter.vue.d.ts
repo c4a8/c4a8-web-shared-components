@@ -55,7 +55,6 @@ declare namespace _default {
             color: any;
         };
         function bannerStyle(): any;
-        function offsetTop(): number | null;
         function success(): () => /*elided*/ any;
     }
     function data(): {
@@ -64,15 +63,17 @@ declare namespace _default {
         expandedClass: string;
         offScreenClass: string;
         success: boolean;
+        idle: boolean;
     };
     function mounted(): void;
     namespace methods {
+        function setIdle(): void;
+        function setSpeed(): string;
         function init(): void;
         function bindEvents(): void;
         function bindTriggerEvent(): void;
         function handleTriggerClick(e: any): void;
         function handleOutsideClick(e: any): void;
-        function handleSubmit(): void;
         function handleClose(): void;
         function handleClick(): void;
         function getContrastColor(): "var(--color-black)" | "var(--color-white)";
