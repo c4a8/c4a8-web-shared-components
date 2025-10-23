@@ -26,6 +26,9 @@
             />
           </div>
         </article>
+        <div class="space-top-2 space-bottom-2" v-else>
+          <h2>Casestudy not found</h2>
+        </div>
       </div>
     </div>
 
@@ -41,13 +44,16 @@ import {
   useRequestURL,
   useDynamicPageMeta,
   useSeo,
+  onMounted,
 } from '#imports';
 import { computed } from 'vue';
 
 import ContentRendererLink from '../../components/content-renderer-link.vue';
 
 import Tools from '../../utils/tools.js';
+import { useAppStore } from '../../stores/app';
 
+const store = useAppStore();
 const route = useRoute();
 const nuxtApp = useNuxtApp();
 const currentLocale = nuxtApp.$i18n.locale;
@@ -104,4 +110,8 @@ if (event.value && casestudyNormalized.value) {
     image: socialImg ? `https://res.cloudinary.com/c4a8/image/upload/${socialImg}` : null,
   });
 }
+
+onMounted(() => {
+  store.setPageIsLoaded(true);
+});
 </script>
