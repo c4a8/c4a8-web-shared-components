@@ -26,9 +26,7 @@
             />
           </div>
         </article>
-        <div class="space-top-2 space-bottom-2" v-else>
-          <h2>Casestudy not found</h2>
-        </div>
+        <div class="space-top-2 space-bottom-2 min-h-620rem" v-else></div>
       </div>
     </div>
 
