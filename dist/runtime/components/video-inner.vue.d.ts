@@ -52,6 +52,18 @@ declare namespace _default {
             let _default_1: boolean;
             export { _default_1 as default };
         }
+        namespace playlist {
+            let type_1: BooleanConstructor;
+            export { type_1 as type };
+            let _default_2: boolean;
+            export { _default_2 as default };
+        }
+        namespace subtitles {
+            let type_2: StringConstructor;
+            export { type_2 as type };
+            let _default_3: null;
+            export { _default_3 as default };
+        }
     }
 }
 export default _default;

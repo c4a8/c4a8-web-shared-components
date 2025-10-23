@@ -1,4 +1,4 @@
-import FabButton from '../components/fab-button';
+import FabButton from '../components/fab-button.vue';
 
 export default {
   component: FabButton,

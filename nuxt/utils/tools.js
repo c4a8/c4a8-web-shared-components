@@ -11,6 +11,7 @@ class Tools {
   static storagePrefix = '@gab_'; // if you change this you need to change this in the index.html as well
   static storybookPath = '/shared-components';
   static blogImagePath = '/blog/heads/';
+  static breakpointArray = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
 
   static decodeHTML = (input) => {
     if (!input) return '';
@@ -274,11 +275,18 @@ class Tools {
   }
 
   static isBelowBreakpoint(breakpoint) {
-    let breakpointArray = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
-    const getBreakpoint = Tools.getBreakpoint();
-    let breakpointIndex = breakpointArray.indexOf(breakpoint);
+    const currentBreakpoint = Tools.getBreakpoint();
+    const breakpointIndex = Tools.breakpointArray.indexOf(breakpoint);
 
-    return breakpointIndex >= breakpointArray.indexOf(getBreakpoint);
+    return breakpointIndex >= Tools.breakpointArray.indexOf(currentBreakpoint);
+  }
+
+  static isAboveBreakpoint(breakpoint) {
+    const currentBreakpoint = Tools.getBreakpoint();
+    const breakpointIndex = Tools.breakpointArray.indexOf(breakpoint);
+    const currentIndex = Tools.breakpointArray.indexOf(currentBreakpoint);
+
+    return currentIndex >= breakpointIndex;
   }
 
   static isUpperBreakpoint() {

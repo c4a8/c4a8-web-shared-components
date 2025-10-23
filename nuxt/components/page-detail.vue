@@ -14,14 +14,7 @@
     <div class="page-detail__container container">
       <div class="page-detail__start row">
         <div class="page-detail__sticky-start col-md-11 col-lg-5">
-          <sticky-block
-            v-model:is-at-end="isAtEnd"
-            v-model:end-point="endPoint"
-            class="page-detail__intro"
-            :sticky-offset-top="stickyOffsetTop"
-            :sticky-offset-bottom="20"
-            breakpoint="lg"
-          >
+          <sticky-block class="page-detail__intro" :sticky-offset-top="stickyOffsetTop" breakpoint="lg">
             <back classes="page-detail__back page-detail__animation-3" />
             <slot name="intro"></slot>
           </sticky-block>
@@ -31,25 +24,7 @@
           <slot name="formular"></slot>
         </div>
       </div>
-      <!-- <div class="page-detail__intro" ref="intro">
-        <div class="page-detail__intro-content" ref="introContent">
-          <div class="page-detail__badge" ref="badge"></div>
-          <div class="page-detail__headline" ref="headline"></div>
-          <div class="page-detail__details" ref="details"></div>
-        </div>
-      </div>
-
-      <div class="page-detail__description"></div>
-      <div class="page-detail__cta">
-        <div class="cta" ref="cta"></div>
-      </div> -->
     </div>
-    <sticky-block-end
-      v-model:is-at-end="isAtEnd"
-      v-model:end-point="endPoint"
-      :sticky-offset-top="stickyUnstuckOffsetTop"
-      :sticky-offset-bottom="40"
-    />
   </div>
 </template>
 
