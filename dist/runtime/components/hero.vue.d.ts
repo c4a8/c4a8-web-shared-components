@@ -970,6 +970,7 @@ declare namespace _default {
         function fullscreen(): boolean;
         function spacing(): any;
         function img(): any;
+        function backgroundAlt(): any;
         function hasStickyScroller(): any;
         function lottieSettings(): any;
         function lottieFileData(): any;
