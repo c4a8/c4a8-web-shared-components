@@ -46,7 +46,7 @@ import {
   useSeo,
   onMounted,
 } from '#imports';
-import { computed } from 'vue';
+import { computed, nextTick } from 'vue';
 
 import ContentRendererLink from '../../components/content-renderer-link.vue';
 
@@ -112,6 +112,8 @@ if (event.value && casestudyNormalized.value) {
 }
 
 onMounted(() => {
-  store.setPageIsLoaded(true);
+  nextTick(() => {
+    store.setPageIsLoaded(true);
+  });
 });
 </script>
