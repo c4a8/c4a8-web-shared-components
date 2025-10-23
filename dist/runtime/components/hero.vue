@@ -11,7 +11,6 @@
     ></v-img>
     <div class="hero__container container">
       <main :class="contentClassList">
-        {{ heroJson }}
         <div class="hero__back-row row" v-if="hasBack">
           <div class="hero__back-col col">
             <div class="hero__back back">

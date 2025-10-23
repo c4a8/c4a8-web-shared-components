@@ -26,9 +26,6 @@
             />
           </div>
         </article>
-        <div class="space-top-2 space-bottom-2" v-else>
-          <h2>Casestudy not found</h2>
-        </div>
       </div>
     </div>
 
@@ -69,12 +66,9 @@ const { data: event } = await useAsyncData(dataKey, () => {
 });
 
 const casestudyNormalized = computed(() => {
-  console.log(event.value);
-
   if (!event.value) return null;
 
   const normalizedCasestudy = Tools.normalizeMarkdownItem(event.value);
-  console.log('🚀 ~ normalizedCasestudy:', normalizedCasestudy);
 
   if (!normalizedCasestudy) return null;
 
