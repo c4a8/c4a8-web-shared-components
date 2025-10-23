@@ -9,11 +9,21 @@
     .newsletter-banner {
       @include is-invisible
     }
-    .fab-button__modal {
+    .newsletter-modal {
       opacity: 1;
       transform: translateX(0%);
     }
   }
+    .newsletter-modal {
+      &.is-off-screen {
+        transform: translateX(0);
+        opacity: 0;
+        transition-duration: 0s;
+        pointer-events: none;
+        width: 0;
+      }
+    }
+  
 }
 
 .newsletter-close {
@@ -36,24 +46,20 @@
 
 .newsletter-modal {
   @include shadow('light');
-  top: calc(20vh - 1px);
-  background-color: var(--color-fab-background);
-  box-shadow: 0 0 10px rgba(0, 0, 0, .25);
+  justify-self: center;
+  transition: transform 0.7s $animation-transition, opacity 0.7s $animation-transition;
+  position: absolute;
+  will-change: transform, opacity, height;
   display: flex;
   flex-direction: column;
-  justify-self: center;
-  position: fixed;
-  transition: transform .7s cubic-bezier(.19, 1, .2, 1), opacity .7s cubic-bezier(.19, 1, .2, 1), height .7s cubic-bezier(.19, 1, .2, 1);
-  will-change: transform, opacity, height;
 
   &.is-off-screen {
-             transform: translateX(0);
-          opacity: 0;
-          transition-duration: 0s;
-          pointer-events: none;
-          width: 0;
-
+    opacity: 0;
+    transform: translateX(120%);
   }
 
+}
 
+.newsletter-trigger {
+  cursor: pointer;
 }

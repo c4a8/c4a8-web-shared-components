@@ -8,7 +8,6 @@
         </div>
         <div class="newsletter-banner__wrapper">
             <div style="width:80rem; height: auto;" class="newsletter-banner d-flex align-items-center mx-auto" ref="icon">
-            
                 <div class="p-3" :style="bannerStyle">
                     <div class="d-flex align-items-center pr-11">
                         <span class="mx-2 font-size-2 light" :class="light ? 'text-light' : 'text-dark'">{{ text }}</span>
@@ -20,7 +19,7 @@
                 </div>
             </div>
         </div>
-        <a class="fab-trigger" ref="link"></a>
+        <a class="newsletter-trigger" ref="link"></a>
     </div>
 </template>
 <style>
@@ -85,10 +84,7 @@ export default {
         classList() {
             return [
                 'newsletter',
-                //!this.noSticky ? 'fab-button--sticky' : '',
-                this.trigger ? 'fab-button--has-trigger' : '',
                 { [this.expandedClass]: this.isExpanded },
-                { [this.hasTriggerClass]: this.hasTrigger },
             ];
         },
         iconStyle() {
@@ -116,15 +112,12 @@ export default {
         return {
             resetDelay: 300,
             isExpanded: false,
-            hasTrigger: false,
             expandedClass: State.EXPANDED,
             offScreenClass: State.OFF_SCREEN,
-            hasTriggerClass: 'fab-button--has-trigger',
             success: false,
         };
     },
     mounted() {
-        
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 const banner = entry.target.querySelector('.newsletter-banner');
@@ -142,9 +135,6 @@ export default {
         this.modalElement = this.$refs.modal;
         this.closeElement = this.$refs.close;
         this.root = this.$refs.root;
-
-        this.hasTrigger = this.root.classList.contains(this.hasTriggerClass);
-
         this.init();
     },
     methods: {
@@ -152,7 +142,7 @@ export default {
             this.bindEvents();
         },
         bindEvents() {
-            if (!this.iconElement || !this.modalElement || this.hasTrigger) return this.bindTriggerEvent();
+            if (!this.iconElement || !this.modalElement ) return this.bindTriggerEvent();
 
             this.linkElement.forEach((link) => {
                 link.addEventListener('click', this.handleClick);
@@ -178,12 +168,12 @@ export default {
         handleOutsideClick(e) {
             if (
                 this.root.classList.contains(this.expandedClass) &&
-                Tools.isOutsideOf('fab-button', e) &&
-                Tools.isOutsideOf('fab-trigger', e)
+                Tools.isOutsideOf('newsletter', e) &&
+                Tools.isOutsideOf('newsletter-trigger', e)
             ) {
                 this.handleClose();
             }
-            if (!Tools.isOutsideOf('fab-trigger', e)) {
+            if (!Tools.isOutsideOf('newsletter-trigger', e)) {
                 this.handleClick();
             }
         },
