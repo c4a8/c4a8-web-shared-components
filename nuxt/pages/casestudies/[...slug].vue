@@ -2,11 +2,11 @@
   <tracking />
   <content>
     <!-- <fab-hint v-if="fabHintData" /> -->
-    <hero :hero="casestudyNormalized?.hero" />
+    <hero :hero="casestudyNormalized?.hero" v-if="casestudyNormalized" />
     <service-overview v-if="casestudyNormalized?.serviceOverview" v-bind="casestudyNormalized?.serviceOverview" />
     <div class="container space-top-1 space-top-lg-2">
       <div class="w-xl-80 mx-xl-auto">
-        <article class="post" itemscope itemtype="http://schema.org/TechArticle">
+        <article class="post" itemscope itemtype="http://schema.org/TechArticle" v-if="casestudyNormalized">
           <div class="post-content e-content" itemprop="articleBody">
             <sticky-block
               class="post__sticky-bar post__sticky-bar--lg-only"
@@ -23,12 +23,15 @@
               :value="casestudyNormalized"
               tag="main"
               :components="{ a: ContentRendererLink }"
-              v-if="casestudyNormalized"
             />
           </div>
         </article>
+        <div class="space-top-2 space-bottom-2" v-else>
+          <h2>Casestudy not found</h2>
+        </div>
       </div>
     </div>
+
     <component-list :list="componentListData" />
   </content>
 </template>
