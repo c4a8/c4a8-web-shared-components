@@ -23,6 +23,7 @@
               :value="casestudyNormalized"
               tag="main"
               :components="{ a: ContentRendererLink }"
+              v-if="casestudyNormalized"
             />
           </div>
         </article>
@@ -65,9 +66,12 @@ const { data: event } = await useAsyncData(dataKey, () => {
 });
 
 const casestudyNormalized = computed(() => {
+  console.log(event.value);
+
   if (!event.value) return null;
 
   const normalizedCasestudy = Tools.normalizeMarkdownItem(event.value);
+  console.log('🚀 ~ normalizedCasestudy:', normalizedCasestudy);
 
   if (!normalizedCasestudy) return null;
 
