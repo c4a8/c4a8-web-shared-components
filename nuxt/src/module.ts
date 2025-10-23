@@ -132,13 +132,13 @@ export default defineNuxtModule({
       });
     });
 
-    extendPages((pages) => {
-      pages.unshift({
-        name: 'slug-casestudies',
-        path: '/casestudies/:slug(.*)*',
-        file: resolve('./runtime/pages/casestudies/[...slug].vue'),
-      });
-    });
+    // extendPages((pages) => {
+    //   pages.unshift({
+    //     name: 'slug-casestudies',
+    //     path: '/casestudies/:slug(.*)*',
+    //     file: resolve('./runtime/pages/casestudies/[...slug].vue'),
+    //   });
+    // });
 
     extendPages((pages) => {
       pages.unshift({
