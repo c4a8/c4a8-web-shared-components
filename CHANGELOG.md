@@ -1,5 +1,9 @@
 # Releases
 
+# Hotfix 0.4.36
+
+- Disables casestudies page temporarily
+
 # Release 0.4.35
 
 - Fix Video Frame inside of posts cut of controls
