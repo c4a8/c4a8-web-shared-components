@@ -1,12 +1,14 @@
 <template>
     <div :class="classList" ref="root">
-        <div class="newsletter-modal is-off-screen" ref="modal">
-            <div class="newsletter-close" ref="close">
-                <icon icon="close" :circle="true" :hover="true" size="medium" :color="getContrastColor()" />
+            <div class="js-sticky-block container">
+                <div class="newsletter-modal" ref="modal"> <!-- is-off-screen -->
+                    <div class="newsletter-close" ref="close">
+                        <icon icon="close" :circle="true" :hover="true" size="medium" :color="getContrastColor()" />
+                    </div>
+                    <newsletter-modal v-bind="modal" :ajax="true" :success="success" :iconColor="iconColor"
+                        :bgColor="bgColor" :light="light" />
+                </div>
             </div>
-            <newsletter-modal v-bind="modal" :ajax="true" :success="success" :iconColor="iconColor" :bgColor="bgColor"
-                :light="light" />
-        </div>
         <div class="newsletter-banner__wrapper">
             <div class="newsletter-banner d-flex align-items-center mx-auto" ref="icon">
                 <div class="p-3" :style="bannerStyle">
@@ -27,18 +29,18 @@
 </template>
 <style>
 @keyframes fly {
-    from {
-        transform: translateX(-100vw);
+    0% {
+        transform: translateX(-100vw)
     }
 
     to {
-        transform: translateX(0);
+        transform: translateX(0)
     }
 }
 
-@media (prefers-reduced-motion: no-preference) {
+@media (prefers-reduced-motion:no-preference) {
     .banner-animation {
-        animation: fly 4s 1;
+        animation: fly 4s 1
     }
 }
 </style>

@@ -25,15 +25,15 @@ export const Default = {
       confirmation: {
         headline: 'Danke für deine Anmeldung!',
         text: 'Du hast dich erfolgreich für unseren Newsletter angemeldet. Wir freuen uns, dich als Abonnent:in begrüßen zu dürfen! Schau gerne in deinem Posteingang nach einer Bestätigungs-E-Mail von uns.',
-      }, 
+      },
       formular: {
         form: {
           cta: {
             skin: 'primary',
-            width: 'w-20',
-          },
-          ctaText: 'Abbonieren',
-          ctaPosition: 'justify-content-end',
+            width: 'w-40',
+          },       
+          ctaPosition: 'justify-content-start',
+          ctaText: 'Abonnieren',
           method: 'post',
           action: '../',
           fields: [

@@ -1,37 +1,52 @@
 <template>
-    <div class="container d-flex flex-column justify-content-center" :style="newsletterStyle" ref="root">
-        <div class="d-flex align-items-center p-10">
-            <div class="col-10">
+     <div class="container" :class="isMobile ? '' : 'd-flex flex-column justify-content-center'" :style="newsletterStyle" ref="root">
+        <div v-if="!isMobile" class="d-flex align-items-center p-5 p-lg-10" style="">
+            <div class="col-8 col-lg-10">
                 <headline :style="{ color: contrastColor }" level="h2">{{ success ? confirmation.headline : headline }}
                 </headline>
-
-                <p class="font-size-3 light pt-8">{{ success ? confirmation.text : text }}</p>
+                <p class="font-size-3 light pt-4 pt-lg-8">{{ success ? confirmation.text : text }}</p>
                 <formular v-if="!success" v-bind="formular" :ajax="ajax" ref="form" @success="handleSuccess" />
-
             </div>
-            <div class="col-4 d-flex align-items-center z-index-1 align-content-center">
+            <div class="col-5 col-lg-4 d-flex align-items-center z-index-1 align-content-center">
                 <lottie-player class="iconBird" v-if="lottie" :animationData="idle ? lottie.idle : lottie.fly"
                     :loop="true" :autoplay="true" :onLoopComplete="setIdle" :speed="setSpeed()" />
                 <icon class="iconHeart position-absolute" icon="heart" color="var(--color-red)"
                     :strokeColor="contrastColor" size="custom" customSize="20em" style="opacity: 0;" />
             </div>
         </div>
+        <!-- mobile-->
+        <div v-else class="d-flex flex-column justify-content-between px-5 pt-10 pb-5" style="height: inherit;">
+            <div>
+                <headline :style="{ color: contrastColor }" level="h2">{{ success ? confirmation.headline : headline }}
+                </headline>
+                <p class="font-size-3 light pt-4">{{ success ? confirmation.text : text }}</p>
+            </div>
+
+            <div><formular v-if="!success" v-bind="formular" :ajax="ajax" ref="form" @success="handleSuccess" /></div>
+            <div class="d-flex justify-content-end mt-n11 mr-n11">
+                <lottie-player class="iconBird" v-if="lottie" :animationData="idle ? lottie.idle : lottie.fly"
+                    :loop="true" :autoplay="true" :onLoopComplete="setIdle" :speed="setSpeed()" width="300"/>
+                <icon class="iconHeart position-absolute" icon="heart" color="var(--color-red)"
+                    :strokeColor="contrastColor" size="custom" customSize="20em" style="opacity: 0;" />
+            </div>
+
+        </div>
+
     </div>
 </template>
 <style>
 @keyframes fade-out {
-    from {
-        transform: translateX(0) translateY(0);
-    }
+    0% {}
+
     to {
-        transform: translateX(100vw) translateY(-100vh);
+        transform: translateX(100vw) translateY(-100vh)
     }
 }
 
 @keyframes fade-in {
     from {
         opacity: 0;
-        margin-left: -100%
+        margin-left: -50%
     }
 
     to {
@@ -39,17 +54,18 @@
     }
 }
 
-@media (prefers-reduced-motion: no-preference) {
+@media (prefers-reduced-motion:no-preference) {
     .fade-in-animation {
-        animation: fade-in 4s 1 forwards;
+        animation: fade-in 4s 1 forwards
     }
 
     .fade-out-animation {
-        animation: fade-out 8s 1 forwards;
+        animation: fade-out 8s 1 forwards
     }
 }
 </style>
 <script>
+import Tools from '../utils/tools';
 
 export default {
     tagName: 'newsletter-modal',
@@ -87,14 +103,15 @@ export default {
             success: false,
             contrastColor: this.light ? 'var(--color-white)' : 'var(--color-black)',
             idle: true,
+            isMobile: Tools.isBelowBreakpoint('lg')
         }
     },
     computed: {
         newsletterStyle() {
             return {
                 backgroundColor: this.bgColor,
-                height: "50rem",
                 color: this.contrastColor,
+                height: '50rem'
             }
         },
     },
@@ -117,5 +134,4 @@ export default {
 
     },
 }
-
 </script>
