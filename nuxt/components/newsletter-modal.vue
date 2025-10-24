@@ -1,6 +1,7 @@
 <template>
-     <div class="container" :class="isMobile ? '' : 'd-flex flex-column justify-content-center'" :style="newsletterStyle" ref="root">
-        <div v-if="!isMobile" class="d-flex align-items-center p-5 p-lg-10" style="">
+    <div class="container font-weight-light" :class="isMobile ? '' : 'd-flex flex-column justify-content-center'"
+        ref="root">
+        <div v-if="!isMobile" class="d-flex align-items-center p-5 p-lg-10" :style="newsletterStyle">
             <div class="col-8 col-lg-10">
                 <headline :style="{ color: contrastColor }" level="h2">{{ success ? confirmation.headline : headline }}
                 </headline>
@@ -15,19 +16,22 @@
             </div>
         </div>
         <!-- mobile-->
-        <div v-else class="d-flex flex-column justify-content-between px-5 pt-10 pb-5" style="height: inherit;">
-            <div>
-                <headline :style="{ color: contrastColor }" level="h2">{{ success ? confirmation.headline : headline }}
+        <div v-else class="d-flex flex-column justify-content-between p-4" :style="newsletterStyle">
+            <div class="mb-n2">
+                <headline :style="{ color: contrastColor }" level="h3">{{ success ? confirmation.headline : headline }}
                 </headline>
-                <p class="font-size-3 light pt-4">{{ success ? confirmation.text : text }}</p>
+                <p>{{ success ? confirmation.text : text }}</p>
             </div>
-
-            <div><formular v-if="!success" v-bind="formular" :ajax="ajax" ref="form" @success="handleSuccess" /></div>
-            <div class="d-flex justify-content-end mt-n11 mr-n11">
-                <lottie-player class="iconBird" v-if="lottie" :animationData="idle ? lottie.idle : lottie.fly"
-                    :loop="true" :autoplay="true" :onLoopComplete="setIdle" :speed="setSpeed()" width="300"/>
-                <icon class="iconHeart position-absolute" icon="heart" color="var(--color-red)"
-                    :strokeColor="contrastColor" size="custom" customSize="20em" style="opacity: 0;" />
+            <div class="mt-n5 d-flex justify-content-center align-items-center">
+                <formular v-if="!success" v-bind="formular" :ajax="ajax" ref="form" @success="handleSuccess" :style="{ display: success ? 'none' : '' }"/>
+                <icon class="iconHeart" icon="heart" color="var(--color-red)" :strokeColor="contrastColor" size="custom"
+                    customSize="15em" style=" opacity: 0;" :style="{ display: success ? '' : 'none' }"/>
+            </div>
+            <div class="position-fixed d-flex justify-content-center align-items-center" style="bottom: 20%; left: 0; right: 0;">
+                <lottie-player class="iconBird position-absolute" v-if="lottie"
+                    :animationData="idle ? lottie.idle : lottie.fly" :loop="true" :autoplay="true"
+                    :onLoopComplete="setIdle" :speed="setSpeed()" width="220" height="220" style=" right: 0;"/>
+               
             </div>
 
         </div>
@@ -35,34 +39,7 @@
     </div>
 </template>
 <style>
-@keyframes fade-out {
-    0% {}
-
-    to {
-        transform: translateX(100vw) translateY(-100vh)
-    }
-}
-
-@keyframes fade-in {
-    from {
-        opacity: 0;
-        margin-left: -50%
-    }
-
-    to {
-        opacity: 100;
-    }
-}
-
-@media (prefers-reduced-motion:no-preference) {
-    .fade-in-animation {
-        animation: fade-in 4s 1 forwards
-    }
-
-    .fade-out-animation {
-        animation: fade-out 8s 1 forwards
-    }
-}
+@keyframes fade-out{to{transform:translateX(100vw) translateY(-100vh)}}@keyframes fade-in{0%{margin-left:-50%;opacity:0}to{opacity:1}}@media (prefers-reduced-motion:no-preference){.fade-in-animation{animation:fade-in 4s 1 forwards}.fade-out-animation{animation:fade-out 8s 1 forwards}}
 </style>
 <script>
 import Tools from '../utils/tools';
@@ -111,7 +88,7 @@ export default {
             return {
                 backgroundColor: this.bgColor,
                 color: this.contrastColor,
-                height: '50rem'
+                height: this.isMobile ? '37rem' : '50rem',
             }
         },
     },

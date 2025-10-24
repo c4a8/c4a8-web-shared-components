@@ -15,8 +15,9 @@ export const Default = {
     //light: false,
     text: 'Jetzt zum Newsletter anmelden Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore .',
     cta: {
-      text: 'Abbonieren',
+      text: 'Abonnieren',
       skin: 'primary',
+      width: '',
 
     },
     modal: {
@@ -32,7 +33,7 @@ export const Default = {
             skin: 'primary',
             width: 'w-40',
           },       
-          ctaPosition: 'justify-content-start',
+          ctaPosition: '',
           ctaText: 'Abonnieren',
           method: 'post',
           action: '../',

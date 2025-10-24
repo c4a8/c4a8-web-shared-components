@@ -49819,7 +49819,6 @@ shape {
 
 .newsletter {
   z-index: 300;
-  height: 15rem;
   justify-content: center;
   align-items: center;
 }
@@ -49841,7 +49840,6 @@ shape {
 }
 .newsletter.is-expanded .newsletter-modal {
   opacity: 1;
-  transform: translateX(0%);
 }
 .newsletter .newsletter-modal.is-off-screen {
   opacity: 0;
@@ -49869,15 +49867,20 @@ shape {
 
 .newsletter-banner {
   height: auto;
-  width: auto;
-  max-width: 80rem;
+}
+@media (min-width: 992px) {
+  .newsletter-banner {
+    max-width: 80rem;
+    width: auto;
+  }
 }
 
 .newsletter-modal {
   position: fixed;
   top: 20vh;
   z-index: 1000;
-  height: 50rem;
+  left: auto;
+  right: auto;
 }
 
 .newsletter-trigger {

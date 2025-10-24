@@ -1,28 +1,38 @@
 <template>
     <div :class="classList" ref="root">
-            <div class="js-sticky-block container">
-                <div class="newsletter-modal" ref="modal"> <!-- is-off-screen -->
-                    <div class="newsletter-close" ref="close">
-                        <icon icon="close" :circle="true" :hover="true" size="medium" :color="getContrastColor()" />
-                    </div>
-                    <newsletter-modal v-bind="modal" :ajax="true" :success="success" :iconColor="iconColor"
-                        :bgColor="bgColor" :light="light" />
+        <div :class="isMobile ? '' : 'js-sticky-block container'">
+            <div class="newsletter-modal is-off-screen" ref="modal">
+                <div class="newsletter-close" ref="close">
+                    <icon icon="close" :circle="true" :hover="true" size="medium" :color="getContrastColor()" />
                 </div>
+                <newsletter-modal v-bind="modal" :ajax="true" :success="success" :iconColor="iconColor"
+                    :bgColor="bgColor" :light="light" />
             </div>
+        </div>
         <div class="newsletter-banner__wrapper">
-            <div class="newsletter-banner d-flex align-items-center mx-auto" ref="icon">
-                <div class="p-3" :style="bannerStyle">
-                    <div class="d-flex align-items-center pr-11">
-                        <span class="mx-2 font-size-2 light" :class="light ? 'text-light' : 'text-dark'">{{ text
-                        }}</span>
-                        <cta v-bind="cta" class="mx-2" />
+            <div class="newsletter-banner mx-auto " ref="icon">
+                <div :style="bannerStyle" :class="isMobile ? 'w-80 mx-2' : ''">
+
+                    <div :class="isMobile ? 'py-2 px-3' : 'p-3 row row-cols-2'">
+                        <p v-if="!isMobile" class="d-flex align-items-center font-size-2 light"
+                            :class="[light ? 'text-light' : 'text-dark', isMobile ? '' : 'col-10']">{{ text }}</p>
+                        <div class="d-flex align-items-center" :class="isMobile ? 'pr-9' : 'col-2'">
+                            <cta v-bind="cta" />
+
+                        </div>
                     </div>
+
                 </div>
-                <div class="ml-n11">
-                    <lottie-player v-if="modal.lottie" :animationData="idle ? modal.lottie.idle : modal.lottie.fly"
-                        :loop="true" :onLoopComplete="setIdle" :speed="setSpeed()" width="170" />
+                <div class="position-relative">
+                    <lottie-player class="position-absolute mb-n4 bottom-0" v-if="modal.lottie"
+                        :animationData="idle ? modal.lottie.idle : modal.lottie.fly" :loop="true"
+                        :onLoopComplete="setIdle" :speed="setSpeed()" :width="isMobile ? '130' : '180'"
+                        :height="isMobile ? '130' : '180'" :style="isMobile ? 'right: 0;' : 'right: -5em'" />
                 </div>
             </div>
+
+
+
         </div>
         <a class="newsletter-trigger" ref="link"></a>
     </div>
@@ -104,6 +114,7 @@ export default {
             return {
                 backgroundColor: this.bgColor,
 
+
             }
         },
         success() {
@@ -119,6 +130,8 @@ export default {
             offScreenClass: State.OFF_SCREEN,
             success: false,
             idle: false,
+            animationCompleted: false,
+            isMobile: Tools.isBelowBreakpoint('lg')
         };
     },
     mounted() {
@@ -127,9 +140,13 @@ export default {
                 const banner = entry.target.querySelector('.newsletter-banner');
                 if (entry.isIntersecting) {
                     banner.classList.add('banner-animation');
+                    setTimeout(() => {
+                        this.animationCompleted = true;
+                    }, 4000);
                     return;
                 }
                 banner.classList.remove('banner-animation');
+
             });
         });
         observer.observe(document.querySelector('.newsletter-banner__wrapper'));
@@ -140,13 +157,21 @@ export default {
         this.closeElement = this.$refs.close;
         this.root = this.$refs.root;
         this.init();
+
+        if (this.isMobile) {
+            this.modal.formular.form.ctaPosition = 'justify-content-start';
+
+        }
     },
     methods: {
         setIdle() {
-            this.idle = true;
+            if (this.animationCompleted) {
+                this.idle = true;
+            }
+
         },
         setSpeed() {
-            return '1.5';
+            return '3.0';
         },
 
         init() {

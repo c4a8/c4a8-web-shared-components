@@ -1,7 +1,6 @@
 .newsletter {
   @include z-index;
 
-  height: 15rem;
   justify-content: center;
   align-items: center;
 
@@ -18,7 +17,7 @@
 
     .newsletter-modal {
       opacity: 1;
-      transform: translateX(0%);
+
     }
   }
 
@@ -31,6 +30,7 @@
       width: 0
     }
   }
+
 }
 
 .newsletter-close {
@@ -53,8 +53,12 @@
 
 .newsletter-banner {
   height: auto;
-  width: auto;
-  max-width: 80rem;
+
+  @include media-breakpoint-up(lg) {
+    max-width: 80rem;
+    width: auto;
+  }
+
 }
 
 
@@ -62,7 +66,9 @@
   position: fixed;
   top: 20vh;
   z-index: 1000;
-  height: 50rem
+  left: auto;
+  right: auto;
+
 }
 
 

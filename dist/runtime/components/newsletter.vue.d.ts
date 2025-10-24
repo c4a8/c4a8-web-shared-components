@@ -64,6 +64,8 @@ declare namespace _default {
         offScreenClass: string;
         success: boolean;
         idle: boolean;
+        animationCompleted: boolean;
+        isMobile: boolean;
     };
     function mounted(): void;
     namespace methods {
