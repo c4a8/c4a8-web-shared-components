@@ -55,10 +55,6 @@ import UtilityAnimation from '../utils/utility-animation.js';
 export default {
   tagName: 'quotes',
   props: {
-    page: {
-      type: Object,
-      required: true,
-    },
     quotes: {
       type: Object,
       required: true,
