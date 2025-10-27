@@ -27,7 +27,7 @@ declare namespace _default {
         namespace iconColor {
             let type_4: StringConstructor;
             export { type_4 as type };
-            let _default_4: null;
+            let _default_4: string;
             export { _default_4 as default };
         }
         namespace text {
@@ -55,6 +55,7 @@ declare namespace _default {
             color: any;
         };
         function bannerStyle(): any;
+        function modalStyle(): any;
         function success(): () => /*elided*/ any;
     }
     function data(): {
@@ -66,11 +67,10 @@ declare namespace _default {
         idle: boolean;
         animationCompleted: boolean;
         isMobile: boolean;
+        flyAnimationDuration: number;
     };
     function mounted(): void;
     namespace methods {
-        function setIdle(): void;
-        function setSpeed(): string;
         function init(): void;
         function bindEvents(): void;
         function bindTriggerEvent(): void;
@@ -79,6 +79,8 @@ declare namespace _default {
         function handleClose(): void;
         function handleClick(): void;
         function getContrastColor(): "var(--color-black)" | "var(--color-white)";
+        function hexToRGB(): null | undefined;
+        function setAutoplay(): boolean;
     }
     function beforeDestroy(): void;
 }

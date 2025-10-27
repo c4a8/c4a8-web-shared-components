@@ -5,6 +5,18 @@ import birdFly from '/Users/lisa.nagl/Code/c4a8-web-shared-components/nuxt/stori
 export default {
   component: NewsletterComponent,
   title: 'Components/Newsletter',
+    decorators: [
+    (story) => ({
+      components: { story },
+      template: `
+        <div>
+          <div style="height: 100vh;" class="dummy-content"></div>
+          <story />
+          <div style="height: 100vh;" class="dummy-content"></div>
+        </div>
+      `,
+    }),
+  ],
 
 };
 
@@ -12,13 +24,11 @@ export const Default = {
   args: {
     bgColor: 'var(--color-yellow)',
     iconColor: 'var(--color-orange)',
-    //light: false,
-    text: 'Jetzt zum Newsletter anmelden Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore .',
+    light: true,
+    text: 'Jetzt zum Newsletter anmelden Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.',
     cta: {
       text: 'Abonnieren',
       skin: 'primary',
-      width: '',
-
     },
     modal: {
       headline: 'Newsletter Subscription',
@@ -66,5 +76,5 @@ export const Default = {
       }
     }
   },
-
 }
+

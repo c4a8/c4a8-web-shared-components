@@ -49819,8 +49819,9 @@ shape {
 
 .newsletter {
   z-index: 300;
+  display: flex;
   justify-content: center;
-  align-items: center;
+  align-content: center;
 }
 .newsletter.is-expanded .newsletter-banner {
   visibility: collapse;
@@ -49881,6 +49882,10 @@ shape {
   z-index: 1000;
   left: auto;
   right: auto;
+}
+
+.newsletter-modal__content {
+  height: 39rem;
 }
 
 .newsletter-trigger {

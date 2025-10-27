@@ -40,13 +40,10 @@ declare namespace _default {
         }
     }
     function data(): any;
-    namespace computed {
-        function newsletterStyle(): any;
-    }
     namespace methods {
         function handleSuccess(): void;
         function setIdle(): void;
-        function setSpeed(): any;
+        function setSpeed(): 1 | 40;
     }
 }
 export default _default;
