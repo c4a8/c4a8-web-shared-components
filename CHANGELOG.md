@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.37
+
+- Fixed integration issues with casestudies page and enabled it back on
+
 # Hotfix 0.4.36
 
 - Disables casestudies page temporarily
