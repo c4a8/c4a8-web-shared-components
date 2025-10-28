@@ -1,19 +1,17 @@
 <template>
-  <div :class="classList">
-    <div class="fab-hint__container" :style="containerStyle">
-      <sticky-block :sticky-offset-top="offsetTop">
-        <div class="fab-hint__wrapper">
-          <div class="fab-hint__icon" @click="handleClick">
-            <icon :icon="iconValue" size="large" />
-          </div>
+  <div :class="classList" :style="containerStyle">
+    <sticky-block :sticky-offset-top="offsetTop" breakpoint="lg" :calculate-height="true">
+      <div class="fab-hint__wrapper">
+        <div class="fab-hint__icon" @click="handleClick">
+          <icon :icon="iconValue" size="large" />
         </div>
-        <div class="fab-hint__content">
-          <div class="fab-hint__title highlight-underline">{{ titleValue }}:</div>
-          <icon class="fab-hint__close" icon="close" size="medium" :hover="true" :circle="true" @click="handleClose" />
-          <div class="fab-hint__text" v-html="enhancedText"></div>
-        </div>
-      </sticky-block>
-    </div>
+      </div>
+      <div class="fab-hint__content">
+        <div class="fab-hint__title highlight-underline">{{ titleValue }}:</div>
+        <icon class="fab-hint__close" icon="close" size="medium" :hover="true" :circle="true" @click="handleClose" />
+        <div class="fab-hint__text" v-html="enhancedText"></div>
+      </div>
+    </sticky-block>
   </div>
 </template>
 <script>
@@ -32,18 +30,20 @@ export default {
       return ['fab-hint vue-component', this.expaned ? State.EXPANDED : ''];
     },
     offsetTop() {
-      return '200vh';
+      // return '200vh';
+      return 100;
     },
     options() {
       // TODO try the sticky block and the top 200vh might be enough to start the element at the correct spot
-      return `{
-        "parentSelector": ".fab-hint",
-        "breakpoint": "xs",
-        "startPoint": ".fab-hint__start",
-        "endPoint": "9999999",
-        "stickyOffsetTop": "0",
-        "stickyOffsetBottom": 20
-      }`;
+      // return `{
+      //   "parentSelector": ".fab-hint",
+      //   "breakpoint": "xs",
+      //   "startPoint": ".fab-hint__start",
+      //   "endPoint": "9999999",
+      //   "stickyOffsetTop": "0",
+      //   "stickyOffsetBottom": 20
+      // }`;
+      return {};
     },
     containerStyle() {
       return {

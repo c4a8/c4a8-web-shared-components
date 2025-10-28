@@ -9,7 +9,8 @@
 
   position: relative;
   width: 100%;
-  pointer-events: none;
+  // pointer-events: none;
+  // float: right;
   // opacity: 0;
 
   .has-back-to-top & {
@@ -49,16 +50,17 @@
   }
 }
 
-.fab-hint__start {
-  position: absolute;
-  top: 200vh;
-}
+// .fab-hint__start {
+//   position: absolute;
+//   top: 200vh;
+// }
 
 .fab-hint__wrapper {
   position: relative;
   margin-left: auto;
   right: spacing(4);
-  top: calc(100vh - var(--fab-hint-bottom-position)) !important;
+  // top: calc(100vh - var(--fab-hint-bottom-position)) !important;
+  height: var(--fab-hint-icon-size);
 }
 
 .fab-hint__icon {
@@ -76,6 +78,7 @@
   height: var(--fab-hint-icon-size);
   transition: transform 0.8s $animation-transition;
   transform: translateY(100%);
+  transform: translateY(0);
   right: 0;
   overflow: hidden;
 
@@ -88,7 +91,8 @@
 .fab-hint__content {
   @include z-index;
 
-  position: fixed;
+  // position: fixed;
+  position: relative;
   bottom: 0;
   right: 0;
   pointer-events: none;
