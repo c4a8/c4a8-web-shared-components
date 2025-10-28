@@ -1,9 +1,11 @@
 <template>
-    <div v-if="!isMobile" class="d-flex align-items-center container newsletter-modal__content" :style="{ color: contrastColor }">
+    <div v-if="!isMobile" class="d-flex align-items-center container newsletter-modal__content"
+        :style="{ color: contrastColor }">
         <div class="col-10">
             <headline :style="{ color: contrastColor }" level="h2">{{ success ? confirmation.headline : headline }}
             </headline>
-            <p class="font-size-3 pt-4 pt-lg-8">{{ success ? confirmation.text : text }}</p>
+            <br></br>
+            <p class="font-size-3">{{ success ? confirmation.text : text }}</p>
             <formular v-if="!success" v-bind="formular" :ajax="ajax" ref="form" @success="handleSuccess" />
         </div>
         <div class="col-5 col-lg-4 d-flex align-items-center z-index-1 align-content-center">
@@ -102,7 +104,7 @@ export default {
     },
     data() {
         return {
-            success: false,   
+            success: false,
             idle: true,
             contrastColor: this.light ? 'var(--color-white)' : 'var(--color-black)',
             isMobile: Tools.isBelowBreakpoint('lg')

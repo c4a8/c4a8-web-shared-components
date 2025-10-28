@@ -42,8 +42,8 @@ declare namespace _default {
     function data(): any;
     namespace methods {
         function handleSuccess(): void;
-        function setIdle(): void;
-        function setSpeed(): 1 | 40;
+        function setIdle(): any;
+        function setSpeed(): any;
     }
 }
 export default _default;

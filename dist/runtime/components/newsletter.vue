@@ -1,42 +1,33 @@
 <template>
     <div :class="classList" ref="root">
-        <div :class="isMobile ? '' : 'js-sticky-block'">
 
-     
-
-                <div class="newsletter-modal is-off-screen" ref="modal" :style="modalStyle">
-                    <div class="newsletter-close" ref="close">
-                        <icon icon="close" :circle="true" :hover="true" size="medium" :color="getContrastColor()" />
-                    </div>
-                    <newsletter-modal v-bind="modal" :ajax="true" :success="success" :iconColor="iconColor"
-                        :bgColor="bgColor" :light="light" />
+        <div class='js-sticky-block'>
+            <div class="newsletter-modal is-off-screen" ref="modal" :style="modalStyle">
+                <div class="newsletter-close" ref="close">
+                    <icon icon="close" :circle="true" :hover="true" size="medium" :color="getContrastColor()" />
                 </div>
-            
+                <newsletter-modal v-bind="modal" :ajax="true" :success="success" :iconColor="iconColor"
+                    :bgColor="bgColor" :light="light"/>
+            </div>
         </div>
+
         <div class="newsletter-banner__wrapper">
             <div class="newsletter-banner mx-auto " ref="icon">
-                <div :style="bannerStyle" :class="isMobile ? 'w-80 mx-2' : ''">
-
-                    <div :class="isMobile ? 'py-2 px-3' : 'px-3 py-2 row row-cols-2'" class="d-flex align-items-center">
-                        <div v-if="!isMobile" class="d-flex align-items-center font-size-2 light col-9"
-                            :class="[light ? 'text-light' : 'text-dark', isMobile ? '' : '']">{{ text }}</div>
-                        <div class="d-flex justify-content-center" :class="isMobile ? 'pr-9' : 'col-2'">
+                <div :style="bannerStyle">
+                    <div class="d-flex align-items-center px-3 py-2 row row-cols-2">
+                        <div class="d-flex align-items-center font-size-2 light col-9"
+                            :class="[light ? 'text-light' : 'text-dark']">{{ text }}</div>
+                        <div class="d-flex justify-content-center col-2">
                             <cta v-bind="cta" />
-
                         </div>
                     </div>
-
                 </div>
                 <div class="position-relative">
                     <lottie-player class="position-absolute mb-n5 bottom-0" v-if="modal.lottie"
                         :animationData="idle ? modal.lottie.idle : modal.lottie.fly" :autoplay="setAutoplay()"
-                        :width="isMobile ? '130' : '180'" :height="isMobile ? '130' : '180'"
-                        :style="isMobile ? 'right: 0;' : 'right: -5em'" ref="lottie" />
+                        :width="'180'" :height="'180'" :style="'right: -5em'" ref="lottie" />
                 </div>
             </div>
-
-
-
         </div>
         <a class="newsletter-trigger" ref="link"></a>
     </div>
@@ -96,36 +87,24 @@ export default {
                 { [this.expandedClass]: this.isExpanded },
             ];
         },
-        iconStyle() {
-            let style = {};
-            if (this.bgColor) style = this.bgColor;
-            if (this.iconColor) style.color = this.iconColor;
-
-            return style;
-        },
         bannerStyle() {
-            return {
-                backgroundColor: this.bgColor,
-
-
-            }
-        },
-      
-       modalStyle() {
             return {
                 backgroundColor: this.bgColor,
                 color: this.contrastColor,
             }
         },
-
+        modalStyle() {
+            return {
+                backgroundColor: this.bgColor,
+                color: this.contrastColor,
+            }
+        },
         success() {
             return this.success;
         },
-
     },
     data() {
         return {
-            resetDelay: 300,
             isExpanded: false,
             expandedClass: State.EXPANDED,
             offScreenClass: State.OFF_SCREEN,
@@ -143,39 +122,39 @@ export default {
                 if (entry.isIntersecting) {
                     if (!this.animationCompleted) {
                         this.lottie.play();
-                 
-                    banner.classList.add('banner-animation');
-                    setTimeout(() => {
-                        this.animationCompleted = true;
-                        banner.classList.remove('banner-animation');
-                        this.idle = true;
-                        this.lottie.play();
-                    }, this.flyAnimationDuration);
-   }
+                        banner.classList.add('banner-animation');
+                        setTimeout(() => {
+                            this.animationCompleted = true;
+                            banner.classList.remove('banner-animation');
+                            this.idle = true;
+                            this.lottie.play();
+                        }, this.flyAnimationDuration);
+                    }
                 }
 
             });
         });
         observer.observe(document.querySelector('.newsletter-banner__wrapper'));
 
+        this.root = this.$refs.root;
         this.iconElement = this.$refs.icon;
         this.linkElement = this.$refs.link instanceof NodeList ? this.$refs.link : [this.$refs.link];
         this.modalElement = this.$refs.modal;
         this.closeElement = this.$refs.close;
         this.lottie = this.$refs.lottie;
-        this.root = this.$refs.root;
+
         this.init();
 
+        /*
         if (this.isMobile) {
             this.modal.formular.form.ctaPosition = 'justify-content-start';
-
         }
+        */
     },
     methods: {
         init() {
             this.bindEvents();
-            this.hexToRGB();
-
+            this.setLottieColors();
         },
         bindEvents() {
             if (!this.iconElement || !this.modalElement) return this.bindTriggerEvent();
@@ -189,8 +168,6 @@ export default {
             document.addEventListener(Events.FORM_AJAX_SUBMIT, this.handleSubmit);
             window.addEventListener('click', this.handleOutsideClick);
 
-            this.modalElement.style.opacity = '1';
-            this.modalElement.style.opacity = '';
         },
         bindTriggerEvent() {
             this.iconElement.addEventListener('click', this.handleTriggerClick);
@@ -215,14 +192,6 @@ export default {
         },
         handleClose() {
             this.handleClick();
-
-            setTimeout(() => {
-                document.dispatchEvent(
-                    new CustomEvent(Events.FAB_BUTTON_CLOSE, {
-                        detail: { target: this.root },
-                    })
-                );
-            }, this.resetDelay);
         },
         handleClick() {
             this.isExpanded = !this.isExpanded;
@@ -258,6 +227,23 @@ export default {
                 birdIdle.assets[1].layers[3].shapes[0].it[1].c.k = [r / 255, g / 255, b / 255];
             }
         },
+
+        setLottieColors() {
+            if (this.light) {
+                const white = [1, 1, 1];
+                const flyLayers = birdFly.assets[1].layers;
+                const idleLayers = birdIdle.assets[1].layers;
+
+                [flyLayers, idleLayers].forEach(layers => {
+                    layers[0].shapes[0].it[2].c.k = white;
+                    layers[1].shapes[0].it[2].c.k = white;
+                    layers[2].shapes[1].it[9].c.k = white;
+                    layers[2].shapes[0].it[11].c.k = white;
+                });
+            }
+            this.hexToRGB();
+        },
+
         setAutoplay() {
             if (this.animationCompleted) {
                 return true;

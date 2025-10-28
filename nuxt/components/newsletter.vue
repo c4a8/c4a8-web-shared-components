@@ -7,12 +7,13 @@
                     <icon icon="close" :circle="true" :hover="true" size="medium" :color="getContrastColor()" />
                 </div>
                 <newsletter-modal v-bind="modal" :ajax="true" :success="success" :iconColor="iconColor"
-                    :bgColor="bgColor" :light="light" />
+                    :bgColor="bgColor" :light="light"/>
             </div>
         </div>
 
         <div class="newsletter-banner__wrapper">
-            <div class="newsletter-banner mx-auto " ref="icon">
+
+            <div v-if="!isMobile" class="newsletter-banner mx-auto" ref="icon">
                 <div :style="bannerStyle">
                     <div class="d-flex align-items-center px-3 py-2 row row-cols-2">
                         <div class="d-flex align-items-center font-size-2 light col-9"
@@ -28,6 +29,26 @@
                         :width="'180'" :height="'180'" :style="'right: -5em'" ref="lottie" />
                 </div>
             </div>
+          
+           
+            <div v-else class="newsletter-banner d-flex mx-auto" ref="icon">
+                <div :style="bannerStyle">
+                    <div class="d-flex align-items-center px-3 py-2 row">
+                        <div class=" font-size-2 light col-9 mr-5"
+                            :class="[light ? 'text-light' : 'text-dark']">
+                            <div class="ml-2">{{ text }}</div>
+                            <cta v-bind="cta" link="true"/>
+                        </div>
+                       
+                    </div>
+                </div>
+                <div class="d-flex align-items-center col-1" style="border: 3px solid red">
+                    <lottie-player class="position-absolute" v-if="modal.lottie" style="border: 2px solid blue"
+                        :animationData="idle ? modal.lottie.idle : modal.lottie.fly" :autoplay="setAutoplay()"
+                        :width="'120'" :height="'120'" :style="'right: 0'" ref="lottie" />
+                </div>
+            </div>
+
         </div>
         <a class="newsletter-trigger" ref="link"></a>
     </div>
@@ -156,7 +177,7 @@ export default {
         this.modalElement = this.$refs.modal;
         this.closeElement = this.$refs.close;
         this.lottie = this.$refs.lottie;
-    
+
         this.init();
 
         /*
@@ -168,7 +189,7 @@ export default {
     methods: {
         init() {
             this.bindEvents();
-            this.hexToRGB();
+            this.setLottieColors();
         },
         bindEvents() {
             if (!this.iconElement || !this.modalElement) return this.bindTriggerEvent();
@@ -240,16 +261,24 @@ export default {
                 birdFly.assets[1].layers[3].shapes[0].it[1].c.k = [r / 255, g / 255, b / 255];
                 birdIdle.assets[1].layers[3].shapes[0].it[1].c.k = [r / 255, g / 255, b / 255];
             }
-            if(this.light) {
-                for(let i = 0; i < birdFly.assets[1]?.layers.length; i++) {
-                    birdFly.assets[1].layers[i].shapes[0].it[2].c.k = [1, 1, 1];    
-                    birdIdle.assets[1].layers[i].shapes[0].it[2].c.k = [1, 1, 1];    
-                } 
-            } else {
-                birdFly.assets[1].layers[3].shapes[0].it[3].c.k = [0, 0, 0];
-                birdIdle.assets[1].layers[3].shapes[0].it[3].c.k = [0, 0, 0];
-            }
         },
+
+        setLottieColors() {
+            if (this.light) {
+                const white = [1, 1, 1];
+                const flyLayers = birdFly.assets[1].layers;
+                const idleLayers = birdIdle.assets[1].layers;
+
+                [flyLayers, idleLayers].forEach(layers => {
+                    layers[0].shapes[0].it[2].c.k = white;
+                    layers[1].shapes[0].it[2].c.k = white;
+                    layers[2].shapes[1].it[9].c.k = white;
+                    layers[2].shapes[0].it[11].c.k = white;
+                });
+            }
+            this.hexToRGB();
+        },
+
         setAutoplay() {
             if (this.animationCompleted) {
                 return true;

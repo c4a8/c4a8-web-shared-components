@@ -51,15 +51,11 @@ declare namespace _default {
         function classList(): (string | {
             [x: number]: any;
         })[];
-        function iconStyle(): {
-            color: any;
-        };
         function bannerStyle(): any;
         function modalStyle(): any;
         function success(): () => /*elided*/ any;
     }
     function data(): {
-        resetDelay: number;
         isExpanded: boolean;
         expandedClass: string;
         offScreenClass: string;
@@ -80,6 +76,7 @@ declare namespace _default {
         function handleClick(): void;
         function getContrastColor(): "var(--color-black)" | "var(--color-white)";
         function hexToRGB(): null | undefined;
+        function setLottieColors(): void;
         function setAutoplay(): boolean;
     }
     function beforeDestroy(): void;
