@@ -50363,6 +50363,14 @@ shape {
   .screensaver__navigation .screensaver__navigation-item-content img {
     max-height: 15rem !important;
   }
+  .screensaver__grid-item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-top: 1px;
+  }
+  .screensaver__grid-item:hover {
+    transform: none !important;
+  }
 }
 html,
 html body {

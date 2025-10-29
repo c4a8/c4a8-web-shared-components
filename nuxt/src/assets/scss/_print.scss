@@ -68,4 +68,14 @@
       }
     }
   }
+
+  .screensaver__grid-item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-top: 1px;
+  }
+
+  .screensaver__grid-item:hover {
+    transform: none !important;
+  }
 }
