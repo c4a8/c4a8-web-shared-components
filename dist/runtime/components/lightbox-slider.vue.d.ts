@@ -8,6 +8,7 @@ declare namespace _default {
         };
     }
     namespace props {
+        let variant: StringConstructor;
         let teaser: ObjectConstructor;
         let images: ArrayConstructor;
     }
