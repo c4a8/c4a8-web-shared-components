@@ -53330,3 +53330,16 @@ strong[id]:target:before {
     display: flex;
     flex-direction: column
 }
+
+.hasSubchild .icon {
+    --icon-rotation: 0deg !important;
+    color: var(--color-link-list-active);
+    border: 3px solid red;
+    
+}
+.hasSubchild .icon {
+    --icon-rotation: 0deg !important;
+    color: var(--color-link-list-active);
+    border: 3px solid red;
+    
+}

@@ -8,17 +8,16 @@
       <template v-for="(subChild, index) in list.children">
         <li class="link-list__item" v-if="subChild.languages && subChild.languages[lang]" :key="index"
           v-on:mouseover="handleMouseOver(index)" v-on:mouseout="handleMouseOut(index)" ref="listItem">
-          <cta :href="subChild.languages[lang].url" :text="subChild.languages[lang].title"
+          <cta :href="subChild.languages[lang].url" :text="subChild.languages[lang].title" 
             :active="subChild.languages[lang].active" :link="true" reversed="true" monochrome="true"
-            :icon="toggleIcon(index)" ref="cta" />
+            :icon="toggleIcon(index)" ref="cta" :class="subChild.subchildren ? 'hasSubchildren' : ''"/>
           <ul>
             <div class="link-list__subchildren" :class="ctaClassList"
               v-if="subChild.subchildren && subChild.subchildren.length > 0">
               <template v-for="subChild in subChild.subchildren">
                 <li class="link-list__subitem" v-if="subChild.languages && subChild.languages[lang]">
                   <cta :class="ctaClassList" :href="subChild.languages[lang].url" :text="subChild.languages[lang].title"
-                    :active="subChild.languages[lang].active" :link="true" icon="null" reversed="true" monochrome="true"
-                    class="test" />
+                    :active="subChild.languages[lang].active" :link="true" icon="null" reversed="true" monochrome="true" />
                 </li>
               </template>
             </div>
@@ -162,9 +161,11 @@ export default {
         this.setCtaClasses();
 
         const link = this.$refs['cta'][index];
-        if (!link) return;
-        link.classList.add(State.EXPANDED);
-        console.log('hovering');
+        const listItem = this.$refs['listItem'][index];
+
+        listItem.classList.add(State.EXPANDED);
+        
+
       }
     },
 
@@ -175,9 +176,10 @@ export default {
 
 
         const link = this.$refs['cta'][index];
+        const listItem = this.$refs['listItem'][index];
+ 
+        listItem.classList.remove(State.EXPANDED);
 
-        if (!link) return;
-        link.classList.remove(State.EXPANDED);
       }
 
     },
@@ -223,3 +225,4 @@ export default {
   },
 };
 </script>
+<style lang="scss"></style>

@@ -20,6 +20,13 @@ declare namespace _default {
         function isExpandable(): any;
         function updateHeight(): void;
         function handleClick(event: any): void;
+        function resetLinks(index: any): void;
+        function getLinkRef(refName: any): any;
+        function getRef(name: any, refName: any): any;
+        function handleMouseOver(index: any): void;
+        function handleMouseOut(index: any): void;
+        function setCtaClasses(): void;
+        function toggleIcon(index: any): "expand" | undefined;
     }
     namespace props {
         let list: ObjectConstructor;
@@ -38,6 +45,8 @@ declare namespace _default {
         inTransition: boolean;
         isExpanded: boolean;
         parentOfParent: null;
+        hoverChild: boolean;
+        ctaClassList: null;
     };
 }
 export default _default;

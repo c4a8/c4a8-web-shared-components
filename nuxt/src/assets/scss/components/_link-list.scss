@@ -57,7 +57,7 @@ $link-list-breakpoint: 'lg';
 
   &:not(.is-expanded) {
     .link-list__title {
-      + .link-list__list {
+      +.link-list__list {
         display: none;
 
         @include media-breakpoint-up($link-list-breakpoint) {
@@ -104,6 +104,14 @@ $link-list-breakpoint: 'lg';
     .cta__text {
       @include font-size-custom($sm: $font-size-13px);
     }
+  }
+
+  &.is-expanded .hasSubchildren .icon {
+    --icon-rotation: 180deg !important;
+  }
+
+  .hasSubchildren:hover.link:not(.cta--external) svg {
+    animation: none !important;
   }
 }
 

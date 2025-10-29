@@ -44120,6 +44120,12 @@ job-list-detail {
     font-size: 0.8125rem;
   }
 }
+.link-list__item.is-expanded .hasSubchildren .icon {
+  --icon-rotation: 180deg !important;
+}
+.link-list__item .hasSubchildren:hover.link:not(.cta--external) svg {
+  animation: none !important;
+}
 
 .link-list__icon {
   margin-right: 0.5rem;
