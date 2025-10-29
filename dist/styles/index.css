@@ -44136,6 +44136,26 @@ job-list-detail {
   }
 }
 
+.link-sublist__item {
+  flex: 1 0 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0 0;
+}
+
+.link-sublist {
+  display: none;
+}
+
+.link-sublist__item .cta {
+  color: var(--color-header-product-subtitle);
+}
+
+@media (max-width: 991.98px) {
+  .link-sublist__item .cta__text {
+    font-size: 0.8125rem;
+  }
+}
 .active a.link:not(.btn):not(.custom):not(.nav-link):not(.cta):not(.page-link):not(.dropdown-item),
 .hover__parent:hover .link:not(.btn):not(.custom):not(.nav-link):not(.cta):not(.page-link):not(.dropdown-item),
 .hover__parent:hover a:not(.btn):not(.custom):not(.nav-link):not(.cta):not(.page-link):not(.dropdown-item),
