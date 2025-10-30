@@ -7,15 +7,43 @@
           <table v-if="agenda" class="agenda">
             <tr v-for="item in table" :key="item.id">
               <td>
-               <span>{{ item.timeFrom }}</span><span v-if="item.timeTo"> - {{ item.timeTo }}</span>
+                <span>{{ item.timeFrom }}</span><span v-if="item.timeTo"> - {{ item.timeTo }}</span>
                 <br>
                 <strong>{{ item.title }}</strong>
                 <br>
-                <em v-if="item.speaker" :style="item.highlight ? '--color-highlight-underline: var(--color-yellow)' : '--color-highlight-underline: null'" class="highlight-underline">{{ item.speaker }}</em>
+                <em v-if="item.speaker"
+                  :style="item.highlight ? '--color-highlight-underline: var(--color-yellow)' : '--color-highlight-underline: null'"
+                  class="highlight-underline">{{ item.speaker }}</em>
                 <p>{{ item.description }}</p>
               </td>
             </tr>
           </table>
+
+          <table v-else-if="sticky" class="sticky" :class="['v-table table', styleClass]">
+            <div>
+              <thead v-if="head && table.length">
+                <tr>
+                  <th  v-if="head && stickyCol.length" class="stickyColumn col-3 py-3 font-size-1" v-for="(col, colIndex) in stickyCol[0]"
+                    :key="'head-' + colIndex" v-html="col">
+                  </th>
+                  <th v-for="(col, colIndex) in table[0]" :key="'head-' + colIndex" v-html="col" class="py-3 font-size-1">
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(row, rowIndex) in tableRows" :key="'row-' + rowIndex" class="">
+                  <td class="stickyColumn col-3"  v-html="tableRowsSticky[rowIndex]">
+                  </td>
+                  <td v-for="(col, colIndex) in row" :key="'cell-' + rowIndex + '-' + colIndex"> 
+                    <icon v-if="col === 'check'" icon="check-mark" color="var(--color-black)" size="medium"/>
+                    <div v-else v-html="col"></div>               
+                  </td>
+                </tr>
+              </tbody>
+            </div>
+          </table>
+
+
           <table v-else :class="['v-table table', styleClass]">
             <thead v-if="head && table.length">
               <tr>
@@ -67,6 +95,14 @@ export default {
       type: Boolean,
       default: false,
     },
+    sticky: {
+      type: Boolean,
+      default: false,
+    },
+    stickyCol: {
+      type: Array,
+      default: () => [],
+    },
   },
   computed: {
     tableHideContainer() {
@@ -77,6 +113,9 @@ export default {
     },
     tableRows() {
       return this.head ? this.table.slice(1) : this.table;
+    },
+    tableRowsSticky() {
+      return this.head ? this.stickyCol.slice(1) : this.stickyCol;
     },
 
   }

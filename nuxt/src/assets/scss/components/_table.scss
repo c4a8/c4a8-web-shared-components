@@ -20,3 +20,47 @@
   }
 
 }
+
+.sticky {
+
+
+
+  .stickyColumn {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    min-width: 17rem;
+
+  }
+
+  th {
+    color: var(--color-white);
+    background-color: var(--color-gigas);
+
+
+
+  }
+
+  th:not(.stickyColumn) {
+    text-align: center;
+    min-width: 5rem;
+  }
+
+  td:not(.stickyColumn) {
+    text-align: center;
+  }
+
+  td:nth-child(odd) {
+    background-color: #f6f5fa
+  }
+
+  td.stickyColumn {
+      background-color: #f6f5fa;
+  }
+
+  th,
+  td {
+    align-content: center;
+
+  }
+}
