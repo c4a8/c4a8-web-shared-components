@@ -1,10 +1,10 @@
 @charset "UTF-8";
 /*!
-* Bootstrap v4.5.3 (https://getbootstrap.com/)
-* Copyright 2011-2020 The Bootstrap Authors
-* Copyright 2011-2020 Twitter, Inc.
-* Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-*/
+ * Bootstrap v4.5.3 (https://getbootstrap.com/)
+ * Copyright 2011-2020 The Bootstrap Authors
+ * Copyright 2011-2020 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ */
 *,
 ::after,
 ::before {
@@ -1626,7 +1626,7 @@ pre code {
 .table-borderless td,
 .table-borderless th,
 .table-borderless thead th {
-  border: 0;
+  border: 20px;
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
@@ -1885,6 +1885,29 @@ pre code {
 .table-dark.table-hover tbody tr:hover {
   color: #fff;
   background-color: rgba(255, 255, 255, 0.075);
+}
+
+.table-bordered {
+  border: 3px solid red;
+}
+
+.table-nis2 th {
+  color: var(--color-white);
+  background-color: var(--color-gigas);
+  border: 0.01rem solid !important;
+}
+
+td:nth-child(odd) {
+  background-color: #f6f5fa;
+}
+
+td.stickyColumn {
+  background-color: #f6f5fa;
+}
+
+th,
+td {
+  border-top: 2px solid white !important;
 }
 
 @media (max-width: 575.98px) {
@@ -11129,6 +11152,10 @@ a.text-indigo:hover {
     border-color: #e7eaf3;
   }
 }
+.table-striped {
+  border: 3px solid red;
+}
+
 .w-25 {
   width: 25% !important;
 }
@@ -46602,6 +46629,24 @@ shape {
 }
 .agenda tr:nth-child(even) {
   background-color: rgba(252, 209, 22, 0.2);
+}
+
+.sticky .stickyColumn {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+.sticky th:not(.stickyColumn) {
+  text-align: center;
+  min-width: 5rem;
+}
+.sticky td:not(.stickyColumn) {
+  text-align: center;
+}
+.sticky th,
+.sticky td {
+  align-content: center;
+  box-sizing: initial;
 }
 
 .tab-content p {

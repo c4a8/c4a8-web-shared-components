@@ -91,13 +91,12 @@ export const Agenda = {
 
 export const StickyColumn = {
     args: {
-        style: "light",
         head: "true",
         sticky: "true",
     
         table: [
             [
-                "NIS2", "CSOC", "APT Response", "Preventive Services", "Managed Red Tennant", "AzERE", "Data Security", "Workplace/ Azure"
+                "NIS2", "CSOC", "APT Response", "Preventive Services", "Managed Red Tennant", "AzERE", "Data Security", "Workplace / Azure"
             ],
             [
                 "12.2 a)", "", "", "check", "", "", "check", ""

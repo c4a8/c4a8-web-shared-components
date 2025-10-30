@@ -23,7 +23,7 @@
             <div>
               <thead v-if="head && table.length">
                 <tr>
-                  <th  v-if="head && stickyCol.length" class="stickyColumn col-3 py-3 font-size-1" v-for="(col, colIndex) in stickyCol[0]"
+                  <th  v-if="head && stickyCol.length" class="stickyColumn col-3 col-lg-4 py-3 font-size-1" v-for="(col, colIndex) in stickyCol[0]"
                     :key="'head-' + colIndex" v-html="col">
                   </th>
                   <th v-for="(col, colIndex) in table[0]" :key="'head-' + colIndex" v-html="col" class="py-3 font-size-1">
@@ -32,7 +32,7 @@
               </thead>
               <tbody>
                 <tr v-for="(row, rowIndex) in tableRows" :key="'row-' + rowIndex" class="">
-                  <td class="stickyColumn col-3"  v-html="tableRowsSticky[rowIndex]">
+                  <td class="stickyColumn col-3 col-lg-4"  v-html="tableRowsSticky[rowIndex]">
                   </td>
                   <td v-for="(col, colIndex) in row" :key="'cell-' + rowIndex + '-' + colIndex"> 
                     <icon v-if="col === 'check'" icon="check-mark" color="var(--color-black)" size="medium"/>
@@ -104,12 +104,13 @@ export default {
       default: () => [],
     },
   },
+
   computed: {
     tableHideContainer() {
       return this.hideContainer;
     },
     styleClass() {
-      return this.style || 'table-striped';
+      return this.sticky ? 'table-nis2' || this.style : 'table-striped';
     },
     tableRows() {
       return this.head ? this.table.slice(1) : this.table;

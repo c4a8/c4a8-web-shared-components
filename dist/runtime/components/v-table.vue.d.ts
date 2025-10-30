@@ -41,11 +41,24 @@ declare namespace _default {
             let _default_5: boolean;
             export { _default_5 as default };
         }
+        namespace sticky {
+            let type_7: BooleanConstructor;
+            export { type_7 as type };
+            let _default_6: boolean;
+            export { _default_6 as default };
+        }
+        namespace stickyCol {
+            let type_8: ArrayConstructor;
+            export { type_8 as type };
+            function _default_7(): never[];
+            export { _default_7 as default };
+        }
     }
     namespace computed {
         function tableHideContainer(): any;
-        function styleClass(): any;
+        function styleClass(): "table-nis2" | "table-striped";
         function tableRows(): any;
+        function tableRowsSticky(): any;
     }
 }
 export default _default;
