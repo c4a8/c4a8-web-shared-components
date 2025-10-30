@@ -34,6 +34,8 @@
 @import 'components/index';
 @import 'pages/index';
 
+@import 'print';
+
 $grid-gutter-half-width: 15px !default;
 
 html,
@@ -147,7 +149,7 @@ strong[id] {
 
 .circle-content {
   margin: 0;
-  font-weight: "normal";
+  font-weight: 'normal';
   display: flex;
   flex-wrap: wrap;
   align-content: center;
@@ -160,7 +162,6 @@ strong[id] {
   display: flex;
   font-weight: lighter;
   aspect-ratio: 1 / 1;
-
 }
 
 .icon-circle img {
