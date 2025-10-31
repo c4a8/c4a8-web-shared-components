@@ -18,7 +18,6 @@
               </td>
             </tr>
           </table>
-
           <table v-else-if="sticky" class="sticky" :class="['v-table table', styleClass]">
             <div>
               <thead v-if="head && table.length">
@@ -42,8 +41,6 @@
               </tbody>
             </div>
           </table>
-
-
           <table v-else :class="['v-table table', styleClass]">
             <thead v-if="head && table.length">
               <tr>

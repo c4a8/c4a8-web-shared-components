@@ -93,7 +93,6 @@ export const StickyColumn = {
     args: {
         head: "true",
         sticky: "true",
-    
         table: [
             [
                 "NIS2", "CSOC", "APT Response", "Preventive Services", "Managed Red Tennant", "AzERE", "Data Security", "Workplace / Azure"
