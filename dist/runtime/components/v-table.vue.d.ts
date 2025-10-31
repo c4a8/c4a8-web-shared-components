@@ -47,12 +47,6 @@ declare namespace _default {
             let _default_6: boolean;
             export { _default_6 as default };
         }
-        namespace stickyCol {
-            let type_8: ArrayConstructor;
-            export { type_8 as type };
-            function _default_7(): never[];
-            export { _default_7 as default };
-        }
     }
     namespace computed {
         function tableHideContainer(): any;

@@ -78,10 +78,6 @@ export default {
       type: Boolean,
       default: false,
     },
-    stickyCol: {
-      type: Array,
-      default: () => [],
-    },
   },
 
   computed: {
