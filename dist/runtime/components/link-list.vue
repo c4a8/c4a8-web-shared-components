@@ -14,7 +14,7 @@
 
             
 
-            <ul class="link-sublist" :class="hoverChild ? 'd-block' : ''"
+            <ul class="link-sublist" :class="hover ? 'd-block' : ''"
               v-if="subChild.subchildren && subChild.subchildren.length > 0">
               <template v-for="subChild in subChild.subchildren">
                 <li class="link-sublist__item" v-if="subChild.languages && subChild.languages[lang]">
@@ -140,7 +140,7 @@ export default {
 
     handleMouseOver(index) {
       if (this.list.children[index].subchildren && this.list.children[index].subchildren.length > 0) {
-        this.hoverChild = true;
+        this.hover = true;
         const listItem = this.$refs['listItem'][index];
         listItem.classList.add(State.EXPANDED);
       }
@@ -148,7 +148,7 @@ export default {
 
     handleMouseOut(index) {
       if (this.list.children[index].subchildren && this.list.children[index].subchildren.length > 0) {
-        this.hoverChild = false;
+        this.hover = false;
         const listItem = this.$refs['listItem'][index];
         listItem.classList.remove(State.EXPANDED);
       }
@@ -171,8 +171,7 @@ export default {
       inTransition: false,
       isExpanded: false,
       parentOfParent: null,
-      hoverChild: false,
-      ctaClassList: null,
+      hover: false,
     };
   },
 };

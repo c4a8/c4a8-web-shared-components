@@ -40,8 +40,7 @@ declare namespace _default {
         inTransition: boolean;
         isExpanded: boolean;
         parentOfParent: null;
-        hoverChild: boolean;
-        ctaClassList: null;
+        hover: boolean;
     };
 }
 export default _default;
