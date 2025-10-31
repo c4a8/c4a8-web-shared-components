@@ -41,6 +41,12 @@ declare namespace _default {
             let _default_5: boolean;
             export { _default_5 as default };
         }
+        namespace sticky {
+            let type_7: BooleanConstructor;
+            export { type_7 as type };
+            let _default_6: boolean;
+            export { _default_6 as default };
+        }
     }
     namespace computed {
         function tableHideContainer(): any;

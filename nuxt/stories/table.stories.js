@@ -20,9 +20,9 @@ export const Table = {
             ],
         ],
     }
- }
+}
 
- export const Agenda = {
+export const Agenda = {
     args: {
         agenda: "true",
         headline: "Event-Agenda",
@@ -87,5 +87,46 @@ export const Table = {
             }
         ],
     }
- }
+}
 
+export const StickyColumn = {
+    args: {
+        head: "true",
+        sticky: "true",
+        table: [
+            [
+                "Risk Measures / GK Services", "NIS2", "CSOC", "APT Response", "Preventive Services", "Managed Red Tennant", "AzERE", "Data Security", "Workplace / Azure"
+            ],
+            [
+                "Risk Analysis and Information System Security", "12.2 a)", "", "", "check", "", "", "check", ""
+            ],
+            [
+                "Incident Handling", "12.2 b)", "check", "check", "", "", "", "", ""
+            ],
+            [
+                "Business Continuity", "12.2 c)", "", "check", "", "", "check", "", ""
+            ],
+            [
+                "Supply Chain Security", "12.2 d)", "check", "", "", "", "", "", ""
+            ],
+            [
+                 "Security in Network and Information Systems", "12.2 e)", "check", "", "", "check", "", "", "check"
+            ],
+            [
+                 "Effectiveness of Cybersecurity Risk Management Measures", "12.2 f)", "check", "", "", "", "", "", ""
+            ],
+            [
+                 "Basic Computer Hygiene Practices and Cybersecurity Training", "12.2 g)", "check", "", "", "", "", "", ""
+            ],
+            [
+                "Cryptography", "12.2 h)", "", "", "", "", "", "check", "check"
+            ],
+            [
+                "Human Resources Security, Access Control Policies and Asset Management", "12.2 i)", "", "", "", "", "", "", "check"
+            ],
+            [
+                 "Multifactor Authentication or Secured Communication", "12.2 j)", "", "", "", "", "", "", "check"
+            ],
+        ]
+    }
+}
