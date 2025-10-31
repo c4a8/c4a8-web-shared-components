@@ -18,42 +18,23 @@
               </td>
             </tr>
           </table>
-
-          <table v-else-if="sticky" class="sticky" :class="['v-table table', styleClass]">
-            <div>
-              <thead v-if="head && table.length">
-                <tr>
-                  <th  v-if="head && stickyCol.length" class="stickyColumn col-3 col-lg-4 py-3 font-size-1" v-for="(col, colIndex) in stickyCol[0]"
-                    :key="'head-' + colIndex" v-html="col">
-                  </th>
-                  <th v-for="(col, colIndex) in table[0]" :key="'head-' + colIndex" v-html="col" class="py-3 font-size-1">
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="(row, rowIndex) in tableRows" :key="'row-' + rowIndex" class="">
-                  <td class="stickyColumn col-3 col-lg-4"  v-html="tableRowsSticky[rowIndex]">
-                  </td>
-                  <td v-for="(col, colIndex) in row" :key="'cell-' + rowIndex + '-' + colIndex"> 
-                    <icon v-if="col === 'check'" icon="check-mark" color="var(--color-black)" size="medium"/>
-                    <div v-else v-html="col"></div>               
-                  </td>
-                </tr>
-              </tbody>
-            </div>
-          </table>
-
-
-          <table v-else :class="['v-table table', styleClass]">
+          <table v-else :class="['v-table table', sticky ? 'sticky' : '', styleClass]">
             <thead v-if="head && table.length">
               <tr>
+                <th v-if="head && sticky" class="stickyColumn col-3 col-lg-4 py-3 font-size-1"
+                  v-for="(col, colIndex) in stickyCol[0]" :key="'head-' + colIndex" v-html="col">
+                </th>
                 <th v-for="(col, colIndex) in table[0]" :key="'head-' + colIndex" v-html="col">
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="(row, rowIndex) in tableRows" :key="'row-' + rowIndex">
-                <td v-for="(col, colIndex) in row" :key="'cell-' + rowIndex + '-' + colIndex" v-html="col">
+                <td v-if="sticky" class="stickyColumn col-3 col-lg-4" v-html="tableRowsSticky[rowIndex]">
+                </td>
+                <td v-for="(col, colIndex) in row" :key="'cell-' + rowIndex + '-' + colIndex">
+                  <icon v-if="col === 'check'" icon="check-mark" color="var(--color-black)" size="medium" />
+                  <div v-else v-html="col"></div>
                 </td>
               </tr>
             </tbody>
