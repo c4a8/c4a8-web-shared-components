@@ -56,9 +56,8 @@ declare namespace _default {
     }
     namespace computed {
         function tableHideContainer(): any;
-        function styleClass(): "table-nis2" | "table-striped";
+        function styleClass(): any;
         function tableRows(): any;
-        function tableRowsSticky(): any;
     }
 }
 export default _default;

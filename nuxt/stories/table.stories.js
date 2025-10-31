@@ -95,73 +95,38 @@ export const StickyColumn = {
         sticky: "true",
         table: [
             [
-                "NIS2", "CSOC", "APT Response", "Preventive Services", "Managed Red Tennant", "AzERE", "Data Security", "Workplace / Azure"
+                "Risk Measures / GK Services", "NIS2", "CSOC", "APT Response", "Preventive Services", "Managed Red Tennant", "AzERE", "Data Security", "Workplace / Azure"
             ],
             [
-                "12.2 a)", "", "", "check", "", "", "check", ""
+                "Risk Analysis and Information System Security", "12.2 a)", "", "", "check", "", "", "check", ""
             ],
             [
-                "12.2 b)", "check", "check", "", "", "", "", ""
+                "Incident Handling", "12.2 b)", "check", "check", "", "", "", "", ""
             ],
             [
-                "12.2 c)", "", "check", "", "", "check", "", ""
+                "Business Continuity", "12.2 c)", "", "check", "", "", "check", "", ""
             ],
             [
-                "12.2 d)", "check", "", "", "", "", "", ""
+                "Supply Chain Security", "12.2 d)", "check", "", "", "", "", "", ""
             ],
             [
-                "12.2 e)", "check", "", "", "check", "", "", "check"
+                 "Security in Network and Information Systems", "12.2 e)", "check", "", "", "check", "", "", "check"
             ],
             [
-                "12.2 f)", "check", "", "", "", "", "", ""
+                 "Effectiveness of Cybersecurity Risk Management Measures", "12.2 f)", "check", "", "", "", "", "", ""
             ],
             [
-                "12.2 g)", "check", "", "", "", "", "", ""
+                 "Basic Computer Hygiene Practices and Cybersecurity Training", "12.2 g)", "check", "", "", "", "", "", ""
             ],
             [
-                "12.2 h)", "", "", "", "", "", "check", "check"
+                "Cryptography", "12.2 h)", "", "", "", "", "", "check", "check"
             ],
             [
-                "12.2 i)", "", "", "", "", "", "", "check"
+                "Human Resources Security, Access Control Policies and Asset Management", "12.2 i)", "", "", "", "", "", "", "check"
             ],
             [
-                "12.2 j)", "", "", "", "", "", "", "check"
+                 "Multifactor Authentication or Secured Communication", "12.2 j)", "", "", "", "", "", "", "check"
             ],
-        ],
-        stickyCol: [
-            [
-                "Risk Measures / GK Services"
-            ],
-            [
-                "Risk Analysis and Information System Security"
-            ],
-            [
-                "Incident Handling"
-            ],
-            [
-                "Business Continuity"
-            ],
-            [
-                "Supply Chain Security"
-            ],
-            [
-                "Security in Network and Information Systems"
-            ],
-            [
-                "Effectiveness of Cybersecurity Risk Management Measures"
-            ],
-            [
-                "Basic Computer Hygiene Practices and Cybersecurity Training"
-            ],
-            [
-                "Cryptography"
-            ],
-            [
-                "Human Resources Security, Access Control Policies and Asset Management"
-            ],
-            [
-                "Multifactor Authentication or Secured Communication"
-            ],
-        ],
+        ]
     }
 }

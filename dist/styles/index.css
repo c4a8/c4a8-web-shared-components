@@ -1893,16 +1893,12 @@ pre code {
   border: 0.01rem solid !important;
 }
 
-td:nth-child(odd) {
+.table-nis2 td:nth-child(odd) {
   background-color: #f6f5fa;
 }
 
-td.stickyColumn {
-  background-color: #f6f5fa;
-}
-
-th,
-td {
+.table-nis2 th,
+.table-nis2 td {
   border-top: 2px solid white !important;
 }
 
@@ -46628,12 +46624,10 @@ shape {
   left: 0;
   z-index: 1;
 }
-.sticky th:not(.stickyColumn) {
-  text-align: center;
-  min-width: 5rem;
-}
+.sticky th:not(.stickyColumn),
 .sticky td:not(.stickyColumn) {
   text-align: center;
+  min-width: 5rem;
 }
 .sticky th,
 .sticky td {

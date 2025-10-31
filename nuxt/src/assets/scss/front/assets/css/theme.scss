@@ -2094,23 +2094,18 @@ pre code {
   background-color: rgba(255, 255, 255, 0.075);
 }
 
-
 .table-nis2 th {
   color: var(--color-white);
   background-color: var(--color-gigas);
   border: 0.01rem solid !important;
 }
 
-td:nth-child(odd) {
+.table-nis2 td:nth-child(odd) {
   background-color: #f6f5fa
 }
 
-td.stickyColumn {
-  background-color: #f6f5fa;
-}
-
-th,
-td {
+.table-nis2 th,
+.table-nis2 td {
   border-top: 2px solid white !important;
 }
 

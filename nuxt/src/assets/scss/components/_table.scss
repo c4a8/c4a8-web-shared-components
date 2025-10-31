@@ -30,13 +30,10 @@
     z-index: 1;
   }
   
-  th:not(.stickyColumn) {
-    text-align: center;
-    min-width: 5rem;
-  }
-
+  th:not(.stickyColumn),
   td:not(.stickyColumn) {
     text-align: center;
+    min-width: 5rem;
   }
 
   th,

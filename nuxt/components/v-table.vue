@@ -18,27 +18,25 @@
               </td>
             </tr>
           </table>
-          <table v-else :class="['v-table table', sticky ? 'sticky' : '', styleClass]">
-            <thead v-if="head && table.length">
-              <tr>
-                <th v-if="head && sticky" class="stickyColumn col-3 col-lg-4 py-3 font-size-1"
-                  v-for="(col, colIndex) in stickyCol[0]" :key="'head-' + colIndex" v-html="col">
-                </th>
-                <th v-for="(col, colIndex) in table[0]" :key="'head-' + colIndex" v-html="col">
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="(row, rowIndex) in tableRows" :key="'row-' + rowIndex">
-                <td v-if="sticky" class="stickyColumn col-3 col-lg-4" v-html="tableRowsSticky[rowIndex]">
-                </td>
-                <td v-for="(col, colIndex) in row" :key="'cell-' + rowIndex + '-' + colIndex">
-                  <icon v-if="col === 'check'" icon="check-mark" color="var(--color-black)" size="medium" />
-                  <div v-else v-html="col"></div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+
+      <table :class="['v-table table', sticky ? 'sticky' : '', styleClass]">
+        <thead v-if="head && table.length">
+          <tr>
+            <th v-if="sticky" class="stickyColumn col-3 col-lg-4 py-3 font-size-1" v-html="table[0][0]"></th>
+            <th v-for="(col, colIndex) in sticky ? table[0].length - 1 : table[0]" :key="'head-' + colIndex"
+                v-html="sticky ? table[0][colIndex+1] : col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(row, rowIndex) in tableRows" :key="'row-' + rowIndex">
+            <td v-if="sticky" class="stickyColumn col-3 col-lg-4" v-html="tableRows[rowIndex][0]"></td>
+            <td v-for="(col, colIndex) in sticky ? row.length - 1 : row" :key="'cell-' + rowIndex + '-' + colIndex">
+              <icon v-if="sticky ? row[colIndex+1] === 'check' : col === 'check'" icon="check-mark" color="var(--color-black)" size="medium" />
+              <div v-else v-html="sticky ? table[rowIndex + 1][colIndex + 1] : col"></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
         </div>
       </div>
     </div>
@@ -96,10 +94,6 @@ export default {
     tableRows() {
       return this.head ? this.table.slice(1) : this.table;
     },
-    tableRowsSticky() {
-      return this.head ? this.stickyCol.slice(1) : this.stickyCol;
-    },
-
   }
 };
 </script>
