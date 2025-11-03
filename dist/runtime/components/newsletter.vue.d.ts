@@ -34,15 +34,19 @@ declare namespace _default {
             let type_5: StringConstructor;
             export { type_5 as type };
         }
-        namespace cta {
-            let type_6: ObjectConstructor;
+        namespace textMobile {
+            let type_6: StringConstructor;
             export { type_6 as type };
+        }
+        namespace cta {
+            let type_7: ObjectConstructor;
+            export { type_7 as type };
             let _default_5: null;
             export { _default_5 as default };
         }
         namespace light {
-            let type_7: BooleanConstructor;
-            export { type_7 as type };
+            let type_8: BooleanConstructor;
+            export { type_8 as type };
             let _default_6: boolean;
             export { _default_6 as default };
         }

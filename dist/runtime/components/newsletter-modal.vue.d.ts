@@ -44,6 +44,7 @@ declare namespace _default {
         function handleSuccess(): void;
         function setIdle(): any;
         function setSpeed(): any;
+        function setHeight(): void;
     }
 }
 export default _default;

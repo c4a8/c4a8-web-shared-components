@@ -1,9 +1,5 @@
 .newsletter {
   @include z-index;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-
 
   &.is-expanded {
     .newsletter-banner {
@@ -18,7 +14,6 @@
 
     .newsletter-modal {
       opacity: 1;
-
     }
   }
 
@@ -28,10 +23,9 @@
       pointer-events: none;
       transform: translateX(0);
       transition-duration: 0s;
-      width: 0
+      width: 0;
     }
   }
-
 }
 
 .newsletter-close {
@@ -41,7 +35,7 @@
   width: 78px;
   height: 78px;
 
-  >.icon {
+  > .icon {
     margin: spacing(5);
     padding: spacing(1);
     cursor: pointer;
@@ -59,24 +53,30 @@
     max-width: 80rem;
     width: auto;
   }
-
 }
-
 
 .newsletter-modal {
   position: fixed;
   top: 20vh;
   z-index: 1000;
-  left: auto;
-  right: auto;
+  @include media-breakpoint-up(lg) {
+    max-width: 80vw;
+  }
 
+  @include media-breakpoint-down(lg) {
+    top: 10vh;
+  }
 }
-
 
 .newsletter-modal__content {
-  height: 39rem;
+  @include media-breakpoint-down(sm) {
+    height: 90%;
+    max-height: 60vh;
+    overflow-y: scroll;
+    margin-bottom: 21%;
+    margin-top: 15%;
+  }
 }
-
 
 .newsletter-trigger {
   cursor: pointer;

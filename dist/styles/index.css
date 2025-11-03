@@ -49819,9 +49819,6 @@ shape {
 
 .newsletter {
   z-index: 300;
-  display: flex;
-  justify-content: center;
-  align-content: center;
 }
 .newsletter.is-expanded .newsletter-banner {
   visibility: collapse;
@@ -49880,12 +49877,26 @@ shape {
   position: fixed;
   top: 20vh;
   z-index: 1000;
-  left: auto;
-  right: auto;
+}
+@media (min-width: 992px) {
+  .newsletter-modal {
+    max-width: 80vw;
+  }
+}
+@media (max-width: 1199.98px) {
+  .newsletter-modal {
+    top: 10vh;
+  }
 }
 
-.newsletter-modal__content {
-  height: 39rem;
+@media (max-width: 767.98px) {
+  .newsletter-modal__content {
+    height: 90%;
+    max-height: 60vh;
+    overflow-y: scroll;
+    margin-bottom: 21%;
+    margin-top: 15%;
+  }
 }
 
 .newsletter-trigger {

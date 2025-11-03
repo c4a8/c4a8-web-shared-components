@@ -5,7 +5,7 @@ import birdFly from '/Users/lisa.nagl/Code/c4a8-web-shared-components/nuxt/stori
 export default {
   component: NewsletterComponent,
   title: 'Components/Newsletter',
-    decorators: [
+  decorators: [
     (story) => ({
       components: { story },
       template: `
@@ -17,12 +17,12 @@ export default {
       `,
     }),
   ],
-
 };
 
 export const Default = {
   args: {
-    text: 'Jetzt zum Newsletter anmelden Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.',
+    text: 'Jetzt zum Newsletter anmelden Lorem ipsum dolor sit amet.mpor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea re',
+    textMobile: 'Jetzt zum Newsletter anmelden.',
     cta: {
       text: 'Abonnieren',
       skin: 'primary',
@@ -39,7 +39,7 @@ export const Default = {
           cta: {
             skin: 'primary',
             width: 'w-40',
-          },       
+          },
           ctaPosition: '',
           ctaText: 'Abonnieren',
           method: 'post',
@@ -54,11 +54,12 @@ export const Default = {
               id: 'email',
             },
             {
-              label: "Deine Daten werden zur Bearbeitung und Beantwortung deiner Anfrage bei uns gespeichert. Weitere Informationen zum Datenschutz findest du in unserer <a href='/de/datenschutz/'>Datenschutzerklärung</a>.",
-              type: "checkbox",
-              id: "dataprotection",
+              label:
+                "Deine Daten werden zur Bearbeitung und Beantwortung deiner Anfrage bei uns gespeichert. Weitere Informationen zum Datenschutz findest du in unserer <a href='/de/datenschutz/'>Datenschutzerklärung</a>.",
+              type: 'checkbox',
+              id: 'dataprotection',
               required: true,
-              requiredMsg: "Bitte bestätigen"
+              requiredMsg: 'Bitte bestätigen',
             },
             {
               type: 'hidden',
@@ -70,10 +71,10 @@ export const Default = {
       lottie: {
         idle: birdIdle,
         fly: birdFly,
-      }
-    }
+      },
+    },
   },
-}
+};
 
 export const Light = {
   args: {
@@ -87,7 +88,7 @@ export const Light = {
     },
     modal: {
       headline: 'Newsletter Subscription',
-      text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est ',
+      text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sednctus est ',
       confirmation: {
         headline: 'Danke für deine Anmeldung!',
         text: 'Du hast dich erfolgreich für unseren Newsletter angemeldet. Wir freuen uns, dich als Abonnent:in begrüßen zu dürfen! Schau gerne in deinem Posteingang nach einer Bestätigungs-E-Mail von uns.',
@@ -97,7 +98,7 @@ export const Light = {
           cta: {
             skin: 'primary',
             width: 'w-40',
-          },       
+          },
           ctaPosition: '',
           ctaText: 'Abonnieren',
           method: 'post',
@@ -112,11 +113,12 @@ export const Light = {
               id: 'email',
             },
             {
-              label: "Deine Daten werden zur Bearbeitung und Beantwortung deiner Anfrage bei uns gespeichert. Weitere Informationen zum Datenschutz findest du in unserer <a href='/de/datenschutz/'>Datenschutzerklärung</a>.",
-              type: "checkbox",
-              id: "dataprotection",
+              label:
+                "Deine Daten werden zur Bearbeitung und Beantwortung deiner Anfrage bei uns gespeichert. Weitere Informationen zum Datenschutz findest du in unserer <a href='/de/datenschutz/'>Datenschutzerklärung</a>.",
+              type: 'checkbox',
+              id: 'dataprotection',
               required: true,
-              requiredMsg: "Bitte bestätigen"
+              requiredMsg: 'Bitte bestätigen',
             },
             {
               type: 'hidden',
@@ -128,7 +130,7 @@ export const Light = {
       lottie: {
         idle: birdIdle,
         fly: birdFly,
-      }
-    }
+      },
+    },
   },
-}
+};
