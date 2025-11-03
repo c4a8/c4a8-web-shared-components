@@ -59,7 +59,7 @@
           <div class="sidebar__date">{{ date }}</div>
           <span class="sidebar__location">
             {{ location }}
-            <div class="sidebar__hint">
+            <div v-if="hint" class="sidebar__hint">
               {{ hint }}
               <icon icon="arrow-curl" size="medium" direction="left" />
             </div>
