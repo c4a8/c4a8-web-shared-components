@@ -1,1 +1,0 @@
-class m{static getEmbedSrc(t,n,o,e){const c=encodeURIComponent(document.location.origin),r=encodeURIComponent(document.location.href),a=o?"playlist?list=":"",i=o?"&":"?",s=e?`&cc_load_policy=1&cc_lang_pref=${e}`:"";return`https://www.youtube-nocookie.com/embed/${a}${t}${i}origin=${c}&autoplay=${n}${s}&widget_referrer=${r}&enablejsapi=1&widgetid=1`}}export{m as Y};
