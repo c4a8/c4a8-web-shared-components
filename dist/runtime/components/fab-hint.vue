@@ -1,8 +1,7 @@
 <template>
-  <div :class="classList">
-    <div class="fab-hint__container" :style="containerStyle">
-      <div class="fab-hint__start"></div>
-      <div class="fab-hint__wrapper js-sticky-block" :data-hs-sticky-block-options="options">
+  <div :class="classList" :style="containerStyle">
+    <sticky-block :sticky-offset-top="offsetTop" breakpoint="lg" :calculate-height="true">
+      <div class="fab-hint__wrapper">
         <div class="fab-hint__icon" @click="handleClick">
           <icon :icon="iconValue" size="large" />
         </div>
@@ -12,8 +11,7 @@
         <icon class="fab-hint__close" icon="close" size="medium" :hover="true" :circle="true" @click="handleClose" />
         <div class="fab-hint__text" v-html="enhancedText"></div>
       </div>
-      <div class="fab-hint__end"></div>
-    </div>
+    </sticky-block>
   </div>
 </template>
 <script>
@@ -31,15 +29,21 @@ export default {
     classList() {
       return ['fab-hint vue-component', this.expaned ? State.EXPANDED : ''];
     },
+    offsetTop() {
+      // return '200vh';
+      return 100;
+    },
     options() {
-      return `{
-        "parentSelector": ".fab-hint",
-        "breakpoint": "xs",
-        "startPoint": ".fab-hint__start",
-        "endPoint": "9999999",
-        "stickyOffsetTop": "0",
-        "stickyOffsetBottom": 20
-      }`;
+      // TODO try the sticky block and the top 200vh might be enough to start the element at the correct spot
+      // return `{
+      //   "parentSelector": ".fab-hint",
+      //   "breakpoint": "xs",
+      //   "startPoint": ".fab-hint__start",
+      //   "endPoint": "9999999",
+      //   "stickyOffsetTop": "0",
+      //   "stickyOffsetBottom": 20
+      // }`;
+      return {};
     },
     containerStyle() {
       return {

@@ -13,6 +13,12 @@
   // float: right;
   // opacity: 0;
 
+  .sticky-block__start {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
   .has-back-to-top & {
     --fab-hint-bottom-position: #{spacing(40)};
 
@@ -56,10 +62,11 @@
 // }
 
 .fab-hint__wrapper {
-  position: relative;
+  position: absolute;
   margin-left: auto;
   right: spacing(4);
   // top: calc(100vh - var(--fab-hint-bottom-position)) !important;
+  top: -4rem;
   height: var(--fab-hint-icon-size);
 }
 

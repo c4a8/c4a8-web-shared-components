@@ -1,18 +1,16 @@
 <template>
-  <div :class="classList" :style="containerStyle">
-    <sticky-block :sticky-offset-top="offsetTop" breakpoint="lg" :calculate-height="true">
-      <div class="fab-hint__wrapper">
-        <div class="fab-hint__icon" @click="handleClick">
-          <icon :icon="iconValue" size="large" />
-        </div>
+  <sticky-block :sticky-offset-top="offsetTop" breakpoint="lg" :class="classList" :style="containerStyle">
+    <div class="fab-hint__wrapper">
+      <div class="fab-hint__icon" @click="handleClick">
+        <icon :icon="iconValue" size="large" />
       </div>
-      <div class="fab-hint__content">
-        <div class="fab-hint__title highlight-underline">{{ titleValue }}:</div>
-        <icon class="fab-hint__close" icon="close" size="medium" :hover="true" :circle="true" @click="handleClose" />
-        <div class="fab-hint__text" v-html="enhancedText"></div>
-      </div>
-    </sticky-block>
-  </div>
+    </div>
+    <div class="fab-hint__content">
+      <div class="fab-hint__title highlight-underline">{{ titleValue }}:</div>
+      <icon class="fab-hint__close" icon="close" size="medium" :hover="true" :circle="true" @click="handleClose" />
+      <div class="fab-hint__text" v-html="enhancedText"></div>
+    </div>
+  </sticky-block>
 </template>
 <script>
 import State from '../utils/state.js';
@@ -22,7 +20,6 @@ export default {
   data() {
     return {
       expaned: false,
-      translationData: {},
     };
   },
   computed: {
@@ -31,7 +28,8 @@ export default {
     },
     offsetTop() {
       // return '200vh';
-      return 100;
+      // return 100;
+      return '90vh';
     },
     options() {
       // TODO try the sticky block and the top 200vh might be enough to start the element at the correct spot
@@ -55,7 +53,7 @@ export default {
       return this.icon || 'image-credits';
     },
     titleValue() {
-      return this.title || this.translationData?.imageCredits;
+      return this.title || this.$t('imageCredits');
     },
     enhancedText() {
       if (!this.text) return '';
@@ -67,15 +65,6 @@ export default {
 
       return doc.body.innerHTML;
     },
-  },
-  beforeMount() {
-    const hasLanguageLoader = window.i18n?.loader;
-
-    if (hasLanguageLoader) {
-      hasLanguageLoader.then(() => {
-        this.translationData = window.i18n?.getTranslationData(['imageCredits']);
-      });
-    }
   },
   mounted() {
     this.addObserver();

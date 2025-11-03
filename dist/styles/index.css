@@ -40258,8 +40258,6 @@ label.dropdown__checkbox-label::after {
   --fab-hint-highlight-underline-color: var(--color-orange);
   position: relative;
   width: 100%;
-  pointer-events: none;
-  opacity: 0;
 }
 .has-back-to-top .fab-hint {
   --fab-hint-bottom-position: 10rem;
@@ -40287,16 +40285,11 @@ label.dropdown__checkbox-label::after {
   height: inherit;
 }
 
-.fab-hint__start {
-  position: absolute;
-  top: 200vh;
-}
-
 .fab-hint__wrapper {
   position: relative;
   margin-left: auto;
   right: 1rem;
-  top: calc(100vh - var(--fab-hint-bottom-position)) !important;
+  height: var(--fab-hint-icon-size);
 }
 
 .fab-hint__icon {
@@ -40313,6 +40306,7 @@ label.dropdown__checkbox-label::after {
   height: var(--fab-hint-icon-size);
   transition: transform 0.8s cubic-bezier(0.19, 1, 0.2, 1);
   transform: translateY(100%);
+  transform: translateY(0);
   right: 0;
   overflow: hidden;
 }
@@ -40323,7 +40317,7 @@ label.dropdown__checkbox-label::after {
 
 .fab-hint__content {
   z-index: 250;
-  position: fixed;
+  position: relative;
   bottom: 0;
   right: 0;
   pointer-events: none;

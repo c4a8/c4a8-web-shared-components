@@ -1,6 +1,6 @@
 <template>
   <div ref="rootElement" class="sticky-block" :style="styles">
-    <div ref="startMarker" class="sticky-block__start">
+    <div class="sticky-block__start">
       <div ref="stickyBlock" class="js-sticky-block pt-2" :class="{ 'pl-xl-2': hasPadding }">
         <slot />
       </div>

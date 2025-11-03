@@ -6,7 +6,8 @@ declare namespace _default {
     };
     namespace computed {
         function classList(): string[];
-        function options(): string;
+        function offsetTop(): number;
+        function options(): {};
         function containerStyle(): {
             '--fab-hint-icon-color'?: any;
             '--fab-hint-bg-color'?: any;

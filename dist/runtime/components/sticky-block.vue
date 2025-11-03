@@ -45,13 +45,16 @@ const updateBreakpointState = () => {
 };
 
 const styles = computed(() => {
+  console.log('🚀 ~ isBreakpointActive:', isBreakpointActive);
   if (!isBreakpointActive.value) {
     return {};
   }
 
+  console.log('props.stickyOffsetTop', props.stickyOffsetTop);
+
   return {
     position: 'sticky',
-    top: `${props.stickyOffsetTop}px`,
+    top: typeof props.stickyOffsetTop === 'number' ? `${props.stickyOffsetTop}px` : props.stickyOffsetTop,
     height: rootHeight.value > 0 ? `${rootHeight.value}px` : null,
   };
 });

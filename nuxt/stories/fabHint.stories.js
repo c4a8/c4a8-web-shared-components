@@ -8,7 +8,7 @@ export default {
     (story) => ({
       components: { story },
       template: `
-        <div style="height: 80vh;" class="dummy-content"></div>
+        <div style="height: 100vh;" class="dummy-content"></div>
         <story />
         <div style="height: 500vh;" class="dummy-content"></div>
       `,
