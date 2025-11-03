@@ -1,14 +1,7 @@
 <template>
-  <div
-    v-if="!isMobile"
-    class="d-flex align-items-center container"
-    :style="{ color: contrastColor, height: heightFixed }"
-    ref="modalContent"
-  >
+  <div v-if="!isMobile" class="d-flex align-items-center container" :style="{ height: heightFixed }" ref="modalContent">
     <div class="newsletter-modal__content my-6 col-10">
-      <headline :style="{ color: contrastColor }" level="h2"
-        >{{ success ? confirmation.headline : headline }}
-      </headline>
+      <headline level="h2" class="mb-5">{{ success ? confirmation.headline : headline }} </headline>
 
       <p class="font-size-3">{{ success ? confirmation.text : text }}</p>
 
@@ -19,7 +12,6 @@
         class="iconBird"
         v-if="lottie"
         :animationData="idle ? lottie.idle : lottie.fly"
-        å
         :loop="true"
         :autoplay="true"
         :onLoopComplete="setIdle"
@@ -29,7 +21,7 @@
         class="iconHeart position-absolute"
         icon="heart"
         color="var(--color-red)"
-        :ÏstrokeColor="contrastColor"
+        :strokeColor="contrastColor"
         size="custom"
         customSize="20em"
         style="opacity: 0"
@@ -42,11 +34,11 @@
     v-else
     class="d-flex flex-column justify-content-between p-2"
     ref="modalContent"
-    :style="{ height: heightFixed }"
+    :style="{ color: contrastColor, height: heightFixed }"
   >
     <div class="newsletter-modal__content my-md-4">
       <div>
-        <headline :style="{ color: contrastColor }" level="h3"
+        <headline :style="{ color: contrastColor }" level="h2" class="mb-2"
           >{{ success ? confirmation.headline : headline }}
         </headline>
         <p>{{ success ? confirmation.text : text }}</p>
@@ -93,29 +85,24 @@
     transform: translateX(100vw) translateY(-100vh);
   }
 }
-
 @keyframes fade-in {
   0% {
     margin-left: -50%;
   }
-
   to {
     opacity: 1;
   }
 }
-
 @media (prefers-reduced-motion: no-preference) {
   .fade-in-animation {
     animation: fade-in 4s 1 forwards;
   }
-
   .fade-out-animation {
     animation: fade-out 8s 1 forwards;
   }
 }
 </style>
 <script>
-import { get } from 'jquery';
 import Tools from '../utils/tools';
 
 export default {
@@ -158,6 +145,13 @@ export default {
       heightFixed: 'auto',
     };
   },
+
+  mounted() {
+    if (this.isMobile) {
+      this.formular.form.ctaPosition = 'justify-content-start';
+    }
+  },
+
   methods: {
     handleSuccess() {
       document.querySelector('.iconBird').classList.add('fade-out-animation');

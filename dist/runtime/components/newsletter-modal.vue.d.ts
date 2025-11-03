@@ -40,6 +40,7 @@ declare namespace _default {
         }
     }
     function data(): any;
+    function mounted(): void;
     namespace methods {
         function handleSuccess(): void;
         function setIdle(): any;

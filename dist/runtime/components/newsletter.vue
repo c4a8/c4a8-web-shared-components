@@ -1,5 +1,5 @@
 <template>
-  <div :class="classList" ref="root">
+  <div :class="classList" ref="root" class="py-4">
     <div class="js-sticky-block d-flex justify-content-center">
       <div
         class="newsletter-modal is-off-screen"
@@ -26,10 +26,7 @@
       <div v-if="!isMobile" class="newsletter-banner mx-auto" ref="icon">
         <div :style="bannerStyle">
           <div class="d-flex align-items-center px-3 py-2 row row-cols-2">
-            <div
-              class="d-flex align-items-center font-size-2 light col-9"
-              :class="[light ? 'text-light' : 'text-dark']"
-            >
+            <div class="d-flex align-items-center font-size-2 col-9">
               {{ text }}
             </div>
             <div class="d-flex justify-content-center col-2">
@@ -54,9 +51,9 @@
       <div v-else class="newsletter-banner d-flex mx-auto" ref="icon">
         <div :style="bannerStyle" class="w-100">
           <div class="d-flex align-items-center px-3 py-2 row">
-            <div class="font-size-2 light col-9 mr-5" :class="[light ? 'text-light' : 'text-dark']">
+            <div class="font-size-2 light col-9 mr-5">
               <div class="ml-2">{{ isMobile ? textMobile : text }}</div>
-              <cta v-bind="cta" link="true" />
+              <cta v-bind="cta" link="true" :class="[light ? 'text-light' : 'text-dark']" />
             </div>
           </div>
         </div>
@@ -130,7 +127,7 @@ export default {
 
   computed: {
     classList() {
-      return ['newsletter font-weight-light', { [this.expandedClass]: this.isExpanded }];
+      return ['newsletter font-weight-light', { [this.expandedClass]: this.isExpanded }, this.light ? 'is--light' : ''];
     },
     bannerStyle() {
       return {
@@ -188,10 +185,6 @@ export default {
     this.lottie = this.$refs.lottie;
 
     this.init();
-
-    if (this.isMobile) {
-      this.modal.formular.form.ctaPosition = 'justify-content-start';
-    }
   },
   methods: {
     init() {

@@ -49820,6 +49820,20 @@ shape {
 .newsletter {
   z-index: 300;
 }
+.newsletter.is--light {
+  color: var(--color-white);
+}
+.newsletter.is--light .form__label,
+.newsletter.is--light label.input-label,
+.newsletter.is--light .headline {
+  color: var(--color-white);
+}
+.newsletter.is--light .form .is-valid ~ .form__checkbox-label,
+.newsletter.is--light .shared-components .form .is-valid ~ .form__label,
+.newsletter.is--light .shared-components .form .is-valid ~ .input-label,
+.newsletter.is--light .shared-components .form .is-valid ~ .headline {
+  color: var(--color-white);
+}
 .newsletter.is-expanded .newsletter-banner {
   visibility: collapse;
   opacity: 0;

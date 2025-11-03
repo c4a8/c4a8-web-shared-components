@@ -1,6 +1,22 @@
 .newsletter {
   @include z-index;
 
+  &.is--light {
+    color: var(--color-white);
+    .form__label,
+    label.input-label,
+    .headline {
+      color: var(--color-white);
+    }
+
+    .form .is-valid ~ .form__checkbox-label,
+    .shared-components .form .is-valid ~ .form__label,
+    .shared-components .form .is-valid ~ .input-label,
+    .shared-components .form .is-valid ~ .headline {
+      color: var(--color-white);
+    }
+  }
+
   &.is-expanded {
     .newsletter-banner {
       @include is-invisible;
