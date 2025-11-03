@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.40
+
+- Print Layout
+
 # Release 0.4.38
 
 - Bumps version to force update
