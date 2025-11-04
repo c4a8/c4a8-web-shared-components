@@ -35,16 +35,6 @@
     }
   }
 
-  &[style^='height'] {
-    pointer-events: all;
-    opacity: 1;
-    transition: opacity 0.8s $animation-transition;
-
-    .fab-hint__icon {
-      transform: translateY(0);
-    }
-  }
-
   .fab-hint__icon {
     .icon {
       width: inherit;
@@ -56,6 +46,7 @@
 .fab-hint__wrapper {
   position: relative;
   top: -3rem;
+  right: spacing(4);
   height: var(--fab-hint-icon-size);
 }
 
