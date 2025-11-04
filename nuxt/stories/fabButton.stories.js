@@ -33,8 +33,12 @@ export default {
     (story) => ({
       components: { story },
       template: `
-        <story />
-        <div style="height: 200vh;" class="dummy-content"></div>
+        <main>
+          <div style="height: 100vh;" class="dummy-content"></div>
+          <story />
+          <div style="height: 500vh;" class="dummy-content"></div>
+        </main>
+        <footer style="height: 80vh" class="dummy-content">Footer</footer>
       `,
     }),
   ],
