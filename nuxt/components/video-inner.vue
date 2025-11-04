@@ -18,6 +18,7 @@
           >
             <template #lightbox-content>
               <iframe
+                class="video__iframe"
                 v-if="isPlayed"
                 frameborder="0"
                 allowfullscreen="1"
@@ -76,6 +77,7 @@
           </template>
           <div class="embed-responsive embed-responsive-16by9">
             <iframe
+              class="video__iframe"
               v-if="isPlayed"
               frameborder="0"
               allowfullscreen="1"
@@ -238,7 +240,7 @@ export default {
       return 'https://www.youtube-nocookie.com/' + this.videoParsed.id;
     },
     embedSrc() {
-      return YoutubePlayer.getEmbedSrc(this.videoParsed.id, this.options.isAutoplay);
+      return YoutubePlayer.getEmbedSrc(this.videoParsed.id, this.options.isAutoplay, this.playlist, this.subtitles);
     },
     dataCaption() {
       return this.videoParsed.headline;
@@ -283,6 +285,14 @@ export default {
     noAnimation: {
       type: Boolean,
       default: false,
+    },
+    playlist: {
+      type: Boolean,
+      default: false,
+    },
+    subtitles: {
+      type: String,
+      default: null,
     },
   },
 };

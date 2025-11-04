@@ -45,31 +45,61 @@ declare namespace _default {
             let _default_6: boolean;
             export { _default_6 as default };
         }
-        namespace cta {
-            let type_7: BooleanConstructor;
+        namespace ctaData {
+            let type_7: ObjectConstructor;
             export { type_7 as type };
+        }
+        namespace playlist {
+            let type_8: BooleanConstructor;
+            export { type_8 as type };
             let _default_7: boolean;
             export { _default_7 as default };
+        }
+        namespace subtitles {
+            let type_9: StringConstructor;
+            export { type_9 as type };
+            let _default_8: null;
+            export { _default_8 as default };
+        }
+        namespace color {
+            let type_10: StringConstructor;
+            export { type_10 as type };
+        }
+        namespace fontSize {
+            let type_11: StringConstructor;
+            export { type_11 as type };
+        }
+        namespace cover {
+            let type_12: BooleanConstructor;
+            export { type_12 as type };
+            let _default_9: boolean;
+            export { _default_9 as default };
+        }
+        namespace lightbox {
+            let type_13: BooleanConstructor;
+            export { type_13 as type };
+            let _default_10: boolean;
+            export { _default_10 as default };
         }
     }
     function mounted(): void;
     namespace computed {
-        function hasVideo(): boolean;
+        function headlineClasses(): any;
+        function hasVideo(): any;
         function parentId(): string;
         function targetId(): string;
-        function containerClass(): (string | {
-            'video-frame__container--spacing': any;
-            'video-frame--top-overflow': any;
-            'video-frame--played': any;
+        function stickyClassList(): (string | {
+            'video-frame--cover': any;
         })[];
+        function rootClassList(): {
+            'video-frame--played': any;
+        }[];
+        function containerClass(): any[];
         function rowClass(): (string | {
             'position-relative': any;
         })[];
-        function mainClass(): (string | {
-            'video-frame--full-width': any;
-            'video-frame--played': any;
-        })[];
-        function stickyClass(): {
+        function mainClass(): any[];
+        function stickyStyles(): {
             position: string;
             top: string;
         } | {
@@ -78,17 +108,33 @@ declare namespace _default {
         };
         function playerClass(): string[];
         function cornerClass(): any[];
-        function headlineStyle(): {
+        function rootStyle(): {
+            '--video-frame-color': any;
             '--video-frame-headline-color': string;
-        } | {
-            '--video-frame-headline-color'?: undefined;
         };
-        function videoPlayerOptions(): any;
-        function embedSrc(): any;
+        function videoPlayerOptions(): {
+            videoId?: undefined;
+            parentSelector?: undefined;
+            targetSelector?: undefined;
+            isAutoplay?: undefined;
+            classMap?: undefined;
+        } | {
+            videoId: any;
+            parentSelector: string;
+            targetSelector: string;
+            isAutoplay: boolean;
+            classMap: {
+                toggle: string;
+            };
+        };
+        function embedSrc(): string;
+        function showIframe(): any;
+        function showLightbox(): any;
     }
     namespace methods {
         function handleClick(): void;
         function setPlayed(): void;
+        function handleLightboxClose(): void;
     }
     function data(): {
         isPlayed: boolean;

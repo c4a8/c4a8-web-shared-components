@@ -7,6 +7,7 @@
       :cloudinary="background.cloudinary"
       :img="img"
       :style="backgroundImgStyle"
+      :alt="backgroundAlt"
     ></v-img>
     <div class="hero__container container">
       <main :class="contentClassList">
@@ -341,6 +342,9 @@ export default {
     },
     img() {
       return this.heroJson && this.background ? this.background.img : null;
+    },
+    backgroundAlt() {
+      return this.heroJson && this.background ? this.background.alt : null;
     },
     hasStickyScroller() {
       return this.heroJson ? this.heroJson.sticky : false;

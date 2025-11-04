@@ -3,6 +3,16 @@ import VideoFrame from '../components/video-frame';
 export default {
   title: 'Components/Video Frame',
   component: VideoFrame,
+  decorators: [
+    (story) => ({
+      components: { story },
+      template: `
+        <div style="height: 100vh">
+          <story />
+        </div>
+      `,
+    }),
+  ],
 };
 
 export const Default = {
@@ -89,5 +99,48 @@ export const HeadlineAlignment = {
       color: '--color-white',
       alignment: 'text-left align-items-end',
     },
+  },
+};
+
+export const Playlist = {
+  args: {
+    thumb: 'thumbs/career-corporate-video.png',
+    alt: 'Video Casestudy Uniper',
+    id: 'PLPxBXiOFJRHduZGDmTQqmoyI_69tyHCe8',
+    playlist: true,
+    fullWidth: true,
+    headline: {
+      text: 'Himmelsstürmer gesucht: <br/> glueckkanja sucht Verstärkung',
+      color: '--color-white',
+      alignment: 'text-center align-items-end',
+      classes: 'font-size-3',
+    },
+  },
+};
+
+export const Cta = {
+  args: {
+    thumb: 'thumbs/career-corporate-video.png',
+    alt: 'Video Casestudy Uniper',
+    id: 'PLPxBXiOFJRHduZGDmTQqmoyI_69tyHCe8',
+    playlist: true,
+    fullWidth: true,
+    cover: true,
+    lightbox: true,
+    ctaData: {
+      text: 'Primary Link',
+      link: true,
+    },
+    color: 'var(--color-white)',
+    fontSize: '30px',
+  },
+};
+
+export const WithSubtitles = {
+  args: {
+    thumb: 'shared-components/teaser-dekra.png',
+    alt: 'work @ glueckkanja',
+    id: "zef-39mP_XQ",
+    subtitles: 'en',
   },
 };

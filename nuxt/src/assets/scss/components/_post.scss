@@ -1,9 +1,12 @@
 // TODO rename this to post-detail
 
+.post,
 .post-detail {
   --post-offset-spacing-xl: 7.5rem;
   --post-content-width-lg: 80%;
+}
 
+.post-detail {
   overflow: clip;
 
   .richtext {
@@ -101,7 +104,7 @@
     }
   }
 
-  iframe {
+  iframe:not(.video-frame__iframe):not(.video__iframe) {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
   }
@@ -153,7 +156,7 @@
       position: relative;
     }
 
-    iframe {
+    iframe:not(.video-frame__iframe):not(.video__iframe) {
       margin-top: 2rem;
       margin-bottom: 2rem;
     }
@@ -192,6 +195,10 @@
     @include media-breakpoint-up(lg) {
       display: flex;
     }
+  }
+
+  @include media-breakpoint-up(lg) {
+    float: left;
   }
 
   @include media-breakpoint-up(xl) {

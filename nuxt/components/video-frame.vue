@@ -1,12 +1,13 @@
 <template>
-  <div :style="stickyClass">
-    <div v-if="container" :class="containerClass" :style="headlineStyle" ref="root" @click="handleClick">
+  <div :style="stickyStyles" :class="stickyClassList">
+    <div v-if="container" :class="containerClass" :style="rootStyle" ref="root" @click="handleClick">
       <div :class="rowClass">
-        <div :id="parentId" :class="mainClass" :style="headlineStyle">
+        <div :id="parentId" :class="mainClass">
           <div :class="playerClass" data-utility-animation-step="1">
             <div class="video-frame__target embed-responsive">
               <div :id="targetId" v-if="openIframe">
                 <iframe
+                  class="video-frame__iframe"
                   frameborder="0"
                   allowfullscreen="1"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -18,11 +19,19 @@
               </div>
             </div>
             <div v-if="headline" class="video-frame__headline-container px-4" :class="headline.alignment">
-              <headline :text="headline.text" :classes="'video-frame__headline'" />
+              <headline :text="headline.text" :level="headline.level" :classes="headlineClasses" />
             </div>
             <div class="video-frame__play-wrapper">
-              <span class="video-frame__play video-player-icon video-frame__player-icon">
-                <i class="fas fa-play"></i>
+              <span
+                :class="[
+                  'video-frame__play',
+                  'video-frame__player-icon',
+                  { 'video-player-icon': !ctaData, 'video-frame__play--cta': ctaData },
+                ]"
+                :style="fontSize ? { '--cta-custom-font-size': fontSize } : undefined"
+              >
+                <i v-if="!ctaData" class="fas fa-play"></i>
+                <cta v-else v-bind="ctaData" />
               </span>
             </div>
             <v-img :img="thumb" :cloudinary="true" :alt="alt" :preset="preset" />
@@ -34,11 +43,12 @@
       </div>
     </div>
     <template v-else>
-      <div :id="parentId" :class="mainClass" :style="headlineStyle" ref="root" @click="handleClick">
+      <div :id="parentId" :class="mainClass" :style="rootStyle" ref="root" @click="handleClick">
         <div :class="playerClass" data-utility-animation-step="1">
           <div class="video-frame__target embed-responsive">
-            <div :id="targetId" v-if="openIframe">
+            <div :id="targetId" v-if="showIframe">
               <iframe
+                class="video-frame__iframe"
                 frameborder="0"
                 allowfullscreen="1"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -48,13 +58,55 @@
                 sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-presentation"
               ></iframe>
             </div>
+            <lightbox
+              v-else-if="showLightbox"
+              classes="video-frame__lightbox-frame media-viewer"
+              :source="embedSrc"
+              :cloudinary="true"
+              @click="handleLightboxClick"
+              @lightbox-close="handleLightboxClose"
+            >
+              <template #lightbox-content>
+                <iframe
+                  class="video-frame__iframe"
+                  frameborder="0"
+                  allowfullscreen="1"
+                  allow="autoplay; fullscreen"
+                  :src="embedSrc"
+                  sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-presentation"
+                  scrolling="no"
+                ></iframe>
+              </template>
+
+              <div class="video-frame__play-wrapper">
+                <span
+                  :class="[
+                    'video-frame__play',
+                    'video-frame__player-icon',
+                    { 'video-player-icon': !ctaData, 'video-frame__play--cta': ctaData },
+                  ]"
+                  :style="fontSize ? { '--cta-custom-font-size': fontSize } : undefined"
+                >
+                  <i v-if="!ctaData" class="fas fa-play"></i>
+                  <cta v-else v-bind="ctaData" />
+                </span>
+              </div>
+            </lightbox>
           </div>
-          <div v-if="headline" class="video-frame__headline-container px-4" :class="headline.alignment">
-            <headline :text="headline.text" :classes="'video-frame__headline'" />
+          <div v-if="headline && !lightbox" class="video-frame__headline-container px-4" :class="headline.alignment">
+            <headline :text="headline.text" :level="headline.level" :classes="headlineClasses" />
           </div>
-          <div class="video-frame__play-wrapper">
-            <span class="video-frame__play video-player-icon video-frame__player-icon">
-              <i class="fas fa-play"></i>
+          <div class="video-frame__play-wrapper" v-if="!lightbox">
+            <span
+              :class="[
+                'video-frame__play',
+                'video-frame__player-icon',
+                { 'video-player-icon': !ctaData, 'video-frame__play--cta': ctaData },
+              ]"
+              :style="fontSize ? { '--cta-custom-font-size': fontSize } : undefined"
+            >
+              <i v-if="!ctaData" class="fas fa-play"></i>
+              <cta v-else v-bind="ctaData" />
             </span>
           </div>
           <v-img :img="thumb" :cloudinary="true" :alt="alt" :preset="preset" />
@@ -105,7 +157,28 @@ export default {
       type: Boolean,
       default: false,
     },
-    cta: {
+    ctaData: {
+      type: Object,
+    },
+    playlist: {
+      type: Boolean,
+      default: false,
+    },
+    subtitles: {
+      type: String,
+      default: null,
+    },
+    color: {
+      type: String,
+    },
+    fontSize: {
+      type: String,
+    },
+    cover: {
+      type: Boolean,
+      default: false,
+    },
+    lightbox: {
       type: Boolean,
       default: false,
     },
@@ -116,6 +189,16 @@ export default {
     UtilityAnimation.init([this.$refs.root]);
   },
   computed: {
+    headlineClasses() {
+      let classes = this.headline?.classes || '';
+      let classList = [classes, 'video-frame__headline'];
+
+      if (classes && classes.includes('font-size')) {
+        classList.push('video-frame__headline--custom');
+      }
+
+      return classList.join(' ');
+    },
     hasVideo() {
       return !!this.id;
     },
@@ -124,6 +207,22 @@ export default {
     },
     targetId() {
       return `video-frame__target-id-${this.id}`;
+    },
+    stickyClassList() {
+      return [
+        'video-frame__sticky',
+        {
+          'video-frame--cover': this.cover,
+        },
+      ];
+    },
+    rootClassList() {
+      return [
+        {
+          'video-frame--played': this.isPlayed,
+          // 'video-frame--cover': this.cover,
+        },
+      ];
     },
     containerClass() {
       return [
@@ -135,8 +234,8 @@ export default {
           'video-frame__container--spacing': this.spacingTop,
           //'is-sticky-scroller': this.sticky,
           'video-frame--top-overflow': this.corner && this.corner.topOverflow,
-          'video-frame--played': this.isPlayed,
         },
+        ...this.rootClassList,
       ];
     },
     rowClass() {
@@ -150,11 +249,11 @@ export default {
         {
           'video-frame--full-width': this.fullWidth,
           //'is-sticky-scroller': !this.container && this.sticky,
-          'video-frame--played': this.isPlayed,
         },
+        ...this.rootClassList,
       ];
     },
-    stickyClass() {
+    stickyStyles() {
       return this.sticky ? { position: 'sticky', top: '0' } : {};
     },
     playerClass() {
@@ -169,11 +268,18 @@ export default {
         this.corner && this.corner.classes ? this.corner.classes : '',
       ];
     },
-    headlineStyle() {
-      if (this.headline && this.headline.color) {
-        return { '--video-frame-headline-color': `var(${this.headline.color})` };
+    rootStyle() {
+      const style = {};
+
+      if (this.color) {
+        style['--video-frame-color'] = this.color;
       }
-      return {};
+
+      if (this.headline && this.headline.color) {
+        style['--video-frame-headline-color'] = `var(${this.headline.color})`;
+      }
+
+      return style;
     },
     videoPlayerOptions() {
       if (!this.id) return {};
@@ -189,7 +295,18 @@ export default {
       };
     },
     embedSrc() {
-      return YoutubePlayer.getEmbedSrc(this.videoPlayerOptions.videoId, this.videoPlayerOptions.isAutoplay);
+      return YoutubePlayer.getEmbedSrc(
+        this.videoPlayerOptions.videoId,
+        this.videoPlayerOptions.isAutoplay,
+        this.playlist,
+        this.subtitles
+      );
+    },
+    showIframe() {
+      return this.openIframe && !this.lightbox;
+    },
+    showLightbox() {
+      return this.lightbox;
     },
   },
   methods: {
@@ -199,10 +316,12 @@ export default {
       this.setPlayed();
 
       this.openIframe = true;
-      
     },
     setPlayed() {
       this.isPlayed = true;
+    },
+    handleLightboxClose() {
+      this.isPlayed = false;
     },
   },
   data() {
