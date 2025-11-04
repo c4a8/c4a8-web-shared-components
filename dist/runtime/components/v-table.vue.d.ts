@@ -47,6 +47,18 @@ declare namespace _default {
             let _default_6: boolean;
             export { _default_6 as default };
         }
+        namespace headBg {
+            let type_8: StringConstructor;
+            export { type_8 as type };
+        }
+        namespace headColor {
+            let type_9: StringConstructor;
+            export { type_9 as type };
+        }
+    }
+    function mounted(): void;
+    namespace methods {
+        function setStyle(): void;
     }
     namespace computed {
         function tableHideContainer(): any;

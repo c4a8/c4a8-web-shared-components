@@ -1686,7 +1686,7 @@ pre code {
   border: 0;
 }
 .table-dark.table-striped tbody tr:nth-of-type(odd) {
-  background-color: red !important;
+  background-color: rgba(255, 255, 255, 0.05);
 }
 .table-dark.table-hover tbody tr:hover {
   color: #fff;
@@ -10683,7 +10683,6 @@ a.text-indigo:hover {
     color: inherit;
     border-color: #e7eaf3;
   }
-  
 }
 .w-25 {
   width: 25% !important;

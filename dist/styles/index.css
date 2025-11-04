@@ -1887,18 +1887,16 @@ pre code {
   background-color: rgba(255, 255, 255, 0.075);
 }
 
-.table-nis2 th {
-  color: var(--color-white);
-  background-color: var(--color-gigas);
+.table-sticky th {
   border: 0.01rem solid !important;
 }
 
-.table-nis2 td:nth-child(odd) {
+.table-sticky td:nth-child(odd) {
   background-color: #f6f5fa;
 }
 
-.table-nis2 th,
-.table-nis2 td {
+.table-sticky th,
+.table-sticky td {
   border-top: 2px solid white !important;
 }
 
@@ -46604,6 +46602,21 @@ shape {
 .v-table mark {
   background-color: var(--color-table-mark);
 }
+.v-table.sticky .stickyColumn {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+.v-table.sticky th:not(.stickyColumn),
+.v-table.sticky td:not(.stickyColumn) {
+  text-align: center;
+  min-width: 5rem;
+}
+.v-table.sticky th,
+.v-table.sticky td {
+  align-content: center;
+  box-sizing: initial;
+}
 
 .agenda {
   width: 100%;
@@ -46617,22 +46630,6 @@ shape {
 }
 .agenda tr:nth-child(even) {
   background-color: rgba(252, 209, 22, 0.2);
-}
-
-.sticky .stickyColumn {
-  position: sticky;
-  left: 0;
-  z-index: 1;
-}
-.sticky th:not(.stickyColumn),
-.sticky td:not(.stickyColumn) {
-  text-align: center;
-  min-width: 5rem;
-}
-.sticky th,
-.sticky td {
-  align-content: center;
-  box-sizing: initial;
 }
 
 .tab-content p {
