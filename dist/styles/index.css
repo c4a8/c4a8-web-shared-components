@@ -40254,10 +40254,15 @@ label.dropdown__checkbox-label::after {
   --fab-hint-icon-size: 4.5rem;
   --fab-hint-bg-color: var(--color-fab-background);
   --fab-hint-icon-color: var(--color-copy);
-  --fab-hint-bottom-position: 5rem;
+  --fab-hint-bottom-position: 0rem;
   --fab-hint-highlight-underline-color: var(--color-orange);
   position: relative;
   width: 100%;
+  position: sticky;
+  top: calc(100vh - var(--fab-hint-icon-size) - var(--fab-hint-bottom-position));
+  height: 0;
+  display: flex;
+  justify-content: flex-end;
 }
 .has-back-to-top .fab-hint {
   --fab-hint-bottom-position: 10rem;
@@ -40271,6 +40276,7 @@ label.dropdown__checkbox-label::after {
 .fab-hint.is-expanded .fab-hint__content {
   transform: translateX(0);
   pointer-events: all;
+  opacity: 1;
 }
 .fab-hint[style^=height] {
   pointer-events: all;
@@ -40287,8 +40293,7 @@ label.dropdown__checkbox-label::after {
 
 .fab-hint__wrapper {
   position: relative;
-  margin-left: auto;
-  right: 1rem;
+  top: -3rem;
   height: var(--fab-hint-icon-size);
 }
 
@@ -40317,7 +40322,7 @@ label.dropdown__checkbox-label::after {
 
 .fab-hint__content {
   z-index: 250;
-  position: relative;
+  position: fixed;
   bottom: 0;
   right: 0;
   pointer-events: none;
@@ -40325,7 +40330,8 @@ label.dropdown__checkbox-label::after {
   padding: 2.5rem;
   width: 100vw;
   transform: translateX(100%);
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, opacity 0.8s cubic-bezier(0.19, 1, 0.2, 1);
+  opacity: 0;
 }
 @media (min-width: 992px) {
   .fab-hint__content {

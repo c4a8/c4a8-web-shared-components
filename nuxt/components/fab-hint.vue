@@ -1,5 +1,5 @@
 <template>
-  <sticky-block :sticky-offset-top="offsetTop" breakpoint="lg" :class="classList" :style="containerStyle">
+  <div :class="classList" :style="containerStyle" ref="root">
     <div class="fab-hint__wrapper">
       <div class="fab-hint__icon" @click="handleClick">
         <icon :icon="iconValue" size="large" />
@@ -10,10 +10,11 @@
       <icon class="fab-hint__close" icon="close" size="medium" :hover="true" :circle="true" @click="handleClose" />
       <div class="fab-hint__text" v-html="enhancedText"></div>
     </div>
-  </sticky-block>
+  </div>
 </template>
 <script>
 import State from '../utils/state.js';
+import Tools from '../utils/tools.js';
 
 export default {
   tagName: 'fab-hint',
@@ -25,23 +26,6 @@ export default {
   computed: {
     classList() {
       return ['fab-hint vue-component', this.expaned ? State.EXPANDED : ''];
-    },
-    offsetTop() {
-      // return '200vh';
-      // return 100;
-      return '90vh';
-    },
-    options() {
-      // TODO try the sticky block and the top 200vh might be enough to start the element at the correct spot
-      // return `{
-      //   "parentSelector": ".fab-hint",
-      //   "breakpoint": "xs",
-      //   "startPoint": ".fab-hint__start",
-      //   "endPoint": "9999999",
-      //   "stickyOffsetTop": "0",
-      //   "stickyOffsetBottom": 20
-      // }`;
-      return {};
     },
     containerStyle() {
       return {
@@ -67,28 +51,38 @@ export default {
     },
   },
   mounted() {
-    this.addObserver();
+    // this.addObserver();
+
+    this.bindEvents();
   },
   methods: {
-    addObserver() {
-      const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-          if (mutation.attributeName === 'style') {
-            if (!this.isVisible(mutation?.target?.style?.cssText)) {
-              this.handleClose();
-            }
-          }
-        });
-      });
+    bindEvents() {
+      window.addEventListener('click', this.handleOutsideClick);
+    },
+    handleOutsideClick(e) {
+      if (this.$refs?.root?.classList?.contains(State.EXPANDED) && Tools.isOutsideOf('fab-hint', e)) {
+        this.handleClose();
+      }
+    },
+    // addObserver() {
+    //   const observer = new MutationObserver((mutations) => {
+    //     mutations.forEach((mutation) => {
+    //       if (mutation.attributeName === 'style') {
+    //         if (!this.isVisible(mutation?.target?.style?.cssText)) {
+    //           this.handleClose();
+    //         }
+    //       }
+    //     });
+    //   });
 
-      observer.observe(this.$el, {
-        attributes: true,
-        attributeFilter: ['style'],
-      });
-    },
-    isVisible(style) {
-      return style !== '' ? true : false;
-    },
+    //   observer.observe(this.$el, {
+    //     attributes: true,
+    //     attributeFilter: ['style'],
+    //   });
+    // },
+    // isVisible(style) {
+    //   return style !== '' ? true : false;
+    // },
     handleClick() {
       this.expaned = !this.expaned;
     },

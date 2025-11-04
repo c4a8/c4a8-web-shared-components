@@ -4,20 +4,16 @@
   --fab-hint-icon-size: #{spacing(18)};
   --fab-hint-bg-color: var(--color-fab-background);
   --fab-hint-icon-color: var(--color-copy);
-  --fab-hint-bottom-position: #{spacing(20)};
+  --fab-hint-bottom-position: 0rem;
   --fab-hint-highlight-underline-color: var(--color-orange);
 
   position: relative;
   width: 100%;
-  // pointer-events: none;
-  // float: right;
-  // opacity: 0;
-
-  .sticky-block__start {
-    position: absolute;
-    top: 0;
-    right: 0;
-  }
+  position: sticky;
+  top: calc(100vh - var(--fab-hint-icon-size) - var(--fab-hint-bottom-position));
+  height: 0;
+  display: flex;
+  justify-content: flex-end;
 
   .has-back-to-top & {
     --fab-hint-bottom-position: #{spacing(40)};
@@ -35,6 +31,7 @@
     .fab-hint__content {
       transform: translateX(0);
       pointer-events: all;
+      opacity: 1;
     }
   }
 
@@ -56,17 +53,9 @@
   }
 }
 
-// .fab-hint__start {
-//   position: absolute;
-//   top: 200vh;
-// }
-
 .fab-hint__wrapper {
-  position: absolute;
-  margin-left: auto;
-  right: spacing(4);
-  // top: calc(100vh - var(--fab-hint-bottom-position)) !important;
-  top: -4rem;
+  position: relative;
+  top: -3rem;
   height: var(--fab-hint-icon-size);
 }
 
@@ -98,8 +87,7 @@
 .fab-hint__content {
   @include z-index;
 
-  // position: fixed;
-  position: relative;
+  position: fixed;
   bottom: 0;
   right: 0;
   pointer-events: none;
@@ -107,7 +95,8 @@
   padding: spacing(10);
   width: 100vw;
   transform: translateX(100%);
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, opacity 0.8s $animation-transition;
+  opacity: 0;
 
   @include media-breakpoint-up('lg') {
     width: 360px;
