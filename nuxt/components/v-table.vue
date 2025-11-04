@@ -30,7 +30,12 @@
           <table :class="['v-table table', sticky ? 'sticky' : '', styleClass]">
             <thead v-if="head && table.length" ref="head">
               <tr>
-                <th v-if="sticky" class="stickyColumn col-3 col-lg-4 py-3 font-size-1" v-html="table[0][0]"></th>
+                <th
+                  v-if="sticky"
+                  class="stickyColumn col-3 col-lg-4 py-3 font-size-1"
+                  v-html="table[0][0]"
+                  ref="headSticky"
+                ></th>
                 <th
                   v-for="(col, colIndex) in sticky ? table[0].length - 1 : table[0]"
                   :key="'head-' + colIndex"
@@ -107,6 +112,9 @@ export default {
   methods: {
     setStyle() {
       this.$refs.head.style.backgroundColor = this.headBg;
+
+      this.$refs.headSticky.style.backgroundColor = this.headBg;
+
       this.$refs.head.style.color = this.headColor;
     },
   },
