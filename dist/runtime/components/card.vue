@@ -89,29 +89,29 @@
       <div class="card__img-top position-relative no-gutters is-foreground" v-if="blogtitlepic">
         <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :img-src-sets="imgSrcSets" :lazy="true" />
       </div>
+      <div class="card__body card-body richtext d-flex flex-column h-100">
+        <div class="h-100">
+          <div class="card__scope" v-if="scope">{{ scope }}</div>
+          <headline level="h4"
+            ><a
+              ref="title"
+              class="card__title text-inherit text-decoration-none text-reset mt-4 mb-4"
+              :href="url"
+              :target="target"
+              >{{ combinedTitle }}</a
+            ></headline
+          >
+          <p class="mb-4 mt-4" v-html="truncatedExcerpt"></p>
 
-      <div class="card__body card-body richtext">
-        <div class="card__scope" v-if="scope">{{ scope }}</div>
-        <headline level="h4"
-          ><a
-            ref="title"
-            class="card__title text-inherit text-decoration-none text-reset mt-4 mb-4"
-            :href="url"
-            :target="target"
-            >{{ combinedTitle }}</a
-          ></headline
-        >
-        <p class="mb-4 mt-4" v-html="truncatedExcerpt"></p>
-
-        <ul class="card__points text-black">
-          <template v-for="(points, index) in subPointsList(subPoints)" v-bind:key="index">
-            <li class="mb-4">
-              <span>{{ points }}</span>
-            </li>
-          </template>
-        </ul>
-        <p class="card-warning" v-if="footer">{{ footer }}</p>
-
+          <ul class="card__points text-black">
+            <template v-for="(points, index) in subPointsList(subPoints)" v-bind:key="index">
+              <li class="mb-4">
+                <span>{{ points }}</span>
+              </li>
+            </template>
+          </ul>
+          <p class="card-warning" v-if="footer">{{ footer }}</p>
+        </div>
         <div class="card__link" v-if="cta">
           <cta v-bind="ctaValue" />
         </div>
