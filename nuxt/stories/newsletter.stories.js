@@ -1,6 +1,6 @@
 import NewsletterComponent from '../components/newsletter.vue';
-import birdIdle from '/Users/lisa.nagl/Code/c4a8-web-shared-components/nuxt/stories/data/BirdieNoflap.json';
-import birdFly from '/Users/lisa.nagl/Code/c4a8-web-shared-components/nuxt/stories/data/BirdieFlap.json';
+import birdIdle from '../nuxt/stories/data/BirdieNoflap.json';
+import birdFly from '../nuxt/stories/data/BirdieFlap.json';
 
 export default {
   component: NewsletterComponent,

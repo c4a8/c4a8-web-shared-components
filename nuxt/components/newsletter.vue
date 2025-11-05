@@ -94,9 +94,6 @@ import State from '../utils/state.js';
 import Events from '../utils/events.js';
 import Tools from '../utils/tools.js';
 
-import birdIdle from '/Users/lisa.nagl/Code/c4a8-web-shared-components/nuxt/stories/data/BirdieNoFlap.json';
-import birdFly from '/Users/lisa.nagl/Code/c4a8-web-shared-components/nuxt/stories/data/BirdieFlap.json';
-
 export default {
   tagName: 'newsletter',
   props: {
