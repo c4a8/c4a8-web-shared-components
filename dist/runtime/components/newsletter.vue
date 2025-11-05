@@ -82,6 +82,7 @@ import State from '../utils/state.js';
 import Events from '../utils/events.js';
 import Tools from '../utils/tools.js';
 
+
 export default {
   tagName: 'newsletter',
   props: {
@@ -254,8 +255,8 @@ export default {
       g = (num >> 8) & 255;
       b = num & 255;
       if (r !== undefined && g !== undefined && b !== undefined) {
-        birdFly.assets[1].layers[3].shapes[0].it[1].c.k = [r / 255, g / 255, b / 255];
-        birdIdle.assets[1].layers[3].shapes[0].it[1].c.k = [r / 255, g / 255, b / 255];
+        this.modal.lottie.fly.assets[1].layers[3].shapes[0].it[1].c.k = [r / 255, g / 255, b / 255];
+        this.modal.lottie.idle.assets[1].layers[3].shapes[0].it[1].c.k = [r / 255, g / 255, b / 255];
       }
     },
 
