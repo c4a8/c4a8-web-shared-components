@@ -83,20 +83,24 @@ declare namespace _default {
             let _default_7: null;
             export { _default_7 as default };
         }
-        namespace hasAnimation {
+        namespace links {
             let _default_8: null;
             export { _default_8 as default };
+        }
+        namespace hasAnimation {
+            let _default_9: null;
+            export { _default_9 as default };
         }
         let index: NumberConstructor;
         let externalLanguage: StringConstructor;
         let spacing: StringConstructor;
         namespace store {
-            let _default_9: null;
-            export { _default_9 as default };
-        }
-        namespace row {
             let _default_10: null;
             export { _default_10 as default };
+        }
+        namespace row {
+            let _default_11: null;
+            export { _default_11 as default };
         }
         let tags: ArrayConstructor;
         namespace hasNoAspectRatio {

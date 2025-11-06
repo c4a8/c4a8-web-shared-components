@@ -89,7 +89,7 @@
       <div class="card__img-top position-relative no-gutters is-foreground" v-if="blogtitlepic">
         <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :img-src-sets="imgSrcSets" :lazy="true" />
       </div>
-      <div class="card__body card-body richtext d-flex flex-column h-100">
+      <div class="card__body card-body richtext d-flex flex-column">
         <div class="h-100">
           <div class="card__scope" v-if="scope">{{ scope }}</div>
           <headline level="h4"
@@ -101,7 +101,7 @@
               >{{ combinedTitle }}</a
             ></headline
           >
-          <p class="mb-4 mt-4" v-html="truncatedExcerpt"></p>
+          <p class="card__excerpt mb-4 mt-4" v-html="truncatedExcerpt"></p>
 
           <ul class="card__points text-black">
             <template v-for="(points, index) in subPointsList(subPoints)" v-bind:key="index">
@@ -114,6 +114,9 @@
         </div>
         <div class="card__link" v-if="cta">
           <cta v-bind="ctaValue" />
+        </div>
+        <div class="card__link" v-if="links">
+          <cta v-for="cta in links" v-bind="cta" :link="cta.link == undefined ? true : cta.link" />
         </div>
       </div>
     </template>
@@ -251,6 +254,7 @@ export default {
         cta.link = true;
       }
 
+
       return cta;
     },
     cardFooterData() {
@@ -380,6 +384,9 @@ export default {
     dataAuthors: Object,
     scope: String,
     cta: {
+      default: null,
+    },
+    links: {
       default: null,
     },
     hasAnimation: {
