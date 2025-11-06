@@ -113,8 +113,8 @@
           <p class="card-warning" v-if="footer">{{ footer }}</p>
         </div>
         <div class="card__link d-flex flex-wrap" > 
-          <cta v-if="cta" v-bind="ctaValue" />
-          <cta v-if="ctaList" v-for="cta in ctaList" v-bind="cta" :link="cta.link == undefined ? true : cta.link" />
+          <cta v-if="Array.isArray(cta)" v-for="cta in cta" v-bind="cta" :link="cta.link == undefined ? true : cta.link" />       
+          <cta v-else v-bind="ctaValue" />
         </div>
       </div>
     </template>
@@ -381,9 +381,6 @@ export default {
     dataAuthors: Object,
     scope: String,
     cta: {
-      default: null,
-    },
-    ctaList: {
       default: null,
     },
     hasAnimation: {
