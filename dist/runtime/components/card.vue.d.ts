@@ -83,7 +83,7 @@ declare namespace _default {
             let _default_7: null;
             export { _default_7 as default };
         }
-        namespace links {
+        namespace ctaList {
             let _default_8: null;
             export { _default_8 as default };
         }
