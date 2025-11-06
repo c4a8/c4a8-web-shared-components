@@ -1,55 +1,30 @@
-$fab-button-icon-size: 72px;
-$fab-button-bottom-offset-lg: 4px;
-$fab-button-bottom-offset-xs: 0px;
-$fab-button-scroll-top: 200px;
-
 .fab-button {
   @include z-index;
+
+  --fab-button-icon-size: #{spacing(18)};
+  --fab-button-bg-color: var(--color-fab-background);
+  --fab-button-icon-color: var(--color-copy);
+  --fab-button-bottom-position: 0rem;
+  --fab-button-highlight-underline-color: var(--color-orange);
 
   position: relative;
   width: 100%;
   right: 0;
 
   &.fab-button--sticky {
-    &:not([style^='height']) {
-      .fab-button__modal {
-        &.is-off-screen {
-          transform: translateX(0);
-          opacity: 0;
-          transition-duration: 0s;
-          pointer-events: none;
-          width: 0;
-        }
-      }
-    }
+    position: sticky;
+    top: calc(100vh - var(--fab-button-icon-size) - var(--fab-button-bottom-position));
+    height: 0;
+    display: flex;
+    justify-content: flex-end;
 
-    .fab-button__start {
-      top: calc(-100vh + (#{$fab-button-bottom-offset-xs} * 2));
-    }
-
-    &[style^='height'] {
-      .fab-button__wrapper {
-        top: calc(100vh - (#{$fab-button-icon-size} + #{$fab-button-bottom-offset-xs})) !important;
-      }
-    }
-
-    .fab-button__wrapper {
-      top: calc(-#{$fab-button-icon-size} + #{$fab-button-bottom-offset-xs});
-    }
-
-    @include media-breakpoint-up(lg) {
-      .fab-button__start {
-        top: calc(-100vh + (#{$fab-button-bottom-offset-lg} * 2));
-      }
-
-      &[style^='height'] {
-        .fab-button__wrapper {
-          top: calc(100vh - (#{$fab-button-icon-size} + #{$fab-button-bottom-offset-lg})) !important;
-        }
-      }
-
-      .fab-button__wrapper {
-        top: calc(-#{$fab-button-icon-size} + #{$fab-button-bottom-offset-lg});
+    .fab-button__modal {
+      &.is-off-screen {
+        transform: translateX(0);
+        opacity: 0;
+        transition-duration: 0s;
+        pointer-events: none;
+        width: 0;
       }
     }
   }
@@ -66,15 +41,11 @@ $fab-button-scroll-top: 200px;
   }
 }
 
-.fab-button__start {
-  position: absolute;
-}
-
 .fab-button__wrapper {
   position: relative;
-  width: 100% !important;
-  margin-left: auto;
+  top: -3rem;
   right: spacing(4);
+  height: var(--fab-button-icon-size);
 }
 
 .fab-button__icon {
@@ -88,8 +59,10 @@ $fab-button-scroll-top: 200px;
   background-color: var(--color-fab-background);
   border-radius: 100%;
   padding: spacing(3);
-  width: $fab-button-icon-size;
-  height: $fab-button-icon-size;
+  width: var(--fab-button-icon-size);
+  height: var(--fab-button-icon-size);
+  transform: translateY(100%);
+  transform: translateY(0);
   right: 0;
   overflow: hidden;
 
@@ -105,12 +78,12 @@ $fab-button-scroll-top: 200px;
 .fab-button__modal {
   @include shadow('light');
 
+  position: fixed;
   background-color: var(--color-fab-background);
   transition: transform 0.7s $animation-transition, opacity 0.7s $animation-transition,
     height 0.7s $animation-transition;
-  right: 0;
   bottom: 0;
-  position: fixed;
+  right: 0;
   width: unquote('min(460px, 100vw)');
   overflow: hidden;
   will-change: transform, opacity, height;
@@ -127,10 +100,7 @@ $fab-button-scroll-top: 200px;
   }
 
   @include media-breakpoint-up(lg) {
-    right: spacing($size: 4, $negative: true);
     flex-direction: row;
-    bottom: -#{$fab-button-icon-size};
-    position: absolute;
   }
 }
 

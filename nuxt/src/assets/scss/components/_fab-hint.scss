@@ -7,7 +7,6 @@
   --fab-hint-bottom-position: 0rem;
   --fab-hint-highlight-underline-color: var(--color-orange);
 
-  position: relative;
   width: 100%;
   position: sticky;
   top: calc(100vh - var(--fab-hint-icon-size) - var(--fab-hint-bottom-position));
