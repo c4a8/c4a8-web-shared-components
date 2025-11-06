@@ -21,11 +21,12 @@ export default {
   data() {
     return {
       expaned: false,
+      isVisible: false,
     };
   },
   computed: {
     classList() {
-      return ['fab-hint vue-component', this.expaned ? State.EXPANDED : ''];
+      return ['fab-hint vue-component', this.expaned ? State.EXPANDED : '', this.isVisible ? 'is-visible' : ''];
     },
     containerStyle() {
       return {
@@ -51,43 +52,36 @@ export default {
     },
   },
   mounted() {
-    // this.addObserver();
-
     this.bindEvents();
+    this.handleScroll();
+  },
+  beforeUnmount() {
+    this.unbindEvents();
   },
   methods: {
     bindEvents() {
+      window.addEventListener('scroll', this.handleScroll);
       window.addEventListener('click', this.handleOutsideClick);
+    },
+    unbindEvents() {
+      window.removeEventListener('scroll', this.handleScroll);
+      window.removeEventListener('click', this.handleOutsideClick);
     },
     handleOutsideClick(e) {
       if (this.$refs?.root?.classList?.contains(State.EXPANDED) && Tools.isOutsideOf('fab-hint', e)) {
         this.handleClose();
       }
     },
-    // addObserver() {
-    //   const observer = new MutationObserver((mutations) => {
-    //     mutations.forEach((mutation) => {
-    //       if (mutation.attributeName === 'style') {
-    //         if (!this.isVisible(mutation?.target?.style?.cssText)) {
-    //           this.handleClose();
-    //         }
-    //       }
-    //     });
-    //   });
-
-    //   observer.observe(this.$el, {
-    //     attributes: true,
-    //     attributeFilter: ['style'],
-    //   });
-    // },
-    // isVisible(style) {
-    //   return style !== '' ? true : false;
-    // },
     handleClick() {
       this.expaned = !this.expaned;
     },
     handleClose() {
       this.expaned = false;
+    },
+    handleScroll() {
+      const scrollThreshold = window.innerHeight * 2;
+
+      this.isVisible = window.scrollY >= scrollThreshold;
     },
   },
   props: {

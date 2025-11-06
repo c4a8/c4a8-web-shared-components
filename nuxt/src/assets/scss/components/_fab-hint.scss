@@ -13,6 +13,14 @@
   height: 0;
   display: flex;
   justify-content: flex-end;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+
+  &.is-visible {
+    opacity: 1;
+    pointer-events: all;
+  }
 
   .has-back-to-top & {
     --fab-hint-bottom-position: #{spacing(40)};
@@ -40,6 +48,10 @@
       height: inherit;
     }
   }
+
+  &.is-visible .fab-hint__icon {
+    transform: translateY(0);
+  }
 }
 
 .fab-hint__wrapper {
@@ -64,7 +76,6 @@
   height: var(--fab-hint-icon-size);
   transition: transform 0.8s $animation-transition;
   transform: translateY(100%);
-  transform: translateY(0);
   right: 0;
   overflow: hidden;
 
