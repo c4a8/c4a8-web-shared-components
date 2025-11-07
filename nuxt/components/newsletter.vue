@@ -75,13 +75,23 @@
   </div>
 </template>
 <style>
-@keyframes fly{0%{transform:translateX(-100vw)}to{transform:translateX(0)}}@media (prefers-reduced-motion:no-preference){.banner-animation{animation:fly 4.5s 1}}
+@keyframes fly {
+  0% {
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .banner-animation {
+    animation: fly 4.5s forwards;
+  }
+}
 </style>
 <script>
 import State from '../utils/state.js';
 import Events from '../utils/events.js';
 import Tools from '../utils/tools.js';
-
 
 export default {
   tagName: 'newsletter',
@@ -165,7 +175,7 @@ export default {
             banner.classList.add('banner-animation');
             setTimeout(() => {
               this.animationCompleted = true;
-              banner.classList.remove('banner-animation');
+
               this.idle = true;
               this.lottie.play();
             }, this.flyAnimationDuration);

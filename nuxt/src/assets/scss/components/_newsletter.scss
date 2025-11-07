@@ -62,7 +62,10 @@
   }
 }
 
+
+
 .newsletter-banner {
+     transform: translateX(-100vw);
   height: auto;
 
   @include media-breakpoint-up(lg) {

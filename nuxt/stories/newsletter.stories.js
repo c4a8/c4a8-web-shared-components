@@ -10,7 +10,7 @@ export default {
       components: { story },
       template: `
         <div>
-          <div style="height: 100vh;" class="dummy-content"></div>
+          <div style="height: 120vh;" class="dummy-content"></div>
           <story />
           <div style="height: 100vh;" class="dummy-content"></div>
         </div>

@@ -36,7 +36,7 @@
     ref="modalContent"
     :style="{ color: contrastColor, height: heightFixed }"
   >
-    <div class="newsletter-modal__content my-md-4">
+    <div class="newsletter-modal__content my-md-4" :class="success ? 'd-flex align-items-center' : ''">
       <div>
         <headline :style="{ color: contrastColor }" level="h2" class="mb-2"
           >{{ success ? confirmation.headline : headline }}
@@ -61,7 +61,7 @@
         color="var(--color-red)"
         :strokeColor="contrastColor"
         size="custom"
-        customSize="15em"
+        customSize="10em"
         style="opacity: 0"
         :style="{ display: success ? '' : 'none' }"
       />
