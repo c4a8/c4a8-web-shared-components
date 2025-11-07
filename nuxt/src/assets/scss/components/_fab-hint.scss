@@ -23,15 +23,15 @@
   }
 
   .has-back-to-top & {
-    --fab-hint-bottom-position: #{spacing(40)};
+    --fab-hint-bottom-position: #{spacing(12)};
 
-    &[style^='height'] {
-      transition-delay: 0.2s;
+    // &[style^='height'] {
+    transition-delay: 0.2s;
 
-      .fab-hint__icon {
-        transition-delay: inherit;
-      }
+    .fab-hint__icon {
+      transition-delay: inherit;
     }
+    // }
   }
 
   &.is-expanded {
