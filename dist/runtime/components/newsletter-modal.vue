@@ -36,7 +36,7 @@
     ref="modalContent"
     :style="{ color: contrastColor, height: heightFixed }"
   >
-    <div class="newsletter-modal__content my-md-4">
+    <div class="newsletter-modal__content my-md-4" :class="success ? 'd-flex align-items-center' : ''">
       <div>
         <headline :style="{ color: contrastColor }" level="h2" class="mb-2"
           >{{ success ? confirmation.headline : headline }}
@@ -56,12 +56,12 @@
     </div>
     <div class="position-absolute d-flex justify-content-end align-items-center mx-n2 my-md-8 right-0 bottom-0">
       <icon
-        class="iconHeart position-absolute"
+        class="iconHeart position-absolute" :class="screenXS ? '' : 'mb-11'"
         icon="heart"
         color="var(--color-red)"
         :strokeColor="contrastColor"
         size="custom"
-        customSize="15em"
+        :customSize="screenXS ? '10em' : '15em'"
         style="opacity: 0"
         :style="{ display: success ? '' : 'none' }"
       />
@@ -73,8 +73,8 @@
         :autoplay="true"
         :onLoopComplete="setIdle"
         :speed="setSpeed()"
-        width="170"
-        height="170"
+        :width="screenXS ? 170 : 220"
+        :height="screenXS ? 170 : 220"
       />
     </div>
   </div>
@@ -116,12 +116,13 @@ export default {
       default: false,
     },
   },
-  data() {
+  data() {  
     return {
       success: false,
       idle: true,
       contrastColor: this.light ? 'var(--color-white)' : 'var(--color-black)',
       isMobile: Tools.isBelowBreakpoint('lg'),
+      screenXS: visualViewport.height <= 750,
       heightFixed: 'auto',
     };
   },
