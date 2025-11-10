@@ -71,9 +71,13 @@ export const JobApplication = {
       trigger: 'modal',
     },
     modal: {
+      jobId: '1338121',
+      apiKey: import.meta.env.STORYBOOK_PERSONIO_API_KEY,
+      modalId: 'bewerbung1',
       show: true,
       application: true,
       form: {
+        hasRecaptcha: false,
         headline: 'Jetzt bewerben',
         ctaText: 'Absenden',
         cta: {
