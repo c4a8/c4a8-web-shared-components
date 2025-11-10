@@ -43,6 +43,8 @@ export default {
     enhancedText() {
       if (!this.text) return '';
 
+      if (typeof DOMParser === 'undefined') return '';
+
       const parser = new DOMParser();
       const doc = parser.parseFromString(this.text, 'text/html');
 

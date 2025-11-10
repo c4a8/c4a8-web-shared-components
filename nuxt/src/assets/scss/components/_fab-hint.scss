@@ -4,7 +4,7 @@
   --fab-hint-icon-size: #{spacing(18)};
   --fab-hint-bg-color: var(--color-fab-background);
   --fab-hint-icon-color: var(--color-copy);
-  --fab-hint-bottom-position: 0rem;
+  --fab-hint-bottom-position: -4rem;
   --fab-hint-highlight-underline-color: var(--color-orange);
 
   width: 100%;
@@ -25,13 +25,17 @@
   .has-back-to-top & {
     --fab-hint-bottom-position: #{spacing(12)};
 
-    // &[style^='height'] {
+    --fab-hint-bottom-position: -4.5rem;
+
     transition-delay: 0.2s;
 
     .fab-hint__icon {
       transition-delay: inherit;
     }
-    // }
+
+    .fab-hint__wrapper {
+      top: -10rem;
+    }
   }
 
   &.is-expanded {
@@ -56,7 +60,7 @@
 
 .fab-hint__wrapper {
   position: relative;
-  top: -3rem;
+  top: -6rem;
   right: spacing(4);
   height: var(--fab-hint-icon-size);
 }
