@@ -1,5 +1,8 @@
 declare namespace _default {
     let tagName: string;
+    namespace computed {
+        function hasRecaptcha(): any;
+    }
     namespace props {
         let form: ObjectConstructor;
         namespace success {
