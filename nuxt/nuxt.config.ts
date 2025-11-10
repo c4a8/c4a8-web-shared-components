@@ -2,6 +2,7 @@
 import { defineNuxtConfig } from 'nuxt/config';
 
 const recaptchaSiteKey = process.env.NUXT_PUBLIC_RECAPTCHA_SITE_KEY ?? null;
+const personioApiKey = process.env.NUXT_PUBLIC_PERSONIO_API_KEY ?? null;
 declare module 'nuxt/config' {
   interface NuxtConfig {
     storybook?: {
@@ -46,6 +47,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       recaptchaSiteKey,
+      personioApiKey,
     },
   },
 });

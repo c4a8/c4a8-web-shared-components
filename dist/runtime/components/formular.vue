@@ -184,6 +184,8 @@ export default {
     this.originalAction = this.formAction = this.form?.action;
     this.formInstance = new Form(this.$refs.root, null, this.validate.bind(this), this.hasRecaptcha, this.siteKey);
 
+    Form.expose(this.formInstance);
+
     this.novalidateValue = 'novalidate';
 
     if (!this.$refs.headline) return;
