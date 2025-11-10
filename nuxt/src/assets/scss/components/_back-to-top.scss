@@ -46,19 +46,6 @@ $back-to-top-bottom-offset-xs: 32px;
     }
   }
 
-  // pointer-events: none;
-  // opacity: 0;
-
-  // &[style^='height'] {
-  //   pointer-events: all;
-  //   opacity: 1;
-  //   transition: opacity 0.8s $animation-transition;
-
-  //   .back-to-top__icon {
-  //     transform: translateY(0) rotate(-90deg);
-  //   }
-  // }
-
   .back-to-top__icon {
     .icon {
       width: inherit;
@@ -69,10 +56,7 @@ $back-to-top-bottom-offset-xs: 32px;
 
 .back-to-top__wrapper {
   position: relative;
-  // margin-left: auto;
   right: spacing(7);
-  // top: calc(100vh - (#{$back-to-top-size} + #{$back-to-top-bottom-offset-lg})) !important;
-
   top: -4rem;
 }
 
