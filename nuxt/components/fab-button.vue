@@ -1,24 +1,21 @@
 <template>
   <div :class="classList" ref="root">
-    <div class="fab-button__start"></div>
-    <sticky-block :sticky-offset-top="offsetTop">
-      <div class="fab-button__wrapper" :class="['fab-button__wrapper', !noSticky ? 'js-sticky-block' : '']">
-        <div v-if="modal" class="fab-button__modal is-off-screen" ref="modal">
-          <div class="fab-button__close" ref="close">
-            <icon icon="close" :circle="true" :hover="true" size="medium" />
-          </div>
-          <contact v-if="modal.contact" :contact="modal.contact.infos" :collapsed="true" :ajax="true" />
-        </div>
-        <div
-          class="fab-button__icon"
-          ref="icon"
-          :style="iconStyle"
-          v-bind="trigger ? { 'data-trigger-id': trigger } : {}"
-        >
-          <icon :icon="icon" size="large" />
-        </div>
+    <div class="fab-button__wrapper" :class="['fab-button__wrapper', !noSticky ? 'js-sticky-block' : '']">
+      <div
+        class="fab-button__icon"
+        ref="icon"
+        :style="iconStyle"
+        v-bind="trigger ? { 'data-trigger-id': trigger } : {}"
+      >
+        <icon :icon="icon" size="large" />
       </div>
-    </sticky-block>
+    </div>
+    <div v-if="modal" class="fab-button__modal is-off-screen" ref="modal">
+      <div class="fab-button__close" ref="close">
+        <icon icon="close" :circle="true" :hover="true" size="medium" />
+      </div>
+      <contact v-if="modal.contact" :contact="modal.contact.infos" :collapsed="true" :ajax="true" />
+    </div>
     <a class="fab-trigger" ref="link"></a>
   </div>
 </template>
@@ -73,9 +70,6 @@ export default {
       if (this.iconColor) style.color = this.iconColor;
 
       return style;
-    },
-    offsetTop() {
-      return window ? window.innerHeight * 0.97 : null;
     },
   },
   data() {

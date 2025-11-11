@@ -1,8 +1,9 @@
 <template>
   <tracking />
   <content>
-    <!-- <fab-hint v-if="fabHintData" /> -->
     <hero :hero="casestudyNormalized?.hero" v-if="casestudyNormalized" />
+    <fab-hint v-if="fabHintData" v-bind="fabHintData" />
+    <back-to-top />
     <service-overview v-if="casestudyNormalized?.serviceOverview" v-bind="casestudyNormalized?.serviceOverview" />
     <div class="container space-top-1 space-top-lg-2">
       <div class="w-xl-80 mx-xl-auto">
@@ -85,9 +86,9 @@ const casestudyNormalized = computed(() => {
   };
 });
 
-// const fabHintData = computed(() => {
-//   return event.value?.meta?.fabHint ? event.value.meta.fabHint : null;
-// });
+const fabHintData = computed(() => {
+  return event.value?.meta?.hasFabHint ? event.value.meta.hasFabHint : null;
+});
 
 const componentListData = computed(() => {
   return event.value?.meta?.componentList;

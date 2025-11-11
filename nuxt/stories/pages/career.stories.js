@@ -5,9 +5,9 @@ import Content from '../components/content.vue';
 import Hero from '../components/hero.vue';
 import IntroText from '../components/intro-text.vue';
 import VFooter from '../components/v-footer.vue';
+import FabButton from '../components/fab-button.vue';
 import TextImage from '../components/text-image.vue';
-// import FabButton from '../components/fab-button.vue';
-// import Back
+
 import HeaderData from '../.storybook/data/header';
 import { JobApplication } from '../textImage.stories';
 
@@ -20,7 +20,7 @@ export default {
   },
   decorators: [
     (story, context) => ({
-      components: { story, PageDefault, VHeader, VFooter, Content, Hero, IntroText, TextImage },
+      components: { story, PageDefault, VHeader, VFooter, Content, Hero, IntroText, FabButton, TextImage },
       setup() {
         return { args: context.args };
       },
@@ -29,6 +29,7 @@ export default {
           <v-header v-bind="args.header" />
           <Content>
        	    <Hero :hero="args.hero" />
+            <FabButton v-bind="args.fabButton" />
             <IntroText v-bind="args.introText" />
             <TextImage v-bind="args.textImage" />
             <div style="height: 200vh;" class="dummy-content"></div>
@@ -120,6 +121,9 @@ export const Career = {
     },
     textImage: {
       ...JobApplication.args,
-    },
+    },    
   },
 };
+
+
+

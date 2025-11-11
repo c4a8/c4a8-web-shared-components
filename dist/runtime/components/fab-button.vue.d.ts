@@ -45,7 +45,6 @@ declare namespace _default {
             '--color-fab-background': any;
             color: any;
         };
-        function offsetTop(): number | null;
     }
     function data(): {
         resetDelay: number;

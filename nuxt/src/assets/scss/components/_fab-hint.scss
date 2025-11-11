@@ -4,23 +4,37 @@
   --fab-hint-icon-size: #{spacing(18)};
   --fab-hint-bg-color: var(--color-fab-background);
   --fab-hint-icon-color: var(--color-copy);
-  --fab-hint-bottom-position: #{spacing(20)};
+  --fab-hint-bottom-position: -4rem;
   --fab-hint-highlight-underline-color: var(--color-orange);
 
-  position: relative;
   width: 100%;
-  pointer-events: none;
+  position: sticky;
+  top: calc(100vh - var(--fab-hint-icon-size) - var(--fab-hint-bottom-position));
+  height: 0;
+  display: flex;
+  justify-content: flex-end;
   opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+
+  &.is-visible {
+    opacity: 1;
+    pointer-events: all;
+  }
 
   .has-back-to-top & {
-    --fab-hint-bottom-position: #{spacing(40)};
+    --fab-hint-bottom-position: #{spacing(12)};
 
-    &[style^='height'] {
-      transition-delay: 0.2s;
+    --fab-hint-bottom-position: -4.5rem;
 
-      .fab-hint__icon {
-        transition-delay: inherit;
-      }
+    transition-delay: 0.2s;
+
+    .fab-hint__icon {
+      transition-delay: inherit;
+    }
+
+    .fab-hint__wrapper {
+      top: -10rem;
     }
   }
 
@@ -28,16 +42,7 @@
     .fab-hint__content {
       transform: translateX(0);
       pointer-events: all;
-    }
-  }
-
-  &[style^='height'] {
-    pointer-events: all;
-    opacity: 1;
-    transition: opacity 0.8s $animation-transition;
-
-    .fab-hint__icon {
-      transform: translateY(0);
+      opacity: 1;
     }
   }
 
@@ -47,18 +52,17 @@
       height: inherit;
     }
   }
-}
 
-.fab-hint__start {
-  position: absolute;
-  top: 200vh;
+  &.is-visible .fab-hint__icon {
+    transform: translateY(0);
+  }
 }
 
 .fab-hint__wrapper {
   position: relative;
-  margin-left: auto;
+  top: -6rem;
   right: spacing(4);
-  top: calc(100vh - var(--fab-hint-bottom-position)) !important;
+  height: var(--fab-hint-icon-size);
 }
 
 .fab-hint__icon {
@@ -96,7 +100,8 @@
   padding: spacing(10);
   width: 100vw;
   transform: translateX(100%);
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, opacity 0.8s $animation-transition;
+  opacity: 0;
 
   @include media-breakpoint-up('lg') {
     width: 360px;
