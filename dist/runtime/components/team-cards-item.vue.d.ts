@@ -15,6 +15,12 @@ declare namespace _default {
             let _default: boolean;
             export { _default as default };
         }
+        export namespace noBorder {
+            let type_1: BooleanConstructor;
+            export { type_1 as type };
+            let _default_1: boolean;
+            export { _default_1 as default };
+        }
     }
 }
 export default _default;

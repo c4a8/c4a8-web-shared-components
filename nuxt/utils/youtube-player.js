@@ -1,7 +1,7 @@
 class YoutubePlayer {
   static getEmbedSrc(videoId, autoplay, playlist, subtitles) {
-    const origin = encodeURIComponent(document.location.origin);
-    const referrer = encodeURIComponent(document.location.href);
+    const origin = encodeURIComponent(document?.location?.origin);
+    const referrer = encodeURIComponent(document?.location?.href);
 
     const playlistParams = playlist ? 'playlist?list=' : '';
     const paramSymbol = playlist ? '&' : '?';

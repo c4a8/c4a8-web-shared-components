@@ -1,3 +1,5 @@
+import { getAssetPath } from '../.storybook/templates';
+
 import TextImageComponent from '../components/text-image.vue';
 import lottie1 from './data/lottie1.json';
 
@@ -63,73 +65,100 @@ export const WithoutAnimation = {
 
 export const JobApplication = {
   args: {
-
     copy: 'Keine passende offene Stelle gefunden? Kein Problem: Gerne lernen wir dich auch einfach so kennen. Vielleicht wissen wir nämlich nur noch nicht, dass wir dich brauchen, weil wir noch nicht wissen, dass es dich gibt!',
     cta: {
       text: 'Initiativbewerbung',
-      trigger: "modal",
-
+      trigger: 'modal',
     },
     modal: {
+      jobId: '1338121',
+      apiKey: import.meta.env.STORYBOOK_PERSONIO_API_KEY,
+      modalId: 'bewerbung1',
       show: true,
       application: true,
-
       form: {
-        ctaText: "Absenden",
+        hasRecaptcha: false,
+        headline: 'Jetzt bewerben',
+        ctaText: 'Absenden',
         cta: {
-          skin: "primary is-light",
+          skin: 'primary',
+          width: 'w-100 w-lg-30',
         },
-        method: "post",
-        action: "/successful/",
+        method: 'post',
+        action: '/successful/',
         fields: [
           {
-            label: "Name*",
-            type: "text",
-            id: "name",
+            label: 'Vorname',
+            type: 'text',
+            col: 6,
+            rowStart: true,
             required: true,
-            requiredMsg: "Bitte Namen eingeben",
+            id: 'firstName',
           },
           {
-            label: "Unternehmen*",
-            type: "text",
-            id: "company",
+            label: 'Nachname',
+            type: 'text',
+            col: 6,
+            rowEnd: true,
             required: true,
-            requiredMsg: "Bitte Unternehmensnamen ausfüllen",
+            id: 'lastName',
           },
           {
-            label: "Email-Adresse*",
-            type: "email",
-            id: "email",
+            label: 'E-Mail Adresse',
+            type: 'email',
+            col: 6,
+            rowStart: true,
             required: true,
-            requiredMsg: "Bitte E-Mail-Adresse eingeben",
+            id: 'email',
+          },
+          {
+            label: 'Telefon',
+            type: 'text',
+            col: 6,
+            rowEnd: true,
+            required: true,
+            id: 'phone',
+          },
+          {
+            label: 'Kündigungsfrist (optional)',
+            type: 'text',
+            col: 6,
+            rowStart: true,
+            id: 'cancellation',
+          },
+          {
+            label: 'Gehaltsvorstellung (optional)',
+            type: 'text',
+            col: 6,
+            rowEnd: true,
+            id: 'salary',
+          },
+          {
+            label: 'Nachricht (optional)',
+            type: 'textarea',
+            id: 'message',
+          },
+          {
+            type: 'file',
+            col: 12,
+            rowStart: true,
+            rowEnd: true,
+            formAttachments: {
+              required: true,
+              requiredMsg: 'Bitte einen Anhang hinzufügen',
+              id: 'file',
+              description: 'Anhänge wie Lebenslauf und Anschreiben hinzufügen',
+              text: 'Oder Dateien auswählen',
+              extensions: ['pdf'],
+              maxSize: 20000000,
+            },
           },
           {
             label:
-              'Deine Daten werden zur Bearbeitung und Beantwortung deiner Anfrage bei uns gespeichert. Weitere Informationen zum Datenschutz findest du in unserer <a href="/de/datenschutz">Datenschutzerklärung</a>.',
-            type: "checkbox",
-            id: "dataprotection",
+              "<small>Lorem ipsum dolor sit amet, consectetur adipiscing elit <a href='javascript:void()'>Lorem Ipsum</a>. Sit amet consectetur adipiscing elit.</small>",
+            type: 'checkbox',
+            id: 'privacy',
             required: true,
-            requiredMsg: "Bitte bestätigen",
-          },
-          {
-            type: "hidden",
-            id: "_subject",
-            value: "Form: Managed Red Tenant | DE",
-          },
-          {
-            type: "hidden",
-            id: "_topic",
-            value: "Security",
-          },
-
-          {
-            type: "hidden",
-            id: "inbox_key",
-            value: "gkgab-contact-form",
-          },
-          {
-            type: "hidden",
-            id: "_gotcha",
           },
         ],
       },
@@ -149,21 +178,15 @@ export const JobApplication = {
         },
         text: 'Text sollte beinhalten dass die Bewerbungsunterlagen sorgfältig geprüft werden und dass der Bewerber in der Regel innerhalb einer Woche Feedback erwarten kann',
       },
-
-
     },
-      copyClasses: 'h3-font-size',
-       
-        white: true,
-        image: "/svg/icon-hand.svg",
-        cloudinary: false,
-        bgColor: 'var(--color-career-background)',
-        left: true,
-        spacing: 'space-top-2 space-bottom-2',
-
+    copyClasses: 'h3-font-size',
+    white: true,
+    image: getAssetPath('../svg/icons/icon-hand.svg'),
+    cloudinary: false,
+    bgColor: 'var(--color-career-background)',
+    left: true,
+    spacing: 'space-top-2 space-bottom-2',
   },
-
-
 };
 
 export const LeftFloating = {
@@ -256,25 +279,24 @@ export const WithAnimation = {
 export const WithList = {
   args: {
     image: 'svg/icons/icon-products.svg',
-    alt: "Azure Training Timeline",
-    level: "h2",
-    headlineText: "Tag 1 - Tag 4",
-    overline: "10:00 - 17:00 Uhr",
-    listTitle: "Überblick",
+    alt: 'Azure Training Timeline',
+    level: 'h2',
+    headlineText: 'Tag 1 - Tag 4',
+    overline: '10:00 - 17:00 Uhr',
+    listTitle: 'Überblick',
     listItems: [
-      "Azure Abonnements verwalten",
-      "Identitäten sichern",
-      "Infrastruktur verwalten",
-      "Virtuelle Netzwerke konfigurieren",
-      "Azure- und lokale Standorte verbinden",
-      "Netzwerkverkehr verwalten",
-      "Speicherlösungen implementieren",
-      "Virtuelle Maschinen erstellen und skalieren",
-      "Webanwendungen und Container implementieren",
-      "Daten sichern und teilen",
-      "Lösungen überwachen"
+      'Azure Abonnements verwalten',
+      'Identitäten sichern',
+      'Infrastruktur verwalten',
+      'Virtuelle Netzwerke konfigurieren',
+      'Azure- und lokale Standorte verbinden',
+      'Netzwerkverkehr verwalten',
+      'Speicherlösungen implementieren',
+      'Virtuelle Maschinen erstellen und skalieren',
+      'Webanwendungen und Container implementieren',
+      'Daten sichern und teilen',
+      'Lösungen überwachen',
     ],
     copy: 'Das Training wird Remote über Microsoft Teams durchgeführt. Sie benötigen ein Windows 11 Notebook mit vorbereiteter Virtualisierung und entsprechender Festplattenkapazität. Zusätzlich brauchen Sie Microsoft Teams, eine stabile Internetverbindung, ein Headset und eine Webcam.',
   },
 };
-

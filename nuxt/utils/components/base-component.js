@@ -1,9 +1,9 @@
-import State from "../state.js";
+import State from '../state.js';
 
 class BaseComponent {
-  static rootSelector = "";
+  static rootSelector = '';
   static instances = [];
-  static namespacePrefix = "baseComponents";
+  static namespacePrefix = 'baseComponents';
 
   constructor(root, options) {
     if (!root) return;
@@ -57,12 +57,9 @@ class BaseComponent {
     const selectedElement = element || document;
     const notInitializedSelector = `${this.rootSelector}:not(.${State.INITIALIZED})`;
 
-    [].forEach.call(
-      selectedElement.querySelectorAll(notInitializedSelector),
-      (element) => {
-        this.initElement(element);
-      }
-    );
+    [].forEach.call(selectedElement.querySelectorAll(notInitializedSelector), (element) => {
+      this.initElement(element);
+    });
   }
 }
 

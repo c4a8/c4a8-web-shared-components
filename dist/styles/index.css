@@ -1,10 +1,10 @@
 @charset "UTF-8";
 /*!
-* Bootstrap v4.5.3 (https://getbootstrap.com/)
-* Copyright 2011-2020 The Bootstrap Authors
-* Copyright 2011-2020 Twitter, Inc.
-* Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-*/
+ * Bootstrap v4.5.3 (https://getbootstrap.com/)
+ * Copyright 2011-2020 The Bootstrap Authors
+ * Copyright 2011-2020 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ */
 *,
 ::after,
 ::before {
@@ -1626,7 +1626,7 @@ pre code {
 .table-borderless td,
 .table-borderless th,
 .table-borderless thead th {
-  border: 0;
+  border: 20px;
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
@@ -1885,6 +1885,19 @@ pre code {
 .table-dark.table-hover tbody tr:hover {
   color: #fff;
   background-color: rgba(255, 255, 255, 0.075);
+}
+
+.table-sticky th {
+  border: 0.01rem solid !important;
+}
+
+.table-sticky td:nth-child(odd) {
+  background-color: #f6f5fa;
+}
+
+.table-sticky th,
+.table-sticky td {
+  border-top: 2px solid white !important;
 }
 
 @media (max-width: 575.98px) {
@@ -46580,6 +46593,21 @@ shape {
 .v-table mark {
   background-color: var(--color-table-mark);
 }
+.v-table.sticky .stickyColumn {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+.v-table.sticky th:not(.stickyColumn),
+.v-table.sticky td:not(.stickyColumn) {
+  text-align: center;
+  min-width: 5rem;
+}
+.v-table.sticky th,
+.v-table.sticky td {
+  align-content: center;
+  box-sizing: initial;
+}
 
 .agenda {
   width: 100%;
@@ -50296,6 +50324,73 @@ shape {
   }
 }
 
+@media print {
+  @page {
+    size: A4;
+    margin: 0.8cm 0.8cm;
+    @top-left {
+      content: "";
+      font-size: 6pt;
+    }
+    @top-right {
+      content: "";
+      font-size: 6pt;
+    }
+    @bottom-left {
+      content: "";
+      font-size: 6pt;
+    }
+    @bottom-right {
+      content: "";
+      font-size: 6pt;
+    }
+  }
+  * {
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  html,
+  body {
+    width: 210mm;
+    height: 297mm;
+    margin: 0;
+    padding: 0;
+    font-size: 12pt;
+    line-height: 1.4;
+  }
+  .header,
+  .header__spacer,
+  .footer,
+  .hide-in-print {
+    display: none !important;
+    border: 5px solid rgb(239, 27, 250);
+  }
+  .screensaver__detail {
+    padding: 0 !important;
+  }
+  .screensaver__grid-container {
+    margin-top: 2rem;
+  }
+  .screensaver__navigation {
+    min-height: 300px !important;
+  }
+  .screensaver__navigation .screensaver__navigation-item-content {
+    animation: none !important;
+    height: auto !important;
+  }
+  .screensaver__navigation .screensaver__navigation-item-content img {
+    max-height: 15rem !important;
+  }
+  .screensaver__grid-item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-top: 1px;
+  }
+  .screensaver__grid-item:hover {
+    transform: none !important;
+  }
+}
 html,
 html body {
   --scroll-top: 80px;

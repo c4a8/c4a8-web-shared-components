@@ -1,5 +1,13 @@
 # Releases
 
+# Release 0.4.43
+
+- Fix for Modal Application form
+
+# Release 0.4.40
+
+- Print Layout
+
 # Release 0.4.38
 
 - Bumps version to force update

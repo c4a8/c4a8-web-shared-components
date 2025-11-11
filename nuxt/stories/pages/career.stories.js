@@ -6,8 +6,10 @@ import Hero from '../components/hero.vue';
 import IntroText from '../components/intro-text.vue';
 import VFooter from '../components/v-footer.vue';
 import FabButton from '../components/fab-button.vue';
-// import Back
+import TextImage from '../components/text-image.vue';
+
 import HeaderData from '../.storybook/data/header';
+import { JobApplication } from '../textImage.stories';
 
 export default {
   component: VHeader,
@@ -18,7 +20,7 @@ export default {
   },
   decorators: [
     (story, context) => ({
-      components: { story, PageDefault, VHeader, VFooter, Content, Hero, IntroText, FabButton },
+      components: { story, PageDefault, VHeader, VFooter, Content, Hero, IntroText, FabButton, TextImage },
       setup() {
         return { args: context.args };
       },
@@ -29,6 +31,7 @@ export default {
        	    <Hero :hero="args.hero" />
             <FabButton v-bind="args.fabButton" />
             <IntroText v-bind="args.introText" />
+            <TextImage v-bind="args.textImage" />
             <div style="height: 200vh;" class="dummy-content"></div>
           </Content>
           <v-footer v-bind="args.footer" />
@@ -116,5 +119,11 @@ export const Career = {
       headline: 'Headline Lorem ipsum',
       copy: '<strong>Lorem ipsum dolor sit amet</strong>, consectetur adipiscing elit. <span class="highlight">Vivamus facilisis</span> urna eu <span class="highlight">placerat malesuada</span>. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.<br><br>Praesent cursus, nulla ut <span class="highlight">dictum pharetra</span>, risus orci finibus felis, nec <span class="highlight">rhoncus urna</span> turpis nec augue. In hac habitasse platea dictumst. <strong>Lorem ipsum dolor</strong> sit amet, consectetur adipiscing elit. Proin hendrerit, urna non euismod tincidunt, velit nunc gravida enim, at <span class="highlight">tempus eros</span> nulla eu erat.',
     },
+    textImage: {
+      ...JobApplication.args,
+    },    
   },
 };
+
+
+
