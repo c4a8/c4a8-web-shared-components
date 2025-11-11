@@ -111,11 +111,14 @@ export default {
   },
   methods: {
     setStyle() {
-      this.$refs.head.style.backgroundColor = this.headBg;
+      if (this.$refs.head) {
+        this.$refs.head.style.backgroundColor = this.headBg;
+        this.$refs.head.style.color = this.headColor;
+      }
 
-      this.$refs.headSticky.style.backgroundColor = this.headBg;
-
-      this.$refs.head.style.color = this.headColor;
+      if (this.$refs.headSticky) {
+        this.$refs.headSticky.style.backgroundColor = this.headBg;
+      }
     },
   },
   computed: {
