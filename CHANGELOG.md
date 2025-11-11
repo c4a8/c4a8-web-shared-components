@@ -1,5 +1,12 @@
 # Releases
 
+# Release 0.4.44
+
+- Adds Fab-Hint
+- Adds Back-To-Top
+- Fixes Sticky Behavior of Fab-Button
+- Fix V-Table: handles no head or headSticky correctly
+
 # Release 0.4.43
 
 - Fix for Modal Application form
