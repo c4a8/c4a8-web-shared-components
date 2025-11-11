@@ -35,12 +35,10 @@
             </div>
           </template>
           <div v-if="hasRecaptcha" class="form__recaptcha-infos">
-            <span class="form__recaptcha-copy">This site is protected by reCAPTCHA and the Google </span>
-            <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a
-            ><span class="form__recaptcha-copy"> and </span>
-            <a href="https://policies.google.com/terms" target="_blank">Terms of Service</a
-            ><span class="form__recaptcha-copy"> apply.</span>
+            Turnstile
+            <NuxtTurnstile ref="turnstile" />
           </div>
+
           <div :class="formClassList">
             <cta
               :text="getTranslatedText(form.ctaText)"
