@@ -2,7 +2,7 @@ declare namespace _default {
     let name: string;
     namespace props {
         namespace value {
-            let type: (StringConstructor | NumberConstructor)[];
+            let type: (NumberConstructor | StringConstructor)[];
             let required: boolean;
         }
         namespace label {

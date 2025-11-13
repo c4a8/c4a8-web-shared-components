@@ -26,9 +26,7 @@ declare namespace _default {
         function preparedBlocks(): any[];
     }
     function mounted(): void;
-    function created(): void;
     namespace methods {
-        function loadRecaptchaScript(): void;
         function getTranslatedText(text: any): any;
         function hasError(field: any): any;
         function getOptions(field: any): any;
