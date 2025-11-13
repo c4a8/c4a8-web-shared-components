@@ -349,6 +349,12 @@
       "name": "nuxtjs:i18n-macros-transform"
     },
     {
+      "name": "nuxt-scripts:check-scripts"
+    },
+    {
+      "name": "nuxt:scripts:bundler-transformer"
+    },
+    {
       "enforce": "post",
       "handleHotUpdate": {
         "order": "post"
@@ -478,6 +484,8 @@
       "#mdc-highlighter": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/mdc-highlighter.mjs",
       "#mdc-imports": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/mdc-imports.mjs",
       "#nuxt-i18n/logger": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/nuxt-i18n-logger.mjs",
+      "#nuxt-scripts": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@nuxt/scripts/dist/runtime",
+      "#nuxt-scripts-validator": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@nuxt/scripts/dist/runtime/validation/mock.js",
       "#shared": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/shared",
       "#unhead/composables": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/nuxt/dist/head/runtime/composables/v3",
       "#vue-router": "vue-router",
@@ -565,6 +573,9 @@
     },
     "isProduction": true,
     "script": {
+      "globalTypeFiles": [
+        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/module/nuxt-scripts.d.ts"
+      ],
       "hoistStatic": {
       }
     },
