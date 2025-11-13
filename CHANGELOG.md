@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.45
+
+- Adds Turnstile Captcha
+
 # Release 0.4.44
 
 - Adds Fab-Hint
