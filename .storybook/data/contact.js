@@ -49,7 +49,7 @@ const Contact = {
         },
         {
           label:
-            'Ich bin mit der Speicherung meiner Daten einverstanden, die Datenschutzerklärung habe ich gelesen und akzeptiert. Meine Einwilligung kann ich jederzeit widerrufen.',
+            'Ich bin mit der Speicherung meiner Daten einverstanden, die <a href="javascript:void(0);">Datenschutzerklärung</a> habe ich gelesen und akzeptiert. Meine Einwilligung kann ich jederzeit widerrufen.',
           type: 'checkbox',
           id: 'checkbox1',
         },

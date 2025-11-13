@@ -35,11 +35,7 @@
             </div>
           </template>
           <div v-if="hasRecaptcha" class="form__recaptcha-infos">
-            <span class="form__recaptcha-copy">This site is protected by reCAPTCHA and the Google </span>
-            <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a
-            ><span class="form__recaptcha-copy"> and </span>
-            <a href="https://policies.google.com/terms" target="_blank">Terms of Service</a
-            ><span class="form__recaptcha-copy"> apply.</span>
+            <NuxtTurnstile ref="turnstile" />
           </div>
           <div :class="formClassList">
             <cta
@@ -59,8 +55,6 @@
   </div>
 </template>
 <script>
-import { useHead } from '#imports';
-
 import useConfig from '../composables/useConfig';
 import State from '../utils/state.js';
 import Tools from '../utils/tools.js';
@@ -192,27 +186,7 @@ export default {
 
     UtilityAnimation.init([this.$refs.headline]);
   },
-  created() {
-    if (!this.hasRecaptcha) return;
-
-    this.loadRecaptchaScript();
-  },
   methods: {
-    loadRecaptchaScript() {
-      this.siteKey = this.config?.public?.recaptchaSiteKey;
-
-      if (this.siteKey) {
-        useHead({
-          script: [
-            {
-              src: `https://www.google.com/recaptcha/api.js?render=${this.siteKey}`,
-              async: true,
-              defer: true,
-            },
-          ],
-        });
-      }
-    },
     getTranslatedText(text) {
       return this.useTranslation ? this.$t(text) : text;
     },
