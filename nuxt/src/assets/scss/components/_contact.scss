@@ -191,6 +191,23 @@
     }
   }
 
+  &.on-surface {
+    .form {
+      .link,
+      a {
+        --color-primary-on-surface: var(--color-copy);
+
+        text-decoration: underline;
+
+        &:hover {
+          --color-primary-accent-on-surface: var(--color-copy);
+
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
   + footer {
     margin-top: 0 !important;
   }

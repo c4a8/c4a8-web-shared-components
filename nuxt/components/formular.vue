@@ -35,10 +35,8 @@
             </div>
           </template>
           <div v-if="hasRecaptcha" class="form__recaptcha-infos">
-            Turnstile
             <NuxtTurnstile ref="turnstile" />
           </div>
-
           <div :class="formClassList">
             <cta
               :text="getTranslatedText(form.ctaText)"
@@ -57,8 +55,6 @@
   </div>
 </template>
 <script>
-import { useHead } from '#imports';
-
 import useConfig from '../composables/useConfig';
 import State from '../utils/state.js';
 import Tools from '../utils/tools.js';
@@ -190,27 +186,7 @@ export default {
 
     UtilityAnimation.init([this.$refs.headline]);
   },
-  created() {
-    if (!this.hasRecaptcha) return;
-
-    this.loadRecaptchaScript();
-  },
   methods: {
-    loadRecaptchaScript() {
-      this.siteKey = this.config?.public?.recaptchaSiteKey;
-
-      if (this.siteKey) {
-        useHead({
-          script: [
-            {
-              src: `https://www.google.com/recaptcha/api.js?render=${this.siteKey}`,
-              async: true,
-              defer: true,
-            },
-          ],
-        });
-      }
-    },
     getTranslatedText(text) {
       return this.useTranslation ? this.$t(text) : text;
     },

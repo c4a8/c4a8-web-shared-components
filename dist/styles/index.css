@@ -38014,6 +38014,16 @@ svg.streamline-icon {
     margin-top: 0;
   }
 }
+.contact.on-surface .form .link,
+.contact.on-surface .form a {
+  --color-primary-on-surface: var(--color-copy);
+  text-decoration: underline;
+}
+.contact.on-surface .form .link:hover,
+.contact.on-surface .form a:hover {
+  --color-primary-accent-on-surface: var(--color-copy);
+  text-decoration: none;
+}
 .contact + footer {
   margin-top: 0 !important;
 }
