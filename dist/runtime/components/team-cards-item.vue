@@ -1,10 +1,8 @@
 <template>
   <div class="team-cards-item px-2 mb-3" :class="{ 'team-cards-item--default col-sm-6 col-lg-4': !noRow }">
-    <div class="card h-100">
-      <div class="team-cards-item__body card-body has-card-background">
-        <div style="margin-bottom: 30px">
-          <v-img v-if="img" :src="img" :alt="alt" class="img-fluid" />
-        </div>
+    <div class="card h-100 has-card-background">
+      <v-img v-if="img" :src="img" :alt="alt" class="img-fluid" :class="noBorder ? '' : 'pt-4 px-4'" />
+      <div class="team-cards-item__body card-body">
         <headline level="h3" class="light thin mb-1" :text="name" />
         <headline level="h5" class="thin" :text="job" />
         <p class="team-cards-item__description mt-3">{{ description }}</p>
@@ -45,6 +43,10 @@ export default {
     twitter: String,
     linkedin: String,
     noRow: {
+      type: Boolean,
+      default: false,
+    },
+    noBorder: {
       type: Boolean,
       default: false,
     },

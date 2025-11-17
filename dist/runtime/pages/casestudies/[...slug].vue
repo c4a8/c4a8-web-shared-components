@@ -1,21 +1,20 @@
 <template>
   <tracking />
   <content>
-    <hero :hero="casestudyNormalized?.hero" />
+    <hero :hero="casestudyNormalized?.hero" v-if="casestudyNormalized" />
+    <fab-hint v-if="fabHintData" v-bind="fabHintData" />
+    <back-to-top />
     <service-overview v-if="casestudyNormalized?.serviceOverview" v-bind="casestudyNormalized?.serviceOverview" />
     <div class="container space-top-1 space-top-lg-2">
       <div class="w-xl-80 mx-xl-auto">
-        <article class="post" itemscope itemtype="http://schema.org/TechArticle">
+        <article class="post" itemscope itemtype="http://schema.org/TechArticle" v-if="casestudyNormalized">
           <div class="post-content e-content" itemprop="articleBody">
             <sticky-block
-              v-model:is-at-end="isAtEnd"
-              v-model:end-point="endPoint"
-              v-model:content-height="stickyContentHeight"
               class="post__sticky-bar post__sticky-bar--lg-only"
               :sticky-offset-top="100"
-              :sticky-offset-bottom="20"
               :has-padding="false"
               breakpoint="lg"
+              :calculate-height="true"
             >
               <socials :vertical="true" :hide-label="true" :author="null" :share-url="shareUrl" />
             </sticky-block>
@@ -28,25 +27,36 @@
             />
           </div>
         </article>
+        <div class="space-top-2 space-bottom-2 min-h-620rem" v-else></div>
       </div>
     </div>
+
+    <component-list :list="componentListData" />
   </content>
 </template>
 <script setup>
-import { useRoute, useAsyncData, queryCollection, useNuxtApp, useDynamicPageMeta, useSeo } from '#imports';
-import { computed } from 'vue';
+import {
+  useRoute,
+  useAsyncData,
+  queryCollection,
+  useNuxtApp,
+  useRequestURL,
+  useDynamicPageMeta,
+  useSeo,
+  onMounted,
+} from '#imports';
+import { computed, nextTick } from 'vue';
 
 import ContentRendererLink from '../../components/content-renderer-link.vue';
 
 import Tools from '../../utils/tools.js';
+import { useAppStore } from '../../stores/app';
 
+const store = useAppStore();
 const route = useRoute();
 const nuxtApp = useNuxtApp();
 const currentLocale = nuxtApp.$i18n.locale;
-const isAtEnd = ref(false);
-const endPoint = ref(null);
-const stickyContentHeight = ref(0);
-const shareUrl = 'TESTURL';
+const shareUrl = `${useRequestURL().origin}${route.path}`;
 
 const dynamicMeta = useDynamicPageMeta();
 
@@ -65,13 +75,23 @@ const casestudyNormalized = computed(() => {
 
   const normalizedCasestudy = Tools.normalizeMarkdownItem(event.value);
 
+  if (!normalizedCasestudy) return null;
+
   return {
     ...normalizedCasestudy,
     body: {
-      ...normalizedCasestudy.body,
-      value: Tools.applyKramdownAttrs(normalizedCasestudy.body.value),
+      ...normalizedCasestudy?.body,
+      value: Tools.applyKramdownAttrs(normalizedCasestudy?.body?.value),
     },
   };
+});
+
+const fabHintData = computed(() => {
+  return event.value?.meta?.hasFabHint ? event.value.meta.hasFabHint : null;
+});
+
+const componentListData = computed(() => {
+  return event.value?.meta?.componentList;
 });
 
 dynamicMeta.value = {
@@ -89,4 +109,10 @@ if (event.value && casestudyNormalized.value) {
     image: socialImg ? `https://res.cloudinary.com/c4a8/image/upload/${socialImg}` : null,
   });
 }
+
+onMounted(() => {
+  nextTick(() => {
+    store.setPageIsLoaded(true);
+  });
+});
 </script>

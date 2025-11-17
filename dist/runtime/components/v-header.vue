@@ -32,7 +32,7 @@
                       :img="child.img"
                       class="header__secondary-navigation-item-img"
                       :cloudinary="true"
-                      :alt="child.languages[lowerLang]?.title"
+                      :alt="child.languages[lowerLang]?.alt || child.languages[lowerLang]?.title"
                     />
                     <span class="header__secondary-navigation-item-text">{{ child.languages[lowerLang]?.title }}</span>
                   </a>
@@ -173,7 +173,12 @@
                       v-for="(subChild, subchildIndex) in list.children"
                       :key="subchildIndex"
                     >
-                      <v-img :img="subChild.img" class="header__product-list-image" :cloudinary="true" />
+                      <v-img
+                        :img="subChild.img"
+                        class="header__product-list-image"
+                        :cloudinary="true"
+                        :alt="subChild.languages[lowerLang]?.alt || subChild.languages[lowerLang]?.title"
+                      />
                       <div class="header__product-list-data">
                         <div class="header__product-list-title font-size-8 bold">
                           {{ subChild.languages[lowerLang]?.title }}

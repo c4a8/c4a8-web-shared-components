@@ -1,7 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { defineNuxtConfig } from 'nuxt/config';
 
-const recaptchaSiteKey = process.env.NUXT_PUBLIC_RECAPTCHA_SITE_KEY ?? null;
+const turnstileSiteKey = process.env.NUXT_PUBLIC_TURNSTILE_SITE_KEY ?? null;
+const personioApiKey = process.env.NUXT_PUBLIC_PERSONIO_API_KEY ?? null;
+
 declare module 'nuxt/config' {
   interface NuxtConfig {
     storybook?: {
@@ -23,13 +25,24 @@ declare module 'nuxt/config' {
       vueI18n?: string;
       [key: string]: any;
     };
+    turnstile?: {
+      siteKey?: string;
+    };
   }
 }
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: ['@nuxtjs/storybook', '@nuxt/content', '@nuxtjs/i18n', '@pinia/nuxt', 'nuxt-swiper'],
+  modules: [
+    '@nuxtjs/storybook',
+    '@nuxt/content',
+    '@nuxtjs/i18n',
+    '@pinia/nuxt',
+    'nuxt-swiper',
+    '@nuxtjs/turnstile',
+    '@nuxt/scripts',
+  ],
   i18n: {
     bundle: {
       optimizeTranslationDirective: false,
@@ -45,7 +58,10 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      recaptchaSiteKey,
+      personioApiKey,
     },
+  },
+  turnstile: {
+    siteKey: turnstileSiteKey ?? undefined,
   },
 });

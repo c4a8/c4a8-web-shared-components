@@ -14,9 +14,13 @@ import { useAppStore } from '../stores/app';
 
 const store = useAppStore();
 const route = useRoute();
+
+const isCaseStudy = route.name?.startsWith('slug-casestudies__');
+
 const isLoadingRoute =
   route.name?.startsWith('slug-posts__') ||
   route.name?.startsWith('slug-events__') ||
+  isCaseStudy ||
   route.name?.startsWith('slug-authors__');
 
 const isLoading = ref(isLoadingRoute ? true : false);
@@ -53,7 +57,7 @@ const computedClass = computed(() => {
   return [
     'shared-components',
     props.theme,
-    { 'has-back-to-top': props.hasBackToTop },
+    { 'has-back-to-top': props.hasBackToTop || isCaseStudy ? true : false },
     { 'has-fab-hint': props.hasFabHint },
   ];
 });

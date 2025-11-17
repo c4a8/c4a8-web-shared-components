@@ -7,6 +7,7 @@
         :container="true"
         :customValidation="true"
         :hasUuid="form.hasUuid !== undefined ? form.hasUuid : true"
+        :hasRecaptcha="hasRecaptcha"
       />
     </div>
     <div class="modal__success container" v-if="success">
@@ -38,6 +39,11 @@
 <script>
 export default {
   tagName: 'modal-application',
+  computed: {
+    hasRecaptcha() {
+      return this.form?.hasRecaptcha !== undefined ? this.form.hasRecaptcha : undefined;
+    },
+  },
   props: {
     form: Object,
     success: {

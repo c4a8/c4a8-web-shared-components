@@ -4,7 +4,7 @@ declare namespace _default {
             id: StringConstructor;
             open: BooleanConstructor;
             headlineText: StringConstructor;
-            headlineLevel: (StringConstructor | NumberConstructor)[];
+            headlineLevel: (NumberConstructor | StringConstructor)[];
             headlineClasses: (ObjectConstructor | ArrayConstructor | StringConstructor)[];
             content: {
                 headline: StringConstructor;

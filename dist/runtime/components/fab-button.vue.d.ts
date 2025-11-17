@@ -31,7 +31,7 @@ declare namespace _default {
             export { _default_4 as default };
         }
         namespace trigger {
-            let type_5: (StringConstructor | NumberConstructor)[];
+            let type_5: (NumberConstructor | StringConstructor)[];
             export { type_5 as type };
             let _default_5: null;
             export { _default_5 as default };
@@ -45,7 +45,6 @@ declare namespace _default {
             '--color-fab-background': any;
             color: any;
         };
-        function offsetTop(): number | null;
     }
     function data(): {
         resetDelay: number;

@@ -67,18 +67,18 @@
             />
           </div>
           <div v-if="listItems">
-            <headline level="h5" :text="listTitle"/>
-            <ul class='dashed space-bottom-1'>
-              <li v-for="item in listItems" :key="item " v-html="item"></li>
+            <headline level="h5" :text="listTitle" />
+            <ul class="dashed space-bottom-1">
+              <li v-for="item in listItems" :key="item" v-html="item"></li>
             </ul>
-          </div>     
-          <div :class="textImageLightTextClass" v-html="copy"></div>  
+          </div>
+          <div :class="textImageLightTextClass" v-html="copy"></div>
           <slot />
           <div v-if="list" class="pt-4 pt-lg-6 pb-6">
             <cta-list :list="list" />
           </div>
         </div>
-  
+
         <div v-if="cta" class="text-image__cta col-lg-12">
           <cta :text="cta.text" button :href="cta.href" :trigger="cta.trigger" :trigger-id="cta.triggerId" />
         </div>

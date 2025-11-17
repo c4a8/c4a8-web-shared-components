@@ -933,16 +933,19 @@ declare namespace _default {
                             title: string;
                             subtitle: string;
                             url: string;
+                            alt: string;
                         };
                         en: {
                             title: string;
                             subtitle: string;
                             url: string;
+                            alt: string;
                         };
                         es: {
                             title: string;
                             subtitle: string;
                             url: string;
+                            alt: string;
                         };
                     };
                 }[];

@@ -1,5 +1,47 @@
 # Releases
 
+# Release 0.4.45
+
+- Adds Turnstile Captcha
+
+# Release 0.4.44
+
+- Adds Fab-Hint
+- Adds Back-To-Top
+- Fixes Sticky Behavior of Fab-Button
+- Fix V-Table: handles no head or headSticky correctly
+
+# Release 0.4.43
+
+- Fix for Modal Application form
+
+# Release 0.4.40
+
+- Print Layout
+
+# Release 0.4.38
+
+- Bumps version to force update
+
+# Release 0.4.37
+
+- Fixed integration issues with casestudies page and enabled it back on
+
+# Hotfix 0.4.36
+
+- Disables casestudies page temporarily
+
+# Release 0.4.35
+
+- Fix Video Frame inside of posts cut of controls
+
+# Release 0.4.34
+
+- Migrates casestudies page
+- Adds alt attributes to hero + v-header
+- Fixes sticky-block to work correctly and without an external model
+- Video has now subtitles option
+
 # Hotfix 0.4.33
 
 - Adds a temp fix for the issue with the rerendering of the ContentRenderer https://github.com/nuxt/content/pull/3544
