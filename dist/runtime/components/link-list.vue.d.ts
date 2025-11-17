@@ -20,6 +20,8 @@ declare namespace _default {
         function isExpandable(): any;
         function updateHeight(): void;
         function handleClick(event: any): void;
+        function handleMouseOver(index: any): void;
+        function handleMouseOut(index: any): void;
     }
     namespace props {
         let list: ObjectConstructor;
@@ -38,6 +40,7 @@ declare namespace _default {
         inTransition: boolean;
         isExpanded: boolean;
         parentOfParent: null;
+        hover: boolean;
     };
 }
 export default _default;

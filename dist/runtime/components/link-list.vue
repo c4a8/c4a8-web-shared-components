@@ -5,16 +5,27 @@
       <icon class="link-list__icon" icon="expand" size="small" />
     </figcaption>
     <ul :class="classListList" data-utility-animation-step="1">
-      <template v-for="subChild in list.children">
-        <li class="link-list__item" v-if="subChild.languages && subChild.languages[lang]">
-          <cta
-            :href="subChild.languages[lang].url"
-            :text="subChild.languages[lang].title"
-            :active="subChild.languages[lang].active"
-            :link="true"
-            reversed="true"
-            monochrome="true"
-          />
+      <template v-for="(subChild, index) in list.children">
+        <li class="link-list__item" v-if="subChild.languages && subChild.languages[lang]" :key="index"
+          v-on:mouseover="handleMouseOver(index)" v-on:mouseout="handleMouseOut(index)" ref="listItem">
+          <cta :href="subChild.languages[lang].url" :text="subChild.languages[lang].title" 
+            :active="subChild.languages[lang].active" :link="true" reversed="true" monochrome="true"
+            :icon="subChild.subchildren ? 'expand' : ''" :class="subChild.subchildren ? 'hasSubchildren' : ''"/>
+
+            
+
+            <ul class="link-sublist" :class="hover ? 'd-block' : ''"
+              v-if="subChild.subchildren && subChild.subchildren.length > 0">
+              <template v-for="subChild in subChild.subchildren">
+                <li class="link-sublist__item" v-if="subChild.languages && subChild.languages[lang]">
+                  <cta :href="subChild.languages[lang].url" :text="subChild.languages[lang].title"
+                    :active="subChild.languages[lang].active" :link="true" icon="null" reversed="true" monochrome="true" />
+                </li>
+              </template>
+            </ul>
+     
+
+
         </li>
       </template>
     </ul>
@@ -75,6 +86,7 @@ export default {
   },
   mounted() {
     this.bindEvents();
+   
   },
   methods: {
     bindEvents() {
@@ -125,7 +137,24 @@ export default {
 
       root.style.height = '';
     },
+
+    handleMouseOver(index) {
+      if (this.list.children[index].subchildren && this.list.children[index].subchildren.length > 0) {
+        this.hover = true;
+        const listItem = this.$refs['listItem'][index];
+        listItem.classList.add(State.EXPANDED);
+      }
+    },
+
+    handleMouseOut(index) {
+      if (this.list.children[index].subchildren && this.list.children[index].subchildren.length > 0) {
+        this.hover = false;
+        const listItem = this.$refs['listItem'][index];
+        listItem.classList.remove(State.EXPANDED);
+      }
+    },
   },
+
   props: {
     list: Object,
     lang: String,
@@ -142,6 +171,7 @@ export default {
       inTransition: false,
       isExpanded: false,
       parentOfParent: null,
+      hover: false,
     };
   },
 };
