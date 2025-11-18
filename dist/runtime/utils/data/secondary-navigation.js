@@ -19,27 +19,27 @@ const secondaryNavigation = {
       products: true,
       children: [
         {
-          name: 'konnekt',
-          img: 'products/global/KONNEKT-ListView.svg',
+          name: 'scepman',
+          img: 'products/global/SCEPman-ListView.svg',
           target: '_blank',
           languages: {
             de: {
-              title: 'KONNEKT',
-              subtitle: 'Arbeiten Sie lokal mit Ihren Office 365-Daten',
-              url: 'https://www.konnekt.io/',
-              alt: 'KONNEKT Produktlogo',
+              title: 'SCEPman',
+              subtitle: 'Zertifikatsverteilung aus der Cloud',
+              url: 'https://www.scepman.com/',
+              alt: 'SCEPman Produktlogo',
             },
             en: {
-              title: 'KONNEKT',
-              subtitle: 'Work with your local office 365 data',
-              url: 'https://www.konnekt.io/',
-              alt: 'KONNEKT Product logo',
+              title: 'SCEPman',
+              subtitle: 'Certificate distribution from the cloud',
+              url: 'https://www.scepman.com/',
+              alt: 'SCEPman Productlogo',
             },
             es: {
-              title: 'KONNEKT',
-              subtitle: 'Work with your local office 365 data',
-              url: 'https://www.konnekt.io/',
-              alt: 'Logotipo del producto KONNEKT',
+              title: 'SCEPman',
+              subtitle: 'Distribución de certificados desde la nube',
+              url: 'https://www.scepman.com/',
+              alt: 'Logotipo del producto SCEPman',
             },
           },
         },
@@ -69,37 +69,6 @@ const secondaryNavigation = {
           },
         },
         {
-          name: 'scepman',
-          img: 'products/global/SCEPman-ListView.svg',
-          target: '_blank',
-          languages: {
-            de: {
-              title: 'SCEPman',
-              subtitle: 'Zertifikatsverteilung aus der Cloud',
-              url: 'https://www.scepman.com/',
-              alt: 'SCEPman Produktlogo',
-            },
-            en: {
-              title: 'SCEPman',
-              subtitle: 'Certificate distribution from the cloud',
-              url: 'https://www.scepman.com/',
-              alt: 'SCEPman Productlogo',
-            },
-            es: {
-              title: 'SCEPman',
-              subtitle: 'Distribución de certificados desde la nube',
-              url: 'https://www.scepman.com/',
-              alt: 'Logotipo del producto SCEPman',
-            },
-          },
-        },
-      ],
-    },
-    {
-      name: 'secondary-products-2',
-      products: true,
-      children: [
-        {
           name: 'realmjoin',
           img: 'products/global/RealmJoin-ListView.svg',
           target: '_blank',
@@ -125,31 +94,6 @@ const secondaryNavigation = {
           },
         },
         {
-          name: 'unifiedcontacts',
-          img: 'products/global/UnifiedContacts-ListView.svg',
-          target: '_blank',
-          languages: {
-            de: {
-              title: 'Unified Contacts',
-              subtitle: 'Finden Sie alle Ihre Kontakte in Microsoft Teams',
-              url: 'https://www.unified-contacts.com/',
-              alt: 'Unified Contacts Produktlogo',
-            },
-            en: {
-              title: 'Unified Contacts',
-              subtitle: 'Find contacts in Microsoft Teams',
-              url: 'https://www.unified-contacts.com/',
-              alt: 'Unified Contacts Product logo',
-            },
-            es: {
-              title: 'Unified Contacts',
-              subtitle: 'Find contacts in Microsoft Teams',
-              url: 'https://www.unified-contacts.com/',
-              alt: 'Logotipo del producto Unified Contacts',
-            },
-          },
-        },
-        {
           name: 'terraprovider',
           img: 'products/global/TerraProvider-ListView.svg',
           target: '_blank',
@@ -171,6 +115,31 @@ const secondaryNavigation = {
               subtitle: 'Terraform Provider para Microsoft 365',
               url: 'https://www.terraprovider.com/',
               alt: 'Logotipo del producto TerraProvider',
+            },
+          },
+        },
+        {
+          name: 'konnekt',
+          img: 'products/global/KONNEKT-ListView.svg',
+          target: '_blank',
+          languages: {
+            de: {
+              title: 'KONNEKT',
+              subtitle: 'Arbeiten Sie lokal mit Ihren Office 365-Daten',
+              url: 'https://www.konnekt.io/',
+              alt: 'KONNEKT Produktlogo',
+            },
+            en: {
+              title: 'KONNEKT',
+              subtitle: 'Work with your local office 365 data',
+              url: 'https://www.konnekt.io/',
+              alt: 'KONNEKT Product logo',
+            },
+            es: {
+              title: 'KONNEKT',
+              subtitle: 'Work with your local office 365 data',
+              url: 'https://www.konnekt.io/',
+              alt: 'Logotipo del producto KONNEKT',
             },
           },
         },
