@@ -1,6 +1,13 @@
 <template>
   <span :class="classList" :style="parentStyle">
-    <component :is="icon" v-bind="settings" :color="props.color" :closed="closed" :step="step" />
+    <component
+      :is="icon"
+      v-bind="settings"
+      :color="props.color"
+      :strokeColor="props.strokeColor"
+      :closed="closed"
+      :step="step"
+    />
   </span>
 </template>
 <script>
@@ -47,6 +54,7 @@ import User from './icons/user.vue';
 import Quote from './icons/quote.vue';
 import World from './icons/world.vue';
 import XMark from './icons/x-mark.vue';
+import Heart from './icons/heart.vue';
 
 export default {
   components: {
@@ -90,6 +98,7 @@ export default {
     quote: Quote,
     world: World,
     'x-mark': XMark,
+    heart: Heart,
   },
   tagName: 'icon',
   data() {
@@ -113,6 +122,9 @@ export default {
       var innerSize;
 
       switch (this.props.size) {
+        case 'custom':
+          innerSize = this.props.customSize;
+          break;
         case 'xxl':
           innerSize = '200px';
           break;
@@ -204,6 +216,13 @@ export default {
       default: null,
     },
     strokeWidth: {
+      default: null,
+    },
+    strokeColor: {
+      String,
+    },
+    customSize: {
+      type: String,
       default: null,
     },
   },
