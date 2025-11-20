@@ -62,8 +62,8 @@
 import State from '../utils/state.js';
 import Events from '../utils/events.js';
 import Tools from '../utils/tools.js';
-import birdieFlap from '../../nuxt/src/assets/lottie/BirdieFlap.json';
-import birdieNoflap from '../../nuxt/src/assets/lottie/BirdieNoflap.json';
+import birdieFlap from '../src/assets/lottie/BirdieFlap.json';
+import birdieNoflap from '../src/assets/lottie/BirdieNoflap.json';
 
 const SCREEN_XS_THRESHOLD = 750;
 const MOBILE_START = 2500;
