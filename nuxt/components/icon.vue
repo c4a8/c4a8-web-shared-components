@@ -1,6 +1,13 @@
 <template>
   <span :class="classList" :style="parentStyle">
-    <component :is="icon" v-bind="settings" :color="props.color" :closed="closed" :step="step" />
+    <component
+      :is="icon"
+      v-bind="settings"
+      :color="props.color"
+      :strokeColor="props.strokeColor"
+      :closed="closed"
+      :step="step"
+    />
   </span>
 </template>
 <script>
@@ -47,6 +54,7 @@ import User from './icons/user.vue';
 import Quote from './icons/quote.vue';
 import World from './icons/world.vue';
 import XMark from './icons/x-mark.vue';
+import Heart from './icons/heart.vue';
 
 export default {
   components: {
@@ -90,6 +98,7 @@ export default {
     quote: Quote,
     world: World,
     'x-mark': XMark,
+    heart: Heart,
   },
   tagName: 'icon',
   data() {
@@ -111,29 +120,31 @@ export default {
     },
     innerSize() {
       var innerSize;
-
-      switch (this.props.size) {
-        case 'xxl':
-          innerSize = '200px';
-          break;
-        case 'xl':
-          innerSize = '120px';
-          break;
-        case 'medium':
-          innerSize = '28px';
-          break;
-        case 'small':
-          innerSize = '18px';
-          break;
-        case 'xs':
-          innerSize = '10px';
-          break;
-        default:
-        case 'large':
-          innerSize = '48px';
-          break;
+      if (typeof this.props.size == 'number') {
+        innerSize = `${this.props.size}px`;
+      } else {
+        switch (this.props.size) {
+          case 'xxl':
+            innerSize = '200px';
+            break;
+          case 'xl':
+            innerSize = '120px';
+            break;
+          case 'medium':
+            innerSize = '28px';
+            break;
+          case 'small':
+            innerSize = '18px';
+            break;
+          case 'xs':
+            innerSize = '10px';
+            break;
+          default:
+          case 'large':
+            innerSize = '48px';
+            break;
+        }
       }
-
       return innerSize;
     },
     parentStyle() {
@@ -205,6 +216,9 @@ export default {
     },
     strokeWidth: {
       default: null,
+    },
+    strokeColor: {
+      String,
     },
   },
 };

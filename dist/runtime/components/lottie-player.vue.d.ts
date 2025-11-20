@@ -36,13 +36,13 @@ declare namespace _default {
             export { _default_2 as default };
         }
         namespace width {
-            let type_4: (NumberConstructor | StringConstructor)[];
+            let type_4: (StringConstructor | NumberConstructor)[];
             export { type_4 as type };
             let _default_3: string;
             export { _default_3 as default };
         }
         namespace height {
-            let type_5: (NumberConstructor | StringConstructor)[];
+            let type_5: (StringConstructor | NumberConstructor)[];
             export { type_5 as type };
             let _default_4: string;
             export { _default_4 as default };

@@ -102,6 +102,7 @@ export default {
       const lottieModule = await import('lottie-web/build/player/esm/lottie.min.js');
       this.lottie = lottieModule.default;
       this.initAnimation();
+      this.setSpeed(this.speed);
     }
   },
   beforeUnmount() {

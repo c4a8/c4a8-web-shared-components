@@ -232,7 +232,7 @@ export default {
         if (this.formInstance.hasSubmitHandling) return;
 
         e.preventDefault();
-
+        this.$emit('success');
         this.formInstance.handleRecaptcha().then(() => {
           const form = this.$refs['form'];
 
