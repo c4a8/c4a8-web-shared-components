@@ -228,7 +228,6 @@ export default {
     handleSubmit(e) {
       if (!this.validate()) {
         e.preventDefault();
-        this.$emit('success');
       } else {
         if (this.formInstance.hasSubmitHandling) return;
 

@@ -109,11 +109,6 @@ declare namespace _default {
         namespace strokeColor {
             let String: StringConstructor;
         }
-        namespace customSize {
-            export let type: StringConstructor;
-            let _default_13: null;
-            export { _default_13 as default };
-        }
     }
 }
 export default _default;

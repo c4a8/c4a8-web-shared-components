@@ -40,17 +40,17 @@ declare namespace _default {
         }
     }
     namespace computed {
-        function isMobile(): boolean;
         function classList(): (string | {
             [x: number]: any;
         })[];
         function contrastColor(): any;
         function bannerStyle(): any;
         function modalStyle(): any;
-        function lottieSize(): 110 | 180;
+        function lottieSize(): any;
         function lottieAnimation(): any;
     }
     function data(): {
+        isMobile: boolean;
         isExpanded: boolean;
         expandedClass: string;
         offScreenClass: string;
@@ -64,14 +64,15 @@ declare namespace _default {
     namespace methods {
         function init(): void;
         function bindEvents(): void;
-        function bindTriggerEvent(): void;
+        function checkBreakpoint(): void;
+        function animateBanner(): void;
         function handleTriggerClick(e: any): void;
         function handleOutsideClick(e: any): void;
         function handleClick(): void;
-        function hexToRGB(): void;
         function setLottieColors(): void;
         function onComplete(): void;
     }
     function beforeDestroy(): void;
+    function beforeUnmount(): void;
 }
 export default _default;

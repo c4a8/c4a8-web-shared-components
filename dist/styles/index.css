@@ -49945,7 +49945,7 @@ shape {
 .newsletter.is--light .shared-components .form .is-valid ~ .headline {
   color: var(--color-white);
 }
-.newsletter.is-expanded .newsletter-banner {
+.newsletter.is-expanded .newsletter__banner {
   visibility: collapse;
   opacity: 0;
   height: 0;
@@ -49956,15 +49956,15 @@ shape {
   pointer-events: none;
   border-width: 0;
   height: 0;
-  margin: 0 !important;
+  margin: 0;
   opacity: 0;
-  padding: 0 !important;
+  padding: 0;
   pointer-events: none;
 }
-.newsletter.is-expanded .newsletter-modal {
+.newsletter.is-expanded .newsletter__popup {
   opacity: 1;
 }
-.newsletter .newsletter-modal.is-off-screen {
+.newsletter .newsletter__popup.is-off-screen {
   opacity: 0;
   pointer-events: none;
   transform: translateX(0);
@@ -49972,60 +49972,50 @@ shape {
   width: 0;
 }
 
-.newsletter-close {
+.newsletter__close {
   position: absolute;
   right: 0;
   z-index: 1;
   width: 78px;
   height: 78px;
 }
-.newsletter-close > .icon {
+.newsletter__close > .icon {
   margin: 1.25rem;
   padding: 0.25rem;
   cursor: pointer;
 }
-.newsletter-close > .icon.icon--circle svg {
+.newsletter__close > .icon.icon--circle svg {
   width: 80%;
 }
 
-.newsletter-banner {
+.newsletter__banner {
   transform: translateX(-100vw);
   height: auto;
 }
 @media (min-width: 992px) {
-  .newsletter-banner {
+  .newsletter__banner {
     max-width: 80rem;
     width: auto;
   }
 }
 
-.newsletter-modal {
+.newsletter__popup {
   position: fixed;
   top: 20vh;
   z-index: 1000;
 }
 @media (min-width: 992px) {
-  .newsletter-modal {
+  .newsletter__popup {
     max-width: 80vw;
   }
 }
 @media (max-width: 1199.98px) {
-  .newsletter-modal {
+  .newsletter__popup {
     top: 10vh;
   }
 }
 
-@media (max-width: 767.98px) {
-  .newsletter-modal__content {
-    height: 90%;
-    max-height: 60vh;
-    overflow-y: scroll;
-    margin-bottom: 21%;
-    margin-top: 15%;
-  }
-}
-
-.newsletter-trigger {
+.newsletter__trigger {
   cursor: pointer;
 }
 
@@ -50042,20 +50032,34 @@ shape {
     animation: fly 2s forwards;
   }
 }
-@keyframes fade-out {
-  to {
-    transform: translateX(100vw) translateY(-100vh);
+.newsletter-modal {
+  z-index: 310;
+}
+
+@media (max-width: 767.98px) {
+  .newsletter-modal__content {
+    height: 90%;
+    max-height: 60vh;
+    overflow-y: scroll;
+    margin-bottom: 21%;
+    margin-top: 15%;
   }
 }
-@keyframes fade-in {
-  0% {
-    margin-left: -50%;
-  }
-  to {
-    opacity: 1;
-  }
-}
+
 @media (prefers-reduced-motion: no-preference) {
+  @keyframes fade-out {
+    to {
+      transform: translateX(100vw) translateY(-100vh);
+    }
+  }
+  @keyframes fade-in {
+    0% {
+      margin-left: -50%;
+    }
+    to {
+      opacity: 1;
+    }
+  }
   .fade-in-animation {
     animation: fade-in 4s 1 forwards;
   }

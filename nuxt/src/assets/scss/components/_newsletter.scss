@@ -18,22 +18,22 @@
   }
 
   &.is-expanded {
-    .newsletter-banner {
+    .newsletter__banner {
       @include is-invisible;
       border-width: 0;
       height: 0;
-      margin: 0 !important;
+      margin: 0;
       opacity: 0;
-      padding: 0 !important;
+      padding: 0;
       pointer-events: none;
     }
 
-    .newsletter-modal {
+    .newsletter__popup {
       opacity: 1;
     }
   }
 
-  .newsletter-modal {
+  .newsletter__popup {
     &.is-off-screen {
       opacity: 0;
       pointer-events: none;
@@ -44,7 +44,7 @@
   }
 }
 
-.newsletter-close {
+.newsletter__close {
   position: absolute;
   right: 0;
   z-index: 1;
@@ -62,7 +62,7 @@
   }
 }
 
-.newsletter-banner {
+.newsletter__banner {
   transform: translateX(-100vw);
   height: auto;
 
@@ -72,7 +72,7 @@
   }
 }
 
-.newsletter-modal {
+.newsletter__popup {
   position: fixed;
   top: 20vh;
   z-index: 1000;
@@ -85,17 +85,7 @@
   }
 }
 
-.newsletter-modal__content {
-  @include media-breakpoint-down(sm) {
-    height: 90%;
-    max-height: 60vh;
-    overflow-y: scroll;
-    margin-bottom: 21%;
-    margin-top: 15%;
-  }
-}
-
-.newsletter-trigger {
+.newsletter__trigger {
   cursor: pointer;
 }
 
@@ -111,26 +101,5 @@
   .banner-animation_mobile {
     animation: fly 2s forwards;
   }
-}
 
-@keyframes fade-out {
-  to {
-    transform: translateX(100vw) translateY(-100vh);
-  }
-}
-@keyframes fade-in {
-  0% {
-    margin-left: -50%;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .fade-in-animation {
-    animation: fade-in 4s 1 forwards;
-  }
-  .fade-out-animation {
-    animation: fade-out 8s 1 forwards;
-  }
 }

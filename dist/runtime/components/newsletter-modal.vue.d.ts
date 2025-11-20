@@ -42,16 +42,15 @@ declare namespace _default {
     namespace computed {
         function formularConfig(): any;
         function contrastColor(): any;
-        function isMobile(): boolean;
         function currentHeadline(): any;
         function currentText(): any;
         function contentClasses(): string[];
         function headlineClasses(): string[];
-        function formularClasses(): "" | "mt-n5 d-flex justify-content-center align-items-center";
-        function containerClasses(): "flex-column justify-content-between p-2" | "align-items-center container";
+        function formularClasses(): any;
+        function containerClasses(): any;
         function lottieAnimation(): any;
         function lottieSpeed(): 1 | 40;
-        function lottieSizeComputed(): 170 | 220;
+        function lottieSize(): 170 | 220;
         function iconHeartDisplay(): "" | "none";
         function birdAnimationClass(): "" | "fade-out-animation";
         function heartAnimationClass(): "" | "fade-in-animation";
@@ -62,13 +61,14 @@ declare namespace _default {
         idle: boolean;
         screenXS: boolean;
         heightFixed: string;
+        isMobile: boolean;
     };
     function mounted(): void;
     function beforeUnmount(): void;
     namespace methods {
         function handleSuccess(): void;
         function setIdle(): void;
-        function handleSmallScreen(): void;
+        function checkBreakpoint(): void;
     }
 }
 export default _default;

@@ -1,15 +1,14 @@
 <template>
   <div
-    class="d-flex font-size-2"
+    class="newsletter-modal d-flex font-size-2"
     :class="containerClasses"
     :style="{ color: contrastColor, height: heightFixed }"
     ref="modalContent"
     role="dialog"
-    aria-labelledby="newsletter-headline"
   >
     <div class="newsletter-modal__content" :class="contentClasses">
       <div>
-        <headline id="newsletter-headline" level="h2" :class="headlineClasses">{{ currentHeadline }} </headline>
+        <headline level="h2" :class="headlineClasses">{{ currentHeadline }} </headline>
         <p>{{ currentText }}</p>
         <formular
           v-if="!success"
@@ -20,56 +19,38 @@
         />
       </div>
     </div>
-    <div v-if="!isMobile" class="col-5 col-lg-4 d-flex align-items-center z-index-1 align-content-center">
+    <div
+      :class="[
+        isMobile
+          ? 'd-flex align-items-center position-absolute justify-content-end mx-n2 my-md-8 right-0 bottom-0'
+          : 'col-5 col-lg-4 d-flex align-items-center z-index-1 align-content-center',
+      ]"
+    >
       <lottie-player
-        class="iconBird"
-        :class="birdAnimationClass"
-        ref="iconBird"
         v-if="lottie"
+        class="iconBird"
+        :class="[birdAnimationClass, isMobile ? 'position-absolute' : '']"
+        ref="iconBird"
         :animationData="lottieAnimation"
         :loop="true"
         :autoplay="true"
         :onLoopComplete="setIdle"
         :speed="lottieSpeed"
-        aria-label="Newsletter bird animation"
+        :width="isMobile ? lottieSize : undefined"
+        :height="isMobile ? lottieSize : undefined"
+        aria-label="Origami bird animation"
       />
       <icon
         ref="iconHeart"
         class="iconHeart position-absolute"
-        :class="heartAnimationClass"
+        :class="[heartAnimationClass, isMobile ? iconHeartMobileClass : '']"
         icon="heart"
         color="var(--color-red)"
         :strokeColor="contrastColor"
-        size="custom"
-        :customSize="'20em'"
+        :size="isMobile ? 200 : 380"
         style="opacity: 0"
+        :style="isMobile ? { display: iconHeartDisplay } : {}"
         aria-label="Success heart icon"
-      />
-    </div>
-    <div v-else class="d-flex align-items-center position-absolute justify-content-end mx-n2 my-md-8 right-0 bottom-0">
-      <icon
-        class="iconHeart position-absolute"
-        :class="[iconHeartMobileClass, heartAnimationClass]"
-        icon="heart"
-        color="var(--color-red)"
-        :strokeColor="contrastColor"
-        size="custom"
-        :customSize="'15em'"
-        style="opacity: 0"
-        :style="{ display: iconHeartDisplay }"
-        aria-label="Success heart icon"
-      />
-      <lottie-player
-        class="iconBird position-absolute"
-        v-if="lottie"
-        :animationData="lottieAnimation"
-        :class="birdAnimationClass"
-        :loop="true"
-        :autoplay="true"
-        :onLoopComplete="setIdle"
-        :speed="lottieSpeed"
-        :width="lottieSizeComputed"
-        :height="lottieSizeComputed"
       />
     </div>
   </div>
@@ -124,9 +105,11 @@ export default {
     contrastColor() {
       return this.light ? 'var(--color-white)' : 'var(--color-black)';
     },
+    /*
     isMobile() {
       return Tools.isBelowBreakpoint('lg');
     },
+    */
     currentHeadline() {
       return this.success ? this.confirmation?.headline : this.headline;
     },
@@ -151,7 +134,7 @@ export default {
     lottieSpeed() {
       return this.success ? LOTTIE_SPEED_SUCCESS : LOTTIE_SPEED_NORMAL;
     },
-    lottieSizeComputed() {
+    lottieSize() {
       return this.screenXS ? LOTTIE_SIZE_MOBILE : LOTTIE_SIZE_DESKTOP;
     },
     iconHeartDisplay() {
@@ -173,19 +156,18 @@ export default {
       idle: true,
       screenXS: false,
       heightFixed: 'auto',
+      isMobile: Tools.isBelowBreakpoint('lg'),
     };
   },
   mounted() {
-    this.handleSmallScreen();
-    if (typeof window !== 'undefined' && window.visualViewport) {
-      window.visualViewport.addEventListener('resize', this.handleSmallScreen);
-    }
+    this.checkBreakpoint();
+
+    window.addEventListener('resize', this.checkBreakpoint);
   },
   beforeUnmount() {
-    if (typeof window !== 'undefined' && window.visualViewport) {
-      window.visualViewport.removeEventListener('resize', this.handleSmallScreen);
-    }
+    window.removeEventListener('resize', this.checkBreakpoint);
   },
+
   methods: {
     handleSuccess() {
       if (this.$refs.modalContent) {
@@ -196,7 +178,9 @@ export default {
     setIdle() {
       this.idle = !this.success;
     },
-    handleSmallScreen() {
+
+    checkBreakpoint() {
+      this.isMobile = Tools.isBelowBreakpoint('lg');
       if (typeof window !== 'undefined' && window.visualViewport) {
         this.screenXS = window.visualViewport.height <= SCREEN_XS_THRESHOLD;
       }

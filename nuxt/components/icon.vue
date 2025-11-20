@@ -120,32 +120,31 @@ export default {
     },
     innerSize() {
       var innerSize;
-
-      switch (this.props.size) {
-        case 'custom':
-          innerSize = this.props.customSize;
-          break;
-        case 'xxl':
-          innerSize = '200px';
-          break;
-        case 'xl':
-          innerSize = '120px';
-          break;
-        case 'medium':
-          innerSize = '28px';
-          break;
-        case 'small':
-          innerSize = '18px';
-          break;
-        case 'xs':
-          innerSize = '10px';
-          break;
-        default:
-        case 'large':
-          innerSize = '48px';
-          break;
+      if (typeof this.props.size == 'number') {
+        innerSize = `${this.props.size}px`;
+      } else {
+        switch (this.props.size) {
+          case 'xxl':
+            innerSize = '200px';
+            break;
+          case 'xl':
+            innerSize = '120px';
+            break;
+          case 'medium':
+            innerSize = '28px';
+            break;
+          case 'small':
+            innerSize = '18px';
+            break;
+          case 'xs':
+            innerSize = '10px';
+            break;
+          default:
+          case 'large':
+            innerSize = '48px';
+            break;
+        }
       }
-
       return innerSize;
     },
     parentStyle() {
@@ -220,10 +219,6 @@ export default {
     },
     strokeColor: {
       String,
-    },
-    customSize: {
-      type: String,
-      default: null,
     },
   },
 };

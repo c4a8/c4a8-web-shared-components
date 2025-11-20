@@ -1,13 +1,14 @@
 <template>
-  <div :class="classList" ref="root" class="py-4 px-lg-0 px-1">
+  <div :class="classList" ref="root" class="newsletter py-4 px-lg-0 px-1">
     <div class="js-sticky-block d-flex justify-content-center">
       <div
-        class="newsletter-modal"
+        class="newsletter__popup"
         :class="[{ [offScreenClass]: !isExpanded }, isMobile ? 'mx-2 w-auto' : '']"
         ref="modal"
         :style="modalStyle"
+        @click="handleTriggerClick"
       >
-        <div class="newsletter-close" ref="close">
+        <div class="newsletter__close" ref="close" @click="handleClick">
           <icon icon="close" :circle="true" :hover="true" size="medium" :color="contrastColor" />
         </div>
         <newsletter-modal
@@ -18,11 +19,12 @@
           :bgColor="bgColor"
           :light="light"
           :lottie="lottieFiles"
+          :isMobile="isMobile"
         />
       </div>
     </div>
-    <div class="newsletter-banner__wrapper">
-      <div class="newsletter-banner mx-auto" :class="isMobile ? 'd-flex' : ''" ref="icon">
+    <div class="newsletter__banner-wrapper">
+      <div class="newsletter__banner mx-auto" :class="isMobile ? 'd-flex' : ''" ref="icon" @click="handleClick">
         <div :style="bannerStyle" :class="isMobile ? 'w-100 mr-5' : ''">
           <div class="d-flex align-items-center px-3 py-2 row" :class="isMobile ? '' : 'row-cols-2'">
             <div class="d-flex align-items-center" :class="isMobile ? 'px-3 py-2 row' : 'font-size-2 col-9'">
@@ -53,15 +55,17 @@
         </div>
       </div>
     </div>
-    <a class="newsletter-trigger" ref="link"></a>
+    <a class="newsletter__trigger" ref="link" @click="handleClick"></a>
   </div>
 </template>
 <script>
 import State from '../utils/state.js';
 import Events from '../utils/events.js';
 import Tools from '../utils/tools.js';
-import birdieFlap from '../src/assets/lottie/BirdieFlap.json';
-import birdieNoflap from '../src/assets/lottie/BirdieNoflap.json';
+import birdieFlap from '../../nuxt/src/assets/lottie/BirdieFlap.json';
+import birdieNoflap from '../../nuxt/src/assets/lottie/BirdieNoflap.json';
+
+const SCREEN_XS_THRESHOLD = 750;
 const MOBILE_START = 2500;
 const LOTTIE_SIZE_MOBILE = 110;
 const LOTTIE_SIZE_DESKTOP = 180;
@@ -96,9 +100,6 @@ export default {
     },
   },
   computed: {
-    isMobile() {
-      return Tools.isBelowBreakpoint('md');
-    },
     classList() {
       return ['newsletter font-weight-light', { [this.expandedClass]: this.isExpanded }, this.light ? 'is--light' : ''];
     },
@@ -126,6 +127,7 @@ export default {
   },
   data() {
     return {
+      isMobile: Tools.isBelowBreakpoint('lg'),
       isExpanded: false,
       expandedClass: State.EXPANDED,
       offScreenClass: State.OFF_SCREEN,
@@ -142,31 +144,12 @@ export default {
     };
   },
   mounted() {
-    const wrapperElement = this.$el.querySelector('.newsletter-banner__wrapper');
-    if (wrapperElement) {
-      this.observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const banner = this.$refs.icon;
-              if (banner && this.lottie) {
-                const startFrom = this.isMobile ? MOBILE_START : 0;
-                this.lottie.goToAndPlay(startFrom, false);
-                banner.classList.add(this.isMobile ? 'banner-animation_mobile' : 'banner-animation');
-                this.observer.unobserve(entry.target);
-              }
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
-      this.observer.observe(wrapperElement);
-    }
+    this.checkBreakpoint();
+
+    window.addEventListener('resize', this.checkBreakpoint);
+
+    this.animateBanner();
     this.root = this.$refs.root;
-    this.iconElement = this.$refs.icon;
-    this.linkElement = this.$refs.link instanceof NodeList ? this.$refs.link : [this.$refs.link];
-    this.modalElement = this.$refs.modal;
-    this.closeElement = this.$refs.close;
     this.lottie = this.$refs.lottie;
     this.init();
   },
@@ -177,17 +160,35 @@ export default {
       if (this.lottie) this.lottie.onLoopComplete = this.onComplete;
     },
     bindEvents() {
-      if (!this.iconElement || !this.modalElement) return this.bindTriggerEvent();
-      this.linkElement.forEach((link) => {
-        link.addEventListener('click', this.handleClick);
-      });
-      this.iconElement.addEventListener('click', this.handleClick);
-      this.closeElement?.addEventListener('click', this.handleClick);
       document.addEventListener(Events.FORM_AJAX_SUBMIT, this.handleClick);
       window.addEventListener('click', this.handleOutsideClick);
     },
-    bindTriggerEvent() {
-      this.iconElement.addEventListener('click', this.handleTriggerClick);
+    checkBreakpoint() {
+      this.isMobile = Tools.isBelowBreakpoint('lg');
+      this.screenXS = window.innerHeight <= SCREEN_XS_THRESHOLD;
+      this.animateBanner();
+    },
+    animateBanner() {
+      const wrapperElement = this.$el.querySelector('.newsletter__banner-wrapper');
+      if (wrapperElement) {
+        this.observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const banner = this.$refs.icon;
+                if (banner && this.lottie) {
+                  const startFrom = this.isMobile ? MOBILE_START : 0;
+                  this.lottie.goToAndPlay(startFrom, false);
+                  banner.classList.add(this.isMobile ? 'banner-animation_mobile' : 'banner-animation');
+                  this.observer.unobserve(entry.target);
+                }
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+        this.observer.observe(wrapperElement);
+      }
     },
     handleTriggerClick(e) {
       const target = e.currentTarget;
@@ -198,52 +199,38 @@ export default {
       if (
         this.root.classList.contains(this.expandedClass) &&
         Tools.isOutsideOf('newsletter', e) &&
-        Tools.isOutsideOf('newsletter-trigger', e)
+        Tools.isOutsideOf('newsletter__trigger', e)
       ) {
         this.handleClick();
       }
-      if (!Tools.isOutsideOf('newsletter-trigger', e)) {
+      if (!Tools.isOutsideOf('newsletter__trigger', e)) {
         this.handleClick();
       }
     },
     handleClick() {
       this.isExpanded = !this.isExpanded;
     },
-    hexToRGB() {
-      if (!this.iconColor || !this.lottieFiles) return;
-      let colorVal = this.iconColor;
-      if (colorVal.startsWith('var(')) {
-        colorVal = getComputedStyle(this.$refs.root || document.documentElement)
-          .getPropertyValue(colorVal.slice(4, -1))
-          .trim();
-      }
-      const hex = colorVal.replace(/^#/, '');
-      const num = parseInt(hex, 16);
-      const r = (num >> 16) & 255;
-      const g = (num >> 8) & 255;
-      const b = num & 255;
-      const rgbArray = [r / 255, g / 255, b / 255];
-      const flyShape = this.lottieFiles.fly.assets?.[1]?.layers?.[3]?.shapes?.[0]?.it?.[1]?.c;
-      const idleShape = this.lottieFiles.idle.assets?.[1]?.layers?.[3]?.shapes?.[0]?.it?.[1]?.c;
-      if (flyShape) flyShape.k = rgbArray;
-      if (idleShape) idleShape.k = rgbArray;
-    },
     setLottieColors() {
       if (!this.lottieFiles) return;
       if (this.light) {
-        const white = [1, 1, 1];
-        const flyLayers = this.lottieFiles.fly.assets?.[1]?.layers;
-        const idleLayers = this.lottieFiles.idle.assets?.[1]?.layers;
-        if (flyLayers && idleLayers) {
-          [flyLayers, idleLayers].forEach((layers) => {
-            layers[0]?.shapes?.[0]?.it?.[2]?.c && (layers[0].shapes[0].it[2].c.k = white);
-            layers[1]?.shapes?.[0]?.it?.[2]?.c && (layers[1].shapes[0].it[2].c.k = white);
-            layers[2]?.shapes?.[1]?.it?.[9]?.c && (layers[2].shapes[1].it[9].c.k = white);
-            layers[2]?.shapes?.[0]?.it?.[11]?.c && (layers[2].shapes[0].it[11].c.k = white);
+        const setLightContour = (assets) => {
+          assets?.forEach((asset) => {
+            asset.layers?.forEach((layer) => {
+              layer.shapes?.forEach((shape) => {
+                shape.it?.forEach((item) => {
+                  if (item.id === 'contour') {
+                    item.c.k = [1, 1, 1];
+                  }
+                });
+              });
+            });
           });
-        }
+        };
+
+        setLightContour(this.lottieFiles.fly.assets);
+        setLightContour(this.lottieFiles.idle.assets);
       }
-      this.hexToRGB();
+      Tools.hexToRgb(this.iconColor);
     },
     onComplete() {
       this.idle = true;
@@ -253,13 +240,10 @@ export default {
   beforeDestroy() {
     window.removeEventListener('click', this.handleOutsideClick);
     document.removeEventListener(Events.FORM_AJAX_SUBMIT, this.handleClick);
-    this.linkElement.forEach((link) => {
-      link.removeEventListener('click', this.handleClick);
-    });
-    this.iconElement.removeEventListener('click', this.handleClick);
-    this.iconElement.removeEventListener('click', this.handleTriggerClick);
-    this.closeElement.removeEventListener('click', this.handleClick);
-    this.observer.disconnect();
+    this.observer?.disconnect();
+  },
+  beforeUnmount() {
+    window.removeEventListener('resize', this.checkBreakpoint);
   },
 };
 </script>
