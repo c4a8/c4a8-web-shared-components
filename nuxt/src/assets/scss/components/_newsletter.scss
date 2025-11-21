@@ -1,6 +1,5 @@
 .newsletter {
   @include z-index;
-
   &.is--light {
     color: var(--color-white);
     .form__label,
@@ -28,18 +27,22 @@
       pointer-events: none;
     }
 
-    .newsletter__popup {
+    .newsletter__dialog {
       opacity: 1;
     }
   }
 
-  .newsletter__popup {
+  .newsletter__dialog {
     &.is-off-screen {
       opacity: 0;
       pointer-events: none;
       transform: translateX(0);
       transition-duration: 0s;
       width: 0;
+    }
+    &::backdrop {
+      background-color: #1e1e1e;
+      opacity: 0.9;
     }
   }
 }
@@ -72,10 +75,11 @@
   }
 }
 
-.newsletter__popup {
+.newsletter__dialog {
   position: fixed;
-  top: 20vh;
   z-index: 1000;
+  overflow: visible;
+  padding: 0;
   @include media-breakpoint-up(lg) {
     max-width: 80vw;
   }
@@ -101,5 +105,4 @@
   .banner-animation_mobile {
     animation: fly 2s forwards;
   }
-
 }

@@ -1,27 +1,27 @@
 <template>
   <div :class="classList" ref="root" class="newsletter py-4 px-lg-0 px-1">
     <div class="js-sticky-block d-flex justify-content-center">
-      <div
-        class="newsletter__popup"
-        :class="[{ [offScreenClass]: !isExpanded }, isMobile ? 'mx-2 w-auto' : '']"
-        ref="modal"
-        :style="modalStyle"
-        @click="handleTriggerClick"
-      >
-        <div class="newsletter__close" ref="close" @click="handleClick">
-          <icon icon="close" :circle="true" :hover="true" size="medium" :color="contrastColor" />
+      <dialog class="newsletter__dialog" ref="modal" @click="handleOutsideClick">
+        <div
+          class="newsletter__popup"
+          :class="[{ [offScreenClass]: !isExpanded }, isMobile ? ' w-auto' : '']"
+          :style="modalStyle"
+          @click="handleTriggerClick"
+        >
+          <div class="newsletter__close" ref="close" @click="handleClick">
+            <icon icon="close" :circle="true" :hover="true" size="medium" :color="contrastColor" />
+          </div>
+          <newsletter-modal
+            v-bind="modal"
+            :ajax="true"
+            :success="success"
+            :iconColor="iconColor"
+            :bgColor="bgColor"
+            :light="light"
+            :lottie="lottieFiles"
+          />
         </div>
-        <newsletter-modal
-          v-bind="modal"
-          :ajax="true"
-          :success="success"
-          :iconColor="iconColor"
-          :bgColor="bgColor"
-          :light="light"
-          :lottie="lottieFiles"
-          :isMobile="isMobile"
-        />
-      </div>
+      </dialog>
     </div>
     <div class="newsletter__banner-wrapper">
       <div class="newsletter__banner mx-auto" :class="isMobile ? 'd-flex' : ''" ref="icon" @click="handleClick">
@@ -161,7 +161,6 @@ export default {
     },
     bindEvents() {
       document.addEventListener(Events.FORM_AJAX_SUBMIT, this.handleClick);
-      window.addEventListener('click', this.handleOutsideClick);
     },
     checkBreakpoint() {
       this.isMobile = Tools.isBelowBreakpoint('lg');
@@ -196,18 +195,17 @@ export default {
       document.dispatchEvent(new CustomEvent(Events.OPEN_MODAL, { detail: { id: triggerId } }));
     },
     handleOutsideClick(e) {
-      if (
-        this.root.classList.contains(this.expandedClass) &&
-        Tools.isOutsideOf('newsletter', e) &&
-        Tools.isOutsideOf('newsletter__trigger', e)
-      ) {
-        this.handleClick();
-      }
-      if (!Tools.isOutsideOf('newsletter__trigger', e)) {
+      if (Tools.isOutsideOf('newsletter__popup', e)) {
         this.handleClick();
       }
     },
     handleClick() {
+      if (this.isExpanded) {
+        this.$refs.modal.close();
+      } else {
+        this.$refs.modal.showModal();
+      }
+
       this.isExpanded = !this.isExpanded;
     },
     setLottieColors() {
@@ -238,7 +236,6 @@ export default {
     },
   },
   beforeDestroy() {
-    window.removeEventListener('click', this.handleOutsideClick);
     document.removeEventListener(Events.FORM_AJAX_SUBMIT, this.handleClick);
     this.observer?.disconnect();
   },

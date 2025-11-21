@@ -49961,15 +49961,19 @@ shape {
   padding: 0;
   pointer-events: none;
 }
-.newsletter.is-expanded .newsletter__popup {
+.newsletter.is-expanded .newsletter__dialog {
   opacity: 1;
 }
-.newsletter .newsletter__popup.is-off-screen {
+.newsletter .newsletter__dialog.is-off-screen {
   opacity: 0;
   pointer-events: none;
   transform: translateX(0);
   transition-duration: 0s;
   width: 0;
+}
+.newsletter .newsletter__dialog::backdrop {
+  background-color: #1e1e1e;
+  opacity: 0.9;
 }
 
 .newsletter__close {
@@ -49999,18 +50003,19 @@ shape {
   }
 }
 
-.newsletter__popup {
+.newsletter__dialog {
   position: fixed;
-  top: 20vh;
   z-index: 1000;
+  overflow: visible;
+  padding: 0;
 }
 @media (min-width: 992px) {
-  .newsletter__popup {
+  .newsletter__dialog {
     max-width: 80vw;
   }
 }
 @media (max-width: 1199.98px) {
-  .newsletter__popup {
+  .newsletter__dialog {
     top: 10vh;
   }
 }
