@@ -59,6 +59,9 @@
     padding: spacing(1);
     cursor: pointer;
 
+    &:hover {
+      background-color: transparent
+    }
     &.icon--circle svg {
       width: 80%;
     }
