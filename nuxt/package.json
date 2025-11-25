@@ -22,7 +22,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "build-storybook-full": "npm run build && storybook build",
-    "module:after-build": "node scripts/prepare-styles.js",
+    "module:after-build": "node scripts/prepare-styles.js && node scripts/copy-assets.js",
     "module:build": "node scripts/copy-components.js && nuxt-module-build build && npm run module:after-build",
     "update": "npm run module:build && node scripts/move-module.js",
     "new-version": "cd .. && npm version minor --no-git-tag-version && cd nuxt && npm run update",
