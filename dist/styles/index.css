@@ -50163,15 +50163,13 @@ shape {
   .video-slider__footer .cta__text {
     font-size: 1.25rem;
   }
+  .video-slider__footer {
+    margin-left: calc(20vw + 2rem);
+  }
 }
 @media (min-width: 1200px) {
   .video-slider__footer .cta__text {
     font-size: 1.5625rem;
-  }
-}
-@media (min-width: 992px) {
-  .video-slider__footer {
-    margin-left: calc(20vw + 2rem);
   }
 }
 .video-slider__max-width {

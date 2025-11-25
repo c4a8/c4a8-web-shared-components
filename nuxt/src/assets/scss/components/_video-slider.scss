@@ -5,7 +5,7 @@
   background-color: var(--color-video-slider-background);
   color: var(--color-video-slider-color);
   padding: 6rem 0;
-  
+
   .slick-slide > * {
     padding: var(--video-slider-video-gap) calc(var(--video-slider-video-factor) * var(--video-slider-video-gap));
     transition: padding 0.3s ease-in-out;
@@ -20,7 +20,7 @@
   .slick-center > * {
     padding: 0;
   }
-  @media (min-width: 992px) {
+  @include media-breakpoint-up(lg) {
     .video-slider {
       --video-slider-video-gap: 1.5rem;
     }
@@ -43,7 +43,7 @@
   margin: 0 auto;
   scroll-snap-type: x mandatory;
 }
-@media (min-width: 992px) {
+@include media-breakpoint-up(lg) {
   .video-slider__tabs {
     justify-content: center;
   }
@@ -80,19 +80,17 @@
   font-size: 1.25rem;
   line-height: 2.5rem;
 }
-@media (min-width: 992px) {
+@include media-breakpoint-up(lg) {
   .video-slider__footer .cta__text {
     font-size: 1.25rem;
   }
-}
-@media (min-width: 1200px) {
-  .video-slider__footer .cta__text {
-    font-size: 1.5625rem;
-  }
-}
-@media (min-width: 992px) {
   .video-slider__footer {
     margin-left: calc(20vw + 2rem);
+  }
+}
+@include media-breakpoint-up(xl) {
+  .video-slider__footer .cta__text {
+    font-size: 1.5625rem;
   }
 }
 
