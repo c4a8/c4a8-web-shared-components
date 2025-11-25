@@ -71,7 +71,7 @@
             <socials :vertical="true" :hide-label="true" :author="null" :share-url="shareUrl" v-else />
           </sticky-block>
 
-          <ContentRenderer
+          <shared-content-renderer
             :value="enhancedPost"
             tag="main"
             :class="contentWidth"
