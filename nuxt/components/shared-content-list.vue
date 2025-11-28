@@ -16,6 +16,10 @@ const props = defineProps({
     type: Array,
     default: () => [],
   },
+  useSharedContent: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const { locale, strategy } = useI18n();
@@ -28,13 +32,12 @@ const localeQuery = computed(() => ({
 }));
 
 const dataKey = props.query?.key || props.query?.path?.replace('/', 'content-') || 'content-list';
-
 const filterDuplicateItems = (items) => {
   const seen = new Map();
-
   return items.filter((item) => {
     const normalizedPath = item.path?.replace(/-(en|es)(\.md)?$/, '');
-
+    //const normalizedPath = item.path?.replace('/events', '');
+    console.log(item.path, normalizedPath);
     if (!normalizedPath) return true;
 
     if (seen.has(normalizedPath)) {
@@ -76,7 +79,7 @@ const list = computed(() => {
 const { data: asyncList } = await useAsyncData(dataKey, async () => {
   if (props.dataList.length > 0) return null;
 
-  const mainCollection = 'content_' + locale.value;
+  const mainCollection = `${props.useSharedContent ? 'shared_content_' : 'content_'}${locale.value}`;
   const mainResults = await buildQuery(mainCollection).all();
 
   if (!props.query.additionalCollections?.length) {
@@ -96,5 +99,12 @@ const { data: asyncList } = await useAsyncData(dataKey, async () => {
   return filterDuplicateItems(allResults);
 });
 
+console.log(asyncList.value);
+
+/*
+const test = filterDuplicateItems(asyncList.value);
+console.log(test);
+*/
 const contentList = computed(() => list.value || asyncList.value);
 </script>
+

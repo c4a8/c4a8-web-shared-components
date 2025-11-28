@@ -37,6 +37,17 @@ declare namespace _default {
         let moreUrl: StringConstructor;
         let order: ArrayConstructor;
         let sortBy: ObjectConstructor;
+        namespace useSharedContent {
+            export let type: BooleanConstructor;
+            let _default: boolean;
+            export { _default as default };
+        }
+        namespace tag {
+            let type_1: StringConstructor;
+            export { type_1 as type };
+            let _default_1: null;
+            export { _default_1 as default };
+        }
     }
 }
 export default _default;

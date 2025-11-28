@@ -2,7 +2,13 @@
   <wrapper :class="classList" ref="root">
     <headline class="event-overview__headline" :text="headline" :level="headlineLevel" v-if="headline" />
     <transition-group name="event-overview__item">
-      <SharedContentList :data-list="eventsValue" :query="query" v-slot="{ list, strategy }" :key="0">
+      <SharedContentList
+        :dataList="eventsValue"
+        :query="query"
+        v-slot="{ list, strategy }"
+        :key="0"
+        :useSharedContent="useSharedContent"
+      >
         <markdown-files :list="list" v-slot="{ files }" :sort="sort" :strategy="strategy" :limit="maxLimitValue">
           <template v-if="updateFiles(files)">
             <template v-for="(event, index) in files" :key="index">
@@ -76,14 +82,12 @@ export default {
     query() {
       let query = {};
 
-      if (this.order && Array.isArray(this.order)) {
-        query.where = {
-          eventid: { IN: this.order },
-        };
-      }
+      query.where = {
+        eventid: this.order && Array.isArray(this.order) ? { IN: this.order } : {},
+        tags: this.tag ? { LIKE: `%${this.tag}%` } : {},
+      };
 
       query.path = '/events';
-
       return query;
     },
     sort() {
@@ -130,6 +134,15 @@ export default {
     moreUrl: String,
     order: Array,
     sortBy: Object,
+    useSharedContent: {
+      type: Boolean,
+      default: false,
+    },
+    tag: {
+      type: String,
+      default: null,
+    },
   },
 };
 </script>
+
