@@ -550,8 +550,8 @@ class Form extends BaseComponent {
       if (this.isOptionalInputInvisible(input)) continue;
 
       let value;
-
-      if (input.type === 'text' || input.type === 'email' || input.tagName === 'TEXTAREA' || input.type === 'hidden') {
+      let name; 
+      if (input.type === 'text' || input.type === 'email' || input.tagName === 'TEXTAREA') {
         value = input.value;
       } else {
         // TODO handle select
@@ -560,8 +560,19 @@ class Form extends BaseComponent {
       data.push({
         input,
         value,
-      });
+      });    
+      
+      if (input.type === 'hidden') {
+
+        name = input.name;
+        value = input.value;
+        data.push({
+          name,
+          value
+        });
     }
+    }
+
 
     return data;
   }
