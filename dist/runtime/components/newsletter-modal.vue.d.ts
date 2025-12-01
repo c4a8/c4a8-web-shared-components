@@ -66,6 +66,7 @@ declare namespace _default {
     function mounted(): void;
     function beforeUnmount(): void;
     namespace methods {
+        function handleFormSubmit(event: any): void;
         function handleSuccess(): void;
         function setIdle(): void;
         function checkBreakpoint(): void;
