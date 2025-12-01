@@ -541,12 +541,7 @@ class Form extends BaseComponent {
     if (form === null || form === undefined) return [];
 
     // TODO refactor with select
-    const inputs = form.querySelectorAll(
-      'input[type="text"], input[type="email"], textarea',
-      'input[type="hidden"]',
-      'input[type="radio"],input[type="checkbox"]',
-      'input[type="hidden"]'
-    );
+    const inputs = form.querySelectorAll('input[type="text"], input[type="email"], input[type="hidden"], textarea');
     const data = [];
 
     for (let i = 0; i < inputs.length; i++) {
@@ -556,7 +551,7 @@ class Form extends BaseComponent {
 
       let value;
 
-      if (input.type === 'text' || input.type === 'email' || input.tagName === 'TEXTAREA') {
+      if (input.type === 'text' || input.type === 'email' || input.tagName === 'TEXTAREA' || input.type === 'hidden') {
         value = input.value;
       } else {
         // TODO handle select
