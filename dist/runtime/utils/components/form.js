@@ -541,7 +541,12 @@ class Form extends BaseComponent {
     if (form === null || form === undefined) return [];
 
     // TODO refactor with select
-    const inputs = form.querySelectorAll('input[type="text"], input[type="email"], textarea');
+    const inputs = form.querySelectorAll(
+      'input[type="text"], input[type="email"], textarea',
+      'input[type="hidden"]',
+      'input[type="radio"],input[type="checkbox"]',
+      'input[type="hidden"]'
+    );
     const data = [];
 
     for (let i = 0; i < inputs.length; i++) {
