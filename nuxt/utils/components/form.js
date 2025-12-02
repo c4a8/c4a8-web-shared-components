@@ -539,6 +539,16 @@ class Form extends BaseComponent {
 
   static getFormData(form) {
     if (form === null || form === undefined) return [];
+    const formData = new FormData(form);
+    const data = [];
+
+    for (let fieldData of formData) {
+      data.push(encodeURIComponent(fieldData[0]) + '=' + encodeURIComponent(fieldData[1]));
+    }
+
+    return data.join('&');
+    /*
+    if (form === null || form === undefined) return [];
 
     // TODO refactor with select
     const inputs = form.querySelectorAll('input[type="text"], input[type="email"], input[type="hidden"], textarea');
@@ -575,6 +585,7 @@ class Form extends BaseComponent {
 
 
     return data;
+    */
   }
 }
 
