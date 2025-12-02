@@ -539,53 +539,54 @@ class Form extends BaseComponent {
 
   static getFormData(form) {
     if (form === null || form === undefined) return [];
-    const formData = new FormData(form);
     const data = [];
+    let isNewsletter = false;
+
+    const formData = new FormData(form);
 
     for (let fieldData of formData) {
       data.push(encodeURIComponent(fieldData[0]) + '=' + encodeURIComponent(fieldData[1]));
     }
 
-    return data.join('&');
-    /*
-    if (form === null || form === undefined) return [];
+    isNewsletter = data.some((item) => item === 'newsletterModal=true');
+    if (isNewsletter) {
+      return data.join('&');
+    } else {
+      if (form === null || form === undefined) return [];
 
-    // TODO refactor with select
-    const inputs = form.querySelectorAll('input[type="text"], input[type="email"], input[type="hidden"], textarea');
-    const data = [];
+      // TODO refactor with select
+      const inputs = form.querySelectorAll('input[type="text"], input[type="email"], input[type="hidden"], textarea');
 
-    for (let i = 0; i < inputs.length; i++) {
-      const input = inputs[i];
+      for (let i = 0; i < inputs.length; i++) {
+        const input = inputs[i];
 
-      if (this.isOptionalInputInvisible(input)) continue;
+        if (this.isOptionalInputInvisible(input)) continue;
 
-      let value;
-      let name; 
-      if (input.type === 'text' || input.type === 'email' || input.tagName === 'TEXTAREA') {
-        value = input.value;
-      } else {
-        // TODO handle select
+        let value;
+        let name;
+        if (input.type === 'text' || input.type === 'email' || input.tagName === 'TEXTAREA') {
+          value = input.value;
+        } else {
+          // TODO handle select
+        }
+
+        data.push({
+          input,
+          value,
+        });
+
+        if (input.type === 'hidden') {
+          name = input.name;
+          value = input.value;
+          data.push({
+            name,
+            value,
+          });
+        }
       }
 
-      data.push({
-        input,
-        value,
-      });    
-      
-      if (input.type === 'hidden') {
-
-        name = input.name;
-        value = input.value;
-        data.push({
-          name,
-          value
-        });
+      return data;
     }
-    }
-
-
-    return data;
-    */
   }
 }
 
