@@ -539,22 +539,30 @@ class Form extends BaseComponent {
 
   static getFormData(form) {
     if (form === null || form === undefined) return [];
-
-    // TODO refactor with select
-    const inputs = form.querySelectorAll('input[type="text"], input[type="email"], textarea');
     const data = [];
-    let value;
-    for (let i = 0; i < inputs.length; i++) {
-      const input = inputs[i];
+    let isNewsletter = false;
 
-      if (this.isOptionalInputInvisible(input)) continue;
+    const formData = new FormData(form);
 
-      isNewsletter = data.some((item) => item === 'newsletterModal=true');
-      if (isNewsletter) {
-        return data.join('&');
-      } else {
-        if (form === null || form === undefined) return [];
+    for (let fieldData of formData) {
+      data.push(encodeURIComponent(fieldData[0]) + '=' + encodeURIComponent(fieldData[1]));
+    }
 
+    isNewsletter = data.some((item) => item === 'newsletterModal=true');
+    if (isNewsletter) {
+      return data.join('&');
+    } else {
+      if (form === null || form === undefined) return [];
+
+      // TODO refactor with select
+      const inputs = form.querySelectorAll('input[type="text"], input[type="email"], input[type="hidden"], textarea');
+
+      for (let i = 0; i < inputs.length; i++) {
+        const input = inputs[i];
+
+        if (this.isOptionalInputInvisible(input)) continue;
+
+        let value;
         if (input.type === 'text' || input.type === 'email' || input.tagName === 'TEXTAREA') {
           value = input.value;
         } else {
@@ -571,4 +579,5 @@ class Form extends BaseComponent {
     }
   }
 }
+
 export default Form;
