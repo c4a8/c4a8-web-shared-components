@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.53
+
+- Fixes overlapping of video component
+
 # Release 0.4.45
 
 - Adds Turnstile Captcha
