@@ -8,7 +8,9 @@ export default {
       components: { story },
       template: `
         <div>
-          <div style="height: 20vh;" class="dummy-content"></div>
+          <div style="height: 20vh;" class="dummy-content">
+            Dummy Content Block Dummy Content Block Dummy Content Block Dummy Content Block Dummy Content Block Dummy Content Block Dummy Content Block Dummy Content Block Dummy Content Block
+          </div>
           <story />
           <div style="height: 100vh;" class="dummy-content"></div>
         </div>
@@ -107,12 +109,12 @@ export const VideoCompact = {
 
 export const VideoWithSubtitles = {
   args: {
-    subtitles: "en",
+    subtitles: 'en',
     video: {
       thumb: 'thumbs/video-thumb-haniel.jpg',
       alt: 'work @ glueckkanja',
-      id: "zef-39mP_XQ",
+      id: 'zef-39mP_XQ',
       headline: 'work @ glueckkanja',
-   },
+    },
   },
 };
