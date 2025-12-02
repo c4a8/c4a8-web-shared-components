@@ -14,7 +14,7 @@
           v-if="!success"
           v-bind="formularConfig"
           ref="form"
-          :onSuccess="handleSuccess"
+          @success="handleSuccess"
           :class="formularClasses"
         />
       </div>
@@ -163,21 +163,12 @@ export default {
     this.checkBreakpoint();
 
     window.addEventListener('resize', this.checkBreakpoint);
-    document.addEventListener('form-ajax-submit', this.handleFormSubmit);
   },
   beforeUnmount() {
     window.removeEventListener('resize', this.checkBreakpoint);
-    document.removeEventListener('form-ajax-submit', this.handleFormSubmit);
   },
 
   methods: {
-    handleFormSubmit(event) {
-      const formElement = this.$refs.form?.$el || this.$refs.form?.$refs?.root;
-      if (event.detail?.target === formElement) {
-        event.stopImmediatePropagation();
-        this.handleSuccess();
-      }
-    },
     handleSuccess() {
       if (this.$refs.modalContent) {
         this.heightFixed = `${this.$refs.modalContent.clientHeight}px`;
