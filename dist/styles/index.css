@@ -37444,9 +37444,8 @@ svg.streamline-icon {
   padding: 1rem 1.25rem 1.5rem;
 }
 .card.vue-component.card--products .card__img-top .card__img-headline-container {
-  height: 100%;
-  position: relative;
-  top: 0%;
+  align-self: flex-end;
+  padding-bottom: 1rem;
 }
 .card.vue-component.card--products .card__img-top .card__img-headline-container .headline {
   font-size: 1.375rem;

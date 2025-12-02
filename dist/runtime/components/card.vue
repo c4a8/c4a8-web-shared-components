@@ -54,7 +54,10 @@
     </template>
 
     <template v-else-if="productValue">
-      <div class="card__img-top card-img--products position-relative no-gutters is-foreground" v-if="blogtitlepic">
+      <div
+        class="card__img-top card-img--products position-relative no-gutters is-foreground d-flex flex-column h-auto"
+        v-if="blogtitlepic"
+      >
         <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :img-src-sets="imgSrcSets" :lazy="true" />
         <div class="card__img-headline-container">
           <template v-if="tag">
@@ -67,8 +70,8 @@
               {{ title }}
             </p>
           </headline>
-          <div class="card-img-cutoff" />
         </div>
+        <div class="card-img-cutoff align-self-end" />
       </div>
 
       <div class="card__body card-body mt-0 pt-0 z-index-2">
@@ -112,8 +115,13 @@
           </ul>
           <p class="card-warning" v-if="footer">{{ footer }}</p>
         </div>
-        <div class="card__link d-flex flex-wrap" > 
-          <cta v-if="Array.isArray(cta)" v-for="cta in cta" v-bind="cta" :link="cta.link == undefined ? true : cta.link" />       
+        <div class="card__link d-flex flex-wrap">
+          <cta
+            v-if="Array.isArray(cta)"
+            v-for="cta in cta"
+            v-bind="cta"
+            :link="cta.link == undefined ? true : cta.link"
+          />
           <cta v-else v-bind="ctaValue" />
         </div>
       </div>

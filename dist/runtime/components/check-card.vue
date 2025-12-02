@@ -23,13 +23,13 @@
         <template v-for="(check, index) in checks" v-bind:key="index">
           <div :class="itemClass">
             <template v-if="hasProducts">
-              <card :product="check.product" :title="check.title" :tag="check.tag" :blog-title-pic="check.picture" />
+              <card :product="check.product" :title="check.title" :tag="check.tag" :blogtitlepic="check.picture" />
             </template>
             <template v-else>
               <card
                 :url="check.url"
                 :title="check.title"
-                :blog-title-pic="check.picture"
+                :blogtitlepic="check.picture"
                 :excerpt="check.subline"
                 :sub-points="check.subpoints"
                 :scope="check.scope"

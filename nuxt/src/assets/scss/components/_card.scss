@@ -129,9 +129,8 @@
         }
 
         .card__img-headline-container {
-          height: 100%;
-          position: relative;
-          top: 0%;
+          align-self: flex-end;
+          padding-bottom: 1rem;
 
           .headline {
             @include font-style($style: 'font-size-4', $line: 'wide');
