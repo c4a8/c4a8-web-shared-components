@@ -539,31 +539,59 @@ class Form extends BaseComponent {
 
   static getFormData(form) {
     if (form === null || form === undefined) return [];
-
-    // TODO refactor with select
-    const inputs = form.querySelectorAll('input[type="text"], input[type="email"], textarea');
     const data = [];
+    let isNewsletter = false;
 
-    for (let i = 0; i < inputs.length; i++) {
-      const input = inputs[i];
+    const formData = new FormData(form);
 
-      if (this.isOptionalInputInvisible(input)) continue;
-
-      let value;
-
-      if (input.type === 'text' || input.type === 'email' || input.tagName === 'TEXTAREA') {
-        value = input.value;
-      } else {
-        // TODO handle select
-      }
-
-      data.push({
-        input,
-        value,
-      });
+    for (let fieldData of formData) {
+      data.push(encodeURIComponent(fieldData[0]) + '=' + encodeURIComponent(fieldData[1]));
     }
 
-    return data;
+    for (let i = 0; i < data.length; i++) {
+      if (data[i] === 'newsletterModal=true') {
+        isNewsletter = true;
+        break;
+      }
+    }
+    if (isNewsletter) {
+      return data.join('&');
+    } else {
+      if (form === null || form === undefined) return [];
+
+      // TODO refactor with select
+      const inputs = form.querySelectorAll('input[type="text"], input[type="email"], input[type="hidden"], textarea');
+
+      for (let i = 0; i < inputs.length; i++) {
+        const input = inputs[i];
+
+        if (this.isOptionalInputInvisible(input)) continue;
+
+        let value;
+        let name;
+        if (input.type === 'text' || input.type === 'email' || input.tagName === 'TEXTAREA') {
+          value = input.value;
+        } else {
+          // TODO handle select
+        }
+
+        data.push({
+          input,
+          value,
+        });
+
+        if (input.type === 'hidden') {
+          name = input.name;
+          value = input.value;
+          data.push({
+            name,
+            value,
+          });
+        }
+      }
+
+      return data;
+    }
   }
 }
 
