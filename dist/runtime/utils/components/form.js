@@ -549,21 +549,26 @@ class Form extends BaseComponent {
 
       if (this.isOptionalInputInvisible(input)) continue;
 
-      let value;
-
-      if (input.type === 'text' || input.type === 'email' || input.tagName === 'TEXTAREA') {
-        value = input.value;
+      isNewsletter = data.some((item) => item === 'newsletterModal=true');
+      if (isNewsletter) {
+        return data.join('&');
       } else {
-        // TODO handle select
+        if (form === null || form === undefined) return [];
+
+        if (input.type === 'text' || input.type === 'email' || input.tagName === 'TEXTAREA') {
+          value = input.value;
+        } else {
+          // TODO handle select
+        }
+
+        data.push({
+          input,
+          value,
+        });
       }
 
-      data.push({
-        input,
-        value,
-      });
+      return data;
     }
-    return data;
   }
 }
-
 export default Form;
