@@ -49858,6 +49858,7 @@ shape {
   z-index: 80;
   margin-top: -6.25rem;
   position: relative;
+  pointer-events: none;
 }
 @media (min-width: 768px) {
   .video.video--is-overlapping {
@@ -49873,6 +49874,10 @@ shape {
   .video.video--is-overlapping {
     margin-top: -8.75rem;
   }
+}
+.video.video--is-overlapping .video__content,
+.video.video--is-overlapping .video__player {
+  pointer-events: auto;
 }
 .video.video--post img {
   left: 0;
