@@ -562,6 +562,7 @@ class Form extends BaseComponent {
         value,
       });
     }
+    
     return data;
   }
 }
