@@ -543,32 +543,33 @@ class Form extends BaseComponent {
     // TODO refactor with select
     const inputs = form.querySelectorAll('input[type="text"], input[type="email"], textarea');
     const data = [];
-
+    let value;
+    
     for (let i = 0; i < inputs.length; i++) {
       const input = inputs[i];
 
       if (this.isOptionalInputInvisible(input)) continue;
 
-    isNewsletter = data.some((item) => item === 'newsletterModal=true');
-    if (isNewsletter) {
-      return data.join('&');
-    } else {
-      if (form === null || form === undefined) return [];
-
-      if (input.type === 'text' || input.type === 'email' || input.tagName === 'TEXTAREA') {
-        value = input.value;
+      isNewsletter = data.some((item) => item === 'newsletterModal=true');
+      if (isNewsletter) {
+        return data.join('&');
       } else {
-        // TODO handle select
+        if (form === null || form === undefined) return [];
+
+        if (input.type === 'text' || input.type === 'email' || input.tagName === 'TEXTAREA') {
+          value = input.value;
+        } else {
+          // TODO handle select
+        }
+
+        data.push({
+          input,
+          value,
+        });
       }
 
-      data.push({
-        input,
-        value,
-      });
+      return data;
     }
-
-    return data;
   }
 }
-
 export default Form;

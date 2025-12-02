@@ -543,7 +543,7 @@ class Form extends BaseComponent {
     // TODO refactor with select
     const inputs = form.querySelectorAll('input[type="text"], input[type="email"], textarea');
     const data = [];
-
+    let value;
     for (let i = 0; i < inputs.length; i++) {
       const input = inputs[i];
 
