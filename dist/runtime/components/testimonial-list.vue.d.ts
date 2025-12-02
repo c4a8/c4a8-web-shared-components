@@ -6,7 +6,7 @@ declare namespace _default {
             export { _default as default };
         }
         namespace headlineLevel {
-            let type_1: (NumberConstructor | StringConstructor)[];
+            let type_1: (StringConstructor | NumberConstructor)[];
             export { type_1 as type };
             let _default_1: string;
             export { _default_1 as default };

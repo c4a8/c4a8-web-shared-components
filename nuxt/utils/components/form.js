@@ -549,7 +549,11 @@ class Form extends BaseComponent {
 
       if (this.isOptionalInputInvisible(input)) continue;
 
-      let value;
+    isNewsletter = data.some((item) => item === 'newsletterModal=true');
+    if (isNewsletter) {
+      return data.join('&');
+    } else {
+      if (form === null || form === undefined) return [];
 
       if (input.type === 'text' || input.type === 'email' || input.tagName === 'TEXTAREA') {
         value = input.value;

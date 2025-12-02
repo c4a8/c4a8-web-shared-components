@@ -25,11 +25,11 @@ declare namespace _default {
             let type: StringConstructor;
         }
         namespace width {
-            let type_1: (NumberConstructor | StringConstructor)[];
+            let type_1: (StringConstructor | NumberConstructor)[];
             export { type_1 as type };
         }
         namespace height {
-            let type_2: (NumberConstructor | StringConstructor)[];
+            let type_2: (StringConstructor | NumberConstructor)[];
             export { type_2 as type };
         }
         namespace background {
