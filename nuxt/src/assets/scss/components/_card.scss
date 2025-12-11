@@ -152,7 +152,7 @@
     }
 
     &.card--large {
-      .card__title {
+      .headline {
         @include line-height('thin');
       }
 
