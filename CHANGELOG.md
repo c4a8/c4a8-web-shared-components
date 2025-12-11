@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.56
+
+- Adjustments to Card Layout
+
 # Release 0.4.55
 
 - Adjustments to Post Layout
