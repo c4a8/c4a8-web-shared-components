@@ -31,6 +31,10 @@ $richtext-conclusion-spacing-lg: $spacing-content-default;
     }
   }
 
+  .aside-wrapper + p {
+    margin-top: spacing(12);
+  }
+
   p {
     + * {
       margin-top: spacing(12);
