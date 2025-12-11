@@ -36144,6 +36144,9 @@ modal {
 .richtext > p:first-of-type img {
   margin-top: 0;
 }
+.richtext .aside-wrapper + p {
+  margin-top: 3rem;
+}
 .richtext p + * {
   margin-top: 3rem;
 }
@@ -36994,15 +36997,8 @@ svg.streamline-icon {
   display: flex;
   gap: 3.5rem;
 }
-@media (max-width: 1339.98px) {
-  .aside-wrapper {
-    flex-direction: row;
-  }
-}
-@media (max-width: 991.98px) {
-  .aside-wrapper {
-    flex-direction: column;
-  }
+.aside-wrapper p:last-of-type {
+  margin-bottom: 0;
 }
 .aside-wrapper .aside-wrapper__content {
   margin-top: 3rem;
@@ -37015,6 +37011,16 @@ svg.streamline-icon {
 .aside-wrapper .aside-wrapper__aside img {
   width: 100%;
   margin-bottom: 3rem;
+}
+@media (max-width: 1339.98px) {
+  .aside-wrapper {
+    flex-direction: row;
+  }
+}
+@media (max-width: 991.98px) {
+  .aside-wrapper {
+    flex-direction: column;
+  }
 }
 
 .authors {
@@ -37473,6 +37479,9 @@ svg.streamline-icon {
 .card.vue-component.card--products .card-body .headline {
   color: var(--color-regent-grey);
   text-transform: uppercase;
+}
+.card.vue-component.card--large .card__title {
+  line-height: 1.2em;
 }
 @media (min-width: 992px) {
   .card.vue-component.card--large .card__img-top {
@@ -44657,6 +44666,7 @@ job-list-detail {
 .post-detail {
   --post-offset-spacing-xl: 7.5rem;
   --post-content-width-lg: 80%;
+  --post-paragraph-line-height: 2;
 }
 
 .post-detail {
@@ -44734,13 +44744,16 @@ job-list-detail {
   }
 }
 .post-content main > p:not(.post__sticky-excerpt) {
-  line-height: 2;
+  line-height: var(--post-paragraph-line-height);
 }
 .post-content main > p:last-of-type {
   margin-bottom: 0;
 }
 .post-content main > p:last-of-type img {
   margin-bottom: 0;
+}
+.post-content main .prose-p:not(.post__sticky-excerpt) {
+  line-height: var(--post-paragraph-line-height);
 }
 .post-content iframe:not(.video-frame__iframe):not(.video__iframe) {
   margin-top: 1.5rem;

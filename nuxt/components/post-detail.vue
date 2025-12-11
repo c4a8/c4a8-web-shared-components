@@ -9,9 +9,12 @@
         ref="article"
       >
         <header class="post-header">
-          <h1 class="post-title p-name" :class="normalizedPost.titleClass || 'h2-font-size'" itemprop="name headline">
-            {{ normalizedPost.title }}
-          </h1>
+          <h1
+            class="post-title p-name"
+            :class="normalizedPost.titleClass || 'h2-font-size'"
+            itemprop="name headline"
+            v-html="normalizedPost.title"
+          ></h1>
           <div class="py-4 mt-5">
             <div class="row align-items-md-center">
               <div class="col-md-7 mb-5 mb-md-0" v-if="post.author">
