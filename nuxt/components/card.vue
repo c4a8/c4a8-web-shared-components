@@ -42,10 +42,8 @@
         <div class="col-lg-4">
           <div class="card__body card-body d-flex flex-column h-100 p-4 p-lg-5">
             <headline level="h3"
-              ><a class="card__title text-inherit" ref="title" :href="url" :target="target">{{
-                combinedTitle
-              }}</a></headline
-            >
+              ><a class="card__title text-inherit" ref="title" :href="url" :target="target" v-html="combinedTitle"
+            /></headline>
             <p v-html="truncatedExcerpt"></p>
             <card-footer v-bind="cardFooterData" />
           </div>
@@ -98,9 +96,8 @@
               class="card__title text-inherit text-decoration-none text-reset mt-4 mb-4"
               :href="url"
               :target="target"
-              >{{ combinedTitle }}</a
-            ></headline
-          >
+              v-html="combinedTitle"
+          /></headline>
           <p class="card__excerpt mb-4 mt-4" v-html="truncatedExcerpt"></p>
 
           <ul class="card__points text-black">
@@ -112,8 +109,13 @@
           </ul>
           <p class="card-warning" v-if="footer">{{ footer }}</p>
         </div>
-        <div class="card__link d-flex flex-wrap" > 
-          <cta v-if="Array.isArray(cta)" v-for="cta in cta" v-bind="cta" :link="cta.link == undefined ? true : cta.link" />       
+        <div class="card__link d-flex flex-wrap">
+          <cta
+            v-if="Array.isArray(cta)"
+            v-for="cta in cta"
+            v-bind="cta"
+            :link="cta.link == undefined ? true : cta.link"
+          />
           <cta v-else v-bind="ctaValue" />
         </div>
       </div>
@@ -131,10 +133,8 @@
       <div class="card__content">
         <div class="card__body card-body">
           <headline level="h4"
-            ><a ref="title" class="card__title text-inherit" :href="url" :target="target">{{
-              combinedTitle
-            }}</a></headline
-          >
+            ><a ref="title" class="card__title text-inherit" :href="url" :target="target" v-html="combinedTitle"
+          /></headline>
           <p v-html="truncatedExcerpt"></p>
         </div>
 
