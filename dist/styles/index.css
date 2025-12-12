@@ -1903,6 +1903,10 @@ pre code {
   color: black;
 }
 
+.table-products th:first-child {
+  background-color: white;
+}
+
 .table-products th {
   font-size: x-large !important;
   text-align: start !important;
