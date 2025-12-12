@@ -40,6 +40,7 @@
                   v-for="(col, colIndex) in sticky ? table[0].length - 1 : table[0]"
                   :key="'head-' + colIndex"
                   v-html="sticky ? table[0][colIndex + 1] : col"
+                  ref="headScroll"
                 ></th>
               </tr>
             </thead>
@@ -50,6 +51,12 @@
                   <icon
                     v-if="sticky ? row[colIndex + 1] === 'check' : col === 'check'"
                     icon="check-mark"
+                    color="var(--color-black)"
+                    size="medium"
+                  />
+                  <icon
+                    v-else-if="sticky ? row[colIndex + 1] === 'x' : col === 'x'"
+                    icon="x-mark"
                     color="var(--color-black)"
                     size="medium"
                   />
@@ -79,9 +86,9 @@ export default {
       type: Boolean,
       default: false,
     },
-    style: {
+    theme: {
       type: String,
-      default: '',
+      default: 'striped',
     },
     classes: {
       type: String,
@@ -105,6 +112,9 @@ export default {
     headColor: {
       type: String,
     },
+    bgImg: {
+      type: String,
+    },
   },
   mounted() {
     this.setStyle();
@@ -115,9 +125,11 @@ export default {
         this.$refs.head.style.backgroundColor = this.headBg;
         this.$refs.head.style.color = this.headColor;
       }
-
       if (this.$refs.headSticky) {
-        this.$refs.headSticky.style.backgroundColor = this.headBg;
+        this.$refs.head.style.backgroundColor = this.bgImg ? 'transparent' : 'this.headBg';
+        this.$refs.head.style.backgroundImage = this.bgImg ? `url(${this.bgImg})` : 'none';
+        this.$refs.head.style.backgroundSize = this.bgImg ? '100% 100%' : '';
+        this.$refs.headSticky.style.background = this.bgImg ? 'var(--color-white)' : '';
       }
     },
   },
@@ -126,7 +138,7 @@ export default {
       return this.hideContainer;
     },
     styleClass() {
-      return this.sticky ? 'table-sticky' || this.style : 'table-striped';
+      return 'table-' + this.theme;
     },
     tableRows() {
       return this.head ? this.table.slice(1) : this.table;
