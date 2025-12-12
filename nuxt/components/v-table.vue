@@ -40,7 +40,6 @@
                   v-for="(col, colIndex) in sticky ? table[0].length - 1 : table[0]"
                   :key="'head-' + colIndex"
                   v-html="sticky ? table[0][colIndex + 1] : col"
-                  ref="headScroll"
                 ></th>
               </tr>
             </thead>
