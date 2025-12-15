@@ -1,6 +1,7 @@
 <template>
   <div :class="classList" :style="style">
     <hero-pattern class="hero__pattern" v-if="pattern" />
+    <svg-shape-animation v-else-if="svgShapeAnimation" />
     <v-img
       v-if="img"
       class="hero__background-img"
@@ -98,6 +99,7 @@
         </div>
       </wrapper>
     </wrapper>
+    <svg-shape v-if="svgShapeAnimation" align="bottom" peak="left" :obliquity="4" />
   </div>
 </template>
 
@@ -390,7 +392,6 @@ export default {
 
       return style;
     },
-
     shapeBottom() {
       return (this.shape && this.shape.bottom) || null;
     },
@@ -438,6 +439,9 @@ export default {
       if (!this.heroJson || this.animation || (!this.heroJson.cta && !this.heroJson.ctaList)) return null;
 
       return this.heroJson.cta ? [this.heroJson.cta] : this.heroJson.ctaList;
+    },
+    svgShapeAnimation() {
+      return this.heroJson && this.heroJson.svgShapeAnimation ? this.heroJson.svgShapeAnimation : false;
     },
     showShapeContainer() {
       return this.bgWidth || this.isSmall || (this.showShape && this.shapeInContentValue);
