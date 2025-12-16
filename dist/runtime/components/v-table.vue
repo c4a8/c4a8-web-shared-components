@@ -48,14 +48,8 @@
                 <td v-if="sticky" class="stickyColumn col-3 col-lg-4" v-html="tableRows[rowIndex][0]"></td>
                 <td v-for="(col, colIndex) in sticky ? row.length - 1 : row" :key="'cell-' + rowIndex + '-' + colIndex">
                   <icon
-                    v-if="sticky ? row[colIndex + 1] === 'check' : col === 'check'"
-                    icon="check-mark"
-                    color="var(--color-black)"
-                    size="medium"
-                  />
-                  <icon
-                    v-else-if="sticky ? row[colIndex + 1] === 'x' : col === 'x'"
-                    icon="x-mark"
+                    v-if="['check', 'x'].includes(row[col])"
+                    :icon="row[col] === 'check' ? 'check-mark' : 'x-mark'"
                     color="var(--color-black)"
                     size="medium"
                   />
@@ -125,7 +119,7 @@ export default {
         this.$refs.head.style.color = this.headColor;
       }
       if (this.$refs.headSticky) {
-        this.$refs.head.style.backgroundColor = this.bgImg ? 'transparent' : 'this.headBg';
+        this.$refs.head.style.backgroundColor = this.bgImg ? 'transparent' : this.headBg;
         this.$refs.head.style.backgroundImage = this.bgImg ? `url(${this.bgImg})` : 'none';
         this.$refs.head.style.backgroundSize = this.bgImg ? '100% 100%' : '';
         this.$refs.headSticky.style.background = this.bgImg ? 'var(--color-white)' : '';
