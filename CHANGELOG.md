@@ -1,5 +1,16 @@
 # Releases
 
+# Release 0.4.56
+
+- Adjustments to Card Layout
+
+# Release 0.4.55
+
+- Adjustments to Post Layout
+- Adjustments to Card Layout
+- Adjustments to Aside Wrapper Layout
+- Adjustments to Richtext Layout
+
 # Release 0.4.53
 
 - Fixes overlapping of video component

@@ -2,16 +2,17 @@
   display: flex;
   gap: spacing(14);
 
-  @include media-breakpoint-down(xl) {
-    flex-direction: row;
+  p {
+    &:last-of-type {
+      margin-bottom: 0;
+    }
   }
-  @include media-breakpoint-down(md) {
-    flex-direction: column;
-  }
+
   .aside-wrapper__content {
     margin-top: spacing(12);
     flex: 1 1 60%;
   }
+
   .aside-wrapper__aside {
     margin-top: spacing(12);
     flex: 1 1 40%;
@@ -19,5 +20,12 @@
       width: 100%;
       margin-bottom: 3rem;
     }
+  }
+
+  @include media-breakpoint-down(xl) {
+    flex-direction: row;
+  }
+  @include media-breakpoint-down(md) {
+    flex-direction: column;
   }
 }

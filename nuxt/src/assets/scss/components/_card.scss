@@ -152,6 +152,10 @@
     }
 
     &.card--large {
+      .headline {
+        @include line-height('thin');
+      }
+
       @include media-breakpoint-up(lg) {
         .card__img-top {
           height: 100%;

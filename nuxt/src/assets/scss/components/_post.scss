@@ -4,6 +4,7 @@
 .post-detail {
   --post-offset-spacing-xl: 7.5rem;
   --post-content-width-lg: 80%;
+  --post-paragraph-line-height: 2;
 }
 
 .post-detail {
@@ -91,7 +92,7 @@
       @include richtext-width;
 
       &:not(.post__sticky-excerpt) {
-        line-height: 2;
+        line-height: var(--post-paragraph-line-height);
       }
 
       &:last-of-type {
@@ -100,6 +101,12 @@
         img {
           margin-bottom: 0;
         }
+      }
+    }
+
+    .prose-p {
+      &:not(.post__sticky-excerpt) {
+        line-height: var(--post-paragraph-line-height);
       }
     }
   }
