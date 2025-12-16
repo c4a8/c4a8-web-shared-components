@@ -218,7 +218,26 @@ class Form extends BaseComponent {
 
       this.addRecaptchaField();
 
-      const jsonDataInput = this.form.querySelector('input[name="jsonData"]');
+
+      const jsonDataInput = this.form.querySelector('#jsonFileAttachment') || (() => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.id = 'jsonFileAttachment';
+        input.name = 'jsonFileAttachment';
+        this.form.appendChild(input);
+        return input;
+      })();
+      if (jsonDataInput) {
+        const jsonBlob = new Blob([JSON.stringify(formData, null, 2)], { type: 'application/json' });
+        const jsonFile = new File([jsonBlob], 'form-data.json', { type: 'application/json' });
+        
+        const fileInput = this.form.querySelector('input[id="jsonFileAttachment"]');
+        if (fileInput) {
+          const dataTransfer = new DataTransfer();
+          dataTransfer.items.add(jsonFile);
+          fileInput.files = dataTransfer.files;
+        }
+      }
 
       if (jsonDataInput) {
         jsonDataInput.value = JSON.stringify(formData);
