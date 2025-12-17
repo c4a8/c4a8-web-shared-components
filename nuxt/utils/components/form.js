@@ -225,16 +225,7 @@ class Form extends BaseComponent {
 
         const jsonFile = new File([JSON.stringify(formData, null, 2)], 'form-data.json', { type: 'application/json' });
 
-        const fileInput =
-          this.form.querySelector('#jsonFileAttachment') ||
-          (() => {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.id = 'jsonFileAttachment';
-            input.name = 'jsonFileAttachment';
-            this.form.appendChild(input);
-            return input;
-          })();
+        let fileInput = this.form.querySelector('input[name*="jsonFileAttachment"]');
 
         if (fileInput) {
           const dataTransfer = new DataTransfer();
