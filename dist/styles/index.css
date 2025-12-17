@@ -1591,7 +1591,6 @@ pre code {
 .table th {
   padding: 0.75rem;
   vertical-align: top;
-  border-top: 0.0625rem solid #e7eaf3;
 }
 
 .table thead th {
@@ -1887,17 +1886,54 @@ pre code {
   background-color: rgba(255, 255, 255, 0.075);
 }
 
-.table-sticky th {
+.table-verticallyStriped th {
   border: 0.01rem solid !important;
 }
 
-.table-sticky td:nth-child(odd) {
+.table-verticallyStriped td:nth-child(odd) {
   background-color: #f6f5fa;
 }
 
-.table-sticky th,
-.table-sticky td {
+.table-verticallyStriped th,
+.table-verticallyStriped td {
   border-top: 2px solid white !important;
+}
+
+.table-products {
+  color: black;
+}
+
+.table-products th:first-child {
+  background-color: white;
+}
+
+.table-products th {
+  font-size: x-large !important;
+  text-align: start !important;
+  padding-left: 1.5rem;
+  padding-right: 2.5rem;
+  text-transform: none !important;
+}
+
+.table-products td:nth-child(n+2),
+.table-products th:nth-child(n+2) {
+  border-left: 5px solid #f1f3f4;
+}
+
+.table-products tr:nth-child(n+2) td {
+  font-weight: normal !important;
+  background: linear-gradient(#ffffff, #ffffff) 50% 0%/100% calc(100% - 0.05rem) no-repeat, linear-gradient(90deg, white 0%, white 6%, #cbcdd2 6%, #cbcdd2 94%, white 94%, white 100%);
+  padding: 1rem;
+}
+
+.table-products tr:first-child td,
+.table-products tr:last-child td {
+  background: none;
+  background-color: white;
+}
+
+.table-products tr:nth-child(n+1) td {
+  font-weight: bold;
 }
 
 @media (max-width: 575.98px) {

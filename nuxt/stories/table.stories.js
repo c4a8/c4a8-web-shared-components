@@ -93,6 +93,7 @@ export const StickyColumn = {
     head: 'true',
     headBg: 'var(--color-gigas)',
     headColor: 'var(--color-white)',
+    theme: 'verticallyStriped',
     sticky: 'true',
     table: [
       [
@@ -126,6 +127,34 @@ export const StickyColumn = {
         'check',
       ],
       ['Multifactor Authentication or Secured Communication', '12.2 j)', '', '', '', '', '', '', 'check'],
+    ],
+  },
+};
+
+export const Products = {
+  args: {
+    head: 'true',
+    headBg: 'var(--color-yellow)',
+    headColor: '#02071f',
+    bgImg: 'https://res.cloudinary.com/c4a8/image/upload/v1757063548/products/scepman/scepman-products-header.jpg',
+    theme: 'products',
+    sticky: 'true',
+    table: [
+      ['', 'MICROSOFT CLOUD PKI', 'SCEPMAN CLOUD PKI EDITION', 'SCEPMAN ENTERPRISE EDITION'],
+      ['CERTIFICATE SUPPORT','', '', ''],
+      ['Intune managed devices (Windows, MacOS, iOS/iPadOS, Android)', 'check', 'x', 'check'],
+      ['Linux devices', 'x', 'check', 'check'],
+      ['Active Directory Auto-Enrollment', 'x', 'check', 'check'],
+      ['Servers', 'x', 'check', 'check'],
+      ['Network devices', 'x', 'check', 'check'],
+      ['IoT devices', 'x', 'check', 'check'],
+      ['Manual and API-based certificate issuance', 'x', 'check', 'check'],
+      [
+        'Third-party MDM solutions (Jamf Pro, Google Workspace MDM, Kandji, Mosyle, SOTI MobiControl, and more)',
+        'x',
+        'check',
+        'check',
+      ],
     ],
   },
 };
