@@ -2103,7 +2103,9 @@ pre code {
 .table-products {
   color: black;
 }
-
+.table-products td:nth-child(n + 2) {
+  min-width: 15rem !important;
+}
 .table-products th:first-child {
   background-color: white;
 }
