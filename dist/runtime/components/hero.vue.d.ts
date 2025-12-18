@@ -996,6 +996,7 @@ declare namespace _default {
         function variant(): any;
         function pattern(): any;
         function ctaList(): any;
+        function svgShapeAnimation(): any;
         function showShapeContainer(): () => any;
         function isCentered(): boolean;
         function isSmall(): boolean;

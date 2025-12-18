@@ -154,6 +154,47 @@ export const TextImagePattern = {
   },
 };
 
+export const TextImageSVGShapeAnimation = {
+  args: {
+    hero: {
+      svgShapeAnimation: true,
+      headline: 'TerraProvider',
+      subline: 'Terraform Provider for Microsoft 365',
+      textShadow: true,
+      bgColor: 'var(--color-blue-light)',
+      ctaList: [
+        {
+          ctaText: 'Try TerraProvider',
+          ctaHref: 'javascript:void(0);',
+          skin: 'primary is-cutoff',
+          onSurface: true,
+          external: true,
+        },
+        {
+          ctaText: 'Open in Terraform Registry us',
+          ctaHref: 'javascript:void(0);',
+          target: '_blank',
+          skin: 'secondary is-cutoff',
+          external: true,
+          onSurface: true,
+        },
+      ],
+      shape: {
+        img: '/products/radius/radius-hero-screen.png',
+        alt: 'Home',
+        cloudinary: true,
+        mobileOrder: 5,
+      },
+      badges: [
+        {
+          img: '/logos/partner-badges-sw.svg',
+          alt: 'Logo representing an 8x Partner of the Year Award Winner or Finalist',
+        },
+      ],
+    },
+  },
+};
+
 export const Casestudy = {
   args: {
     hero: {
