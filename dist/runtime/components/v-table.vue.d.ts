@@ -17,7 +17,7 @@ declare namespace _default {
             let _default_1: boolean;
             export { _default_1 as default };
         }
-        namespace style {
+        namespace theme {
             let type_3: StringConstructor;
             export { type_3 as type };
             let _default_2: string;
@@ -55,6 +55,10 @@ declare namespace _default {
             let type_9: StringConstructor;
             export { type_9 as type };
         }
+        namespace bgImg {
+            let type_10: StringConstructor;
+            export { type_10 as type };
+        }
     }
     function mounted(): void;
     namespace methods {
@@ -62,7 +66,7 @@ declare namespace _default {
     }
     namespace computed {
         function tableHideContainer(): any;
-        function styleClass(): any;
+        function styleClass(): string;
         function tableRows(): any;
     }
 }

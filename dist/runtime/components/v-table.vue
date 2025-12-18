@@ -48,8 +48,8 @@
                 <td v-if="sticky" class="stickyColumn col-3 col-lg-4" v-html="tableRows[rowIndex][0]"></td>
                 <td v-for="(col, colIndex) in sticky ? row.length - 1 : row" :key="'cell-' + rowIndex + '-' + colIndex">
                   <icon
-                    v-if="sticky ? row[colIndex + 1] === 'check' : col === 'check'"
-                    icon="check-mark"
+                    v-if="['check', 'x'].includes(row[col])"
+                    :icon="row[col] === 'check' ? 'check-mark' : 'x-mark'"
                     color="var(--color-black)"
                     size="medium"
                   />
@@ -79,9 +79,9 @@ export default {
       type: Boolean,
       default: false,
     },
-    style: {
+    theme: {
       type: String,
-      default: '',
+      default: 'striped',
     },
     classes: {
       type: String,
@@ -105,6 +105,9 @@ export default {
     headColor: {
       type: String,
     },
+    bgImg: {
+      type: String,
+    },
   },
   mounted() {
     this.setStyle();
@@ -115,9 +118,11 @@ export default {
         this.$refs.head.style.backgroundColor = this.headBg;
         this.$refs.head.style.color = this.headColor;
       }
-
       if (this.$refs.headSticky) {
-        this.$refs.headSticky.style.backgroundColor = this.headBg;
+        this.$refs.head.style.backgroundColor = this.bgImg ? 'transparent' : this.headBg;
+        this.$refs.head.style.backgroundImage = this.bgImg ? `url(${this.bgImg})` : 'none';
+        this.$refs.head.style.backgroundSize = this.bgImg ? '100% 100%' : '';
+        this.$refs.headSticky.style.background = this.bgImg ? 'var(--color-white)' : '';
       }
     },
   },
@@ -126,7 +131,7 @@ export default {
       return this.hideContainer;
     },
     styleClass() {
-      return this.sticky ? 'table-sticky' || this.style : 'table-striped';
+      return 'table-' + this.theme;
     },
     tableRows() {
       return this.head ? this.table.slice(1) : this.table;

@@ -6,7 +6,7 @@
     ref="modalContent"
     role="dialog"
   >
-    <div class="newsletter-modal__content" :class="contentClasses">
+    <div class="newsletter-modal__content" :class="contentClasses" :id="success ? 'newsletterSuccess' : ''">
       <div>
         <headline level="h2" :class="headlineClasses">{{ currentHeadline }} </headline>
         <p>{{ currentText }}</p>
