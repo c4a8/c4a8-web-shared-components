@@ -222,7 +222,7 @@ class Form extends BaseComponent {
 
       if (jsonDataInput) {
         jsonDataInput.value = JSON.stringify(formData);
-
+        /*
         const jsonFile = new File([JSON.stringify(formData, null, 2)], 'form-data.json', { type: 'application/json' });
 
         const fileInput =
@@ -241,6 +241,7 @@ class Form extends BaseComponent {
           dataTransfer.items.add(jsonFile);
           fileInput.files = dataTransfer.files;
         }
+          */
       }
 
       this.updateSubject();
