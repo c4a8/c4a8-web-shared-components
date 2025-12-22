@@ -1,5 +1,10 @@
 # Releases
 
+# Release 0.4.59
+
+- Add Component SVG Shape Animation
+- Add SVG Shape Animation to Hero
+
 # Release 0.4.56
 
 - Adjustments to Card Layout
