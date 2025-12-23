@@ -1,8 +1,12 @@
 # Releases
 
+# Release 0.4.61
+
+- Changes Sendman Colors
+
 # Release 0.4.60
 
-- Adds terraprovider theme
+- Adds Sendman theme
 
 # Release 0.4.59
 
