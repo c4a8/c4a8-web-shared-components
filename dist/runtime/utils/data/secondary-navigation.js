@@ -143,6 +143,31 @@ const secondaryNavigation = {
             },
           },
         },
+        // {
+        //   name: 'sendman',
+        //   img: 'products/global/Sendman-ListView.svg',
+        //   target: '_blank',
+        //   languages: {
+        //     de: {
+        //       title: 'Sendman',
+        //       subtitle: 'Senden Sie Ihre E-Mails aus der Cloud',
+        //       url: 'https://www.sendman.com/',
+        //       alt: 'Sendman Produktlogo',
+        //     },
+        //     en: {
+        //       title: 'Sendman',
+        //       subtitle: 'Send your emails from the cloud',
+        //       url: 'https://www.sendman.com/',
+        //       alt: 'Sendman Product logo',
+        //     },
+        //     es: {
+        //       title: 'Sendman',
+        //       subtitle: 'Send your emails from the cloud',
+        //       url: 'https://www.sendman.com/',
+        //       alt: 'Logotipo del producto Sendman',
+        //     },
+        //   },
+        // },
       ],
     },
   ],
