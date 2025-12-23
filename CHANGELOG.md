@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.60
+
+- Adds terraprovider theme
+
 # Release 0.4.59
 
 - Add Component SVG Shape Animation
