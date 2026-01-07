@@ -1,15 +1,17 @@
 <template>
-  <div :class="classList" :style="styleVars" ref="group">
-    <div
-      v-for="(item, index) in items"
-      :key="item?.id || index"
-      class="masonry-item"
-      ref="items"
-    >
-      <slot :item="item" :index="index" />
+  <div>
+    <div :class="classList" :style="styleVars" ref="group">
+      <div v-for="(item, index) in displayedItems" :key="item?.id || index" class="masonry-item" ref="items">
+        <slot :item="item" :index="index" />
+      </div>
+    </div>
+    <div v-if="showLoadMore" class="masonry-grid__load-more mt-4 text-center">
+      <button class="btn btn-primary" @click="loadMore">
+        {{ loadMoreText }}
+      </button>
     </div>
   </div>
-  </template>
+</template>
 <script>
 import UtilityAnimation from '../utils/utility-animation.js';
 
@@ -18,6 +20,7 @@ export default {
   data() {
     return {
       itemsChanged: false,
+      displayedCount: this.initialItemsCount || null,
     };
   },
   computed: {
@@ -36,10 +39,24 @@ export default {
         '--masonry-gap': gap,
       };
     },
+    displayedItems() {
+      if (this.displayedCount === null || this.displayedCount >= this.items.length) {
+        return this.items;
+      }
+      return this.items.slice(0, this.displayedCount);
+    },
+    showLoadMore() {
+      return this.initialItemsCount !== null && this.displayedCount < this.items.length;
+    },
   },
   watch: {
     items() {
       this.itemsChanged = true;
+    },
+    initialItemsCount(newVal) {
+      if (newVal !== null) {
+        this.displayedCount = newVal;
+      }
     },
   },
   mounted() {
@@ -59,6 +76,16 @@ export default {
       UtilityAnimation.init(Array.from(this.$refs.items));
       UtilityAnimation.addObserver();
     },
+    loadMore() {
+      if (this.itemsPerLoad) {
+        this.displayedCount = Math.min(this.displayedCount + this.itemsPerLoad, this.items.length);
+      } else {
+        this.displayedCount = this.items.length;
+      }
+      this.$nextTick(() => {
+        this.reinitUtilityAnimation();
+      });
+    },
   },
   props: {
     items: {
@@ -76,6 +103,18 @@ export default {
     observeOnScroll: {
       type: Boolean,
       default: true,
+    },
+    initialItemsCount: {
+      type: Number,
+      default: null,
+    },
+    itemsPerLoad: {
+      type: Number,
+      default: null,
+    },
+    loadMoreText: {
+      type: String,
+      default: 'Weitere Posts',
     },
   },
 };
@@ -100,6 +139,7 @@ export default {
   margin-bottom: var(--masonry-gap, 1rem);
   display: block;
 }
+.masonry-grid__load-more {
+  break-inside: avoid;
+}
 </style>
-
-
