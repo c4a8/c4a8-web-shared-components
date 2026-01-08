@@ -1,12 +1,5 @@
 <template>
-  <div
-    :class="classList"
-    :style="style"
-    :id="clientName"
-    :jobId="jobIdValue"
-    :apiUrl="apiUrl"
-    ref="job-list-detail"
-  >
+  <div :class="classList" :style="style" :id="clientName" :jobId="jobIdValue" :apiUrl="apiUrl" ref="job-list-detail">
     <div class="job-list__detail-container page-detail__container container">
       <div class="job-list__detail-start page-detail__start row">
         <div class="job-list__sticky-start page-detail__sticky-start col-md-11 col-lg-5">
@@ -63,17 +56,11 @@
       :apiKey="apiKey"
       :mockApplyUrl="mockApplyUrl"
       :mockDocumentsUrl="mockDocumentsUrl"
-      :modalError="modalError"
-      :modalSuccess="modalSuccess"
-    >
-      <formular
-        :form="form"
-        :container="true"
-        :customValidation="true"
-        :additionalFields="null"
-        :hasUuid="true"
-      ></formular>
-    </modal>
+      :error="modalError"
+      :success="modalSuccess"
+      :form="form"
+      :application="true"
+    />
   </div>
 </template>
 
