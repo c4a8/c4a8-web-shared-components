@@ -11,11 +11,11 @@ const base = {
     name: 'glueckkanja',
     handle: '@glueckkanja',
     avatarUrl: 'https://i.pravatar.cc/80?img=12',
+    verified: true,
   },
   postedAt: '1 day ago',
   postUrl: 'https://www.linkedin.com/feed/update/urn:li:activity:1234567890',
-  companyPageUrl: 'https://www.linkedin.com/company/glueckkanja',
-  stats: { likes: 128, comments: 12, reposts: 4 },
+  stats: { likes: 128, comments: 12 },
 };
 
 export const TextOnly = {
