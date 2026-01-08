@@ -90,7 +90,7 @@ const mockPosts = [
 export const Default = {
   args: {
     items: mockPosts,
-    columns: { sm: 1, md: 2, lg: 3 },
+    columns: { sm: 1, md: 2, lg: 3, xl: 4 },
     gap: '1rem',
     observeOnScroll: true,
   },
@@ -112,11 +112,11 @@ export const Default = {
 export const WithLoadMore = {
   args: {
     items: mockPosts,
-    columns: { sm: 1, md: 2, lg: 3 },
+    columns: { sm: 1, md: 2, lg: 3, xl: 4 },
     gap: '1rem',
     observeOnScroll: true,
-    initialItemsCount: 3,
-    itemsPerLoad: 3,
+    initialItemsCount: 4,
+    itemsPerLoad: 4,
     loadMoreText: 'Weitere Posts',
   },
   render: (args) => ({

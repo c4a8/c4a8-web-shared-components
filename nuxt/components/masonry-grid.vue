@@ -31,11 +31,13 @@ export default {
       const sm = this.columns?.sm || 1;
       const md = this.columns?.md || sm;
       const lg = this.columns?.lg || md;
+      const xl = this.columns?.xl || lg;
       const gap = this.gap || '1rem';
       return {
         '--masonry-columns-sm': sm,
         '--masonry-columns-md': md,
         '--masonry-columns-lg': lg,
+        '--masonry-columns-xl': xl,
         '--masonry-gap': gap,
       };
     },
@@ -94,7 +96,7 @@ export default {
     },
     columns: {
       type: Object,
-      default: () => ({ sm: 1, md: 2, lg: 3 }),
+      default: () => ({ sm: 1, md: 2, lg: 3, xl: 4 }),
     },
     gap: {
       type: String,
@@ -132,6 +134,11 @@ export default {
 @media (min-width: 992px) {
   .masonry-grid {
     columns: var(--masonry-columns-lg, 3);
+  }
+}
+@media (min-width: 1400px) {
+  .masonry-grid {
+    columns: var(--masonry-columns-xl, 4);
   }
 }
 .masonry-item {
