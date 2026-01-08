@@ -17,14 +17,12 @@
           <span>{{ author?.name }}</span>
           <i v-if="author?.verified" class="far fa-check-circle spc__verified-badge ml-1"></i>
         </div>
-        <div class="spc__author-handle-time text-muted">
-          <span v-if="author?.handle">{{ author.handle }}</span>
-          <span v-if="author?.handle && postedAt"> · </span>
-          <time v-if="postedAt" :datetime="postedAt">{{ postedAt }}</time>
+        <div class="spc__author-handle-time text-muted" v-if="postedAt">
+          <time :datetime="postedAt">{{ postedAt }}</time>
         </div>
       </div>
       <div class="spc__linkedin-badge">
-        <i class="fab fa-linkedin"></i>
+        <i class="fab fa-linkedin spc__linkedin-icon"></i>
       </div>
     </header>
 
@@ -210,6 +208,8 @@ export default {
   box-shadow: none !important;
   border: none;
   border-radius: 0;
+  max-width: none !important;
+  width: 100%;
 }
 .spc__header {
   position: relative;
@@ -245,7 +245,11 @@ export default {
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 0.75rem;
+  padding: 0;
+}
+.spc__linkedin-icon {
+  font-size: 1rem;
+  line-height: 1;
 }
 .spc__author-handle-time {
   font-size: 0.8125rem;
