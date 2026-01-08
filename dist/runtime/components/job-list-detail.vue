@@ -2,9 +2,9 @@
   <div
     :class="classList"
     :style="style"
-    :data-id="clientName"
-    :data-job-id="jobIdValue"
-    :data-api-url="apiUrl"
+    :id="clientName"
+    :jobId="jobIdValue"
+    :apiUrl="apiUrl"
     ref="job-list-detail"
   >
     <div class="job-list__detail-container page-detail__container container">
@@ -57,20 +57,21 @@
     <div class="job-list__sticky-end"></div>
     <modal
       ref="modal-component"
-      :client-name="clientName"
-      :api-url="apiUrl"
-      :job-id="jobIdValue"
-      :api-key="apiKey"
-      :mock-apply-url="mockApplyUrl"
-      :mock-documents-url="mockDocumentsUrl"
-      :modal-error="modalError"
+      :clientName="clientName"
+      :apiUrl="apiUrl"
+      :jobId="jobIdValue"
+      :apiKey="apiKey"
+      :mockApplyUrl="mockApplyUrl"
+      :mockDocumentsUrl="mockDocumentsUrl"
+      :modalError="modalError"
+      :modalSuccess="modalSuccess"
     >
       <formular
         :form="form"
-        container="true"
-        custom-validation="true"
-        :additional-fields="null"
-        :has-uuid="true"
+        :container="true"
+        :customValidation="true"
+        :additionalFields="null"
+        :hasUuid="true"
       ></formular>
     </modal>
   </div>
