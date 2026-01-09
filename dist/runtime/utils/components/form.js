@@ -222,7 +222,7 @@ class Form extends BaseComponent {
 
       if (jsonDataInput) {
         jsonDataInput.value = JSON.stringify(formData);
-
+        /*
         const jsonFile = new File([JSON.stringify(formData, null, 2)], 'form-data.json', { type: 'application/json' });
 
         const fileInput =
@@ -241,6 +241,7 @@ class Form extends BaseComponent {
           dataTransfer.items.add(jsonFile);
           fileInput.files = dataTransfer.files;
         }
+          */
       }
 
       this.updateSubject();
@@ -558,45 +559,48 @@ class Form extends BaseComponent {
 
   static getFormData(form) {
     if (form === null || form === undefined) return [];
+
     const data = [];
     let isNewsletter = false;
 
-    const formData = new FormData(form);
-
-    for (let fieldData of formData) {
-      data.push(encodeURIComponent(fieldData[0]) + '=' + encodeURIComponent(fieldData[1]));
+    try {
+      const formData = new FormData(form);
+      const inputs = new FormData(form);
+      for (let fieldData of inputs) {
+        data.push(encodeURIComponent(fieldData[0]) + '=' + encodeURIComponent(fieldData[1]));
+      }
+      isNewsletter = data.some((item) => item === 'newsletterModal=true');
+      if (isNewsletter) {
+        return data.join('&');
+      } else {
+        this.getFields(form, data);
+      }
+    } catch (error) {
+      this.getFields(form, data);
     }
+    return data;
+  }
 
-    isNewsletter = data.some((item) => item === 'newsletterModal=true');
-    if (isNewsletter) {
-      return data.join('&');
-    } else {
-      if (form === null || form === undefined) return [];
+  static getFields(form, data) {
+    const inputs = form.querySelectorAll('input[type="text"], input[type="email"], textarea');
+    for (let i = 0; i < inputs.length; i++) {
+      const input = inputs[i];
 
-      // TODO refactor with select
-      const inputs = form.querySelectorAll('input[type="text"], input[type="email"], input[type="hidden"], textarea');
+      if (this.isOptionalInputInvisible(input)) continue;
 
-      for (let i = 0; i < inputs.length; i++) {
-        const input = inputs[i];
+      let value;
 
-        if (this.isOptionalInputInvisible(input)) continue;
-
-        let value;
-        if (input.type === 'text' || input.type === 'email' || input.tagName === 'TEXTAREA') {
-          value = input.value;
-        } else {
-          // TODO handle select
-        }
-
-        data.push({
-          input,
-          value,
-        });
+      if (input.type === 'text' || input.type === 'email' || input.tagName === 'TEXTAREA') {
+        value = input.value;
+      } else {
+        // TODO handle select
       }
 
-      return data;
+      data.push({
+        input,
+        value,
+      });
     }
   }
 }
-
 export default Form;
