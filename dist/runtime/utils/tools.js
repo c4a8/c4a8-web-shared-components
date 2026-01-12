@@ -647,11 +647,11 @@ class Tools {
       }, {});
 
     const dateValue = Tools.cleanDate(Tools.isDate(moment) ? moment : date ? date : Tools.extractDate(path));
-    const dateValueOrFallback = dateValue ? dateValue : '2000-01-01';
+    //const dateValueOrFallback = dateValue ? dateValue : '2000-01-01';
 
     return {
       url: path,
-      date: dateValueOrFallback,
+      date: dateValue,
       moment: moment,
       excerpt: meta?.customExcerpt || seo?.description,
       headlineText: meta?.headline,

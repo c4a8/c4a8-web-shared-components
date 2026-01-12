@@ -41,12 +41,12 @@ export default {
           }, {});
 
         const dateValue = this.cleanDate(this.isDate(moment) ? moment : date ? date : this.extractDate(path));
-        const dateValueOrFallback = dateValue ? dateValue : '2000-01-01';
+        //const dateValueOrFallback = dateValue ? dateValue : '2000-01-01';
 
         const processedItem = {
           url: path,
-          date: dateValueOrFallback,
-          moment: dateValueOrFallback,
+          date: dateValue,
+          moment: dateValue,
           excerpt: meta.customExcerpt || seo?.description,
           ...filteredRest,
         };
