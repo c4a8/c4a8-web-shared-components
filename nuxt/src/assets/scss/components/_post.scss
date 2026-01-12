@@ -53,7 +53,7 @@
   @include shadow('light-variant');
 }
 
-.post-content {
+.post {
   main {
     > p {
       &:not(.post__sticky-excerpt) {
@@ -114,24 +114,22 @@
       margin-bottom: 2rem;
     }
   }
+}
 
-  // Images that are direct children should use breakout class
-  .post__intro-img {
-    &.breakout {
-      .img__picture-wrapper img,
-      > img {
-        border-radius: 0;
-        margin-top: 2.5rem;
-        margin-bottom: 2.5rem;
+.post__intro-img {
+  .img__picture-wrapper img,
+  > img {
+    border-radius: 0;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
 
-        @include media-breakpoint-up(lg) {
-          margin-top: 3.5rem;
-          margin-bottom: 3.5rem;
-        }
-      }
+    @include media-breakpoint-up(lg) {
+      margin-top: 3.5rem;
+      margin-bottom: 3.5rem;
     }
   }
 }
+// }
 
 .post__sticky-bar {
   &.post__sticky-bar--lg-only {
