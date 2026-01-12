@@ -188,12 +188,8 @@ $richtext-conclusion-spacing-lg: $spacing-content-default;
       padding-left: spacing(8);
       padding-right: spacing(8);
 
-      @include media-breakpoint-up(xl) {
-        width: calc(100% + (2 * #{$richtext-offset-spacing-xl}));
-        margin-left: -#{$richtext-offset-spacing-xl};
-        padding-left: $richtext-offset-spacing-xl;
-        padding-right: $richtext-offset-spacing-xl;
-      }
+      // Note: If this needs to break out, add .breakout class to the element
+      // The grid system handles breakout via classes now
     }
   }
 
