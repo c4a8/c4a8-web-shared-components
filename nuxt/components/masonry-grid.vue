@@ -121,32 +121,3 @@ export default {
   },
 };
 </script>
-<style>
-.masonry-grid {
-  column-gap: var(--masonry-gap, 1rem);
-  columns: var(--masonry-columns-sm, 1);
-}
-@media (min-width: 768px) {
-  .masonry-grid {
-    columns: var(--masonry-columns-md, 2);
-  }
-}
-@media (min-width: 992px) {
-  .masonry-grid {
-    columns: var(--masonry-columns-lg, 3);
-  }
-}
-@media (min-width: 1400px) {
-  .masonry-grid {
-    columns: var(--masonry-columns-xl, 4);
-  }
-}
-.masonry-item {
-  break-inside: avoid;
-  margin-bottom: var(--masonry-gap, 1rem);
-  display: block;
-}
-.masonry-grid__load-more {
-  break-inside: avoid;
-}
-</style>
