@@ -141,7 +141,9 @@
   }
 
   &.breakout {
-    height: 0;
+    @include media-breakpoint-up(lg) {
+      height: 0;
+    }
   }
 
   @include media-breakpoint-up(lg) {
