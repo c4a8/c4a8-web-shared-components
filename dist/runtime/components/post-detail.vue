@@ -33,7 +33,7 @@
               </div>
               <div class="col-md-5 align-self-end pr-lg-0" :class="{ 'pl-lg-0': !post.author }">
                 <div class="text-muted font-size-1" :class="{ 'text-right': post.author }">
-                  <time class="dt-published" :datetime="formattedDateXml" itemprop="datePublished">
+                  <time v-if="formattedDateXml" class="dt-published" :datetime="formattedDateXml" itemprop="datePublished">
                     {{ formattedDate }}
                   </time>
                 </div>
