@@ -647,7 +647,6 @@ class Tools {
       }, {});
 
     const dateValue = Tools.cleanDate(Tools.isDate(moment) ? moment : date ? date : Tools.extractDate(path));
-    //const dateValueOrFallback = dateValue ? dateValue : '2000-01-01';
 
     return {
       url: path,
