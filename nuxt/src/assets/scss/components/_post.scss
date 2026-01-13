@@ -141,8 +141,8 @@
   }
 
   &.breakout {
-    @include media-breakpoint-up(lg) {
-      height: 0;
+    @include media-breakpoint-up(xl) {
+      margin-bottom: -100%;
     }
   }
 
