@@ -11,7 +11,17 @@ class Anchor {
     this.idTarget = document.querySelector(this.idSelector);
 
     if (this.idTarget) {
-      Tools.scrollIntoView(this.idTarget, true);
+      if (this.isAccordionContent(this.idTarget)) {
+        this.openAccordionTab(this.idTarget);
+
+        const offset = -100;
+
+        setTimeout(() => {
+          Tools.scrollIntoView(this.idTarget, true, offset);
+        }, 200);
+      } else {
+        Tools.scrollIntoView(this.idTarget, true);
+      }
     }
 
     this.targetSelector = `a[href^="${hash}"]`;
@@ -21,6 +31,23 @@ class Anchor {
 
     this.handleTargetClick();
     this.bindEvents();
+  }
+
+  isAccordionContent(element) {
+    return element?.classList.contains('accordion__content');
+  }
+
+  openAccordionTab(element) {
+    const headerId = element.getAttribute('aria-labelledby');
+    const header = document.querySelector(`#${headerId}`);
+
+    if (!header) return;
+
+    const button = header.querySelector('button');
+
+    if (!button) return;
+
+    button.click();
   }
 
   hasProductStage() {

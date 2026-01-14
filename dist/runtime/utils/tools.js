@@ -43,20 +43,23 @@ class Tools {
     return percent <= (overlap / divsize) * 100;
   }
 
-  static getScrollTop(element) {
+  static getScrollTop(element, offset = 0) {
     if (!element) return;
 
     const header = document.querySelector('header');
     const headerOffset = header ? header?.offsetHeight + 40 : 0;
-    const elementPosition = element.getBoundingClientRect().top;
+
+    const elementPosition = element.getBoundingClientRect().top + offset;
 
     return elementPosition - headerOffset + window.scrollY;
   }
 
-  static scrollIntoView(element, smooth) {
+  static scrollIntoView(element, smooth, offset = 0) {
     if (element) {
+      const topPosition = Tools.getScrollTop(element, offset);
+
       window.scrollTo({
-        top: Tools.getScrollTop(element),
+        top: topPosition,
         behavior: smooth ? 'smooth' : 'auto',
       });
     }
