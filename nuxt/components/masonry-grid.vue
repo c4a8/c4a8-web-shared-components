@@ -7,7 +7,7 @@
     </div>
     <div v-if="showLoadMore" class="masonry-grid__load-more mt-4 text-center">
       <button class="btn btn-primary" @click="loadMore">
-        {{ loadMoreText }}
+        {{ $t('loadMorePosts') }}
       </button>
     </div>
   </div>
@@ -113,10 +113,6 @@ export default {
     itemsPerLoad: {
       type: Number,
       default: null,
-    },
-    loadMoreText: {
-      type: String,
-      default: 'Weitere Posts',
     },
   },
 };

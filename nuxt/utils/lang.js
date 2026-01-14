@@ -7,6 +7,7 @@ const adBlockImage =
 
 const LangData = {
   de: {
+    loadMorePosts: 'Weitere Posts',
     tags: 'Schlagwörter',
     tagsHeadline: 'Posts nach Schlagwörtern',
     tagsClear: 'Zurücksetzen',
@@ -26,6 +27,7 @@ const LangData = {
       '*Alle Preise sind exklusive Mehrwertsteuer. Unsere Angebote richten sich ausschließlich an gewerbliche Kunden.',
   },
   en: {
+    loadMorePosts: 'Weitere Posts',
     tags: 'Tags',
     tagsHeadline: 'Posts by Tags',
     tagsClear: 'Clear all',
@@ -45,6 +47,7 @@ const LangData = {
       'More information about the <a data-trigger-id="product-stage-modal" data-trigger="modal">pricing conditions.</a>',
   },
   es: {
+    loadMorePosts: 'Weitere Posts',
     tags: 'Tags',
     tagsHeadline: 'Entradas por Tags',
     tagsClear: 'Borrar todo',

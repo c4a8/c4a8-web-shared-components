@@ -1,5 +1,6 @@
 const Lang = {
   de: {
+    loadMorePosts: 'Weitere Posts',
     tags: 'Schlagwörter',
     tagsHeadline: 'Posts nach Schlagwörtern',
     tagsClear: 'Zurücksetzen',
@@ -11,6 +12,7 @@ const Lang = {
     socialsTitle: 'Socials',
   },
   en: {
+    loadMorePosts: 'Load More Posts',
     tags: 'Tags',
     tagsHeadline: 'Posts by Tags',
     tagsClear: 'Clear all',
@@ -22,6 +24,7 @@ const Lang = {
     socialsTitle: 'Socials',
   },
   es: {
+    loadMorePosts: 'Cargar más entradas',
     tags: 'Etiquetas',
     tagsHeadline: 'Entradas por Etiquetas',
     tagsClear: 'Borrar todo',

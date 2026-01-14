@@ -3,6 +3,7 @@ const adBlockImage =
 
 export default {
   de: {
+    loadMorePosts: 'Weitere Posts',
     tags: 'Schlagwörter',
     tagsHeadline: 'Posts nach Schlagwörtern',
     tagsClear: 'Zurücksetzen',
@@ -48,7 +49,8 @@ export default {
     apply: 'Anwenden',
     reset: 'Zurücksetzen',
     jobListEmpty: 'Aktuell haben wir keine Stellenangebote in dieser Sprache.',
-    jobListYoungProfessionalsEmpty: 'Wir haben derzeit keine freien Stellenangebote für Young Professionals. Hast du trotzdem Lust, uns näher kennenzulernen? Dann schicke uns gerne eine Initiativbewerbung.',
+    jobListYoungProfessionalsEmpty:
+      'Wir haben derzeit keine freien Stellenangebote für Young Professionals. Hast du trotzdem Lust, uns näher kennenzulernen? Dann schicke uns gerne eine Initiativbewerbung.',
     imageCredits: 'Bildnachweis',
     topicsOnPage: 'Themen auf der Seite',
     noPostsFound: 'Keine Artikel gefunden',
@@ -78,6 +80,7 @@ export default {
     },
   },
   en: {
+    loadMorePosts: 'Load More Posts',
     tags: 'Tags',
     tagsHeadline: 'Posts by Tags',
     tagsClear: 'Clear all',
@@ -152,6 +155,7 @@ export default {
     },
   },
   es: {
+    loadMorePosts: 'Cargar más entradas',
     tags: 'Tags',
     tagsHeadline: 'Entradas por Tags',
     tagsClear: 'Borrar todo',

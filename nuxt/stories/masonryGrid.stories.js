@@ -117,7 +117,6 @@ export const WithLoadMore = {
     observeOnScroll: true,
     initialItemsCount: 4,
     itemsPerLoad: 4,
-    loadMoreText: 'Weitere Posts',
   },
   render: (args) => ({
     components: { MasonryGrid, SocialPostCard },
