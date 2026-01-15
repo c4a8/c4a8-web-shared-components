@@ -18,7 +18,7 @@ class Anchor {
 
         setTimeout(() => {
           Tools.scrollIntoView(this.idTarget, true, offset);
-        }, 200);
+        }, 100);
       } else {
         Tools.scrollIntoView(this.idTarget, true);
       }
