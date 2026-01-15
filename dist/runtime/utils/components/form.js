@@ -563,19 +563,21 @@ class Form extends BaseComponent {
     const data = [];
     let isNewsletter = false;
 
-    try {
-      const formData = new FormData(form);
+    if (form instanceof HTMLFormElement) {
       const inputs = new FormData(form);
+
       for (let fieldData of inputs) {
         data.push(encodeURIComponent(fieldData[0]) + '=' + encodeURIComponent(fieldData[1]));
       }
+
       isNewsletter = data.some((item) => item === 'newsletterModal=true');
+
       if (isNewsletter) {
         return data.join('&');
       } else {
         this.getFields(form, data);
       }
-    } catch (error) {
+    } else {
       this.getFields(form, data);
     }
     return data;
