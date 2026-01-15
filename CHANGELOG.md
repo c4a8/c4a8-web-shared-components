@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.65
+
+- Fixes Form handling
+
 # Release 0.4.62
 
 - Adds Open Graph Image Parameters to max width
