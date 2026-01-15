@@ -182,7 +182,7 @@ export default {
         const localEntry = entry.objects ? entry.objects[0] : entry;
 
         if (localEntry) {
-          const gender = window.i18n?.translate('gender');
+          const gender = this.$t('gender');
           const { title, description } = localEntry;
 
           const entryData = {
