@@ -46,9 +46,10 @@ class Modal {
         mockApplyUrl: this.mockApplyUrl,
         mockDocumentsUrl: this.mockDocumentsUrl,
       });
+
+      this.api.options.jobId = this.api.getJobId() || this.jobId;
     }
-    this.api.options.jobId = this.api.getJobId() || this.jobId;
-    
+
     this.bindEvents();
   }
 
