@@ -1,4 +1,5 @@
 import Tools from './tools.js';
+import Events from './events.js';
 
 class Anchor {
   static rootSelector = '';
@@ -16,9 +17,13 @@ class Anchor {
 
         const offset = -100;
 
-        setTimeout(() => {
-          Tools.scrollIntoView(this.idTarget, true, offset);
-        }, 100);
+        const customEvent = new CustomEvent(Events.ANCHOR_FOUND, {
+          detail: {
+            target: this.idTarget,
+          },
+        });
+
+        document.dispatchEvent(customEvent);
       } else {
         Tools.scrollIntoView(this.idTarget, true);
       }

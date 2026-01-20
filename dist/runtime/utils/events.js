@@ -17,6 +17,7 @@ const Events = {
   CARD_TAG_CLICKED: 'card-tag-clicked',
   ENDED: 'ended',
   CLIENT_ONLY_LIBS_LOADED: 'client-only-libs-loaded',
+  ANCHOR_FOUND: 'anchor-found',
 };
 
 export default Events;

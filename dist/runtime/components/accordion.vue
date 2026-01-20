@@ -94,6 +94,7 @@
 <script>
 import Tools from '../utils/tools.js';
 import State from '../utils/state.js';
+import Events from '../utils/events.js';
 import UtilityAnimation from '../utils/utility-animation.js';
 
 export default {
@@ -137,6 +138,11 @@ export default {
       return `accordion__headline  ${this.accordion?.headlineClasses}`;
     },
   },
+  created() {
+    if (!document) return;
+
+    document.addEventListener(Events.ANCHOR_FOUND, this.handleAnchorFound.bind(this));
+  },
   mounted() {
     if (!this.accordion.tabs) return;
 
@@ -162,6 +168,9 @@ export default {
     }
   },
   methods: {
+    handleAnchorFound(event) {
+      Tools.scrollIntoView(event.detail.target, false);
+    },
     isUpperBreakpoint() {
       return !Tools.isBelowBreakpoint('md');
     },
