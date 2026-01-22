@@ -1,5 +1,4 @@
 import Tools from './tools.js';
-import Events from './events.js';
 
 class Anchor {
   static rootSelector = '';
@@ -7,24 +6,13 @@ class Anchor {
 
   constructor() {
     const hash = this.getHash();
+    const id = hash.substring(1);
 
-    this.idSelector = `[id="${hash.substring(1)}"]:not([role="tabpanel"])`;
+    this.idSelector = `[id="${id}"]:not([role="tabpanel"])`;
     this.idTarget = document.querySelector(this.idSelector);
 
     if (this.idTarget) {
-      if (this.isAccordionContent(this.idTarget)) {
-        this.openAccordionTab(this.idTarget);
-
-        const offset = -100;
-
-        const customEvent = new CustomEvent(Events.ANCHOR_FOUND, {
-          detail: {
-            target: this.idTarget,
-          },
-        });
-
-        document.dispatchEvent(customEvent);
-      } else {
+      if (!this.isAccordion(this.idTarget)) {
         Tools.scrollIntoView(this.idTarget, true);
       }
     }
@@ -38,21 +26,8 @@ class Anchor {
     this.bindEvents();
   }
 
-  isAccordionContent(element) {
-    return element?.classList.contains('accordion__content');
-  }
-
-  openAccordionTab(element) {
-    const headerId = element.getAttribute('aria-labelledby');
-    const header = document.querySelector(`#${headerId}`);
-
-    if (!header) return;
-
-    const button = header.querySelector('button');
-
-    if (!button) return;
-
-    button.click();
+  isAccordion(element) {
+    return element?.classList.contains('accordion__content') || element?.classList.contains('accordion__card-header');
   }
 
   hasProductStage() {

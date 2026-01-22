@@ -207,6 +207,15 @@
   padding-top: spacing(1);
 }
 
+.accordion__card-header,
+.accordion__content {
+  scroll-margin-top: 80px;
+
+  @include media-breakpoint-up(lg) {
+    scroll-margin-top: 100px;
+  }
+}
+
 .accordion__richtext {
   padding: spacing(6) spacing(4) spacing(10);
   opacity: 0;

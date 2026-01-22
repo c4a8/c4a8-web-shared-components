@@ -1,7 +1,7 @@
 declare namespace _default {
     let tagName: string;
     namespace computed {
-        function tag(): "button" | "a";
+        function tag(): "a" | "button";
         function hasIcon(): any;
         function externalValue(): boolean;
         function downloadValue(): boolean;

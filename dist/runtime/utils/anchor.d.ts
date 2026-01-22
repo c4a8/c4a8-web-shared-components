@@ -9,8 +9,7 @@ declare class Anchor {
     productStageSelector: string;
     target: Element | null;
     links: NodeListOf<Element>;
-    isAccordionContent(element: any): any;
-    openAccordionTab(element: any): void;
+    isAccordion(element: any): any;
     hasProductStage(): boolean;
     bindEvents(): void;
     handleTargetClick(): void;

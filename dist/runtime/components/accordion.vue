@@ -41,12 +41,7 @@
             />
           </div>
         </div>
-        <div
-          :class="cardClasses(index)"
-          v-for="(tab, index) in accordion.tabs"
-          :style="cardStyle(index)"
-          v-bind:key="index"
-        >
+        <div :class="cardClasses(index)" v-for="(tab, index) in tabs" :style="cardStyle(index)" v-bind:key="index">
           <div class="accordion__card-header card-collapse" :id="getId(accordion, index, 'Heading')">
             <button
               type="button"
@@ -94,7 +89,6 @@
 <script>
 import Tools from '../utils/tools.js';
 import State from '../utils/state.js';
-import Events from '../utils/events.js';
 import UtilityAnimation from '../utils/utility-animation.js';
 
 export default {
@@ -141,7 +135,9 @@ export default {
   created() {
     if (!document) return;
 
-    document.addEventListener(Events.ANCHOR_FOUND, this.handleAnchorFound.bind(this));
+    this.tabs = this.accordion.tabs;
+
+    this.changeExpandedStateOnAnchor();
   },
   mounted() {
     if (!this.accordion.tabs) return;
@@ -168,8 +164,29 @@ export default {
     }
   },
   methods: {
-    handleAnchorFound(event) {
-      Tools.scrollIntoView(event.detail.target, false);
+    changeExpandedStateOnAnchor() {
+      const hash = this.getHash();
+      const id = hash
+        .substring(1)
+        .replace(/^(Heading|Content)/, '')
+        .slice(0, -1);
+
+      if (this.accordion?.id !== id) return;
+
+      const index = hash.substring(hash.length - 1);
+
+      for (let i = 0; i < this.tabs.length; i++) {
+        if (this.tabs[i].expanded === true) {
+          this.tabs[i].expanded = false;
+        }
+      }
+
+      if (!this.tabs[index]) return;
+
+      this.tabs[index].expanded = true;
+    },
+    getHash() {
+      return window.location.hash;
     },
     isUpperBreakpoint() {
       return !Tools.isBelowBreakpoint('md');
@@ -184,7 +201,7 @@ export default {
       }
     },
     getActiveTab() {
-      const expandedTabs = this.accordion?.tabs.filter((item) => item.expanded);
+      const expandedTabs = this.tabs.filter((item) => item.expanded);
 
       return expandedTabs ? expandedTabs[0] : null;
     },
@@ -229,7 +246,7 @@ export default {
     getStateByIndex(index) {
       return this.states[index];
     },
-    getId(accordion, index, name) {
+    getId(accordion, index, name, saveElement = false) {
       return `${name}${accordion.id}${index}`;
     },
     isExpanded(tab) {
@@ -279,6 +296,7 @@ export default {
       fallbackImage: false,
       fallbackAnimated: false,
       fallbackAlt: '',
+      tabs: [],
     };
   },
   props: {
