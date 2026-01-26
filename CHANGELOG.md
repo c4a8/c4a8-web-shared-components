@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.67
+
+- Adds anchor deeplinks to accordion
+
 # Release 0.4.66
 
 - Fix Modal issue without applications
