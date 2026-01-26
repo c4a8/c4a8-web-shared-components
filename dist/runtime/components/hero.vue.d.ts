@@ -1,11 +1,5 @@
 declare namespace _default {
     let tagName: string;
-    let components: {
-        'hero-pattern': {
-            tagName: string;
-            template: string;
-        };
-    };
     function setup(): {
         store: import("pinia").Store<"app", {
             loading: boolean;

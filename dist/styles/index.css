@@ -36897,6 +36897,17 @@ svg.streamline-icon {
   padding-top: 0.25rem;
 }
 
+.accordion__card-header,
+.accordion__content {
+  scroll-margin-top: 80px;
+}
+@media (min-width: 992px) {
+  .accordion__card-header,
+  .accordion__content {
+    scroll-margin-top: 100px;
+  }
+}
+
 .accordion__richtext {
   padding: 1.5rem 1rem 2.5rem;
   opacity: 0;
