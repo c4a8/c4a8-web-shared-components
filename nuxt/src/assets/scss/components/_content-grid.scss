@@ -1,10 +1,4 @@
 .content-grid {
-  --padding-inline: 1rem;
-  --content-max-width: 900px;
-  --breakout-max-width: 1200px;
-  --breakout-size: calc((var(--breakout-max-width) - var(--content-max-width)) / 2);
-
-  display: grid;
   grid-template-columns:
     [full-width-start] minmax(var(--padding-inline), 1fr)
     [breakout-start] minmax(0, var(--breakout-size))
@@ -15,23 +9,49 @@
 }
 
 .content-grid--side-bar {
-  --padding-inline: 1rem;
-  --content-max-width: 900px;
-  --breakout-max-width: 1200px;
-  --breakout-size: calc((var(--breakout-max-width) - var(--content-max-width)) / 2);
   --sidebar-size: 220px;
 
-  display: grid;
   grid-template-columns:
     [full-width-start] minmax(var(--padding-inline), 1fr)
-    [breakout-start sidebar-start] calc(var(--breakout-size) + var(--sidebar-size)) [sidebar-end content-start]
-    min(
-      calc(100% - (var(--padding-inline) * 2) - var(--sidebar-size)),
-      calc(var(--content-max-width) - var(--sidebar-size))
-    )
+    [breakout-start] minmax(0, var(--breakout-size))
+    [content-start] min(100% - (var(--padding-inline) * 2), var(--content-max-width))
     [content-end]
     minmax(0, var(--breakout-size)) [breakout-end]
     minmax(var(--padding-inline), 1fr) [full-width-end];
+
+  @include media-breakpoint-up(xl) {
+    grid-template-columns:
+      [full-width-start] minmax(var(--padding-inline), 1fr)
+      [breakout-start sidebar-start] calc(var(--breakout-size) + var(--sidebar-size)) [sidebar-end content-start]
+      min(
+        calc(100% - (var(--padding-inline) * 2) - var(--sidebar-size)),
+        calc(var(--content-max-width) - var(--sidebar-size))
+      )
+      [content-end]
+      minmax(0, var(--breakout-size)) [breakout-end]
+      minmax(var(--padding-inline), 1fr) [full-width-end];
+  }
+}
+
+.content-grid,
+.content-grid--side-bar {
+  --padding-inline: 1rem;
+  --breakout-max-width: 1200px;
+
+  @include media-breakpoint-up(sm) {
+    --content-max-width: #{get-container-max-width('sm')};
+    --breakout-size: calc((var(--breakout-max-width) - var(--content-max-width)) / 2);
+
+    display: grid;
+  }
+
+  @include media-breakpoint-up(md) {
+    --content-max-width: #{get-container-max-width('md')};
+  }
+
+  @include media-breakpoint-up(xl) {
+    --content-max-width: 900px;
+  }
 }
 
 .content-grid > :not(.breakout, .full-width, .post__sticky-bar),
