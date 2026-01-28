@@ -376,9 +376,9 @@
 }
 
 @mixin richtext-width {
-  @container (min-width: 600px) {
-    width: var(--post-content-width-lg, $content-width-xxl);
-  }
+  // @container (min-width: 600px) {
+  //   width: var(--post-content-width-lg, $content-width-xxl);
+  // }
 }
 
 @mixin utility-animation-options(

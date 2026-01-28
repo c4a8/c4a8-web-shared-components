@@ -1,3 +1,13 @@
+.content-grid {
+  > .content-grid,
+  > .content-grid--side-bar {
+  }
+}
+
+// TODO look at 991 for content with is only 80% on prod
+// TODO look at 992 sticky bar should be on the left and not overlap
+// TODO check at richtext-width mixin and see if it is used elsewhere and needs to be adjust here or not.
+
 .content-grid,
 .content-grid--side-bar {
   --content-grid-gutter-width: #{$grid-gutter-width};
@@ -26,6 +36,7 @@
 
   @include media-breakpoint-up(lg) {
     --content-max-width: 896px;
+    // --content-max-width: calc(var(--container-width) * 0.8);
   }
 }
 
@@ -56,16 +67,16 @@
 .content-grid > .breakout,
 .content-grid--side-bar > .breakout {
   grid-column: breakout;
-  background-color: rgba(255, 0, 0, 0.398);
+  // background-color: rgba(255, 0, 0, 0.398);
 }
 
 .content-grid > .full-width,
 .content-grid--side-bar > .full-width {
   grid-column: full-width;
-  background-color: rgba(0, 0, 255, 0.459);
+  // background-color: rgba(0, 0, 255, 0.459);
 }
 
 .content-grid--side-bar > .post__sticky-bar {
   grid-column: sidebar;
-  background-color: rgba(255, 255, 0, 0.514);
+  // background-color: rgba(255, 255, 0, 0.514);
 }

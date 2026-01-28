@@ -3,6 +3,7 @@
 .post,
 .post-detail {
   --post-paragraph-line-height: 2;
+  // --post-content-width-lg: 80%;
 }
 
 .post-detail {
@@ -56,6 +57,8 @@
 .post {
   main {
     > p {
+      // @include richtext-width;
+
       &:not(.post__sticky-excerpt) {
         line-height: var(--post-paragraph-line-height);
       }
@@ -113,6 +116,13 @@
       margin-top: 2rem;
       margin-bottom: 2rem;
     }
+
+    // TODO check if this can be sorted out through the content-grid
+    // .richtext {
+    //   > * {
+    //     width: 80%;
+    //   }
+    // }
   }
 }
 
@@ -156,7 +166,6 @@
 
   @include media-breakpoint-up(lg) {
     float: left;
-    // grid-column: breakout;
   }
 
   @include media-breakpoint-up(xl) {
