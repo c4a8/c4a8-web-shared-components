@@ -141,7 +141,11 @@ export default {
   },
   computed: {
     contentWidth() {
-      return ['richtext', this.post?.meta?.maxContent === true ? 'richtext--full-width' : null];
+      return [
+        'richtext',
+        this.asideNavValue ? 'content-grid--side-bar' : 'content-grid',
+        this.post?.meta?.maxContent === true ? 'richtext--full-width' : null,
+      ];
     },
     stickyOffsetTop() {
       return this.asideNavValue ? 124 : 100;
