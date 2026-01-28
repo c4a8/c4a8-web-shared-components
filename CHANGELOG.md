@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.68
+
+- Add Shapes for multiple Structured Data Objects
+
 # Release 0.4.67
 
 - Adds anchor deeplinks to accordion
