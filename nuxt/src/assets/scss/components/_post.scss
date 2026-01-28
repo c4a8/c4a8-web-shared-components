@@ -130,7 +130,16 @@
   }
 }
 
+.post__intro-img,
+.post .prose-p.has-img {
+  @include media-breakpoint-up(lg) {
+    grid-column: breakout;
+  }
+}
+
 .post__sticky-bar {
+  grid-column: content;
+
   &.post__sticky-bar--lg-only {
     display: none;
 
@@ -147,6 +156,7 @@
 
   @include media-breakpoint-up(lg) {
     float: left;
+    // grid-column: breakout;
   }
 
   @include media-breakpoint-up(xl) {

@@ -1,4 +1,12 @@
-.content-grid {
+.content-grid,
+.content-grid--side-bar {
+  --content-grid-gutter-width: #{$grid-gutter-width};
+  --padding-inline: calc(var(--content-grid-gutter-width) / 2);
+  --breakout-max-width: 1200px;
+  --content-max-width: calc(100% - var(--content-grid-gutter-width));
+  --breakout-size: 0;
+
+  display: grid;
   grid-template-columns:
     [full-width-start] minmax(var(--padding-inline), 1fr)
     [breakout-start] minmax(0, var(--breakout-size))
@@ -6,18 +14,23 @@
     [content-end]
     minmax(0, var(--breakout-size)) [breakout-end]
     minmax(var(--padding-inline), 1fr) [full-width-end];
+
+  @include media-breakpoint-up(sm) {
+    --content-max-width: calc(#{get-container-max-width('sm')} - var(--content-grid-gutter-width));
+    --breakout-size: calc((var(--breakout-max-width) - var(--content-max-width)) / 2);
+  }
+
+  @include media-breakpoint-up(md) {
+    --content-max-width: calc(#{get-container-max-width('md')} - var(--content-grid-gutter-width));
+  }
+
+  @include media-breakpoint-up(lg) {
+    --content-max-width: 896px;
+  }
 }
 
 .content-grid--side-bar {
   --sidebar-size: 220px;
-
-  grid-template-columns:
-    [full-width-start] minmax(var(--padding-inline), 1fr)
-    [breakout-start] minmax(0, var(--breakout-size))
-    [content-start] min(100% - (var(--padding-inline) * 2), var(--content-max-width))
-    [content-end]
-    minmax(0, var(--breakout-size)) [breakout-end]
-    minmax(var(--padding-inline), 1fr) [full-width-end];
 
   @include media-breakpoint-up(xl) {
     grid-template-columns:
@@ -33,43 +46,26 @@
   }
 }
 
-.content-grid,
-.content-grid--side-bar {
-  --padding-inline: 1rem;
-  --breakout-max-width: 1200px;
-
-  @include media-breakpoint-up(sm) {
-    --content-max-width: #{get-container-max-width('sm')};
-    --breakout-size: calc((var(--breakout-max-width) - var(--content-max-width)) / 2);
-
-    display: grid;
-  }
-
-  @include media-breakpoint-up(md) {
-    --content-max-width: #{get-container-max-width('md')};
-  }
-
-  @include media-breakpoint-up(xl) {
-    --content-max-width: 900px;
-  }
-}
-
 .content-grid > :not(.breakout, .full-width, .post__sticky-bar),
 .content-grid--side-bar > :not(.breakout, .full-width, .post__sticky-bar),
 .full-width > :not(.breakout, .full-width, .post__sticky-bar) {
   grid-column: content;
+  background-color: rgba(127, 255, 0, 0.398);
 }
 
 .content-grid > .breakout,
 .content-grid--side-bar > .breakout {
   grid-column: breakout;
+  background-color: rgba(255, 0, 0, 0.398);
 }
 
 .content-grid > .full-width,
 .content-grid--side-bar > .full-width {
   grid-column: full-width;
+  background-color: rgba(0, 0, 255, 0.459);
 }
 
 .content-grid--side-bar > .post__sticky-bar {
   grid-column: sidebar;
+  background-color: rgba(255, 255, 0, 0.514);
 }

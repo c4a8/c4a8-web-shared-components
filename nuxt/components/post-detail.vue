@@ -51,7 +51,7 @@
         />
       </slider>
     </div>
-    <div v-else-if="normalizedPost.blogtitlepic" class="post__intro-img breakout">
+    <div v-else-if="normalizedPost.blogtitlepic" class="post__intro-img">
       <v-img
         :img="blogImagePath + normalizedPost.blogtitlepic"
         :cloudinary="true"
@@ -62,7 +62,7 @@
     </div>
     <sticky-block
       v-if="shouldShowStickyBlocks"
-      class="post__sticky-bar breakout"
+      class="post__sticky-bar"
       :sticky-offset-top="stickyOffsetTop"
       :has-padding="!asideNavValue"
       breakpoint="lg"

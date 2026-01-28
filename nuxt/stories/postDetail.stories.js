@@ -2,6 +2,10 @@ import PostDetailComponent from '../components/post-detail.vue';
 
 export default {
   component: PostDetailComponent,
+  parameters: {
+    isPage: true,
+    layout: 'fullscreen',
+  },
   argTypes: {},
   title: 'Components/Post Detail',
 };
@@ -52,7 +56,7 @@ const body = {
     ],
     [
       'p',
-      { class: 'p-prose breakout' },
+      { class: 'p-prose has-img' },
       ['img', { src: 'https://res.cloudinary.com/c4a8/image/upload/blog/pics/consentfix-img-01.png' }],
     ],
     [

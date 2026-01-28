@@ -22,7 +22,7 @@ const paragraphClasses = computed(() => {
   const classes = ['prose-p'];
 
   if (hasImage.value) {
-    classes.push('breakout');
+    classes.push('has-img');
   }
 
   return classes;
