@@ -142,7 +142,7 @@ export default {
   computed: {
     contentWidth() {
       return [
-        'richtext',
+        'richtext full-width',
         this.asideNavValue ? 'content-grid--side-bar' : 'content-grid',
         this.post?.meta?.maxContent === true ? 'richtext--full-width' : null,
       ];

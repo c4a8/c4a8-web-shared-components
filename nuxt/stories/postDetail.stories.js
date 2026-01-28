@@ -52,7 +52,7 @@ const body = {
     ],
     [
       'p',
-      { class: 'p-prose' },
+      { class: 'p-prose breakout' },
       ['img', { src: 'https://res.cloudinary.com/c4a8/image/upload/blog/pics/consentfix-img-01.png' }],
     ],
     [
