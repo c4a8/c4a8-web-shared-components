@@ -158,19 +158,21 @@
     }
   }
 
-  &.breakout {
-    @include media-breakpoint-up(xl) {
-      margin-bottom: -100%;
-    }
-  }
+  // &.breakout {
+  //   @include media-breakpoint-up(xl) {
+
+  //   }
+  // }
 
   @include media-breakpoint-up(lg) {
     float: left;
+    margin-bottom: -100%;
+    transform: translateY(-8px);
   }
 
   @include media-breakpoint-up(xl) {
     display: flex;
-    margin-bottom: 0;
+    // margin-bottom: 0;
   }
 }
 

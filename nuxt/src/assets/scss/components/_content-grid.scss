@@ -38,7 +38,7 @@
   > h6,
   > ul {
     @include media-breakpoint-up(md) {
-      grid-column: content-start / content-extended-start;
+      grid-column: content-text-start / content-text-end;
     }
   }
 
@@ -49,14 +49,19 @@
 
   @include media-breakpoint-up(md) {
     --content-max-width: calc(#{get-container-max-width('md')} - var(--content-grid-gutter-width));
+    --col-1-multiplier: 0;
+    --col-2-multiplier: 0.8;
+    --col-3-multiplier: 0.2;
 
     grid-template-columns:
       [full-width-start] minmax(var(--padding-inline), 1fr)
       [breakout-start] minmax(0, var(--breakout-size))
       [content-start]
-      calc(var(--inner-content-size) * 0.8)
-      [content-extended-start]
-      calc(var(--inner-content-size) * 0.2)
+      calc(var(--inner-content-size) * var(--col-1-multiplier))
+      [content-text-start]
+      calc(var(--inner-content-size) * var(--col-2-multiplier))
+      [content-text-end]
+      calc(var(--inner-content-size) * var(--col-3-multiplier))
       [content-end]
       minmax(0, var(--breakout-size)) [breakout-end]
       minmax(var(--padding-inline), 1fr) [full-width-end];
@@ -64,7 +69,9 @@
 
   @include media-breakpoint-up(lg) {
     --content-max-width: 896px;
-    // --content-max-width: calc(var(--container-width) * 0.8);
+    --col-1-multiplier: 0.16183;
+    --col-2-multiplier: 0.67634;
+    --col-3-multiplier: var(--col-1-multiplier);
   }
 }
 
