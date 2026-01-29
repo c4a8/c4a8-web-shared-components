@@ -1,7 +1,7 @@
 <template>
   <article
     v-if="normalizedPost"
-    class="post post-detail h-entry content-grid space-top-2 space-top-lg-4"
+    class="post post-detail h-entry content-grid--extended space-top-2 space-top-lg-4"
     :class="{ 'post-detail--aside-nav': asideNavValue }"
     itemscope
     itemtype="http://schema.org/BlogPosting"
