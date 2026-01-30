@@ -116,13 +116,13 @@
       margin-top: 2rem;
       margin-bottom: 2rem;
     }
+  }
 
-    // TODO check if this can be sorted out through the content-grid
-    // .richtext {
-    //   > * {
-    //     width: 80%;
-    //   }
-    // }
+  @include media-breakpoint-up(xl) {
+    .post__sticky-bar,
+    .post__intro-img {
+      grid-column: breakout;
+    }
   }
 }
 
@@ -140,7 +140,6 @@
   }
 }
 
-.post__intro-img,
 .post .prose-p.has-img {
   @include media-breakpoint-up(lg) {
     grid-column: breakout;
@@ -158,12 +157,6 @@
     }
   }
 
-  // &.breakout {
-  //   @include media-breakpoint-up(xl) {
-
-  //   }
-  // }
-
   @include media-breakpoint-up(lg) {
     float: left;
     margin-bottom: -100%;
@@ -172,7 +165,6 @@
 
   @include media-breakpoint-up(xl) {
     display: flex;
-    // margin-bottom: 0;
   }
 }
 
