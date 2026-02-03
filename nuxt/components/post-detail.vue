@@ -1,13 +1,13 @@
 <template>
   <article
     v-if="normalizedPost"
-    class="post post-detail h-entry content-grid--extended space-top-2 space-top-lg-4"
-    :class="{ 'post-detail--aside-nav': asideNavValue }"
+    class="post post-detail h-entry content-grid--extended"
+    :class="{ 'post-detail--aside-nav': asideNavValue, 'space-top-2 space-top-lg-4': !noHeader }"
     itemscope
-    itemtype="http://schema.org/BlogPosting"
+    :itemtype="isTechArticle ? 'http://schema.org/TechArticle' : 'http://schema.org/BlogPosting'"
     ref="article"
   >
-    <header class="post-header">
+    <header class="post-header" v-if="!noHeader">
       <h1
         class="post-title p-name"
         :class="normalizedPost.titleClass || 'h2-font-size'"
@@ -63,6 +63,7 @@
     <sticky-block
       v-if="shouldShowStickyBlocks"
       class="post__sticky-bar"
+      :class="{ 'has-side-bar': asideNavValue }"
       :sticky-offset-top="stickyOffsetTop"
       :has-padding="!asideNavValue"
       breakpoint="lg"
@@ -79,7 +80,7 @@
       itemprop="articleBody"
       :components="{ a: ContentRendererLink }"
     />
-    <div class="post-detail__tags mt-5">
+    <div class="post-detail__tags mt-5" v-if="!noTags">
       <tag v-for="(tag, index) in normalizedPost.tags" :key="index" :tag="tag" variant="small" />
     </div>
     <aside-nav v-if="!shouldShowStickyBlocks && asideNavValue" v-bind="asideNavValue" />
@@ -201,6 +202,18 @@ export default {
     shareUrl: {
       type: String,
       default: '',
+    },
+    noHeader: {
+      type: Boolean,
+      default: false,
+    },
+    noTags: {
+      type: Boolean,
+      default: false,
+    },
+    isTechArticle: {
+      type: Boolean,
+      default: false,
     },
   },
 };
