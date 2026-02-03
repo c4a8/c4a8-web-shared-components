@@ -1,13 +1,3 @@
-// .content-grid {
-//   > .content-grid,
-//   > .content-grid--side-bar {
-//   }
-// }
-
-// TODO look at 991 for content with is only 80% on prod
-// TODO look at 992 sticky bar should be on the left and not overlap
-// TODO check at richtext-width mixin and see if it is used elsewhere and needs to be adjust here or not.
-
 .content-grid {
   --content-grid-gutter-width: #{$grid-gutter-width};
   --padding-inline: calc(var(--content-grid-gutter-width) / 2);
@@ -72,24 +62,15 @@
   }
 
   @include media-breakpoint-up(lg) {
-    // --content-max-width: 896px;
     --col-1-multiplier: 0.16183;
     --col-2-multiplier: 0.67634;
     --col-3-multiplier: var(--col-1-multiplier);
   }
 
   @include media-breakpoint-up(xl) {
-    // --content-max-width: 860px;
-    // --breakout-size: 0;
-    // --col-1-multiplier: 0.1;
-    // --col-2-multiplier: 0.8;
-    // --col-3-multiplier: var(--col-1-multiplier);
-
     --col-2-multiplier: 0.8;
     --col-1-multiplier: 0;
     --col-3-multiplier: calc(1 - var(--col-2-multiplier));
-    // --col-1-multiplier: 0.67634;
-    // --col-3-multiplier: var(--col-1-multiplier);
   }
 }
 
@@ -118,13 +99,6 @@
   @include media-breakpoint-up(md) {
     --content-max-width: calc(#{get-container-max-width('md')} - var(--content-grid-gutter-width));
   }
-
-  @include media-breakpoint-up(lg) {
-    // --content-max-width: 896px;
-    // --content-max-width: calc(var(--container-width) * 0.8);
-
-    // --padding-inline: calc(var(--container-width-no-padding) - 100vw - var(--content-grid-gutter-width) / 2);
-  }
 }
 
 .content-grid,
@@ -140,26 +114,11 @@
     --padding-offset: 22px;
     --content-max-width: 860px;
     --container-max-width: #{get-container-max-width('xl')};
-
-    // --content-max-width: calc(0.8 * #{get-container-width('xxl', false)});
-    // --content-max-width: calc(0.8 * #{get-container-width('lg', false)});
-
-    // --content-max-width: calc(0.8 * var(--container-width) - 2 * var(--container-inner-padding));
-
-    // --content-max-width: calc(
-    //   1216px * 0.8
-    // ); // TODO get rid of the inner padding of the container and then go to the 80%
-
-    // --padding-inline: calc(var(--container-width-no-padding) - 100vw - var(--content-grid-gutter-width) / 2);
-
-    // --padding-inline: calc(var(--container-width-no-padding) - 100vw);
-
     --padding-inline: calc(((100dvw - var(--container-max-width)) / 2) + var(--padding-offset));
   }
 
   @include media-breakpoint-up(xxl) {
     --container-max-width: #{get-container-max-width('xxl')};
-
     --content-max-width: calc(0.8 * #{get-container-width('xl', true)});
   }
 }
@@ -181,28 +140,21 @@
   }
 }
 
-//
-// .full-width > :not(.breakout, .full-width, .post__sticky-bar),
-.content-grid--extended > :not(.breakout, .full-width), // , .post__sticky-bar
+.content-grid--extended > :not(.breakout, .full-width),
 .content-grid--side-bar > :not(.breakout, .full-width) {
-  // , .post__sticky-bar
   grid-column: content;
-  // background-color: rgba(127, 255, 0, 0.398);
 }
 
 .content-grid--extended > .breakout,
 .content-grid--side-bar > .breakout {
   grid-column: breakout;
-  // background-color: rgba(255, 0, 0, 0.398);
 }
 
 .content-grid--extended > .full-width,
 .content-grid--side-bar > .full-width {
   grid-column: full-width;
-  // background-color: rgba(0, 0, 255, 0.459);
 }
 
 .content-grid--side-bar > .post__sticky-bar {
   grid-column: sidebar;
-  // background-color: rgba(255, 255, 0, 0.514);
 }

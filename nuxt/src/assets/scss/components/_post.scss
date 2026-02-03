@@ -3,7 +3,6 @@
 .post,
 .post-detail {
   --post-paragraph-line-height: 2;
-  // --post-content-width-lg: 80%;
 }
 
 .post-detail {
@@ -57,8 +56,6 @@
 .post {
   main {
     > p {
-      // @include richtext-width;
-
       &:not(.post__sticky-excerpt) {
         line-height: var(--post-paragraph-line-height);
       }
