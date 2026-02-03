@@ -106,6 +106,29 @@ const body = {
       ],
     ],
     [
+      'div',
+      { class: 'aside-wrapper vue-component' },
+      [
+        'div',
+        { class: 'aside-wrapper__content' },
+        ['h2', { class: 'h2-font-size  headline vue-component prose-h2', id: 'lösung' }, 'Lösung'],
+        'Zunächst wurde mit der Azure Foundation eine Sammlung von glueckkanja ',
+        ['strong', {}, 'Best Practices für den Aufbau sicherer und skalierbarer Azure Landing Zones'],
+        ' zusammengestellt. Dabei umfasst eine Landing Zone Elemente wie Netzwerke, Namensauflösung, Automatisierungsaufgaben, Fernzugriff, Protokollverarbeitung, Auditing, Plattformsicherheit, Datenschutz und Host Anti-Malware. Alle Komponenten der Azure Foundation werden als Infrastructure as Code (IaC) entwickelt und bereitgestellt, um eine schnelle Wertschöpfung, branchenübliche Produktentwicklung, Qualität und Sicherheit zu gewährleisten.',
+      ],
+      [
+        'aside',
+        { class: 'aside-wrapper__aside' },
+        [
+          'img',
+          {
+            src: 'https://res.cloudinary.com/c4a8/image/upload/v1647945533/casestudies/casestudy-dekra.png',
+            alt: '',
+          },
+        ],
+      ],
+    ],
+    [
       'p',
       {},
       'Profitiere jetzt von unserer Erfahrung aus über 100 erfolgreichen Cloud-Migrationen und unserer erstklassigen Microsoft-Expertise.',
