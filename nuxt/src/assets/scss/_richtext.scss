@@ -36,7 +36,7 @@ $richtext-conclusion-spacing-lg: $spacing-content-default;
   }
 
   p {
-    + * {
+    + *:not(.has-img) {
       margin-top: spacing(12);
     }
 

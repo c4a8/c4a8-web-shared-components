@@ -27,6 +27,10 @@
 
   > * {
     grid-column: content;
+
+    @include media-breakpoint-up(xl) {
+      grid-column: breakout;
+    }
   }
 
   > p:not(.has-img),
@@ -133,9 +137,12 @@
   }
 
   @include media-breakpoint-up(xl) {
+    --padding-offset: 22px;
     --content-max-width: 860px;
+    --container-max-width: #{get-container-max-width('xl')};
 
-    --content-max-width: calc(0.8 * #{get-container-width('xl')});
+    // --content-max-width: calc(0.8 * #{get-container-width('xxl', false)});
+    // --content-max-width: calc(0.8 * #{get-container-width('lg', false)});
 
     // --content-max-width: calc(0.8 * var(--container-width) - 2 * var(--container-inner-padding));
 
@@ -143,11 +150,17 @@
     //   1216px * 0.8
     // ); // TODO get rid of the inner padding of the container and then go to the 80%
 
-    --padding-inline: calc(var(--container-width-no-padding) - 100vw - var(--content-grid-gutter-width) / 2);
+    // --padding-inline: calc(var(--container-width-no-padding) - 100vw - var(--content-grid-gutter-width) / 2);
+
+    // --padding-inline: calc(var(--container-width-no-padding) - 100vw);
+
+    --padding-inline: calc(((100dvw - var(--container-max-width)) / 2) + var(--padding-offset));
   }
 
   @include media-breakpoint-up(xxl) {
-    --content-max-width: calc(0.8 * #{get-container-width('xxl')});
+    --container-max-width: #{get-container-max-width('xxl')};
+
+    --content-max-width: calc(0.8 * #{get-container-width('xl', true)});
   }
 }
 

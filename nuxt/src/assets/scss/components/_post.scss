@@ -140,8 +140,10 @@
   }
 }
 
-.post .prose-p.has-img {
-  @include media-breakpoint-up(lg) {
+.post .p-prose.has-img {
+  margin-bottom: 0;
+
+  @include media-breakpoint-up(xl) {
     grid-column: breakout;
   }
 }
