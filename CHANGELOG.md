@@ -1,5 +1,21 @@
 # Releases
 
+# Release 0.4.68
+
+- Add Shapes for multiple Structured Data Objects
+
+# Release 0.4.67
+
+- Adds anchor deeplinks to accordion
+
+# Release 0.4.66
+
+- Fix Modal issue without applications
+
+# Release 0.4.65
+
+- Fixes Form handling
+
 # Release 0.4.62
 
 - Adds Open Graph Image Parameters to max width

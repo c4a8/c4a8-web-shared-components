@@ -10,8 +10,11 @@ declare namespace _default {
         function columnClasses(): (string | null)[];
         function headlineClasses(): string;
     }
+    function created(): void;
     function mounted(): void;
     namespace methods {
+        function changeExpandedStateOnAnchor(): void;
+        function getHash(): string;
         function isUpperBreakpoint(): boolean;
         function selectFallbackImage(): void;
         function getActiveTab(): any;
@@ -21,7 +24,7 @@ declare namespace _default {
         function getTabByIndex(index: any): any;
         function allTabsClosed(): boolean;
         function getStateByIndex(index: any): any;
-        function getId(accordion: any, index: any, name: any): string;
+        function getId(accordion: any, index: any, name: any, saveElement?: boolean): string;
         function isExpanded(tab: any): "true" | "false";
         function buttonClasses(tab: any): (string | null)[];
         function contentClasses(tab: any): (string | null)[];
@@ -41,6 +44,7 @@ declare namespace _default {
         fallbackImage: boolean;
         fallbackAnimated: boolean;
         fallbackAlt: string;
+        tabs: never[];
     };
     namespace props {
         let accordion: ObjectConstructor;

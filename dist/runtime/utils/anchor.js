@@ -6,12 +6,15 @@ class Anchor {
 
   constructor() {
     const hash = this.getHash();
+    const id = hash.substring(1);
 
-    this.idSelector = `[id="${hash.substring(1)}"]:not([role="tabpanel"])`;
+    this.idSelector = `[id="${id}"]:not([role="tabpanel"])`;
     this.idTarget = document.querySelector(this.idSelector);
 
     if (this.idTarget) {
-      Tools.scrollIntoView(this.idTarget, true);
+      if (!this.isAccordion(this.idTarget)) {
+        Tools.scrollIntoView(this.idTarget, true);
+      }
     }
 
     this.targetSelector = `a[href^="${hash}"]`;
@@ -21,6 +24,10 @@ class Anchor {
 
     this.handleTargetClick();
     this.bindEvents();
+  }
+
+  isAccordion(element) {
+    return element?.classList.contains('accordion__content') || element?.classList.contains('accordion__card-header');
   }
 
   hasProductStage() {
