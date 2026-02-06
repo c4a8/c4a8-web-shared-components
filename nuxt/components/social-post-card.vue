@@ -54,10 +54,6 @@
           <span>{{ stats.comments }}</span>
         </div>
       </div>
-      <button class="spc__share-btn" @click.stop="handleShare">
-        <i class="far fa-share-square"></i>
-        <span>Share</span>
-      </button>
     </footer>
   </article>
 </template>
@@ -149,18 +145,6 @@ export default {
     },
     handleReadMore() {
       this.isExpanded = true;
-    },
-    handleShare() {
-      if (this.postUrl) {
-        if (navigator.share) {
-          navigator.share({
-            title: this.author?.name || 'LinkedIn Post',
-            url: this.postUrl,
-          });
-        } else {
-          window.open(this.postUrl, '_blank', 'noopener');
-        }
-      }
     },
   },
   props: {
