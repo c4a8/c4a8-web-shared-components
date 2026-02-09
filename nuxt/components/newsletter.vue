@@ -1,5 +1,5 @@
 <template>
-  <div :class="classList" ref="root" class="newsletter py-4 px-lg-0 px-1">
+  <div :class="classList" ref="root" class="newsletter py-4 px-lg-0 px-1" v-if="!noModal">
     <div class="js-sticky-block d-flex justify-content-center">
       <dialog class="newsletter__dialog" ref="modal" @click="handleOutsideClick">
         <div
@@ -15,7 +15,6 @@
             v-bind="modal"
             :ajax="true"
             :success="success"
-            :iconColor="iconColor"
             :bgColor="bgColor"
             :light="light"
             :lottie="lottieFiles"
@@ -25,15 +24,15 @@
     </div>
     <div class="newsletter__banner-wrapper">
       <div class="newsletter__banner mx-auto" :class="isMobile ? 'd-flex' : ''" ref="icon" @click="handleClick">
-        <div :style="bannerStyle" :class="isMobile ? 'w-100 mr-5' : ''">
+        <div :style="bannerStyle" :class="isMobile ? 'w-100 mr-5 px-3' : ''">
           <div class="d-flex align-items-center px-3 py-2 row" :class="isMobile ? '' : 'row-cols-2'">
             <div class="d-flex align-items-center" :class="isMobile ? 'px-3 py-2 row' : 'font-size-2 col-9'">
               <div v-if="isMobile" class="font-size-2 light">
-                <div class="ml-2">{{ textMobile }}</div>
+                <div class="ml-2">{{ computedText }}</div>
                 <cta v-bind="cta" link="true" :class="[light ? 'text-light' : 'text-dark']" />
               </div>
               <div v-else>
-                {{ text }}
+                {{ computedText }}
               </div>
             </div>
             <div v-if="!isMobile" class="d-flex justify-content-center col-2">
@@ -57,13 +56,24 @@
     </div>
     <a class="newsletter__trigger" ref="link" @click="handleClick"></a>
   </div>
+  <div v-else>
+    <newsletter-section
+      :bgColor="bgColor"
+      :text="computedText"
+      :cta="cta"
+      :light="light"
+      :headline="modal.headline"
+      :formular="modal.formular"
+      :confirmation="modal.confirmation"
+      :lottie="lottieFiles"
+    />
+  </div>
 </template>
+
 <script>
 import State from '../utils/state.js';
 import Events from '../utils/events.js';
 import Tools from '../utils/tools.js';
-//import birdieFlap from '../src/assets/lottie/BirdieFlap.json';
-//import birdieNoflap from '../src/assets/lottie/BirdieNoflap.json';
 
 const SCREEN_XS_THRESHOLD = 750;
 const MOBILE_START = 2500;
@@ -80,21 +90,17 @@ export default {
       type: Object,
       default: null,
     },
-    iconColor: {
-      type: String,
-      default: 'var(--color-orange)',
-    },
-    text: {
-      type: String,
-    },
-    textMobile: {
-      type: String,
-    },
+    text: String,
+    textMobile: String,
     cta: {
       type: Object,
       default: null,
     },
     light: {
+      type: Boolean,
+      default: false,
+    },
+    noModal: {
       type: Boolean,
       default: false,
     },
@@ -123,6 +129,9 @@ export default {
     },
     lottieAnimation() {
       return this.idle ? this.lottieFiles.idle : this.lottieFiles.fly;
+    },
+    computedText() {
+      return this.isMobile ? this.textMobile : this.text;
     },
   },
   data() {
@@ -3177,7 +3186,6 @@ export default {
         setLightContour(this.lottieFiles.fly.assets);
         setLightContour(this.lottieFiles.idle.assets);
       }
-      Tools.hexToRgb(this.iconColor);
     },
     onComplete() {
       this.idle = true;

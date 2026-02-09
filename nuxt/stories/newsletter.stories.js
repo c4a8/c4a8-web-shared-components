@@ -1,6 +1,5 @@
 import NewsletterComponent from '../components/newsletter.vue';
 
-
 export default {
   component: NewsletterComponent,
   title: 'Components/Newsletter',
@@ -17,7 +16,6 @@ export default {
     }),
   ],
 };
-
 
 export const Default = {
   args: {
@@ -50,7 +48,6 @@ export const Default = {
               label: 'E-Mail Adresse',
               type: 'email',
 
-
               rowStart: true,
               required: true,
               id: 'email',
@@ -78,7 +75,6 @@ export const Default = {
     },
   },
 };
-
 
 export const Light = {
   args: {
@@ -112,7 +108,6 @@ export const Light = {
               label: 'E-Mail Adresse',
               type: 'email',
 
-
               rowStart: true,
               required: true,
               id: 'email',
@@ -133,6 +128,79 @@ export const Light = {
               type: 'hidden',
               id: 'inbox_key',
               value: '',
+            },
+          ],
+        },
+      },
+    },
+  },
+};
+
+export const noModal = {
+  args: {
+    noModal: true,
+    bgColor: 'var(--color-athens-gray)',
+    text: 'Jetzt zum Newsletter anmelden, um per E-Mail über Neuigkeiten, Veranstaltungen und Angebote und Dienstleistungen von glueckkanja informiert zu werden!',
+    textMobile: 'Jetzt zum Newsletter anmelden!',
+    cta: {
+      text: 'Abonnieren',
+      width: 'w-100',
+    },
+    modal: {
+      headline: 'Newsletter Anmeldung',
+      text: 'Jetzt anmelden, um per E-Mail über Neuigkeiten, Veranstaltungen und Angebote und Dienstleistungen von glueckkanja informiert zu werden!',
+      confirmation: {
+        headline: 'Danke für deine Anmeldung!',
+        text: 'Du hast dich erfolgreich für unseren Newsletter angemeldet. Wir freuen uns, dich als Abonnent:in begrüßen zu dürfen! Schau gerne in deinem Posteingang nach einer Bestätigungs-E-Mail von uns.',
+      },
+      formular: {
+        ajax: true,
+        form: {
+          cta: {
+            skin: 'primary',
+            width: 'w-40',
+          },
+          ctaPosition: '',
+          ctaText: 'Abonnieren',
+          method: 'post',
+          fields: [
+            {
+              label: 'E-Mail-Adresse*',
+              type: 'email',
+              id: 'email',
+              required: true,
+              requiredMsg: 'Bitte E-Mail-Adresse eingeben',
+            },
+            {
+              label:
+                'Deine Daten werden zur Bearbeitung und Beantwortung deiner Anfrage bei uns gespeichert. Weitere Informationen zum Datenschutz findest du in unserer <a href="/de/privacy">Datenschutzerklärung</a>.',
+              type: 'checkbox',
+              id: 'dataprotection',
+              required: true,
+              requiredMsg: 'Bitte bestätigen',
+            },
+            {
+              type: 'hidden',
+              id: 'newsletter',
+              value: 'on',
+            },
+            {
+              type: 'hidden',
+              id: 'inbox_key',
+              value: 'gkgab-contact-form',
+            },
+            {
+              type: 'hidden',
+              id: '_gotcha',
+            },
+            {
+              type: 'hidden',
+              id: 'jsonData',
+            },
+            {
+              type: 'hidden',
+              id: 'newsletterModal',
+              value: 'true',
             },
           ],
         },

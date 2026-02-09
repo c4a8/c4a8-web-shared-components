@@ -66,25 +66,11 @@ const LOTTIE_SPEED_NORMAL = 1;
 export default {
   tagName: 'newsletter-modal',
   props: {
-    bgColor: {
-      type: String,
-    },
-    headline: {
-      type: String,
-    },
-    text: {
-      type: String,
-    },
-    formular: {
-      type: Object,
-    },
-    lottie: {
-      type: Object,
-    },
-    iconColor: {
-      type: String,
-      default: 'var(--color-orange)',
-    },
+    bgColor: String,
+    headline: String,
+    text: String,
+    formular: Object,
+    lottie: Object,
     confirmation: {
       type: Object,
       default: null,
@@ -105,11 +91,6 @@ export default {
     contrastColor() {
       return this.light ? 'var(--color-white)' : 'var(--color-black)';
     },
-    /*
-    isMobile() {
-      return Tools.isBelowBreakpoint('lg');
-    },
-    */
     currentHeadline() {
       return this.success ? this.confirmation?.headline : this.headline;
     },

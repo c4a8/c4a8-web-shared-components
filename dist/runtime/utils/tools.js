@@ -1,4 +1,4 @@
-import { parse } from 'node-html-parser';
+//import { parse } from 'node-html-parser';
 import { useRoute } from '#imports';
 
 class Tools {
@@ -12,7 +12,7 @@ class Tools {
   static storybookPath = '/shared-components';
   static blogImagePath = '/blog/heads/';
   static breakpointArray = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
-
+/** 
   static decodeHTML = (input) => {
     if (!input) return '';
 
@@ -20,7 +20,7 @@ class Tools {
 
     return document.textContent;
   };
-
+*/
   static intersection = (r1, r2) => {
     const xOverlap = Math.max(0, Math.min(r1.x + r1.width, r2.x + r2.width) - Math.max(r1.x, r2.x));
     const yOverlap = Math.max(0, Math.min(r1.y + r1.height, r2.y + r2.height) - Math.max(r1.y, r2.y));
