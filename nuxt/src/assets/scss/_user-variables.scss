@@ -15,6 +15,16 @@ $container-widths: (
   xxl: 1340px,
 );
 
+// TODO this would work for the grid but not for the extended content.
+// $container-widths: (
+//   xs: 0,
+//   sm: 576px,
+//   md: 768px,
+//   lg: 992px,
+//   xl: 1140px,
+//   xxl: 1280px,
+// );
+
 // theme vars
 
 $theme-colors: (
