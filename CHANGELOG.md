@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.69
+
+- Changes the Post Detail to a Grid Layout for flexibility
+
 # Release 0.4.68
 
 - Add Shapes for multiple Structured Data Objects
