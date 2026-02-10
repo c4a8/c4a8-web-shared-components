@@ -90,9 +90,7 @@ const mockPosts = [
 export const Default = {
   args: {
     items: mockPosts,
-    columns: { sm: 1, md: 2, lg: 3, xl: 4 },
-    gap: '1rem',
-    observeOnScroll: true,
+    headline: { text: 'Social Feed' },
   },
   render: (args) => ({
     components: { MasonryGrid, SocialPostCard },

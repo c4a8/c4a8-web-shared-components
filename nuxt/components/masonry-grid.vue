@@ -1,18 +1,36 @@
 <template>
-  <div>
-    <div :class="classList" :style="styleVars" ref="group">
-      <div v-for="(item, index) in displayedItems" :key="item?.id || index" class="masonry-item" ref="items">
-        <slot :item="item" :index="index" />
+  <div class="masonry-grid">
+    <div class="container">
+      <header class="masonry-grid__header">
+        <headline v-if="headline" v-bind="headlineValue" />
+        <div class="masonry-grid__socials">
+          <a
+            :href="social.url"
+            target="_blank"
+            rel="noopener"
+            class="masonry-grid__social-item custom"
+            v-for="(social, index) in socials"
+            :key="index"
+          >
+            <i :class="social.icon" class="fab"></i>
+          </a>
+        </div>
+      </header>
+      <div class="masonry-grid__container utility-animation__group vue-component" :style="styleVars" ref="group">
+        <div v-for="(item, index) in displayedItems" :key="item?.id || index" class="masonry-item" ref="items">
+          <slot :item="item" :index="index" />
+        </div>
       </div>
-    </div>
-    <div v-if="showLoadMore" class="masonry-grid__load-more mt-4 text-center">
-      <button class="btn btn-primary" @click="loadMore">
-        {{ $t('loadMorePosts') }}
-      </button>
+      <div v-if="showLoadMore" class="masonry-grid__load-more mt-4 text-center">
+        <button class="btn btn-primary" @click="loadMore">
+          {{ $t('loadMorePosts') }}
+        </button>
+      </div>
     </div>
   </div>
 </template>
 <script>
+import FooterData from '../utils/data/footer-data.js';
 import UtilityAnimation from '../utils/utility-animation.js';
 
 export default {
@@ -24,15 +42,20 @@ export default {
     };
   },
   computed: {
-    classList() {
-      return ['masonry-grid', 'utility-animation__group', 'vue-component'];
+    headlineValue() {
+      return {
+        ...this.headline,
+        level: this.headline.level || 'h2',
+        classes: `masonry-grid__headline ${this.headline.classes}`,
+      };
     },
     styleVars() {
       const sm = this.columns?.sm || 1;
       const md = this.columns?.md || sm;
       const lg = this.columns?.lg || md;
       const xl = this.columns?.xl || lg;
-      const gap = this.gap || '1rem';
+      const gap = this.gap;
+
       return {
         '--masonry-columns-sm': sm,
         '--masonry-columns-md': md,
@@ -66,6 +89,7 @@ export default {
   },
   updated() {
     if (!this.itemsChanged) return;
+
     this.itemsChanged = false;
     this.reinitUtilityAnimation();
   },
@@ -112,7 +136,15 @@ export default {
     },
     itemsPerLoad: {
       type: Number,
+      default: 6,
+    },
+    headline: {
+      type: Object,
       default: null,
+    },
+    socials: {
+      type: Array,
+      default: () => FooterData.socials,
     },
   },
 };
