@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.70
+
+- Fixes Post Detail Layout
+
 # Release 0.4.69
 
 - Changes the Post Detail to a Grid Layout for flexibility
