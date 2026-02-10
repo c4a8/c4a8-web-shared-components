@@ -15,7 +15,7 @@ const base = {
   },
   postedAt: '1 day ago',
   postUrl: 'https://www.linkedin.com/feed/update/urn:li:activity:1234567890',
-  stats: { likes: 128, comments: 12 },
+  stats: { likes: 128, comments: 12, reposts: 13 },
 };
 
 export const TextOnly = {
@@ -43,19 +43,19 @@ export const Animated = {
   },
 };
 
-export const WithVideo = {
-  args: {
-    ...base,
-    contentHtml: 'Check out our latest video on Microsoft 365 security best practices!',
-    media: [
-      {
-        type: 'video',
-        src: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-        thumbnail: 'https://picsum.photos/id/1015/800/450',
-      },
-    ],
-  },
-};
+// export const WithVideo = {
+//   args: {
+//     ...base,
+//     contentHtml: 'Check out our latest video on Microsoft 365 security best practices!',
+//     media: [
+//       {
+//         type: 'video',
+//         src: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+//         thumbnail: 'https://picsum.photos/id/1015/800/450',
+//       },
+//     ],
+//   },
+// };
 
 export const LongText = {
   args: {

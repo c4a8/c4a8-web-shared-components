@@ -2,19 +2,20 @@
   cursor: pointer;
   position: relative;
   padding: 1rem;
-  background-color: #f3f2ef;
-  box-shadow: none !important;
-  border: none;
-  border-radius: 0;
-  max-width: none !important;
+  background-color: var(--color-background);
   width: 100%;
+
+  .icon.social-post-card__stat-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
 }
 
-.spc__header {
+.social-post-card__header {
   position: relative;
 }
 
-.spc__avatar {
+.social-post-card__avatar {
   width: 48px;
   height: 48px;
   overflow: hidden;
@@ -27,18 +28,18 @@
   }
 }
 
-.spc__author-name {
+.social-post-card__author-name {
   font-weight: 600;
   font-size: 0.9375rem;
   color: #000;
 }
 
-.spc__verified-badge {
+.social-post-card__verified-badge {
   color: #0a66c2;
   font-size: 0.875rem;
 }
 
-.spc__linkedin-badge {
+.social-post-card__linkedin-badge {
   position: absolute;
   top: 0;
   right: 0;
@@ -52,17 +53,17 @@
   padding: 0;
 }
 
-.spc__linkedin-icon {
+.social-post-card__linkedin-icon {
   font-size: 1rem;
   line-height: 1;
 }
 
-.spc__author-handle-time {
+.social-post-card__author-handle-time {
   font-size: 0.8125rem;
   color: #666;
 }
 
-.spc__content {
+.social-post-card__content {
   line-height: 1.5;
   font-size: 0.875rem;
   color: #000;
@@ -76,7 +77,7 @@
   }
 }
 
-.spc__read-more {
+.social-post-card__read-more {
   color: #666;
   text-decoration: none;
   font-weight: 600;
@@ -89,7 +90,7 @@
   }
 }
 
-.spc__media {
+.social-post-card__media {
   cursor: pointer;
   position: relative;
   overflow: hidden;
@@ -102,12 +103,12 @@
   }
 }
 
-.spc__video-wrapper {
+.social-post-card__video-wrapper {
   position: relative;
   width: 100%;
 }
 
-.spc__video-overlay {
+.social-post-card__video-overlay {
   position: absolute;
   top: 0.75rem;
   right: 0.75rem;
@@ -120,25 +121,25 @@
   transition: background-color 0.2s;
 }
 
-.spc__media:hover .spc__video-overlay {
+.social-post-card__media:hover .social-post-card__video-overlay {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-.spc__play-button {
+.social-post-card__play-button {
   color: white;
   font-size: 1.25rem;
   margin-left: 2px;
 }
 
-.spc__footer {
+.social-post-card__footer {
   padding-top: 0.75rem;
 }
 
-.spc__stats {
+.social-post-card__stats {
   gap: 1.5rem;
 }
 
-.spc__stat {
+.social-post-card__stat {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -146,11 +147,7 @@
   color: #666;
 }
 
-.spc__stat-icon {
-  font-size: 1rem;
-}
-
-.spc__share-btn {
+.social-post-card__share-btn {
   display: flex;
   align-items: center;
   gap: 0.5rem;

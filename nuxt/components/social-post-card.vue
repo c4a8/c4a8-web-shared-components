@@ -8,34 +8,36 @@
     :style="style"
     ref="root"
   >
-    <header class="spc__header d-flex align-items-center position-relative">
-      <div class="spc__avatar mr-3" v-if="author?.avatarUrl">
+    <header class="social-post-card__header d-flex align-items-center position-relative">
+      <div class="social-post-card__avatar mr-3" v-if="author?.avatarUrl">
         <v-img :img="author.avatarUrl" :cloudinary="false" :lazy="true" />
       </div>
-      <div class="spc__meta flex-grow-1">
-        <div class="spc__author-name d-flex align-items-center">
+      <div class="social-post-card__meta flex-grow-1">
+        <div class="social-post-card__author-name d-flex align-items-center">
           <span>{{ author?.name }}</span>
-          <i v-if="author?.verified" class="far fa-check-circle spc__verified-badge ml-1"></i>
+          <i v-if="author?.verified" class="far fa-check-circle social-post-card__verified-badge ml-1"></i>
         </div>
-        <div class="spc__author-handle-time text-muted" v-if="postedAt">
+        <div class="social-post-card__author-handle-time text-muted" v-if="postedAt">
           <time :datetime="postedAt">{{ postedAt }}</time>
         </div>
       </div>
-      <div class="spc__linkedin-badge">
-        <i class="fab fa-linkedin spc__linkedin-icon"></i>
+      <div class="social-post-card__linkedin-badge">
+        <i class="fab fa-linkedin social-post-card__linkedin-icon"></i>
       </div>
     </header>
 
-    <div class="spc__content mt-3" v-if="contentHtml">
+    <div class="social-post-card__content mt-3" v-if="contentHtml">
       <div v-html="truncatedContent"></div>
-      <a v-if="showReadMore" href="#" class="spc__read-more" @click.stop.prevent="handleReadMore">Read more</a>
+      <a v-if="showReadMore" href="#" class="social-post-card__read-more" @click.stop.prevent="handleReadMore"
+        >Read more</a
+      >
     </div>
 
-    <div class="spc__media mt-3" v-if="firstMedia" @click.stop="handleMediaClick">
-      <div v-if="firstMedia.type === 'video'" class="spc__video-wrapper">
+    <div class="social-post-card__media mt-3" v-if="firstMedia" @click.stop="handleMediaClick">
+      <div v-if="firstMedia.type === 'video'" class="social-post-card__video-wrapper">
         <v-img :img="firstMedia.thumbnail || firstMedia.src" :cloudinary="false" :lazy="true" />
-        <div class="spc__video-overlay">
-          <div class="spc__play-button">
+        <div class="social-post-card__video-overlay">
+          <div class="social-post-card__play-button">
             <i class="far fa-play-circle"></i>
           </div>
         </div>
@@ -43,15 +45,19 @@
       <v-img v-else :img="firstMedia.src" :cloudinary="false" :lazy="true" />
     </div>
 
-    <footer class="spc__footer d-flex align-items-center justify-content-between mt-3">
-      <div class="spc__stats d-flex align-items-center">
-        <div class="spc__stat mr-3" v-if="stats?.likes !== undefined">
-          <i class="far fa-heart spc__stat-icon"></i>
+    <footer class="social-post-card__footer d-flex align-items-center justify-content-between mt-3">
+      <div class="social-post-card__stats d-flex align-items-center">
+        <div class="social-post-card__stat mr-3" v-if="stats?.likes !== undefined">
+          <icon icon="outline-heart" class="social-post-card__stat-icon" />
           <span>{{ stats.likes }}</span>
         </div>
-        <div class="spc__stat mr-3" v-if="stats?.comments !== undefined">
-          <i class="far fa-comment spc__stat-icon"></i>
+        <div class="social-post-card__stat mr-3" v-if="stats?.comments !== undefined">
+          <icon icon="outline-comment" class="social-post-card__stat-icon" />
           <span>{{ stats.comments }}</span>
+        </div>
+        <div class="social-post-card__stat mr-3" v-if="stats?.reposts !== undefined">
+          <icon icon="outline-share" class="social-post-card__stat-icon" />
+          <span>{{ stats.reposts }}</span>
         </div>
       </div>
     </footer>
@@ -67,7 +73,7 @@ export default {
     classList() {
       return [
         'social-post-card',
-        'card',
+        // 'card',
         this.hasAnimationValue ? 'utility-animation fade-in-bottom' : '',
         'vue-component',
       ];
