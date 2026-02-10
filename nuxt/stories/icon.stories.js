@@ -73,6 +73,13 @@ export const Hand = {
   },
 };
 
+export const Heart = {
+  args: {
+    icon: 'heart',
+    size: 'xxl',
+  },
+};
+
 export const Rocket = {
   args: {
     icon: 'rocket',
@@ -139,6 +146,27 @@ export const Plus = {
 export const Minus = {
   args: {
     icon: 'minus',
+    size: 'large',
+  },
+};
+
+export const OutlineHeart = {
+  args: {
+    icon: 'outline-heart',
+    size: 'large',
+  },
+};
+
+export const OutlineComment = {
+  args: {
+    icon: 'outline-comment',
+    size: 'large',
+  },
+};
+
+export const OutlineShare = {
+  args: {
+    icon: 'outline-share',
     size: 'large',
   },
 };
