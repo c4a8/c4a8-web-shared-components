@@ -97,9 +97,14 @@
                   :is="partner.url ? 'a' : 'span'"
                   :href="partner.url"
                   :target="partner.target"
-                  class="footer__partner-images"
+                  class="footer__partner-images w-100"
                 >
-                  <v-img :cloudinary="true" v-bind="partner" class="footer__partner-image"></v-img>
+                  <v-img
+                    :cloudinary="true"
+                    v-bind="partner"
+                    class="footer__partner-image"
+                    :class="isCorporate ? 'w-100' : ''"
+                  ></v-img>
                 </component>
                 <div class="footer__vertical-line" v-if="index < dataValue.partners.length - 1"></div>
               </template>
