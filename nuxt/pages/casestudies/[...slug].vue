@@ -5,30 +5,16 @@
     <fab-hint v-if="fabHintData" v-bind="fabHintData" />
     <back-to-top />
     <service-overview v-if="casestudyNormalized?.serviceOverview" v-bind="casestudyNormalized?.serviceOverview" />
-    <div class="container space-top-1 space-top-lg-2">
-      <div class="w-xl-80 mx-xl-auto">
-        <article class="post" itemscope itemtype="http://schema.org/TechArticle" v-if="casestudyNormalized">
-          <div class="post-content e-content" itemprop="articleBody">
-            <sticky-block
-              class="post__sticky-bar post__sticky-bar--lg-only"
-              :sticky-offset-top="100"
-              :has-padding="false"
-              breakpoint="lg"
-              :calculate-height="true"
-            >
-              <socials :vertical="true" :hide-label="true" :author="null" :share-url="shareUrl" />
-            </sticky-block>
-
-            <ContentRenderer
-              class="mt-xl-n4 richtext"
-              :value="casestudyNormalized"
-              tag="main"
-              :components="{ a: ContentRendererLink }"
-            />
-          </div>
-        </article>
-        <div class="space-top-2 space-bottom-2 min-h-620rem" v-else></div>
-      </div>
+    <div class="space-top-1 space-top-lg-2">
+      <post-detail
+        :no-header="true"
+        :no-tags="true"
+        :post="casestudyNormalized"
+        :share-url="shareUrl"
+        v-if="casestudyNormalized"
+        :is-tech-article="true"
+      />
+      <div class="space-top-2 space-bottom-2 min-h-620rem" v-else></div>
     </div>
 
     <component-list :list="componentListData" />
