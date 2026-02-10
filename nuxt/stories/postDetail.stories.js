@@ -72,7 +72,6 @@ const body = {
       {},
       'In Deutschland gehören wir zu den führenden Microsoft-Partnern für Cloud-Migration. Jetzt gibt es unser Know-how auch in der neuen Microsoft Cloud Region Österreich. Als strategischer Partner bringen wir dein Unternehmen jetzt reibungslos in die Cloud. Du hast Fragen zum Datenschutz, zur Migration von Systemen oder zu nutzbaren finanziellen Vorteilen? Wir sind für dich da und begleiten dich von den ersten Steps bis zum finalen Go-live (und gerne auch darüber hinaus). Deine Vorteile:',
     ],
-
     [
       'div',
       { class: 'quotes quotes--no-image quotes--no-fullscreenn mb-10' },
@@ -126,6 +125,15 @@ const body = {
             alt: '',
           },
         ],
+      ],
+    ],
+    [
+      'blockquote',
+      {},
+      [
+        'p',
+        { class: 'prose-p' },
+        'In Deutschland gehören wir zu den führenden Microsoft-Partnern für Cloud-Migration. Jetzt gibt es unser Know-how auch in der neuen Microsoft Cloud Region Österreich. Als strategischer Partner bringen wir dein Unternehmen jetzt reibungslos in die Cloud. Du hast Fragen zum Datenschutz, zur Migration von Systemen oder zu nutzbaren finanziellen Vorteilen? Wir sind für dich da und begleiten dich von den ersten Steps bis zum finalen Go-live (und gerne auch darüber hinaus). Deine Vorteile:',
       ],
     ],
     [

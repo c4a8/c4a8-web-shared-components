@@ -86,6 +86,7 @@ $richtext-conclusion-spacing-lg: $spacing-content-default;
   blockquote {
     border-left: 6px solid var(--color-green-blue);
     padding-left: 1.5em;
+    margin-top: spacing(12);
   }
 
   h2,
