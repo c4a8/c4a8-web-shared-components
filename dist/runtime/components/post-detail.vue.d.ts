@@ -966,6 +966,24 @@ declare namespace _default {
             let _default: string;
             export { _default as default };
         }
+        namespace noHeader {
+            let type_2: BooleanConstructor;
+            export { type_2 as type };
+            let _default_1: boolean;
+            export { _default_1 as default };
+        }
+        namespace noTags {
+            let type_3: BooleanConstructor;
+            export { type_3 as type };
+            let _default_2: boolean;
+            export { _default_2 as default };
+        }
+        namespace isTechArticle {
+            let type_4: BooleanConstructor;
+            export { type_4 as type };
+            let _default_3: boolean;
+            export { _default_3 as default };
+        }
     }
 }
 export default _default;
