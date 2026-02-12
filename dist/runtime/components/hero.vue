@@ -99,7 +99,13 @@
         </div>
       </wrapper>
     </wrapper>
-    <svg-shape v-if="svgShapeAnimation" align="bottom" peak="left" :obliquity="4" />
+    <svg-shape
+      v-if="svgShapeAnimation"
+      align="bottom"
+      :peak="this.heroJson.svgShapePeak"
+      :obliquity="4"
+      class="position-absolute bottom-0 left-0 z-index-999 w-100"
+    />
   </div>
 </template>
 
