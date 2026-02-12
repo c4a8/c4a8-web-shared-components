@@ -22,7 +22,6 @@
 <script>
 import UtilityAnimation from '../utils/utility-animation.js';
 import Events from '../utils/events.js';
-import { logDOM } from '@storybook/test';
 
 export default {
   tagName: 'grid-list',

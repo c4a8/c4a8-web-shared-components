@@ -42,10 +42,8 @@
         <div class="col-lg-4">
           <div class="card__body card-body d-flex flex-column h-100 p-4 p-lg-5">
             <headline level="h3"
-              ><a class="card__title text-inherit" ref="title" :href="url" :target="target">{{
-                combinedTitle
-              }}</a></headline
-            >
+              ><a class="card__title text-inherit" ref="title" :href="url" :target="target" v-html="combinedTitle"
+            /></headline>
             <p v-html="truncatedExcerpt"></p>
             <card-footer v-bind="cardFooterData" />
           </div>
@@ -139,9 +137,8 @@
       <div class="card__content">
         <div class="card__body card-body">
           <headline level="h4"
-            ><a ref="title" class="card__title text-inherit" :href="url" :target="target">{{
-              combinedTitle
-            }}</a></headline
+            ><a ref="title" class="card__title text-inherit" :href="url" :target="target" v-html="combinedTitle"
+          /></headline>
           >
           <p v-html="truncatedExcerpt"></p>
         </div>
@@ -222,6 +219,7 @@ export default {
     productValue() {
       return Tools.getJSON(this.product);
     },
+    /*
     truncatedExcerpt() {
       const excerptValue =
         Tools.isTrue(this.long) === true
@@ -230,6 +228,7 @@ export default {
 
       return Tools.decodeHTML(excerptValue);
     },
+    */
     strippedExcerpt() {
       return Tools.stripHtml(this.excerpt);
     },
