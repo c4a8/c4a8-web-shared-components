@@ -55,7 +55,7 @@ declare class Tools {
     static isValidTimeFormat(timeStr: any): boolean;
     static standardizeTimeFormat(time: any): any;
     static convertToDate(dateStr: any): Date | null;
-    static getFormattedDate(date: any, locale?: string): any;
+    static getFormattedDate(date: any, locale?: string, options?: {}): any;
     static XMLtoJSON(xml: any): {
         '@attributes': {};
     };

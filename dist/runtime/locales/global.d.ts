@@ -1,5 +1,6 @@
 declare namespace _default {
     namespace de {
+        let loadMorePosts: string;
         let tags: string;
         let tagsHeadline: string;
         let tagsClear: string;
@@ -62,8 +63,11 @@ declare namespace _default {
                 export let dataprotectionRequired: string;
             }
         }
+        let readMore: string;
     }
     namespace en {
+        let loadMorePosts_1: string;
+        export { loadMorePosts_1 as loadMorePosts };
         let tags_1: string;
         export { tags_1 as tags };
         let tagsHeadline_1: string;
@@ -182,8 +186,12 @@ declare namespace _default {
             export { event_1 as event };
         }
         export { form_1 as form };
+        let readMore_1: string;
+        export { readMore_1 as readMore };
     }
     namespace es {
+        let loadMorePosts_2: string;
+        export { loadMorePosts_2 as loadMorePosts };
         let tags_2: string;
         export { tags_2 as tags };
         let tagsHeadline_2: string;
@@ -302,6 +310,8 @@ declare namespace _default {
             export { event_2 as event };
         }
         export { form_2 as form };
+        let readMore_2: string;
+        export { readMore_2 as readMore };
     }
 }
 export default _default;

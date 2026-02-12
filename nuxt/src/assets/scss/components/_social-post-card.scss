@@ -1,4 +1,6 @@
 .social-post-card {
+  --social-post-card-border-color: var(--color-black-30);
+
   cursor: pointer;
   position: relative;
   padding: 1rem;
@@ -9,6 +11,12 @@
     width: 1.25rem;
     height: 1.25rem;
   }
+
+  &:hover {
+    .social-post-card__media img {
+      transform: scale(1.1);
+    }
+  }
 }
 
 .social-post-card__header {
@@ -16,10 +24,9 @@
 }
 
 .social-post-card__avatar {
-  width: 48px;
-  height: 48px;
-  overflow: hidden;
   flex-shrink: 0;
+  width: spacing(6);
+  height: spacing(6);
 
   img {
     width: 100%;
@@ -28,33 +35,51 @@
   }
 }
 
-.social-post-card__author-name {
-  font-weight: 600;
-  font-size: 0.9375rem;
-  color: #000;
+.social-post-card__repost-avatar {
+  width: spacing(5);
+  height: spacing(5);
+  display: flex;
 }
 
-.social-post-card__verified-badge {
-  color: #0a66c2;
-  font-size: 0.875rem;
+.social-post-card__repost {
+  border-radius: 5px;
+  border: 1px solid var(--social-post-card-border-color);
+  margin-top: spacing(4);
+
+  .social-post-card__content {
+    padding: 0 spacing(4) spacing(4);
+  }
+}
+
+.social-post-card__repost-header {
+  padding: spacing(4);
+}
+
+.social-post-card__repost-author {
+  @include font-size-1;
+
+  font-weight: bold;
 }
 
 .social-post-card__linkedin-badge {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 24px;
-  height: 24px;
-  background-color: #0077b5;
+  width: spacing(8);
+  height: spacing(8);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  padding: 0;
+}
+
+.social-post-card__meta {
+  text-align: right;
+}
+
+.social-post-card__meta,
+.social-post-card__linkedin-badge {
+  color: var(--color-copy-reduced);
 }
 
 .social-post-card__linkedin-icon {
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: 1;
 }
 
@@ -79,93 +104,55 @@
 
 .social-post-card__read-more {
   color: #666;
+  color: var(--color-copy-reduced);
   text-decoration: none;
-  font-weight: 600;
-  font-size: 0.875rem;
   margin-left: 0.25rem;
 
   &:hover {
     text-decoration: underline;
-    color: #0077b5;
+    color: var(--color-primary);
   }
 }
 
 .social-post-card__media {
+  margin-top: spacing(3);
+}
+
+.social-post-card__media,
+.social-post-card__repost-media {
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  margin-top: 0.75rem;
 
   img {
     width: 100%;
     height: auto;
     display: block;
+    transition: transform 1.5s $animation-transition;
   }
 }
 
-.social-post-card__video-wrapper {
-  position: relative;
-  width: 100%;
-}
+.social-post-card__repost-media {
+  border-top: 1px solid var(--social-post-card-border-color);
+  padding: spacing(4);
 
-.social-post-card__video-overlay {
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  width: 48px;
-  height: 48px;
-  background-color: rgba(0, 0, 0, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.2s;
-}
-
-.social-post-card__media:hover .social-post-card__video-overlay {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-.social-post-card__play-button {
-  color: white;
-  font-size: 1.25rem;
-  margin-left: 2px;
+  img {
+    width: 30%;
+    border-radius: 14px;
+    overflow: hidden;
+  }
 }
 
 .social-post-card__footer {
   padding-top: 0.75rem;
 }
 
-.social-post-card__stats {
-  gap: 1.5rem;
-}
-
 .social-post-card__stat {
+  @include font-size-1;
+
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
-  color: #666;
-}
-
-.social-post-card__share-btn {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: none;
-  border: none;
-  color: #666;
-  font-size: 0.875rem;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 0.25rem 0.5rem;
-  transition: background-color 0.2s;
-
-  &:hover {
-    background-color: #f3f2ef;
-    color: #000;
-  }
-
-  i {
-    font-size: 0.875rem;
-  }
+  gap: spacing(2);
+  color: var(--color-copy);
+  margin-right: spacing(5);
 }

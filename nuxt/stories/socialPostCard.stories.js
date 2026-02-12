@@ -10,10 +10,8 @@ const base = {
   author: {
     name: 'glueckkanja',
     handle: '@glueckkanja',
-    avatarUrl: 'https://i.pravatar.cc/80?img=12',
-    verified: true,
   },
-  postedAt: '1 day ago',
+  postedAt: 1770218107043,
   postUrl: 'https://www.linkedin.com/feed/update/urn:li:activity:1234567890',
   stats: { likes: 128, comments: 12, reposts: 13 },
 };
@@ -43,20 +41,6 @@ export const Animated = {
   },
 };
 
-// export const WithVideo = {
-//   args: {
-//     ...base,
-//     contentHtml: 'Check out our latest video on Microsoft 365 security best practices!',
-//     media: [
-//       {
-//         type: 'video',
-//         src: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-//         thumbnail: 'https://picsum.photos/id/1015/800/450',
-//       },
-//     ],
-//   },
-// };
-
 export const LongText = {
   args: {
     ...base,
@@ -64,5 +48,22 @@ export const LongText = {
       'We are excited to share our latest insights on Microsoft 365 security hardening. This comprehensive guide covers everything from basic configuration to advanced threat protection. Read more in our blog and let us know your thoughts! We would love to hear from you and discuss how these strategies can help your organization.',
     media: [{ type: 'image', src: 'https://picsum.photos/id/1074/800/500' }],
     maxContentLength: 150,
+  },
+};
+
+export const ResharedPost = {
+  args: {
+    ...base,
+    contentHtml: 'Throwback to our last community event – thanks to everyone who joined! #community #events',
+    media: [{ type: 'image', src: 'https://picsum.photos/id/1074/800/500' }],
+    resharedPost: {
+      author: {
+        name: 'glueckkanja',
+        handle: '@glueckkanja',
+        avatarUrl: 'https://i.pravatar.cc/80?img=12',
+      },
+      contentHtml: 'Reshare Throwback to our last community event – thanks to everyone who joined! #community #events',
+      media: [{ type: 'image', src: 'https://picsum.photos/id/1074/800/500' }],
+    },
   },
 };

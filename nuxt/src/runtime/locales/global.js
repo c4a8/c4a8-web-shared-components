@@ -78,6 +78,7 @@ export default {
         dataprotectionRequired: 'Bitte ausfüllen',
       },
     },
+    readMore: 'mehr',
   },
   en: {
     loadMorePosts: 'Load More Posts',
@@ -153,6 +154,7 @@ export default {
         dataprotectionRequired: 'Please fill this out',
       },
     },
+    readMore: 'more',
   },
   es: {
     loadMorePosts: 'Cargar más entradas',
@@ -227,5 +229,6 @@ export default {
         dataprotectionRequired: 'Por favor, rellene este campo',
       },
     },
+    readMore: 'más',
   },
 };
