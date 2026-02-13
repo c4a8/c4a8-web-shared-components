@@ -52,24 +52,30 @@
     </template>
 
     <template v-else-if="productValue">
-      <div class="card__img-top card-img--products position-relative no-gutters is-foreground" v-if="blogtitlepic">
-        <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :img-src-sets="imgSrcSets" :lazy="true" />
-        <div class="card__img-headline-container">
-          <template v-if="tag">
-            <span class="card__img-tag" :style="{ 'background-color': tag.bgColor, color: tag.color }">
-              {{ tag.text }}
-            </span>
-          </template>
-          <headline level="h4" classes="card__img-headline text-light text-center">
-            <p class="w-100 pt-5 mb-0 no-gutters">
-              {{ title }}
-            </p>
-          </headline>
+      <div class="card-img--products position-relative no-gutters is-foreground" v-if="blogtitlepic">
+        <div
+          class="card__img-headline-container"
+          :style="{ backgroundColor: logo && logo.bgColor ? logo.bgColor : null }"
+        >
+          <svg class="position-absolute" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M94.1198 230.968L142.596 -11.466L-161.213 -32.5347L-199.287 73.8931L94.1198 230.968Z"
+              fill="#f5f5f5"
+              fill-opacity="0.2"
+            />
+            <path
+              d="M407.393 173.918L298.222 -11.7818L115.754 124.245L119.845 276.308L407.393 173.918Z"
+              fill="#f5f5f5"
+              fill-opacity="0.2"
+            />
+          </svg>
+          <div class="pb-5 pt-5 mx-11" style="display: flex; justify-content: center">
+            <v-img :img="logo.img" :cloudinary="logo.cloudinary" class="w-100" />
+          </div>
           <div class="card-img-cutoff" />
         </div>
       </div>
-
-      <div class="card__body card-body mt-0 pt-0 z-index-2">
+      <div class="card__body card-body mt-0 pt-0 z-index-2" style="display: flex; flex-direction: column">
         <template v-for="(info, index) in subPointsList(productValue)" v-bind:key="index">
           <headline :class="headlineClassValue(index)" level="h6">{{ info.title }}</headline>
           <template v-for="(point, pointIndex) in info.subpoints" v-bind:key="pointIndex">
@@ -80,6 +86,9 @@
             </div>
           </template>
         </template>
+        <div class="card__link mt-auto" v-if="cta">
+          <cta v-bind="ctaValue" class="font-weight-bold mt-5" style="color: var(--color-highlight)" />
+        </div>
       </div>
     </template>
 
@@ -87,36 +96,31 @@
       <div class="card__img-top position-relative no-gutters is-foreground" v-if="blogtitlepic">
         <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :img-src-sets="imgSrcSets" :lazy="true" />
       </div>
-      <div class="card__body card-body richtext d-flex flex-column">
-        <div class="h-100">
-          <div class="card__scope" v-if="scope">{{ scope }}</div>
-          <headline level="h4"
-            ><a
-              ref="title"
-              class="card__title text-inherit text-decoration-none text-reset mt-4 mb-4"
-              :href="url"
-              :target="target"
-              v-html="combinedTitle"
-          /></headline>
-          <p class="card__excerpt mb-4 mt-4" v-html="truncatedExcerpt"></p>
 
-          <ul class="card__points text-black">
-            <template v-for="(points, index) in subPointsList(subPoints)" v-bind:key="index">
-              <li class="mb-4">
-                <span>{{ points }}</span>
-              </li>
-            </template>
-          </ul>
-          <p class="card-warning" v-if="footer">{{ footer }}</p>
-        </div>
-        <div class="card__link d-flex flex-wrap">
-          <cta
-            v-if="Array.isArray(cta)"
-            v-for="cta in cta"
-            v-bind="cta"
-            :link="cta.link == undefined ? true : cta.link"
-          />
-          <cta v-else v-bind="ctaValue" />
+      <div class="card__body card-body richtext">
+        <div class="card__scope" v-if="scope">{{ scope }}</div>
+        <headline level="h4"
+          ><a
+            ref="title"
+            class="card__title text-inherit text-decoration-none text-reset mt-4 mb-4"
+            :href="url"
+            :target="target"
+            >{{ combinedTitle }}</a
+          ></headline
+        >
+        <p class="mb-4 mt-4" v-html="truncatedExcerpt"></p>
+
+        <ul class="card__points text-black">
+          <template v-for="(points, index) in subPointsList(subPoints)" v-bind:key="index">
+            <li class="mb-4">
+              <span>{{ points }}</span>
+            </li>
+          </template>
+        </ul>
+        <p class="card-warning" v-if="footer">{{ footer }}</p>
+
+        <div class="card__link" v-if="cta">
+          <cta v-bind="ctaValue" />
         </div>
       </div>
     </template>
@@ -214,6 +218,7 @@ export default {
     productValue() {
       return Tools.getJSON(this.product);
     },
+    
     truncatedExcerpt() {
       const excerptValue =
         Tools.isTrue(this.long) === true
@@ -222,6 +227,7 @@ export default {
 
       return Tools.decodeHTML(excerptValue);
     },
+    
     strippedExcerpt() {
       return Tools.stripHtml(this.excerpt);
     },
@@ -399,6 +405,7 @@ export default {
     hasNoAspectRatio: {
       type: Boolean,
     },
+    logo: Object,
   },
 };
 </script>
