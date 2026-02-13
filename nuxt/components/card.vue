@@ -55,7 +55,7 @@
       <div class="card-img--products position-relative no-gutters is-foreground" v-if="blogtitlepic">
         <div
           class="card__img-headline-container"
-          :style="{ backgroundColor: logo && logo.bgColor ? logo.bgColor : undefined }"
+          :style="{ backgroundColor: logo && logo.bgColor ? logo.bgColor : null }"
         >
           <svg class="position-absolute" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -139,7 +139,6 @@
           <headline level="h4"
             ><a ref="title" class="card__title text-inherit" :href="url" :target="target" v-html="combinedTitle"
           /></headline>
-          >
           <p v-html="truncatedExcerpt"></p>
         </div>
 
@@ -219,7 +218,7 @@ export default {
     productValue() {
       return Tools.getJSON(this.product);
     },
-    /*
+    
     truncatedExcerpt() {
       const excerptValue =
         Tools.isTrue(this.long) === true
@@ -228,7 +227,7 @@ export default {
 
       return Tools.decodeHTML(excerptValue);
     },
-    */
+    
     strippedExcerpt() {
       return Tools.stripHtml(this.excerpt);
     },

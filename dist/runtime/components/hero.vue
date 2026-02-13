@@ -104,7 +104,7 @@
       align="bottom"
       :peak="this.heroJson.svgShapePeak"
       :obliquity="4"
-      class="position-absolute bottom-0 left-0 z-index-999 w-100"
+      class="hero__svg-shape position-absolute bottom-0 left-0 w-100"
     />
   </div>
 </template>
