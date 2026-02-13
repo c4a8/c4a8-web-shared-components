@@ -3,11 +3,18 @@
     <div class="container">
       <div class="footer__content-row row">
         <div class="footer__content col-lg-12">
-          <div class="footer__address col-3 pl-0">
+          <div class="footer__address">
             <div :class="['mb-3', logo?.classes]" v-for="logo in dataValue.logos">
-              <!--d-block-->
-              <a :href="logo.url" :target="logo.target" aria-label="Front">
-                <v-img :cloudinary="true" v-bind="logo" class="w-auto" style="height: 50px"></v-img>
+              <a
+                :href="logo.url"
+                :target="logo.target"
+                aria-label="Front"
+                :class="[
+                  'footer__logos-link d-block pr-6',
+                  logo.linkClasses ? logo.linkClasses : 'w-75 w-md-35 w-lg-100',
+                ]"
+              >
+                <v-img :cloudinary="true" v-bind="logo"></v-img>
               </a>
             </div>
 
@@ -83,7 +90,7 @@
             </template>
           </div>
 
-          <div class="footer__highlights col-9">
+          <div class="footer__highlights">
             <div class="footer__partners">
               <template v-for="(partner, index) in dataValue.partners">
                 <component
