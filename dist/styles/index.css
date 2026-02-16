@@ -43125,6 +43125,10 @@ div.custom-control .custom-control-input,
   }
 }
 
+.hero__svg-shape {
+  z-index: 1000;
+}
+
 .highlight-teaser {
   --highlight-teaser-start-position: 200%;
   --highlight-teaser-animation-duration: 1.5s;
