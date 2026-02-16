@@ -52,11 +52,6 @@
     <div class="social-post-card__media mt-3" v-else-if="firstMedia" @click.stop="handleMediaClick">
       <div v-if="firstMedia.type === 'video'" class="social-post-card__video-wrapper">
         <v-img :img="firstMedia.thumbnail || firstMedia.src" :cloudinary="false" :lazy="true" />
-        <div class="social-post-card__video-overlay">
-          <div class="social-post-card__play-button">
-            <i class="far fa-play-circle"></i>
-          </div>
-        </div>
       </div>
       <v-img v-else :img="firstMedia.src" :cloudinary="false" :lazy="true" />
     </div>
