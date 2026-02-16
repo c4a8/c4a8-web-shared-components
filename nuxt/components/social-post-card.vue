@@ -16,7 +16,7 @@
         </svg>
       </div>
       <div class="social-post-card__meta flex-grow-1">
-        <div class="social-post-card__author-handle-time text-muted" v-if="formattedPostedAt">
+        <div class="social-post-card__author-handle-time" v-if="formattedPostedAt">
           <time :datetime="formattedPostedAt">{{ formattedPostedAt }}</time>
         </div>
       </div>

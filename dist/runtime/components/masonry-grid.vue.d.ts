@@ -1,9 +1,53 @@
 declare namespace _default {
     let tagName: string;
-    function data(): any;
+    function data(): {
+        itemsChanged: boolean;
+        displayedCount: any;
+        State: {
+            ACTIVE: string;
+            READY: string;
+            ERROR: string;
+            VALID: string;
+            SUCCESS: string;
+            HAS_ERROR: string;
+            HOVERING: string;
+            DRAGGING: string;
+            HIDDEN: string;
+            INVISIBLE: string;
+            EXPANDED: string;
+            EXPANDABLE: string;
+            OFF_SCREEN: string;
+            COLLAPSED: string;
+            IS_COLLAPSING: string;
+            SHOW: string;
+            FADE: string;
+            INITIALIZED: string;
+            LOADING: string;
+            HIDE_LOADING: string;
+            HAS_LOADING: string;
+            END: string;
+            IS_SCROLLED: string;
+            MODAL_OPEN: string;
+            HAS_BACKGROUND: string;
+            IS_FULL: string;
+            STICKY: string;
+            IN_TRANSITION: string;
+            IS_STARTING: string;
+            ON_SURFACE: string;
+        };
+        observer: null;
+        containerHeight: number;
+    };
     namespace computed {
         function headlineValue(): any;
         function styleVars(): any;
+        function clipperStyle(): {
+            maxHeight?: undefined;
+            overflow?: undefined;
+        } | {
+            maxHeight: string;
+            overflow: string;
+        };
         function displayedItems(): any;
         function showLoadMore(): any;
     }
@@ -13,6 +57,7 @@ declare namespace _default {
     }
     function mounted(): void;
     function updated(): void;
+    function beforeDestroy(): void;
     namespace methods {
         function reinitUtilityAnimation(): void;
         function loadMore(): void;

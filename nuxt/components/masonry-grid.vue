@@ -1,5 +1,5 @@
 <template>
-  <div class="masonry-grid">
+  <div class="masonry-grid" :class="{ [State.HAS_LOADING]: showLoadMore }">
     <div class="container">
       <header class="masonry-grid__header">
         <headline v-if="headline" v-bind="headlineValue" />
@@ -16,13 +16,15 @@
           </a>
         </div>
       </header>
-      <div class="masonry-grid__container utility-animation__group vue-component" :style="styleVars" ref="group">
-        <div v-for="(item, index) in displayedItems" :key="item?.id || index" class="masonry-item" ref="items">
-          <social-post-card v-bind="item" :index="index" :hasAnimation="true" />
+      <div class="masonry-grid__clipper" :style="clipperStyle">
+        <div class="masonry-grid__container utility-animation__group vue-component" :style="styleVars" ref="group">
+          <div v-for="(item, index) in displayedItems" :key="item?.id || index" class="masonry-item" ref="items">
+            <social-post-card v-bind="item" :index="index" :hasAnimation="true" />
+          </div>
         </div>
       </div>
-      <div v-if="showLoadMore" class="masonry-grid__load-more mt-4 text-center">
-        <button class="btn btn-primary" @click="loadMore">
+      <div v-if="showLoadMore" class="masonry-grid__load-more text-center">
+        <button class="masonry-grid__load-more-button" @click="loadMore">
           {{ $t('loadMorePosts') }}
         </button>
       </div>
@@ -30,6 +32,7 @@
   </div>
 </template>
 <script>
+import State from '../utils/state.js';
 import FooterData from '../utils/data/footer-data.js';
 import UtilityAnimation from '../utils/utility-animation.js';
 
@@ -39,8 +42,12 @@ export default {
     return {
       itemsChanged: false,
       displayedCount: this.initialItemsCount || null,
+      State,
+      observer: null,
+      containerHeight: 0,
     };
   },
+
   computed: {
     headlineValue() {
       return {
@@ -64,11 +71,20 @@ export default {
         '--masonry-gap': gap,
       };
     },
+    clipperStyle() {
+      if (!this.showLoadMore || !this.containerHeight) return {};
+
+      return {
+        maxHeight: `${this.containerHeight * 0.85}px`,
+        overflow: 'hidden',
+      };
+    },
     displayedItems() {
       if (this.displayedCount === null || this.displayedCount >= this.items.length) {
         return this.items;
       }
-      return this.items.slice(0, this.displayedCount);
+
+      return this.items.slice(0, this.displayedCount + this.itemsPerLoad);
     },
     showLoadMore() {
       return this.initialItemsCount !== null && this.displayedCount < this.items.length;
@@ -86,12 +102,26 @@ export default {
   },
   mounted() {
     this.reinitUtilityAnimation();
+
+    if (process.client) {
+      this.observer = new ResizeObserver((entries) => {
+        if (!entries.length) return;
+        this.containerHeight = entries[0].contentRect.height;
+      });
+
+      this.observer.observe(this.$refs.group);
+    }
   },
   updated() {
     if (!this.itemsChanged) return;
 
     this.itemsChanged = false;
     this.reinitUtilityAnimation();
+  },
+  beforeDestroy() {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
   },
   methods: {
     reinitUtilityAnimation() {

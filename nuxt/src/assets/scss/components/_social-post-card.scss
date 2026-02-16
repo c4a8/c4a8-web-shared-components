@@ -8,8 +8,8 @@
   width: 100%;
 
   .icon.social-post-card__stat-icon {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 1.15rem;
+    height: 1.15rem;
   }
 
   &:hover {
@@ -73,6 +73,7 @@
   text-align: right;
 }
 
+.social-post-card__author-handle-time,
 .social-post-card__meta,
 .social-post-card__linkedin-badge {
   color: var(--color-copy-reduced);
@@ -85,13 +86,11 @@
 
 .social-post-card__author-handle-time {
   font-size: 0.8125rem;
-  color: #666;
 }
 
 .social-post-card__content {
   line-height: 1.5;
-  font-size: 0.875rem;
-  color: #000;
+  color: var(--color-copy);
 
   :where(p) {
     margin-bottom: 0.5rem;
@@ -103,15 +102,9 @@
 }
 
 .social-post-card__read-more {
-  color: #666;
   color: var(--color-copy-reduced);
   text-decoration: none;
   margin-left: 0.25rem;
-
-  &:hover {
-    text-decoration: underline;
-    color: var(--color-primary);
-  }
 }
 
 .social-post-card__media {
@@ -144,15 +137,18 @@
 }
 
 .social-post-card__footer {
-  padding-top: 0.75rem;
+  padding-top: 0;
 }
 
 .social-post-card__stat {
-  @include font-size-1;
-
   display: flex;
   align-items: center;
   gap: spacing(2);
   color: var(--color-copy);
   margin-right: spacing(5);
+}
+
+.social-post-card__content,
+.social-post-card__stat {
+  @include font-size-sm;
 }
