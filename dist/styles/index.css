@@ -41165,6 +41165,10 @@ footer .nav + .nav {
   white-space: nowrap;
 }
 
+.footer__product-logo {
+  height: 50px;
+}
+
 .form-attachments {
   display: flex;
   justify-content: space-between;
@@ -43119,6 +43123,10 @@ div.custom-control .custom-control-input,
   .hero__badges {
     padding-top: 4rem;
   }
+}
+
+.hero__svg-shape {
+  z-index: 1000;
 }
 
 .highlight-teaser {
