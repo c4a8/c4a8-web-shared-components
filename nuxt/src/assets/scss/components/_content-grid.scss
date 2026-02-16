@@ -33,6 +33,7 @@
   > h5,
   > h6,
   > ul,
+  > ol,
   > blockquote {
     @include media-breakpoint-up(md) {
       grid-column: content-text-start / content-text-end;
@@ -159,7 +160,7 @@
       minmax(0, var(--breakout-size)) [breakout-end]
       minmax(var(--padding-inline), 1fr) [full-width-end];
 
-    > :not(p:not(.has-img), h1, h2, h3, h4, h5, h6, ul, blockquote) {
+    > :not(p:not(.has-img), h1, h2, h3, h4, h5, h6, ul, ol, blockquote) {
       grid-column: breakout;
       position: relative;
       z-index: 2;
