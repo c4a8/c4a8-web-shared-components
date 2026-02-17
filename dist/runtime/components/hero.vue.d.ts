@@ -997,6 +997,7 @@ declare namespace _default {
         function imgSrcSets(): "heroStudy" | null;
         function badges(): any;
         function hasBack(): any;
+        function svgShapePeak(): any;
         function heroJson(): any;
     }
     namespace props {

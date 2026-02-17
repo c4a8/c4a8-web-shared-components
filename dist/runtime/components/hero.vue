@@ -102,7 +102,7 @@
     <svg-shape
       v-if="svgShapeAnimation"
       align="bottom"
-      :peak="this.heroJson.svgShapePeak"
+      :peak="svgShapePeak"
       :obliquity="4"
       class="hero__svg-shape position-absolute bottom-0 left-0 w-100"
     />
@@ -422,6 +422,9 @@ export default {
     },
     hasBack() {
       return this.heroJson && this.heroJson.back ? this.heroJson.back : false;
+    },
+    svgShapePeak() {
+      return this.heroJson && this.heroJson.svgShapePeak ? this.heroJson.svgShapePeak : 'left';
     },
     heroJson() {
       return Tools.getJSON(this.hero);
