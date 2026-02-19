@@ -5,29 +5,23 @@
   // Theme colors
   --color-headlines: var(--color-midnight);
   --color-copy: var(--color-midnight);
-
   --color-primary: #008187;
   --color-primary-accent: #005a5f;
   --color-primary-accent-light: #bfdfe1;
-  --color-primary-on-surface: #fad484;
-  --color-primary-accent-on-surface: #e4b34a;
-
+  --color-primary-on-surface: #FFDF9C;
+  --color-primary-accent-on-surface: #F5C663;
   --color-secondary: #008187;
   --color-secondary-accent: #005a5f;
   --color-secondary-accent-light: red;
   --color-secondary-on-surface: #fad484;
   --color-secondary-accent-on-surface: #e4b34a;
-
-  --color-highlight: #f5c663;
+  --color-highlight: #FFDF9C;
   --color-highlight-second: var(--color-highlight);
-
   --color-copy-highlight: var(--color-highlight);
-
   --color-copy-on-primary: var(--color-copy-light);
   --color-copy-on-primary-accent: var(--color-copy-light);
   --color-copy-on-primary-on-surface: var(--color-copy);
   --color-copy-on-primary-accent-on-surface: var(--color-copy);
-
   --color-copy-on-secondary: var(--color-secondary);
   --color-copy-on-secondary-accent: var(--color-secondary-accent);
   --color-copy-on-secondary-on-surface: var(--color-secondary-on-surface);
