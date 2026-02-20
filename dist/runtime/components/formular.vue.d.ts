@@ -8,7 +8,6 @@ declare namespace _default {
         novalidateValue: null;
         errors: never[];
         siteKey: null;
-        loading: boolean;
     };
     function setup(): {
         config: {};

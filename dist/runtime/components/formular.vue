@@ -45,10 +45,6 @@
               :skin="form.cta.skin"
               :width="form.cta.width"
               :analytics="analytics"
-              :monochrome="form.cta.monochrome"
-              :reversed="form.cta.reversed"
-              :hasBackground="form.cta.hasBackground"
-              :loading="this.loading"
               @click="handleSubmit"
             />
           </div>
@@ -78,7 +74,6 @@ export default {
       novalidateValue: null,
       errors: [],
       siteKey: null,
-      loading: false,
     };
   },
   setup() {
@@ -260,7 +255,6 @@ export default {
         e.preventDefault();
       } else {
         this.$emit('loading', true);
-        this.loading = true;
         if (this.formInstance.hasSubmitHandling) {
           return;
         }
@@ -275,7 +269,6 @@ export default {
           form.submit();
         });
         this.$emit('loading', false);
-        this.loading = false;
       }
     },
     handleFormFieldUpdate(e) {
