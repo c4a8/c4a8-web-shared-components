@@ -1,7 +1,7 @@
 <template>
   <div :class="classList" ref="root">
-    <div :class="rowClassList">
-      <div :class="wrapperClassList" v-if="form">
+    <div :class="rowClassList" class="">
+      <div :class="wrapperClassList" class="w-100" v-if="form">
         <div v-if="form.headline" :class="headlineClassList" data-utility-animation-step="1" ref="headline">
           <div class="row">
             <div class="col-sm-12">
@@ -45,6 +45,11 @@
               :skin="form.cta.skin"
               :width="form.cta.width"
               :analytics="analytics"
+              :monochrome="form.cta.monochrome"
+              :reversed="form.cta.reversed"
+              :hasBackground="form.cta.hasBackground"
+              :loading="this.loading"
+              @click="handleSubmit"
             />
           </div>
           <input type="text" class="form__super-field" name="_gotcha" />
@@ -60,9 +65,11 @@ import State from '../utils/state.js';
 import Tools from '../utils/tools.js';
 import Form from '../utils/components/form.js';
 import UtilityAnimation from '../utils/utility-animation.js';
+import Events from '../utils/events.js';
 
 export default {
   tagName: 'formular',
+  emits: ['success', 'loading'],
   data() {
     return {
       originalAction: '',
@@ -71,6 +78,7 @@ export default {
       novalidateValue: null,
       errors: [],
       siteKey: null,
+      loading: false,
     };
   },
   setup() {
@@ -86,6 +94,7 @@ export default {
         'form',
         `${Tools.isTrue(this.light) === true ? 'is-light' : ''}`,
         `${Tools.isTrue(this.ajax) === true ? 'form--ajax' : ''}`,
+        `${Tools.isTrue(this.odoo) === true ? 'form--odoo' : ''}`,
         `${Tools.isTrue(this.container) === true ? 'container' : ''}`,
         `${Tools.isTrue(this.customValidation) === true ? 'form--custom-validation' : ''}`,
         this.form?.noCustomSubmit === true ? Form.noCustomSubmitClass : '',
@@ -182,11 +191,32 @@ export default {
 
     this.novalidateValue = 'novalidate';
 
-    if (!this.$refs.headline) return;
+    this.onSubmitSuccess = (event) => {
+      if (event?.detail?.target !== this.$refs.root) return;
 
-    UtilityAnimation.init([this.$refs.headline]);
+      this.$emit('success', true);
+    };
+
+    document.addEventListener(Events.FORM_AJAX_SUBMIT, this.onSubmitSuccess);
+    document.addEventListener(Events.FORM_ODOO_SUBMIT_SUCCESS, this.onSubmitSuccess);
+
+    if (this.$refs.headline) {
+      UtilityAnimation.init([this.$refs.headline]);
+    }
+  },
+  beforeUnmount() {
+    this.removeSubmitListeners();
+  },
+  beforeDestroy() {
+    this.removeSubmitListeners();
   },
   methods: {
+    removeSubmitListeners() {
+      if (!this.onSubmitSuccess) return;
+
+      document.removeEventListener(Events.FORM_AJAX_SUBMIT, this.onSubmitSuccess);
+      document.removeEventListener(Events.FORM_ODOO_SUBMIT_SUCCESS, this.onSubmitSuccess);
+    },
     getTranslatedText(text) {
       return this.useTranslation ? this.$t(text) : text;
     },
@@ -229,17 +259,23 @@ export default {
       if (!this.validate()) {
         e.preventDefault();
       } else {
-        if (this.formInstance.hasSubmitHandling) return;
+        this.$emit('loading', true);
+        this.loading = true;
+        if (this.formInstance.hasSubmitHandling) {
+          return;
+        }
 
         e.preventDefault();
-        this.$emit('success');
+
         this.formInstance.handleRecaptcha().then(() => {
           const form = this.$refs['form'];
 
           if (!form) return console.debug('Form reference missing');
-
+          this.$emit('success', true);
           form.submit();
         });
+        this.$emit('loading', false);
+        this.loading = false;
       }
     },
     handleFormFieldUpdate(e) {
@@ -355,6 +391,10 @@ export default {
     hasRecaptcha: {
       type: Boolean,
       default: true,
+    },
+    odoo: {
+      type: Boolean,
+      default: false,
     },
   },
 };

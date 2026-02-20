@@ -1,5 +1,6 @@
 declare namespace _default {
     let tagName: string;
+    let emits: string[];
     function data(): {
         originalAction: string;
         formAction: string;
@@ -7,6 +8,7 @@ declare namespace _default {
         novalidateValue: null;
         errors: never[];
         siteKey: null;
+        loading: boolean;
     };
     function setup(): {
         config: {};
@@ -26,7 +28,10 @@ declare namespace _default {
         function preparedBlocks(): any[];
     }
     function mounted(): void;
+    function beforeUnmount(): void;
+    function beforeDestroy(): void;
     namespace methods {
+        function removeSubmitListeners(): void;
         function getTranslatedText(text: any): any;
         function hasError(field: any): any;
         function getOptions(field: any): any;
@@ -92,6 +97,12 @@ declare namespace _default {
             export { type_1 as type };
             let _default_10: boolean;
             export { _default_10 as default };
+        }
+        namespace odoo {
+            let type_2: BooleanConstructor;
+            export { type_2 as type };
+            let _default_11: boolean;
+            export { _default_11 as default };
         }
     }
 }

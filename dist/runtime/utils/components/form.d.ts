@@ -32,6 +32,7 @@ declare class Form extends BaseComponent {
     prefillFormValue(name: any, value: any): void;
     hasCustomValidation(): any;
     hasAjaxSubmit(): any;
+    isOdooForm(): any;
     bindEvents(): void;
     addSubjectListener(): void;
     handleReset(): void;
@@ -44,6 +45,7 @@ declare class Form extends BaseComponent {
     } | undefined;
     addRecaptchaField(): void;
     submit(e: any): void;
+    submitOdooForm(): void;
     ajaxSubmit(): void;
     ajaxSubmitCompleted(): void;
     validate(e: any): any;

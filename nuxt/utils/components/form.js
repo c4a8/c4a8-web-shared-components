@@ -102,8 +102,17 @@ class Form extends BaseComponent {
     return this.root.classList.contains('form--ajax');
   }
 
+  isOdooForm() {
+    return this.root.classList.contains('form--odoo');
+  }
   bindEvents() {
-    if (Object.keys(this.groups).length || this.hasCustomValidation() || this.hasAjaxSubmit() || this.isCompanyForm()) {
+    if (
+      Object.keys(this.groups).length ||
+      this.isOdooForm() ||
+      this.hasCustomValidation() ||
+      this.hasAjaxSubmit() ||
+      this.isCompanyForm()
+    ) {
       this.form.addEventListener('submit', this.handleSubmit.bind(this));
       this.form.addEventListener('reset', this.handleReset.bind(this));
       this.hasSubmitHandling = true;
@@ -246,7 +255,9 @@ class Form extends BaseComponent {
 
       this.updateSubject();
 
-      if (this.customSubmit) {
+      if (this.isOdooForm) {
+        this.submitOdooForm();
+      } else if (this.customSubmit) {
         this.customSubmit(e);
       } else if (this.hasAjaxSubmit()) {
         this.ajaxSubmit();
@@ -284,6 +295,33 @@ class Form extends BaseComponent {
   //   return data.join('&');
   // }
 
+  submitOdooForm() {
+    fetch('https://webinar-test2-function.azurewebsites.net/api/events/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        eventId: Number(this.form.querySelector('input[name="eventId"]')?.value),
+        name: this.form.querySelector('input[name="name"]')?.value,
+        email: this.form.querySelector('input[name="email"]')?.value,
+        companyName: this.form.querySelector('input[name="companyName"]')?.value,
+        function: this.form.querySelector('input[name="function"]')?.value,
+        privacy: this.form.querySelector('input[name="privacy"]')?.checked,
+      }),
+    }).then((response) => {
+      if (response.status === 200 || response.status === 302) {
+        document.dispatchEvent(
+          new CustomEvent(Events.FORM_ODOO_SUBMIT_SUCCESS, {
+            detail: { target: this.root },
+          })
+        );
+        console.log('Form submitted successfully');
+      } else {
+        // TODO handle error
+      }
+    });
+  }
   ajaxSubmit() {
     const data = Form.getFormData(this.form);
 
