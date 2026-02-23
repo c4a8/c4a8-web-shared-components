@@ -317,6 +317,7 @@ class Form extends BaseComponent {
           })
         );
         console.log('Form submitted successfully');
+        window.location.href = this.form.action;
       } else {
         // TODO handle error
       }

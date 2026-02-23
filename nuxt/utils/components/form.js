@@ -301,6 +301,7 @@ class Form extends BaseComponent {
       headers: {
         'Content-Type': 'application/json',
       },
+
       body: JSON.stringify({
         eventId: Number(this.form.querySelector('input[name="eventId"]')?.value),
         name: this.form.querySelector('input[name="name"]')?.value,
@@ -317,6 +318,7 @@ class Form extends BaseComponent {
           })
         );
         console.log('Form submitted successfully');
+        window.location.href = this.form.action;
       } else {
         // TODO handle error
       }
