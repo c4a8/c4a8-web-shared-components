@@ -19,6 +19,7 @@ const State = {
   INITIALIZED: 'is-initialized',
   LOADING: 'is-loading',
   HIDE_LOADING: 'hide-loading',
+  HAS_LOADING: 'has-loading',
   END: 'is-end',
   IS_SCROLLED: 'is-scrolled',
   MODAL_OPEN: 'modal--open',

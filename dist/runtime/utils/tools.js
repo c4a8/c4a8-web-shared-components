@@ -468,7 +468,7 @@ class Tools {
     return null;
   }
 
-  static getFormattedDate(date, locale = 'de-DE') {
+  static getFormattedDate(date, locale = 'de-DE', options = {}) {
     if (!date) return '';
 
     const formattedDate = new Date(date);
@@ -479,6 +479,7 @@ class Tools {
       day: 'numeric',
       month: 'long',
       year: 'numeric',
+      ...options,
     });
   }
 

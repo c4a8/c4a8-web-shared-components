@@ -1,6 +1,7 @@
 export default Lang;
 declare namespace Lang {
     namespace de {
+        let loadMorePosts: string;
         let tags: string;
         let tagsHeadline: string;
         let tagsClear: string;
@@ -12,6 +13,8 @@ declare namespace Lang {
         let vatInfo: string;
     }
     namespace en {
+        let loadMorePosts_1: string;
+        export { loadMorePosts_1 as loadMorePosts };
         let tags_1: string;
         export { tags_1 as tags };
         let tagsHeadline_1: string;
@@ -32,6 +35,8 @@ declare namespace Lang {
         export { vatInfo_1 as vatInfo };
     }
     namespace es {
+        let loadMorePosts_2: string;
+        export { loadMorePosts_2 as loadMorePosts };
         let tags_2: string;
         export { tags_2 as tags };
         let tagsHeadline_2: string;
