@@ -12,7 +12,7 @@
         <div :class="['contact__form', contactFormClass]" v-if="!collapsed" data-utility-animation-step="1">
           <headline :text="contact.headline" :classes="contact.headlineClasses" :level="level" />
           <span class="contact__subline font-weight-bold font-size-2">{{ contact.subline }}</span>
-          <formular v-if="contact.form" :form="contact.form" :ajax="ajax" uncentered="false" />
+          <formular v-if="contact.form" :form="contact.form" :ajax="contact.ajax" uncentered="false" :odoo="contact.odooForm" />
           <div v-if="contact.buttons" class="pt-4 pt-lg-6 pb-6">
             <cta-list :list="contact.buttons" />
           </div>
