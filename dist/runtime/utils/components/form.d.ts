@@ -7,10 +7,8 @@ declare class Form extends BaseComponent {
     static getId(fieldId: any): string;
     static getName(string: any): any;
     static isOptionalInputInvisible(input: any): any;
-    static getFormData(form: any): string | (string | {
-        input: any;
-        value: any;
-    })[];
+    static getFormData(form: any): string | string[];
+    static getFields(form: any, data: any): void;
     constructor(root: any, options: any, vueValidate: any, hasRecaptcha: any, siteKey: any);
     formSelector: string | undefined;
     gotchaSelector: string | undefined;

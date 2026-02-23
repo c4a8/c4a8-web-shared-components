@@ -43,20 +43,23 @@ class Tools {
     return percent <= (overlap / divsize) * 100;
   }
 
-  static getScrollTop(element) {
+  static getScrollTop(element, offset = 0) {
     if (!element) return;
 
     const header = document.querySelector('header');
     const headerOffset = header ? header?.offsetHeight + 40 : 0;
-    const elementPosition = element.getBoundingClientRect().top;
+
+    const elementPosition = element.getBoundingClientRect().top + offset;
 
     return elementPosition - headerOffset + window.scrollY;
   }
 
-  static scrollIntoView(element, smooth) {
+  static scrollIntoView(element, smooth, offset = 0) {
     if (element) {
+      const topPosition = Tools.getScrollTop(element, offset);
+
       window.scrollTo({
-        top: Tools.getScrollTop(element),
+        top: topPosition,
         behavior: smooth ? 'smooth' : 'auto',
       });
     }
@@ -648,11 +651,10 @@ class Tools {
       }, {});
 
     const dateValue = Tools.cleanDate(Tools.isDate(moment) ? moment : date ? date : Tools.extractDate(path));
-    const dateValueOrFallback = dateValue ? dateValue : '2000-01-01';
 
     return {
       url: path,
-      date: dateValueOrFallback,
+      date: dateValue,
       moment: moment,
       excerpt: meta?.customExcerpt || seo?.description,
       headlineText: meta?.headline,

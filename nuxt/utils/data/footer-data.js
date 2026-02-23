@@ -33,43 +33,43 @@ const FooterData = {
   ],
   highlights: [
     {
-      img: '/logos/partner-misa-mxdr.svg',
+      img: '/logos/msft-misa-xdr.svg',
       alt: 'Microsoft Intelligent Security Association',
     },
     {
-      img: '/logos/seal-mssp-infrastructure.svg',
+      img: '/logos/msft-infrastructure-azure-specializations.svg',
       alt: 'MSP Infrastructure Azure',
     },
     {
-      img: '/logos/seal-mssp-data-ai.svg',
+      img: '/logos/msft-data-ai-azure-specializations.svg',
       alt: 'MSP Data & AI Azure',
     },
     {
-      img: '/logos/seal-msp-digital-app-innovation.svg',
+      img: '/logos/msft-digital-app-innovation-azure-specializations.svg',
       alt: 'MSP Digital & App Innovation Azure',
     },
     {
-      img: '/logos/seal-mssp-modern-work.svg',
+      img: '/logos/msft-modern-work-specializations.svg',
       alt: 'MSP Modern Work',
     },
     {
-      img: '/logos/seal-mssp-security.svg',
+      img: '/logos/msft-security-specializations.svg',
       alt: 'MSP Security',
     },
     {
-      img: '/logos/isg-2024-m365-services-large-enterprises.svg',
+      img: '/logos/ISG-M365Services-LargeAccounts-DE.svg',
       alt: 'ISG Microsoft 365 Services Large Enterprises',
     },
     {
-      img: '/logos/isg-2024-m365-services-midmarket.svg',
+      img: '/logos/ISG-M365Services-Midmarket-DE.svg',
       alt: 'ISG Microsoft 365 Services Midmarket',
     },
     {
-      img: '/logos/isg-2024-azure-large-enterprises.svg',
+      img: '/logos/ISG-ManagedServicesAzure-LargeAccounts-DE.svg',
       alt: 'ISG Microsoft Azure Large Enterprises',
     },
     {
-      img: '/logos/isg-2024-azure-midmarket.svg',
+      img: '/logos/ISG-ManagedServicesAzure-MidMarket-DE.svg',
       alt: 'ISG Microsoft Azure Midmarket',
     },
     {

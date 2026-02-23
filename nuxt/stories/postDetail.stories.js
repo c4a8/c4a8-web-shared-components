@@ -2,6 +2,10 @@ import PostDetailComponent from '../components/post-detail.vue';
 
 export default {
   component: PostDetailComponent,
+  parameters: {
+    isPage: true,
+    layout: 'fullscreen',
+  },
   argTypes: {},
   title: 'Components/Post Detail',
 };
@@ -51,6 +55,11 @@ const body = {
       'Doch eine Cloud-Region allein reicht nicht – erst der richtige Partner macht den Unterschied. Hier kommen wir von glueckkanja ins Spiel.',
     ],
     [
+      'p',
+      { class: 'p-prose has-img' },
+      ['img', { src: 'https://res.cloudinary.com/c4a8/image/upload/blog/pics/consentfix-img-01.png' }],
+    ],
+    [
       'h2',
       {
         id: 'wir-machen-dich-bereit-für-die-lokale-zukunft-deiner-it',
@@ -63,6 +72,16 @@ const body = {
       {},
       'In Deutschland gehören wir zu den führenden Microsoft-Partnern für Cloud-Migration. Jetzt gibt es unser Know-how auch in der neuen Microsoft Cloud Region Österreich. Als strategischer Partner bringen wir dein Unternehmen jetzt reibungslos in die Cloud. Du hast Fragen zum Datenschutz, zur Migration von Systemen oder zu nutzbaren finanziellen Vorteilen? Wir sind für dich da und begleiten dich von den ersten Steps bis zum finalen Go-live (und gerne auch darüber hinaus). Deine Vorteile:',
     ],
+    [
+      'div',
+      { class: 'quotes quotes--no-image quotes--no-fullscreenn mb-10' },
+      [
+        'div',
+        { class: 'container space-top-1 space-bottom-2 space-top-lg-2 space-bottom-lg-0' },
+        'Simplified Quotes Component',
+      ],
+    ],
+
     [
       'ul',
       {},
@@ -83,6 +102,38 @@ const body = {
         {},
         ['strong', {}, 'Nahtloser Umzug:'],
         ' Wir begleiten dich mit standardisierten Lösungen Schritt für Schritt in die neue Ö-Cloud!',
+      ],
+    ],
+    [
+      'div',
+      { class: 'aside-wrapper vue-component' },
+      [
+        'div',
+        { class: 'aside-wrapper__content' },
+        ['h2', { class: 'h2-font-size  headline vue-component prose-h2', id: 'lösung' }, 'Lösung'],
+        'Zunächst wurde mit der Azure Foundation eine Sammlung von glueckkanja ',
+        ['strong', {}, 'Best Practices für den Aufbau sicherer und skalierbarer Azure Landing Zones'],
+        ' zusammengestellt. Dabei umfasst eine Landing Zone Elemente wie Netzwerke, Namensauflösung, Automatisierungsaufgaben, Fernzugriff, Protokollverarbeitung, Auditing, Plattformsicherheit, Datenschutz und Host Anti-Malware. Alle Komponenten der Azure Foundation werden als Infrastructure as Code (IaC) entwickelt und bereitgestellt, um eine schnelle Wertschöpfung, branchenübliche Produktentwicklung, Qualität und Sicherheit zu gewährleisten.',
+      ],
+      [
+        'aside',
+        { class: 'aside-wrapper__aside' },
+        [
+          'img',
+          {
+            src: 'https://res.cloudinary.com/c4a8/image/upload/v1647945533/casestudies/casestudy-dekra.png',
+            alt: '',
+          },
+        ],
+      ],
+    ],
+    [
+      'blockquote',
+      {},
+      [
+        'p',
+        { class: 'prose-p' },
+        'In Deutschland gehören wir zu den führenden Microsoft-Partnern für Cloud-Migration. Jetzt gibt es unser Know-how auch in der neuen Microsoft Cloud Region Österreich. Als strategischer Partner bringen wir dein Unternehmen jetzt reibungslos in die Cloud. Du hast Fragen zum Datenschutz, zur Migration von Systemen oder zu nutzbaren finanziellen Vorteilen? Wir sind für dich da und begleiten dich von den ersten Steps bis zum finalen Go-live (und gerne auch darüber hinaus). Deine Vorteile:',
       ],
     ],
     [
@@ -147,6 +198,56 @@ export const NoAuthor = {
       excerpt:
         'Audiocodes &quot; hat mir mehrere Geräte &quot; für einen Test zur Verfügung gestellt. Ich habe sie alle eingerichtet und getestet. Hier ist eine kurze Zusammenfassung meiner Ergebnisse.',
       body,
+    },
+  },
+};
+
+export const WithAsideNav = {
+  args: {
+    post: {
+      _path: '/events/2021-06-17-audiocodes-review',
+      url: 'javascript:void(0);',
+      layout: 'post',
+      title: 'Audiocodes & Devices Review',
+      date: '2021-06-17',
+      moment: '2021-06-17',
+      categories: ['Microsoft', 'Teams', 'Calling', 'Audiocodes'],
+      tags: ['Microsoft', 'Teams', 'Calling', 'Audiocodes'],
+      blogtitlepic: 'head-audiocodes-review',
+      socialimg: 'https://res.cloudinary.com/c4a8/image/upload/v1625931868/blog/heads/head-audiocodes-review.jpg',
+      excerpt:
+        'Audiocodes &quot; hat mir mehrere Geräte &quot; für einen Test zur Verfügung gestellt. Ich habe sie alle eingerichtet und getestet. Hier ist eine kurze Zusammenfassung meiner Ergebnisse.',
+      body,
+      meta: {
+        asideNav: {
+          menuItems: [
+            {
+              href: '#detection-artifacts',
+              text: 'Detection artifacts',
+            },
+            {
+              href: '#reduce-the-noise',
+              text: 'Reduce the noise',
+            },
+            {
+              href: '#affected-first-party-applications',
+              text: 'Affected first-party applications',
+            },
+            {
+              href: '#mitigations-and-protections',
+              text: 'Mitigations and Protections',
+            },
+            {
+              href: '#hunting-queries',
+              text: 'Hunting queries',
+            },
+            {
+              href: '#further-reading',
+              text: 'Further Reading',
+            },
+          ],
+        },
+      },
     },
   },
 };

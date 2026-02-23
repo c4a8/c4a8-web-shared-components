@@ -10,8 +10,8 @@ declare class Tools {
     static decodeHTML: (input: any) => string;
     static intersection: (r1: any, r2: any) => number;
     static isInViewportPercent(element: any, percent: any): boolean;
-    static getScrollTop(element: any): number | undefined;
-    static scrollIntoView(element: any, smooth: any): void;
+    static getScrollTop(element: any, offset?: number): number | undefined;
+    static scrollIntoView(element: any, smooth: any, offset?: number): void;
     static getLang(): string;
     static isNotDefaultLang(lang: any): boolean;
     static scrollToTop(): void;

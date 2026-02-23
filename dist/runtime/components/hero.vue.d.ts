@@ -1,11 +1,5 @@
 declare namespace _default {
     let tagName: string;
-    let components: {
-        'hero-pattern': {
-            tagName: string;
-            template: string;
-        };
-    };
     function setup(): {
         store: import("pinia").Store<"app", {
             loading: boolean;
@@ -1003,6 +997,7 @@ declare namespace _default {
         function imgSrcSets(): "heroStudy" | null;
         function badges(): any;
         function hasBack(): any;
+        function svgShapePeak(): any;
         function heroJson(): any;
     }
     namespace props {
