@@ -1,7 +1,7 @@
 <template>
   <div :class="classList" ref="root">
-    <div :class="rowClassList" class="">
-      <div :class="wrapperClassList" class="w-100" v-if="form">
+    <div :class="rowClassList">
+      <div :class="wrapperClassList" v-if="form">
         <div v-if="form.headline" :class="headlineClassList" data-utility-animation-step="1" ref="headline">
           <div class="row">
             <div class="col-sm-12">
@@ -61,11 +61,9 @@ import State from '../utils/state.js';
 import Tools from '../utils/tools.js';
 import Form from '../utils/components/form.js';
 import UtilityAnimation from '../utils/utility-animation.js';
-import Events from '../utils/events.js';
 
 export default {
   tagName: 'formular',
-  emits: ['success', 'loading'],
   data() {
     return {
       originalAction: '',
@@ -188,12 +186,9 @@ export default {
 
     this.onSubmitSuccess = (event) => {
       if (event?.detail?.target !== this.$refs.root) return;
-
-      this.$emit('success', true);
     };
 
     document.addEventListener(Events.FORM_AJAX_SUBMIT, this.onSubmitSuccess);
-    document.addEventListener(Events.FORM_ODOO_SUBMIT_SUCCESS, this.onSubmitSuccess);
 
     if (this.$refs.headline) {
       UtilityAnimation.init([this.$refs.headline]);
@@ -210,7 +205,6 @@ export default {
       if (!this.onSubmitSuccess) return;
 
       document.removeEventListener(Events.FORM_AJAX_SUBMIT, this.onSubmitSuccess);
-      document.removeEventListener(Events.FORM_ODOO_SUBMIT_SUCCESS, this.onSubmitSuccess);
     },
     getTranslatedText(text) {
       return this.useTranslation ? this.$t(text) : text;
@@ -254,7 +248,6 @@ export default {
       if (!this.validate()) {
         e.preventDefault();
       } else {
-        this.$emit('loading', true);
         if (this.formInstance.hasSubmitHandling) {
           return;
         }
@@ -265,10 +258,8 @@ export default {
           const form = this.$refs['form'];
 
           if (!form) return console.debug('Form reference missing');
-          this.$emit('success', true);
           form.submit();
         });
-        this.$emit('loading', false);
       }
     },
     handleFormFieldUpdate(e) {
