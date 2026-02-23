@@ -1,32 +1,36 @@
 <template>
   <div class="masonry-grid" :class="{ [State.HAS_LOADING]: showLoadMore }">
     <div class="container">
-      <header class="masonry-grid__header">
-        <headline v-if="headline" v-bind="headlineValue" />
-        <div class="masonry-grid__socials">
-          <a
-            :href="social.url"
-            target="_blank"
-            rel="noopener"
-            class="masonry-grid__social-item custom"
-            v-for="(social, index) in socials"
-            :key="index"
-          >
-            <i :class="social.icon" class="fab"></i>
-          </a>
-        </div>
-      </header>
-      <div class="masonry-grid__clipper" :style="clipperStyle">
-        <div class="masonry-grid__container utility-animation__group vue-component" :style="styleVars" ref="group">
-          <div v-for="(item, index) in displayedItems" :key="item?.id || index" class="masonry-item" ref="items">
-            <social-post-card v-bind="item" :index="index" :hasAnimation="true" />
+      <div class="row">
+        <div class="col">
+          <header class="masonry-grid__header">
+            <headline v-if="headline" v-bind="headlineValue" />
+            <div class="masonry-grid__socials">
+              <a
+                :href="social.url"
+                target="_blank"
+                rel="noopener"
+                class="masonry-grid__social-item custom"
+                v-for="(social, index) in socials"
+                :key="index"
+              >
+                <i :class="social.icon" class="fab"></i>
+              </a>
+            </div>
+          </header>
+          <div class="masonry-grid__clipper" :style="clipperStyle">
+            <div class="masonry-grid__container utility-animation__group vue-component" :style="styleVars" ref="group">
+              <div v-for="(item, index) in displayedItems" :key="item?.id || index" class="masonry-item" ref="items">
+                <social-post-card v-bind="item" :index="index" :hasAnimation="true" />
+              </div>
+            </div>
+          </div>
+          <div v-if="showLoadMore" class="masonry-grid__load-more text-center">
+            <button class="masonry-grid__load-more-button" @click="loadMore">
+              {{ $t('loadMorePosts') }}
+            </button>
           </div>
         </div>
-      </div>
-      <div v-if="showLoadMore" class="masonry-grid__load-more text-center">
-        <button class="masonry-grid__load-more-button" @click="loadMore">
-          {{ $t('loadMorePosts') }}
-        </button>
       </div>
     </div>
   </div>
