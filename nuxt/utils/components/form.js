@@ -307,7 +307,7 @@ class Form extends BaseComponent {
         name: this.form.querySelector('input[name="name"]')?.value,
         email: this.form.querySelector('input[name="email"]')?.value,
         companyName: this.form.querySelector('input[name="companyName"]')?.value,
-        function: this.form.querySelector('input[name="function"]')?.value,
+        jobTitle: this.form.querySelector('input[name="jobTitle"]')?.value,
         privacy: this.form.querySelector('input[name="privacy"]')?.checked,
       }),
     }).then((response) => {
