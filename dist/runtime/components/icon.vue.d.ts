@@ -23,6 +23,9 @@ declare namespace _default {
         mail: any;
         meerkat: any;
         minus: any;
+        'outline-heart': any;
+        'outline-comment': any;
+        'outline-share': any;
         phone: any;
         'phone-charger': any;
         'phone-mail': any;

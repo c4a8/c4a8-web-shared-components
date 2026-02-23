@@ -20,6 +20,7 @@ declare namespace State {
     let INITIALIZED: string;
     let LOADING: string;
     let HIDE_LOADING: string;
+    let HAS_LOADING: string;
     let END: string;
     let IS_SCROLLED: string;
     let MODAL_OPEN: string;

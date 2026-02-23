@@ -25,6 +25,7 @@ declare namespace _default {
             INITIALIZED: string;
             LOADING: string;
             HIDE_LOADING: string;
+            HAS_LOADING: string;
             END: string;
             IS_SCROLLED: string;
             MODAL_OPEN: string;
