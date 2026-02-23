@@ -185,7 +185,7 @@ export default {
     this.novalidateValue = 'novalidate';
 
     if (!this.$refs.headline) return;
-    
+
     UtilityAnimation.init([this.$refs.headline]);
   },
 
@@ -232,9 +232,7 @@ export default {
       if (!this.validate()) {
         e.preventDefault();
       } else {
-        if (this.formInstance.hasSubmitHandling) {
-          return;
-        }
+        if (this.formInstance.hasSubmitHandling) return;
 
         e.preventDefault();
         this.$emit('success');
