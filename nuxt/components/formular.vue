@@ -184,28 +184,12 @@ export default {
 
     this.novalidateValue = 'novalidate';
 
-    this.onSubmitSuccess = (event) => {
-      if (event?.detail?.target !== this.$refs.root) return;
-    };
+    if (!this.$refs.headline) return;
+    
+    UtilityAnimation.init([this.$refs.headline]);
+  },
 
-    document.addEventListener(Events.FORM_AJAX_SUBMIT, this.onSubmitSuccess);
-
-    if (this.$refs.headline) {
-      UtilityAnimation.init([this.$refs.headline]);
-    }
-  },
-  beforeUnmount() {
-    this.removeSubmitListeners();
-  },
-  beforeDestroy() {
-    this.removeSubmitListeners();
-  },
   methods: {
-    removeSubmitListeners() {
-      if (!this.onSubmitSuccess) return;
-
-      document.removeEventListener(Events.FORM_AJAX_SUBMIT, this.onSubmitSuccess);
-    },
     getTranslatedText(text) {
       return this.useTranslation ? this.$t(text) : text;
     },
@@ -253,7 +237,7 @@ export default {
         }
 
         e.preventDefault();
-
+        this.$emit('success');
         this.formInstance.handleRecaptcha().then(() => {
           const form = this.$refs['form'];
 
