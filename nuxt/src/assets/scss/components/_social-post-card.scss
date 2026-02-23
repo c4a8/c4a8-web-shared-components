@@ -47,12 +47,12 @@
   margin-top: spacing(4);
 
   .social-post-card__content {
-    padding: 0 spacing(4) spacing(4);
+    padding: spacing(4);
   }
 }
 
 .social-post-card__repost-header {
-  padding: spacing(4);
+  padding: spacing(4) spacing(4) 0;
 }
 
 .social-post-card__repost-author {

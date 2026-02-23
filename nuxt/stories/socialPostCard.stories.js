@@ -67,3 +67,15 @@ export const ResharedPost = {
     },
   },
 };
+
+export const ResharedPostNoAuthor = {
+  args: {
+    ...base,
+    contentHtml: 'Throwback to our last community event – thanks to everyone who joined! #community #events',
+    media: [{ type: 'image', src: 'https://picsum.photos/id/1074/800/500' }],
+    resharedPost: {
+      contentHtml: 'Reshare Throwback to our last community event – thanks to everyone who joined! #community #events',
+      media: [{ type: 'image', src: 'https://picsum.photos/id/1074/800/500' }],
+    },
+  },
+};

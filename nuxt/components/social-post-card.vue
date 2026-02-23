@@ -31,7 +31,10 @@
     </div>
 
     <div class="social-post-card__repost" v-if="resharedPost">
-      <header class="social-post-card__repost-header d-flex align-items-center position-relative">
+      <header
+        class="social-post-card__repost-header d-flex align-items-center position-relative"
+        v-if="resharedPost.author"
+      >
         <div class="social-post-card__repost-avatar mr-3">
           <v-img :img="resharedPost.author.avatarUrl" :cloudinary="false" :lazy="true" />
         </div>
