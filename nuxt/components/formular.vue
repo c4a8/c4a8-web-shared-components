@@ -63,6 +63,7 @@ import Form from '../utils/components/form.js';
 import UtilityAnimation from '../utils/utility-animation.js';
 
 export default {
+  emits: ['submit', 'error'],
   tagName: 'formular',
   data() {
     return {
@@ -229,13 +230,15 @@ export default {
       }
     },
     handleSubmit(e) {
+      this.$emit('submit');
       if (!this.validate()) {
+        this.$emit('error');
         e.preventDefault();
       } else {
         if (this.formInstance.hasSubmitHandling) return;
 
         e.preventDefault();
-        this.$emit('success');
+        
         this.formInstance.handleRecaptcha().then(() => {
           const form = this.$refs['form'];
 
