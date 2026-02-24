@@ -312,12 +312,6 @@ class Form extends BaseComponent {
       }),
     }).then((response) => {
       if (response.status === 200 || response.status === 302) {
-        document.dispatchEvent(
-          new CustomEvent(Events.FORM_ODOO_SUBMIT_SUCCESS, {
-            detail: { target: this.root },
-          })
-        );
-        console.log('Form submitted successfully');
         window.location.href = this.form.action;
       } else {
         // TODO handle error
