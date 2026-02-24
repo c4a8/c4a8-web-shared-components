@@ -125,7 +125,9 @@
       overflow: hidden;
       flex: 0;
       height: 0;
-      transition: opacity 0.7s $animation-transition, height 0.7s $animation-transition;
+      transition:
+        opacity 0.7s $animation-transition,
+        height 0.7s $animation-transition;
     }
 
     .contact__box {
@@ -240,6 +242,10 @@
   &.contact__person--light {
     color: var(--color-copy-light);
   }
+}
+
+.contact__box {
+  @include z-index;
 }
 
 .contact__detail-quote {
