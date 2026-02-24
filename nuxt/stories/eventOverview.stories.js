@@ -46,6 +46,15 @@ export default {
       description: 'An url to a custom page',
       type: 'string',
     },
+    bgColor: {
+      description: 'The background color of the date block',
+    },
+    color: {
+      description: 'The text color of the overline',
+    },
+    timeColor: {
+      description: 'The text color of the category and the time text',
+    },
   },
 };
 
