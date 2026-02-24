@@ -64,6 +64,8 @@ $event-teaser-content-width: calc(var(--container-width) * 0.6);
   }
 
   &.event-teaser--teaser {
+    --color-headlines: var(--color-event-teaser-teaser-copy);
+
     background-color: var(--color-event-teaser-teaser-background);
     color: var(--color-event-teaser-teaser-copy);
 
