@@ -13,7 +13,7 @@
           <headline :text="contact.headline" :classes="contact.headlineClasses" :level="level" />
           <span class="contact__subline font-weight-bold font-size-2">{{ contact.subline }}</span>
           <div class="d-flex align-items-center justify-content-center" :class="hasLoading ? loaderClasses : ''">
-            <div class="contact__loader position-absolute mr-5" ref="loader"></div>
+            <div v-if="hasLoading" class="contact__loader position-absolute mr-5 mr-lg-10 h-50" ref="loader"></div>
             <div class="contact__form-wrapper" :class="hasLoading ? 'loading' : ''">
               <formular
                 v-if="contact.form"
