@@ -45,6 +45,7 @@
               :skin="form.cta.skin"
               :width="form.cta.width"
               :analytics="analytics"
+              @click="handleSubmit"
             />
           </div>
           <input type="text" class="form__super-field" name="_gotcha" />
@@ -86,6 +87,7 @@ export default {
         'form',
         `${Tools.isTrue(this.light) === true ? 'is-light' : ''}`,
         `${Tools.isTrue(this.ajax) === true ? 'form--ajax' : ''}`,
+        `${Tools.isTrue(this.odoo) === true ? 'form--odoo' : ''}`,
         `${Tools.isTrue(this.container) === true ? 'container' : ''}`,
         `${Tools.isTrue(this.customValidation) === true ? 'form--custom-validation' : ''}`,
         this.form?.noCustomSubmit === true ? Form.noCustomSubmitClass : '',
@@ -186,6 +188,7 @@ export default {
 
     UtilityAnimation.init([this.$refs.headline]);
   },
+
   methods: {
     getTranslatedText(text) {
       return this.useTranslation ? this.$t(text) : text;
@@ -237,7 +240,6 @@ export default {
           const form = this.$refs['form'];
 
           if (!form) return console.debug('Form reference missing');
-
           form.submit();
         });
       }
@@ -355,6 +357,10 @@ export default {
     hasRecaptcha: {
       type: Boolean,
       default: true,
+    },
+    odoo: {
+      type: Boolean,
+      default: false,
     },
   },
 };
