@@ -12,7 +12,7 @@
                   data-utility-animation-step="1"
                   :style="{ '--utility-animation-index': index + 1 }"
                 >
-                  <event :key="event.url" v-bind="updatedEvent(event)" />
+                  <event :key="event.url" v-bind="updatedEvent(event)" :bgColor="bgColor" :color="color" :timeColor="timeColor" />
                 </div>
               </div>
             </template>
@@ -33,6 +33,7 @@
   </wrapper>
 </template>
 <script>
+import { background } from 'storybook/internal/theming';
 import Tools from '../utils/tools.js';
 import UtilityAnimation from '../utils/utility-animation.js';
 
@@ -130,6 +131,9 @@ export default {
     moreUrl: String,
     order: Array,
     sortBy: Object,
+    bgColor: String,
+    color: String,
+    timeColor: String,
   },
 };
 </script>

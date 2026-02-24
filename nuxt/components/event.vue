@@ -121,6 +121,9 @@ export default {
     classes: String,
     url: String,
     external: Boolean,
+    bgColor: String,
+    color: String,
+    timeColor: String,
   },
 };
 </script>

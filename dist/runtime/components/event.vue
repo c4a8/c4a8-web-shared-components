@@ -1,126 +1,144 @@
 <template>
-  <article :class="['event vue-component', classes ? classes : null]" :style="style" @click="handleClick">
-    <div class="event__inner">
-      <div class="event__date">
-        <div class="event__date-week-day is-uppercase">{{ dateWeekDay }}</div>
-        <div class="event__date-day">{{ dateDay }}</div>
-        <div class="event__date-month is-uppercase">{{ dateMonth }}</div>
-      </div>
-      <div class="event__content">
-        <div class="event__meta">
-          <time class="event__time font-size-1 bold" v-if="timeValue">{{ timeValue }}</time>
-          <span class="event__category font-size-1 bold is-uppercase" v-if="category">{{ category }}</span>
-        </div>
-        <headline class="event__headline" :text="title" level="h4" />
-        <p class="event__text">{{ textWithAmpersand }}</p>
-      </div>
-      <div class="event__image-container is-background" v-if="imageValue">
-        <v-img class="event__image" :cloudinary="cloudinary" v-bind="imageValue" :lazy="true" preset="eventThumb" />
-      </div>
+  <wrapper :class="classList" ref="root">
+    <headline class="event-overview__headline" :text="headline" :level="headlineLevel" v-if="headline" />
+    <transition-group name="event-overview__item">
+      <SharedContentList :data-list="eventsValue" :query="query" v-slot="{ list, strategy }" :key="0">
+        <markdown-files :list="list" v-slot="{ files }" :sort="sort" :strategy="strategy" :limit="maxLimitValue">
+          <template v-if="updateFiles(files)">
+            <template v-for="(event, index) in files" :key="index">
+              <div :class="{ 'is-visible': isVisible(index), 'event-overview__item': true }">
+                <div
+                  class="fade-in-bottom"
+                  data-utility-animation-step="1"
+                  :style="{ '--utility-animation-index': index + 1 }"
+                >
+                  <event
+                    :key="event.url"
+                    v-bind="updatedEvent(event)"
+                    :bgColor="bgColor"
+                    :color="color"
+                    :timeColor="timeColor"
+                  />
+                </div>
+              </div>
+            </template>
+          </template>
+        </markdown-files>
+      </SharedContentList>
+    </transition-group>
+
+    <div
+      class="event-overview__more font-size-1 bold fade-in-bottom"
+      v-show="hasMore"
+      @click="handleShowMore"
+      data-utility-animation-step="1"
+      :style="{ '--utility-animation-index': lastIndex }"
+    >
+      {{ $t('moreEvents') }}
     </div>
-  </article>
+  </wrapper>
 </template>
 <script>
 import Tools from '../utils/tools.js';
+import UtilityAnimation from '../utils/utility-animation.js';
 
 export default {
-  tagName: 'event',
+  tagName: 'event-overview',
   data() {
     return {
-      hasMultipleDays: false,
+      translationData: null,
+      defaultLimit: 3,
+      maxLimitDefault: 6,
+      showMore: false,
+      filesValue: [],
     };
   },
   computed: {
-    style() {
-      return `
-                --color-event-background: ${this.bgColor ? this.bgColor : 'var(--color-green-blue)'};
-                --color-event-copy: ${this.color ? this.color : 'var(--color-copy-light)'};
-                --color-event-time: ${this.timeColor ? this.timeColor : 'var(--color-green-blue)'};
-            `;
+    classList() {
+      return [
+        'event-overview has-no-row is-component utility-animation vue-component',
+        Tools.isTrue(this.overlap) ? 'event-overview--overlap' : null,
+      ];
     },
-    textWithAmpersand() {
-      return this.normalizedText?.replace(/&amp;/g, '&');
+    lastIndex() {
+      const radix = 10;
+
+      return parseInt(this.limitValue, radix) + 1;
     },
-    normalizedDate() {
-      // TODO after migration we can probably get rid of this normalization
-
-      return this.moment || this.date;
+    limitValue() {
+      return this.limit ? this.limit : this.defaultLimit;
     },
-    normalizedText() {
-      // TODO after migration we can probably get rid of this normalization
-
-      return this.text || this.excerpt;
+    maxLimitValue() {
+      return this.maxLimit > 0 ? this.maxLimit : this.maxLimitDefault;
     },
-    validDate() {
-      let date = new Date(this.normalizedDate);
+    eventsValue() {
+      if (!this.events) return [];
 
-      if (isNaN(date.getTime())) {
-        date = Tools.convertToDate(this.normalizedDate);
+      return this.events.slice(0, this.maxLimitValue) || [];
+    },
+    hasMore() {
+      return this.showMore ? false : this.filesValue.length > this.limitValue;
+    },
+    query() {
+      let query = {};
 
-        this.hasMultipleDays = true;
-
-        if (date && isNaN(date.getTime())) return null;
+      if (this.order && Array.isArray(this.order)) {
+        query.where = {
+          eventid: { IN: this.order },
+        };
       }
 
-      return date;
-    },
-    dateDay() {
-      if (!this.validDate) return;
+      query.path = '/events';
 
-      const day = this.validDate.getDate();
-
-      return day < 10 ? `0${day}` : day;
+      return query;
     },
-    dateMonth() {
-      if (!this.validDate) return;
-
-      const month = this.validDate.toLocaleDateString(undefined, {
-        month: 'short',
-      });
-
-      return month.slice(0, 3);
-    },
-    dateWeekDay() {
-      if (!this.validDate) return;
-
-      const weekDay = this.validDate.toLocaleDateString(undefined, {
-        weekday: 'short',
-      });
-
-      return weekDay.slice(0, 2);
-    },
-    imageValue() {
-      return Tools.getJSON(this.image);
-    },
-    cloudinary() {
-      return this.imageValue && this.imageValue.cloudinary ? this.imageValue.cloudinary : true;
-    },
-    timeValue() {
-      return !this.hasMultipleDays ? Tools.standardizeTimeFormat(this.time) : this.normalizedDate;
+    sort() {
+      return this.sortBy || { moment: 1 };
     },
   },
+  mounted() {
+    UtilityAnimation.init([this.$refs.root]);
+  },
   methods: {
-    handleClick() {
-      if (this.external) return window.open(this.url, '_blank');
+    updatedEvent(event) {
+      if (event.cta) {
+        event.url = event.cta.href;
+        event.external = event.cta.external || false;
+      } else {
+        event.external = false;
+      }
 
-      document.location.href = this.url;
+      return event;
+    },
+    isVisible(index) {
+      return this.showMore || index + 1 <= this.limitValue;
+    },
+    handleShowMore() {
+      if (this.moreUrl) document.location.href = this.moreUrl;
+
+      this.showMore = true;
+    },
+    updateFiles(files) {
+      if (!files) return;
+
+      this.filesValue = files;
+
+      return true;
     },
   },
   props: {
-    title: String,
-    date: String,
-    moment: String,
-    category: String,
-    text: String,
-    excerpt: String,
-    image: Object,
+    events: Array,
+    headline: String,
+    headlineLevel: String,
+    overlap: Boolean,
+    limit: Number,
+    maxLimit: Number,
+    moreUrl: String,
+    order: Array,
+    sortBy: Object,
     bgColor: String,
     color: String,
-    time: String,
     timeColor: String,
-    classes: String,
-    url: String,
-    external: Boolean,
   },
 };
 </script>
