@@ -296,7 +296,7 @@ class Form extends BaseComponent {
   // }
 
   submitOdooForm() {
-    fetch(this.form.apiUrl, {
+    fetch('https://webinar-prod-function.azurewebsites.net/api/events/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
