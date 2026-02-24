@@ -37,6 +37,9 @@ declare namespace _default {
         let moreUrl: StringConstructor;
         let order: ArrayConstructor;
         let sortBy: ObjectConstructor;
+        let bgColor: StringConstructor;
+        let color: StringConstructor;
+        let timeColor: StringConstructor;
     }
 }
 export default _default;
