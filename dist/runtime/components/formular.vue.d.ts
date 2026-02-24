@@ -93,6 +93,12 @@ declare namespace _default {
             let _default_10: boolean;
             export { _default_10 as default };
         }
+        namespace odoo {
+            let type_2: BooleanConstructor;
+            export { type_2 as type };
+            let _default_11: boolean;
+            export { _default_11 as default };
+        }
     }
 }
 export default _default;

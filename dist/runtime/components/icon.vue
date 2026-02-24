@@ -37,6 +37,9 @@ import Magnifier from './icons/magnifier.vue';
 import Mail from './icons/mail.vue';
 import Meerkat from './icons/meerkat.vue';
 import Minus from './icons/minus.vue';
+import OutlineHeart from './icons/outline-heart.vue';
+import OutlineComment from './icons/outline-comment.vue';
+import OutlineShare from './icons/outline-share.vue';
 import Phone from './icons/phone.vue';
 import PhoneCharger from './icons/phone-charger.vue';
 import PhoneMail from './icons/phone-mail.vue';
@@ -81,6 +84,9 @@ export default {
     mail: Mail,
     meerkat: Meerkat,
     minus: Minus,
+    'outline-heart': OutlineHeart,
+    'outline-comment': OutlineComment,
+    'outline-share': OutlineShare,
     phone: Phone,
     'phone-charger': PhoneCharger,
     'phone-mail': PhoneMail,

@@ -25,7 +25,7 @@ import Tools from '../utils/tools.js';
 
 export default {
   tagName: 'event',
-  data() {  
+  data() {
     return {
       hasMultipleDays: false,
     };
@@ -33,9 +33,9 @@ export default {
   computed: {
     style() {
       return `
-                --color-event-background: ${this.bgColor ? this.bgColor : 'var(--color-primary-on-surface)'};
-                --color-event-copy: ${this.color ? this.color : 'var(--color-copy-on-primary-on-surface)'};
-                --color-event-time: ${this.timeColor ? this.timeColor : 'var(--color-primary-accent-on-surface)'};
+                --color-event-background: ${this.bgColor ? this.bgColor : 'var(--color-green-blue)'};
+                --color-event-copy: ${this.color ? this.color : 'var(--color-copy-light)'};
+                --color-event-time: ${this.timeColor ? this.timeColor : 'var(--color-green-blue)'};
             `;
     },
     textWithAmpersand() {

@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.78
+
+- Add Masonry Grid + Social Post Card component
+
 # Release 0.4.70
 
 - Fixes Post Detail Layout
