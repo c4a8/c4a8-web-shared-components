@@ -1,4 +1,5 @@
 declare namespace _default {
+    let emits: string[];
     let tagName: string;
     function data(): {
         originalAction: string;

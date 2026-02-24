@@ -38153,6 +38153,15 @@ svg.streamline-icon {
   margin-bottom: 2rem;
 }
 
+.contact__form-wrapper.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.contact__loader {
+  z-index: 1050;
+}
+
 .page-content > *:last-of-type.contact {
   margin-bottom: -3.5rem !important;
 }
