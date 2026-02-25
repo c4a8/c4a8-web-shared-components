@@ -1,5 +1,10 @@
 # Releases
 
+# Release 0.4.83
+
+- Fixes Contact Overlapping issue
+- Adjusts colors for Event-Teaser Text and Cta
+
 # Release 0.4.78
 
 - Add Masonry Grid + Social Post Card component
