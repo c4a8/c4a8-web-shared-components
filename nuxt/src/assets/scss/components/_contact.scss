@@ -244,6 +244,10 @@
   }
 }
 
+.contact__box {
+  @include z-index;
+}
+
 .contact__detail-quote {
   margin-right: spacing(14);
   margin-top: spacing(16);

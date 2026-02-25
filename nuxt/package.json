@@ -25,8 +25,8 @@
     "module:after-build": "node scripts/prepare-styles.js",
     "module:build": "node scripts/copy-components.js && nuxt-module-build build && npm run module:after-build",
     "update": "npm run module:build && node scripts/move-module.js",
-    "new-version": "cd .. && npm version minor --no-git-tag-version && cd nuxt && npm run update",
-    "patch": "cd .. && npm version patch --no-git-tag-version && cd nuxt && npm run update"
+    "new-version": "cd .. && npm version minor --no-git-tag-version",
+    "patch": "cd .. && npm version patch --no-git-tag-version"
   },
   "dependencies": {
     "@nuxt/content": "^3.4.0",
