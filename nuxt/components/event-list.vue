@@ -4,6 +4,7 @@
     :class="{
       'event-list--overlap': overlap,
       'is-sticky-scroller': sticky,
+      [spacing]: true,
     }"
   >
     <div class="event-list__row row col-lg-12">
@@ -33,6 +34,10 @@ export default {
     sticky: {
       type: Boolean,
       default: false,
+    },
+    spacing: {
+      type: String,
+      default: 'space-bottom-3',
     },
   },
   computed: {

@@ -96,11 +96,11 @@
     }
 
     &.is-light {
-      border-color: var(--color-white);
-      color: var(--color-secondary-accent-light);
+      border-color: var(--color-secondary-on-surface);
+      color: var(--color-copy-on-secondary-on-surface);
 
       &::before {
-        background: var(--color-white);
+        background: var(--color-secondary-on-surface);
       }
 
       &::after {
@@ -152,7 +152,8 @@
       height: 100%;
       background: var(--color-primary);
       transform-origin: center;
-      animation: ctaLoadingStart var(--cta-loading-start-duration) forwards var(--cta-loading-delay),
+      animation:
+        ctaLoadingStart var(--cta-loading-start-duration) forwards var(--cta-loading-delay),
         ctaLoadingLoop calc(var(--cta-loading-start-duration) - 0.1s) ease-in-out infinite
           calc(var(--cta-loading-delay) + var(--cta-loading-start-duration) - 0.2s);
     }
@@ -414,14 +415,8 @@
         transition: background 0.5s $animation-transition;
       }
 
-      // &.is-light {
-      //   @include cta-btn-primary-is-light;
-      // }
-
       &.is-light-lg {
         @include media-breakpoint-up(lg) {
-          // @include cta-btn-primary-is-light;
-
           background-color: var(--color-primary-on-surface);
           color: var(--color-copy-on-primary-on-surface);
 
