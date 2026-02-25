@@ -3,7 +3,12 @@ declare class Analytics {
     static rootSelector: string;
     static instances: any[];
     static isGALoaded(): boolean;
+    static trackEvent(eventName: any, params?: {}): void;
     static track(code: any, callback: any, url: any): void;
+    static createVideoTracker(videoId: any, getIframeContainer: any): {
+        bind: () => void;
+        destroy: () => void;
+    };
     static init(): void;
     constructor(root: any);
     root: any;

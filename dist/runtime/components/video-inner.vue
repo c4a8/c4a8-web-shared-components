@@ -75,7 +75,7 @@
               </span>
             </a>
           </template>
-          <div class="embed-responsive embed-responsive-16by9">
+          <div class="embed-responsive embed-responsive-16by9" ref="iframeContainer">
             <iframe
               class="video__iframe"
               v-if="isPlayed"
@@ -134,6 +134,7 @@
 import UtilityAnimation from '../utils/utility-animation.js';
 import YoutubePlayer from '../utils/youtube-player.js';
 import Tools from '../utils/tools.js';
+import Analytics from '../utils/data-an.js';
 
 export default {
   tagName: 'video-inner',
@@ -251,12 +252,26 @@ export default {
 
     UtilityAnimation.init([this.$refs.root], this);
   },
+  beforeDestroy() {
+    this._videoTracker?.destroy();
+    this._videoTracker = null;
+  },
   methods: {
     isReversed() {
       return this.variant === 'reversed';
     },
     handleButtonClick() {
       this.isPlayed = true;
+
+      this.$nextTick(() => {
+        if (!this._videoTracker) {
+          this._videoTracker = Analytics.createVideoTracker(
+            this.videoParsed.id,
+            () => this.$refs.iframeContainer ?? null
+          );
+        }
+        this._videoTracker.bind();
+      });
     },
     handleLightboxClick() {
       this.handleButtonClick();
