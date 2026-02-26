@@ -2,8 +2,8 @@
   <footer :class="classList" :style="style" ref="root">
     <div class="container">
       <div class="footer__content-row row">
-        <div class="footer__content col-lg-12">
-          <div class="footer__address col-3 pl-0">
+        <div class="d-flex footer__content col-lg-12">
+          <div class="footer__address col-12 col-lg-3 pl-0">
             <div :class="['mb-3', logo?.classes]" v-for="logo in dataValue.logos">
               <!--d-block-->
               <a :href="logo.url" :target="logo.target" aria-label="Front">
@@ -83,7 +83,7 @@
             </template>
           </div>
 
-          <div class="footer__highlights col-9">
+          <div class="footer__highlights col-12 col-lg-9">
             <div class="footer__partners">
               <template v-for="(partner, index) in dataValue.partners">
                 <component
