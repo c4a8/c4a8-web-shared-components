@@ -77,6 +77,8 @@ if (useEnvironment() !== 'development') {
                 dataLayer.push(arguments);
             }
 
+            window.gtag = gtag;
+
             gtag("consent", "default", ${JSON.stringify(gtagConfig)});
             gtag("set", "ads_data_redaction", true);
 
