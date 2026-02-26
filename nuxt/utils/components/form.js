@@ -255,7 +255,7 @@ class Form extends BaseComponent {
 
       this.updateSubject();
 
-      if (this.isOdooForm) {
+      if (this.isOdooForm()) {
         this.submitOdooForm();
       } else if (this.customSubmit) {
         this.customSubmit(e);
