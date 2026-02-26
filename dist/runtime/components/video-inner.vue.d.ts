@@ -27,6 +27,7 @@ declare namespace _default {
         function dataCaption(): any;
     }
     function mounted(): void;
+    function beforeDestroy(): void;
     namespace methods {
         function isReversed(): any;
         function handleButtonClick(): void;
