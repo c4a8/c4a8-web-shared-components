@@ -5,7 +5,7 @@
         <card
           @card-tag-clicked="handleCardTagClicked"
           v-bind="item"
-          :blogtitlepic="blogImgUrl(getBlogTitlepic(item)) ? item.blogtitlepic : item.blogtitlepic"
+          :blogtitlepic="blogImgUrl(getBlogTitlepic(item)) ? blogImgUrl(getBlogTitlepic(item)) : item.blogtitlepic"
           :date="item.moment ? item.moment : item.date"
           :hasAnimation="true"
           :index="index"
