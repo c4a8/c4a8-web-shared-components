@@ -83,6 +83,7 @@ declare namespace _default {
         }
     }
     function mounted(): void;
+    function beforeDestroy(): void;
     namespace computed {
         function headlineClasses(): any;
         function hasVideo(): any;

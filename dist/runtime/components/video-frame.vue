@@ -5,7 +5,7 @@
         <div :id="parentId" :class="mainClass">
           <div :class="playerClass" data-utility-animation-step="1">
             <div class="video-frame__target embed-responsive">
-              <div :id="targetId" v-if="openIframe">
+              <div :id="targetId" v-if="openIframe" ref="iframeContainer">
                 <iframe
                   class="video-frame__iframe"
                   frameborder="0"
@@ -46,7 +46,7 @@
       <div :id="parentId" :class="mainClass" :style="rootStyle" ref="root" @click="handleClick">
         <div :class="playerClass" data-utility-animation-step="1">
           <div class="video-frame__target embed-responsive">
-            <div :id="targetId" v-if="showIframe">
+            <div :id="targetId" v-if="showIframe" ref="iframeContainer">
               <iframe
                 class="video-frame__iframe"
                 frameborder="0"
@@ -122,6 +122,7 @@
 <script>
 import UtilityAnimation from '../utils/utility-animation.js';
 import YoutubePlayer from '../utils/youtube-player.js';
+import Analytics from '../utils/data-an.js';
 
 export default {
   tagName: 'video-frame',
@@ -187,6 +188,10 @@ export default {
     if (!this.$refs.root) return;
 
     UtilityAnimation.init([this.$refs.root]);
+  },
+  beforeDestroy() {
+    this._videoTracker?.destroy();
+    this._videoTracker = null;
   },
   computed: {
     headlineClasses() {
@@ -314,8 +319,14 @@ export default {
       if (!this.id) return;
 
       this.setPlayed();
-
       this.openIframe = true;
+
+      this.$nextTick(() => {
+        if (!this._videoTracker) {
+          this._videoTracker = Analytics.createVideoTracker(this.id, () => this.$refs.iframeContainer);
+        }
+        this._videoTracker.bind();
+      });
     },
     setPlayed() {
       this.isPlayed = true;

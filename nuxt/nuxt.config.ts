@@ -59,6 +59,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       personioApiKey,
+      googleTagManagerId: process.env.NUXT_PUBLIC_GOOGLE_TAG_MANAGER_ID,
+      googleTagManagerDomain: process.env.NUXT_PUBLIC_GOOGLE_TAG_MANAGER_DOMAIN,
     },
   },
   turnstile: {
