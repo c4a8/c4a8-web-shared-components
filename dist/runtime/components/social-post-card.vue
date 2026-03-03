@@ -17,7 +17,7 @@
       </div>
       <div class="social-post-card__meta flex-grow-1">
         <div class="social-post-card__author-handle-time" v-if="formattedPostedAt">
-          <time :datetime="formattedPostedAt">{{ formattedPostedAt }}</time>
+          <time itemprop="datePublished" :datetime="formattedPostedAt">{{ formattedPostedAt }}</time>
         </div>
       </div>
       <div class="social-post-card__linkedin-badge">
@@ -26,7 +26,7 @@
     </header>
 
     <div class="social-post-card__content mt-3" v-if="contentHtml">
-      <span v-html="truncatedContent"></span>
+      <span itemprop="articleBody" v-html="truncatedContent"></span>
       <span v-if="showReadMore" class="social-post-card__read-more">... {{ $t('readMore') }}</span>
     </div>
 
@@ -54,9 +54,9 @@
     </div>
     <div class="social-post-card__media mt-3" v-else-if="firstMedia" @click.stop="handleMediaClick">
       <div v-if="firstMedia.type === 'video'" class="social-post-card__video-wrapper">
-        <v-img :img="firstMedia.thumbnail || firstMedia.src" :cloudinary="false" :lazy="true" />
+        <v-img itemprop="video" :img="firstMedia.thumbnail || firstMedia.src" :cloudinary="false" :lazy="true" />
       </div>
-      <v-img v-else :img="firstMedia.src" :cloudinary="false" :lazy="true" />
+      <v-img itemprop="image" v-else :img="firstMedia.src" :cloudinary="false" :lazy="true" />
     </div>
 
     <footer class="social-post-card__footer d-flex align-items-center justify-content-between mt-3">
