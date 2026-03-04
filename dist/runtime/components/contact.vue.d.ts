@@ -43,26 +43,13 @@ declare namespace _default {
             export { _default_3 as default };
         }
     }
-    function data(): {
-        loadingDelay: number;
-        sleepDelay: number;
-        loading: {};
-        hasLoading: boolean;
-        hasLoader: boolean;
-    };
-    function mounted(): void;
-    namespace methods {
-        function startLoading(): void;
-        function stopLoading(): void;
-    }
     namespace computed {
-        function loaderClasses(): string[];
         function classList(): any[];
         function contactVariantClass(): string[];
         function contactLight(): "" | "contact__person--light";
         function contactBoxClass(): "" | "col-md-10 col-lg-5 offset-lg-1 order-2";
-        function contactPersonClass(): any;
-        function contactFormClass(): any;
+        function contactPersonClass(): "" | "contact__person--small";
+        function contactFormClass(): "" | "col-md-10 col-lg-6 order-1";
         function contactContainerClass(): string;
         function contactRowClass(): string[];
         function styleObject(): any;

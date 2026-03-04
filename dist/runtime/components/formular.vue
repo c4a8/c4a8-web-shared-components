@@ -1,7 +1,12 @@
 <template>
-  <div :class="classList" ref="root">
+  <div
+    :class="[classList, hasLoading ? loaderClasses : '']"
+    ref="root"
+    class="d-flex align-items-center justify-content-center"
+  >
+    <div class="form__loader position-absolute mr-5 mr-lg-10 h-50" ref="loader"></div>
     <div :class="rowClassList">
-      <div :class="wrapperClassList" v-if="form">
+      <div :class="['form__wrapper', wrapperClassList, hasLoading ? 'loading' : '']" v-if="form">
         <div v-if="form.headline" :class="headlineClassList" data-utility-animation-step="1" ref="headline">
           <div class="row">
             <div class="col-sm-12">
@@ -62,6 +67,8 @@ import Tools from '../utils/tools.js';
 import Form from '../utils/components/form.js';
 import UtilityAnimation from '../utils/utility-animation.js';
 
+import Loading from '../utils/loading.js';
+
 export default {
   emits: ['submit', 'error'],
   tagName: 'formular',
@@ -73,6 +80,12 @@ export default {
       novalidateValue: null,
       errors: [],
       siteKey: null,
+
+      loadingDelay: 300,
+      sleepDelay: 1300,
+      loading: {},
+      hasLoading: false,
+      hasLoader: true,
     };
   },
   setup() {
@@ -83,6 +96,10 @@ export default {
     };
   },
   computed: {
+    loaderClasses() {
+      return [`${this.hasLoading ? State.LOADING : ''}`, `${this.hasLoader ? 'loading' : ''}`, 'vue-component'];
+    },
+
     classList() {
       return [
         'form',
@@ -177,6 +194,7 @@ export default {
       return blocks;
     },
   },
+
   mounted() {
     this.originalAction = this.formAction = this.form?.action;
     this.formInstance = new Form(this.$refs.root, null, this.validate.bind(this), this.hasRecaptcha, this.siteKey);
@@ -191,6 +209,20 @@ export default {
   },
 
   methods: {
+    startLoading() {
+      if (!this.loading?.root) {
+        this.loading = new Loading(this.$refs['loader'], () => {
+          this.hasLoader = true;
+        });
+      }
+      this.hasLoading = true;
+      this.loading.on(true);
+    },
+    stopLoading() {
+      this.hasLoading = false;
+      this.loading.on(false);
+    },
+
     getTranslatedText(text) {
       return this.useTranslation ? this.$t(text) : text;
     },
@@ -230,15 +262,15 @@ export default {
       }
     },
     handleSubmit(e) {
-      this.$emit('submit');
+      this.startLoading();
       if (!this.validate()) {
-        this.$emit('error');
+        this.stopLoading();
         e.preventDefault();
       } else {
         if (this.formInstance.hasSubmitHandling) return;
 
         e.preventDefault();
-        
+
         this.formInstance.handleRecaptcha().then(() => {
           const form = this.$refs['form'];
 
@@ -362,6 +394,10 @@ export default {
       default: true,
     },
     odoo: {
+      type: Boolean,
+      default: false,
+    },
+    showLoader: {
       type: Boolean,
       default: false,
     },

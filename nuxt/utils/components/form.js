@@ -296,23 +296,29 @@ class Form extends BaseComponent {
   // }
 
   submitOdooForm() {
-    fetch('https://webinar-prod-function.azurewebsites.net/api/events/register', {
+    const payload = {};
+    Form.getFormData(this.form).forEach((item) => {
+      if (item.input && item.input.name) {
+        const cleanName = Form.getName(item.input.name);
+        payload[cleanName] = item.value;
+      }
+    });
+
+    payload.eventId = Number(this.form.querySelector('input[name*="eventId"]')?.value) || '';
+
+    fetch('https://webinar-test2-function.azurewebsites.net/api/events/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-
-      body: JSON.stringify({
-        eventId: Number(this.form.querySelector('input[name="eventId"]')?.value),
-        name: this.form.querySelector('input[name="name"]')?.value,
-        email: this.form.querySelector('input[name="email"]')?.value,
-        companyName: this.form.querySelector('input[name="companyName"]')?.value,
-        jobTitle: this.form.querySelector('input[name="jobTitle"]')?.value,
-        privacy: this.form.querySelector('input[name="privacy"]')?.checked,
-      }),
+      body: JSON.stringify(payload),
     }).then((response) => {
       if (response.status === 200 || response.status === 302) {
-        window.location.href = this.form.action;
+        if (this.root.closest('.modal')) {
+          this.root.closest('.modal')?.classList.add(State.SUCCESS);
+        } else {
+          window.location.href = this.form.action;
+        }
       } else {
         // TODO handle error
       }
