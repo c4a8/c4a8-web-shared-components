@@ -81,7 +81,6 @@ const body = {
         'Simplified Quotes Component',
       ],
     ],
-
     [
       'ul',
       {},
@@ -102,6 +101,18 @@ const body = {
         {},
         ['strong', {}, 'Nahtloser Umzug:'],
         ' Wir begleiten dich mit standardisierten Lösungen Schritt für Schritt in die neue Ö-Cloud!',
+      ],
+    ],
+    [
+      'div',
+      {
+        class: 'video-frame__sticky full-width',
+        style: 'background-color: #ff6200; height: 500px; padding: 4rem 2rem;',
+      },
+      [
+        'div',
+        { class: 'video-frame video-frame--has-video has-background utility-animation' },
+        'Simplified Video Frame Component',
       ],
     ],
     [
