@@ -17,7 +17,7 @@
               <formular
                 v-if="contact.form"
                 :form="contact.form"
-                :ajax="contact.ajax || ajax"
+                :ajax="contact.form.ajax || ajax"
                 uncentered="false"
                 :odoo="contact.form.odoo"
                 :showLoader="contact.form.showLoader"

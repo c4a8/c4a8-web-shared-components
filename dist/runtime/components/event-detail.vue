@@ -38,7 +38,7 @@
     </template>
     <template #formular v-if="form">
       <headline level="h3">{{ bottomText }}</headline>
-      <formular v-bind="form" :has-animation="true" :odoo="form.odoo !== undefined ? form.odoo : false" :showLoader="form.showLoader" />
+      <formular v-bind="form" :has-animation="true" :odoo="odooForm"/>
     </template>
   </page-detail>
 </template>
@@ -82,6 +82,10 @@ export default {
     content: Object,
     bottomText: String,
     price: String,
+    odooForm: {
+      type: Boolean,
+      default: false,
+    }
   },
   computed: {
     hasContent() {
