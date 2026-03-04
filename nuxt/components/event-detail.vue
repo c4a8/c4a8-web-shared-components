@@ -38,7 +38,7 @@
     </template>
     <template #formular v-if="form">
       <headline level="h3">{{ bottomText }}</headline>
-      <formular v-bind="form" :has-animation="true" />
+      <formular v-bind="form" :has-animation="true" :odoo="odooForm"/>
     </template>
   </page-detail>
 </template>

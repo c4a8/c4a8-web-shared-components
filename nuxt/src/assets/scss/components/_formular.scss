@@ -304,3 +304,13 @@ div.custom-control,
 .grecaptcha-badge {
   visibility: hidden !important;
 }
+
+.form__wrapper {
+  &.loading {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}
+.form__loader {
+  z-index: 2;
+}

@@ -8,6 +8,8 @@
         :customValidation="true"
         :hasUuid="form.hasUuid !== undefined ? form.hasUuid : true"
         :hasRecaptcha="hasRecaptcha"
+        :odoo="form.odoo !== undefined ? form.odoo : false"
+        :showLoader="form.showLoader"
       />
     </div>
     <div class="modal__success container" v-if="success">
