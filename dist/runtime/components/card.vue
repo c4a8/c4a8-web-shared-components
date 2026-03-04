@@ -87,7 +87,7 @@
           </template>
         </template>
         <div class="card__link mt-auto" v-if="cta">
-          <cta v-bind="ctaValue" class="font-weight-bold mt-5" style="color: var(--color-highlight)" />
+          <cta v-bind="ctaValue" class="font-weight-bold mt-5" style="color: var(--color-primary)" />
         </div>
       </div>
     </template>
