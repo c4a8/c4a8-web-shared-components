@@ -8,7 +8,7 @@
         :customValidation="true"
         :hasUuid="form.hasUuid !== undefined ? form.hasUuid : true"
         :hasRecaptcha="hasRecaptcha"
-        :odoo="form.odoo !== undefined ? form.odoo : false"
+        :odoo="form.odoo"
         :showLoader="form.showLoader"
       />
     </div>
