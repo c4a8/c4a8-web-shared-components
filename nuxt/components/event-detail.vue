@@ -82,6 +82,10 @@ export default {
     content: Object,
     bottomText: String,
     price: String,
+    odooForm: {
+      type: Boolean,
+      default: false,
+    }
   },
   computed: {
     hasContent() {
