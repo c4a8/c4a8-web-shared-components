@@ -2,12 +2,15 @@
   <div class="modal__application">
     <div class="modal__body-default">
       <formular
+        ref="form"
         :form="form"
         :space="' '"
         :container="true"
         :customValidation="true"
         :hasUuid="form.hasUuid !== undefined ? form.hasUuid : true"
         :hasRecaptcha="hasRecaptcha"
+        :odoo="form.odoo"
+        :showLoader="form.showLoader"
       />
     </div>
     <div class="modal__success container" v-if="success">

@@ -12,17 +12,15 @@
         <div :class="['contact__form', contactFormClass]" v-if="!collapsed" data-utility-animation-step="1">
           <headline :text="contact.headline" :classes="contact.headlineClasses" :level="level" />
           <span class="contact__subline font-weight-bold font-size-2">{{ contact.subline }}</span>
-          <div class="d-flex align-items-center justify-content-center" :class="hasLoading ? loaderClasses : ''">
-            <div class="contact__loader position-absolute mr-5 mr-lg-10 h-50" ref="loader"></div>
-            <div class="contact__form-wrapper" :class="hasLoading ? 'loading' : ''">
+          <div class="d-flex align-items-center justify-content-center">
+            <div class="contact__form-wrapper">
               <formular
                 v-if="contact.form"
                 :form="contact.form"
-                :ajax="contact.ajax || ajax"
+                :ajax="contact.form.ajax || ajax"
                 uncentered="false"
-                :odoo="contact.odooForm"
-                @submit="startLoading"
-                @error="stopLoading"
+                :odoo="contact.form.odoo"
+                :showLoader="contact.form.showLoader"
               />
               <div v-if="contact.buttons" class="pt-4 pt-lg-6 pb-6">
                 <cta-list :list="contact.buttons" />
@@ -147,7 +145,7 @@
 </template>
 <script>
 import State from '../utils/state.js';
-import Loading from '../utils/loading.js';
+
 export default {
   tagName: 'contact',
   props: {
@@ -177,34 +175,8 @@ export default {
     quoteColor: { type: String, default: 'var(--color-yellow)' },
     onSurface: { type: Boolean, default: false },
   },
-  data() {
-    return {
-      loadingDelay: 300,
-      sleepDelay: 1300,
-      loading: {},
-      hasLoading: false,
-      hasLoader: false,
-    };
-  },
-  mounted() {
-    this.loading = new Loading(this.$refs['loader'], () => {
-      this.hasLoader = true;
-    });
-  },
-  methods: {
-    startLoading() {
-      this.hasLoading = true;
-      this.loading.on(true);
-    },
-    stopLoading() {
-      this.hasLoading = false;
-      this.loading.on(false);
-    },
-  },
+
   computed: {
-    loaderClasses() {
-      return [`${this.hasLoading ? State.LOADING : ''}`, `${this.hasLoader ? 'loading' : ''}`, 'vue-component'];
-    },
     classList() {
       return [
         'contact',

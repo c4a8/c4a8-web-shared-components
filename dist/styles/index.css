@@ -38193,15 +38193,6 @@ svg.streamline-icon {
   margin-bottom: 2rem;
 }
 
-.contact__form-wrapper.loading {
-  opacity: 0.6;
-  pointer-events: none;
-}
-
-.contact__loader {
-  z-index: 1050;
-}
-
 .page-content > *:last-of-type.contact {
   margin-bottom: -3.5rem !important;
 }
@@ -41681,6 +41672,15 @@ div.custom-control .custom-control-input,
 
 .grecaptcha-badge {
   visibility: hidden !important;
+}
+
+.form__wrapper.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.form__loader {
+  z-index: 2;
 }
 
 .google-map .leaflet-attribution-flag {
