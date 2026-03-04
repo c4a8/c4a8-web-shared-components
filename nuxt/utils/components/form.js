@@ -306,7 +306,7 @@ class Form extends BaseComponent {
 
     payload.eventId = Number(this.form.querySelector('input[name*="eventId"]')?.value) || '';
 
-    fetch('https://webinar-test2-function.azurewebsites.net/api/events/register', {
+    fetch('https://webinar-prod-function.azurewebsites.net/api/events/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
