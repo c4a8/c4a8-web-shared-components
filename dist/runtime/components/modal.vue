@@ -16,7 +16,7 @@
           </div>
         </div>
         <div :class="bodyClasses">
-          <modal-application v-if="application" :form="form" :success="success" />
+          <modal-application v-if="application" :form="form" :success="success" ref="application" />
           <div class="container" v-else-if="content">
             <div class="row">
               <div class="col" v-html="content"></div>
@@ -167,6 +167,8 @@ export default {
       }
     },
     handleClose() {
+      this.$refs.application.$refs.form.hasLoading = false;
+
       const modal = this.$refs['modal'];
       const form = modal.querySelector(Form.rootSelector);
 

@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.84
+
+- Adds Code Block component
+
 # Release 0.4.83
 
 - Fixes Contact Overlapping issue

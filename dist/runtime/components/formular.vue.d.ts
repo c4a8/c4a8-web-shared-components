@@ -8,11 +8,17 @@ declare namespace _default {
         novalidateValue: null;
         errors: never[];
         siteKey: null;
+        loadingDelay: number;
+        sleepDelay: number;
+        loading: {};
+        hasLoading: boolean;
+        hasLoader: boolean;
     };
     function setup(): {
         config: {};
     };
     namespace computed {
+        function loaderClasses(): string[];
         function classList(): string[];
         function reCaptchaField(): any;
         function novalidate(): any;
@@ -28,6 +34,8 @@ declare namespace _default {
     }
     function mounted(): void;
     namespace methods {
+        function startLoading(): void;
+        function stopLoading(): void;
         function getTranslatedText(text: any): any;
         function hasError(field: any): any;
         function getOptions(field: any): any;
@@ -99,6 +107,12 @@ declare namespace _default {
             export { type_2 as type };
             let _default_11: boolean;
             export { _default_11 as default };
+        }
+        namespace showLoader {
+            let type_3: BooleanConstructor;
+            export { type_3 as type };
+            let _default_12: boolean;
+            export { _default_12 as default };
         }
     }
 }
