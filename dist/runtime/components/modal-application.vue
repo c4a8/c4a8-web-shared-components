@@ -2,6 +2,7 @@
   <div class="modal__application">
     <div class="modal__body-default">
       <formular
+        ref="form"
         :form="form"
         :space="' '"
         :container="true"
