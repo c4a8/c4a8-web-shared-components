@@ -48,6 +48,12 @@ declare namespace _default {
         let content: ObjectConstructor;
         let bottomText: StringConstructor;
         let price: StringConstructor;
+        namespace odooForm {
+            let type_6: BooleanConstructor;
+            export { type_6 as type };
+            let _default_6: boolean;
+            export { _default_6 as default };
+        }
     }
     namespace computed {
         function hasContent(): any;
