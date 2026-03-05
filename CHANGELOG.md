@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.85
+
+- Adds itemprops to social post card
+
 # Release 0.4.84
 
 - Adds Code Block component
