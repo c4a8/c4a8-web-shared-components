@@ -1,10 +1,10 @@
 <template>
   <div class="py-10" :style="{ backgroundColor: bgColor }">
     <div
-      class="container d-flex align-items-md-center flex-md-row flex-column"
+      :class="['container', 'd-flex', 'align-items-md-center', 'flex-md-row', 'flex-column']"
       :id="success ? 'newsletterSuccess' : ''"
       :style="{ height: heightFixed }"
-      ref="modalContent"
+      ref="newsletterContainer"
     >
       <div class="col-md-8">
         <headline level="h2">{{ currentHeadline }} </headline>
@@ -123,8 +123,8 @@ export default {
       }
     },
     handleSuccess() {
-      if (this.$refs.modalContent) {
-        this.heightFixed = `${this.$refs.modalContent.clientHeight}px`;
+      if (this.$refs.newsletterContainer) {
+        this.heightFixed = `${this.$refs.newsletterContainer.clientHeight}px`;
       }
       this.success = true;
     },
