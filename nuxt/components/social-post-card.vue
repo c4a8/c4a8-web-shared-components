@@ -9,7 +9,8 @@
     ref="root"
   >
     <header class="social-post-card__header d-flex align-items-center position-relative">
-      <div class="social-post-card__avatar mr-3">
+      <div class="social-post-card__avatar mr-3" itemprop="author" itemscope itemtype="https://schema.org/Organization">
+        <meta itemprop="name" :content="author?.name" />
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M22 0H0V11.0071H22V0Z" fill="#5CBBFF" />
           <path d="M22 10.9648H0V22.0003H22V10.9648Z" fill="#0072C6" />
@@ -17,7 +18,7 @@
       </div>
       <div class="social-post-card__meta flex-grow-1">
         <div class="social-post-card__author-handle-time" v-if="formattedPostedAt">
-          <time itemprop="datePublished" :datetime="formattedPostedAt">{{ formattedPostedAt }}</time>
+          <time itemprop="datePublished" :datetime="postedAtISO">{{ formattedPostedAt }}</time>
         </div>
       </div>
       <div class="social-post-card__linkedin-badge">
@@ -103,6 +104,10 @@ export default {
     },
     formattedPostedAt() {
       return this.formatDate(this.postedAt);
+    },
+    postedAtISO() {
+      if (!this.postedAt) return null;
+      return new Date(this.postedAt).toISOString().slice(0, 10);
     },
     truncatedContent() {
       return this.truncateContent(this.contentHtml);

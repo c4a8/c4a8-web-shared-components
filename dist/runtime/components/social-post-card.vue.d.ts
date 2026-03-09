@@ -7,6 +7,7 @@ declare namespace _default {
         function style(): string | null;
         function firstMedia(): any;
         function formattedPostedAt(): any;
+        function postedAtISO(): string | null;
         function truncatedContent(): any;
         function truncatedRepostContent(): any;
         function showReadMore(): any;
