@@ -1,6 +1,10 @@
 # Releases
 
-# Release 0.4.85
+# Release 0.4.87
+
+- Adds itemprops to card and social post card
+
+# Release 0.4.86
 
 - Adds itemprops to social post card
 
