@@ -103,6 +103,7 @@ export const BlogPost = {
     url: 'javascript:void(0);',
     layout: 'post',
     title: 'Can Microsoft Teams call 911?',
+    date: '2021-05-11',
     moment: '2021-05-11',
     author: ['Alexander Rudolph', 'Next Author'],
     categories: ['Microsoft', 'Teams', 'Voice', 'SBC', 'Routing'],
@@ -120,6 +121,7 @@ export const BlogPostLarge = {
     url: 'javascript:void(0);',
     layout: 'post',
     title: 'Azure Virtual Desktop – Ja, aber automatisiert bitte! Lorem ipsum dolor sit',
+    date: '2021-05-11',
     moment: '2021-05-11',
     author: ['Christian Kordel', 'Next Author'],
     categories: ['Microsoft', 'Teams', 'Voice', 'SBC', 'Routing'],
@@ -138,6 +140,7 @@ export const WithAnimation = {
     url: 'javascript:void(0);',
     layout: 'post',
     title: 'Can Microsoft Teams call 911?',
+    date: '2021-05-11',
     moment: '2021-05-11',
     author: ['Alexander Rudolph', 'Next Author'],
     categories: ['Microsoft', 'Teams', 'Voice', 'SBC', 'Routing'],
@@ -153,6 +156,8 @@ export const CardLong = {
   args: {
     long: true,
     scope: 'Umfang: 1-2 Tage',
+    date: '2025-05-11',
+    moment: '2025-05-11',
     layout: 'post',
     title: 'glueckkanja Quick-Check',
     footer:
@@ -183,6 +188,7 @@ export const Webcast = {
   args: {
     youtubeUrl: 'https://www.youtube.com/watch?v=m2pa27Hv8K0',
     title: 'Neue Headline 2. Thema, maximal 2 Zeilig',
+    date: '2022-02-16',
     moment: '2022-02-16',
     author: ['Nadine Kern', 'Next Author'],
     webcast: true,
@@ -255,6 +261,7 @@ export const Row = {
     url: 'javascript:void(0);',
     layout: 'post',
     title: 'Can Microsoft Teams call 911?',
+    date: '2021-05-11',
     moment: '2021-05-11',
     author: ['Alexander Rudolph', 'Next Author'],
     categories: ['Microsoft', 'Teams', 'Voice', 'SBC', 'Routing'],
