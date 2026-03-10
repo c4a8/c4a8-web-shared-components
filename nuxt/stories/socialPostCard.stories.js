@@ -10,6 +10,7 @@ const base = {
   author: {
     name: 'glueckkanja',
     handle: '@glueckkanja',
+    url: 'https://www.glueckkanja.com',
   },
   postedAt: 1770218107043,
   postUrl: 'https://www.linkedin.com/feed/update/urn:li:activity:1234567890',

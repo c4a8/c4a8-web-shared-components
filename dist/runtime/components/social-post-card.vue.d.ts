@@ -7,7 +7,7 @@ declare namespace _default {
         function style(): string | null;
         function firstMedia(): any;
         function formattedPostedAt(): any;
-        function postedAtISO(): string | null;
+        function postedAtISO(): any;
         function truncatedContent(): any;
         function truncatedRepostContent(): any;
         function showReadMore(): any;
@@ -19,7 +19,6 @@ declare namespace _default {
         function truncateContent(content: any): any;
         function formatDate(date: any): any;
         function handleClick(): void;
-        function handleMediaClick(): void;
     }
     namespace props {
         namespace author {
