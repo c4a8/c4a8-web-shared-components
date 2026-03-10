@@ -1,5 +1,10 @@
 # Releases
 
+# Release 0.4.88
+
+- Adds more itemprops to card and social post card
+- Fixes date published format
+
 # Release 0.4.87
 
 - Adds itemprops to card and social post card
