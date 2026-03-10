@@ -468,6 +468,16 @@ class Tools {
     return null;
   }
 
+  static getFormattedISODate(date) {
+    if (!date) return '';
+
+    const formattedDate = new Date(date);
+
+    if (isNaN(formattedDate.getTime())) return date;
+
+    return formattedDate.toISOString();
+  }
+
   static getFormattedDate(date, locale = 'de-DE', options = {}) {
     if (!date) return '';
 

@@ -6,6 +6,7 @@ declare namespace _default {
         imgSrcSets: null;
     };
     namespace computed {
+        function datePublished(): any;
         function blogView(): any;
         function combinedTitle(): string;
         function noLink(): boolean;
