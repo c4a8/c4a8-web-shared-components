@@ -8,7 +8,8 @@
     :style="style"
     ref="root"
   >
-    <meta itemprop="datePublished" :content="date" />
+    <meta itemprop="author" :content="author" v-if="author" />
+    <meta itemprop="datePublished" :content="datePublished" v-if="datePublished" />
     <meta itemprop="headline" :content="title" />
     <template v-if="large">
       <div class="row no-gutters">
@@ -186,6 +187,9 @@ export default {
     };
   },
   computed: {
+    datePublished() {
+      return Tools.getFormattedISODate(this.date);
+    },
     blogView() {
       return this.activeView;
     },
