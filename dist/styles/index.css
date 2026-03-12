@@ -37695,6 +37695,11 @@ svg.streamline-icon {
   flex-wrap: wrap;
 }
 
+.card__img-products {
+  padding-bottom: 1.25rem;
+  background: var(--color-card-background);
+}
+
 .carousel {
   --color-carousel-background: rgba(255, 255, 255, 0);
   width: 100%;
