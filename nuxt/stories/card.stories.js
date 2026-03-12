@@ -252,6 +252,68 @@ export const Product = {
         ],
       },
     ],
+    logo: {
+      img: 'products/scepman/scepman-logo-all-white.svg',
+      cloudinary: true,
+      bgColor: 'var(--color-yellow)',
+    },
+  },
+};
+
+export const ProductWithImage = {
+  args: {
+    img: 'blog/heads/head-emergency-calls.png',
+    cloudinary: true,
+    alt: 'alt text',
+    title: 'Unified Contact',
+    blogtitlepic: 'products/unified-contacts/unified-contacts-products-header.png',
+    tag: {
+      text: 'Free',
+      color: 'white',
+      bgColor: 'var(--color-cream-can)',
+    },
+    product: [
+      {
+        title: 'Tenant',
+        subpoints: [
+          {
+            hideIcon: true,
+            subpoint: 'Lorem Ipsum 1',
+          },
+          {
+            included: true,
+            subpoint: 'Lorem Ipsum 2',
+          },
+        ],
+      },
+      {
+        title: 'Contact',
+        subpoints: [
+          {
+            included: true,
+            subpoint: 'Lorem Ipsum 1',
+          },
+          {
+            included: true,
+            subpoint: 'Lorem Ipsu 2m',
+          },
+          {
+            subpoint: 'Lorem Ipsum 3',
+          },
+        ],
+      },
+      {
+        title: 'Other',
+        subpoints: [
+          {
+            subpoint: 'Lorem Ipsum 1',
+          },
+          {
+            subpoint: 'Lorem Ipsum 2',
+          },
+        ],
+      },
+    ],
   },
 };
 
