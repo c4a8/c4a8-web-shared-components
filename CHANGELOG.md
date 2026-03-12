@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.89
+
+- Add the option to add an image as the card product header
+
 # Release 0.4.88
 
 - Adds more itemprops to card and social post card

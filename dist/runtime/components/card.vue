@@ -65,6 +65,7 @@
         <div
           class="card__img-headline-container"
           :style="{ backgroundColor: logo && logo.bgColor ? logo.bgColor : null }"
+          v-if="!img"
         >
           <svg class="position-absolute" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -82,6 +83,9 @@
             <v-img itemprop="image" :img="logo.img" :cloudinary="logo.cloudinary" class="w-100" />
           </div>
           <div class="card-img-cutoff" />
+        </div>
+        <div class="card__img-products" v-else>
+          <v-img itemprop="image" :img="img" :cloudinary="cloudinary" :alt="alt" class="w-100" />
         </div>
       </div>
       <div class="card__body card-body mt-0 pt-0 z-index-2" style="display: flex; flex-direction: column">
@@ -428,6 +432,9 @@ export default {
       type: Boolean,
     },
     logo: Object,
+    img: String,
+    cloudinary: Boolean,
+    alt: String,
   },
 };
 </script>
