@@ -1,6 +1,6 @@
 <template>
-  <div class="video-slider d-flex flex-column justify-content-center" :style="style">
-    <swiper-container class="slider__swiper-container" v-bind="options">
+  <div class="video-slider" :style="style">
+    <swiper-container class="slider__swiper-containe" v-bind="options">
       <div class="video-slider__row row">
         <div class="video-slider__col col">
           <div class="video-slider__main">
