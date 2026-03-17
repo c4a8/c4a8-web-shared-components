@@ -1,5 +1,11 @@
 # Releases
 
+# Release 0.4.90
+
+- Add guardrail for service-overview
+- Fix content-grid z-index issues
+- Fix video-slider overvlow issue
+
 # Release 0.4.89
 
 - Add the option to add an image as the card product header

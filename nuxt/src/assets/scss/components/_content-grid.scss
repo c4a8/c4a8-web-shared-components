@@ -145,6 +145,10 @@
 .content-grid--side-bar .content-grid > .full-width,
 .content-grid--extended .content-grid > .full-width {
   grid-column: full-width;
+}
+
+.content-grid--side-bar .content-grid > .full-width,
+.content-grid--extended .content-grid > .full-width {
   position: relative;
   z-index: 2;
 }
