@@ -6,20 +6,28 @@
   color: var(--color-video-slider-color);
   padding: 6rem 0;
 
+  .video-slider__row {
+    width: 100%;
+  }
+
   .slick-slide > * {
     padding: var(--video-slider-video-gap) calc(var(--video-slider-video-factor) * var(--video-slider-video-gap));
     transition: padding 0.3s ease-in-out;
   }
+
   .slick-slide .video__content {
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
   }
+
   .slick-center .video__content {
     opacity: 1;
   }
+
   .slick-center > * {
     padding: 0;
   }
+
   @include media-breakpoint-up(lg) {
     .video-slider {
       --video-slider-video-gap: 1.5rem;
