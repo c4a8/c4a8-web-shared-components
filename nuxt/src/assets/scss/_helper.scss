@@ -44,6 +44,12 @@
   --color-primary-accent: var(--color-emergency-accent);
 }
 
+.has-highlight-second-colors {
+  --cta-copy-color: var(--color-copy) !important;
+  --color-primary: var(--color-yellow);
+  --color-primary-accent: #caa712;
+}
+
 .is-basic-link {
   text-decoration: none !important;
   color: inherit !important;
