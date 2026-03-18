@@ -210,8 +210,8 @@ export default {
           this.float
             ? this.textImageFirstColWidthComputed
             : this.offset
-            ? this.textImageFirstColWidthComputed - 1
-            : this.textImageFirstColWidthComputed
+              ? this.textImageFirstColWidthComputed - 1
+              : this.textImageFirstColWidthComputed
         }`,
       ];
       if (this.float) {
