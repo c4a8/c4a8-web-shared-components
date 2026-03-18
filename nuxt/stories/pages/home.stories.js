@@ -1,4 +1,3 @@
-import { getAssetPath } from '../.storybook/templates';
 import PageDefault from '../components/page-default.vue';
 import VHeader from '../components/v-header.vue';
 import Content from '../components/content.vue';
@@ -52,7 +51,7 @@ export const Home = {
       },
       light: false,
       shape: {
-        img: getAssetPath('../svg/shapes/s-block.svg'),
+        img: '/assets/svg/shapes/s-block.svg',
         alt: 'Shape Animation',
         top: true,
         mobileOrder: 4,

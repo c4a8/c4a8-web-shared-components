@@ -1,4 +1,3 @@
-import { getAssetPath } from '../.storybook/templates';
 import FeatureGridComponent from '../components/feature-grid.vue';
 import lottie1 from './data/lottie1.json';
 
@@ -30,7 +29,7 @@ export const Default = {
       {
         title: 'Contact Sources',
         image: {
-          src: getAssetPath('svg/icons/unifiedcontacts_feature_contactsources.svg'),
+          src: 'svg/icons/unifiedcontacts_feature_contactsources.svg',
           alt: 'Contact Sources',
         },
         list: ['Azure AD Users', 'Azure AD Contacts (coming soon)', 'Personal Exchange Online Contacts'],
@@ -38,7 +37,7 @@ export const Default = {
       {
         title: 'Contact Card',
         image: {
-          src: getAssetPath('svg/icons/unifiedcontacts_feature_contactcards.svg'),
+          src: 'svg/icons/unifiedcontacts_feature_contactcards.svg',
           alt: 'Contact Card',
         },
         list: ['Place PSTN calls', 'Place Teams calls', 'Write email', 'Start Teams chat', 'Get presence status'],
@@ -46,7 +45,7 @@ export const Default = {
       {
         title: 'Platforms',
         image: {
-          src: getAssetPath('svg/icons/unifiedcontacts_feature_platforms.svg'),
+          src: 'svg/icons/unifiedcontacts_feature_platforms.svg',
           alt: 'Platforms',
         },
         list: ['Teams Desktop Client', 'Teams Web App', 'Teams Mobile App'],
@@ -54,7 +53,7 @@ export const Default = {
       {
         title: 'ISO 27001',
         image: {
-          src: getAssetPath('svg/icons/unifiedcontacts_feature_certificates.svg'),
+          src: 'svg/icons/unifiedcontacts_feature_certificates.svg',
           alt: 'ISO 27001',
         },
         list: [
@@ -69,7 +68,7 @@ export const Default = {
 export const WithImageAndH4FontSize = {
   args: {
     image: {
-      src: getAssetPath('img/image-placeholder-1.jpg'),
+      src: 'assets/img/image-placeholder-1.jpg',
       alt: 'lorem ipsum dolor sit amet',
     },
     headline: 'Specifications',
@@ -78,7 +77,7 @@ export const WithImageAndH4FontSize = {
       {
         title: 'Contact Sources',
         image: {
-          src: getAssetPath('svg/icons/unifiedcontacts_feature_contactsources.svg'),
+          src: 'svg/icons/unifiedcontacts_feature_contactsources.svg',
           alt: 'Contact Sources',
         },
         list: ['Azure AD Users', 'Azure AD Contacts (coming soon)', 'Personal Exchange Online Contacts'],
@@ -86,7 +85,7 @@ export const WithImageAndH4FontSize = {
       {
         title: 'Contact Card',
         image: {
-          src: getAssetPath('svg/icons/unifiedcontacts_feature_contactcards.svg'),
+          src: 'svg/icons/unifiedcontacts_feature_contactcards.svg',
           alt: 'Contact Card',
         },
         list: ['Place PSTN calls', 'Place Teams calls', 'Write email', 'Start Teams chat', 'Get presence status'],
@@ -94,7 +93,7 @@ export const WithImageAndH4FontSize = {
       {
         title: 'Platforms',
         image: {
-          src: getAssetPath('svg/icons/unifiedcontacts_feature_platforms.svg'),
+          src: 'svg/icons/unifiedcontacts_feature_platforms.svg',
           alt: 'Platforms',
         },
         list: ['Teams Desktop Client', 'Teams Web App', 'Teams Mobile App'],
@@ -102,7 +101,7 @@ export const WithImageAndH4FontSize = {
       {
         title: 'ISO 27001',
         image: {
-          src: getAssetPath('svg/icons/unifiedcontacts_feature_certificates.svg'),
+          src: 'svg/icons/unifiedcontacts_feature_certificates.svg',
           alt: 'ISO 27001',
         },
         copy: 'lorem ipsum dolor sit amet',
@@ -129,7 +128,7 @@ export const Centered = {
       {
         title: 'Contact Sources',
         image: {
-          src: getAssetPath('svg/icons/unifiedcontacts_feature_contactsources.svg'),
+          src: 'svg/icons/unifiedcontacts_feature_contactsources.svg',
           alt: 'Contact Sources',
         },
         list: ['Azure AD Users', 'Azure AD Contacts (coming soon)', 'Personal Exchange Online Contacts'],
@@ -142,7 +141,7 @@ export const Centered = {
       {
         title: 'Contact Card',
         image: {
-          src: getAssetPath('svg/icons/unifiedcontacts_feature_contactcards.svg'),
+          src: 'svg/icons/unifiedcontacts_feature_contactcards.svg',
           alt: 'Contact Card',
         },
         list: ['Place PSTN calls', 'Place Teams calls', 'Write email', 'Start Teams chat', 'Get presence status'],
@@ -150,7 +149,7 @@ export const Centered = {
       {
         title: 'Platforms',
         image: {
-          src: getAssetPath('svg/icons/unifiedcontacts_feature_platforms.svg'),
+          src: 'svg/icons/unifiedcontacts_feature_platforms.svg',
           alt: 'Platforms',
         },
         list: ['Teams Desktop Client', 'Teams Web App', 'Teams Mobile App'],
@@ -158,7 +157,7 @@ export const Centered = {
       {
         title: 'ISO 27001',
         image: {
-          src: getAssetPath('svg/icons/unifiedcontacts_feature_certificates.svg'),
+          src: 'svg/icons/unifiedcontacts_feature_certificates.svg',
           alt: 'ISO 27001',
         },
         list: [
@@ -182,7 +181,7 @@ export const WithAnimation = {
       {
         title: 'Contact Sources',
         image: {
-          src: getAssetPath('svg/icons/unifiedcontacts_feature_contactsources.svg'),
+          src: 'svg/icons/unifiedcontacts_feature_contactsources.svg',
           alt: 'Contact Sources',
         },
         list: ['Azure AD Users', 'Azure AD Contacts (coming soon)', 'Personal Exchange Online Contacts'],
@@ -190,7 +189,7 @@ export const WithAnimation = {
       {
         title: 'Contact Card',
         image: {
-          src: getAssetPath('svg/icons/unifiedcontacts_feature_contactcards.svg'),
+          src: 'svg/icons/unifiedcontacts_feature_contactcards.svg',
           alt: 'Contact Card',
         },
         list: ['Place PSTN calls', 'Place Teams calls', 'Write email', 'Start Teams chat', 'Get presence status'],
@@ -198,7 +197,7 @@ export const WithAnimation = {
       {
         title: 'Platforms',
         image: {
-          src: getAssetPath('svg/icons/unifiedcontacts_feature_platforms.svg'),
+          src: 'svg/icons/unifiedcontacts_feature_platforms.svg',
           alt: 'Platforms',
         },
         list: ['Teams Desktop Client', 'Teams Web App', 'Teams Mobile App'],
@@ -206,7 +205,7 @@ export const WithAnimation = {
       {
         title: 'ISO 27001',
         image: {
-          src: getAssetPath('svg/icons/unifiedcontacts_feature_certificates.svg'),
+          src: 'svg/icons/unifiedcontacts_feature_certificates.svg',
           alt: 'ISO 27001',
         },
         list: [
@@ -224,11 +223,11 @@ export const WithImgSrcSet = {
       imgSrcSets: {
         srcSets: [
           {
-            src: 'svg/products/desktop.svg',
+            src: 'assets/svg/products/desktop.svg',
             media: '(min-width: 765px) and (orientation:landscape)',
           },
           {
-            src: 'svg/products/mobile.svg',
+            src: 'assets/svg/products/mobile.svg',
           },
         ],
       },
@@ -239,7 +238,7 @@ export const WithImgSrcSet = {
       {
         title: 'Contact Sources',
         image: {
-          src: getAssetPath('svg/icons/unifiedcontacts_feature_contactsources.svg'),
+          src: 'svg/icons/unifiedcontacts_feature_contactsources.svg',
           alt: 'Contact Sources',
         },
         list: ['Azure AD Users', 'Azure AD Contacts (coming soon)', 'Personal Exchange Online Contacts'],
@@ -247,7 +246,7 @@ export const WithImgSrcSet = {
       {
         title: 'Contact Card',
         image: {
-          src: getAssetPath('svg/icons/unifiedcontacts_feature_contactcards.svg'),
+          src: 'svg/icons/unifiedcontacts_feature_contactcards.svg',
           alt: 'Contact Card',
         },
         list: ['Place PSTN calls', 'Place Teams calls', 'Write email', 'Start Teams chat', 'Get presence status'],
@@ -255,7 +254,7 @@ export const WithImgSrcSet = {
       {
         title: 'Platforms',
         image: {
-          src: getAssetPath('svg/icons/unifiedcontacts_feature_platforms.svg'),
+          src: 'svg/icons/unifiedcontacts_feature_platforms.svg',
           alt: 'Platforms',
         },
         list: ['Teams Desktop Client', 'Teams Web App', 'Teams Mobile App'],
@@ -263,7 +262,7 @@ export const WithImgSrcSet = {
       {
         title: 'ISO 27001',
         image: {
-          src: getAssetPath('svg/icons/unifiedcontacts_feature_certificates.svg'),
+          src: 'svg/icons/unifiedcontacts_feature_certificates.svg',
           alt: 'ISO 27001',
         },
         list: [
@@ -278,7 +277,7 @@ export const WithImgSrcSet = {
 export const WithNoHeight = {
   args: {
     image: {
-      src: 'svg/products/desktop.svg',
+      src: 'assets/svg/products/desktop.svg',
     },
     headline: 'Specifications',
     headlineRowClasses: 'text-left',
@@ -286,7 +285,7 @@ export const WithNoHeight = {
       {
         title: 'Contact Sources',
         image: {
-          src: getAssetPath('svg/icons/unifiedcontacts_feature_contactsources.svg'),
+          src: 'svg/icons/unifiedcontacts_feature_contactsources.svg',
           alt: 'Contact Sources',
         },
         list: ['Azure AD Users', 'Azure AD Contacts (coming soon)', 'Personal Exchange Online Contacts'],
@@ -294,7 +293,7 @@ export const WithNoHeight = {
       {
         title: 'Contact Card',
         image: {
-          src: getAssetPath('svg/icons/unifiedcontacts_feature_contactcards.svg'),
+          src: 'svg/icons/unifiedcontacts_feature_contactcards.svg',
           alt: 'Contact Card',
         },
         list: ['Place PSTN calls', 'Place Teams calls', 'Write email', 'Start Teams chat', 'Get presence status'],
@@ -302,7 +301,7 @@ export const WithNoHeight = {
       {
         title: 'Platforms',
         image: {
-          src: getAssetPath('svg/icons/unifiedcontacts_feature_platforms.svg'),
+          src: 'svg/icons/unifiedcontacts_feature_platforms.svg',
           alt: 'Platforms',
         },
         list: ['Teams Desktop Client', 'Teams Web App', 'Teams Mobile App'],
@@ -310,7 +309,7 @@ export const WithNoHeight = {
       {
         title: 'ISO 27001',
         image: {
-          src: getAssetPath('svg/icons/unifiedcontacts_feature_certificates.svg'),
+          src: 'svg/icons/unifiedcontacts_feature_certificates.svg',
           alt: 'ISO 27001',
         },
         list: [
