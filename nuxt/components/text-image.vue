@@ -21,8 +21,8 @@
             :img="image"
             :cloudinary="cloudinary"
             :alt="alt"
-            imgSrcSets="textImageFloating"
-            preset="textImageFloating"
+            :imgSrcSets="imagePreset ? imagePreset : 'textImageFloating'"
+            :preset="imagePreset ? imagePreset : 'textImageFloating'"
             :lottie="lottie"
           />
         </div>
@@ -210,8 +210,8 @@ export default {
           this.float
             ? this.textImageFirstColWidthComputed
             : this.offset
-            ? this.textImageFirstColWidthComputed - 1
-            : this.textImageFirstColWidthComputed
+              ? this.textImageFirstColWidthComputed - 1
+              : this.textImageFirstColWidthComputed
         }`,
       ];
       if (this.float) {

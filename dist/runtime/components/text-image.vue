@@ -21,8 +21,8 @@
             :img="image"
             :cloudinary="cloudinary"
             :alt="alt"
-            imgSrcSets="textImageFloating"
-            preset="textImageFloating"
+            :imgSrcSets="imagePreset ? imagePreset : 'textImageFloating'"
+            :preset="imagePreset ? imagePreset : 'textImageFloating'"
             :lottie="lottie"
           />
         </div>
