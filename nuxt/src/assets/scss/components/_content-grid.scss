@@ -134,13 +134,23 @@
 }
 
 .content-grid--extended > .breakout,
-.content-grid--side-bar > .breakout {
+.content-grid--side-bar > .breakout,
+.content-grid--side-bar .content-grid > .breakout,
+.content-grid--extended .content-grid > .breakout {
   grid-column: breakout;
 }
 
 .content-grid--extended > .full-width,
-.content-grid--side-bar > .full-width {
+.content-grid--side-bar > .full-width,
+.content-grid--side-bar .content-grid > .full-width,
+.content-grid--extended .content-grid > .full-width {
   grid-column: full-width;
+}
+
+.content-grid--side-bar .content-grid > .full-width,
+.content-grid--extended .content-grid > .full-width {
+  position: relative;
+  z-index: 2;
 }
 
 .content-grid--side-bar > .post__sticky-bar {
@@ -160,7 +170,7 @@
       minmax(0, var(--breakout-size)) [breakout-end]
       minmax(var(--padding-inline), 1fr) [full-width-end];
 
-    > :not(p:not(.has-img), h1, h2, h3, h4, h5, h6, ul, ol, blockquote) {
+    > :not(p:not(.has-img), h1, h2, h3, h4, h5, h6, ul, ol, blockquote, .full-width) {
       grid-column: breakout;
       position: relative;
       z-index: 2;

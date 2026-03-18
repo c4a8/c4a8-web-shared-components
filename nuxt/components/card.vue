@@ -8,11 +8,20 @@
     :style="style"
     ref="root"
   >
+    <meta itemprop="author" :content="author" v-if="author" />
+    <meta itemprop="datePublished" :content="datePublished" v-if="datePublished" />
+    <meta itemprop="headline" :content="title" />
     <template v-if="large">
       <div class="row no-gutters">
         <div class="col-lg-8" v-if="blogtitlepic">
           <div class="card__img-top position-relative overflow-hidden is-foreground">
-            <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :img-src-sets="imgSrcSets" :lazy="true" />
+            <v-img
+              itemprop="image"
+              :img="hasExtension"
+              :cloudinary="hasBlogTitlePic"
+              :img-src-sets="imgSrcSets"
+              :lazy="true"
+            />
             <figure class="d-none d-lg-block">
               <svg
                 class="ie-curved-x position-absolute top-0 right-0 bottom-0 mr-n1"
@@ -56,6 +65,7 @@
         <div
           class="card__img-headline-container"
           :style="{ backgroundColor: logo && logo.bgColor ? logo.bgColor : null }"
+          v-if="!img"
         >
           <svg class="position-absolute" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -70,9 +80,12 @@
             />
           </svg>
           <div class="pb-5 pt-5 mx-11" style="display: flex; justify-content: center">
-            <v-img :img="logo.img" :cloudinary="logo.cloudinary" class="w-100" />
+            <v-img itemprop="image" :img="logo.img" :cloudinary="logo.cloudinary" class="w-100" />
           </div>
           <div class="card-img-cutoff" />
+        </div>
+        <div class="card__img-products" v-else>
+          <v-img itemprop="image" :img="img" :cloudinary="cloudinary" :alt="alt" class="w-100" />
         </div>
       </div>
       <div class="card__body card-body mt-0 pt-0 z-index-2" style="display: flex; flex-direction: column">
@@ -94,7 +107,13 @@
 
     <template v-else-if="long">
       <div class="card__img-top position-relative no-gutters is-foreground" v-if="blogtitlepic">
-        <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :img-src-sets="imgSrcSets" :lazy="true" />
+        <v-img
+          itemprop="image"
+          :img="hasExtension"
+          :cloudinary="hasBlogTitlePic"
+          :img-src-sets="imgSrcSets"
+          :lazy="true"
+        />
       </div>
 
       <div class="card__body card-body richtext">
@@ -126,7 +145,13 @@
     </template>
     <template v-else>
       <div class="card__img-top position-relative is-foreground" v-if="blogtitlepic">
-        <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :img-src-sets="imgSrcSets" :lazy="true" />
+        <v-img
+          itemprop="image"
+          :img="hasExtension"
+          :cloudinary="hasBlogTitlePic"
+          :img-src-sets="imgSrcSets"
+          :lazy="true"
+        />
         <figure class="ie-curved-y position-absolute right-0 bottom-0 left-0 mb-n1">
           <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1920 100.1">
             <path fill="#fff" d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"></path>
@@ -166,6 +191,9 @@ export default {
     };
   },
   computed: {
+    datePublished() {
+      return Tools.getFormattedISODate(this.date);
+    },
     blogView() {
       return this.activeView;
     },
@@ -218,7 +246,6 @@ export default {
     productValue() {
       return Tools.getJSON(this.product);
     },
-    
     truncatedExcerpt() {
       const excerptValue =
         Tools.isTrue(this.long) === true
@@ -227,7 +254,6 @@ export default {
 
       return Tools.decodeHTML(excerptValue);
     },
-    
     strippedExcerpt() {
       return Tools.stripHtml(this.excerpt);
     },
@@ -406,6 +432,9 @@ export default {
       type: Boolean,
     },
     logo: Object,
+    img: String,
+    cloudinary: Boolean,
+    alt: String,
   },
 };
 </script>

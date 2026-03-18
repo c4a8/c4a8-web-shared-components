@@ -1,5 +1,28 @@
 # Releases
 
+# Release 0.4.90
+
+- Add guardrail for service-overview
+- Fix content-grid z-index issues
+- Fix video-slider overvlow issue
+
+# Release 0.4.89
+
+- Add the option to add an image as the card product header
+
+# Release 0.4.88
+
+- Adds more itemprops to card and social post card
+- Fixes date published format
+
+# Release 0.4.87
+
+- Adds itemprops to card and social post card
+
+# Release 0.4.86
+
+- Adds itemprops to social post card
+
 # Release 0.4.84
 
 - Adds Code Block component

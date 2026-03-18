@@ -1,5 +1,5 @@
 <template>
-  <div class="service-overview utility-animation">
+  <div class="service-overview utility-animation" v-if="list && services">
     <div class="container">
       <div class="row">
         <div class="col">

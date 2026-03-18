@@ -327,3 +327,8 @@
   flex: 1;
   flex-wrap: wrap;
 }
+
+.card__img-products {
+  padding-bottom: spacing(5);
+  background: var(--color-card-background);
+}

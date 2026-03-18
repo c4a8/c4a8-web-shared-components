@@ -6,6 +6,7 @@ declare namespace _default {
         imgSrcSets: null;
     };
     namespace computed {
+        function datePublished(): any;
         function blogView(): any;
         function combinedTitle(): string;
         function noLink(): boolean;
@@ -104,6 +105,9 @@ declare namespace _default {
             export { type_1 as type };
         }
         let logo: ObjectConstructor;
+        let img: StringConstructor;
+        let cloudinary: BooleanConstructor;
+        let alt: StringConstructor;
     }
 }
 export default _default;

@@ -8,8 +8,11 @@
     :style="style"
     ref="root"
   >
+    <meta itemprop="url" :content="postUrl" v-if="postUrl" />
     <header class="social-post-card__header d-flex align-items-center position-relative">
-      <div class="social-post-card__avatar mr-3">
+      <div class="social-post-card__avatar mr-3" itemprop="author" itemscope itemtype="https://schema.org/Organization">
+        <meta itemprop="name" :content="author?.name" />
+        <meta itemprop="url" :content="author?.url" v-if="author?.url" />
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M22 0H0V11.0071H22V0Z" fill="#5CBBFF" />
           <path d="M22 10.9648H0V22.0003H22V10.9648Z" fill="#0072C6" />
@@ -17,7 +20,7 @@
       </div>
       <div class="social-post-card__meta flex-grow-1">
         <div class="social-post-card__author-handle-time" v-if="formattedPostedAt">
-          <time :datetime="formattedPostedAt">{{ formattedPostedAt }}</time>
+          <time itemprop="datePublished" :datetime="postedAtISO" :content="postedAtISO">{{ formattedPostedAt }}</time>
         </div>
       </div>
       <div class="social-post-card__linkedin-badge">
@@ -26,7 +29,7 @@
     </header>
 
     <div class="social-post-card__content mt-3" v-if="contentHtml">
-      <span v-html="truncatedContent"></span>
+      <span itemprop="articleBody" v-html="truncatedContent"></span>
       <span v-if="showReadMore" class="social-post-card__read-more">... {{ $t('readMore') }}</span>
     </div>
 
@@ -47,16 +50,16 @@
       <div
         class="social-post-card__repost-media"
         v-if="resharedPost.media && resharedPost.media[0].src"
-        @click.stop="handleMediaClick"
+        @click.stop="handleClick"
       >
         <v-img :img="resharedPost.media[0].src" :cloudinary="false" :lazy="true" />
       </div>
     </div>
-    <div class="social-post-card__media mt-3" v-else-if="firstMedia" @click.stop="handleMediaClick">
+    <div class="social-post-card__media mt-3" v-else-if="firstMedia" @click.stop="handleClick">
       <div v-if="firstMedia.type === 'video'" class="social-post-card__video-wrapper">
-        <v-img :img="firstMedia.thumbnail || firstMedia.src" :cloudinary="false" :lazy="true" />
+        <v-img itemprop="video" :img="firstMedia.thumbnail || firstMedia.src" :cloudinary="false" :lazy="true" />
       </div>
-      <v-img v-else :img="firstMedia.src" :cloudinary="false" :lazy="true" />
+      <v-img itemprop="image" v-else :img="firstMedia.src" :cloudinary="false" :lazy="true" />
     </div>
 
     <footer class="social-post-card__footer d-flex align-items-center justify-content-between mt-3">
@@ -103,6 +106,10 @@ export default {
     },
     formattedPostedAt() {
       return this.formatDate(this.postedAt);
+    },
+    postedAtISO() {
+      if (!this.postedAt) return null;
+      return Tools.getFormattedISODate(this.postedAt);
     },
     truncatedContent() {
       return this.truncateContent(this.contentHtml);
@@ -168,10 +175,7 @@ export default {
     },
     handleClick() {
       if (!this.postUrl) return;
-      window.open(this.postUrl, '_blank', 'noopener');
-    },
-    handleMediaClick() {
-      if (!this.postUrl) return;
+
       window.open(this.postUrl, '_blank', 'noopener');
     },
   },

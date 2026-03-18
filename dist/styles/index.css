@@ -37695,6 +37695,11 @@ svg.streamline-icon {
   flex-wrap: wrap;
 }
 
+.card__img-products {
+  padding-bottom: 1.25rem;
+  background: var(--color-card-background);
+}
+
 .carousel {
   --color-carousel-background: rgba(255, 255, 255, 0);
   width: 100%;
@@ -38328,13 +38333,23 @@ svg.streamline-icon {
 }
 
 .content-grid--extended > .breakout,
-.content-grid--side-bar > .breakout {
+.content-grid--side-bar > .breakout,
+.content-grid--side-bar .content-grid > .breakout,
+.content-grid--extended .content-grid > .breakout {
   grid-column: breakout;
 }
 
 .content-grid--extended > .full-width,
-.content-grid--side-bar > .full-width {
+.content-grid--side-bar > .full-width,
+.content-grid--side-bar .content-grid > .full-width,
+.content-grid--extended .content-grid > .full-width {
   grid-column: full-width;
+}
+
+.content-grid--side-bar .content-grid > .full-width,
+.content-grid--extended .content-grid > .full-width {
+  position: relative;
+  z-index: 2;
 }
 
 .content-grid--side-bar > .post__sticky-bar {
@@ -38345,7 +38360,7 @@ svg.streamline-icon {
   .content-grid--side-bar {
     grid-template-columns: [full-width-start] minmax(var(--padding-inline), 1fr) [breakout-start sidebar-start] calc(var(--breakout-size) + var(--sidebar-size)) [sidebar-end content-start] min(100% - var(--padding-inline) * 2 - var(--sidebar-size), var(--content-max-width) - var(--sidebar-size)) [content-end] minmax(0, var(--breakout-size)) [breakout-end] minmax(var(--padding-inline), 1fr) [full-width-end];
   }
-  .content-grid--side-bar > :not(p:not(.has-img), h1, h2, h3, h4, h5, h6, ul, ol, blockquote) {
+  .content-grid--side-bar > :not(p:not(.has-img), h1, h2, h3, h4, h5, h6, ul, ol, blockquote, .full-width) {
     grid-column: breakout;
     position: relative;
     z-index: 2;
@@ -50582,6 +50597,9 @@ shape {
   background-color: var(--color-video-slider-background);
   color: var(--color-video-slider-color);
   padding: 6rem 0;
+}
+.video-slider .video-slider__row {
+  width: 100%;
 }
 .video-slider .slick-slide > * {
   padding: var(--video-slider-video-gap) calc(var(--video-slider-video-factor) * var(--video-slider-video-gap));
