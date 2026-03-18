@@ -38344,6 +38344,10 @@ svg.streamline-icon {
 .content-grid--side-bar .content-grid > .full-width,
 .content-grid--extended .content-grid > .full-width {
   grid-column: full-width;
+}
+
+.content-grid--side-bar .content-grid > .full-width,
+.content-grid--extended .content-grid > .full-width {
   position: relative;
   z-index: 2;
 }
@@ -50593,6 +50597,9 @@ shape {
   background-color: var(--color-video-slider-background);
   color: var(--color-video-slider-color);
   padding: 6rem 0;
+}
+.video-slider .video-slider__row {
+  width: 100%;
 }
 .video-slider .slick-slide > * {
   padding: var(--video-slider-video-gap) calc(var(--video-slider-video-factor) * var(--video-slider-video-gap));
