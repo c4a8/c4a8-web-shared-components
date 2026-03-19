@@ -1,5 +1,5 @@
 <template>
-  <div class="card-box-animation">
+  <div class="card-box-animation" :style="{ '--box-width': width }">
     <div class="card-box-animation__intro-wrapper">
       <div class="card-box-animation__box">
         <div class="card-box-animation__box-flap card-box-animation__box-flap--left"></div>
@@ -9,15 +9,15 @@
         </div>
         <div
           class="card-box-animation__card card-box-animation__card--3"
-          style="--rot: 0deg; --tx: 0%; --ty: -160%"
+          style="--rot: 15deg; --tx: 0%; --ty: -95%"
         ></div>
         <div
           class="card-box-animation__card card-box-animation__card--4"
-          style="--rot: -25deg; --tx: -20%; --ty: -160%"
+          style="--rot: 1deg; --tx: 0%; --ty: -100%"
         ></div>
         <div
           class="card-box-animation__card card-box-animation__card--5"
-          style="--rot: -50deg; --tx: -40%; --ty: -155%"
+          style="--rot: -12deg; --tx: 3%; --ty: -102%"
         ></div>
         <div class="card-box-animation__box-front">
           <div class="card-box-animation__box-front-face"></div>
@@ -43,3 +43,12 @@
     </div>
   </div>
 </template>
+
+<script setup>
+defineProps({
+  width: {
+    type: String,
+    default: '180px',
+  },
+});
+</script>

@@ -1,20 +1,33 @@
 .card-box-animation {
+  --card-box-bg-color: #e8e7e9;
+  --box-width: 180px;
+  --box-height: calc(var(--box-width) * 1.387);
+  --box-depth: calc(var(--box-width) * 0.2735);
+  --card-w: calc(var(--box-width) * 0.9);
+  --card-h: calc(var(--box-width) * 1.255);
+
+  --loop-dur: 8s;
+  --intro-dur: 1s;
+
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  height: 100%;
-  perspective: 900px;
-  visibility: hidden;
+  height: calc(var(--box-height) * 2);
+  perspective: calc(var(--box-width) * 5);
+  // visibility: hidden;
+
+  visibility: visible !important;
+  animation: fadeIn 2s ease-out forwards;
 }
 
 .card-box-animation__box {
-  transform-style: preserve-3d;
+  transform-style: preserve-3d !important;
   position: relative;
   z-index: 2;
-  width: 180px;
-  height: 249.66px;
-  transform-style: preserve-3d;
+  width: var(--box-width);
+  height: var(--box-height);
+  transform: rotateX(-4deg) rotateZ(7deg);
 }
 
 .card-box-animation__box-front,
@@ -24,141 +37,9 @@
   height: 100%;
 }
 
-.card-box-animation__box-left,
-.card-box-animation__box-right {
-  position: absolute;
-  top: 0;
-  left: calc(50% - 49.239px / 2);
-  height: 100%;
-  width: 49.239px;
-  background: #ececec;
-}
-
-.card-box-animation__box-flap {
-  position: absolute;
-  left: calc(50% - 49.239px / 2);
-  top: calc(50% - 49.239px / 2);
-  width: 49.239px;
-  height: 0;
-  transform-origin: 50% 100%;
-  border-bottom: 49.239px solid #dedede;
-  border-left: calc(49.239px / 10) solid transparent;
-  border-right: calc(49.239px / 10) solid transparent;
-}
-
-.card-box-animation__box-lid {
-  position: absolute;
-  z-index: 0;
-  top: calc(50% - 49.239px / 2);
-  width: 180px;
-  height: 49.239px;
-  transform-origin: 50% 100%;
-  transform-style: preserve-3d;
-  transform: translateZ(calc(-49.239px / 2)) translateY(calc(-249.66px / 2 - 49.239px / 2 + 0.5px)) rotateY(180deg)
-    rotateX(90deg);
-}
-
-.card-box-animation__box-lid-inner {
-  position: relative;
-  height: 100%;
-  z-index: 0;
-  transform-style: preserve-3d;
-}
-
-.card-box-animation__box-lid-top {
-  width: 180px;
-  height: 49.239px;
-  transform-style: preserve-3d;
-}
-
-.card-box-animation__box-lid-top-logo {
-  position: absolute;
-  z-index: 0;
-  top: 0;
-  left: 0;
-  width: 180px;
-  height: 49.239px;
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/61488/coolclub-logo-full.png) white no-repeat center
-    center;
-  background-blend-mode: multiply;
-  background-size: cover;
-  transform: rotateX(0deg);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-.card-box-animation__box-lid-top-back {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 180px;
-  height: 49.239px;
-  background: #ececec;
-  background-image: linear-gradient(
-    -145deg,
-    rgba(0, 0, 0, 0.2) 0%,
-    rgba(236, 236, 236, 0.5) 72%,
-    rgba(255, 255, 255, 0.3) 73%
-  );
-  transform: rotateX(180deg);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-.card-box-animation__box-lid-flap {
-  position: absolute;
-  z-index: 0;
-  top: calc(50% - 49.239px / 2);
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
-  transform-origin: 50% 100%;
-  transform-style: preserve-3d;
-  transform: translateY(calc(-49.239px + 1px)) rotateX(120deg);
-}
-
-.card-box-animation__box-lid-flap-shape {
-  position: absolute;
-  width: 100%;
-  height: 190%;
-  border-radius: 50%/90%;
-  overflow: hidden;
-  background: #ececec;
-}
-
-.card-box-animation__box-lid-flap-shape-inner {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #ececec;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 65%);
-}
-
-.card-box-animation__box-lid-flap-shape-outer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #ececec;
-  transform: rotateX(180deg);
-}
-
-.card-box-animation__box-flap--left {
-  transform: translateX(calc(-180px / 2)) translateY(calc(-249.66px / 2 - 49.239px / 2)) translateZ(0px) rotateY(270deg)
-    rotateX(90deg);
-}
-
-.card-box-animation__box-flap--right {
-  transform: translateX(calc(180px / 2)) translateY(calc(-249.66px / 2 - 49.239px / 2)) translateZ(0px) rotateY(90deg)
-    rotateX(90deg);
-}
-
 .card-box-animation__box-front {
   transform-style: preserve-3d;
-  transform: translateZ(calc(-49.239px / 2));
+  transform: translateZ(calc(var(--box-depth) / -2));
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
@@ -178,7 +59,8 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/61488/coolclub-front.png) no-repeat left top;
+  background: var(--card-box-bg-color) url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/61488/coolclub-front.png)
+    no-repeat left top;
   background-size: cover;
   transform: rotateY(180deg);
   transform-style: preserve-3d;
@@ -188,45 +70,191 @@
 
 .card-box-animation__box-back {
   z-index: 10;
-  background: transparent;
-  transform: translateZ(calc(49.239px / 2)) rotateY(0deg);
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/61488/coolclub-back-2.png) no-repeat left top;
+  transform: translateZ(calc(var(--box-depth) / 2)) rotateY(0deg);
+  background: var(--card-box-bg-color) url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/61488/coolclub-back-2.png)
+    no-repeat left top;
   background-size: cover;
+}
+
+.card-box-animation__box-left,
+.card-box-animation__box-right {
+  position: absolute;
+  top: 0;
+  left: calc(50% - var(--box-depth) / 2);
+  height: 100%;
+  width: var(--box-depth);
+  background: var(--card-box-bg-color);
 }
 
 .card-box-animation__box-left {
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/61488/coolclub-left.png) no-repeat left top;
+  background: var(--card-box-bg-color) url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/61488/coolclub-left.png)
+    no-repeat left top;
   background-size: cover;
-  transform: translateX(calc(-180px / 2)) rotateY(-90deg);
+  transform: translateX(calc(var(--box-width) / -2)) rotateY(-90deg);
 }
 
 .card-box-animation__box-right {
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/61488/coolclub-right.png) no-repeat left top;
+  background: var(--card-box-bg-color) url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/61488/coolclub-right.png)
+    no-repeat left top;
   background-size: cover;
-  transform: translateX(calc(180px / 2)) rotateY(90deg);
+  transform: translateX(calc(var(--box-width) / 2)) rotateY(90deg);
 }
 
 .card-box-animation__box-bottom {
   position: absolute;
   left: 0;
-  top: calc(50% - 49.239px / 2);
+  top: calc(50% - var(--box-depth) / 2);
   width: 100%;
-  height: 49.239px;
-  background: #ececec;
-  transform: translateY(calc(249.66px / 2)) rotateX(-90deg);
+  height: var(--box-depth);
+  background: var(--card-box-bg-color);
+  transform: translateY(calc(var(--box-height) / 2)) rotateX(-90deg);
+}
+
+.card-box-animation__box-flap {
+  position: absolute;
+  left: calc(50% - var(--box-depth) / 2);
+  top: calc(50% - var(--box-depth) / 2);
+  width: var(--box-depth);
+  height: 0;
+  transform-origin: 50% 100%;
+  border-bottom: var(--box-depth) solid #dedede;
+  border-left: calc(var(--box-depth) / 10) solid transparent;
+  border-right: calc(var(--box-depth) / 10) solid transparent;
+}
+
+.card-box-animation__box-flap--left {
+  transform: translateX(calc(var(--box-width) / -2)) translateY(calc(var(--box-height) / -2 - var(--box-depth) / 2))
+    translateZ(0px) rotateY(270deg) rotateX(90deg);
+  animation: openFlapLeft 0.5s ease-in-out forwards;
+  animation-delay: 1.8s;
+}
+
+.card-box-animation__box-flap--right {
+  transform: translateX(calc(var(--box-width) / 2)) translateY(calc(var(--box-height) / -2 - var(--box-depth) / 2))
+    translateZ(0px) rotateY(90deg) rotateX(90deg);
+  animation: openFlapRight 0.5s ease-in-out forwards;
+  animation-delay: 1.8s;
+}
+
+.card-box-animation__box-lid {
+  position: absolute;
+  z-index: 0;
+  top: calc(50% - var(--box-depth) / 2);
+  width: var(--box-width);
+  height: var(--box-depth);
+  transform-origin: 50% 100%;
+  transform-style: preserve-3d;
+  transform: translateZ(calc(var(--box-depth) / -2))
+    translateY(calc(var(--box-height) / -2 - var(--box-depth) / 2 + 0.5px)) rotateY(180deg) rotateX(90deg);
+  animation: openLid 0.5s ease-in-out forwards;
+  animation-delay: 1.4s;
+}
+
+.card-box-animation__box-lid-inner {
+  position: relative;
+  height: 100%;
+  z-index: 0;
+  transform-style: preserve-3d;
+}
+
+.card-box-animation__box-lid-top {
+  width: var(--box-width);
+  height: var(--box-depth);
+  transform-style: preserve-3d;
+}
+
+.card-box-animation__box-lid-top-logo {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: var(--box-width);
+  height: var(--box-depth);
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/61488/coolclub-logo-full.png) white no-repeat center
+    center;
+  background-blend-mode: multiply;
+  background-size: cover;
+  transform: rotateX(0deg);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.card-box-animation__box-lid-top-back {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--box-width);
+  height: var(--box-depth);
+  background: var(--card-box-bg-color);
+  background-image: linear-gradient(
+    -145deg,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(236, 236, 236, 0.5) 72%,
+    rgba(255, 255, 255, 0.3) 73%
+  );
+  transform: rotateX(180deg);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.card-box-animation__box-lid-flap {
+  position: absolute;
+  z-index: 0;
+  top: calc(50% - var(--box-depth) / 2);
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  transform-origin: 50% 100%;
+  transform-style: preserve-3d;
+  transform: translateY(calc(var(--box-depth) * -1 + 1px)) rotateX(120deg);
+  animation: openLidFlap 0.5s ease-in-out forwards;
+  animation-delay: 1.6s;
+}
+
+.card-box-animation__box-lid-flap-shape {
+  position: absolute;
+  width: 100%;
+  height: 190%;
+  border-radius: 50%/90%;
+  overflow: hidden;
+  background: var(--card-box-bg-color);
+}
+
+.card-box-animation__box-lid-flap-shape-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--card-box-bg-color);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 65%);
+}
+
+.card-box-animation__box-lid-flap-shape-outer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--card-box-bg-color);
+  transform: rotateX(180deg);
 }
 
 .card-box-animation__card {
   position: absolute;
-  left: calc((180px - 162px) / 2);
+  left: calc((var(--box-width) - var(--card-w)) / 2);
   top: 3%;
-  width: 162px;
-  height: 225.8928px;
+  width: var(--card-w);
+  height: var(--card-h);
   background: black;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   transform-style: preserve-3d;
+  transform-origin: center bottom;
+  animation: cardPopup var(--loop-dur) ease-in-out infinite;
+  animation-delay: var(--intro-dur);
 }
+
 .card-box-animation__card:after {
   position: absolute;
   content: '';
@@ -236,6 +264,7 @@
   background-size: cover;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  border: 2px solid red;
   transform: rotateY(180deg);
   transform-style: preserve-3d;
 }
@@ -249,115 +278,27 @@
 .card-box-animation__card--2 {
   background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/61488/fwa-cards-02.png) no-repeat left top;
   background-size: cover;
-  transform: translateZ(3.6px) rotateY(180deg);
+  transform: translateZ(calc(var(--box-width) * 0.02)) rotateY(180deg);
 }
 
 .card-box-animation__card--3 {
   background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/61488/fwa-cards-03.png) no-repeat left top;
   background-size: cover;
-  transform: translateZ(7.2px) rotateY(180deg);
+  transform: translateZ(calc(var(--box-width) * 0.04)) rotateY(180deg);
 }
 
 .card-box-animation__card--4 {
   background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/61488/fwa-cards-04.png) no-repeat left top;
   background-size: cover;
-  transform: translateZ(10.8px) rotateY(180deg);
+  transform: translateZ(calc(var(--box-width) * 0.06)) rotateY(180deg);
 }
 
 .card-box-animation__card--5 {
   background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/61488/fwa-cards-05.png) no-repeat left top;
   background-size: cover;
-  transform: translateZ(14.4px) rotateY(180deg);
+  transform: translateZ(calc(var(--box-width) * 0.08)) rotateY(180deg);
 }
 
-.gsap-3-logo {
-  width: 20vw;
-  max-width: 150px;
-  position: fixed;
-  bottom: 15px;
-  right: 15px;
-}
-
-/*  ==========================================================
-  Collection Linl
-  ========================================================== */
-.collection {
-  position: fixed;
-  z-index: 1000;
-  top: 24px;
-  right: 24px;
-  display: flex;
-  flex-direction: column;
-}
-
-.collection--1 {
-  top: 62px;
-}
-
-.collection__link {
-  position: relative;
-  margin-bottom: 16px;
-  color: black;
-  font-family: Helvetica, sans-serif;
-  text-decoration: none;
-  font-size: 16px;
-}
-.collection__link span {
-  display: block;
-  position: absolute;
-  bottom: -3px;
-  left: 0;
-  height: 1px;
-  width: 10%;
-  background-color: black;
-  content: '';
-  transition: width 0.3s;
-}
-.collection__link:hover span {
-  width: 100%;
-}
-
-/*test*/
-/* =========================================
-   ANIMATION CONFIGURATION (FIXED TIMING)
-   ========================================= */
-
-:root {
-  --loop-dur: 8s; /* Elegant slow speed */
-  --intro-dur: 2s;
-}
-
-.card-box-animation {
-  visibility: visible !important;
-  animation: fadeIn 2s ease-out forwards;
-}
-
-/* 1. WRAPPER (Intro) */
-.card-box-animation__intro-wrapper {
-  // width: 180px;
-  // height: 249.66px;
-  position: relative;
-  // transform-style: preserve-3d;
-  // animation: introSequence var(--intro-dur) cubic-bezier(0.25, 1, 0.5, 1) forwards;
-}
-
-/* 2. BOX LOOP */
-.card-box-animation__box {
-  transform-style: preserve-3d !important;
-  // transform: none;
-  // animation: boxLoop var(--loop-dur) ease-in-out infinite;
-  // animation-delay: var(--intro-dur);
-  transform: rotateX(-4deg) rotateZ(10deg);
-}
-
-/* 3. CARDS */
-.card-box-animation__card {
-  transform-origin: center bottom;
-  animation: cardPopup var(--loop-dur) ease-in-out infinite;
-  animation-delay: var(--intro-dur);
-}
-
-/* 4. LIGHTING */
 .card-box-animation__box-front-face,
 .card-box-animation__box-back,
 .card-box-animation__box-lid-top-logo,
@@ -371,33 +312,20 @@
   animation: lightRight var(--loop-dur) ease-in-out infinite;
   animation-delay: var(--intro-dur);
 }
+
 .card-box-animation__box-left {
   filter: brightness(0.5);
   animation: lightLeft var(--loop-dur) ease-in-out infinite;
   animation-delay: var(--intro-dur);
 }
 
-/* 5. OPENING SEQUENCE */
-.card-box-animation__box-lid {
-  animation: openLid 0.5s ease-in-out forwards;
-  animation-delay: 1.4s;
+.card-box-animation__intro-wrapper {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: calc(var(--box-height) * 2);
 }
-.card-box-animation__box-lid-flap {
-  animation: openLidFlap 0.5s ease-in-out forwards;
-  animation-delay: 1.6s;
-}
-.card-box-animation__box-flap--left {
-  animation: openFlapLeft 0.5s ease-in-out forwards;
-  animation-delay: 1.8s;
-}
-.card-box-animation__box-flap--right {
-  animation: openFlapRight 0.5s ease-in-out forwards;
-  animation-delay: 1.8s;
-}
-
-/* =========================================
-   KEYFRAMES (SYNCED)
-   ========================================= */
 
 @keyframes fadeIn {
   from {
@@ -417,13 +345,6 @@
   }
 }
 
-/*
-   TIMELINE (8s Total):
-   0-5%: Rest
-   5-20%: Rotate to Back (180deg) -> Cards must start HERE
-   20-60%: Hold at Back
-   60-75%: Rotate to Front (360deg)
-*/
 @keyframes boxLoop {
   0%,
   5% {
@@ -440,34 +361,20 @@
 }
 
 @keyframes cardPopup {
-  /*
-     Fix: Start popping at 15% (during the box rotation),
-     so they are visible immediately when box hits 180deg at 20%.
-  */
-
-  /* 1. Hidden inside */
   0%,
   15% {
     transform: translateZ(0px) rotateY(180deg) translateY(0%) translateX(0%) rotateZ(0deg);
   }
-
-  /* 2. Pop UP (Vertical) - Done by 25% */
   25% {
     transform: translateZ(0px) rotateY(180deg) translateY(var(--ty)) translateX(0%) rotateZ(0deg);
   }
-
-  /* 3. Fan OUT (Explode) */
   35%,
   50% {
     transform: translateZ(0px) rotateY(180deg) translateY(var(--ty)) translateX(var(--tx)) rotateZ(var(--rot));
   }
-
-  /* 4. Fan IN (Collapse) */
   55% {
     transform: translateZ(0px) rotateY(180deg) translateY(var(--ty)) translateX(0%) rotateZ(0deg);
   }
-
-  /* 5. Drop DOWN - Synced with Box Rotate Back (60%-75%) */
   60% {
     transform: translateZ(0px) rotateY(180deg) translateY(var(--ty)) translateX(0%) rotateZ(0deg);
   }
@@ -477,7 +384,6 @@
   }
 }
 
-/* Lighting (Adjusted to match rotation timing 5-20% and 60-75%) */
 @keyframes lightRight {
   0%,
   5% {
@@ -485,7 +391,7 @@
   }
   12% {
     filter: brightness(1.2);
-  } /* Peak mid-rotation */
+  }
   20%,
   100% {
     filter: brightness(0.5);
@@ -499,49 +405,51 @@
   }
   67% {
     filter: brightness(1.2);
-  } /* Peak mid-rotation */
+  }
   75%,
   100% {
     filter: brightness(0.5);
   }
 }
 
-/* Standard Openers */
 @keyframes openLid {
   0% {
-    transform: translateZ(calc(-49.239px / 2)) translateY(calc(-249.66px / 2 - 49.239px / 2 + 0.5px)) rotateY(180deg)
-      rotateX(90deg);
+    transform: translateZ(calc(var(--box-depth) / -2))
+      translateY(calc(var(--box-height) / -2 - var(--box-depth) / 2 + 0.5px)) rotateY(180deg) rotateX(90deg);
   }
   100% {
-    transform: translateZ(calc(-49.239px / 2)) translateY(calc(-249.66px / 2 - 49.239px / 2 + 0.5px)) rotateY(180deg)
-      rotateX(-135deg);
+    transform: translateZ(calc(var(--box-depth) / -2))
+      translateY(calc(var(--box-height) / -2 - var(--box-depth) / 2 + 0.5px)) rotateY(180deg) rotateX(-135deg);
   }
 }
+
 @keyframes openLidFlap {
   0% {
-    transform: translateY(calc(-49.239px + 1px)) rotateX(120deg);
+    transform: translateY(calc(var(--box-depth) * -1 + 1px)) rotateX(120deg);
   }
   100% {
-    transform: translateY(calc(-49.239px + 1px)) rotateX(60deg);
+    transform: translateY(calc(var(--box-depth) * -1 + 1px)) rotateX(60deg);
   }
 }
+
 @keyframes openFlapLeft {
   0% {
-    transform: translateX(calc(-180px / 2)) translateY(calc(-249.66px / 2 - 49.239px / 2)) translateZ(0px)
-      rotateY(270deg) rotateX(90deg);
+    transform: translateX(calc(var(--box-width) / -2)) translateY(calc(var(--box-height) / -2 - var(--box-depth) / 2))
+      translateZ(0px) rotateY(270deg) rotateX(90deg);
   }
   100% {
-    transform: translateX(calc(-180px / 2)) translateY(calc(-249.66px / 2 - 49.239px / 2)) translateZ(0px)
-      rotateY(270deg) rotateX(-45deg);
+    transform: translateX(calc(var(--box-width) / -2)) translateY(calc(var(--box-height) / -2 - var(--box-depth) / 2))
+      translateZ(0px) rotateY(270deg) rotateX(-45deg);
   }
 }
+
 @keyframes openFlapRight {
   0% {
-    transform: translateX(calc(180px / 2)) translateY(calc(-249.66px / 2 - 49.239px / 2)) translateZ(0px) rotateY(90deg)
-      rotateX(90deg);
+    transform: translateX(calc(var(--box-width) / 2)) translateY(calc(var(--box-height) / -2 - var(--box-depth) / 2))
+      translateZ(0px) rotateY(90deg) rotateX(90deg);
   }
   100% {
-    transform: translateX(calc(180px / 2)) translateY(calc(-249.66px / 2 - 49.239px / 2)) translateZ(0px) rotateY(90deg)
-      rotateX(-45deg);
+    transform: translateX(calc(var(--box-width) / 2)) translateY(calc(var(--box-height) / -2 - var(--box-depth) / 2))
+      translateZ(0px) rotateY(90deg) rotateX(-45deg);
   }
 }
