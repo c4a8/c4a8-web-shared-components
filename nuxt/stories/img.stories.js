@@ -1,4 +1,3 @@
-import { getAssetPath } from '../.storybook/templates';
 import ImgComponent from '../components/v-img.vue';
 import lottie1 from './data/lottie1.json';
 
@@ -14,7 +13,7 @@ export default {
 export const Img = {
   args: {
     alt: 'Image Alt Text',
-    img: getAssetPath('img/image-placeholder-1.jpg'),
+    img: 'img/image-placeholder-1.jpg',
   },
 };
 
