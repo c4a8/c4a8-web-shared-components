@@ -38917,10 +38917,10 @@ svg.streamline-icon {
 }
 .shared-components .cta.btn-primary::after {
   position: absolute;
-  left: calc(-1 * var(--cta-border-width) / 2);
-  top: calc(-1 * var(--cta-border-width) / 2);
-  width: calc(100% + var(--cta-border-width));
-  height: calc(100% + var(--cta-border-width));
+  left: calc(-1 * var(--cta-border-width));
+  top: calc(-1 * var(--cta-border-width));
+  width: calc(100% + var(--cta-border-width) * 2);
+  height: calc(100% + var(--cta-border-width) * 2);
   content: attr(data-text);
   color: var(--cta-copy-color);
   display: flex;
