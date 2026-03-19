@@ -1,5 +1,3 @@
-import { getAssetPath } from '../.storybook/templates';
-
 import TextImageComponent from '../components/text-image.vue';
 import lottie1 from './data/lottie1.json';
 
@@ -181,7 +179,7 @@ export const JobApplication = {
     },
     copyClasses: 'h3-font-size',
     white: true,
-    image: getAssetPath('../svg/icons/icon-hand.svg'),
+    image: 'svg/icons/icon-hand.svg',
     cloudinary: false,
     bgColor: 'var(--color-career-background)',
     left: true,
@@ -189,6 +187,7 @@ export const JobApplication = {
   },
 };
 
+// TODO here is the issue i guess
 export const LeftFloating = {
   args: {
     href: '',
