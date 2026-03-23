@@ -5,20 +5,18 @@
         <div class="card-box-animation__box-flap card-box-animation__box-flap--left"></div>
         <div class="card-box-animation__box-flap card-box-animation__box-flap--right"></div>
         <div class="card-box-animation__box-back">
+          <CardBoxBack />
           <div class="card-box-animation__box-back-face"></div>
         </div>
-        <div
-          class="card-box-animation__card card-box-animation__card--3"
-          style="--rot: 15deg; --tx: 0%; --ty: -95%"
-        ></div>
-        <div
-          class="card-box-animation__card card-box-animation__card--4"
-          style="--rot: 1deg; --tx: 0%; --ty: -100%"
-        ></div>
-        <div
-          class="card-box-animation__card card-box-animation__card--5"
-          style="--rot: -12deg; --tx: 3%; --ty: -102%"
-        ></div>
+        <div class="card-box-animation__card card-box-animation__card--3" style="--rot: 15deg; --tx: 0%; --ty: -95%">
+          <CardBoxCardOne class="card-box-animation__card-one" />
+        </div>
+        <div class="card-box-animation__card card-box-animation__card--4" style="--rot: 1deg; --tx: 0%; --ty: -100%">
+          <CardBoxCardOne class="card-box-animation__card-one" />
+        </div>
+        <div class="card-box-animation__card card-box-animation__card--5" style="--rot: -19deg; --tx: 8%; --ty: -102%">
+          <CardBoxCardTwo class="card-box-animation__card-two" />
+        </div>
         <div class="card-box-animation__box-front">
           <div class="card-box-animation__box-front-face"></div>
         </div>
@@ -48,7 +46,7 @@
 defineProps({
   width: {
     type: String,
-    default: '180px',
+    default: '220px',
   },
 });
 </script>

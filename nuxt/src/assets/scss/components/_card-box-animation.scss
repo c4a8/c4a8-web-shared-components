@@ -4,21 +4,19 @@
   --box-height: calc(var(--box-width) * 1.387);
   --box-depth: calc(var(--box-width) * 0.2735);
   --card-w: calc(var(--box-width) * 0.9);
-  --card-h: calc(var(--box-width) * 1.255);
-
-  --loop-dur: 8s;
+  --card-h: calc(var(--box-width) * 1.335);
+  --loop-dur: 3s;
   --intro-dur: 1s;
 
   position: relative;
   display: flex;
   align-items: flex-end;
-  justify-content: center;
+  justify-content: flex-end;
   height: calc(var(--box-height) * 2);
   perspective: calc(var(--box-width) * 5);
-  // visibility: hidden;
-
-  visibility: visible !important;
+  visibility: visible;
   animation: fadeIn 2s ease-out forwards;
+  width: 100%;
 }
 
 .card-box-animation__box {
@@ -42,7 +40,9 @@
   transform: translateZ(calc(var(--box-depth) / -2));
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  box-shadow: 3px 9px 4px 0 rgb(0 0 0 / 23%);
 }
+
 .card-box-animation__box-front:before {
   position: absolute;
   left: 0;
@@ -51,6 +51,12 @@
   width: 100%;
   height: 100%;
   background: #cccbcd;
+}
+
+.card-box-animation__card-one {
+  width: 100%;
+  height: 100%;
+  position: absolute;
 }
 
 .card-box-animation__box-front-face {
@@ -71,9 +77,8 @@
 .card-box-animation__box-back {
   z-index: 10;
   transform: translateZ(calc(var(--box-depth) / 2)) rotateY(0deg);
-  background: var(--card-box-bg-color) url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/61488/coolclub-back-2.png)
-    no-repeat left top;
-  background-size: cover;
+  left: -1px;
+  width: calc(100% + 2px);
 }
 
 .card-box-animation__box-left,
@@ -246,57 +251,38 @@
   top: 3%;
   width: var(--card-w);
   height: var(--card-h);
-  background: black;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+  background-color: #ffffff;
+  backface-visibility: visible;
   transform-style: preserve-3d;
   transform-origin: center bottom;
-  animation: cardPopup var(--loop-dur) ease-in-out infinite;
+  animation: cardPopup var(--loop-dur) ease-in-out forwards;
   animation-delay: var(--intro-dur);
-}
+  box-shadow: 3px 3px 5px 0 rgb(0 0 0 / 16%);
+  border-radius: 15px;
+  overflow: hidden;
 
-.card-box-animation__card:after {
-  position: absolute;
-  content: '';
-  width: 100%;
-  height: 100%;
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/61488/fwa-cards-back.png) no-repeat left top;
-  background-size: cover;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  border: 2px solid red;
-  transform: rotateY(180deg);
-  transform-style: preserve-3d;
-}
-
-.card-box-animation__card--1 {
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/61488/fwa-cards-01.png) no-repeat left top;
-  background-size: cover;
-  transform: translateZ(0px) rotateY(180deg);
-}
-
-.card-box-animation__card--2 {
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/61488/fwa-cards-02.png) no-repeat left top;
-  background-size: cover;
-  transform: translateZ(calc(var(--box-width) * 0.02)) rotateY(180deg);
+  > svg {
+    transform: scaleY(-1) rotate(180deg) translateY(-50%);
+    position: absolute;
+    top: 50%;
+  }
 }
 
 .card-box-animation__card--3 {
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/61488/fwa-cards-03.png) no-repeat left top;
-  background-size: cover;
   transform: translateZ(calc(var(--box-width) * 0.04)) rotateY(180deg);
 }
 
 .card-box-animation__card--4 {
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/61488/fwa-cards-04.png) no-repeat left top;
-  background-size: cover;
   transform: translateZ(calc(var(--box-width) * 0.06)) rotateY(180deg);
 }
 
 .card-box-animation__card--5 {
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/61488/fwa-cards-05.png) no-repeat left top;
-  background-size: cover;
   transform: translateZ(calc(var(--box-width) * 0.08)) rotateY(180deg);
+  background-color: #533f92;
+
+  > svg {
+    transform: scaleY(-1) rotate(180deg) translateY(-50%) scale(1.1);
+  }
 }
 
 .card-box-animation__box-front-face,
@@ -305,18 +291,6 @@
 .card-box-animation__box-lid-top-back {
   animation: none;
   filter: brightness(1);
-}
-
-.card-box-animation__box-right {
-  filter: brightness(0.5);
-  animation: lightRight var(--loop-dur) ease-in-out infinite;
-  animation-delay: var(--intro-dur);
-}
-
-.card-box-animation__box-left {
-  filter: brightness(0.5);
-  animation: lightLeft var(--loop-dur) ease-in-out infinite;
-  animation-delay: var(--intro-dur);
 }
 
 .card-box-animation__intro-wrapper {
@@ -362,25 +336,15 @@
 
 @keyframes cardPopup {
   0%,
-  15% {
+  30% {
     transform: translateZ(0px) rotateY(180deg) translateY(0%) translateX(0%) rotateZ(0deg);
   }
-  25% {
-    transform: translateZ(0px) rotateY(180deg) translateY(var(--ty)) translateX(0%) rotateZ(0deg);
-  }
-  35%,
   50% {
-    transform: translateZ(0px) rotateY(180deg) translateY(var(--ty)) translateX(var(--tx)) rotateZ(var(--rot));
-  }
-  55% {
     transform: translateZ(0px) rotateY(180deg) translateY(var(--ty)) translateX(0%) rotateZ(0deg);
   }
-  60% {
-    transform: translateZ(0px) rotateY(180deg) translateY(var(--ty)) translateX(0%) rotateZ(0deg);
-  }
-  75%,
+  70%,
   100% {
-    transform: translateZ(0px) rotateY(180deg) translateY(0%) translateX(0%) rotateZ(0deg);
+    transform: translateZ(0px) rotateY(180deg) translateY(var(--ty)) translateX(var(--tx)) rotateZ(var(--rot));
   }
 }
 
