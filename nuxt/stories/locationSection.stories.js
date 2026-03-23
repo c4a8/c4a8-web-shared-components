@@ -9,7 +9,7 @@ export default {
 export const Default = {
     args: {
     overline: "Hauptsitz",
-    headline: "Offenbach",
+    headline: "Offenbach am Main",
     location: {
       street: "Kaiserstraße 39",
       city: "Offenbach am Main",
@@ -18,27 +18,27 @@ export const Default = {
     contactEntries: [
       {
         icon: "phone",
-        headline: "Rufen Sie uns an",
-        subline: "+49 69 4005520",
+        content: "+49 69 4005520",
       },
       {
         icon: "email-action-unread",
-        headline: "Schreiben Sie uns",
-        subline: "info@glueckkanja.com",
+        content: "info@glueckkanja.com",
       },
     ],
     locationEntries: [
       {
         icon: "pin",
-        headline: "Kommen Sie Vorbei",
-        subline: "Kaiserstraße 39 <br /> 63065 Offenbach am Main",
+        content: "Kaiserstraße 39 <br /> 63065 Offenbach am Main",
       },
       {
-        icon: "phone-charger",
-        headline: "Mit einem Elektrofahrzeug zu uns",
-        subline: "E-Tankstellen in unserer Tiefgarage",
+        icon: "charging-station",
+        content: "E-Tankstellen in der <br /> Tiefgarage verfügbar",
       },
     ],
+    locationCta: {
+      text: "Anfahrt und Parken",
+      href: "/"
+    },
     images: [
       {
         img: "https://res.cloudinary.com/c4a8/image/upload/v1756123640/company/locations/Switzerland/switzerland-img-2.jpg",

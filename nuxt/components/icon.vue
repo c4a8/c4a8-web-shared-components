@@ -58,6 +58,7 @@ import Quote from './icons/quote.vue';
 import World from './icons/world.vue';
 import XMark from './icons/x-mark.vue';
 import Heart from './icons/heart.vue';
+import ChargingStation from './icons/charging-station.vue';
 
 export default {
   components: {
@@ -105,6 +106,7 @@ export default {
     world: World,
     'x-mark': XMark,
     heart: Heart,
+    'charging-station': ChargingStation,
   },
   tagName: 'icon',
   data() {
