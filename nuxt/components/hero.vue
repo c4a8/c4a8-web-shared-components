@@ -79,14 +79,20 @@
         </text-icon-animation>
       </main>
     </div>
-    <wrapper classes="hero__background-shape-wrapper" v-if="shape" :hideContainer="!showShapeContainer">
+    <wrapper
+      classes="hero__background-shape-wrapper"
+      v-if="shape || $slots['background']"
+      :hideContainer="!showShapeContainer"
+    >
       <wrapper classes="hero__background-shape-content" :hideContainer="!showShapeContainer" :hideContainerClass="true">
         <div
+          v-if="$slots['background'] || shape"
           :class="['hero__background-shape', shapeClasses, shapeOffsetX ? 'hero__background-shape--overflow' : '']"
           :style="shapeStyle"
         >
+          <slot name="background" v-if="$slots['background']"></slot>
           <v-img
-            v-if="showShape"
+            v-else-if="showShape"
             :cloudinary="shape.cloudinary"
             :img="shape.img"
             :alt="shape.alt"
@@ -328,7 +334,7 @@ export default {
       return this.shape.lottie ? this.shape.lottie : this.lottieData ? Tools.getJSON(this.lottieData) : null;
     },
     showShape() {
-      return this.shape.img || this.shape.lottie || this.lottieFileData;
+      return this.shape ? this.shape.img || this.shape.lottie || this.lottieFileData : false;
     },
     shapeFullscreen() {
       return this.shape && this.shape.fullscreen ? true : false;
@@ -404,7 +410,7 @@ export default {
       return this.heroJson && this.heroJson.svgShapeAnimation ? this.heroJson.svgShapeAnimation : false;
     },
     showShapeContainer() {
-      return this.bgWidth || this.isSmall || (this.showShape && this.shapeInContentValue);
+      return this.bgWidth || this.isSmall || (this.showShape && this.shapeInContentValue) || !this.$slots['background'];
     },
     isCentered() {
       return this.letterSwitcher ? true : false;

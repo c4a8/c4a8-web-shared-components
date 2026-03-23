@@ -1,6 +1,7 @@
 import lottie1 from './data/lottie1.json';
 import lottieAzure from './data/lottie-azure.json';
 import HeroComponent from '../components/hero.vue';
+import CardBoxAnimation from '../components/card-box-animation.vue';
 
 export default {
   component: HeroComponent,
@@ -414,6 +415,61 @@ export const TextShadow = {
         {
           img: '/logos/partner-seal-mssp.svg',
           alt: 'Security MSSP of the Year',
+        },
+      ],
+    },
+  },
+};
+
+export const SlotWithCardBoxAnimation = {
+  render: (args) => ({
+    components: { HeroComponent, CardBoxAnimation },
+    setup() {
+      return { args };
+    },
+    template: `
+      <HeroComponent v-bind="args">
+        <template #background>
+          <CardBoxAnimation />
+        </template>
+      </HeroComponent>
+    `,
+  }),
+  args: {
+    hero: {
+      bgColor: 'var(--color-gigas)',
+      headline: `<p class='font-weight-light'>Backdoors & Breaches Extension Deck</p>`,
+      textShadow: true,
+      subline:
+        "Your incident response plan looks great on paper. These cards will show you where it breaks. Built by the analysts who handle 120,000+ security incidents per month in glueckkanja's SOC",
+      light: true,
+      shape: {
+        // img: '/security/backdoors-and-breaches.svg',
+        // cloudinary: true,
+        alt: '',
+        classes: 'space-top-lg-2  mt-11 mx-auto',
+        offsetX: '-8vw',
+        fullscreen: true,
+        mobileOrder: '4',
+        inContentMobile: true,
+      },
+      background: {
+        spacing: 'space-top-3 space-bottom-2',
+      },
+      ctaList: [
+        {
+          href: '/',
+          text: 'Order for Free',
+          external: true,
+          skin: 'primary',
+        },
+        {
+          href: '/',
+          text: 'View Rules',
+          external: true,
+          skin: 'secondary is-light',
+          button: true,
+          monochrome: true,
         },
       ],
     },
