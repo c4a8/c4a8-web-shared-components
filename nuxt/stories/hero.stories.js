@@ -1,7 +1,6 @@
 import lottie1 from './data/lottie1.json';
 import lottieAzure from './data/lottie-azure.json';
 import HeroComponent from '../components/hero.vue';
-import CardBoxAnimation from '../components/card-box-animation.vue';
 
 export default {
   component: HeroComponent,
@@ -421,16 +420,16 @@ export const TextShadow = {
   },
 };
 
-export const SlotWithCardBoxAnimation = {
+export const WithSlot = {
   render: (args) => ({
-    components: { HeroComponent, CardBoxAnimation },
+    components: { HeroComponent },
     setup() {
       return { args };
     },
     template: `
       <HeroComponent v-bind="args">
         <template #background="slotProps">
-          <CardBoxAnimation v-bind="slotProps" />
+          <div v-bind="slotProps" style="background-color: red;width: 300px; height: 200px;">This background Slot, can hold anything</div>
         </template>
       </HeroComponent>
     `,
