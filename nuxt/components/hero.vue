@@ -37,7 +37,7 @@
               v-if="$slots['background'] || shapeInContentValue"
               :style="{ order: shapeMobileOrder !== false ? shapeMobileOrder : undefined }"
             >
-              <slot name="background" v-if="$slots['background']" :alt="shape.alt"></slot>
+              <slot name="background" v-if="isMounted && $slots['background']" :alt="shape.alt"></slot>
               <v-img
                 v-if="showShape && shape.imgMobile && !isUpperBreakpoint"
                 :cloudinary="shape.cloudinary"
@@ -91,7 +91,7 @@
           :class="['hero__background-shape', shapeClasses, shapeOffsetX ? 'hero__background-shape--overflow' : '']"
           :style="shapeStyle"
         >
-          <slot name="background" v-if="$slots['background']" :alt="shape.alt"></slot>
+          <slot name="background" v-if="isMounted && $slots['background']" :alt="shape.alt"></slot>
           <v-img
             v-else-if="showShape"
             :cloudinary="shape.cloudinary"
@@ -137,6 +137,7 @@ export default {
       style: null,
       isUpperBreakpoint: null,
       backgroundImgStyle: null,
+      isMounted: false,
     };
   },
   created() {
@@ -149,6 +150,8 @@ export default {
     this.setBackgroundImgStyle();
 
     window.addEventListener('resize', this.handleResize);
+
+    this.isMounted = true;
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.handleResize);
