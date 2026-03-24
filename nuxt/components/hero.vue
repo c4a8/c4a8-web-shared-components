@@ -34,9 +34,10 @@
             <headline :class="headlineClassList" v-if="headlineText" :level="level" :text="headlineText"></headline>
             <div
               :class="['hero__content-shape', shapeClasses]"
-              v-if="shapeInContentValue"
+              v-if="$slots['background'] || shapeInContentValue"
               :style="{ order: shapeMobileOrder !== false ? shapeMobileOrder : undefined }"
             >
+              <slot name="background" v-if="$slots['background']" :alt="shape.alt"></slot>
               <v-img
                 v-if="showShape && shape.imgMobile && !isUpperBreakpoint"
                 :cloudinary="shape.cloudinary"
@@ -90,7 +91,7 @@
           :class="['hero__background-shape', shapeClasses, shapeOffsetX ? 'hero__background-shape--overflow' : '']"
           :style="shapeStyle"
         >
-          <slot name="background" v-if="$slots['background']"></slot>
+          <slot name="background" v-if="$slots['background']" :alt="shape.alt"></slot>
           <v-img
             v-else-if="showShape"
             :cloudinary="shape.cloudinary"
@@ -393,7 +394,7 @@ export default {
       return this.shape && this.shape.mobileClasses ? this.shape.mobileClasses : null;
     },
     shapeIsSVG() {
-      return this.shape && this.shape.img && this.shape.img.endsWith('.svg');
+      return (this.shape && this.shape.img && this.shape.img.endsWith('.svg')) || this.shape.isSvg;
     },
     variant() {
       return this.heroJson && this.heroJson.variant ? this.heroJson.variant : null;

@@ -429,8 +429,8 @@ export const SlotWithCardBoxAnimation = {
     },
     template: `
       <HeroComponent v-bind="args">
-        <template #background>
-          <CardBoxAnimation />
+        <template #background="slotProps">
+          <CardBoxAnimation v-bind="slotProps" />
         </template>
       </HeroComponent>
     `,
@@ -444,10 +444,9 @@ export const SlotWithCardBoxAnimation = {
         "Your incident response plan looks great on paper. These cards will show you where it breaks. Built by the analysts who handle 120,000+ security incidents per month in glueckkanja's SOC",
       light: true,
       shape: {
-        // img: '/security/backdoors-and-breaches.svg',
-        // cloudinary: true,
-        alt: '',
-        classes: 'space-top-lg-2  mt-11 mx-auto',
+        isSvg: true,
+        alt: 'here is the data',
+        classes: 'space-top-lg-2 mt-11 mx-auto',
         offsetX: '-8vw',
         fullscreen: true,
         mobileOrder: '4',
