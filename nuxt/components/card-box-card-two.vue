@@ -13,7 +13,7 @@
         <path d="M195.59 0H0V266.46H195.59V0Z" fill="white" />
       </mask>
       <g mask="url(#mask0_7_2212)">
-        <path d="M195.59 0H0V266.46H195.59V0Z" fill="#573D90" />
+        <path d="M195.59 0H0V266.46H195.59V0Z" fill="#4F338C" />
         <path d="M126.75 226.65H125.3V228.1H126.75V226.65Z" fill="white" />
         <path d="M97.7 235.94H104.09V229.56H97.7V235.94ZM103.68 232.75H98.11V229.97H103.68V232.75Z" fill="white" />
         <mask
