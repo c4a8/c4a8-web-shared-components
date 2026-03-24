@@ -1,5 +1,5 @@
 <template>
-  <div class="card-box-animation" :style="{ '--box-width': width }">
+  <div class="card-box-animation" :style="{ '--box-width': width }" :aria-label="alt" role="img">
     <div class="card-box-animation__intro-wrapper">
       <div class="card-box-animation__box">
         <div class="card-box-animation__box-flap card-box-animation__box-flap--left"></div>
@@ -26,7 +26,9 @@
         <div class="card-box-animation__box-lid">
           <div class="card-box-animation__box-lid-inner">
             <div class="card-box-animation__box-lid-top">
-              <div class="card-box-animation__box-lid-top-logo"></div>
+              <div class="card-box-animation__box-lid-top-logo">
+                <CardBoxLogo />
+              </div>
               <div class="card-box-animation__box-lid-top-back"></div>
             </div>
             <div class="card-box-animation__box-lid-flap">
@@ -47,6 +49,10 @@ defineProps({
   width: {
     type: String,
     default: '220px',
+  },
+  alt: {
+    type: String,
+    default: '',
   },
 });
 </script>
