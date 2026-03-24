@@ -4,7 +4,7 @@
   --box-height: calc(var(--box-width) * 1.387);
   --box-depth: calc(var(--box-width) * 0.2735);
   --card-w: calc(var(--box-width) * 0.9);
-  --card-h: calc(var(--box-width) * 1.335);
+  --card-h: calc(var(--box-width) * 1.29);
   --loop-dur: 3s;
   --intro-dur: 1s;
 
@@ -65,8 +65,7 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background: var(--card-box-bg-color) url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/61488/coolclub-front.png)
-    no-repeat left top;
+  background: var(--card-box-bg-color);
   background-size: cover;
   transform: rotateY(180deg);
   transform-style: preserve-3d;
@@ -92,15 +91,13 @@
 }
 
 .card-box-animation__box-left {
-  background: var(--card-box-bg-color) url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/61488/coolclub-left.png)
-    no-repeat left top;
+  background: var(--card-box-bg-color);
   background-size: cover;
   transform: translateX(calc(var(--box-width) / -2)) rotateY(-90deg);
 }
 
 .card-box-animation__box-right {
-  background: var(--card-box-bg-color) url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/61488/coolclub-right.png)
-    no-repeat left top;
+  background: var(--card-box-bg-color);
   background-size: cover;
   transform: translateX(calc(var(--box-width) / 2)) rotateY(90deg);
 }
@@ -175,8 +172,7 @@
   left: 0;
   width: var(--box-width);
   height: var(--box-depth);
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/61488/coolclub-logo-full.png) white no-repeat center
-    center;
+  background: var(--card-box-bg-color);
   background-blend-mode: multiply;
   background-size: cover;
   transform: rotateX(0deg);
@@ -278,7 +274,7 @@
 
 .card-box-animation__card--5 {
   transform: translateZ(calc(var(--box-width) * 0.08)) rotateY(180deg);
-  background-color: #533f92;
+  background-color: #4f338c;
 
   > svg {
     transform: scaleY(-1) rotate(180deg) translateY(-50%) scale(1.1);
