@@ -429,7 +429,7 @@ export const WithSlot = {
     template: `
       <HeroComponent v-bind="args">
         <template #background="slotProps">
-          <div v-bind="slotProps" style="background-color: red;width: 300px; height: 200px;">This background Slot, can hold anything</div>
+          <div v-bind="slotProps" style="display: flex; justify-content: flex-end; width: 100%;"><div style="background-color: red;width: 300px; height: 200px;">This background Slot, can hold anything</div></div>
         </template>
       </HeroComponent>
     `,
