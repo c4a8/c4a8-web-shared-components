@@ -14,6 +14,7 @@ export const Default = {
       city: 'Offenbach am Main',
       office: 'Hauptsitz',
     },
+    contactHeadline: 'Kontakt',
     contactEntries: [
       {
         icon: 'phone',
@@ -24,6 +25,7 @@ export const Default = {
         content: 'info@glueckkanja.com',
       },
     ],
+    locationHeadline: 'Adresse',
     locationEntries: [
       {
         icon: 'pin',
@@ -34,29 +36,32 @@ export const Default = {
         content: 'E-Tankstellen in der <br /> Tiefgarage verfügbar',
       },
     ],
-    landingpageCta: {
-      text: 'Landingpage',
-      href: '/',
-    },
     locationCta: {
       text: 'Anfahrt und Parken',
-      trigger: 'modal',
+      href:"/",
+      link: true,
+      reversed: true,
+      classes: 'd-flex justify-content-end',
+    },
+    landingpageCta: {
+      text: 'Mehr erfahren',
+      href: '/',
     },
     images: [
       {
-        img: 'https://res.cloudinary.com/c4a8/image/upload/v1756123640/company/locations/Switzerland/switzerland-img-2.jpg',
+        img: 'https://res.cloudinary.com/c4a8/image/upload/v1756124382/company/locations/Offenbach/gk-Commodore.jpg',
       },
       {
-        img: 'https://res.cloudinary.com/c4a8/image/upload/v1756123640/company/locations/Switzerland/switzerland-img-1.jpg',
+        img: 'https://res.cloudinary.com/c4a8/image/upload/v1756124378/company/locations/Offenbach/_JR_8457.jpg',
       },
       {
-        img: 'https://res.cloudinary.com/c4a8/image/upload/v1756123640/company/locations/Switzerland/switzerland-img-3.jpg',
+        img: 'https://res.cloudinary.com/c4a8/image/upload/v1756124376/company/locations/Offenbach/gk-OG.jpg',
       },
       {
-        img: 'https://res.cloudinary.com/c4a8/image/upload/v1756123640/company/locations/Switzerland/switzerland-img-4.jpg',
+        img: 'https://res.cloudinary.com/c4a8/image/upload/v1756124376/company/locations/Offenbach/gk-Treppe.jpg',
       },
       {
-        img: 'https://res.cloudinary.com/c4a8/image/upload/v1756123640/company/locations/Switzerland/switzerland-img-5.jpg',
+        img: 'https://res.cloudinary.com/c4a8/image/upload/v1756124374/company/locations/Offenbach/gk-Empfang-03.jpg',
       },
     ],
   },

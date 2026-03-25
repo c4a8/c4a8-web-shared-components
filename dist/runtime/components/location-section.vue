@@ -1,69 +1,37 @@
 <template>
   <div :class="[classList, 'location-section']" :style="{ backgroundColor: backgroundColor }">
-    <div class="d-flex align-items-center justify-content-center">
-      <div class="d-flex position-absolute justify-content-between w-100 z-index-999">
-        <div class="prev-element pl-5">
-          <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle opacity="0.4" cx="26.8889" cy="26.8889" r="26.3889" fill="#999BA6" stroke="#000520" />
-            <path
-              d="M31.1777 39.6178L19.5786 27.1902L31.1777 14.7625"
-              stroke="#000520"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </div>
-        <div class="next-element pr-5">
-          <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle
-              opacity="0.4"
-              cx="26.8889"
-              cy="26.8889"
-              r="26.3889"
-              transform="matrix(-1 0 0 1 53.7778 0)"
-              fill="#999BA6"
-              stroke="#000520"
-            />
-            <path
-              d="M22.6 39.6178L34.1992 27.1902L22.6 14.7625"
-              stroke="#000520"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </div>
+    <div class="location-section__slider-container d-flex align-items-center justify-content-center">
+      <div class="location-section__slider-controls d-flex position-absolute justify-content-between w-100">
+        <icon icon="arrow-prev" size="large" :class="`prev-element-${instanceId} pl-5`" />
+        <icon icon="arrow-next" size="large" :class="`next-element-${instanceId} pr-5`" />
       </div>
-      <slider v-bind="sliderConfig" class="pb-5" :v2="true">
+      <slider v-bind="sliderConfig" class="" :v2="true">
         <v-img v-for="(img, index) in images" :key="index" :cloudinary="img.cloudinary" :img="img.img" />
       </slider>
     </div>
-    <div class="container">
+    <div class="location-section__content container pt-5">
       <div class="row row-cols-2 pb-5">
-        <div>
-          <headline level="h5">{{ overline }}</headline> <headline level="h3">{{ headline }}</headline>
-        </div>
+        <div><headline level="h5" :text="overline" /> <headline level="h3" :text="headline" /></div>
         <div v-if="landingpageCta" class="d-flex align-items-center justify-content-end">
           <cta v-bind="landingpageCta" />
         </div>
       </div>
       <div class="d-flex pt-2 row row-cols-3">
         <div class="d-flex flex-column">
-          <headline level="h5" class="pv-2">Adresse</headline>
+          <headline level="h5" class="pv-2" :text="locationHeadline" />
           <div v-for="entry in locationEntries" class="font-size-1 py-1">
             <div class="d-flex align-items-start">
-              <icon :icon="entry.icon" size="small" class="pr-2" />
+              <icon :icon="entry.icon" size="small" class="pr-2 pt-1" />
               <p v-html="entry.content"></p>
             </div>
           </div>
           <cta v-bind="locationCta" v-if="locationCta" />
         </div>
         <div class="d-flex flex-column">
-          <headline level="h5" class="pb-2">Kontakt</headline>
+          <headline level="h5" class="pb-2" :text="contactHeadline" />
           <div v-for="entry in contactEntries" class="font-size-1">
             <div class="d-flex align-items-start my-n1">
-              <icon :icon="entry.icon" size="small" class="pr-2" />
+              <icon :icon="entry.icon" size="small" class="pr-2 pt-1" />
               <p v-html="entry.content"></p>
             </div>
           </div>
@@ -73,17 +41,26 @@
   </div>
 </template>
 <script>
+let instanceCounter = 0;
+
 export default {
   tagName: 'location-section',
+  data() {
+    return {
+      instanceId: ++instanceCounter,
+    };
+  },
   props: {
-    headline: String,
+    classes: String,
     overline: String,
+    headline: String,
+    locationHeadline: String,
+    contactHeadline: String,
     locationEntries: Object,
     locationCta: Object,
-    landingpageCta: Object,
     contactEntries: Array,
+    landingpageCta: Object,
     images: Array,
-    classes: String,
     backgroundColor: {
       type: String,
       default: 'var(--color-black-4)',
@@ -97,10 +74,14 @@ export default {
       return {
         hideContainer: true,
         hideBackground: true,
-
         options: {
           dots: false,
-          navigation: { enabled: true, nextEl: '.next-element', prevEl: '.prev-element' },
+          navigation: {
+            enabled: true,
+            nextEl: `.next-element-${this.instanceId}`,
+            prevEl: `.prev-element-${this.instanceId}`,
+          },
+          loop: true,
           breakpoints: {
             320: {
               slidesPerView: 1.5,
@@ -117,7 +98,6 @@ export default {
             1200: {
               slidesPerView: 4,
               spaceBetween: 20,
-              loop: true,
             },
           },
         },
