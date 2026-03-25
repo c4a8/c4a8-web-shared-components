@@ -397,7 +397,7 @@ export default {
       return this.shape && this.shape.mobileClasses ? this.shape.mobileClasses : null;
     },
     shapeIsSVG() {
-      return (this.shape && this.shape.img && this.shape.img.endsWith('.svg')) || this.shape.isSvg;
+      return (this.shape && this.shape.img && this.shape.img.endsWith('.svg')) || this.shape?.isSvg;
     },
     variant() {
       return this.heroJson && this.heroJson.variant ? this.heroJson.variant : null;
@@ -414,7 +414,7 @@ export default {
       return this.heroJson && this.heroJson.svgShapeAnimation ? this.heroJson.svgShapeAnimation : false;
     },
     showShapeContainer() {
-      return this.bgWidth || this.isSmall || (this.showShape && this.shapeInContentValue) || !this.$slots['background'];
+      return this.bgWidth || this.isSmall || (this.showShape && this.shapeInContentValue);
     },
     isCentered() {
       return this.letterSwitcher ? true : false;
