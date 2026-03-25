@@ -924,6 +924,7 @@ declare namespace _default {
         style: null;
         isUpperBreakpoint: null;
         backgroundImgStyle: null;
+        isMounted: boolean;
     };
     function created(): void;
     function mounted(): void;

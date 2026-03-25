@@ -419,3 +419,57 @@ export const TextShadow = {
     },
   },
 };
+
+export const WithSlot = {
+  render: (args) => ({
+    components: { HeroComponent },
+    setup() {
+      return { args };
+    },
+    template: `
+      <HeroComponent v-bind="args">
+        <template #background="slotProps">
+          <div v-bind="slotProps" style="display: flex; justify-content: flex-end; width: 100%;"><div style="background-color: red;width: 300px; height: 200px;">This background Slot, can hold anything</div></div>
+        </template>
+      </HeroComponent>
+    `,
+  }),
+  args: {
+    hero: {
+      bgColor: 'var(--color-gigas)',
+      headline: `<p class='font-weight-light'>Backdoors & Breaches Extension Deck</p>`,
+      textShadow: true,
+      subline:
+        "Your incident response plan looks great on paper. These cards will show you where it breaks. Built by the analysts who handle 120,000+ security incidents per month in glueckkanja's SOC",
+      light: true,
+      shape: {
+        isSvg: true,
+        alt: 'here is the data',
+        classes: 'space-top-lg-2 mt-11 mx-auto',
+        offsetX: '-8vw',
+        fullscreen: true,
+        mobileOrder: '4',
+        inContentMobile: true,
+      },
+      background: {
+        spacing: 'space-top-3 space-bottom-2',
+      },
+      ctaList: [
+        {
+          href: '/',
+          text: 'Order for Free',
+          external: true,
+          skin: 'primary',
+        },
+        {
+          href: '/',
+          text: 'View Rules',
+          external: true,
+          skin: 'secondary is-light',
+          button: true,
+          monochrome: true,
+        },
+      ],
+    },
+  },
+};
