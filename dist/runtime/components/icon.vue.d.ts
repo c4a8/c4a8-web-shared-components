@@ -44,6 +44,7 @@ declare namespace _default {
         world: any;
         'x-mark': any;
         heart: any;
+        'charging-station': any;
     };
     let tagName: string;
     function data(): {
