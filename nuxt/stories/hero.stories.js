@@ -1,4 +1,3 @@
-import { getAssetPath } from '../.storybook/templates';
 import lottie1 from './data/lottie1.json';
 import lottieAzure from './data/lottie-azure.json';
 import HeroComponent from '../components/hero.vue';
@@ -100,7 +99,7 @@ export const TextImage = {
         alt: 'Lorem ipsum',
       },
       shape: {
-        img: getAssetPath('../svg/shapes/shape-career.svg'),
+        img: 'svg/shapes/shape-career.svg',
         alt: 'Shape',
         bottom: true,
       },
@@ -122,7 +121,7 @@ export const TextImageOffset = {
         spacing: 'hero__content--large',
       },
       shape: {
-        img: getAssetPath('../svg/shapes/shape-career.svg'),
+        img: 'svg/shapes/shape-career.svg',
         alt: 'Shape',
         bottom: true,
         offsetY: '5%',
@@ -226,7 +225,7 @@ export const ShapeSticky = {
         'Microsoft hat in den letzten Jahren stark in die Skalierbarkeit und Sicherheit seiner Microsoft 365-Plattform investiert. Wir nutzen dies, um die Konfiguration und Bereitstellung von Arbeitsplätzen und Anwendungen zu optimieren und zu vereinfachen.',
       shape: {
         alt: 'Shape',
-        img: getAssetPath('../svg/shapes/s-block.svg'),
+        img: 'svg/shapes/s-block.svg',
         top: true,
       },
     },
@@ -263,7 +262,7 @@ export const Small = {
       headline: 'Danke!',
       light: true,
       shape: {
-        img: getAssetPath('../svg/shapes/event-confirmation-message.svg'),
+        img: 'svg/shapes/event-confirmation-message.svg',
         top: true,
         alt: 'Success Message',
       },
@@ -348,7 +347,7 @@ export const ShapeInContent = {
         'Unser zuverlässiges Managed Extended Detection and Response (MXDR) Serviceangebot mit 24/7/365 proaktiven Hunting-, Monitoring- und Response-Funktionen, die auf einer nahtlosen Integration mit der Microsoft Security Plattform basieren',
       shape: {
         alt: 'Shape',
-        img: getAssetPath('../svg/shapes/shape-security-eye.svg'),
+        img: 'svg/shapes/shape-security-eye.svg',
         inContent: true,
       },
     },
@@ -366,7 +365,7 @@ export const ShapeInContentMobile = {
         'Unser zuverlässiges Managed Extended Detection and Response (MXDR) Serviceangebot mit 24/7/365 proaktiven Hunting-, Monitoring- und Response-Funktionen, die auf einer nahtlosen Integration mit der Microsoft Security Plattform basieren',
       shape: {
         alt: 'Shape',
-        img: getAssetPath('../svg/shapes/shape-hero-zencat.svg'),
+        img: 'svg/shapes/shape-hero-zencat.svg',
         inContentMobile: true,
         bottom: true,
         offsetY: '6.65%',
@@ -415,6 +414,60 @@ export const TextShadow = {
         {
           img: '/logos/partner-seal-mssp.svg',
           alt: 'Security MSSP of the Year',
+        },
+      ],
+    },
+  },
+};
+
+export const WithSlot = {
+  render: (args) => ({
+    components: { HeroComponent },
+    setup() {
+      return { args };
+    },
+    template: `
+      <HeroComponent v-bind="args">
+        <template #background="slotProps">
+          <div v-bind="slotProps" style="display: flex; justify-content: flex-end; width: 100%;"><div style="background-color: red;width: 300px; height: 200px;">This background Slot, can hold anything</div></div>
+        </template>
+      </HeroComponent>
+    `,
+  }),
+  args: {
+    hero: {
+      bgColor: 'var(--color-gigas)',
+      headline: `<p class='font-weight-light'>Backdoors & Breaches Extension Deck</p>`,
+      textShadow: true,
+      subline:
+        "Your incident response plan looks great on paper. These cards will show you where it breaks. Built by the analysts who handle 120,000+ security incidents per month in glueckkanja's SOC",
+      light: true,
+      shape: {
+        isSvg: true,
+        alt: 'here is the data',
+        classes: 'space-top-lg-2 mt-11 mx-auto',
+        offsetX: '-8vw',
+        fullscreen: true,
+        mobileOrder: '4',
+        inContentMobile: true,
+      },
+      background: {
+        spacing: 'space-top-3 space-bottom-2',
+      },
+      ctaList: [
+        {
+          href: '/',
+          text: 'Order for Free',
+          external: true,
+          skin: 'primary',
+        },
+        {
+          href: '/',
+          text: 'View Rules',
+          external: true,
+          skin: 'secondary is-light',
+          button: true,
+          monochrome: true,
         },
       ],
     },

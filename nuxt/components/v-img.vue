@@ -119,7 +119,7 @@ export default {
       return this.isCloudinary ? (this.crossorigin ? this.crossorigin : 'anonymous') : null;
     },
     hasPictureTag() {
-      return this.imgSrcSets;
+      return this.isCloudinary && this.imgSrcSets;
     },
     pictureWrapperClassList() {
       return ['img__picture-wrapper', this.imgSrcSetValue?.ratioClasses];
@@ -188,8 +188,8 @@ export default {
       return this.img?.indexOf('/assets/') !== -1
         ? this.img
         : this.hasProtocol()
-        ? this.img
-        : `${baseURL}assets/${this.img}`;
+          ? this.img
+          : `${baseURL}assets/${this.img}`;
     },
     getCloudinaryBasePathLink(srcSet) {
       return srcSet && srcSet.src ? `${srcSet.src}` : `${basePath}${srcSet ? srcSet.params : ''}${this.img}`;

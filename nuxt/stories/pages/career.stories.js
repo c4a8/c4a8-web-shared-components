@@ -1,4 +1,3 @@
-// import { getAssetPath } from '../.storybook/templates';
 import PageDefault from '../components/page-default.vue';
 import VHeader from '../components/v-header.vue';
 import Content from '../components/content.vue';
@@ -121,9 +120,6 @@ export const Career = {
     },
     textImage: {
       ...JobApplication.args,
-    },    
+    },
   },
 };
-
-
-

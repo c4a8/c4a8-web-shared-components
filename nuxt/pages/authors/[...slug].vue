@@ -40,11 +40,11 @@ const { data: person } = await useAsyncData(dataKey, () => {
 const { authors } = useAuthors();
 
 const personData = computed(() => {
-  return authors ? authors[person?.value?.title] : null;
+  return authors ? authors[person?.value?.name] : null;
 });
 
 const authorName = computed(() => {
-  return person?.value?.title;
+  return person?.value?.name;
 });
 
 const authorDataKey = 'content-' + currentLocale.value + '-' + person.value?.stem;

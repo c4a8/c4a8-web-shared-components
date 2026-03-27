@@ -34,9 +34,10 @@
             <headline :class="headlineClassList" v-if="headlineText" :level="level" :text="headlineText"></headline>
             <div
               :class="['hero__content-shape', shapeClasses]"
-              v-if="shapeInContentValue"
+              v-if="$slots['background'] || shapeInContentValue"
               :style="{ order: shapeMobileOrder !== false ? shapeMobileOrder : undefined }"
             >
+              <slot name="background" v-if="isMounted && $slots['background']" :alt="shape.alt"></slot>
               <v-img
                 v-if="showShape && shape.imgMobile && !isUpperBreakpoint"
                 :cloudinary="shape.cloudinary"
@@ -79,14 +80,20 @@
         </text-icon-animation>
       </main>
     </div>
-    <wrapper classes="hero__background-shape-wrapper" v-if="shape" :hideContainer="!showShapeContainer">
+    <wrapper
+      classes="hero__background-shape-wrapper"
+      v-if="shape || $slots['background']"
+      :hideContainer="!showShapeContainer"
+    >
       <wrapper classes="hero__background-shape-content" :hideContainer="!showShapeContainer" :hideContainerClass="true">
         <div
+          v-if="$slots['background'] || shape"
           :class="['hero__background-shape', shapeClasses, shapeOffsetX ? 'hero__background-shape--overflow' : '']"
           :style="shapeStyle"
         >
+          <slot name="background" v-if="isMounted && $slots['background']" :alt="shape.alt"></slot>
           <v-img
-            v-if="showShape"
+            v-else-if="showShape"
             :cloudinary="shape.cloudinary"
             :img="shape.img"
             :alt="shape.alt"
@@ -130,6 +137,7 @@ export default {
       style: null,
       isUpperBreakpoint: null,
       backgroundImgStyle: null,
+      isMounted: false,
     };
   },
   created() {
@@ -142,6 +150,8 @@ export default {
     this.setBackgroundImgStyle();
 
     window.addEventListener('resize', this.handleResize);
+
+    this.isMounted = true;
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.handleResize);
@@ -328,7 +338,7 @@ export default {
       return this.shape.lottie ? this.shape.lottie : this.lottieData ? Tools.getJSON(this.lottieData) : null;
     },
     showShape() {
-      return this.shape.img || this.shape.lottie || this.lottieFileData;
+      return this.shape ? this.shape.img || this.shape.lottie || this.lottieFileData : false;
     },
     shapeFullscreen() {
       return this.shape && this.shape.fullscreen ? true : false;
@@ -387,7 +397,7 @@ export default {
       return this.shape && this.shape.mobileClasses ? this.shape.mobileClasses : null;
     },
     shapeIsSVG() {
-      return this.shape && this.shape.img && this.shape.img.endsWith('.svg');
+      return (this.shape && this.shape.img && this.shape.img.endsWith('.svg')) || this.shape?.isSvg;
     },
     variant() {
       return this.heroJson && this.heroJson.variant ? this.heroJson.variant : null;
