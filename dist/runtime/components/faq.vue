@@ -1,7 +1,7 @@
 <template>
   <div :class="classList" :style="style" ref="root">
     <div class="row">
-      <div class="col-lg-8">
+      <div :class="width ? 'width' : 'col-lg-8'">
         <headline
           :text="headline?.text"
           :level="headlineLevel"
@@ -60,7 +60,7 @@ export default {
       return this.index ? `--utility-animation-index: ${this.index}` : null;
     },
     classList() {
-      return ['faq', 'utility-animation', 'container space-top-2', 'vue-component',  this.spacing];
+      return ['faq', 'utility-animation', 'container space-top-2', 'vue-component', this.spacing];
     },
     headlineClasses() {
       return `faq__headline fade-in-bottom ${this.headline?.classes ? this.headline.classes : ''}`;
@@ -144,7 +144,8 @@ export default {
     headline: Object,
     entries: Array,
     index: Number,
-    spacing: String
+    spacing: String,
+    width: String,
   },
 };
 </script>
