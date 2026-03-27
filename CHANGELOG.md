@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.93
+
+- Add Slot for Hero Component
+
 # Release 0.4.91
 
 - Fixes swiper Alert
