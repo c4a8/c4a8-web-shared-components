@@ -11,6 +11,11 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
+    "@babel/core": "^7.29.0",
+    "@babel/preset-env": "^7.29.2",
+    "@babel/runtime": "^7.29.2",
+    "babel-loader": "^10.1.1",
+    "regenerator-runtime": "^0.14.1",
     "webpack-merge-and-include-globally": "^2.3.4"
   }
 }

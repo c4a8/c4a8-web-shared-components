@@ -30,6 +30,10 @@ module.exports = {
     ],
   },
 
+  resolve: {
+    modules: [path.resolve(__dirname, 'node_modules'), 'node_modules'],
+  },
+
   experiments: {
     outputModule: true,
   },
