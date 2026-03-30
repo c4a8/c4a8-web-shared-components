@@ -211,7 +211,6 @@ export default {
     return {
       observer: null,
       loading: false,
-      blabla: 'text',
     };
   },
   props: {

@@ -31,7 +31,6 @@ declare namespace _default {
     function data(): {
         observer: null;
         loading: boolean;
-        blabla: string;
     };
     namespace props {
         let application: BooleanConstructor;
