@@ -41,7 +41,6 @@ export const Default = {
       href:"/",
       link: true,
       reversed: true,
-      classes: 'd-flex justify-content-end',
     },
     landingpageCta: {
       text: 'Mehr erfahren',

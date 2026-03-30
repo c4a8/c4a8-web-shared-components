@@ -59,8 +59,6 @@ import World from './icons/world.vue';
 import XMark from './icons/x-mark.vue';
 import Heart from './icons/heart.vue';
 import ChargingStation from './icons/charging-station.vue';
-import ArrowNext from './icons/arrow-next.vue';
-import ArrowPrev from './icons/arrow-prev.vue';
 
 export default {
   components: {
@@ -108,9 +106,7 @@ export default {
     world: World,
     'x-mark': XMark,
     heart: Heart,
-    'charging-station': ChargingStation,
-    'arrow-next': ArrowNext,
-    'arrow-prev': ArrowPrev,
+    'charging-station': ChargingStation
   },
   tagName: 'icon',
   data() {

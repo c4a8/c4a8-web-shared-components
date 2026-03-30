@@ -1,9 +1,11 @@
 <template>
   <div :class="[classList, 'location-section']" :style="{ backgroundColor: backgroundColor }">
     <div class="location-section__slider-container d-flex align-items-center justify-content-center">
-      <div class="location-section__slider-controls d-flex position-absolute justify-content-between w-100">
-        <icon icon="arrow-prev" size="large" :class="`prev-element-${instanceId} pl-5`" />
-        <icon icon="arrow-next" size="large" :class="`next-element-${instanceId} pr-5`" />
+      <div
+        class="location-section__slider-controls position-absolute d-flex align-items-center justify-content-center col-10 col-xxl-11 mx-auto z-index-2"
+      >
+        <div class="slick__arrow-left rounded-circle" :class="`prev-element-${instanceId}`"></div>
+        <div class="slick__arrow-right rounded-circle" :class="`next-element-${instanceId}`"></div>
       </div>
       <slider v-bind="sliderConfig" class="" :v2="true">
         <v-img v-for="(img, index) in images" :key="index" :cloudinary="img.cloudinary" :img="img.img" />
@@ -25,7 +27,11 @@
               <p v-html="entry.content"></p>
             </div>
           </div>
-          <cta v-bind="locationCta" v-if="locationCta" />
+          <cta
+            v-bind="locationCta"
+            v-if="locationCta"
+            :class="locationCta.classes ? locationCta.classes : 'd-flex justify-content-end'"
+          />
         </div>
         <div class="d-flex flex-column">
           <headline level="h5" class="pb-2" :text="contactHeadline" />
@@ -63,7 +69,7 @@ export default {
     images: Array,
     backgroundColor: {
       type: String,
-      default: 'var(--color-black-4)',
+      default: 'var(--color-surface-background)',
     },
   },
   computed: {
