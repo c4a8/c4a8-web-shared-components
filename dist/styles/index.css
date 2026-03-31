@@ -40150,6 +40150,9 @@ label.dropdown__checkbox-label::after {
     flex-basis: max(16%, var(--event-max-height));
   }
 }
+.event.non-clickable {
+  pointer-events: none;
+}
 
 .event__date {
   order: 1;
