@@ -10,8 +10,6 @@
       <div class="page-detail__start row">
         <div class="page-detail__sticky-start col-md-11 col-lg-5">
           <sticky-block class="page-detail__intro js-sticky-block" :data-hs-sticky-block-options="stickyOptions">
-            <icon icon="arrow" direction="left" :hover="true" :circle="true" size="medium" />
-
             <headline
               :text="computedName"
               :level="headlineLevel"
@@ -82,10 +80,6 @@ export default {
     image: {
       type: Object,
       default: () => ({ img: '', alt: '' }),
-    },
-    imgSrcSets: {
-      type: Object,
-      default: () => ({}),
     },
     body: {
       type: Object,
