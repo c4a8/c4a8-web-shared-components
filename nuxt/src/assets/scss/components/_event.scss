@@ -81,6 +81,9 @@
       flex-basis: unquote('max(16%, var(--event-max-height))');
     }
   }
+  &.non-clickable {
+    pointer-events: none;
+  }
 }
 
 .event__date {
