@@ -1,58 +1,34 @@
 <template>
   <div
-    :class="[
-      'testimonials-detail',
-      'page-detail',
-      'page-detail--image',
-      'is-loading',
-      testimonialsDetailLight ? 'page-detail--light' : ''
-    ]"
+    :class="['testimonials-detail', 'page-detail', 'page-detail--image', light ? 'page-detail--light' : '']"
     :style="{
-      '--page-detail-color': `var(${testimonialsDetailColor})`,
-      '--color-icon-hover-color': 'var(--page-detail-color)'
+      '--page-detail-color': `var(${detailColor})`,
+      '--color-icon-hover-color': 'var(--page-detail-color)',
     }"
   >
     <div class="page-detail__container container">
       <div class="page-detail__start row">
         <div class="page-detail__sticky-start col-md-11 col-lg-5">
-          <div
-            class="page-detail__intro js-sticky-block"
-            data-hs-sticky-block-options='{
-              "parentSelector": ".page-detail__sticky-start",
-              "breakpoint": "lg",
-              "startPoint": ".page-detail__sticky-start",
-              "endPoint": ".page-detail__sticky-end",
-              "stickyOffsetTop": 200,
-              "stickyOffsetBottom": 20
-            }'
-          >
-            <div class="testimonials-detail__cta page-detail__back page-detail__animation-3 back back--animated">
-              <icon
-                icon="arrow"
-                direction="left"
-                :hover="true"
-                :circle="true"
-              />
-            </div>
+          <sticky-block class="page-detail__intro js-sticky-block" :data-hs-sticky-block-options="stickyOptions">
             <headline
-              :text="testimonialsDetailName"
+              :text="computedName"
               :level="headlineLevel"
-              :classes="headlineClasses"
+              :classes="
+                'testimonials-detail__headline page-detail__headline pt-5' +
+                (headlineClasses ? ` ${headlineClasses}` : ' h2-font-size bold')
+              "
             />
-            <span class="testimonials-detail__subline page-detail__subline">{{ testimonialsDetailSubline }}</span>
+            <span class="testimonials-detail__subline page-detail__subline">{{ computedSubline }}</span>
             <div class="page-detail__img page-detail__animation-3">
-              <img
-                :img="testimonialsDetailImage.img"
-                :alt="testimonialsDetailImage.alt"
-                :cloudinary="testimonialsDetailImageCloudinary"
-                :img-src-sets="imgSrcSets"
-              />
+              <v-img v-bind="image" :cloudinary="!cloudinary ? true : image.cloudinary" />
             </div>
-          </div>
+          </sticky-block>
         </div>
         <div class="page-detail__content page-detail__animation-3 col-md-11 offset-lg-1 col-lg-6">
           <div class="page-detail__description richtext has-no-border">
-            {{ testimonialsDetailDescription }}
+            <p>{{ introText }}</p>
+            <ContentRenderer v-if="body" :value="body" tag="div" />
+            <template v-else>{{ description }}</template>
           </div>
         </div>
       </div>
@@ -67,88 +43,69 @@ export default {
   props: {
     detailColor: {
       type: String,
-      default: '--color-testimonials'
+      default: '--color-testimonials',
     },
     title: {
       type: String,
-      default: ''
+      default: '',
     },
     name: {
       type: String,
-      default: ''
+      default: '',
     },
     location: {
       type: String,
-      default: ''
+      default: '',
     },
     light: {
       type: Boolean,
-      default: false
+      default: false,
     },
     headlineLevel: {
       type: String,
-      default: 'h1'
+      default: 'h1',
     },
     headlineClasses: {
       type: String,
-      default: 'h2-font-size bold'
+      default: 'h2-font-size bold',
+    },
+    introText: {
+      type: String,
+      default: '',
     },
     description: {
       type: String,
-      default: ''
+      default: '',
     },
     image: {
       type: Object,
-      default: () => ({ img: '', alt: '' })
+      default: () => ({ img: '', alt: '' }),
     },
-    imgSrcSets: {
+    body: {
       type: Object,
-      default: () => ({})
-    }
+      default: null,
+    },
   },
   computed: {
-    testimonialsDetailColor() {
-      return this.detailColor || '--color-testimonials';
-    },
-    testimonialsDetailTitle() {
-      return this.title;
-    },
-    testimonialsDetailName() {
+    computedName() {
       return this.name.replace(/ /g, '<br/>');
     },
-    testimonialsDetailLocation() {
-      return this.location;
-    },
-    testimonialsDetailLight() {
-      return this.light;
-    },
-    testimonialsDetailHeadlineLevel() {
-      return this.headlineLevel;
-    },
-    testimonialsDetailHeadlineClasses() {
-      return this.headlineClasses || 'h2-font-size bold';
-    },
-    testimonialsDetailDescription() {
-      return this.description;
-    },
-    testimonialsDetailImage() {
-      return this.image;
-    },
-    testimonialsDetailImageCloudinary() {
-      return this.image?.cloudinary !== undefined ? this.image.cloudinary : true;
-    },
-    testimonialsDetailSubline() {
-      if (this.testimonialsDetailLocation) {
-        return `${this.testimonialsDetailTitle} | ${this.testimonialsDetailLocation}`;
+    computedSubline() {
+      if (this.title) {
+        return `${this.title} | ${this.location}`;
       }
-      return this.testimonialsDetailTitle;
+      return this.title;
     },
-    headlineLevel() {
-      return this.testimonialsDetailHeadlineLevel || 'h1';
+    stickyOptions() {
+      return JSON.stringify({
+        parentSelector: '.page-detail__sticky-start',
+        breakpoint: 'lg',
+        startPoint: '.page-detail__sticky-start',
+        endPoint: '.page-detail__sticky-end',
+        stickyOffsetTop: 200,
+        stickyOffsetBottom: 20,
+      });
     },
-    headlineClasses() {
-      return `testimonials-detail__headline page-detail__headline ${this.testimonialsDetailHeadlineClasses}`;
-    }
-  }
+  },
 };
 </script>
