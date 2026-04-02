@@ -42,42 +42,38 @@ declare namespace _default {
             let _default_6: string;
             export { _default_6 as default };
         }
-        namespace description {
+        namespace introText {
             let type_7: StringConstructor;
             export { type_7 as type };
             let _default_7: string;
             export { _default_7 as default };
         }
-        namespace image {
-            let type_8: ObjectConstructor;
+        namespace description {
+            let type_8: StringConstructor;
             export { type_8 as type };
-            function _default_8(): {
+            let _default_8: string;
+            export { _default_8 as default };
+        }
+        namespace image {
+            let type_9: ObjectConstructor;
+            export { type_9 as type };
+            function _default_9(): {
                 img: string;
                 alt: string;
             };
-            export { _default_8 as default };
-        }
-        namespace imgSrcSets {
-            let type_9: ObjectConstructor;
-            export { type_9 as type };
-            function _default_9(): {};
             export { _default_9 as default };
+        }
+        namespace body {
+            let type_10: ObjectConstructor;
+            export { type_10 as type };
+            let _default_10: null;
+            export { _default_10 as default };
         }
     }
     namespace computed {
-        function testimonialsDetailColor(): any;
-        function testimonialsDetailTitle(): any;
-        function testimonialsDetailName(): any;
-        function testimonialsDetailLocation(): any;
-        function testimonialsDetailLight(): any;
-        function testimonialsDetailHeadlineLevel(): () => () => /*elided*/ any;
-        function testimonialsDetailHeadlineClasses(): () => string;
-        function testimonialsDetailDescription(): any;
-        function testimonialsDetailImage(): any;
-        function testimonialsDetailImageCloudinary(): any;
-        function testimonialsDetailSubline(): string | (() => any);
-        function headlineLevel(): () => /*elided*/ any;
-        function headlineClasses(): string;
+        function computedName(): any;
+        function computedSubline(): any;
+        function stickyOptions(): string;
     }
 }
 export default _default;
