@@ -24,6 +24,7 @@ declare namespace _default {
         let entries: ArrayConstructor;
         let index: NumberConstructor;
         let spacing: StringConstructor;
+        let width: StringConstructor;
     }
 }
 export default _default;

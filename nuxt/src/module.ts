@@ -142,14 +142,6 @@ export default defineNuxtModule({
 
     extendPages((pages) => {
       pages.unshift({
-        name: 'slug-testimonials',
-        path: '/testimonials/:slug(.*)*',
-        file: resolve('./runtime/pages/testimonials/[...slug].vue'),
-      });
-    });
-
-    extendPages((pages) => {
-      pages.unshift({
         name: 'slug-all',
         path: '/:slug(.*)*',
         file: resolve('./runtime/pages/[...slug].vue'),
