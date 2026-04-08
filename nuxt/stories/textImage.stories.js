@@ -8,7 +8,7 @@ export default {
 
 export const Right = {
   args: {
-    image: 'svg/icons/icon-products.svg',
+    image: '/assets/svg/icons/icon-products.svg',
     alt: 'Consulting Services',
     headlineText: 'Consulting Services',
     offset: true,
@@ -36,7 +36,7 @@ export const Right = {
 export const WithoutAnimation = {
   args: {
     noAnimation: true,
-    image: 'svg/icons/icon-consulting-services.svg',
+    image: '/assets/svg/icons/icon-consulting-services.svg',
     alt: 'Consulting Services',
     headlineText: 'Consulting Services',
     offset: true,
@@ -179,7 +179,7 @@ export const JobApplication = {
     },
     copyClasses: 'h3-font-size',
     white: true,
-    image: 'svg/icons/icon-hand.svg',
+    image: '/assets/svg/icons/icon-hand.svg',
     cloudinary: false,
     bgColor: 'var(--color-career-background)',
     left: true,
@@ -187,11 +187,10 @@ export const JobApplication = {
   },
 };
 
-// TODO here is the issue i guess
 export const LeftFloating = {
   args: {
     href: '',
-    image: 'svg/products/protection-shield.svg',
+    image: '/assets/svg/products/protection-shield.svg',
     imagePreset: 'textImageFloatingSmallSquare',
     imageClasses: 'center',
     headlineText: 'Why authenticate with certificates to access the network?',
@@ -213,7 +212,7 @@ export const WithBadge = {
       href: 'javascript:void(0)',
     },
     href: '',
-    image: 'svg/products/protection-shield.svg',
+    image: '/assets/svg/products/protection-shield.svg',
     imagePreset: 'textImageFloatingSmallSquare',
     imageClasses: 'center',
     headlineText: 'Why authenticate with certificates to access the network?',
@@ -277,7 +276,7 @@ export const WithAnimation = {
 
 export const WithList = {
   args: {
-    image: 'svg/icons/icon-products.svg',
+    image: '/assets/svg/icons/icon-products.svg',
     alt: 'Azure Training Timeline',
     level: 'h2',
     headlineText: 'Tag 1 - Tag 4',

@@ -119,7 +119,11 @@ export default {
       return this.isCloudinary ? (this.crossorigin ? this.crossorigin : 'anonymous') : null;
     },
     hasPictureTag() {
-      return this.isCloudinary && this.imgSrcSets;
+      if (!this.imgSrcSets) return false;
+
+      const isObject = typeof this.imgSrcSets === 'object';
+
+      return isObject ? this.isSvg() : !this.isSvg();
     },
     pictureWrapperClassList() {
       return ['img__picture-wrapper', this.imgSrcSetValue?.ratioClasses];

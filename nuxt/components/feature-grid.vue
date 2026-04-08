@@ -20,7 +20,7 @@
         class="feature-grid__figure d-flex mt-8 justify-content-center fade-in-bottom"
         data-utility-animation-step="1"
       >
-        <v-img v-bind="image" :img="image.src" class="somehowhier" />
+        <v-img v-bind="image" :img="image.src" class="feature-grid__image" />
       </figure>
 
       <div class="my-8" v-if="features">
