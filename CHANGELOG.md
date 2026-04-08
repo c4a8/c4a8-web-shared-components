@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.95
+
+- Fixes v-img picture tag generation
+
 # Release 0.4.93
 
 - Add Slot for Hero Component
