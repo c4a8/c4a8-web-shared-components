@@ -23,7 +23,7 @@ declare namespace _default {
         function jsonLottieSettingsData(): any;
         function isCloudinary(): boolean;
         function source(): any;
-        function loading(): any;
+        function loading(): "lazy" | null;
         function crossOriginValue(): any;
         function hasPictureTag(): any;
         function pictureWrapperClassList(): any[];
