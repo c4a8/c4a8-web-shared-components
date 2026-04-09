@@ -47,6 +47,7 @@
                 :lottie-settings="lottieSettings"
                 :img-src-sets="imgSrcSets"
                 :class="mobileShapeClasses"
+                fetchpriority="high"
               >
               </v-img>
               <v-img
@@ -57,6 +58,7 @@
                 :lottie="lottieFileData"
                 :lottie-settings="lottieSettings"
                 :img-src-sets="imgSrcSets"
+                fetchpriority="high"
               >
               </v-img>
             </div>
@@ -101,6 +103,7 @@
             :lottie-settings="lottieSettings"
             :img-src-sets="imgSrcSets"
             :lazy="true"
+            fetchpriority="high"
           >
           </v-img>
         </div>
