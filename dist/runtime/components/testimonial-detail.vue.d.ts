@@ -73,7 +73,6 @@ declare namespace _default {
     namespace computed {
         function computedName(): any;
         function computedSubline(): any;
-        function stickyOptions(): string;
     }
 }
 export default _default;

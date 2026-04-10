@@ -56,7 +56,7 @@
         <video-inner :video="video" ref="video-frame" />
       </div>
       <div>
-        <a class="testimonial-teaser__content" @click="triggerVideoStart" style="cursor: pointer">
+        <a class="testimonial-teaser__content" @click="triggerVideoStart" style="cursor: pointer;" >
           <div class="testimonial-teaser__name font-size-4 bold">
             <span v-for="(part, idx) in name.split(' ')" :key="idx">
               <div class="testimonial-teaser__name-background">

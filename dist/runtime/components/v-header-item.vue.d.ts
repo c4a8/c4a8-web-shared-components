@@ -21,6 +21,7 @@ declare namespace _default {
         let linkLists: ObjectConstructor;
         let getId: FunctionConstructor;
         let inTransition: BooleanConstructor;
+        let renderMegaMenu: BooleanConstructor;
     }
 }
 export default _default;

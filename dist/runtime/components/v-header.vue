@@ -19,7 +19,11 @@
               <span class="header__secondary-navigation-text">{{ secondaryNavigation.text }}</span>
             </div>
             <div class="header__secondary-navigation-content">
-              <div class="header__secondary-navigation-inner-content" ref="secondaryNavigationInnerContent">
+              <div
+                class="header__secondary-navigation-inner-content"
+                ref="secondaryNavigationInnerContent"
+                v-if="renderMegaMenu"
+              >
                 <template v-for="(item, index) in secondaryNavigation.children" :key="index">
                   <a
                     :href="getHref(child)"
@@ -61,6 +65,7 @@
                 :linkLists="linkLists"
                 :getId="getId"
                 :inTransition="inTransition"
+                :renderMegaMenu="renderMegaMenu"
                 ref="headerItem"
               ></v-header-item>
             </ul>
@@ -128,7 +133,7 @@
         </div>
       </div>
     </div>
-    <div class="header__flyout" v-on:mouseout="handleMouseOut">
+    <div class="header__flyout" v-on:mouseout="handleMouseOut" v-if="renderMegaMenu">
       <div :class="containerClass">
         <div class="row">
           <div class="col">
@@ -352,9 +357,13 @@ export default {
     this.setLinkWidth();
     this.handleScroll();
 
-    if (!this.secondaryNavigation) return;
+    if (this.secondaryNavigation) {
+      this.getSecondaryNavigationDimensions();
+    }
 
-    this.getSecondaryNavigationDimensions();
+    this.initEvents.forEach((event) =>
+      window.addEventListener(event, this.initMegaMenu, { once: true, passive: true })
+    );
   },
   updated() {
     if (this.inUpdate) {
@@ -365,6 +374,13 @@ export default {
     }
   },
   methods: {
+    initMegaMenu() {
+      if (this.renderMegaMenu) return;
+
+      this.renderMegaMenu = true;
+
+      this.initEvents.forEach((event) => window.removeEventListener(event, this.initMegaMenu));
+    },
     getSecondaryNavigationDimensions() {
       if (!this.secondaryNavigation) return;
 
@@ -564,6 +580,8 @@ export default {
       this.closed = true;
     },
     handleCloseClick() {
+      if (this.initMegaMenu) this.initMegaMenu();
+
       this.closed = !this.closed;
 
       if (this.closed) {
@@ -611,6 +629,8 @@ export default {
       return `${item.name}_${index}`;
     },
     handleHeaderMouseOver() {
+      if (this.initMegaMenu) this.initMegaMenu();
+
       this.hoverHeader = true;
 
       this.setCtaClasses();
@@ -915,6 +935,7 @@ export default {
   },
   data() {
     return {
+      renderMegaMenu: false,
       hoverHeader: false,
       inUpdate: false,
       inTransition: false,
@@ -940,6 +961,8 @@ export default {
         SHRINKING_HEIGHT: 0,
         SHRINKING_WIDTH: 1,
       },
+      initEvents: ['mousemove', 'scroll', 'touchstart', 'click'],
+      renderMegaMenu: false,
     };
   },
 };
