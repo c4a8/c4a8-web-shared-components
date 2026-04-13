@@ -69,5 +69,8 @@ declare namespace _default {
         function nameReplaced(): any;
         function imgSrcSet(): any;
     }
+    namespace methods {
+        function triggerVideoStart(): void;
+    }
 }
 export default _default;

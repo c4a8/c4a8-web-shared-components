@@ -21,6 +21,11 @@ declare namespace _default {
         }
     }
     namespace computed {
+        function imgSrcSets(): {
+            srcSets: {
+                params: string;
+            }[];
+        };
         function classList(): any;
         function sliderConfig(): any;
     }
