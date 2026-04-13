@@ -47,7 +47,8 @@ const localeQuery = computed(() => ({
 }));
 
 const whereHash = hash(JSON.stringify(props.query?.where || {}));
-const dataKey = props.query?.key || `content-${locale.value}-${(props.query?.path || 'list').replace(/\//g, '-')}-${whereHash}`;
+const dataKey =
+  props.query?.key || `content-${locale.value}-${(props.query?.path || 'list').replace(/\//g, '-')}-${whereHash}`;
 
 const filterDuplicateItems = (items) => {
   const seen = new Map();

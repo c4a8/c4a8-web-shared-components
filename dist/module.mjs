@@ -51,7 +51,7 @@ const module = defineNuxtModule({
       _nuxt.options.modules.push("nuxt-swiper");
     }
     const runtimeDir = resolve(__dirname, "./runtime");
-    const optimizeDeps = [runtimeDir, "node-html-parser", "jquery"];
+    const optimizeDeps = [runtimeDir, "node-html-parser", "jquery", "slick-carousel"];
     _nuxt.options.build.transpile = _nuxt.options.build.transpile || [];
     _nuxt.options.build.transpile.push(...optimizeDeps);
     _nuxt.options.vite.optimizeDeps ||= {};
