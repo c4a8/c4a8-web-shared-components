@@ -47,7 +47,7 @@ const shareUrl = `${useRequestURL().origin}${route.path}`;
 const dynamicMeta = useDynamicPageMeta();
 
 const path = route.path.replace(/^\/[a-z]{2}\//, '/');
-const dataKey = 'casestudy-' + path;
+const dataKey = `casestudy-${currentLocale.value}-${path}`;
 
 const { data: event } = await useAsyncData(dataKey, () => {
   const collectionName = 'content_' + currentLocale.value;
