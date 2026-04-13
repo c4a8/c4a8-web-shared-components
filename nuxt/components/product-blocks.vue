@@ -22,7 +22,13 @@
               <figure :class="['product-blocks__img', { 'mx-auto': item.copy === '' }, 'mb-4']">
                 <v-img :img="item.image" :cloudinary="item.cloudinary" :alt="item.alt" v-if="item.image" />
               </figure>
-              <h3 v-if="item.headline">{{ item.headline }}</h3>
+              <headline
+                v-if="item.headline"
+                :text="item.headline.text || item.headline"
+                :level="item.headline.level || 'h3'"
+                :classes="item.headline.classes || ''"
+                :utility-animation-step="item.headline.utilityAnimationStep || null"
+              />
               <p v-if="item.copy">{{ item.copy }}</p>
               <ul v-if="item.bulletList" class="dashed">
                 <li v-for="(bulletListItem, bulletListIndex) in item.bulletList" :key="bulletListIndex">
@@ -54,7 +60,7 @@ import UtilityAnimation from '../utils/utility-animation.js';
 export default {
   props: {
     productBlocks: Object,
-    headline: String,
+    headline: String || Object,
   },
   computed: {
     backgroundColorStyle() {
