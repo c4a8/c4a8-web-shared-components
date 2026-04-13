@@ -1,17 +1,26 @@
 <template>
   <div :class="[classList, 'location-section']" :style="{ backgroundColor: backgroundColor }">
-    <div class="location-section__slider-container d-flex align-items-center justify-content-center">
+    <div
+      v-if="images && images.length > 0"
+      class="location-section__slider-container d-flex align-items-center justify-content-center"
+    >
       <div
         class="location-section__slider-controls position-absolute d-flex align-items-center justify-content-center col-10 col-xxl-11 mx-auto z-index-2"
       >
         <div class="slick__arrow-left rounded-circle" :class="`prev-element-${instanceId}`"></div>
         <div class="slick__arrow-right rounded-circle" :class="`next-element-${instanceId}`"></div>
       </div>
-      <slider v-bind="sliderConfig" class="" :v2="true">
-        <v-img v-for="(img, index) in images" :key="index" :cloudinary="img.cloudinary" :img="img.img" />
+      <slider v-bind="sliderConfig" :v2="true">
+        <v-img
+          v-for="(img, index) in images"
+          :key="index"
+          :cloudinary="img.cloudinary"
+          :img="img.img"
+          :imgSrcSets="img.srcSets || imgSrcSets"
+        />
       </slider>
     </div>
-    <div class="location-section__content container pt-5">
+    <div class="location-section__content container pt-8">
       <div class="row row-cols-2 pb-5">
         <div><headline level="h5" :text="overline" /> <headline level="h3" :text="headline" /></div>
         <div v-if="landingpageCta" class="d-flex align-items-center justify-content-end">
@@ -73,6 +82,15 @@ export default {
     },
   },
   computed: {
+    imgSrcSets() {
+      return {
+        srcSets: [
+          {
+            params: 'c_fill,ar_16:10',
+          },
+        ],
+      };
+    },
     classList() {
       return this.classes ? this.classes : 'mb-7 pb-11';
     },
@@ -98,7 +116,7 @@ export default {
               spaceBetween: 10,
             },
             992: {
-              slidesPerView: 3,
+              slidesPerView: 2.5,
               spaceBetween: 10,
             },
             1200: {
