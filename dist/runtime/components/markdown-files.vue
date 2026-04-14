@@ -2,8 +2,15 @@
   <slot :files="structuredList"></slot>
 </template>
 <script>
+import { useI18n } from '#imports';
+
 export default {
   tagName: 'markdown-files',
+  setup() {
+    const { locale } = useI18n();
+
+    return { currentLocale: locale };
+  },
   computed: {
     structuredList() {
       const updatedList = [];
@@ -15,7 +22,7 @@ export default {
       const limitEvents = this.query?.limitEvents;
       const reversed = this.query?.reversed;
       const sort = this.query?.sort[0] || this.sort;
-      const defaultLang = 'de';
+      const defaultLang = this.currentLocale || 'de';
 
       let eventCount = 0;
 

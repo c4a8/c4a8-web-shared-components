@@ -19,7 +19,7 @@ const currentLocale = nuxtApp.$i18n.locale;
 const dynamicMeta = useDynamicPageMeta();
 
 const path = route.path.replace(/^\/[a-z]{2}\//, '/');
-const dataKey = 'testimonial-' + path;
+const dataKey = `testimonial-${currentLocale.value}-${path}`;
 
 const { data: testimonial } = await useAsyncData(dataKey, () => {
   const collectionName = 'content_' + currentLocale.value;
