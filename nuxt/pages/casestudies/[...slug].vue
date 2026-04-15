@@ -33,8 +33,6 @@ import {
 } from '#imports';
 import { computed, nextTick } from 'vue';
 
-import ContentRendererLink from '../../components/content-renderer-link.vue';
-
 import Tools from '../../utils/tools.js';
 import { useAppStore } from '../../stores/app';
 
@@ -47,7 +45,7 @@ const shareUrl = `${useRequestURL().origin}${route.path}`;
 const dynamicMeta = useDynamicPageMeta();
 
 const path = route.path.replace(/^\/[a-z]{2}\//, '/');
-const dataKey = `casestudy-${currentLocale.value}-${path}`;
+const dataKey = Tools.getDataKey('casestudy', null, currentLocale.value, path);
 
 const { data: event } = await useAsyncData(dataKey, () => {
   const collectionName = 'content_' + currentLocale.value;

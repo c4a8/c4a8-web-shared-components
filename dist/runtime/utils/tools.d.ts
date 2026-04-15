@@ -90,4 +90,6 @@ declare class Tools {
     static applyKramdownAttrs(body: any): any[];
     static getExternalLanguageText(locale: any, lang: any, translateFn: any): any;
     static gotoHome(): void;
+    static simpleHash(str: any, seed?: number): string;
+    static getDataKey(prefix: any, params: any, locale: any, path: any): string;
 }
