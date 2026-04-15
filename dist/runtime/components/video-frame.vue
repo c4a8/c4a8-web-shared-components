@@ -34,11 +34,11 @@
                 <cta v-else v-bind="ctaData" />
               </span>
             </div>
-            <v-img :img="thumb" :cloudinary="true" :alt="alt" :preset="preset" />
+            <v-img :img="thumb" :cloudinary="true" :alt="alt" :preset="preset" :lazy="true" />
           </div>
         </div>
         <div v-if="corner" :class="cornerClass">
-          <v-img :img="corner.img" :preset="preset" :cloudinary="corner.cloudinary" :alt="corner.alt" />
+          <v-img :img="corner.img" :preset="preset" :cloudinary="corner.cloudinary" :alt="corner.alt" :lazy="true" />
         </div>
       </div>
     </div>
@@ -109,11 +109,11 @@
               <cta v-else v-bind="ctaData" />
             </span>
           </div>
-          <v-img :img="thumb" :cloudinary="true" :alt="alt" :preset="preset" />
+          <v-img :img="thumb" :cloudinary="true" :alt="alt" :preset="preset" :lazy="true" />
         </div>
       </div>
       <div v-if="corner" :class="cornerClass">
-        <v-img :img="corner.img" :preset="preset" :cloudinary="corner.cloudinary" :alt="corner.alt" />
+        <v-img :img="corner.img" :preset="preset" :cloudinary="corner.cloudinary" :alt="corner.alt" :lazy="true" />
       </div>
     </template>
   </div>
