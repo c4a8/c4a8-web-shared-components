@@ -66,4 +66,32 @@ export default defineNuxtConfig({
   turnstile: {
     siteKey: turnstileSiteKey ?? undefined,
   },
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          // additionalData: `
+          //   @use '@/src/assets/scss/_colors.scss' as *;
+          //   @use '@/src/assets/scss/_user-variables-type.scss' as *;
+          //   @use '@/src/assets/scss/_user-variables.scss' as *;
+          //   @use '@/src/assets/scss/_mixins.scss' as *;
+          // `,
+          // additionalData: `
+          //   @use "@/src/assets/scss/colors" as *;
+          //   @use "@/src/assets/scss/user-variables-type" as *;
+          //   @use "@/src/assets/scss/user-variables" as *;
+          //   @use "@/src/assets/scss/mixins" as *;
+          //   @use "@/src/assets/scss/z-index" as *;
+          // `,
+          additionalData: (source: string, filename: string) => {
+            if (filename.endsWith('.vue')) {
+              return `@import "@/src/assets/scss/sfc-tools";\n` + source;
+            }
+
+            return source;
+          },
+        },
+      },
+    },
+  },
 });
