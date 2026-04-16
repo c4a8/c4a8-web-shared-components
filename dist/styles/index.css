@@ -50704,6 +50704,19 @@ shape {
   max-width: 2000px;
 }
 
+.team-cards-item--default {
+  max-width: 300px;
+}
+
+.team-cards-item__description {
+  flex-grow: 1;
+}
+
+.team-cards-item__body {
+  display: flex;
+  flex-direction: column;
+}
+
 .page-detail::before {
   z-index: -1;
 }
