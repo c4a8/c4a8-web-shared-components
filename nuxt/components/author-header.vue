@@ -35,3 +35,20 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.author-header {
+  .author-header__back {
+    display: none;
+    top: spacing($size: 8, $negative: true);
+    left: #{$grid-gutter-half-width};
+
+    &.show {
+      display: inline-flex;
+    }
+
+    @include media-breakpoint-up(lg) {
+      top: spacing($size: 24, $negative: true);
+    }
+  }
+}
+</style>
