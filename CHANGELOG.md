@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.97
+
+- Adds a unique data key for useAsyncData calls to avoid duplicate content
+
 # Release 0.4.95
 
 - Fixes v-img picture tag generation

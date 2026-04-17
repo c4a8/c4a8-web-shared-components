@@ -32,6 +32,7 @@ import {
 } from '#imports';
 
 import { computed } from 'vue';
+import Tools from '../../utils/tools.js';
 
 const route = useRoute();
 
@@ -43,7 +44,7 @@ const currentLocale = nuxtApp.$i18n.locale;
 const dynamicMeta = useDynamicPageMeta();
 
 const path = route.path.replace(/^\/[a-z]{2}\//, '/');
-const dataKey = `post-${currentLocale.value}-${path}`;
+const dataKey = Tools.getDataKey('post', null, currentLocale.value, path);
 const shareUrl = `${useRequestURL().origin}${route.path}`;
 
 const config = useRuntimeConfig();

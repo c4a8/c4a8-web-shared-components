@@ -1,6 +1,6 @@
 <template>
   <div class="team-cards-item px-2 mb-3" :class="{ 'team-cards-item--default col-sm-6 col-lg-4': !noRow }">
-    <div class="card h-100 has-card-background">
+    <div class="card h-100 has-card-background overflow-hidden">
       <v-img v-if="img" :src="img" :alt="alt" class="img-fluid" :class="noBorder ? '' : 'pt-4 px-4'" />
       <div class="team-cards-item__body card-body">
         <headline level="h3" class="light thin mb-1" :text="name" />
@@ -48,24 +48,9 @@ export default {
     },
     noBorder: {
       type: Boolean,
-      default: false,
+      default: true,
     },
   },
 };
 </script>
-<style lang="scss" scoped>
-.team-cards-item {
-  &.team-cards-item--default {
-    max-width: 300px;
-  }
-}
 
-.team-cards-item__description {
-  flex-grow: 1;
-}
-
-.team-cards-item__body {
-  display: flex;
-  flex-direction: column;
-}
-</style>
