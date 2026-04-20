@@ -51,4 +51,36 @@ staticCssFiles.forEach((file) => {
   execSync(`postcss ${file} --no-map -o ${optimizedFile}`, { stdio: 'inherit' });
 });
 
+console.log('Copying SCSS tool files for SFC support...');
+
+const scssSourceDir = resolve(__dirname, '../src/assets/scss');
+const scssDistDir = resolve(__dirname, '../dist/styles');
+
+// These are all files inside sfc-tools.scss
+const sfcToolFiles = [
+  '_colors.scss',
+  '_user-variables-type.scss',
+  '_user-variables.scss',
+  '_animations.scss',
+  '_mixins.scss',
+  '_z-index.scss',
+];
+
+sfcToolFiles.forEach((file) => {
+  const src = resolve(scssSourceDir, file);
+  const dest = resolve(scssDistDir, file);
+  if (fs.existsSync(src)) {
+    fs.copyFileSync(src, dest);
+    console.log(`  Copied ${file}`);
+  } else {
+    console.warn(`  Warning: ${file} not found at ${src}`);
+  }
+});
+
+// Create the sfc-tools entry point
+const sfcToolsContent = sfcToolFiles.map((file) => `@import "${file.replace('.scss', '')}";`).join('\n');
+
+fs.writeFileSync(resolve(scssDistDir, 'sfc-tools.scss'), sfcToolsContent + '\n');
+console.log('  Created sfc-tools.scss');
+
 console.log('CSS build completed successfully.');
