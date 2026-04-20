@@ -32,7 +32,7 @@ if (useEnvironment() !== 'development') {
     script: [
       {
         type: 'text/javascript',
-        children: `
+        innerHTML: `
           function loadGTM() {
             const originalDocumentCookie = document.cookie;
             function interceptCookieWrite(cookieValue) {
