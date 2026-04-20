@@ -1088,7 +1088,6 @@ declare namespace _default {
         let onSurface: BooleanConstructor;
     }
     function data(): {
-        renderMegaMenu: boolean;
         hoverHeader: boolean;
         inUpdate: boolean;
         inTransition: boolean;
@@ -1115,6 +1114,7 @@ declare namespace _default {
             SHRINKING_WIDTH: number;
         };
         initEvents: string[];
+        renderMegaMenu: boolean;
     };
 }
 export default _default;

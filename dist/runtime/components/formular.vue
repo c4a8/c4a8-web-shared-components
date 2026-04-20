@@ -152,7 +152,7 @@ export default {
       let index = 0;
       let tempBlock = [];
 
-      this.form.fields.forEach((field) => {
+      this.form?.fields?.forEach((field) => {
         if (this.useTranslation) {
           if (field.label) {
             field.label = this.$t(field.label);
