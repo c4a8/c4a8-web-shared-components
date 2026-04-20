@@ -115,3 +115,11 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.cal-calendar {
+  .cal-embed {
+    // not possible to overwrite the inline styles
+    height: 80vh !important;
+  }
+}
+</style>
