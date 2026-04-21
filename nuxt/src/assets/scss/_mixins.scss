@@ -1,5 +1,8 @@
 // @use 'sass:math'; // still not working for some reason
 
+$animation-transition: cubic-bezier(0.19, 1, 0.2, 1);
+$transition-tween-t1: 0.2s ease-in-out;
+
 @function breakpoint-next($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
   $n: index($breakpoint-names, $name);
 
@@ -872,4 +875,78 @@ $line-height-map: (
       font-size: $xl #{$important-string};
     }
   }
+}
+
+@mixin animation-start-state {
+  opacity: 0;
+}
+
+@mixin animation-end-state {
+  opacity: 1;
+}
+
+@mixin background-grow($color, $spacing: 0, $half: false) {
+  position: relative;
+  z-index: 1;
+
+  &::before {
+    position: absolute;
+    content: '';
+    display: block;
+    height: calc(var(--type-default-line-height) * 1em + (2 * #{$spacing}));
+    width: 0;
+    left: 0;
+    top: 0;
+    background-color: $color;
+    animation: grow;
+    animation-duration: 0.8s;
+    animation-fill-mode: forwards;
+    animation-timing-function: $animation-transition;
+    z-index: -1;
+
+    @if $half {
+      height: 1rem;
+      top: 1rem;
+    }
+  }
+}
+
+@mixin fade-in-X($from: 'bottom', $duration: 0.5s) {
+  @if ($from == 'bottom') {
+    transform: translate3d(0, var(--utility-animation-distance), 0);
+    animation: fade-in-from-bottom $duration forwards;
+  } @else {
+    transform: translate3d(0, calc(-1 * var(--utility-animation-distance)), 0);
+    animation: fade-in-from-top $duration forwards;
+  }
+
+  animation-timing-function: $animation-transition;
+}
+
+/**
+* Animation for Background Shapes
+*/
+@mixin svg-shape-animation($shapeCount: 4) {
+  @for $i from 1 through $shapeCount {
+    path {
+      &:nth-child(#{$i}n) {
+        animation: svgShape#{$i} #{$i + 8}s ease-in-out alternate infinite;
+        transform-origin: center;
+      }
+    }
+  }
+}
+
+@mixin move-top-right {
+  animation: moveTopRight;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+  animation-timing-function: $animation-transition;
+}
+
+@mixin move-right-left {
+  animation: moveRightLeft;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+  animation-timing-function: $animation-transition;
 }
