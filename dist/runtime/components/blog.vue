@@ -167,3 +167,9 @@ export default {
   },
 };
 </script>
+<style scoped>
+.blog__highlight-post {
+  z-index: 60;
+  position: relative;
+}
+</style>

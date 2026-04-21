@@ -923,9 +923,6 @@ $line-height-map: (
   animation-timing-function: $animation-transition;
 }
 
-/**
-* Animation for Background Shapes
-*/
 @mixin svg-shape-animation($shapeCount: 4) {
   @for $i from 1 through $shapeCount {
     path {

@@ -58,10 +58,9 @@ const scssDistDir = resolve(__dirname, '../dist/styles');
 
 // These are all files inside sfc-tools.scss
 const sfcToolFiles = [
-  '_colors.scss',
+  '_color-vars.scss',
   '_user-variables-type.scss',
   '_user-variables.scss',
-  '_animations.scss',
   '_mixins.scss',
   '_z-index.scss',
 ];

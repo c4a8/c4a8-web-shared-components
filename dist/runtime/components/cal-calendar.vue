@@ -115,3 +115,8 @@ export default {
   },
 };
 </script>
+<style>
+.cal-calendar .cal-embed {
+  height: 80vh !important;
+}
+</style>
