@@ -3,6 +3,14 @@
   max-width: 300px;
 }
 
+.card.no-border {
+  @include border-radius(0);
+
+  .card-footer:last-child {
+    border-radius: 0;
+  }
+}
+
 .team-cards-item__description {
   flex-grow: 1;
 }
