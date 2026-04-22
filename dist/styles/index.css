@@ -50708,6 +50708,13 @@ shape {
   max-width: 300px;
 }
 
+.card.no-border {
+  border-radius: 0;
+}
+.card.no-border .card-footer:last-child {
+  border-radius: 0;
+}
+
 .team-cards-item__description {
   flex-grow: 1;
 }
