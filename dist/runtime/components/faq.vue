@@ -149,3 +149,108 @@ export default {
   },
 };
 </script>
+<style>
+.faq[data-utility-animation-in-viewport] + :not([data-utility-animation-in-viewport]) [data-utility-animation-step] {
+  animation-delay: var(--utility-animation-delay);
+}
+.faq[data-utility-animation-in-viewport] + :not([data-utility-animation-in-viewport]) [data-utility-animation-step].faq__headline {
+  animation-delay: 0s;
+}
+.faq[data-utility-animation-in-viewport] + [data-utility-animation-in-viewport] [data-utility-animation-step] {
+  animation-delay: calc(200ms + var(--utility-animation-delay));
+}
+.faq[data-utility-animation-in-viewport] + [data-utility-animation-in-viewport] [data-utility-animation-step].faq__headline {
+  animation-delay: 200ms;
+}
+.faq summary {
+  list-style-type: none;
+  display: flex;
+  position: relative;
+}
+.faq summary {
+  font-size: 1.25rem;
+  line-height: 1.6em;
+}
+@media (min-width: 992px) {
+  .faq summary {
+    font-size: 1.25rem;
+    line-height: 1.6em;
+  }
+}
+@media (min-width: 1200px) {
+  .faq summary {
+    font-size: 1.5625rem;
+    line-height: 1.6em;
+  }
+}
+.faq summary {
+  line-height: 1.7em !important;
+}
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+.faq details {
+  margin: 1rem 0;
+}
+.faq details[data-utility-animation-step] {
+  animation-duration: 1.4s;
+  animation-delay: var(--utility-animation-delay);
+}
+.faq details[open]:not(.is-collapsing) .faq__icon {
+  transform: rotate(-180deg);
+}
+.faq details + details {
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-faq-border);
+}
+.faq details .faq__bullets {
+  list-style-type: none;
+}
+.faq .faq__icon {
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.2, 1);
+}
+.faq .faq__icon .icon {
+  position: relative;
+  right: 2px;
+  top: 2px;
+  transform: scaleY(2.2) scale(1.2);
+  margin-bottom: 0.25rem;
+}
+
+.faq__headline {
+  padding-bottom: 1.5rem;
+}
+
+.faq__content {
+  transition: height 0.5s cubic-bezier(0.19, 1, 0.2, 1);
+  overflow: hidden;
+}
+.faq__content.v-leave-active {
+  transition-duration: 0.2s;
+}
+.faq__content.v-leave-to {
+  height: 0 !important;
+}
+
+.faq__text {
+  padding-top: 1.5rem;
+  padding-bottom: 3.5rem;
+  overflow: hidden;
+}
+
+.faq__summary {
+  display: inline-block;
+}
+
+.faq__text,
+.faq__summary {
+  width: 90%;
+}
+
+.faq__icon-frame {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+</style>
