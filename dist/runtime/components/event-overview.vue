@@ -142,3 +142,83 @@ export default {
   },
 };
 </script>
+<style scoped>
+.event-overview {
+  --event-overview-vertical-padding: 1.5rem;
+  --event-overview-margin-bottom: 1.5rem;
+  --event-overview-more-color: var(--color-copy);
+  --event-overview-more-background: var(--color-copy-light);
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--event-overview-vertical-padding);
+  padding-bottom: var(--event-overview-vertical-padding);
+  margin-bottom: 2.5rem;
+}
+@media (min-width: 992px) {
+  .event-overview {
+    --event-overview-vertical-padding: spacing(12);
+  }
+}
+.event-overview [data-utility-animation-step][data-utility-animation-step] {
+  --utility-animation-distance: 15%;
+}
+.event-overview [data-utility-animation-step][data-utility-animation-step].is-starting {
+  animation-delay: calc(var(--utility-animation-index) * 200ms + 0ms);
+  animation-duration: 0.8s;
+}
+.event-overview.event-overview--overlap {
+  --event-overview-vertical-padding: 0;
+  z-index: 170;
+  position: relative;
+  margin-top: -2.5rem;
+}
+.event-overview.event-overview--overlap .event-overview__headline {
+  display: none;
+}
+@media (min-width: 992px) {
+  .event-overview.event-overview--overlap {
+    margin-top: -7.5rem;
+  }
+}
+.event-overview .event-overview__headline {
+  margin-bottom: 1.5rem;
+}
+
+.event-overview__item {
+  opacity: 1;
+  height: auto;
+  margin-bottom: var(--event-overview-margin-bottom);
+  transition: opacity 0.5s ease-in-out, height 0.5s ease-in-out;
+}
+.event-overview__item:not(.is-visible) {
+  visibility: collapse;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-width: 0;
+  pointer-events: none;
+}
+
+.event-overview__more {
+  cursor: pointer;
+  border: 2px solid var(--event-overview-more-color);
+  color: var(--event-overview-more-color);
+  background-color: var(--event-overview-more-background);
+  text-align: center;
+  padding: 0.75rem;
+  margin-top: 1.5rem;
+  align-self: center;
+  width: 100%;
+}
+.event-overview__more:hover {
+  --event-overview-more-color: var(--color-copy-light);
+  --event-overview-more-background: var(--color-copy);
+}
+@media (min-width: 992px) {
+  .event-overview__more {
+    width: 60%;
+  }
+}
+</style>

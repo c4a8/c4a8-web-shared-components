@@ -227,3 +227,295 @@ export default {
   },
 };
 </script>
+<style>
+.contact {
+  --color-contact-box-background: var(--color-yellow);
+  --color-detail-highlight: var(--color-copy-highlight);
+  --color-contact-background: var(--color-primary);
+  --color-contact-quote-background: var(--color-gigas);
+  --contact-spacing-collapsed: 0.75rem;
+  --contact-copy-color: var(--color-copy);
+  --contact-box-copy-color: var(--contact-copy-color);
+  color: var(--contact-copy-color);
+}
+.contact.utility-animation [data-utility-animation-step] {
+  --utility-animation-distance: 10%;
+  animation-duration: 0.8s;
+}
+.contact.utility-animation [data-utility-animation-step] + [data-utility-animation-step] {
+  animation-delay: 100ms;
+}
+.contact .input-label,
+.contact .headline {
+  color: inherit;
+}
+.contact.contact--has-shape {
+  --color-contact-box-background: var(--color-primary);
+}
+.contact:not(.contact--has-shape):not(.is-collapsed):not(.contact--quote) {
+  background-color: var(--color-contact-background);
+}
+.contact:not(.contact--has-shape):not(.is-collapsed) {
+  background-color: var(--color-contact-quote-background);
+}
+.contact.contact--quote {
+  --contact-copy-color: var(--color-copy-light);
+  --color-contact-box-background: var(--color-green-blue);
+}
+.contact.contact--quote .contact__icon {
+  width: 100%;
+  height: auto;
+  margin-bottom: 1.25rem;
+}
+.contact.contact--quote .contact__icon svg {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.contact.contact--quote .contact__box {
+  margin-top: 5rem;
+}
+@media (min-width: 992px) {
+  .contact.contact--quote .contact__box {
+    margin-top: -7rem;
+  }
+}
+.contact.contact--quote .contact__person {
+  position: relative;
+  height: auto;
+  padding: 3rem 2rem 3rem 2.75rem;
+}
+.contact:not(.is-collapsed) .contact__form .form {
+  margin-bottom: 3rem;
+}
+.contact:not(.is-collapsed) .contact__subline {
+  display: block;
+}
+.contact:not(.is-collapsed) .contact__subline,
+.contact:not(.is-collapsed) .contact__healdine {
+  text-align: center;
+}
+@media (min-width: 992px) {
+  .contact:not(.is-collapsed) .contact__form .form {
+    margin-bottom: 0;
+  }
+  .contact:not(.is-collapsed) .contact__subline,
+  .contact:not(.is-collapsed) .contact__healdine {
+    text-align: left;
+  }
+}
+.contact.is-collapsed {
+  max-width: 500px;
+  overflow: hidden;
+  transition: height 0.7s cubic-bezier(0.19, 1, 0.2, 1);
+}
+.contact.is-collapsed.show .contact__form {
+  padding: 0.5rem 1rem 0.5rem;
+  opacity: 1;
+}
+.contact.is-collapsed.show .contact__box {
+  opacity: 0;
+}
+.contact.is-collapsed:not(.show) .contact__form {
+  visibility: collapse;
+  pointer-events: none;
+  opacity: 0;
+}
+.contact.is-collapsed .contact__form {
+  overflow: hidden;
+  flex: 0;
+  height: 0;
+  transition: opacity 0.7s cubic-bezier(0.19, 1, 0.2, 1), height 0.7s cubic-bezier(0.19, 1, 0.2, 1);
+}
+.contact.is-collapsed .contact__box {
+  transition: opacity 0.7s cubic-bezier(0.19, 1, 0.2, 1);
+}
+.contact.is-collapsed .contact__details {
+  font-size: 1rem;
+  padding-left: var(--contact-spacing-collapsed);
+}
+@media (min-width: 992px) {
+  .contact.is-collapsed .contact__details {
+    font-size: 1.25rem;
+  }
+}
+.contact.is-collapsed .contact__image {
+  padding: var(--contact-spacing-collapsed) !important;
+}
+.contact.is-collapsed .contact__person {
+  padding-bottom: var(--contact-spacing-collapsed);
+}
+.contact.contact--small {
+  --contact-spacing-collapsed: 3rem;
+  margin-bottom: 2rem;
+}
+.contact.contact--small.contact--quote .contact__person {
+  height: 100%;
+}
+.contact.contact--small .contact__box,
+.contact.contact--small .contact__row,
+.contact.contact--small .contact__container {
+  height: 100%;
+}
+.contact.contact--small .contact__person-quote {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.contact.contact--small .contact__quote {
+  flex: 1 0 auto;
+}
+.contact.contact--small .contact__image-spacer {
+  flex: 0 0 auto;
+  height: auto;
+}
+.contact.contact--small .contact__box {
+  margin-top: 0;
+}
+@media (min-width: 992px) {
+  .contact.contact--small .contact__box {
+    margin-top: 0;
+  }
+}
+.contact.on-surface .form .link,
+.contact.on-surface .form a {
+  --color-primary-on-surface: var(--color-copy);
+  text-decoration: underline;
+}
+.contact.on-surface .form .link:hover,
+.contact.on-surface .form a:hover {
+  --color-primary-accent-on-surface: var(--color-copy);
+  text-decoration: none;
+}
+.contact + footer {
+  margin-top: 0 !important;
+}
+
+.contact__detail {
+  flex-wrap: wrap;
+}
+
+.contact__notes-spacing {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.contact__notes {
+  display: flex;
+}
+.contact__notes {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+@media (min-width: 992px) {
+  .contact__notes {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+@media (min-width: 1200px) {
+  .contact__notes {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+.contact__notes {
+  flex: 1 0 100%;
+}
+
+.contact__person {
+  background-color: var(--color-contact-box-background);
+  color: var(--contact-box-copy-color);
+  height: 100%;
+  padding-bottom: 5rem;
+}
+.contact__person.contact__person--light {
+  color: var(--color-copy-light);
+}
+
+.contact__box {
+  z-index: 210;
+}
+
+.contact__detail-quote {
+  margin-right: 3.5rem;
+  margin-top: 4rem;
+  margin-bottom: 3rem;
+}
+.contact__detail-quote .contact__detail-headline {
+  margin-bottom: 2rem;
+}
+@media (min-width: 992px) {
+  .contact__detail-quote {
+    margin-top: 7.5rem;
+    margin-right: 0;
+    margin-bottom: 4rem;
+  }
+}
+@media (min-width: 1200px) {
+  .contact__detail-quote {
+    margin-right: 4.5rem;
+  }
+}
+
+.contact__details::before {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 10px;
+  position: absolute;
+  background-color: var(--color-detail-highlight);
+}
+.contact__details .fas {
+  font-size: 1.5em;
+}
+
+.contact__detail a,
+.contact__detail a:visited,
+.contact__details a,
+.contact__details a:visited {
+  color: inherit;
+}
+.contact__detail a:hover,
+.contact__details a:hover {
+  text-decoration: underline;
+}
+
+.contact__person-quote {
+  position: relative;
+  overflow: clip;
+}
+
+.contact__image-quote {
+  float: right;
+  width: 8.75rem;
+  height: 8.75rem;
+  padding-left: 1.25rem;
+  padding-bottom: 1.25rem;
+  max-width: 200px;
+  position: relative;
+  pointer-events: none;
+}
+
+.contact__image-spacer {
+  border-radius: 100%;
+  overflow: hidden;
+  display: flex;
+  clear: both;
+  width: 100%;
+  height: 100%;
+}
+
+.contact__quote {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.page-content > *:last-of-type.contact {
+  margin-bottom: -3.5rem !important;
+}
+@media (min-width: 992px) {
+  .page-content > *:last-of-type.contact {
+    margin-bottom: -5rem !important;
+  }
+}
+</style>
