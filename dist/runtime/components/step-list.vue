@@ -32,7 +32,8 @@
               <li
                 class="step-list__list-element font-size-2 fade-in-bottom"
                 data-utility-animation-step="1"
-                :style="`--utility-animation-index: ${index + 1}`"
+                :style="`--utility-animation-index: ${index + 1};
+                color: ${accentColor}`"
               >
                 <div
                   class="step-list__counter"
@@ -76,7 +77,7 @@
                 data-utility-animation-step="1"
                 :style="`--utility-animation-index: ${index + 2}`"
               >
-                <icon icon="arrow-narrow" color="var(--color-step-list-highlight)" />
+                <icon icon="arrow-narrow" :color="accentColor || 'var(--color-step-list-highlight)'" />
               </li>
             </template>
           </ul>
@@ -98,6 +99,11 @@ export default {
     color: {
       type: String,
       default: 'var(--color-copy-light)',
+    },
+    accentColor: String,
+    accentLightText: {
+      type: Boolean,
+      default: false,
     },
     headline: {
       type: Object,
@@ -124,6 +130,13 @@ export default {
     if (!this.$refs.root) return;
 
     UtilityAnimation.init([this.$refs.root]);
+    if (this.accentColor) {
+      this.$refs.root.style.setProperty('--color-step-list-highlight', this.accentColor);
+    }
+    this.$refs.root.style.setProperty(
+      '--color-step-list-highlight-copy',
+      this.accentLightText ? 'var(--color-copy-light)' : 'var(--color-copy)'
+    );
   },
   methods: {
     animationIndex(index, isIcon = false) {

@@ -128,7 +128,6 @@ $step-list-color-img-tint: $color-copy;
 }
 
 .step-list__list-element {
-  color: var(--color-step-list-highlight);
   display: grid;
   grid-template-columns: fit-content($step-list-counter-width) 1fr;
   grid-template-rows: min-content max-content;
