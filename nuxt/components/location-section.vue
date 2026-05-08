@@ -11,13 +11,15 @@
         <div class="slick__arrow-right rounded-circle" :class="`next-element-${instanceId}`"></div>
       </div>
       <slider v-bind="sliderConfig" :v2="true">
-        <v-img
-          v-for="(img, index) in images"
-          :key="index"
-          :cloudinary="img.cloudinary"
-          :img="img.img"
-          :imgSrcSets="img.srcSets || imgSrcSets"
-        />
+        <div v-for="(img, index) in images">
+          <v-img
+            class="location-section__slider-image"
+            :key="index"
+            :cloudinary="img.cloudinary"
+            :img="img.img"
+            :imgSrcSets="img.srcSets || imgSrcSets"
+          />
+        </div>
       </slider>
     </div>
     <div class="location-section__content container pt-8">
@@ -130,3 +132,8 @@ export default {
   },
 };
 </script>
+<style>
+.location-section__slider-image {
+  aspect-ratio: 4/3;
+}
+</style>
