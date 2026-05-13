@@ -61,6 +61,11 @@ declare namespace _default {
         let mockDocumentsUrl: StringConstructor;
         let modalError: ObjectConstructor;
         let content: StringConstructor;
+        namespace light {
+            export let type: BooleanConstructor;
+            let _default_4: boolean;
+            export { _default_4 as default };
+        }
     }
 }
 export default _default;

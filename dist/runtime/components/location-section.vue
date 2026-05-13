@@ -133,12 +133,5 @@ export default {
 };
 </script>
 <style>
-.location-section__slider-image-wrapper {
-  aspect-ratio: 4/3;
-}
-.location-section__slider-image {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
+.location-section__slider-image-wrapper{aspect-ratio:4/3}.location-section__slider-image{height:100%;-o-object-fit:cover;object-fit:cover;width:100%}
 </style>
