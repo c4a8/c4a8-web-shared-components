@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.99
+
+- Add light prop to modal
+
 # Release 0.4.97
 
 - Adds a unique data key for useAsyncData calls to avoid duplicate content
