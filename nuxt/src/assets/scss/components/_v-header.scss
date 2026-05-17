@@ -657,6 +657,23 @@ $header-border-size: 1px;
   }
 }
 
+// Studio-managed row: rendered beneath the main flyout row so a generated
+// section (e.g. "Compare") never competes for slots with the curated
+// columns. Items align with the curated columns by reusing the same flex
+// basis, so a single Studio section sits in the second slot below the
+// flyout-block (intentional: keeps the visual rhythm of the row above).
+// `:has()` shrinks the main row's bottom margin when this row is present
+// so the two rows read as one block rather than two separated lists.
+.header__flyout-items:has(+ .header__flyout-items--studio) {
+  margin-bottom: spacing(8);
+}
+
+.header__flyout-items--studio {
+  margin-top: 0;
+  padding-top: spacing(8);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
 .header__flyout-caption {
   @include font-size-4;
 }

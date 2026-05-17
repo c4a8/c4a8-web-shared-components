@@ -49598,6 +49598,16 @@ shape {
   max-width: var(--header-flyout-item-width);
 }
 
+.header__flyout-items:has(+ .header__flyout-items--studio) {
+  margin-bottom: 2rem;
+}
+
+.header__flyout-items--studio {
+  margin-top: 0;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
 .header__flyout-caption {
   font-size: 1.375rem;
   line-height: 1.6365em;

@@ -139,7 +139,7 @@
               :key="itemIndex"
             >
               <div class="header__flyout-items" v-if="item.children">
-                <figure class="header__flyout-block" v-if="showFlyoutBlock(item.children)">
+                <figure class="header__flyout-block" v-if="showFlyoutBlock(curatedFlyoutChildren(item.children))">
                   <figcaption class="header__flyout-caption">
                     {{ item.languages[lowerLang]?.title }}
                   </figcaption>
@@ -158,12 +158,12 @@
                   </div>
                 </figure>
 
-                <template v-for="(list, listIndex) in item.children" :key="listIndex">
+                <template v-for="(list, listIndex) in curatedFlyoutChildren(item.children)" :key="listIndex">
                   <link-list
                     :list="list"
                     :lang="lowerLang"
                     :no-animation="true"
-                    v-if="item.children && !list.products"
+                    v-if="!list.products"
                   />
                   <div class="header__product-list is-expanded" v-else>
                     <a
@@ -188,6 +188,18 @@
                     </a>
                   </div>
                 </template>
+              </div>
+              <div
+                class="header__flyout-items header__flyout-items--studio"
+                v-if="item.children && studioFlyoutChildren(item.children).length"
+              >
+                <link-list
+                  v-for="(list, listIndex) in studioFlyoutChildren(item.children)"
+                  :key="`studio-${listIndex}`"
+                  :list="list"
+                  :lang="lowerLang"
+                  :no-animation="true"
+                />
               </div>
             </div>
           </div>
@@ -882,6 +894,21 @@ export default {
     },
     hasContactLink(item) {
       return this.contact?.languages && !item.languages[this.lowerLang]?.emergency;
+    },
+    // Split a nav item's children into two groups based on the
+    // `studio_managed: true` marker that the Marktamt Studio adds when it
+    // auto-wires generated pages into an existing dropdown (e.g. Support
+    // Hub). Curated, hand-authored children stay in the main flyout row
+    // alongside the left flyout-block. Studio-managed children render in
+    // a second row below, so adding a new section never displaces the
+    // flyout-block or breaks the 4-slot main-row layout.
+    curatedFlyoutChildren(children) {
+      if (!Array.isArray(children)) return [];
+      return children.filter((c) => !c?.studio_managed);
+    },
+    studioFlyoutChildren(children) {
+      if (!Array.isArray(children)) return [];
+      return children.filter((c) => c?.studio_managed);
     },
   },
   props: {
