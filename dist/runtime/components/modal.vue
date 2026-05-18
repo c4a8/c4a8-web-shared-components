@@ -85,6 +85,7 @@ export default {
         this.notificationValue ? 'modal--notification' : '',
         this.isCenterSlim ? 'modal--center-slim' : '',
         'vue-component',
+        this.light ? 'modal--light' : '',
       ];
     },
     dialogClassList() {
@@ -238,6 +239,10 @@ export default {
     mockDocumentsUrl: String,
     modalError: Object,
     content: String,
+    light: {
+      type: Boolean,
+      default: false,
+    },
   },
 };
 </script>

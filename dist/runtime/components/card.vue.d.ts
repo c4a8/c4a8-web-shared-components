@@ -39,70 +39,85 @@ declare namespace _default {
         function isIncluded(include: any): "check-mark" | "x-mark";
     }
     namespace props {
+        let overline: StringConstructor;
+        let underline: StringConstructor;
+        let steps: ArrayConstructor;
+        namespace color {
+            export let type: StringConstructor;
+            let _default: string;
+            export { _default as default };
+        }
+        namespace accentColor {
+            let type_1: StringConstructor;
+            export { type_1 as type };
+            let _default_1: string;
+            export { _default_1 as default };
+        }
         let blogtitlepic: StringConstructor;
         let url: StringConstructor;
         let title: StringConstructor;
         let target: StringConstructor;
         let excerpt: StringConstructor;
         namespace author {
-            let type: (ArrayConstructor | StringConstructor)[];
+            let type_2: (ArrayConstructor | StringConstructor)[];
+            export { type_2 as type };
         }
         let date: StringConstructor;
         let footer: StringConstructor;
         namespace tag {
-            let _default: null;
-            export { _default as default };
-        }
-        namespace large {
-            let _default_1: null;
-            export { _default_1 as default };
-        }
-        namespace long {
             let _default_2: null;
             export { _default_2 as default };
         }
-        namespace product {
+        namespace large {
             let _default_3: null;
             export { _default_3 as default };
         }
-        namespace subPoints {
+        namespace long {
             let _default_4: null;
             export { _default_4 as default };
         }
-        namespace event {
+        namespace product {
             let _default_5: null;
             export { _default_5 as default };
         }
-        namespace webcast {
+        namespace subPoints {
             let _default_6: null;
             export { _default_6 as default };
+        }
+        namespace event {
+            let _default_7: null;
+            export { _default_7 as default };
+        }
+        namespace webcast {
+            let _default_8: null;
+            export { _default_8 as default };
         }
         let youtubeUrl: StringConstructor;
         let dataAuthors: ObjectConstructor;
         let scope: StringConstructor;
         namespace cta {
-            let _default_7: null;
-            export { _default_7 as default };
+            let _default_9: null;
+            export { _default_9 as default };
         }
         namespace hasAnimation {
-            let _default_8: null;
-            export { _default_8 as default };
+            let _default_10: null;
+            export { _default_10 as default };
         }
         let index: NumberConstructor;
         let externalLanguage: StringConstructor;
         let spacing: StringConstructor;
         namespace store {
-            let _default_9: null;
-            export { _default_9 as default };
+            let _default_11: null;
+            export { _default_11 as default };
         }
         namespace row {
-            let _default_10: null;
-            export { _default_10 as default };
+            let _default_12: null;
+            export { _default_12 as default };
         }
         let tags: ArrayConstructor;
         namespace hasNoAspectRatio {
-            let type_1: BooleanConstructor;
-            export { type_1 as type };
+            let type_3: BooleanConstructor;
+            export { type_3 as type };
         }
         let logo: ObjectConstructor;
         let img: StringConstructor;
