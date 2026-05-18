@@ -240,7 +240,7 @@ export default {
 }
 
 .dropdown__items {
-  z-index: 140;
+  z-index: 150;
   position: fixed;
   left: 50%;
   bottom: 0;
@@ -481,7 +481,7 @@ label.dropdown__checkbox-label::after {
 }
 
 .dropdown__background-shim {
-  z-index: 120;
+  z-index: 130;
   position: fixed;
   top: 0;
   left: 0;

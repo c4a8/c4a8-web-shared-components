@@ -90,7 +90,7 @@ export default {
 </script>
 <style>
 .event-list {
-  z-index: 200;
+  z-index: 210;
   position: relative;
 }
 .event-list.event-list--overlap {

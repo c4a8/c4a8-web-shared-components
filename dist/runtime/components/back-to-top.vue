@@ -64,7 +64,7 @@ export default {
   }
 }
 .back-to-top {
-  z-index: 230;
+  z-index: 240;
   --back-to-top-bottom-position: 0rem;
   --back-to-top-highlight-underline-color: var(--color-orange);
   width: 100%;

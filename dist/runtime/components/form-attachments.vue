@@ -300,3 +300,177 @@ export default {
   },
 };
 </script>
+<style>
+.form-attachments {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.form-attachments > * {
+  flex: 0 0 100%;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .form-attachments > * {
+    flex: 0 0 calc(50% - 1rem);
+    width: calc(50% - 1rem);
+  }
+}
+.form-attachments.is-dragging .form-attachments__interactable {
+  background-color: transparent;
+}
+.form-attachments.is-dragging .form-attachments__interactable .icon {
+  transform: scale(1.5);
+}
+.form-attachments.is-dragging .form-attachments__interactable .icon svg {
+  --icon-rotation: 135deg;
+}
+.form-attachments.has-error {
+  border-color: var(--color-form-error);
+}
+.form-attachments.has-error .form-attachments__text {
+  margin-bottom: 0.875rem;
+}
+.form-attachments.has-error .form-attachments__error {
+  display: block;
+}
+.form-attachments .form-attachments__button .icon {
+  width: 100%;
+  height: 100%;
+}
+@media (min-width: 768px) {
+  .form-attachments {
+    flex-wrap: nowrap;
+  }
+}
+
+.form-attachments__files-list {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 1.5rem 0;
+}
+.form-attachments__files-list {
+  font-size: 0.85rem;
+}
+@media (min-width: 768px) {
+  .form-attachments__files-list {
+    padding-left: 0;
+    padding-right: 1.5rem;
+  }
+}
+
+.form-attachments__files-list-item {
+  display: flex;
+  justify-content: space-between;
+  place-items: center;
+  align-items: center;
+  padding-top: 0.25rem;
+  color: var(--color-copy-reduced);
+  width: 100%;
+}
+
+.form-attachments__file-details {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1 1 auto;
+}
+
+.form-attachments__file-size {
+  white-space: nowrap;
+}
+
+.form-attachments__delete {
+  padding: 0.25rem 0 0.25rem 0.5rem;
+  cursor: pointer;
+  color: var(--color-primary);
+  flex: 0 0 auto;
+}
+.form-attachments__delete:hover {
+  color: var(--color-primary-accent);
+}
+
+.form-attachments__interactable {
+  cursor: pointer;
+  padding: 1.5rem;
+  border: 2px dashed var(--color-primary);
+  background-color: var(--color-form-background);
+  display: flex;
+  align-items: center;
+  transition: background-color 0.5s cubic-bezier(0.19, 1, 0.2, 1);
+}
+.form-attachments__interactable:hover .form-attachments__text {
+  color: var(--color-primary-accent);
+}
+.form-attachments__interactable:hover .form-attachments__button .icon {
+  --color-icon-hover-background: var(--color-primary-accent);
+  background-color: var(--color-icon-hover-background);
+  color: var(--color-icon-hover-color);
+}
+.is-light .form-attachments__interactable {
+  background-color: var(--color-form-background-light);
+}
+
+.form-attachments__button {
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-right: 1.5rem;
+  color: var(--color-form-background);
+  flex: 0 0 auto;
+}
+.form-attachments__button .icon {
+  background-color: var(--color-primary);
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.2, 1);
+}
+.form-attachments__button .icon svg {
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.2, 1);
+  --icon-rotation: 45deg;
+}
+
+.form-attachments__description {
+  margin-bottom: 0.5rem;
+}
+.form-attachments__description {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+@media (min-width: 992px) {
+  .form-attachments__description {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+@media (min-width: 1200px) {
+  .form-attachments__description {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+.form-attachments__description {
+  font-weight: bold !important;
+}
+
+.form-attachments__description,
+.form-attachments__text {
+  color: var(--color-primary);
+}
+
+.form-attachments__text {
+  cursor: pointer;
+  text-decoration: underline;
+  margin-bottom: 2.5rem;
+}
+.form-attachments__text {
+  font-size: 0.85rem;
+}
+
+.form-attachments__extensions {
+  color: var(--color-copy-lowlight);
+}
+
+.form-attachments__error,
+.form-attachments__file {
+  display: none;
+}
+</style>

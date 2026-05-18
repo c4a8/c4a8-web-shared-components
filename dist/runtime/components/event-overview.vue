@@ -168,7 +168,7 @@ export default {
 }
 .event-overview.event-overview--overlap {
   --event-overview-vertical-padding: 0;
-  z-index: 170;
+  z-index: 180;
   position: relative;
   margin-top: -2.5rem;
 }

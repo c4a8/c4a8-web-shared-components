@@ -433,7 +433,7 @@ export default {
 }
 
 .contact__box {
-  z-index: 210;
+  z-index: 220;
 }
 
 .contact__detail-quote {

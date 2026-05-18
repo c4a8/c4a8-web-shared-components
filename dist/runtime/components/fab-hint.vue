@@ -97,7 +97,7 @@ export default {
 </script>
 <style>
 .fab-hint {
-  z-index: 250;
+  z-index: 260;
   --fab-hint-icon-size: 4.5rem;
   --fab-hint-bg-color: var(--color-fab-background);
   --fab-hint-icon-color: var(--color-copy);
@@ -171,7 +171,7 @@ export default {
 }
 
 .fab-hint__content {
-  z-index: 260;
+  z-index: 270;
   position: fixed;
   bottom: 0;
   right: 0;

@@ -91,3 +91,10 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.grid-list {
+  &.row {
+    margin: 0 calc(-1 * (#{$grid-gutter-width} / 2));
+  }
+}
+</style>

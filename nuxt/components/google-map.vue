@@ -5,7 +5,7 @@
         <div class="col-md-6 col-lg-5">
           <div class="bg-white position-relative z-index-999">
             <slider :hide-background="true" :hideContainer="true" :options="sliderOptions">
-              <v-img v-for="img in images" :key="index" :cloudinary="img.cloudinary" :img="img.img"/>
+              <v-img v-for="img in images" :key="index" :cloudinary="img.cloudinary" :img="img.img" />
             </slider>
             <div class="p-5 p-sm-7">
               <div class="mb-5">
@@ -23,11 +23,19 @@
     <div class="position-md-absolute top-0 right-0 bottom-0 left-0">
       <div class="google-map__container min-h-300rem h-100 rounded-lg">
         <ClientOnly>
-          <l-map ref="map" v-model:zoom="zoom" :options="leafletOptions" :center="center" :useGlobalLeaflet="false"
-            class="min-h-300rem" v-if="loaded">
+          <l-map
+            ref="map"
+            v-model:zoom="zoom"
+            :options="leafletOptions"
+            :center="center"
+            :useGlobalLeaflet="false"
+            class="min-h-300rem"
+            v-if="loaded"
+          >
             <l-tile-layer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"></l-tile-layer>
-            <l-marker :lat-lng="center" :icon="markerIcon"><l-popup>{{ location?.street }}<br />{{
-              location?.city }}</l-popup></l-marker>
+            <l-marker :lat-lng="center" :icon="markerIcon"
+              ><l-popup>{{ location?.street }}<br />{{ location?.city }}</l-popup></l-marker
+            >
           </l-map>
         </ClientOnly>
       </div>
@@ -102,7 +110,18 @@ export default {
     },
     images: {
       default: null,
-    }
+    },
   },
 };
 </script>
+<style lang="scss">
+.google-map {
+  .leaflet-attribution-flag {
+    display: none !important;
+  }
+
+  .leaflet-popup-content-wrapper {
+    @include font-size-xs;
+  }
+}
+</style>

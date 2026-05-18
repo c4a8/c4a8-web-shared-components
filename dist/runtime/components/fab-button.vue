@@ -164,7 +164,7 @@ export default {
 </script>
 <style>
 .fab-button {
-  z-index: 240;
+  z-index: 250;
   --fab-button-icon-size: 4.5rem;
   --fab-button-bg-color: var(--color-fab-background);
   --fab-button-icon-color: var(--color-copy);

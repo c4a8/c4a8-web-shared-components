@@ -180,7 +180,7 @@ onUnmounted(() => {
     --aside-nav-bottom-position: 1rem;
     --aside-nav-shadow-width: 100%;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    z-index: 290;
+    z-index: 300;
     margin: 2rem 0;
     background-color: var(--aside-nav-background-color);
     padding: 1rem;

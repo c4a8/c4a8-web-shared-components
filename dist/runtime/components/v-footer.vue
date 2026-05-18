@@ -244,7 +244,7 @@ export default {
 <style>
 @charset "UTF-8";
 footer {
-  z-index: 70;
+  z-index: 80;
   --color-footer-border: var(--color-white-50);
   --footer-spacing: 2.5rem;
   --footer-spacing-large: 3.75rem;

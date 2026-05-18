@@ -247,7 +247,7 @@ export default {
 </script>
 <style>
 .content-scroller {
-  z-index: 110;
+  z-index: 120;
   --content-scroller-spacing: 3.75rem;
   --content-scroller-spacing-small: 2.5rem;
   --content-scroller-background: var(--color-surface-background);
