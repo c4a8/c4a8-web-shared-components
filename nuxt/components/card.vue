@@ -79,7 +79,7 @@
               fill-opacity="0.2"
             />
           </svg>
-          <div class="pb-5 pt-5 mx-11" style="display: flex; justify-content: center">
+          <div class="pb-5 pt-5 mx-11 d-flex justify-content-center" >
             <v-img itemprop="image" :img="logo.img" :cloudinary="logo.cloudinary" class="w-100" />
           </div>
           <div class="card-img-cutoff" />
@@ -88,7 +88,7 @@
           <v-img itemprop="image" :img="img" :cloudinary="cloudinary" :alt="alt" class="w-100" />
         </div>
       </div>
-      <div class="card__body card-body mt-0 pt-0 z-index-2" style="display: flex; flex-direction: column">
+      <div class="card__body card-body mt-0 pt-0 z-index-2 d-flex flex-column"">
         <template v-for="(info, index) in subPointsList(productValue)" v-bind:key="index">
           <headline :class="headlineClassValue(index)" level="h6">{{ info.title }}</headline>
           <template v-for="(point, pointIndex) in info.subpoints" v-bind:key="pointIndex">
@@ -148,7 +148,6 @@
         <div class="d-flex flex-column justify-content-center">
           <div
             class="position-absolute d-flex w-100 d-flex flex-column justify-content-center align-items-center"
-            style="display: flex; justify-content: center; flex-direction: column; align-items: center"
           >
             <span class="">{{ overline }}</span>
             <span class="h2">{{ title }}</span>
