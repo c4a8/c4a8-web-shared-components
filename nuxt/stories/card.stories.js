@@ -334,3 +334,34 @@ export const Row = {
       'In allen Teams Voice Projekten kommt man mit dem Kunden an den Punkt, dass man über ein Konzept für Notrufe sprechen muss. Unsere generelle Empfehlung ist, die Mitarbeiter anzuweisen, Notrufe von ihrem Handy aus zu tätigen. Dies ist jedoch nicht bei allen Kunden möglich. Daher muss auch dieses Szenario mit den Möglichkeiten der Teams Voice Plattform abgedeckt werden.',
   },
 };
+
+export const StepList = {
+  args: {
+    color: "var(--color-yellow)",
+    accentColor: "var(--color-cold-purple)",
+    overline: "For most Teams",
+    title: "SaaS Bundle",
+    underline: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        steps: [
+          {
+            title: "Subscribe",
+            description:
+              "Choose the RADIUSaaS & SCEPman SaaS Bundle. We provision your tenant.",
+          },
+          {
+            title: "Configure",
+            description:
+              "Set up SCEP profiles in Intune, Jamf, or your MDM. Connect your network gear to RADIUSaaS.",
+          },
+          {
+            title: "GoLive",
+            description:
+              "Devices receive certificates automatically. RADIUSaaS enforces them at every authentication event.",
+          },
+        ],
+        cta: {
+          text: "Start SaaS Bundle Trial",
+          href: "https://support.scepman.com/support/tickets/new?ticket_form=trial_request_%28scepman_saas%29",
+        },
+      }
+};

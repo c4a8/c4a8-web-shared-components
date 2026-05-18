@@ -143,6 +143,62 @@
         </div>
       </div>
     </template>
+    <template v-else-if="steps">
+      <div>
+        <div class="d-flex flex-column justify-content-center">
+          <div
+            class="position-absolute d-flex w-100 d-flex flex-column justify-content-center align-items-center"
+            style="display: flex; justify-content: center; flex-direction: column; align-items: center"
+          >
+            <span class="">{{ overline }}</span>
+            <span class="h2">{{ title }}</span>
+          </div>
+          <div class="d-flex flex-column justify-content-end" :style="{ backgroundColor: color }">
+            <svg
+              width="100%"
+              height="100%"
+              viewBox="0 0 557 183"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="pt-lg-0 pb-lg-0 pb-4 pt-4"
+            >
+              <path
+                opacity="0.15"
+                d="M433.873 -135.547L-158.799 226.994L223.531 550.447L586.316 280.495L433.873 -135.547Z"
+                fill="white"
+              />
+              <path
+                opacity="0.15"
+                d="M385.808 530.541L611.781 275.164L2.6834 -8.02276L-198.089 112.049L385.808 530.541Z"
+                fill="white"
+              />
+              <path
+                opacity="0.15"
+                d="M576.705 523L879.764 420.899L924.996 -17L535.996 119.134L576.705 523Z"
+                fill="white"
+              />
+            </svg>
+            <svg-shape peak="left" color="var(--color-bg-grey)" class="position-absolute w-100" />
+          </div>
+        </div>
+      </div>
+      <div class="card__body card-body z-index-2 pr-5 pl-5 pb-5" style="display: flex; flex-direction: column">
+        <div class="pb-10">
+          <p class="text-center">{{ underline }}</p>
+
+          <div v-for="(step, index) in steps" :key="index" class="d-flex align-items-center">
+            <Circle :circleContent="`${index + 1}`" :color="accentColor" />
+            <div class="">
+              <p class="h3 pt-5">{{ step.title }}</p>
+              <p>{{ step.description }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="card__link mt-auto" v-if="cta">
+          <cta v-bind="ctaValue" class="font-weight-bold mt-5" :style="{ color: color }" />
+        </div>
+      </div>
+    </template>
     <template v-else>
       <div class="card__img-top position-relative is-foreground" v-if="blogtitlepic">
         <v-img
@@ -221,7 +277,7 @@ export default {
     variant() {
       if (this.long === true) {
         return 'card--long';
-      } else if (this.productValue) {
+      } else if (this.productValue || this.steps) {
         return 'card--products';
       } else if (this.event === true || this.webcast === true) {
         return 'card--event';
@@ -378,6 +434,17 @@ export default {
     },
   },
   props: {
+    overline: String,
+    underline: String,
+    steps: Array,
+    color: {
+      type: String,
+      default: 'var(--color-primary)',
+    },
+    accentColor: {
+      type: String,
+      default: 'var(--color-highlight)',
+    },
     blogtitlepic: String,
     url: String,
     title: String,
