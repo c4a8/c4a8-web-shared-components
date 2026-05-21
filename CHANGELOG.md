@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.100
+
+- Add crossorigin anonymous to hero
+
 # Release 0.4.99
 
 - Add light prop to modal
