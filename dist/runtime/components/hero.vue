@@ -172,6 +172,7 @@ export default {
             href: cloudinaryLink,
             rel: 'preload',
             as: 'image',
+            crossorigin: 'anonymous',
           },
         ],
       });
