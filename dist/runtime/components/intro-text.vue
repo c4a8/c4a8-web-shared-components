@@ -53,3 +53,50 @@ export default {
   },
 };
 </script>
+<style>
+@media (min-width: 992px) {
+  .intro-text.intro-text--large .intro-text__copy {
+    font-size: 2.5rem;
+    line-height: 1.6;
+  }
+  .intro-text.intro-text--large .intro-text__copy {
+    font-weight: 100 !important;
+  }
+  .intro-text.intro-text--large .intro-text__copy strong {
+    font-weight: inherit;
+  }
+}
+.intro-text .highlight {
+  background-position-x: 1em;
+  background-position-y: 0.6em;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: initial;
+  background-image: linear-gradient(to bottom, var(--color-highlight-underline) 0%, var(--color-highlight-underline) 100%);
+  background-repeat: repeat-x;
+}
+
+.intro-text__copy[data-utility-animation-step].is-starting {
+  animation-delay: calc(var(--utility-animation-index) * 100ms + 0ms);
+}
+.intro-text__copy {
+  font-size: 1.375rem;
+  line-height: 1.6365em;
+}
+@media (min-width: 992px) {
+  .intro-text__copy {
+    font-size: 1.5625rem;
+    line-height: 1.7em;
+  }
+}
+@media (min-width: 1200px) {
+  .intro-text__copy {
+    font-size: 1.95313rem;
+    line-height: 1.7em;
+  }
+}
+.intro-text__copy {
+  line-height: 1.7em !important;
+}
+</style>

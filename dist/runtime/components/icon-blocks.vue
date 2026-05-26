@@ -97,3 +97,15 @@ export default {
   },
 };
 </script>
+<style>
+.icon-blocks {
+  margin-bottom: 2rem;
+}
+.icon-blocks [data-utility-animation-step] {
+  --utility-animation-distance: 15%;
+}
+.icon-blocks [data-utility-animation-step].is-starting {
+  animation-delay: calc(var(--utility-animation-index) * 100ms + 0ms);
+  animation-duration: 0.6s;
+}
+</style>
