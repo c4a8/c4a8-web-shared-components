@@ -80,7 +80,7 @@ export default {
   },
   computed: {
     classList() {
-      return ['letter-switch', `${this.show ? State.SHOW : ''}`, `${this.end ? State.END : ''}`, 'vue-component'];
+      return ['letter-switcher', `${this.show ? State.SHOW : ''}`, `${this.end ? State.END : ''}`, 'vue-component'];
     },
     fontSize() {
       return this.isLower ? 'font-size-5' : 'font-size-6 bold';
@@ -143,7 +143,7 @@ export default {
         const stepDelay = index * delay;
         const duration = letterDelay * group.children.length;
 
-        group.style.animation = `letter-switch ${duration}s ${stepDelay}s ease-out forwards`;
+        group.style.animation = `letter-switcher ${duration}s ${stepDelay}s ease-out forwards`;
       });
 
       setTimeout(() => {
@@ -188,3 +188,167 @@ export default {
   },
 };
 </script>
+<style>
+.letter-switcher {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+.letter-switcher.show .letter-switcher__overline,
+.letter-switcher.show .letter-switcher__animation {
+  opacity: 1;
+}
+.letter-switcher.is-end .letter-switcher__animation {
+  opacity: 0;
+}
+.letter-switcher.is-end .letter-switcher__end-animation {
+  opacity: 1;
+}
+@media (min-width: 443px) {
+  .letter-switcher {
+    margin-bottom: 0;
+  }
+}
+@media (min-width: 768px) {
+  .letter-switcher {
+    margin-bottom: 2.5rem;
+  }
+}
+
+.letter-switcher__animation {
+  pointer-events: none;
+  opacity: 0;
+  overflow: hidden;
+  letter-spacing: 5px;
+  color: var(--color-letter-switcher-copy);
+  display: flex;
+  height: 0;
+}
+@media (min-width: 768px) {
+  .letter-switcher__animation {
+    letter-spacing: 10px;
+  }
+}
+
+.letter-switcher__overline,
+.letter-switcher__animation {
+  transition: opacity 0.5s cubic-bezier(0.19, 1, 0.2, 1);
+}
+
+.letter-switcher__group {
+  display: inline-flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  width: 30px;
+  position: relative;
+  bottom: -100%;
+  transform: translateY(-100%);
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .letter-switcher__group {
+    width: 40px;
+  }
+}
+@media (min-width: 992px) {
+  .letter-switcher__group {
+    width: 60px;
+  }
+}
+
+.letter-switcher__letter {
+  flex: 1 0 auto;
+  padding: 10px 0;
+}
+
+.letter-switcher__middle {
+  color: var(--color-letter-switcher-highlight);
+}
+
+.letter-switcher__overline {
+  opacity: 0;
+  margin-bottom: 1rem;
+  color: var(--color-letter-switcher-overline);
+}
+
+.letter-switcher__end-animation {
+  pointer-events: none;
+  position: absolute;
+  opacity: 0;
+  bottom: 0;
+  top: 1rem;
+  display: flex;
+  place-content: center;
+  width: 100%;
+  color: var(--color-letter-switcher-copy);
+}
+
+.letter-switcher__end::before,
+.letter-switcher__end-text {
+  width: calc(100% + 1rem);
+  transition: width 0.8s cubic-bezier(0.19, 1, 0.2, 1);
+}
+
+.letter-switcher__end-text {
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  right: -0.5rem;
+  top: 0;
+  background-color: var(--color-gigas);
+  z-index: 2;
+}
+
+.letter-switcher__end {
+  position: relative;
+  z-index: 1;
+}
+.letter-switcher__end::before {
+  position: absolute;
+  content: "";
+  display: block;
+  height: 1.5rem;
+  left: -0.5rem;
+  background-color: var(--color-letter-switcher-underline);
+  z-index: -1;
+  bottom: 5%;
+  transition-duration: 1.2s;
+}
+@media (min-width: 576px) {
+  .letter-switcher__end::before {
+    height: 40%;
+  }
+}
+@media (max-width: 443px) {
+  .letter-switcher__end::before {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: clamp(320px, 87%, 90vw);
+  }
+}
+.letter-switcher__end.is-collapsed::before {
+  width: 0;
+}
+
+.letter-switcher__spacer,
+.letter-switcher__container {
+  position: relative;
+}
+
+@media (max-width: 767.98px) {
+  .letter-switcher__container-animation {
+    overflow: hidden;
+    height: 40%;
+  }
+}
+
+@keyframes letter-switcher {
+  0% {
+    transform: translateY(-100%);
+    bottom: -100%;
+  }
+  100% {
+    transform: translateY(0%);
+    bottom: 0;
+  }
+}
+</style>

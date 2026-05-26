@@ -164,6 +164,7 @@
                 </figure>
 
                 <template v-for="(list, listIndex) in item.children" :key="listIndex">
+                  {{ list }}
                   <link-list
                     :list="list"
                     :lang="lowerLang"
