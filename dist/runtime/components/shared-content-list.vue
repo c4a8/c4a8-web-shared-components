@@ -6,6 +6,7 @@
 import { useI18n } from 'vue-i18n';
 import { computed } from 'vue';
 import { useAsyncData, queryCollection } from '#imports';
+import Tools from '../utils/tools';
 
 const props = defineProps({
   query: {
@@ -27,7 +28,7 @@ const localeQuery = computed(() => ({
   },
 }));
 
-const dataKey = props.query?.key || props.query?.path?.replace('/', 'content-') || 'content-list';
+const dataKey = props.query?.key || Tools.getDataKey('content', props.query, locale.value);
 
 const filterDuplicateItems = (items) => {
   const seen = new Map();

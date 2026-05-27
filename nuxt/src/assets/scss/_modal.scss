@@ -66,6 +66,10 @@
     }
   }
 
+  &.modal--light {
+    color: var(--color-copy);
+  }
+
   &.modal--center-slim {
     h1,
     h2,

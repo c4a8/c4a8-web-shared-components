@@ -82,6 +82,7 @@
             v-else-if="stage.modalId && stage.tooltip"
             :slim="true"
             :center="true"
+            :light="light"
             class="pricing-slider__modal"
             :modal-id="stage.modalId"
           >

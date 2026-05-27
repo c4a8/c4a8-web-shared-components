@@ -28,7 +28,7 @@ let path = route.path.replace(/^\/[a-z]{2}\//, '/').replace('/authors', '');
 path = !path.endsWith('/') ? path + '/' : path;
 
 const cleanPath = path.replaceAll('/', '');
-const dataKey = 'author-' + cleanPath;
+const dataKey = Tools.getDataKey('author', null, currentLocale.value, cleanPath);
 
 const { data: person } = await useAsyncData(dataKey, () => {
   const collectionName = 'authors';
