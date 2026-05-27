@@ -153,3 +153,84 @@ export default {
   },
 };
 </script>
+<style>
+.pricing-slider {
+  --pricing-copy-color: var(--color-copy);
+  --pricing-copy-color-hover: var(--color-copy-light);
+  transition: opacity 0.5s ease-in;
+  color: var(--pricing-copy-color);
+}
+.pricing-slider.pricing-slider--light {
+  --pricing-copy-color: var(--color-copy-light);
+  --pricing-copy-color-hover: var(--color-copy);
+}
+.pricing-slider.pricing-slider--loading {
+  opacity: 0;
+}
+.pricing-slider.pricing-slider--loading .pricing-slider__slider {
+  height: 96px;
+}
+.pricing-slider .range-slider-custom {
+  height: 3.5rem;
+  margin-top: 2.5rem;
+}
+.pricing-slider .range-slider-custom .irs-line,
+.pricing-slider .range-slider-custom .irs-bar {
+  cursor: pointer;
+  height: 7px;
+}
+.pricing-slider .range-slider-custom .irs-bar,
+.pricing-slider .range-slider-custom .irs-handle {
+  background-color: var(--color-primary-on-surface);
+}
+.pricing-slider .range-slider-custom .irs-handle {
+  width: 50px;
+  height: 50px;
+  top: 3px;
+}
+.pricing-slider .range-slider-custom .irs-handle > i:first-child {
+  display: none;
+}
+.pricing-slider .range-slider-custom .irs-from,
+.pricing-slider .range-slider-custom .irs-to,
+.pricing-slider .range-slider-custom .irs-single {
+  background-color: transparent;
+  box-shadow: none;
+  color: inherit;
+}
+.pricing-slider .range-slider-custom .irs-from::before,
+.pricing-slider .range-slider-custom .irs-to::before,
+.pricing-slider .range-slider-custom .irs-single::before {
+  display: none;
+}
+.pricing-slider .range-slider-custom .irs-single {
+  font-size: 1.4rem;
+  font-family: "Miriam Libre", sans-serif;
+  font-weight: bold;
+  top: -2.75rem;
+}
+.pricing-slider .js-ion-range-slider:not(.irs-hidden-input) {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pricing-slider__info {
+  position: relative;
+  transform: translateY(50%);
+  top: 0;
+  vertical-align: top;
+  display: inline-flex;
+  cursor: pointer;
+  padding-left: 0.25rem;
+}
+.pricing-slider__info .icon svg path {
+  fill: var(--pricing-copy-color);
+}
+.pricing-slider__info:hover .icon svg path {
+  fill: var(--pricing-copy-color-hover);
+}
+.pricing-slider__info:hover .icon svg circle {
+  stroke: var(--pricing-copy-color);
+  fill: var(--pricing-copy-color);
+}
+</style>

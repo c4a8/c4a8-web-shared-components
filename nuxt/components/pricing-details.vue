@@ -87,3 +87,14 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.pricing-details {
+  .pricing-product:not(.bg-white) + .pricing-details__infos {
+    padding: 0 spacing(3);
+
+    @include media-breakpoint-up(md) {
+      padding: 0 spacing(10);
+    }
+  }
+}
+</style>
