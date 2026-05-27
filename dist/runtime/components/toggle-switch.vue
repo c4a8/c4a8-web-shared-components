@@ -101,3 +101,50 @@ export default {
   },
 };
 </script>
+<style>
+.toggle-switch {
+  cursor: default;
+}
+.toggle-switch[data-utility-animation-step].is-starting {
+  animation-delay: calc(var(--utility-animation-index) * 100ms + 0ms);
+}
+.toggle-switch .toggle-switch-label,
+.toggle-switch .toggle-switch-input:checked + .toggle-switch-label {
+  background: var(--color-primary);
+  cursor: pointer;
+}
+.toggle-switch .toggle-switch-indicator {
+  background-color: var(--color-toggle-switch-indicator);
+}
+.toggle-switch .toggle-switch__text {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+@media (min-width: 992px) {
+  .toggle-switch .toggle-switch__text {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+@media (min-width: 1200px) {
+  .toggle-switch .toggle-switch__text {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+.toggle-switch .toggle-switch__text {
+  line-height: 1.2em !important;
+}
+.toggle-switch .toggle-switch__text--right {
+  text-align: right;
+}
+.toggle-switch .toggle-switch__hint {
+  top: -150%;
+  left: 33%;
+  min-width: 140px;
+}
+.toggle-switch .toggle-switch__hint-text {
+  margin-left: 0.125rem;
+  margin-bottom: 0.5rem;
+}
+</style>
