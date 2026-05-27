@@ -110,3 +110,26 @@ export default {
   },
 };
 </script>
+<style>
+.search {
+  display: none;
+}
+@media (min-width: 992px) {
+  .search {
+    display: block;
+  }
+  .search.search--expanded .search__icon {
+    display: none;
+  }
+  .search.search--expanded .search__bar {
+    display: block;
+  }
+  .search .search__icon {
+    cursor: pointer;
+    margin: 0 auto;
+  }
+  .search .search__bar {
+    display: none;
+  }
+}
+</style>

@@ -3,11 +3,7 @@
     <div class="tag-cloud__intro container">
       <div class="tag-cloud__row row">
         <div class="tag-cloud__header col">
-          <headline
-            :level="level"
-            :text="headline"
-            classes="tag-cloud__headline h2-font-size"
-          />
+          <headline :level="level" :text="headline" classes="tag-cloud__headline h2-font-size" />
           <div class="tag-cloud__subline w-lg-65" v-if="subline">{{ subline }}</div>
         </div>
       </div>
@@ -16,10 +12,7 @@
       <div class="tag-cloud__content row">
         <div class="tag-cloud__slider">
           <div class="tag-cloud__container">
-            <ul
-              class="tag-cloud__items"
-              :data-items="jsonItems"
-            ></ul>
+            <ul class="tag-cloud__items" :data-items="jsonItems"></ul>
           </div>
         </div>
       </div>
@@ -366,3 +359,138 @@ export default {
   },
 };
 </script>
+<style>
+.tag-cloud {
+  background-color: var(--color-blue-dark);
+}
+
+.tag-cloud__container {
+  margin: auto;
+}
+.tag-cloud__container li {
+  list-style: none;
+}
+.tag-cloud__container a {
+  text-decoration: none;
+  padding: 5px;
+  color: var(--color-copy-light) !important;
+}
+
+.tag-cloud__header {
+  margin: 4rem 0 3rem;
+  color: var(--color-copy-light);
+}
+.tag-cloud__header .tag-cloud__headline {
+  color: var(--color-copy-light);
+}
+
+.tag-cloud__content {
+  text-align: center;
+  justify-content: center;
+  margin-top: 1rem;
+  padding-bottom: 2rem;
+  overflow-x: hidden;
+}
+
+.tag-cloud__slider {
+  display: flex;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.tag-cloud__slider::-webkit-scrollbar {
+  display: none;
+  background: transparent;
+  width: 0;
+}
+
+.tag-cloud__items {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 150vw;
+  padding: 0 1rem;
+}
+@media (min-width: 992px) {
+  .tag-cloud__items {
+    width: 90%;
+    padding: 0;
+  }
+}
+
+.tag-cloud__item {
+  padding: 1rem;
+  flex: 1 0 20%;
+}
+.tag-cloud__item[data-weight="0"] {
+  flex-grow: 0;
+  flex-basis: 15%;
+  display: none;
+}
+@media (min-width: 992px) {
+  .tag-cloud__item[data-weight="0"] {
+    display: block;
+  }
+}
+.tag-cloud__item[data-weight="2"] {
+  flex: 1 1 40%;
+}
+.tag-cloud__item[data-weight="3"] {
+  flex: 1 1 auto;
+  width: 90vw;
+  font-size: 1.5rem;
+}
+@media (min-width: 576px) {
+  .tag-cloud__item[data-weight="3"] {
+    width: 55vw;
+  }
+}
+@media (min-width: 992px) {
+  .tag-cloud__item[data-weight="3"] {
+    font-size: 2rem;
+    width: auto;
+  }
+}
+@media (min-width: 1200px) {
+  .tag-cloud__item[data-weight="3"] {
+    font-size: 3rem;
+  }
+}
+.tag-cloud__item[data-weight] + [data-weight="0"] {
+  flex-shrink: 0;
+}
+@media (max-width: 991.98px) {
+  .tag-cloud__item {
+    padding: 0.75rem;
+    flex: 1 0 15%;
+    font-size: 1.25rem;
+  }
+}
+@media (min-width: 992px) {
+  .tag-cloud__item {
+    font-size: 1.5rem;
+  }
+}
+@media (min-width: 1200px) {
+  .tag-cloud__item {
+    font-size: 2rem;
+  }
+}
+
+.tag-cloud__item-link {
+  animation: 12.5s 0s ease-in-out blurry-orbit infinite;
+  animation-fill-mode: both;
+  transform: translate(var(--blurry-x1), var(--blurry-y1));
+  display: inline-block;
+}
+.tag-cloud__item-link[groupidentifier="1"] {
+  animation-direction: alternate-reverse;
+}
+.tag-cloud__item-link[groupidentifier="2"] {
+  animation-direction: alternate;
+}
+.tag-cloud__item-link:hover {
+  animation-play-state: paused;
+}
+</style>

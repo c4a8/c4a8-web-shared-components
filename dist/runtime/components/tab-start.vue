@@ -24,3 +24,28 @@ export default {
   },
 };
 </script>
+<style>
+@media (min-width: 992px) {
+  .tab-start .tab-start__headline {
+    margin-bottom: 1rem;
+  }
+}
+
+.tab-start__headline {
+  display: none;
+}
+@media (min-width: 992px) {
+  .tab-start__headline {
+    display: block;
+  }
+}
+
+.tab-start__headline-small {
+  margin: 0 15px;
+}
+@media (min-width: 992px) {
+  .tab-start__headline-small {
+    display: none;
+  }
+}
+</style>
