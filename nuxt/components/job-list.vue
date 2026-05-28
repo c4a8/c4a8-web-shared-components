@@ -21,7 +21,7 @@
       <div class="col-lg-12">
         <div class="job-list__entries">
           <div class="job-list__message h3-font-size" v-if="isEmpty">
-            <div v-if="tagList.includes('young_professionals')">{{ $t('jobListYoungProfessionalsEmpty') }}</div>
+            <div v-if="tagList?.includes('young_professionals')">{{ $t('jobListYoungProfessionalsEmpty') }}</div>
             <div v-else>{{ $t('jobListEmpty') }}</div>
           </div>
           <template v-for="entry in entries" :key="entry?.id">
@@ -59,7 +59,7 @@ export default {
         `${this.hasLoading ? State.LOADING : ''}`,
         `${this.hasLoader ? 'loading' : ''}`,
         `${Tools.isTrue(this.sticky) === true ? StickyScroller.rootSelector.substring(1) : ''}`,
-        'vue-component',
+        this.isEmpty ? 'mb-8' : '',
       ];
     },
     expandClassList() {

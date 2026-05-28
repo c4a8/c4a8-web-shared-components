@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.102
+
+- Fixes job-list empty state
+
 # Release 0.4.101
 
 - Converted all components to single file components
