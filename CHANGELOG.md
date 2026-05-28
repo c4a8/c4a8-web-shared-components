@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.101
+
+- Converted all components to single file components
+
 # Release 0.4.100
 
 - Add crossorigin anonymous to hero
