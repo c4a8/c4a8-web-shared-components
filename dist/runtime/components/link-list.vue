@@ -6,26 +6,44 @@
     </figcaption>
     <ul :class="classListList" data-utility-animation-step="1">
       <template v-for="(subChild, index) in list.children">
-        <li class="link-list__item" v-if="subChild.languages && subChild.languages[lang]" :key="index"
-          v-on:mouseover="handleMouseOver(index)" v-on:mouseout="handleMouseOut(index)" ref="listItem">
-          <cta :href="subChild.languages[lang].url" :text="subChild.languages[lang].title" 
-            :active="subChild.languages[lang].active" :link="true" reversed="true" monochrome="true"
-            :icon="subChild.subchildren ? 'expand' : ''" :class="subChild.subchildren ? 'hasSubchildren' : ''"/>
+        <li
+          class="link-list__item"
+          v-if="subChild.languages && subChild.languages[lang]"
+          :key="index"
+          v-on:mouseover="handleMouseOver(index)"
+          v-on:mouseout="handleMouseOut(index)"
+          ref="listItem"
+        >
+          <cta
+            :href="subChild.languages[lang].url"
+            :text="subChild.languages[lang].title"
+            :active="subChild.languages[lang].active"
+            :link="true"
+            reversed="true"
+            monochrome="true"
+            :icon="subChild.subchildren ? 'expand' : ''"
+            :class="subChild.subchildren ? 'hasSubchildren' : ''"
+          />
 
-            
-
-            <ul class="link-sublist" :class="hover ? 'd-block' : ''"
-              v-if="subChild.subchildren && subChild.subchildren.length > 0">
-              <template v-for="subChild in subChild.subchildren">
-                <li class="link-sublist__item" v-if="subChild.languages && subChild.languages[lang]">
-                  <cta :href="subChild.languages[lang].url" :text="subChild.languages[lang].title"
-                    :active="subChild.languages[lang].active" :link="true" icon="null" reversed="true" monochrome="true" />
-                </li>
-              </template>
-            </ul>
-     
-
-
+          <ul
+            class="link-sublist"
+            :class="hover ? 'd-block' : ''"
+            v-if="subChild.subchildren && subChild.subchildren.length > 0"
+          >
+            <template v-for="subChild in subChild.subchildren">
+              <li class="link-sublist__item" v-if="subChild.languages && subChild.languages[lang]">
+                <cta
+                  :href="subChild.languages[lang].url"
+                  :text="subChild.languages[lang].title"
+                  :active="subChild.languages[lang].active"
+                  :link="true"
+                  icon="null"
+                  reversed="true"
+                  monochrome="true"
+                />
+              </li>
+            </template>
+          </ul>
         </li>
       </template>
     </ul>
@@ -86,7 +104,6 @@ export default {
   },
   mounted() {
     this.bindEvents();
-   
   },
   methods: {
     bindEvents() {
@@ -176,3 +193,134 @@ export default {
   },
 };
 </script>
+<style>
+.link-list {
+  --link-list-border-size: 1px;
+  transition: height 0.4s cubic-bezier(0.19, 1, 0.2, 1), opacity 0.5s 0.15s cubic-bezier(0.19, 1, 0.2, 1), transform 0.4s 0.15s cubic-bezier(0.19, 1, 0.2, 1);
+}
+.link-list.link-list--in-transition, .link-list.link-list--hidden {
+  visibility: collapse;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-width: 0;
+  pointer-events: none;
+  width: 0;
+}
+.link-list.link-list--in-transition {
+  width: auto;
+}
+.link-list.active .link-list__title {
+  color: var(--color-active);
+}
+@media (min-width: 992px) {
+  .link-list.active .link-list__title {
+    color: inherit;
+  }
+}
+.link-list.is-expanded .link-list__title, .link-list:last-of-type:not(:first-of-type) .link-list__title {
+  border-bottom-width: 0;
+}
+@media (min-width: 992px) {
+  .link-list.is-expanded .link-list__title, .link-list:last-of-type:not(:first-of-type) .link-list__title {
+    border-bottom-width: 1px;
+  }
+}
+.link-list.is-expanded .link-list__icon {
+  --icon-rotation: 180deg !important;
+  color: var(--color-link-list-active);
+}
+.link-list.is-expanded .link-list__title {
+  color: var(--color-link-list-active);
+  margin-bottom: 0;
+}
+@media (min-width: 992px) {
+  .link-list.is-expanded .link-list__title {
+    margin-bottom: 1.25rem;
+  }
+}
+.link-list:not(.is-expanded) .link-list__title + .link-list__list {
+  display: none;
+}
+@media (min-width: 992px) {
+  .link-list:not(.is-expanded) .link-list__title + .link-list__list {
+    display: flex;
+  }
+}
+
+.link-list__title {
+  color: var(--color-link-list-title);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.link-list__title .link-list__icon {
+  color: var(--color-link-list-icon);
+}
+@media (min-width: 992px) {
+  .link-list__title {
+    cursor: auto;
+    border-bottom: var(--link-list-border-size) solid var(--color-link-list-border);
+  }
+}
+
+.link-list__list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.link-list__item {
+  flex: 1 0 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0.5rem 0;
+}
+@media (max-width: 991.98px) {
+  .link-list__item .cta__text {
+    font-size: 0.8125rem;
+  }
+}
+.link-list__item.is-expanded .hasSubchildren .icon {
+  --icon-rotation: 180deg !important;
+}
+.link-list__item .hasSubchildren:hover.link:not(.cta--external) svg {
+  animation: none !important;
+}
+
+.link-list__icon {
+  margin-right: 0.5rem;
+}
+@media (min-width: 992px) {
+  .link-list__icon {
+    display: none;
+  }
+}
+
+.link-sublist__item {
+  flex: 1 0 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0 0;
+}
+
+.link-sublist {
+  display: none;
+}
+
+.link-sublist__item .cta {
+  color: var(--color-header-product-subtitle);
+}
+
+@media (max-width: 991.98px) {
+  .link-sublist__item .cta__text {
+    font-size: 0.8125rem;
+  }
+}
+</style>

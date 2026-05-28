@@ -139,3 +139,37 @@ export default {
   },
 };
 </script>
+<style>
+.v-table mark {
+  background-color: var(--color-table-mark);
+}
+.v-table.sticky .stickyColumn {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+.v-table.sticky th:not(.stickyColumn),
+.v-table.sticky td:not(.stickyColumn) {
+  text-align: center;
+  min-width: 5rem;
+}
+.v-table.sticky th,
+.v-table.sticky td {
+  align-content: center;
+  box-sizing: initial;
+}
+
+.agenda {
+  width: 100%;
+  border-collapse: collapse;
+}
+.agenda td {
+  padding: 10px;
+  border-top: 1px solid #fcd116;
+  text-align: left;
+  vertical-align: top;
+}
+.agenda tr:nth-child(even) {
+  background-color: rgba(252, 209, 22, 0.2);
+}
+</style>

@@ -6,8 +6,13 @@
       {{ subline }}
     </div>
     <div class="row">
-      <div v-if="contents" v-for="(testimonial, idx) in slicedContents" :key="idx"
-        :class="columnClass" class="testimonial-grid__content-block">
+      <div
+        v-if="contents"
+        v-for="(testimonial, idx) in slicedContents"
+        :key="idx"
+        :class="columnClass"
+        class="testimonial-grid__content-block"
+      >
         <testimonial-teaser v-bind="testimonial" />
       </div>
     </div>
@@ -23,7 +28,7 @@ import Tools from '../utils/tools.js';
 export default {
   tagName: 'testimonial-grid',
   props: {
-    spacing: { type: String, default: "space-top-2 space-bottom-2" },
+    spacing: { type: String, default: 'space-top-2 space-bottom-2' },
     headline: {
       type: String,
       default: null,
@@ -58,7 +63,7 @@ export default {
     },
     limit: {
       type: Number,
-      default: 4
+      default: 4,
     },
     maxLimit: {
       type: Number,
@@ -80,7 +85,7 @@ export default {
   mounted() {
     if (this.isMobile) {
       this.limitValue = 3;
-      this.toggleLimitValue = this.limitValue
+      this.toggleLimitValue = this.limitValue;
     }
     const texts = {
       en: { text: 'Show more', toggleText: 'Show less' },
@@ -97,9 +102,7 @@ export default {
   },
   computed: {
     containerClasses() {
-      return [
-        this.spacing,
-      ];
+      return [this.spacing];
     },
     columnClass() {
       return 'col-lg-' + 12 / this.gridSize;
@@ -112,13 +115,42 @@ export default {
     },
     showCta() {
       return this.contents.length > this.limitValue;
-    }
+    },
   },
   methods: {
     toggleLimit() {
-      this.toggleLimitValue = (this.toggleLimitValue === this.limitValue) ? this.maxLimit : this.limitValue;
+      this.toggleLimitValue = this.toggleLimitValue === this.limitValue ? this.maxLimit : this.limitValue;
     },
   },
 };
 </script>
+<style lang="scss">
+.testimonial-grid__content-block {
+  margin-bottom: spacing(15);
+}
 
+.testimonial-grid__content {
+  display: flex;
+  justify-content: center;
+
+  @include media-breakpoint-down(md) {
+    margin-bottom: spacing(10);
+  }
+}
+
+.testimonial-grid__cta {
+  padding-top: 4rem;
+
+  @include media-breakpoint-down(md) {
+    padding-top: 0rem;
+  }
+}
+
+.testimonial-grid__subline {
+  padding-bottom: 4rem;
+
+  @include media-breakpoint-down(md) {
+    padding-bottom: 2rem;
+  }
+}
+</style>

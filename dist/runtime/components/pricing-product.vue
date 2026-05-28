@@ -159,3 +159,11 @@ export default {
   },
 };
 </script>
+<style>
+.pricing-product[data-utility-animation-step].is-starting {
+  animation-delay: calc(var(--utility-animation-index) * 80ms + 0ms);
+}
+.pricing-product.pricint-product--list {
+  border-bottom: 1px solid var(--color-pricing-product-border);
+}
+</style>

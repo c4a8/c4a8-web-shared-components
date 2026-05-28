@@ -32,3 +32,34 @@ export default {
   },
 };
 </script>
+<style>
+.back {
+  position: relative;
+  display: none;
+  width: 2.25rem;
+  height: 2.25rem;
+  cursor: pointer;
+  top: -2rem;
+}
+.back .icon {
+  width: 100%;
+  height: 100%;
+}
+.back.show {
+  display: inline-flex;
+}
+.back:not(.back--animated) {
+  pointer-events: none;
+}
+.back:not(.back--animated).show {
+  opacity: 1;
+  pointer-events: all;
+}
+@media (min-width: 992px) {
+  .back:not(.back--animated) {
+    top: -6rem;
+    opacity: 0;
+    transition: opacity 0.6s cubic-bezier(0.19, 1, 0.2, 1);
+  }
+}
+</style>

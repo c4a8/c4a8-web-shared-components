@@ -33,3 +33,12 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.list {
+  &.utility-animation {
+    .list__item {
+      @include utility-animation-options($delay: 80ms, $selector: '&');
+    }
+  }
+}
+</style>

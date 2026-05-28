@@ -152,7 +152,7 @@ export default {
       let index = 0;
       let tempBlock = [];
 
-      this.form.fields.forEach((field) => {
+      this.form?.fields?.forEach((field) => {
         if (this.useTranslation) {
           if (field.label) {
             field.label = this.$t(field.label);
@@ -404,3 +404,296 @@ export default {
   },
 };
 </script>
+<style>
+.shared-components .custom-control-input,
+.shared-components .form-control {
+  border-radius: 0;
+}
+.shared-components .form.is-light textarea.form-textarea,
+.shared-components .form.is-light input[type=""].form-control,
+.shared-components .form.is-light input[type=text].form-control,
+.shared-components .form.is-light input[type=phone].form-control,
+.shared-components .form.is-light input[type=number].form-control,
+.shared-components .form.is-light input[type=email].form-control,
+.shared-components .form.is-light .form__input {
+  background-color: var(--color-form-background-light);
+  border-color: var(--color-form-background-light);
+}
+.shared-components .form.is-light textarea.form-textarea:hover,
+.shared-components .form.is-light input[type=""].form-control:hover,
+.shared-components .form.is-light input[type=text].form-control:hover,
+.shared-components .form.is-light input[type=phone].form-control:hover,
+.shared-components .form.is-light input[type=number].form-control:hover,
+.shared-components .form.is-light input[type=email].form-control:hover,
+.shared-components .form.is-light .form__input:hover {
+  border-color: var(--color-form-border-hover);
+}
+.shared-components .form.is-light .custom-checkbox label.custom-control-label::before,
+.shared-components .form.is-light .form__checkbox-label::before {
+  background-color: var(--color-form-background-light);
+}
+.shared-components .form.is-light .form__checkbox:checked ~ .form__checkbox-label::before {
+  background-color: var(--color-bg-checkbox);
+}
+.shared-components .form .invalid-feedback {
+  color: var(--color-form-error);
+}
+.shared-components .form .form__checkbox:checked ~ .form__checkbox-label::before {
+  background-color: var(--color-bg-checkbox);
+}
+.shared-components .form .form__radio.is-invalid {
+  border-color: var(--color-form-error);
+}
+.shared-components .form .form__radio.is-invalid ~ .form__radio-label {
+  color: var(--color-form-error);
+}
+.shared-components .form .was-validated .form-control:invalid,
+.shared-components .form .form-control.is-invalid {
+  border-color: var(--color-form-error);
+  background-repeat: no-repeat;
+  background-position: right calc(0.4em + 0.375rem) center;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23e44418' viewBox='0 0 12 12'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23ed4c78' stroke='none'/%3e%3c/svg%3e");
+}
+.shared-components .form .was-validated .form-control:valid,
+.shared-components .form .form-control.is-valid,
+.shared-components .form .was-validated .form-control:valid:focus,
+.shared-components .form .form-control.is-valid:focus {
+  border-color: var(--color-form-success);
+  background-repeat: no-repeat;
+  background-position: right calc(0.4em + 0.375rem) center;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath fill='%23008774' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+}
+.shared-components .form .is-valid ~ .form__checkbox-label {
+  color: var(--contact-copy-color, var(--color-copy));
+}
+.shared-components .form .is-valid:checked ~ .form__checkbox-label::before {
+  border-color: var(--color-bg-checkbox);
+}
+
+.form__row {
+  overflow: hidden;
+}
+@media (min-width: 768px) {
+  .form__row {
+    justify-content: center;
+  }
+}
+
+.form-textarea {
+  resize: none;
+}
+
+input[readonly] {
+  pointer-events: none;
+}
+
+label.input-label,
+.form__label {
+  color: var(--color-midnight);
+  opacity: 0.7;
+}
+label.input-label + .invalid-feedback,
+.form__label + .invalid-feedback {
+  margin-bottom: 0.5em;
+}
+
+textarea.form-textarea,
+input[type=""].form-control,
+input[type=text].form-control,
+input[type=email].form-control,
+input[type=phone].form-control,
+input[type=number].form-control,
+input[type=radio],
+.form__input {
+  background-color: var(--color-form-background);
+  border-color: var(--color-form-background);
+}
+textarea.form-textarea:hover,
+input[type=""].form-control:hover,
+input[type=text].form-control:hover,
+input[type=email].form-control:hover,
+input[type=phone].form-control:hover,
+input[type=number].form-control:hover,
+input[type=radio]:hover,
+.form__input:hover {
+  border-color: var(--color-form-border-hover);
+}
+
+.is-light textarea.form-textarea,
+.is-light input[type=""].form-control,
+.is-light input[type=text].form-control,
+.is-light input[type=email].form-control,
+.is-light input[type=phone].form-control,
+.is-light input[type=number].form-control,
+.is-light input[type=radio],
+.is-light .form__input {
+  background-color: var(--color-white);
+  border-color: var(--color-form-background);
+}
+.is-light textarea.form-textarea:hover,
+.is-light input[type=""].form-control:hover,
+.is-light input[type=text].form-control:hover,
+.is-light input[type=email].form-control:hover,
+.is-light input[type=phone].form-control:hover,
+.is-light input[type=number].form-control:hover,
+.is-light input[type=radio]:hover,
+.is-light .form__input:hover {
+  border-color: var(--color-form-border-hover);
+}
+
+input[type=checkbox].custom-control-input,
+.form__checkbox {
+  position: absolute;
+  left: 0;
+  z-index: -1;
+  width: 2em;
+  height: 2em;
+  opacity: 0;
+}
+input[type=checkbox].custom-control-input:checked ~ .form__checkbox-label::after,
+.form__checkbox:checked ~ .form__checkbox-label::after {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26l2.974 2.99L8 2.193z'/%3e%3c/svg%3e");
+}
+
+.custom-checkbox label.custom-control-label,
+.form__checkbox-label {
+  position: relative;
+  padding-top: 3px;
+  margin-bottom: 0;
+  vertical-align: top;
+  cursor: pointer;
+}
+.custom-checkbox label.custom-control-label::before,
+.form__checkbox-label::before {
+  background-color: var(--color-form-background);
+  border: 1px solid var(--color-form-border);
+  border-radius: 0;
+  pointer-events: none;
+}
+.custom-checkbox label.custom-control-label::after,
+.form__checkbox-label::after {
+  background: no-repeat 50%/50% 50%;
+}
+.custom-checkbox label.custom-control-label::before, .custom-checkbox label.custom-control-label::after,
+.form__checkbox-label::before,
+.form__checkbox-label::after {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 2em;
+  height: 2em;
+  top: 0;
+  left: -3em;
+}
+.custom-checkbox label.custom-control-label + .form__input,
+.form__checkbox-label + .form__input {
+  display: inline-block;
+  margin-left: -4px;
+  flex: 1;
+}
+@media (min-width: 992px) {
+  .custom-checkbox label.custom-control-label + .form__input,
+  .form__checkbox-label + .form__input {
+    flex-basis: 50%;
+    flex-grow: 0;
+  }
+}
+.custom-checkbox label.custom-control-label:hover::before,
+.form__checkbox-label:hover::before {
+  border-color: var(--color-form-border-hover);
+}
+
+div.custom-control,
+.form__checkbox-control {
+  padding-left: 3em;
+  min-height: 2em;
+  display: flex;
+}
+div.custom-control + .invalid-feedback,
+.form__checkbox-control + .invalid-feedback {
+  display: none !important;
+}
+div.custom-control .custom-control-input,
+.form__checkbox-control .custom-control-input {
+  width: 2em;
+  height: 2em;
+}
+
+.form__submit {
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+
+.form__form {
+  margin-top: 2.5rem;
+}
+
+.form__super-field {
+  opacity: 0.0001;
+  position: absolute;
+  pointer-events: none;
+  z-index: -1;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  transform: translateY(-100%);
+}
+
+.form__radio-control {
+  display: flex;
+  flex-direction: row;
+}
+.form__radio-control input[type=radio],
+.form__radio-control .form__radio {
+  appearance: none;
+  width: 2em;
+  height: 2em;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 50%;
+  border-color: var(--color-form-border);
+}
+.form__radio-control input[type=radio]:checked,
+.form__radio-control .form__radio:checked {
+  background-color: var(--color-form-background);
+  border: 0.6em solid var(--color-primary);
+  box-shadow: 0 0 0 1px var(--color-form-border);
+}
+.form__radio-control input[type=radio]:hover,
+.form__radio-control .form__radio:hover {
+  box-shadow: 0 0 0 1px var(--color-form-border-hover);
+}
+.form__radio-control .form__radio-label {
+  margin: auto 0;
+  margin-left: 1rem;
+}
+.form__radio-control .form__radio,
+.form__radio-control .form__radio-label {
+  cursor: pointer;
+}
+
+.form-field[data-utility-animation-step] {
+  --utility-animation-distance: 15%;
+}
+.form-field[data-utility-animation-step].is-starting {
+  animation-delay: calc(var(--utility-animation-index) * 200ms + 0ms);
+  animation-duration: 0.8s;
+}
+
+.form__recaptcha-infos {
+  font-size: 0.7565rem;
+}
+
+.grecaptcha-badge {
+  visibility: hidden !important;
+}
+
+.form__wrapper.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.form__loader {
+  z-index: 2;
+}
+</style>

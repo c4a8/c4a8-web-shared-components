@@ -97,3 +97,10 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.icon-blocks {
+  @include utility-animation-options($distance: 15%, $duration: 0.6s, $delay: 100ms);
+
+  margin-bottom: spacing(8);
+}
+</style>

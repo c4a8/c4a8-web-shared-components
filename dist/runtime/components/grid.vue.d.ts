@@ -5,8 +5,8 @@ declare namespace _default {
         function headlineClassesValue(): string;
         function style(): {
             backgroundColor: any;
-            "--color-copy": string | null;
-            "--color-headlines": string | null;
+            '--color-copy': string | null;
+            '--color-headlines': string | null;
         };
     }
     function mounted(): void;

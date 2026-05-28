@@ -71,3 +71,54 @@ export default {
   },
 };
 </script>
+<style>
+.screenshot .flex-row-reverse .screenshot__img {
+  position: relative;
+}
+.screenshot .flex-row-reverse .screenshot__img::before {
+  left: -50vw;
+  right: auto;
+}
+.screenshot .flex-row-reverse .screenshot__img::after {
+  right: 0;
+  left: auto;
+}
+.screenshot .media-viewer-icon {
+  font-size: 20px;
+}
+
+.screenshot__img {
+  position: relative;
+}
+.screenshot__img::before {
+  position: absolute;
+  display: block;
+  content: "";
+  right: -50vw;
+  height: 100%;
+  width: 50vw;
+  background-color: inherit;
+  z-index: -1;
+}
+.screenshot__img::after {
+  position: absolute;
+  display: block;
+  content: "";
+  left: 0;
+  height: 100%;
+  width: 25%;
+  background-color: var(--color-background);
+}
+.screenshot__img .media-viewer-container {
+  z-index: 2;
+}
+@media (min-width: 768px) {
+  .screenshot__img {
+    min-height: 500px;
+  }
+}
+
+.screenshot__img-frame img {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+</style>

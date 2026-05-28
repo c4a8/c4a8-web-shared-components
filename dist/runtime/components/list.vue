@@ -33,3 +33,8 @@ export default {
   },
 };
 </script>
+<style>
+.list.utility-animation .list__item[data-utility-animation-step].is-starting {
+  animation-delay: calc(var(--utility-animation-index) * 80ms + 0ms);
+}
+</style>

@@ -137,3 +137,60 @@ export default {
   },
 };
 </script>
+<style>
+.success-story {
+  position: relative;
+  overflow: hidden;
+}
+.success-story [data-utility-animation-step] {
+  --utility-animation-distance: 15%;
+  animation-duration: 0.8s;
+}
+
+.success-story__bg {
+  position: absolute;
+  height: 420vw;
+  width: 148vh;
+  left: -188px;
+  top: 100px;
+  transform: rotate(320deg);
+  transform-origin: top left;
+}
+@media (min-width: 768px) {
+  .success-story__bg {
+    transform: rotate(310deg);
+  }
+}
+@media (min-width: 992px) {
+  .success-story__bg {
+    left: -100px;
+    top: 130px;
+    transform: rotate(288deg);
+  }
+}
+
+.success-story__slide {
+  padding: 0;
+}
+@media (min-width: 576px) {
+  .success-story__slide {
+    padding: 0 0.5rem;
+  }
+}
+@media (min-width: 992px) {
+  .success-story__slide {
+    padding: 0 1rem;
+  }
+}
+
+@media (min-width: 576px) {
+  .success-story__container {
+    margin: 0 -0.5rem;
+  }
+}
+@media (min-width: 992px) {
+  .success-story__container {
+    margin: 0 -1rem;
+  }
+}
+</style>

@@ -3193,3 +3193,117 @@ export default {
   },
 };
 </script>
+<style>
+.newsletter {
+  z-index: 320;
+}
+.newsletter.is--light {
+  color: var(--color-white);
+}
+.newsletter.is--light .form__label,
+.newsletter.is--light label.input-label,
+.newsletter.is--light .headline {
+  color: var(--color-white);
+}
+.newsletter.is--light .form .is-valid ~ .form__checkbox-label,
+.newsletter.is--light .shared-components .form .is-valid ~ .form__label,
+.newsletter.is--light .shared-components .form .is-valid ~ .input-label,
+.newsletter.is--light .shared-components .form .is-valid ~ .headline {
+  color: var(--color-white);
+}
+.newsletter.is-expanded .newsletter__banner {
+  visibility: collapse;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-width: 0;
+  pointer-events: none;
+  border-width: 0;
+  height: 0;
+  margin: 0;
+  opacity: 0;
+  padding: 0;
+  pointer-events: none;
+}
+.newsletter.is-expanded .newsletter__dialog {
+  opacity: 1;
+}
+.newsletter .newsletter__dialog.is-off-screen {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(0);
+  transition-duration: 0s;
+  width: 0;
+}
+.newsletter .newsletter__dialog::backdrop {
+  background-color: #1e1e1e;
+  opacity: 0.9;
+}
+
+.newsletter__close {
+  position: absolute;
+  right: 0;
+  z-index: 1;
+  width: 78px;
+  height: 78px;
+}
+.newsletter__close > .icon {
+  margin: 1.25rem;
+  padding: 0.25rem;
+  cursor: pointer;
+}
+.newsletter__close > .icon:hover {
+  background-color: transparent;
+}
+.newsletter__close > .icon.icon--circle svg {
+  width: 80%;
+}
+
+.newsletter__banner {
+  transform: translateX(-100vw);
+  height: auto;
+}
+@media (min-width: 992px) {
+  .newsletter__banner {
+    max-width: 80rem;
+    width: auto;
+  }
+}
+
+.newsletter__dialog {
+  position: fixed;
+  z-index: 1000;
+  overflow: visible;
+  padding: 0;
+}
+@media (min-width: 992px) {
+  .newsletter__dialog {
+    max-width: 80vw;
+  }
+}
+@media (max-width: 1199.98px) {
+  .newsletter__dialog {
+    top: 10vh;
+  }
+}
+
+.newsletter__trigger {
+  cursor: pointer;
+}
+
+@keyframes fly {
+  to {
+    transform: translateX(0);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .banner-animation {
+    animation: fly 4.5s forwards;
+  }
+  .banner-animation_mobile {
+    animation: fly 2s forwards;
+  }
+}
+</style>

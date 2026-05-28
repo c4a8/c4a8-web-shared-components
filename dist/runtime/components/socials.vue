@@ -98,3 +98,55 @@ export default {
   },
 };
 </script>
+<style>
+.socials__label {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--color-trout);
+  font-weight: bold;
+}
+
+.socials {
+  display: inline-flex;
+}
+.socials.socials--expand {
+  width: 100%;
+}
+.socials.socials--expand .socials__item:first-child {
+  flex-grow: 1;
+}
+.socials.socials--expand .socials__item:not(:last-child) {
+  margin-right: 2rem;
+}
+.socials.socials--label-expand {
+  width: 100%;
+}
+.socials.socials--label-expand .socials__label {
+  flex-grow: 1;
+}
+.socials.socials--label-expand .socials__item:not(:last-child) {
+  margin-right: 1rem;
+}
+.socials .socials__item:not(:last-child) {
+  margin-right: 1rem;
+}
+.socials .fas,
+.socials .fab {
+  font-size: 1.6em;
+  color: var(--color-trout);
+}
+.socials .fas:hover,
+.socials .fab:hover {
+  opacity: 0.7;
+}
+@media (min-width: 1200px) {
+  .socials.is-vertical-xl {
+    display: flex;
+    flex-direction: column;
+  }
+  .socials.is-vertical-xl .fas,
+  .socials.is-vertical-xl .fab {
+    font-size: 1.5em;
+  }
+}
+</style>

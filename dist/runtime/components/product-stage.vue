@@ -246,3 +246,50 @@ export default {
   },
 };
 </script>
+<style>
+.product-stage__tab.active .product-stage__tab-content::before, .product-stage__tab:hover .product-stage__tab-content::before {
+  background-color: var(--color-bg-grey);
+}
+.product-stage__tab.active h2 {
+  text-decoration: none;
+}
+.product-stage__tab h2 {
+  text-decoration: underline;
+}
+
+.product-stage__tab-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background: var(--color-white);
+  border-radius: 0.3125rem;
+  box-shadow: 0px 10px 40px 10px rgba(140, 152, 164, 0.18);
+}
+.product-stage__tab-content--alternative-border::before {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.product-stage--cutoff {
+  --product-stage-background-width: 100%;
+  background: linear-gradient(90deg, transparent 0%, transparent var(--product-stage-background-width), var(--color-black-4) var(--product-stage-background-width), var(--color-black-4) 100%);
+}
+@media (min-width: 768px) {
+  .product-stage--cutoff {
+    --product-stage-background-width: 60%;
+  }
+  .product-stage--cutoff + .product-stage__bottom-container .product-stage__bottom-image {
+    margin-left: -6%;
+  }
+}
+
+@media (min-width: 768px) {
+  .product-stage__bottom-container {
+    margin-top: -10em;
+  }
+}
+</style>

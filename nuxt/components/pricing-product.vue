@@ -159,3 +159,12 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.pricing-product {
+  @include utility-animation-options($delay: 80ms, $selector: '&');
+
+  &.pricint-product--list {
+    border-bottom: 1px solid var(--color-pricing-product-border);
+  }
+}
+</style>

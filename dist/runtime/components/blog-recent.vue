@@ -357,3 +357,70 @@ export default {
   },
 };
 </script>
+<style>
+.blog-recent {
+  position: relative;
+  overflow: hidden;
+}
+.blog-recent [data-utility-animation-step] {
+  --utility-animation-distance: 15%;
+  animation-duration: 0.8s;
+}
+
+.blog-recent__bg {
+  position: absolute;
+  height: 420vw;
+  width: 148vh;
+  left: -188px;
+  top: 100px;
+  transform: rotate(320deg);
+  transform-origin: top left;
+}
+@media (min-width: 768px) {
+  .blog-recent__bg {
+    transform: rotate(310deg);
+  }
+}
+@media (min-width: 992px) {
+  .blog-recent__bg {
+    left: -100px;
+    top: 130px;
+    transform: rotate(292deg);
+  }
+}
+
+.blog-recent__slide {
+  padding: 0;
+}
+@media (min-width: 576px) {
+  .blog-recent__slide {
+    padding: 0 0.5rem;
+  }
+}
+@media (min-width: 992px) {
+  .blog-recent__slide {
+    padding: 0 1rem;
+  }
+}
+
+.blog-recent__container {
+  width: 100%;
+}
+@media (min-width: 576px) {
+  .blog-recent__container {
+    margin: 0 -0.5rem;
+    width: calc(100% + 2 * 0.5rem);
+  }
+}
+@media (min-width: 992px) {
+  .blog-recent__container {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+.blog-recent__cta-row {
+  place-content: end;
+  margin: 1.25rem 0;
+}
+</style>

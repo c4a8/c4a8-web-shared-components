@@ -66,4 +66,19 @@ export default defineNuxtConfig({
   turnstile: {
     siteKey: turnstileSiteKey ?? undefined,
   },
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: (source: string, filename: string) => {
+            if (filename.endsWith('.vue')) {
+              return `@import "@/src/assets/scss/sfc-tools";\n` + source;
+            }
+
+            return source;
+          },
+        },
+      },
+    },
+  },
 });

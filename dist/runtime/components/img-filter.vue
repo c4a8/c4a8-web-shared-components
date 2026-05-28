@@ -55,3 +55,11 @@ export default {
   },
 };
 </script>
+<style scoped>
+.img-filter {
+  display: inline-block;
+}
+.img-filter img {
+  width: 100%;
+}
+</style>

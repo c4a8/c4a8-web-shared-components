@@ -91,3 +91,18 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.feature-grid {
+  @include utility-animation-options($distance: 15%, $delay: 100ms, $duration: 0.8s);
+
+  .lottie {
+    max-height: 400px;
+  }
+}
+
+.feature-grid__figure {
+  > .img__picture-wrapper {
+    width: 100%;
+  }
+}
+</style>

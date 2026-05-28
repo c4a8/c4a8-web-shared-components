@@ -38,7 +38,7 @@
     </template>
     <template #formular v-if="form">
       <headline level="h3">{{ bottomText }}</headline>
-      <formular v-bind="form" :has-animation="true" :odoo="odooForm"/>
+      <formular v-bind="form" :has-animation="true" :odoo="odooForm" />
     </template>
   </page-detail>
 </template>
@@ -85,7 +85,7 @@ export default {
     odooForm: {
       type: Boolean,
       default: false,
-    }
+    },
   },
   computed: {
     hasContent() {
@@ -133,3 +133,14 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.page-detail__intro-content {
+  .event-detail__headline {
+    @include h2-breakpoints;
+
+    @include media-breakpoint-up(lg) {
+      @include h3-breakpoints($breakpoint: 'lg');
+    }
+  }
+}
+</style>

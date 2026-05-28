@@ -1,46 +1,32 @@
 <template>
-
-    <div
-      v-for="(testimonial, index) in contents"
-      :key="index"
-      class="testimonial-list__contents"
-    >
-      <div
-        v-if="isOdd(index)"
-        class="testimonial-list__content-block row"
-      >
-       
-          <testimonial-teaser
-            v-if="!testimonial.hidden"
-            :href="testimonial.url"
-            :name="testimonial.name"
-            :title="testimonial.title"
-            :img="testimonial.contentImg"
-            :corner-img="testimonial.cornerImg"
-            :bg-color="bgColor"
-            :bg-color-hover="bgColorHover"
-            :aspect-ratio="getAspectRatio(index)"
-          />
-        
-      </div>
-      <div
-        v-else
-        class="testimonial-list__content col-lg-6"
-      >
-        <testimonial-teaser
-          v-if="!testimonial.hidden"
-          :href="testimonial.url"
-          :name="testimonial.name"
-          :title="testimonial.title"
-          :img="testimonial.contentImg"
-          :corner-img="testimonial.cornerImg"
-          :bg-color="bgColor"
-          :bg-color-hover="bgColorHover"
-          :aspect-ratio="getAspectRatio(index)"
-        />
-      </div>
+  <div v-for="(testimonial, index) in contents" :key="index" class="testimonial-list__contents">
+    <div v-if="isOdd(index)" class="testimonial-list__content-block row">
+      <testimonial-teaser
+        v-if="!testimonial.hidden"
+        :href="testimonial.url"
+        :name="testimonial.name"
+        :title="testimonial.title"
+        :img="testimonial.contentImg"
+        :corner-img="testimonial.cornerImg"
+        :bg-color="bgColor"
+        :bg-color-hover="bgColorHover"
+        :aspect-ratio="getAspectRatio(index)"
+      />
     </div>
-
+    <div v-else class="testimonial-list__content col-lg-6">
+      <testimonial-teaser
+        v-if="!testimonial.hidden"
+        :href="testimonial.url"
+        :name="testimonial.name"
+        :title="testimonial.title"
+        :img="testimonial.contentImg"
+        :corner-img="testimonial.cornerImg"
+        :bg-color="bgColor"
+        :bg-color-hover="bgColorHover"
+        :aspect-ratio="getAspectRatio(index)"
+      />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -73,35 +59,27 @@ export default {
       const idx = index + 1;
       const wideValue1 = idx % 4;
       const wideValue2 = (idx - 1) % 4;
-      let aspectRatio = (wideValue1 === 0 || wideValue2 === 0) ? '16/9' : '4/3';
-      if (
-        this.isOdd(index) &&
-        !this.isEven &&
-        idx === this.listSize
-      ) {
+      let aspectRatio = wideValue1 === 0 || wideValue2 === 0 ? '16/9' : '4/3';
+      if (this.isOdd(index) && !this.isEven && idx === this.listSize) {
         aspectRatio = '4/3';
       }
       return aspectRatio;
     },
     handleScrollEvent() {
-      
       const hiddenTestimonials = document.querySelectorAll(`.testimonial-list__content:not(.${State.SHOW})`);
       hiddenTestimonials.forEach((testimonial) => {
         if (Tools.isInViewportPercent(testimonial, 30)) {
           testimonial.classList.add(State.SHOW);
         }
       });
-      
     },
     currentlyInViewPort() {
-
       const testimonials = document.querySelectorAll('.testimonial-list__content');
       testimonials.forEach((testimonial) => {
         if (Tools.isInViewportPercent(testimonial, 5)) {
           testimonial.classList.add(State.SHOW);
         }
       });
-      
     },
   },
   mounted() {
@@ -113,3 +91,28 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.testimonial-list__content-block {
+  @include media-breakpoint-up(lg) {
+    margin-bottom: spacing(15);
+  }
+}
+
+.testimonial-list__content {
+  display: flex;
+  justify-content: center;
+
+  &.show {
+    visibility: visible;
+    animation: slideIn 2s forwards;
+  }
+
+  &:not(.show) {
+    visibility: hidden;
+  }
+
+  @include media-breakpoint-down(md) {
+    margin-bottom: spacing(10);
+  }
+}
+</style>

@@ -266,3 +266,192 @@ export default {
   },
 };
 </script>
+<style>
+.text-image {
+  position: relative;
+  background-repeat: no-repeat;
+  width: 100%;
+}
+.text-image[data-utility-animation-in-viewport] + [data-utility-animation-in-viewport] .text-image__second-col[data-utility-animation-step],
+.text-image[data-utility-animation-in-viewport] + [data-utility-animation-in-viewport] .text-image__first-col[data-utility-animation-step] {
+  animation-delay: 0.2s;
+}
+.text-image.text-image--bg-color + .sticky-scroller__spacer + *[class*=mt-],
+.text-image.text-image--bg-color + *[class*=mt-] {
+  margin-top: 0 !important;
+}
+.text-image.text-image--float {
+  overflow: hidden;
+}
+.text-image.text-image--float .row .text-image__first-col {
+  order: 2;
+  margin-top: 2rem;
+}
+.text-image.text-image--float .row .text-image__second-col {
+  order: 1;
+}
+@media (min-width: 992px) {
+  .text-image.text-image--float {
+    overflow: inherit;
+  }
+}
+@media (min-width: 992px) {
+  .text-image .row.flex-row-reverse .text-image__first-col {
+    margin-top: 0;
+    order: 1;
+  }
+}
+@media (min-width: 992px) {
+  .text-image .row.flex-row-reverse .text-image__second-col {
+    order: 2;
+  }
+}
+.text-image .img__picture-wrapper.ratio-1x1 {
+  position: relative;
+  overflow: hidden;
+}
+.text-image .img__picture-wrapper.ratio-1x1:before {
+  content: "";
+  display: block;
+  width: 100%;
+  padding-top: calc(1 / 1 * 100%);
+}
+.text-image .img__picture-wrapper.ratio-1x1 > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.text-image .img__picture-wrapper.ratio-1x1 > img {
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0;
+}
+@media (min-width: 992px) {
+  .text-image.text-image--float .text-image__img {
+    margin-bottom: -6rem;
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+.text-image + footer {
+  margin-top: 0 !important;
+}
+
+.text-image__badge {
+  margin-bottom: 1rem;
+}
+
+.text-image__cta {
+  margin-top: 2rem;
+  margin-bottom: 6rem;
+  order: 3;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
+.text-image__overline {
+  color: var(--color-orange);
+}
+
+.text-image__floating-img {
+  padding-right: 0;
+  display: none;
+}
+@media (min-width: 992px) {
+  .text-image__floating-img {
+    display: flex;
+    max-height: calc(100% + 40px);
+  }
+  .text-image__floating-img img {
+    max-height: 100%;
+    display: block;
+    height: 100%;
+    width: auto;
+    margin-left: auto;
+    object-fit: contain;
+  }
+}
+
+.text-image__img.text-image__img--floating {
+  width: 100vw;
+  left: 100vw;
+  transform: translate(-100vw);
+}
+.text-image__img.text-image__img--floating .img__picture-wrapper {
+  width: 100vw;
+}
+@media (min-width: 992px) {
+  .text-image__img.text-image__img--floating .img__picture-wrapper {
+    width: auto;
+  }
+}
+@media (min-width: 576px) {
+  .text-image__img.text-image__img--floating {
+    width: calc(100vw - (100vw - 530px) / 2);
+    left: calc(100vw - (100vw - 530px) / 2);
+    transform: translateX(-540px);
+  }
+}
+@media (min-width: 768px) {
+  .text-image__img.text-image__img--floating {
+    width: calc(100vw - (100vw - 710px) / 2);
+    left: calc(100vw - (100vw - 710px) / 2);
+    transform: translateX(-720px);
+  }
+}
+@media (min-width: 992px) {
+  .text-image__img.text-image__img--floating {
+    left: 0;
+    transform: none;
+    width: 100%;
+  }
+}
+@media (min-width: 992px) {
+  .text-image__img.text-image__img--subline {
+    display: none;
+  }
+}
+.text-image__img.text-image__img--mobile img {
+  display: none;
+}
+@media (min-width: 992px) {
+  .text-image__img.text-image__img--mobile img {
+    display: block;
+  }
+}
+.text-image__img img {
+  object-fit: contain;
+  height: intrinsic;
+  height: max-content;
+}
+.text-image__img img.is-svg {
+  padding: 1.5rem;
+}
+.safari .text-image__img img {
+  height: auto;
+  width: 100%;
+}
+.safari .text-image__img img.is-svg {
+  width: auto;
+}
+
+.text-image__first-col[data-utility-animation-step] {
+  animation-duration: 0.6s;
+}
+
+.text-image__second-col[data-utility-animation-step] {
+  animation-duration: 1.2s;
+}
+
+.text-image__second-col[data-utility-animation-step],
+.text-image__first-col[data-utility-animation-step] {
+  --utility-animation-distance: 15%;
+}
+
+.text-image__first-col-wrapper {
+  width: 100%;
+}
+</style>

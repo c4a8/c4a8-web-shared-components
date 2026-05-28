@@ -98,3 +98,8 @@ export default {
   },
 };
 </script>
+<style>
+.lottie {
+  display: inline-block;
+}
+</style>

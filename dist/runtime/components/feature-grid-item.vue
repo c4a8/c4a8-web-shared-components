@@ -99,3 +99,17 @@ export default {
   },
 };
 </script>
+<style>
+ul.dashed li.feature-grid-item__text,
+.feature-grid-item__text {
+  text-align: left;
+}
+ul.dashed li.feature-grid-item__text::before,
+.feature-grid-item__text::before {
+  content: "";
+  width: 15px;
+  height: 2px;
+  background-color: var(--color-secondary);
+  flex-shrink: 0;
+}
+</style>

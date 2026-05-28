@@ -82,3 +82,29 @@ export default {
   },
 };
 </script>
+<style>
+.authors {
+  color: var(--color-copy-reduced);
+}
+.authors.authors--no-link {
+  color: #8c98a4;
+}
+.authors .authors__link:not([href]) {
+  color: var(--color-copy-reduced) !important;
+  pointer-events: none;
+}
+
+.author .author__intro-block,
+.author .author__posts {
+  border-top: 1px solid var(--color-services-border);
+}
+.author .author__intro,
+.author .author__socials {
+  padding-top: 1.25rem;
+}
+@media (min-width: 992px) {
+  .author .author__events .container {
+    padding: 0;
+  }
+}
+</style>

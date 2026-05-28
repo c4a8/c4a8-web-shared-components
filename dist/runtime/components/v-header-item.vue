@@ -16,37 +16,39 @@
     </a>
 
     <template v-for="(list, listIndex) in item.children">
-      <link-list
-        :key="listIndex"
-        :list="list"
-        :lang="lowerLang"
-        :hidden="isLinkListHidden(item, index)"
-        classes="header__link-list"
-        :no-animation="true"
-        v-if="list && item.children && !list.products"
-      />
-      <div :class="headerProductListClasses(item, index)" ref="product-list" v-else :key="`product-list-${listIndex}`">
-        <a
-          :href="subChild?.languages[lowerLang]?.url"
-          :target="subChild.target"
-          class="header__product-list-item custom"
-          v-for="(subChild, subChildIndex) in list.children"
-          :key="subChildIndex"
-        >
-          <v-img
-            :img="subChild.img"
-            class="header__product-list-image"
-            :cloudinary="true"
-            :alt="subChild.languages[lowerLang]?.alt || subChild.languages[lowerLang]?.title"
-          />
-          <div class="header__product-list-data">
-            <div :class="['header__product-list-title', !item.isMobile ? 'font-size-8 bold' : '']">
-              {{ subChild?.languages[lowerLang]?.title }}
+      <template v-if="renderMegaMenu">
+        <link-list
+          :key="listIndex"
+          :list="list"
+          :lang="lowerLang"
+          :hidden="isLinkListHidden(item, index)"
+          classes="header__link-list"
+          :no-animation="true"
+          v-if="list && item.children && !list.products"
+        />
+        <div :class="headerProductListClasses(item, index)" ref="product-list" v-else :key="`product-list-${listIndex}`">
+          <a
+            :href="subChild?.languages[lowerLang]?.url"
+            :target="subChild.target"
+            class="header__product-list-item custom"
+            v-for="(subChild, subChildIndex) in list.children"
+            :key="subChildIndex"
+          >
+            <v-img
+              :img="subChild.img"
+              class="header__product-list-image"
+              :cloudinary="true"
+              :alt="subChild.languages[lowerLang]?.alt || subChild.languages[lowerLang]?.title"
+            />
+            <div class="header__product-list-data">
+              <div :class="['header__product-list-title', !item.isMobile ? 'font-size-8 bold' : '']">
+                {{ subChild?.languages[lowerLang]?.title }}
+              </div>
+              <div class="header__product-list-subtitle">{{ subChild?.languages[lowerLang]?.subtitle }}</div>
             </div>
-            <div class="header__product-list-subtitle">{{ subChild?.languages[lowerLang]?.subtitle }}</div>
-          </div>
-        </a>
-      </div>
+          </a>
+        </div>
+      </template>
     </template>
 
     <a
@@ -110,6 +112,7 @@ export default {
     linkLists: Object,
     getId: Function,
     inTransition: Boolean,
+    renderMegaMenu: Boolean,
   },
 };
 </script>

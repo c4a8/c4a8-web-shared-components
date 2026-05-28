@@ -61,6 +61,32 @@ const module = defineNuxtModule({
     if (theme) {
       _nuxt.options.css.push(resolve(`./styles/${theme}.min.css`));
     }
+    const sfcToolsPath = resolve("./styles/sfc-tools").replace(/\\/g, "/");
+    _nuxt.options.vite = _nuxt.options.vite || {};
+    _nuxt.options.vite.css = _nuxt.options.vite.css || {};
+    _nuxt.options.vite.css.preprocessorOptions = _nuxt.options.vite.css.preprocessorOptions || {};
+    _nuxt.options.vite.css.preprocessorOptions.scss = _nuxt.options.vite.css.preprocessorOptions.scss || {};
+    const existing = _nuxt.options.vite.css.preprocessorOptions.scss.additionalData;
+    _nuxt.options.vite.css.preprocessorOptions.scss.additionalData = (source, filename) => {
+      if (filename.endsWith(".vue")) {
+        const prepend = `@import "${sfcToolsPath}";
+`;
+        if (typeof existing === "function") {
+          return existing(prepend + source, filename);
+        }
+        if (typeof existing === "string") {
+          return existing + prepend + source;
+        }
+        return prepend + source;
+      }
+      if (typeof existing === "function") {
+        return existing(source, filename);
+      }
+      if (typeof existing === "string") {
+        return existing + source;
+      }
+      return source;
+    };
     addComponentsDir({
       path: resolve("./runtime/components")
     });

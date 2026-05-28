@@ -46,3 +46,44 @@ export default {
   },
 };
 </script>
+<style>
+.badge.badge--normal {
+  display: inline-flex;
+  align-items: center;
+  padding: 0rem 0.75rem;
+  text-align: left;
+  border-radius: 0;
+  transition: none;
+}
+.badge.badge--overlapping {
+  position: relative;
+  padding-left: 0;
+}
+.badge.badge--overlapping::before {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  content: "";
+  display: block;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  background-color: inherit;
+  width: 50vw;
+  z-index: 0;
+}
+.badge.badge--uppercase .badge__text {
+  text-transform: uppercase;
+}
+
+.badge__text {
+  position: relative;
+  display: inline-block;
+  z-index: 1;
+}
+.badge__text + .badge__icon {
+  margin-left: 1rem;
+}
+
+.badge__icon {
+  display: inline-flex;
+}
+</style>
