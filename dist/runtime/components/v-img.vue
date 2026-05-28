@@ -313,3 +313,37 @@ export default {
   },
 };
 </script>
+<style>
+.img__picture-wrapper.ratio-2x1 {
+  position: relative;
+}
+.img__picture-wrapper.ratio-2x1:before {
+  content: "";
+  display: block;
+  width: 100%;
+  padding-top: calc(1 / 2 * 100%);
+}
+.img__picture-wrapper.ratio-2x1 > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.img__picture-wrapper.ratio-1x1 {
+  position: relative;
+}
+.img__picture-wrapper.ratio-1x1:before {
+  content: "";
+  display: block;
+  width: 100%;
+  padding-top: calc(1 / 1 * 100%);
+}
+.img__picture-wrapper.ratio-1x1 > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+</style>

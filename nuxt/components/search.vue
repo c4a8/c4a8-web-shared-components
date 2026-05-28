@@ -110,3 +110,31 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.search {
+  display: none;
+
+  @include media-breakpoint-up(lg) {
+    display: block;
+
+    &.search--expanded {
+      .search__icon {
+        display: none;
+      }
+
+      .search__bar {
+        display: block;
+      }
+    }
+
+    .search__icon {
+      cursor: pointer;
+      margin: 0 auto;
+    }
+
+    .search__bar {
+      display: none;
+    }
+  }
+}
+</style>

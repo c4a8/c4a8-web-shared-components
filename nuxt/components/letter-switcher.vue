@@ -80,7 +80,7 @@ export default {
   },
   computed: {
     classList() {
-      return ['letter-switch', `${this.show ? State.SHOW : ''}`, `${this.end ? State.END : ''}`, 'vue-component'];
+      return ['letter-switcher', `${this.show ? State.SHOW : ''}`, `${this.end ? State.END : ''}`, 'vue-component'];
     },
     fontSize() {
       return this.isLower ? 'font-size-5' : 'font-size-6 bold';
@@ -143,7 +143,7 @@ export default {
         const stepDelay = index * delay;
         const duration = letterDelay * group.children.length;
 
-        group.style.animation = `letter-switch ${duration}s ${stepDelay}s ease-out forwards`;
+        group.style.animation = `letter-switcher ${duration}s ${stepDelay}s ease-out forwards`;
       });
 
       setTimeout(() => {
@@ -188,3 +188,174 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+$letter-switch-custom-breakpoint: 443px;
+
+.letter-switcher {
+  text-align: center;
+  margin-bottom: spacing(10);
+
+  &.show {
+    .letter-switcher__overline,
+    .letter-switcher__animation {
+      opacity: 1;
+    }
+  }
+
+  &.is-end {
+    .letter-switcher__animation {
+      opacity: 0;
+    }
+
+    .letter-switcher__end-animation {
+      opacity: 1;
+    }
+  }
+
+  @media (min-width: $letter-switch-custom-breakpoint) {
+    margin-bottom: 0;
+  }
+
+  @include media-breakpoint-up(md) {
+    margin-bottom: spacing(10);
+  }
+}
+
+.letter-switcher__animation {
+  pointer-events: none;
+  opacity: 0;
+  overflow: hidden;
+  letter-spacing: 5px;
+  color: var(--color-letter-switcher-copy);
+  display: flex;
+  height: 0;
+
+  @include media-breakpoint-up(md) {
+    letter-spacing: 10px;
+  }
+}
+
+.letter-switcher__overline,
+.letter-switcher__animation {
+  transition: opacity 0.5s $animation-transition;
+}
+
+.letter-switcher__group {
+  display: inline-flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  width: 30px;
+  position: relative;
+  bottom: -100%;
+  transform: translateY(-100%);
+  text-align: center;
+
+  @include media-breakpoint-up(md) {
+    width: 40px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    width: 60px;
+  }
+}
+
+.letter-switcher__letter {
+  flex: 1 0 auto;
+  padding: 10px 0;
+}
+
+.letter-switcher__middle {
+  color: var(--color-letter-switcher-highlight);
+}
+
+.letter-switcher__overline {
+  opacity: 0;
+  margin-bottom: spacing(4);
+  color: var(--color-letter-switcher-overline);
+}
+
+.letter-switcher__end-animation {
+  pointer-events: none;
+  position: absolute;
+  opacity: 0;
+  bottom: 0;
+  top: spacing(4);
+  display: flex;
+  place-content: center;
+  width: 100%;
+  color: var(--color-letter-switcher-copy);
+}
+
+.letter-switcher__end::before,
+.letter-switcher__end-text {
+  width: calc(100% + #{spacing(4)});
+  transition: width 0.8s $animation-transition;
+}
+
+.letter-switcher__end-text {
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  right: -#{spacing(2)};
+  top: 0;
+  background-color: var(--color-gigas);
+  z-index: 2;
+}
+
+.letter-switcher__end {
+  position: relative;
+  z-index: 1;
+
+  &::before {
+    position: absolute;
+    content: '';
+    display: block;
+    height: spacing(6);
+    left: -#{spacing(2)};
+    background-color: var(--color-letter-switcher-underline);
+    z-index: -1;
+    bottom: 5%;
+    transition-duration: 1.2s;
+
+    @include media-breakpoint-up(sm) {
+      height: 40%;
+    }
+
+    @media (max-width: $letter-switch-custom-breakpoint) {
+      left: 50%;
+      transform: translateX(-50%);
+      max-width: clamp(320px, 87%, 90vw);
+    }
+  }
+
+  &.is-collapsed {
+    &::before {
+      width: 0;
+    }
+  }
+}
+
+.letter-switcher__spacer,
+.letter-switcher__container {
+  position: relative;
+}
+
+.letter-switcher__container-animation {
+  @include media-breakpoint-down(sm) {
+    overflow: hidden;
+    height: 40%;
+  }
+}
+
+@keyframes letter-switcher {
+  0% {
+    transform: translateY(-100%);
+    bottom: -100%;
+  }
+
+  100% {
+    transform: translateY(0%);
+    bottom: 0;
+  }
+}
+</style>

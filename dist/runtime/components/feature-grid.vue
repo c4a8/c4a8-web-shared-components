@@ -91,3 +91,19 @@ export default {
   },
 };
 </script>
+<style>
+.feature-grid [data-utility-animation-step] {
+  --utility-animation-distance: 15%;
+}
+.feature-grid [data-utility-animation-step].is-starting {
+  animation-delay: calc(var(--utility-animation-index) * 100ms + 0ms);
+  animation-duration: 0.8s;
+}
+.feature-grid .lottie {
+  max-height: 400px;
+}
+
+.feature-grid__figure > .img__picture-wrapper {
+  width: 100%;
+}
+</style>

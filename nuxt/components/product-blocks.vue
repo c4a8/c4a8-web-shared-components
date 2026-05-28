@@ -79,3 +79,26 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.product-blocks__block {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.product-blocks__content {
+  flex: 1;
+}
+
+.product-blocks__img {
+  width: 15rem;
+
+  @include media-breakpoint-up(md) {
+    min-height: 54px;
+  }
+}
+
+.product-blocks__item {
+  @include utility-animation-options($delay: 80ms, $selector: '&');
+}
+</style>

@@ -35,3 +35,18 @@ export default {
   },
 };
 </script>
+<style scoped>
+.author-header .author-header__back {
+  display: none;
+  top: -2rem;
+  left: 15px;
+}
+.author-header .author-header__back.show {
+  display: inline-flex;
+}
+@media (min-width: 992px) {
+  .author-header .author-header__back {
+    top: -6rem;
+  }
+}
+</style>

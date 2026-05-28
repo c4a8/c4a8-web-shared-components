@@ -94,3 +94,108 @@ export default {
   },
 };
 </script>
+<style>
+.teaser {
+  --color-teaser-copy-highlight: var(--color-copy-highlight);
+  --color-teaser-background: var(--color-black-4);
+  position: relative;
+  padding: 4rem 0 2.5rem;
+}
+.teaser [data-utility-animation-step] {
+  --utility-animation-distance: 135%;
+}
+.teaser [data-utility-animation-step].is-starting {
+  animation-duration: 0.8s;
+}
+.teaser:not(.teaser--has-video) {
+  cursor: pointer;
+}
+.teaser::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 200vw;
+  height: 60%;
+  background-color: var(--color-teaser-background);
+  z-index: -1;
+  bottom: 0;
+  left: -100%;
+}
+@media (min-width: 768px) {
+  .teaser::after {
+    left: 0;
+    width: calc((100vw - var(--container-width)) / 2 + var(--container-width) * 0.6);
+    height: 100%;
+  }
+}
+.teaser .teaser__headline {
+  margin-bottom: 1.5rem;
+}
+@media (min-width: 768px) {
+  .teaser {
+    padding-top: 0;
+    padding-bottom: 4rem;
+  }
+  .teaser.teaser--no-img {
+    padding-top: 4rem;
+  }
+  .teaser .teaser__logo {
+    grid-area: Header;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0;
+  }
+  .teaser .teaser__overline,
+  .teaser .teaser__headline,
+  .teaser .teaser__text,
+  .teaser .teaser__cta {
+    grid-row: auto;
+    margin-right: 3.5rem;
+  }
+  .teaser .teaser__video-wrapper {
+    grid-area: Right;
+  }
+}
+@media (min-width: 992px) {
+  .teaser .teaser__overline,
+  .teaser .teaser__headline,
+  .teaser .teaser__text,
+  .teaser .teaser__cta {
+    margin-right: 6rem;
+  }
+}
+
+.teaser__overline {
+  color: var(--color-teaser-copy-highlight);
+}
+
+.teaser__row {
+  display: grid;
+}
+@media (min-width: 768px) {
+  .teaser__row {
+    height: auto;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: min-content min-content min-content min-content min-content;
+    grid-template-areas: "Header Header" ". Right" ". Right" ". Right" ". Right";
+  }
+}
+
+.teaser__cta {
+  margin-top: 1.5rem;
+}
+@media (min-width: 768px) {
+  .teaser__cta {
+    margin-top: 3rem;
+  }
+}
+
+.teaser__logo {
+  margin: 1rem 0;
+}
+
+.teaser__video-wrapper[data-utility-animation-step] {
+  --utility-animation-distance: 15%;
+  animation-delay: 200ms;
+}
+</style>

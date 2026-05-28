@@ -30,7 +30,10 @@ declare namespace _default {
     }
     namespace computed {
         function color(): any;
-        function style(): void;
+        function style(): {
+            '--flip-unit-font-color'?: any;
+            '--flip-unit-background-color'?: any;
+        };
     }
 }
 export default _default;

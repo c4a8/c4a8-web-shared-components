@@ -171,3 +171,43 @@ export default {
   },
 };
 </script>
+<style scoped>
+.check-card {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 5rem;
+}
+@media (min-width: 992px) {
+  .check-card.check-card--products .check-card__slide {
+    padding: 0 2rem;
+  }
+}
+
+.check-card__container {
+  width: 100%;
+}
+.check-card__container[data-utility-animation-step] {
+  --utility-animation-distance: 5%;
+}
+.check-card__container[data-utility-animation-step].is-starting {
+  animation-delay: calc(var(--utility-animation-index) * 150ms + 0ms);
+}
+@media (min-width: 992px) {
+  .check-card__container {
+    margin: 0 -0.5rem;
+  }
+}
+
+.check-card__slide {
+  padding: 0;
+}
+@media (min-width: 992px) {
+  .check-card__slide {
+    padding: 0 1rem;
+  }
+}
+
+.check-card__subline[data-utility-animation-step].is-starting {
+  animation-delay: calc(var(--utility-animation-index) * 100ms + 0ms);
+}
+</style>

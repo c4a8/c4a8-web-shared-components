@@ -66,3 +66,125 @@ export default {
   },
 };
 </script>
+<style>
+.service-overview {
+  z-index: 200;
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+@media (min-width: 992px) {
+  .service-overview {
+    margin-top: 5rem;
+    margin-bottom: 0;
+  }
+}
+
+.service-overview__socials {
+  flex: 1 0 100%;
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-service-overview-border);
+}
+@media (min-width: 992px) {
+  .service-overview__socials {
+    display: none;
+  }
+}
+
+.service-overview__header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+}
+@media (min-width: 992px) {
+  .service-overview__header {
+    border-bottom: 1px solid var(--color-service-overview-border);
+    margin-bottom: 0.75rem;
+  }
+}
+
+.service-overview__logo-frame {
+  display: flex;
+  align-items: flex-end;
+}
+.service-overview__logo-frame .icon {
+  align-self: center;
+}
+
+.service-overview__logo {
+  background-color: var(--color-white);
+  padding: 0.75rem 1rem 0.75rem 15px;
+  transform: translateY(-99%);
+  position: absolute;
+}
+.service-overview__logo:hover .icon svg {
+  animation: moveTopRight;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.19, 1, 0.2, 1);
+}
+.service-overview__logo .icon {
+  width: 1rem;
+  height: 1rem;
+}
+@media (min-width: 992px) {
+  .service-overview__logo {
+    order: 2;
+    z-index: auto;
+    transform: none;
+    padding: 0;
+    display: flex;
+    position: relative;
+  }
+}
+
+.service-overview__img {
+  margin-right: 1.25rem;
+}
+
+.service-overview__title {
+  flex: 1 0 100%;
+}
+@media (min-width: 992px) {
+  .service-overview__title {
+    line-height: 1em;
+    order: 1;
+    flex: 1 1 auto;
+  }
+}
+@media (min-width: 1200px) {
+  .service-overview__title {
+    line-height: 1.2em;
+  }
+}
+
+.service-overview__content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.service-overview__list {
+  width: 100%;
+}
+@media (min-width: 992px) {
+  .service-overview__list {
+    flex: 1 0 60%;
+    padding-right: 4rem;
+  }
+}
+
+.service-overview__services {
+  width: 100%;
+}
+.service-overview__services[data-utility-animation-step].is-starting {
+  animation-delay: calc(var(--utility-animation-index) * 100ms + 0ms);
+}
+@media (min-width: 992px) {
+  .service-overview__services {
+    flex: 1 0 40%;
+    width: 40%;
+  }
+}
+</style>

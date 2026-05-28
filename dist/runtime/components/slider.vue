@@ -198,3 +198,67 @@ export default {
   },
 };
 </script>
+<style>
+.slider {
+  overflow: hidden;
+}
+.slider.slider--overflow {
+  overflow: visible;
+}
+.slider.has-background {
+  position: relative;
+  padding-bottom: 4rem;
+}
+.slider.has-background .slider__wrapper:before {
+  display: block;
+}
+@media (min-width: 992px) {
+  .slider.has-background {
+    padding-bottom: 5.5rem;
+  }
+}
+.slider .is--desktop,
+.slider .slider__item--desktop {
+  display: none;
+}
+@media (min-width: 576px) {
+  .slider .slick-list {
+    width: 100%;
+  }
+}
+@media (min-width: 992px) {
+  .slider .slick-list .slick-track {
+    left: 0;
+  }
+}
+.slider swiper-container::part(container) {
+  overflow: visible;
+}
+.slider swiper-slide {
+  height: auto;
+}
+.slider swiper-slide > * {
+  height: 100%;
+}
+@media (min-width: 992px) {
+  .slider .is--desktop,
+  .slider .slider__item--desktop {
+    display: block;
+  }
+  .slider .is--mobile,
+  .slider .slider__item--mobile {
+    display: none;
+  }
+}
+
+.slider__wrapper:before {
+  display: none;
+  content: "";
+  background-color: inherit;
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+</style>

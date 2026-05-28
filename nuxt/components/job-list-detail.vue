@@ -37,10 +37,6 @@
           ></div>
           <video-inner variant="reversed" :video="videoInner.video" v-if="videoInner"></video-inner>
 
-          <div v-if="personQuote" class="job-list__detail-quote">
-            <person-quote :img="personQuote.img" :text="personQuote.text" :name="personQuote.name" />
-          </div>
-
           <!-- <div class="job-list__detail-maps">
               <slot name="google-maps" />
             </div> -->

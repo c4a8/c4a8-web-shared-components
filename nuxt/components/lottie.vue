@@ -98,3 +98,8 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.lottie {
+  display: inline-block;
+}
+</style>

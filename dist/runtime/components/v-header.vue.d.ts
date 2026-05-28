@@ -995,6 +995,7 @@ declare namespace _default {
     function mounted(): void;
     function updated(): void;
     namespace methods {
+        function initMegaMenu(): void;
         function getSecondaryNavigationDimensions(): void;
         function closeSecondaryNavigation(): void;
         function toggleSecondaryNavigation(): any;
@@ -1112,6 +1113,8 @@ declare namespace _default {
             SHRINKING_HEIGHT: number;
             SHRINKING_WIDTH: number;
         };
+        initEvents: string[];
+        renderMegaMenu: boolean;
     };
 }
 export default _default;

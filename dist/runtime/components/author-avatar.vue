@@ -37,3 +37,36 @@ export default {
   },
 };
 </script>
+<style scoped>
+.author__avatar-frame {
+  position: relative;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border-radius: 100%;
+}
+.author__avatar-frame:before {
+  content: "";
+  display: block;
+  width: 100%;
+  padding-top: calc(1 / 1 * 100%);
+}
+.author__avatar-frame > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.author__avatar-frame > * {
+  width: 100%;
+  height: 100%;
+}
+.author__avatar-frame img {
+  width: calc(100% * 1.6);
+  max-width: calc(100% * 1.6);
+  transform: translateX(-50%) translateY(-50%);
+  overflow: hidden;
+  border-radius: 100%;
+  box-shadow: 0 0 0 1px rgba(140, 152, 164, 0.1);
+}
+</style>

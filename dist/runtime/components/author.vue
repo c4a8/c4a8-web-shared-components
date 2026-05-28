@@ -114,3 +114,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+.author__posts-list {
+  width: 100%;
+}
+</style>

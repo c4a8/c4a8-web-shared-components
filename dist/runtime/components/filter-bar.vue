@@ -359,3 +359,92 @@ export default {
   },
 };
 </script>
+<style>
+.filter-bar__controls {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+}
+
+.filter-bar__toggle {
+  background-color: var(--color-surface-background);
+  display: inline-flex;
+}
+
+.filter-bar__toggle-icon {
+  display: flex;
+  cursor: pointer;
+  padding: 0.75rem;
+}
+.filter-bar__toggle-icon.active {
+  color: var(--color-primary);
+}
+.filter-bar__toggle-icon:hover {
+  color: var(--color-primary-accent);
+}
+.filter-bar__toggle-icon:not(:first-of-type) {
+  position: relative;
+  margin-left: 1px;
+}
+.filter-bar__toggle-icon:not(:first-of-type)::before {
+  position: absolute;
+  content: "";
+  display: block;
+  left: 0;
+  width: 1px;
+  height: 120%;
+  height: calc(100% - 1rem);
+  transform: translateY(-0.25rem);
+  background-color: var(--color-border-light);
+}
+
+.filter-bar__dropdowns {
+  display: flex;
+  gap: 1rem;
+}
+.filter-bar__dropdowns [data-utility-animation-step] {
+  --utility-animation-distance: 15%;
+}
+.filter-bar__dropdowns [data-utility-animation-step].is-starting {
+  animation-delay: calc(var(--utility-animation-index) * 100ms + 0ms);
+  animation-duration: 0.8s;
+}
+
+.filter-bar__views {
+  display: none;
+}
+@media (min-width: 992px) {
+  .filter-bar__views {
+    display: block;
+  }
+}
+
+.filter-bar__reset {
+  font-size: 0.85rem;
+  margin-left: 0.5rem;
+  display: inline-flex;
+  cursor: pointer;
+  gap: 0.5rem;
+  place-items: center;
+}
+.filter-bar__reset > .icon.vue-component {
+  width: 12px;
+  height: 12px;
+  stroke-width: 5px;
+}
+.filter-bar__reset > .icon.vue-component > svg {
+  width: 100%;
+  height: 100%;
+}
+
+.filter-bar__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  place-items: center;
+}
+.filter-bar__tags .filter-bar__tag {
+  margin-top: 0.5rem;
+}
+</style>

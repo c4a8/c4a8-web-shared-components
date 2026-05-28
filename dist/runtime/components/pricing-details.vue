@@ -87,3 +87,13 @@ export default {
   },
 };
 </script>
+<style>
+.pricing-details .pricing-product:not(.bg-white) + .pricing-details__infos {
+  padding: 0 0.75rem;
+}
+@media (min-width: 768px) {
+  .pricing-details .pricing-product:not(.bg-white) + .pricing-details__infos {
+    padding: 0 2.5rem;
+  }
+}
+</style>

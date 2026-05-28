@@ -313,3 +313,14 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.img__picture-wrapper {
+  &.ratio-2x1 {
+    @include aspect-ratio(2, 1);
+  }
+
+  &.ratio-1x1 {
+    @include aspect-ratio(1, 1);
+  }
+}
+</style>

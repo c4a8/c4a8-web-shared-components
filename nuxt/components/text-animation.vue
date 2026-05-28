@@ -1,5 +1,4 @@
 <template>
-
   <div :class="classList">
     <div class="text-animation__placeholder" ref="placeholder">
       <span :class="placeholderTextClassList" ref="placeholderText" v-html="currentText"></span>
@@ -18,13 +17,11 @@
   </div>
 </template>
 <script>
-
-
-import Tools from "../utils/tools.js";
-import State from "../utils/state.js";
+import Tools from '../utils/tools.js';
+import State from '../utils/state.js';
 
 export default {
-  tagName: "text-animation",
+  tagName: 'text-animation',
   props: {
     sequence: Object,
     fixed: Boolean,
@@ -32,8 +29,8 @@ export default {
   },
   data() {
     return {
-      defaultTextSize: "font-size-6",
-      defaultSublineSize: "font-size-2",
+      defaultTextSize: 'font-size-6',
+      defaultSublineSize: 'font-size-2',
       timeout: null,
       textTimeout: null,
       letterDelay: 120,
@@ -45,11 +42,11 @@ export default {
       sublineDelay: 1150,
       buttonDelay: 800,
       step: 0,
-      textValue: "",
-      currentSubline: "",
+      textValue: '',
+      currentSubline: '',
       currentSublineSize: null,
-      currentTextSize: "",
-      currentText: "",
+      currentTextSize: '',
+      currentText: '',
       isEnded: false,
       isSecondLast: false,
       showSubline: false,
@@ -62,39 +59,32 @@ export default {
   computed: {
     classList() {
       return [
-        "text-animation vue-component",
-        this.isCalculated ? "" : State.INVISIBLE,
-        this.isEnded ? State.END : "",
-        this.isFixed ? "text-animation--fixed" : "",
+        'text-animation vue-component',
+        this.isCalculated ? '' : State.INVISIBLE,
+        this.isEnded ? State.END : '',
+        this.isFixed ? 'text-animation--fixed' : '',
       ];
     },
     isFixed() {
       return Tools.isTrue(this.fixed);
     },
     textClassList() {
-      return ["text-animation__text", this.currentTextSize];
+      return ['text-animation__text', this.currentTextSize];
     },
     sublineClassList() {
-      return [
-        "text-animation__subline",
-        this.currentSublineSize,
-        this.showSubline ? "" : State.INVISIBLE,
-      ];
+      return ['text-animation__subline', this.currentSublineSize, this.showSubline ? '' : State.INVISIBLE];
     },
     placeholderSublineClassList() {
-      return ["text-animation__subline", this.currentSublineSize];
+      return ['text-animation__subline', this.currentSublineSize];
     },
     placeholderTextClassList() {
-      return ["text-animation__text", this.currentTextSize];
+      return ['text-animation__text', this.currentTextSize];
     },
     placeholderCtaClassList() {
-      return [
-        "text-animation__cta",
-        this.isSecondLast || this.isEnded ? "" : State.INVISIBLE,
-      ];
+      return ['text-animation__cta', this.isSecondLast || this.isEnded ? '' : State.INVISIBLE];
     },
     ctaClassList() {
-      return ["text-animation__cta", this.isEnded ? "" : State.INVISIBLE];
+      return ['text-animation__cta', this.isEnded ? '' : State.INVISIBLE];
     },
     sequenceData() {
       return Tools.getJSON(this.sequence);
@@ -123,14 +113,13 @@ export default {
     calculateDelay() {
       this.currentSequenceStep = this.sequenceData[this.step];
       this.currentText = this.currentSequenceStep.text;
-      this.currentTextSize =
-        this.currentSequenceStep.textSize || this.defaultTextSize;
+      this.currentTextSize = this.currentSequenceStep.textSize || this.defaultTextSize;
 
       const textSizeValue = parseInt(this.currentTextSize.match(/\d+/)[0]);
 
       this.getDelayByValue(textSizeValue);
 
-      this.currentSubline = this.currentSequenceStep?.subline || "";
+      this.currentSubline = this.currentSequenceStep?.subline || '';
       this.currentDelay =
         this.currentText.length * this.sizeBasedDelay +
         this.sizeBasedOffset +
@@ -150,7 +139,7 @@ export default {
     end() {
       this.isEnded = true;
 
-      this.$emit("text-animation-ended", this.isEnded);
+      this.$emit('text-animation-ended', this.isEnded);
 
       window.clearTimeout(this.timeout);
     },
@@ -162,8 +151,7 @@ export default {
       this.animate();
     },
     animateText() {
-      this.currentSublineSize =
-        this.currentSequenceStep.sublineSize || this.defaultSublineSize;
+      this.currentSublineSize = this.currentSequenceStep.sublineSize || this.defaultSublineSize;
       this.sublineValue = this.currentSubline;
 
       if (this.step + 1 !== this.sequenceData.length) {
@@ -174,7 +162,7 @@ export default {
         this.isSecondLast = true;
       }
 
-      this.$emit("text-animation-state", {
+      this.$emit('text-animation-state', {
         step: this.step,
         isSecondLast: this.isSecondLast,
       });
@@ -200,16 +188,15 @@ export default {
       this.showButtonAtLastRun(this.textTimeout);
     },
     resetText() {
-      this.textValue = "";
-      this.sublineValue = "";
+      this.textValue = '';
+      this.sublineValue = '';
       this.showSubline = false;
 
       this.oldStep = this.sequenceData[this.step - 1];
       this.nextStep = this.sequenceData[this.step + 1] || this.sequenceData[0];
 
       this.currentTextSize = this.nextStep.textSize || this.defaultTextSize;
-      this.currentSublineSize =
-        this.nextStep.sublineSize || this.defaultSublineSize;
+      this.currentSublineSize = this.nextStep.sublineSize || this.defaultSublineSize;
     },
     animate() {
       this.calculateDelay();
@@ -260,16 +247,14 @@ export default {
     if (!this.isCalculated) {
       const placeholder = this.$refs.placeholder;
 
-      this.$refs.placeholderCta.style.display = "none";
+      this.$refs.placeholderCta.style.display = 'none';
 
       this.calculatedMaxHeight =
-        placeholder.offsetHeight > this.calculatedMaxHeight
-          ? placeholder.offsetHeight
-          : this.calculatedMaxHeight;
+        placeholder.offsetHeight > this.calculatedMaxHeight ? placeholder.offsetHeight : this.calculatedMaxHeight;
 
       this.calculateNextMaxHeight();
 
-      this.$refs.placeholderCta.style.display = "";
+      this.$refs.placeholderCta.style.display = '';
     }
   },
   created() {
@@ -278,10 +263,10 @@ export default {
     this.sizeBasedDelay = this.letterDelay;
   },
   beforeDestroy() {
-    window.removeEventListener("resize", this.handleResize);
+    window.removeEventListener('resize', this.handleResize);
   },
   mounted() {
-    window.addEventListener("resize", this.handleResize);
+    window.addEventListener('resize', this.handleResize);
 
     this.calculateNextMaxHeight();
   },
@@ -289,12 +274,48 @@ export default {
     isCalculated(newValue) {
       if (!newValue) return;
 
-      this.$refs.placeholder.style.minHeight = this.calculatedMaxHeight + "px";
+      this.$refs.placeholder.style.minHeight = this.calculatedMaxHeight + 'px';
 
       this.animate();
     },
   },
-
-
 };
 </script>
+<style lang="scss">
+.text-animation {
+  position: relative;
+}
+
+.text-animation__subline {
+  margin-top: spacing(6);
+  transition: opacity $animation-transition 1.5s;
+}
+
+.text-animation__placeholder {
+  opacity: 0;
+  pointer-events: none;
+
+  @include media-breakpoint-up(lg) {
+    min-height: 300px;
+  }
+
+  @include media-breakpoint-down(md) {
+    min-height: none !important;
+  }
+}
+
+.text-animation__visible {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.text-animation__cta {
+  margin-top: spacing(6);
+  transition: opacity $animation-transition 1.5s;
+
+  @include media-breakpoint-up(lg) {
+    margin-top: spacing(12);
+  }
+}
+</style>

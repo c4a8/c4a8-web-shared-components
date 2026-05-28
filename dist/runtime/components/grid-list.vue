@@ -91,3 +91,8 @@ export default {
   },
 };
 </script>
+<style>
+.grid-list.row {
+  margin: 0 calc(-1 * 30px / 2);
+}
+</style>

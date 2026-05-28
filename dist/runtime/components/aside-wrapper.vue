@@ -15,3 +15,34 @@ export default {
   props: {},
 };
 </script>
+<style scoped>
+.aside-wrapper {
+  display: flex;
+  gap: 3.5rem;
+}
+.aside-wrapper p:last-of-type {
+  margin-bottom: 0;
+}
+.aside-wrapper .aside-wrapper__content {
+  margin-top: 3rem;
+  flex: 1 1 60%;
+}
+.aside-wrapper .aside-wrapper__aside {
+  margin-top: 3rem;
+  flex: 1 1 40%;
+}
+.aside-wrapper .aside-wrapper__aside img {
+  width: 100%;
+  margin-bottom: 3rem;
+}
+@media (max-width: 1339.98px) {
+  .aside-wrapper {
+    flex-direction: row;
+  }
+}
+@media (max-width: 991.98px) {
+  .aside-wrapper {
+    flex-direction: column;
+  }
+}
+</style>
