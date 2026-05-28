@@ -10,7 +10,7 @@
         <path
           id="smile-left-eye"
           class="left-eye"
-          :style="{ stroke: iconColor }"
+          :style="{ stroke: color }"
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="6px"
@@ -20,7 +20,7 @@
         <path
           id="smile-left-eyebrow"
           class="left-eyebrow"
-          :style="{ stroke: iconColor }"
+          :style="{ stroke: color }"
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="0"
@@ -30,7 +30,7 @@
         <path
           id="smile-right-eyebrow"
           class="right-eyebrow"
-          :style="{ stroke: iconColor }"
+          :style="{ stroke: color }"
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="0"
@@ -40,7 +40,7 @@
         <path
           id="smile-right-eye"
           class="right-eye"
-          :style="{ stroke: iconColor }"
+          :style="{ stroke: color }"
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="6px"
@@ -50,7 +50,7 @@
         <path
           id="smile-mouth"
           class="mouth"
-          :style="{ stroke: iconColor }"
+          :style="{ stroke: color }"
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="6px"
@@ -60,7 +60,7 @@
         <path
           id="mouth-upper"
           class="mouth-upper"
-          :style="{ stroke: iconColor }"
+          :style="{ stroke: color }"
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="0"
@@ -70,7 +70,7 @@
         <path
           id="smile-circle"
           class="circle"
-          :style="{ stroke: iconColor }"
+          :style="{ stroke: color }"
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="6px"
@@ -80,7 +80,7 @@
         <path
           id="hand"
           class="hand"
-          :style="{ stroke: iconColor }"
+          :style="{ stroke: color }"
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="0"
@@ -91,7 +91,7 @@
       <g style="transform: scale(0.9) translate(-5px, -25px)">
         <path
           class="hand-upper"
-          :style="{ stroke: iconColor }"
+          :style="{ stroke: color }"
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="0"
@@ -100,7 +100,7 @@
         />
         <path
           class="hand-upper"
-          :style="{ stroke: iconColor }"
+          :style="{ stroke: color }"
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="0"
@@ -109,7 +109,7 @@
         ></path>
         <path
           class="hand-upper"
-          :style="{ stroke: iconColor }"
+          :style="{ stroke: color }"
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="0"
@@ -118,7 +118,7 @@
         ></path>
         <path
           class="hand-upper"
-          :style="{ stroke: iconColor }"
+          :style="{ stroke: color }"
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="0"
@@ -127,7 +127,7 @@
         ></path>
         <path
           class="hand-upper"
-          :style="{ stroke: iconColor }"
+          :style="{ stroke: color }"
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="0"
@@ -136,7 +136,7 @@
         ></path>
         <path
           class="hand-upper"
-          :style="{ stroke: iconColor }"
+          :style="{ stroke: color }"
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="0"
