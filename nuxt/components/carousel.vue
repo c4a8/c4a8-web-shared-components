@@ -9,6 +9,7 @@
             @click="handleItemClick"
             v-for="(item, index) in jsonItems"
             :key="index"
+            :lazy="lazy"
           />
         </section>
         <section class="carousel__row-section">
@@ -18,6 +19,7 @@
             @click="handleItemClick"
             v-for="(item, index) in jsonItems"
             :key="index"
+            :lazy="lazy"
           />
         </section>
       </div>

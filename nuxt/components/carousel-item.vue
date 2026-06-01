@@ -18,7 +18,7 @@
       <div class="carousel__item-title">{{ item.title }}</div>
       <icon class="carousel__item-icon" icon="arrow" size="medium" stroke-width="6" />
     </div>
-    <v-img :cloudinary="true" v-bind="item" :class="item.classes" v-else></v-img>
+    <v-img :cloudinary="true" :lazy="lazy" v-bind="item" :class="item.classes" v-else></v-img>
   </component>
 </template>
 <script>
