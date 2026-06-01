@@ -12,6 +12,8 @@
   </a>
 </template>
 <script>
+import { useNuxtApp } from '#imports';
+
 import Tools from '../utils/tools.js';
 
 export default {
@@ -20,9 +22,6 @@ export default {
     return Tools.validateVueProps(this);
   },
   computed: {
-    lowerLang() {
-      return this.lang.toLowerCase();
-    },
     classList() {
       return [
         `tags__btn btn btn-xs mb-2 vue-component`,
@@ -30,12 +29,20 @@ export default {
         this.classes ? this.classes : null,
       ];
     },
+    linkPrefix() {
+      return this.nuxtApp?.$i18n?.availableLocales?.length > 1 ? `/${this.nuxtApp?.$i18n?.locale?.value}` : '';
+    },
     href() {
-      return '/blog/#' + encodeURIComponent(this.tag);
+      return this.linkPrefix + '/blog/#' + encodeURIComponent(this.tag);
     },
     hasIcon() {
       return this.variant === 'icon';
     },
+  },
+  setup() {
+    const nuxtApp = useNuxtApp();
+
+    return { nuxtApp };
   },
   props: {
     tag: {
@@ -49,10 +56,6 @@ export default {
     filter: {
       type: Boolean,
       default: false,
-    },
-    lang: {
-      type: String,
-      default: 'de',
     },
     spacing: {
       type: Number,
