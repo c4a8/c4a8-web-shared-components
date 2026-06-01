@@ -14,7 +14,7 @@
     :style="getDelay(index)"
     v-bind:key="index"
   >
-    <v-img :img="item.img" :alt="item.alt" preset="logoList" :cloudinary="true" />
+    <v-img :img="item.img" :alt="item.alt" preset="logoList" :cloudinary="true" :lazy="true" />
   </component>
 </template>
 <script>
