@@ -103,6 +103,7 @@ export default {
     items: Array,
     bgColor: String,
     component: String,
+    lazy: Boolean,
   },
 };
 </script>

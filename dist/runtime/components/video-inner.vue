@@ -29,7 +29,7 @@
               ></iframe>
             </template>
             <div class="img-fluid">
-              <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt" />
+              <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt" :lazy="lazy" />
             </div>
             <span class="media-viewer-container">
               <span class="video-player-icon">
@@ -49,7 +49,7 @@
             style="display: none"
           >
             <div class="img-fluid">
-              <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt" />
+              <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt" :lazy="lazy" />
             </div>
             <span class="media-viewer-container">
               <span class="video-player-icon">
@@ -60,7 +60,7 @@
         </template>
         <template v-else>
           <div class="img-fluid video-player-preview">
-            <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt" />
+            <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt" :lazy="lazy" />
           </div>
           <template v-if="videoParsed.id">
             <a
@@ -100,7 +100,7 @@
           <div class="row no-gutters d-flex flex-wrap">
             <template v-if="videoParsed.logo">
               <div class="video__logo col-lg-5 order-lg-2 pb-3 pb-lg-0">
-                <v-img :img="videoParsed.logo" :cloudinary="true" :alt="videoParsed.logoAlt" />
+                <v-img :img="videoParsed.logo" :cloudinary="true" :alt="videoParsed.logoAlt" :lazy="lazy" />
               </div>
               <div class="col-lg-7 order-lg-1">
                 <headline :level="level" :text="videoParsed.headline" :classes="headlineClasses" />
@@ -308,6 +308,10 @@ export default {
     subtitles: {
       type: String,
       default: null,
+    },
+    lazy: {
+      type: Boolean,
+      default: false,
     },
   },
 };

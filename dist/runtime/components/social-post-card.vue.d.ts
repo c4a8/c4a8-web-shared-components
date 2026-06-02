@@ -27,7 +27,7 @@ declare namespace _default {
             export { _default as default };
         }
         namespace postedAt {
-            let type_1: StringConstructor;
+            let type_1: NumberConstructor;
             export { type_1 as type };
         }
         namespace contentHtml {

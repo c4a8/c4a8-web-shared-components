@@ -3,6 +3,7 @@ declare namespace _default {
     namespace props {
         let item: ObjectConstructor;
         let component: StringConstructor;
+        let lazy: BooleanConstructor;
     }
     namespace methods {
         function handleClick(event: any): void;

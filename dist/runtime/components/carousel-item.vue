@@ -27,6 +27,7 @@ export default {
   props: {
     item: Object,
     component: String,
+    lazy: Boolean,
   },
   methods: {
     handleClick(event) {

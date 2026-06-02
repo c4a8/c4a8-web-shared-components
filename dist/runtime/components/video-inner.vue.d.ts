@@ -65,6 +65,12 @@ declare namespace _default {
             let _default_3: null;
             export { _default_3 as default };
         }
+        namespace lazy {
+            let type_3: BooleanConstructor;
+            export { type_3 as type };
+            let _default_4: boolean;
+            export { _default_4 as default };
+        }
     }
 }
 export default _default;
