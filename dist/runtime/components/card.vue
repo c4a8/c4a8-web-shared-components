@@ -152,14 +152,15 @@
             <span class="">{{ overline }}</span>
             <span class="h2">{{ title }}</span>
           </div>
-          <div class="d-flex flex-column justify-content-end" :style="{ backgroundColor: color }">
+          <div  :style="{ backgroundColor: color }">
             <svg
               width="100%"
               height="100%"
               viewBox="0 0 557 183"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              class="pt-lg-0 pb-lg-0 pb-4 pt-4"
+ 
+     
             >
               <path
                 opacity="0.15"
@@ -176,8 +177,8 @@
                 d="M576.705 523L879.764 420.899L924.996 -17L535.996 119.134L576.705 523Z"
                 fill="white"
               />
+              <path d="M575 184L0 129V184  " :fill="'var(--color-bg-grey)'"/>
             </svg>
-            <svg-shape peak="left" color="var(--color-bg-grey)" class="position-absolute w-100" />
           </div>
         </div>
       </div>
