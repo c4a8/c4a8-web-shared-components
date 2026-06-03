@@ -46,8 +46,14 @@
           </div>
           <div class="header__logo" :style="headerLogoStyle">
             <a :href="homeObj?.url">
-              <v-img :img="home?.imgLight" class="header__logo-light" :cloudinary="true" alt="logo" />
-              <v-img :img="home?.img" class="header__logo-default" :cloudinary="true" alt="logo" />
+              <v-img
+                :img="home?.imgLight"
+                class="header__logo-light"
+                :cloudinary="true"
+                alt="logo"
+                fetchpriority="high"
+              />
+              <v-img :img="home?.img" class="header__logo-default" :cloudinary="true" alt="logo" fetchpriority="high" />
             </a>
           </div>
           <div class="header__menu" v-on:click="handleCloseClick">
