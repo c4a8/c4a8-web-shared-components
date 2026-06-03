@@ -102,7 +102,6 @@
             :lottie="lottieFileData"
             :lottie-settings="lottieSettings"
             :img-src-sets="imgSrcSets"
-            :lazy="true"
             fetchpriority="high"
           >
           </v-img>
@@ -146,12 +145,12 @@ export default {
   created() {
     this.preloadKeyAsset();
     this.handleResize();
-  },
-  mounted() {
+
     this.setIntroStyle();
     this.setStyle();
     this.setBackgroundImgStyle();
-
+  },
+  mounted() {
     window.addEventListener('resize', this.handleResize);
 
     this.isMounted = true;
