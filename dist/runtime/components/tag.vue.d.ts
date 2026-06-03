@@ -4,11 +4,14 @@ declare namespace _default {
         props: {};
     };
     namespace computed {
-        function lowerLang(): any;
         function classList(): any[];
+        function linkPrefix(): any;
         function href(): string;
         function hasIcon(): any;
     }
+    function setup(): {
+        nuxtApp: import("#app").NuxtApp;
+    };
     namespace props {
         namespace tag {
             let type: StringConstructor;
@@ -26,29 +29,23 @@ declare namespace _default {
             let _default_1: boolean;
             export { _default_1 as default };
         }
-        namespace lang {
-            let type_3: StringConstructor;
+        namespace spacing {
+            let type_3: NumberConstructor;
             export { type_3 as type };
-            let _default_2: string;
+            let _default_2: number;
             export { _default_2 as default };
         }
-        namespace spacing {
-            let type_4: NumberConstructor;
+        namespace classes {
+            let type_4: StringConstructor;
             export { type_4 as type };
-            let _default_3: number;
+            let _default_3: null;
             export { _default_3 as default };
         }
-        namespace classes {
+        namespace variant {
             let type_5: StringConstructor;
             export { type_5 as type };
             let _default_4: null;
             export { _default_4 as default };
-        }
-        namespace variant {
-            let type_6: StringConstructor;
-            export { type_6 as type };
-            let _default_5: null;
-            export { _default_5 as default };
         }
     }
 }
