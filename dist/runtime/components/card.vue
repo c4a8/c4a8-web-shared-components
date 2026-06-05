@@ -147,7 +147,7 @@
       <div>
         <div class="d-flex flex-column justify-content-center">
           <div
-            class="position-absolute d-flex w-100 d-flex flex-column justify-content-center align-items-center"
+            class="position-absolute d-flex w-100 d-flex flex-column justify-content-center align-items-center pb-3"
           >
             <span class="">{{ overline }}</span>
             <span class="h2">{{ title }}</span>
@@ -171,8 +171,7 @@
       </div>
       <div class="card__body card-body z-index-2 pr-5 pl-5 pb-5" style="display: flex; flex-direction: column">
         <div class="pb-10">
-          <p class="text-center">{{ underline }}</p>
-
+          <p v-if="underline" class="text-center">{{ underline }}</p>
           <div v-for="(step, index) in steps" :key="index" class="d-flex align-items-center">
             <Circle :circleContent="`${index + 1}`" :color="accentColor" />
             <div class="">
