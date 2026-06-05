@@ -152,32 +152,19 @@
             <span class="">{{ overline }}</span>
             <span class="h2">{{ title }}</span>
           </div>
-          <div  :style="{ backgroundColor: color }">
+          <div  :style="{ backgroundColor: '#f5f5f5' }">
             <svg
               width="100%"
               height="100%"
               viewBox="0 0 557 183"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
- 
-     
             >
-              <path
-                opacity="0.15"
-                d="M433.873 -135.547L-158.799 226.994L223.531 550.447L586.316 280.495L433.873 -135.547Z"
-                fill="white"
-              />
-              <path
-                opacity="0.15"
-                d="M385.808 530.541L611.781 275.164L2.6834 -8.02276L-198.089 112.049L385.808 530.541Z"
-                fill="white"
-              />
-              <path
-                opacity="0.15"
-                d="M576.705 523L879.764 420.899L924.996 -17L535.996 119.134L576.705 523Z"
-                fill="white"
-              />
-              <path d="M575 184L0 129V184  " :fill="'var(--color-bg-grey)'"/>
+              <path d="M0 118.969V0H557V183L0 118.969Z" :fill="'var(--color-yellow)'"/>
+              
+              <path d="M529.5 137.5L556.5 129V182.94L532.5 180.19L529.5 137.5Z"  opacity="0.15" fill="white"/>
+              <path d="M211 0L0.5 119.03L551 182.31L483 0H211Z"  opacity="0.15" fill="white"/>
+              <path d="M1 119.08V0H23L374 161.96L1 119.08Z"  opacity="0.15" fill="white"/>
             </svg>
           </div>
         </div>
