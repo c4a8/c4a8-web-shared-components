@@ -66,7 +66,7 @@
             <cta-list v-if="ctaList" classes="hero__cta-list" :list="ctaList"> </cta-list>
             <div class="hero__badges" v-if="badges">
               <div class="hero__badge-container" v-for="(badge, index) in badges" :key="index">
-                <v-img :cloudinary="true" v-bind="badge" class="hero__badge-image"></v-img>
+                <v-img :cloudinary="true" v-bind="badge" class="hero__badge-image" fetchpriority="high"></v-img>
               </div>
             </div>
           </div>
