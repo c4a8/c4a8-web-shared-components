@@ -164,9 +164,11 @@ export default {
 
       const keyAssetPath = this.shape.img;
 
-      if (!keyAssetPath || !this.shape.cloudinary) return;
+      if (!keyAssetPath) return;
 
-      const cloudinaryLink = CloudinaryTools.getCloudinaryLink({ img: keyAssetPath });
+      const cloudinaryLink = this.shape.cloudinary
+        ? CloudinaryTools.getCloudinaryLink({ img: keyAssetPath })
+        : keyAssetPath;
 
       useHead({
         link: [
@@ -175,6 +177,7 @@ export default {
             rel: 'preload',
             as: 'image',
             crossorigin: 'anonymous',
+            fetchpriority: 'high',
           },
         ],
       });
