@@ -168,7 +168,7 @@ export default {
 
       const cloudinaryLink = this.shape.cloudinary
         ? CloudinaryTools.getCloudinaryLink({ img: keyAssetPath })
-        : `assets/${keyAssetPath}`;
+        : `/assets/${keyAssetPath}`;
 
       useHead({
         link: [
@@ -176,7 +176,7 @@ export default {
             href: cloudinaryLink,
             rel: 'preload',
             as: 'image',
-            crossorigin: 'anonymous',
+            ...(isCloudinary ? { crossorigin: 'anonymous' } : {}),
             fetchpriority: 'high',
           },
         ],
