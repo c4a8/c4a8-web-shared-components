@@ -168,7 +168,7 @@ export default {
 
       const cloudinaryLink = this.shape.cloudinary
         ? CloudinaryTools.getCloudinaryLink({ img: keyAssetPath })
-        : keyAssetPath;
+        : `assets/${keyAssetPath}`;
 
       useHead({
         link: [

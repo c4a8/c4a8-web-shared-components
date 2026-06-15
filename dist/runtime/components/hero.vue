@@ -168,7 +168,7 @@ export default {
 
       const cloudinaryLink = this.shape.cloudinary
         ? CloudinaryTools.getCloudinaryLink({ img: keyAssetPath })
-        : keyAssetPath;
+        : `assets/${keyAssetPath}`;
 
       useHead({
         link: [
@@ -552,7 +552,7 @@ export default {
   background-color: rgba(var(--hero-background-color-rgb), 0.5);
 }
 .hero.hero--text-shadow .hero__subline::before {
-  content: "";
+  content: '';
   display: block;
   width: 100%;
   height: 2.5rem;
@@ -579,7 +579,9 @@ export default {
   }
 }
 @media (min-width: 992px) {
-  .hero.hero--shape-in-content .hero__background-shape-wrapper .hero__background-shape, .hero.hero--bg-width .hero__background-shape-wrapper .hero__background-shape, .hero.hero--small .hero__background-shape-wrapper .hero__background-shape {
+  .hero.hero--shape-in-content .hero__background-shape-wrapper .hero__background-shape,
+  .hero.hero--bg-width .hero__background-shape-wrapper .hero__background-shape,
+  .hero.hero--small .hero__background-shape-wrapper .hero__background-shape {
     position: absolute;
   }
 }
@@ -607,7 +609,11 @@ export default {
 }
 @media (min-width: 992px) {
   .hero.hero--bg-width {
-    background: linear-gradient(to right, var(--hero-background-color) var(--hero-background-width-middle), transparent var(--hero-background-width-middle));
+    background: linear-gradient(
+      to right,
+      var(--hero-background-color) var(--hero-background-width-middle),
+      transparent var(--hero-background-width-middle)
+    );
   }
   .hero.hero--bg-width .hero__background-shape {
     width: 100%;
@@ -617,7 +623,11 @@ export default {
     max-width: none;
   }
   .hero.hero--bg-width .hero__content {
-    background: linear-gradient(to right, var(--hero-background-color) var(--hero-background-width), transparent var(--hero-background-width));
+    background: linear-gradient(
+      to right,
+      var(--hero-background-color) var(--hero-background-width),
+      transparent var(--hero-background-width)
+    );
     grid-template-columns: 1fr 1fr;
   }
 }
@@ -647,7 +657,9 @@ export default {
   grid-column: content-left/content-right;
   text-align: center;
   margin: 0 auto;
-  transition: height 0.7s var(--hero-intro-delay) cubic-bezier(0.19, 1, 0.2, 1), opacity 1.6s var(--hero-intro-delay) cubic-bezier(0.19, 1, 0.2, 1);
+  transition:
+    height 0.7s var(--hero-intro-delay) cubic-bezier(0.19, 1, 0.2, 1),
+    opacity 1.6s var(--hero-intro-delay) cubic-bezier(0.19, 1, 0.2, 1);
 }
 @media (min-width: 992px) {
   .hero.hero--centered .hero__intro {
@@ -760,7 +772,7 @@ export default {
 }
 .hero__overline::before {
   position: absolute;
-  content: "";
+  content: '';
   display: block;
   height: calc(var(--type-default-line-height) * 1em + 2 * 0.25rem);
   width: 0;
@@ -809,7 +821,7 @@ export default {
     align-content: center;
     grid-template-columns: 2fr 1fr;
     grid-template-rows: auto auto;
-    grid-template-areas: "intro-left intro-right" "content-left content-right";
+    grid-template-areas: 'intro-left intro-right' 'content-left content-right';
   }
 }
 
@@ -861,7 +873,11 @@ export default {
   background-origin: initial;
   background-clip: initial;
   background-color: initial;
-  background-image: linear-gradient(to bottom, var(--color-highlight-underline) 0%, var(--color-highlight-underline) 100%);
+  background-image: linear-gradient(
+    to bottom,
+    var(--color-highlight-underline) 0%,
+    var(--color-highlight-underline) 100%
+  );
   background-repeat: repeat-x;
 }
 
@@ -961,10 +977,16 @@ export default {
 .hero__content-shape[style] {
   position: relative;
 }
-.hero__content-shape[style][style*="order: 5"], .hero__content-shape[style][style*="order: 6"], .hero__content-shape[style][style*="order: 7"], .hero__content-shape[style][style*="order: 8"], .hero__content-shape[style][style*="order: 9"] {
+.hero__content-shape[style][style*='order: 5'],
+.hero__content-shape[style][style*='order: 6'],
+.hero__content-shape[style][style*='order: 7'],
+.hero__content-shape[style][style*='order: 8'],
+.hero__content-shape[style][style*='order: 9'] {
   margin-top: 2rem;
 }
-.hero__content-shape[style]:not([style*="order: 5"]):not([style*="order: 6"]):not([style*="order: 7"]):not([style*="order: 8"]):not([style*="order: 9"]) {
+.hero__content-shape[style]:not([style*='order: 5']):not([style*='order: 6']):not([style*='order: 7']):not(
+    [style*='order: 8']
+  ):not([style*='order: 9']) {
   margin: 2rem 0;
 }
 .hero__content-shape .is-svg {
