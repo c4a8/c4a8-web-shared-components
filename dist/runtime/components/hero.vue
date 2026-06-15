@@ -166,7 +166,8 @@ export default {
 
       if (!keyAssetPath) return;
 
-      const cloudinaryLink = this.shape.cloudinary
+      const isCloudinary = this.shape.cloudinary;
+      const cloudinaryLink = isCloudinary
         ? CloudinaryTools.getCloudinaryLink({ img: keyAssetPath })
         : `/assets/${keyAssetPath}`;
 
