@@ -170,7 +170,7 @@ export default {
   --fab-button-bg-color: var(--color-fab-background);
   --fab-button-icon-color: var(--color-copy);
   --fab-button-bottom-position: 0rem;
-  --fab-button-highlight-underline-color: var(--color-orange);
+  --fab-button-highlight-underline-color: var(--color-gk-orange);
 
   position: relative;
   width: 100%;

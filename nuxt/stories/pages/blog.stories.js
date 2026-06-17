@@ -107,7 +107,7 @@ export const Default = {
     hero: {
       headline: 'Blog',
       subline: 'Lorem ipsum dolor sit',
-      bgColor: 'var(--color-yellow)',
+      bgColor: 'var(--color-gk-yellow)',
       variant: 'hero--small',
       background: {
         spacing: 'space-top-lg-4 space-bottom-lg-4',

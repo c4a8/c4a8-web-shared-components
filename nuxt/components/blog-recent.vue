@@ -315,7 +315,7 @@ export default {
   props: {
     bgColor: {
       type: String,
-      default: 'var(--color-blue-light)',
+      default: 'var(--color-gk-light-blue)',
     },
     dataAuthors: Object,
     headline: String,

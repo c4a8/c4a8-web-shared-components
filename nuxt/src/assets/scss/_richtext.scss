@@ -84,7 +84,7 @@ $richtext-conclusion-spacing-lg: $spacing-content-default;
   }
 
   blockquote {
-    border-left: 6px solid var(--color-green-blue);
+    border-left: 6px solid var(--color-gk-petrol);
     padding-left: 1.5em;
     margin-top: spacing(12);
   }
@@ -107,15 +107,15 @@ $richtext-conclusion-spacing-lg: $spacing-content-default;
       @include richtext-width;
 
       & {
-        background-color: var(--color-green-blue);
-        color: var(--color-white);
+        background-color: var(--color-gk-petrol);
+        color: var(--color-gk-white);
         padding: $richtext-conclusion-spacing-sm $richtext-conclusion-spacing-sm spacing(10);
         margin: $richtext-headline-top-spacing 0 0 0;
       }
 
       ~ p {
-        background-color: var(--color-green-blue);
-        color: var(--color-white);
+        background-color: var(--color-gk-petrol);
+        color: var(--color-gk-white);
         padding: 0 $richtext-conclusion-spacing-sm $richtext-conclusion-spacing-sm;
         margin-top: -1px;
         margin-bottom: 0;
@@ -184,7 +184,7 @@ $richtext-conclusion-spacing-lg: $spacing-content-default;
   h6:last-of-type + ul,
   h6 {
     &:last-of-type {
-      background-color: var(--color-black-4);
+      background-color: var(--color-gk-light-grey);
       width: 100%;
       padding-left: spacing(8);
       padding-right: spacing(8);

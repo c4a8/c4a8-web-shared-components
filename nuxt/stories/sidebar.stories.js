@@ -23,7 +23,7 @@ export default {
 export const Default = {
   args: {
     headlineText: 'Visit us at<br />it-sa 2025<br/> in Nürnberg!',
-    color: 'var(--color-orange)',
+    color: 'var(--color-gk-orange)',
     date: 'October 7-9',
     location: 'Exhibition Center | Hall 6, Booth 232',
     hint: 'Follow the Footsteps!',
@@ -41,19 +41,19 @@ export const Default = {
         },
       },
       {
-        color: 'var(--color-ripe-lemon)',
+        color: 'var(--color-scepman-mid-yellow)',
         overline: 'Managed',
         title: 'Entra',
         width: 39,
         text: `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.`,
       },
       {
-        color: 'var(--color-red)',
+        color: 'var(--color-gk-red)',
         overline: 'Managed',
         title: 'Red Tenant',
         width: 74,
         text: `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.`,
-        textColor: 'var(--color-white)',
+        textColor: 'var(--color-gk-white)',
         cta: {
           text: 'Lorem Ipsum dolor sit',
           href: 'javascript:void(0)',
@@ -61,12 +61,12 @@ export const Default = {
         },
       },
       {
-        color: 'var(--color-gigas)',
+        color: 'var(--color-gk-violet)',
         overline: 'Managed',
         title: 'Soc',
         width: 37,
         text: `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.`,
-        textColor: 'var(--color-white)',
+        textColor: 'var(--color-gk-white)',
         cta: {
           text: 'Lorem Ipsum dolor sit',
           href: 'javascript:void(0)',
@@ -79,7 +79,7 @@ export const Default = {
         title: 'Azure',
         width: 69,
         text: `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.`,
-        textColor: 'var(--color-white)',
+        textColor: 'var(--color-gk-white)',
         cta: {
           text: 'Lorem Ipsum dolor sit',
           href: 'javascript:void(0)',
@@ -93,7 +93,7 @@ export const Default = {
 export const LongerText = {
   args: {
     headlineText: 'Visit us at<br />it-sa 2025<br/> in Nürnberg!',
-    color: 'var(--color-orange)',
+    color: 'var(--color-gk-orange)',
     date: 'October 7-9',
     location: 'Messezentrum Nürnberg | Halle 6, Stand 232',
     hint: 'Folgt den Fußstapfen!',
@@ -111,19 +111,19 @@ export const LongerText = {
         },
       },
       {
-        color: 'var(--color-ripe-lemon)',
+        color: 'var(--color-scepman-mid-yellow)',
         overline: 'Managed',
         title: 'Entra',
         width: 39,
         text: `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.`,
       },
       {
-        color: 'var(--color-red)',
+        color: 'var(--color-gk-red)',
         overline: 'Managed',
         title: 'Red Tenant',
         width: 74,
         text: `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.`,
-        textColor: 'var(--color-white)',
+        textColor: 'var(--color-gk-white)',
         cta: {
           text: 'Lorem Ipsum dolor sit',
           href: 'javascript:void(0)',
@@ -131,12 +131,12 @@ export const LongerText = {
         },
       },
       {
-        color: 'var(--color-gigas)',
+        color: 'var(--color-gk-violet)',
         overline: 'Managed',
         title: 'Soc',
         width: 37,
         text: `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.`,
-        textColor: 'var(--color-white)',
+        textColor: 'var(--color-gk-white)',
         cta: {
           text: 'Lorem Ipsum dolor sit',
           href: 'javascript:void(0)',
@@ -149,7 +149,7 @@ export const LongerText = {
         title: 'Azure',
         width: 69,
         text: `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.`,
-        textColor: 'var(--color-white)',
+        textColor: 'var(--color-gk-white)',
         cta: {
           text: 'Lorem Ipsum dolor sit',
           href: 'javascript:void(0)',

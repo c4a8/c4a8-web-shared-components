@@ -22,7 +22,7 @@ export default {
 export const Career = {
   args: {
     hero: {
-      bgColor: 'var(--color-blue-dark)',
+      bgColor: 'var(--color-gk-dark-blue)',
       light: true,
       lightOverline: false,
       overline: 'Karriere',
@@ -60,7 +60,7 @@ export const Career = {
 export const CareerHand = {
   args: {
     hero: {
-      bgColor: 'var(--color-blue-dark)',
+      bgColor: 'var(--color-gk-dark-blue)',
       light: true,
       lightOverline: false,
       overline: 'Karriere',
@@ -87,7 +87,7 @@ export const CareerHand = {
 export const TextImage = {
   args: {
     hero: {
-      bgColor: 'var(--color-blue-dark)',
+      bgColor: 'var(--color-gk-dark-blue)',
       light: true,
       headline: 'Komm zu uns. Finde deinen Platz.',
       overline:
@@ -110,7 +110,7 @@ export const TextImage = {
 export const TextImageOffset = {
   args: {
     hero: {
-      bgColor: 'var(--color-blue-dark)',
+      bgColor: 'var(--color-gk-dark-blue)',
       light: true,
       lightOverline: false,
       headline: 'Komm zu uns. Finde deinen Platz.',
@@ -137,7 +137,7 @@ export const TextImagePattern = {
       headline: 'RADIUSaaS',
       subline: 'Authentication service for your network',
       textShadow: true,
-      bgColor: 'var(--color-white)',
+      bgColor: 'var(--color-gk-white)',
       cta: {
         text: 'Try RADIUSaas now',
         href: 'javascript:void(0);',
@@ -160,7 +160,7 @@ export const TextImageSVGShapeAnimation = {
       headline: 'TerraProvider',
       subline: 'Terraform Provider for Microsoft 365',
       textShadow: true,
-      bgColor: 'var(--color-blue-light)',
+      bgColor: 'var(--color-gk-light-blue)',
       ctaList: [
         {
           ctaText: 'Try TerraProvider',
@@ -219,7 +219,7 @@ export const ShapeSticky = {
       sticky: true,
       headline: 'Consulting Services',
       overline: 'Lorem ipsum',
-      overlineBgColor: 'var(--color-gigas)',
+      overlineBgColor: 'var(--color-gk-violet)',
       lightOverline: true,
       subline:
         'Microsoft hat in den letzten Jahren stark in die Skalierbarkeit und Sicherheit seiner Microsoft 365-Plattform investiert. Wir nutzen dies, um die Konfiguration und Bereitstellung von Arbeitsplätzen und Anwendungen zu optimieren und zu vereinfachen.',
@@ -249,7 +249,7 @@ export const LetterSwitcher = {
         href: '/#checks',
         skin: 'primary',
       },
-      bgColor: 'var(--color-gigas)',
+      bgColor: 'var(--color-gk-violet)',
     },
   },
 };
@@ -258,7 +258,7 @@ export const Small = {
   args: {
     hero: {
       variant: 'hero--small',
-      bgColor: 'var(--color-gigas)',
+      bgColor: 'var(--color-gk-violet)',
       headline: 'Danke!',
       light: true,
       shape: {
@@ -277,8 +277,8 @@ export const Text = {
       headline: 'Wenn Sie wissen, worauf Angreifer aus sind, wissen Sie auch, was Sie am besten schützen müssen',
       light: true,
       overline: 'Preventive Service',
-      overlineBgColor: 'var(--color-orange)',
-      bgColor: 'var(--color-gigas)',
+      overlineBgColor: 'var(--color-gk-orange)',
+      bgColor: 'var(--color-gk-violet)',
       ctaList: [
         {
           ctaText: 'Jump on the Phone',
@@ -302,7 +302,7 @@ export const Lottie = {
     hero: {
       headline: 'Consulting Services',
       overline: 'Lorem ipsum',
-      overlineBgColor: 'var(--color-gigas)',
+      overlineBgColor: 'var(--color-gk-violet)',
       lightOverline: true,
       subline:
         'Microsoft hat in den letzten Jahren stark in die Skalierbarkeit und Sicherheit seiner Microsoft 365-Plattform investiert. Wir nutzen dies, um die Konfiguration und Bereitstellung von Arbeitsplätzen und Anwendungen zu optimieren und zu vereinfachen.',
@@ -319,7 +319,7 @@ export const LottieFullscreen = {
   args: {
     hero: {
       light: true,
-      bgColor: 'var(--color-blue-medium)',
+      bgColor: 'var(--color-gk-mid-blue)',
       headline: '<span class="highlight">Ihre Cloud Strategie</span>',
       headlineClasses: 'h2-font-size bold',
       lightOverline: true,
@@ -342,7 +342,7 @@ export const ShapeInContent = {
     hero: {
       light: true,
       headline: 'Cloud Security Operations Center',
-      bgColor: 'var(--color-gigas)',
+      bgColor: 'var(--color-gk-violet)',
       subline:
         'Unser zuverlässiges Managed Extended Detection and Response (MXDR) Serviceangebot mit 24/7/365 proaktiven Hunting-, Monitoring- und Response-Funktionen, die auf einer nahtlosen Integration mit der Microsoft Security Plattform basieren',
       shape: {
@@ -359,7 +359,7 @@ export const ShapeInContentMobile = {
     hero: {
       light: true,
       headline: 'Cloud Security Operations Center',
-      bgColor: 'var(--color-gigas)',
+      bgColor: 'var(--color-gk-violet)',
       textShadow: true,
       subline:
         'Unser zuverlässiges Managed Extended Detection and Response (MXDR) Serviceangebot mit 24/7/365 proaktiven Hunting-, Monitoring- und Response-Funktionen, die auf einer nahtlosen Integration mit der Microsoft Security Plattform basieren',
@@ -380,7 +380,7 @@ export const TextShadow = {
   args: {
     hero: {
       light: true,
-      bgColor: 'var(--color-blue-medium)',
+      bgColor: 'var(--color-gk-mid-blue)',
       headline: 'Ihre Cloud Strategie',
       headlineClasses: 'h2-font-size bold',
       lightOverline: true,
@@ -436,7 +436,7 @@ export const WithSlot = {
   }),
   args: {
     hero: {
-      bgColor: 'var(--color-gigas)',
+      bgColor: 'var(--color-gk-violet)',
       headline: `<p class='font-weight-light'>Backdoors & Breaches Extension Deck</p>`,
       textShadow: true,
       subline:

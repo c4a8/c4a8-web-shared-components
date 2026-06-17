@@ -371,7 +371,7 @@ export default {
   height: 74%;
   width: auto;
   top: -10%;
-  background-color: var(--color-white);
+  background-color: var(--color-gk-white);
   padding: 0 spacing(2);
 
   cursor: pointer;
@@ -379,7 +379,7 @@ export default {
 
   &:hover {
     &::before {
-      border-color: var(--color-blue-medium);
+      border-color: var(--color-gk-mid-blue);
     }
 
     &::before {

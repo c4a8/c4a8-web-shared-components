@@ -298,7 +298,7 @@ $letter-switch-custom-breakpoint: 443px;
   position: absolute;
   right: -#{spacing(2)};
   top: 0;
-  background-color: var(--color-gigas);
+  background-color: var(--color-gk-violet);
   z-index: 2;
 }
 

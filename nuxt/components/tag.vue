@@ -118,7 +118,7 @@ export default {
   }
 
   &.tag--icon {
-    --tag-base-color: var(--color-waterloo);
+    --tag-base-color: var(--color-gk-dark-blue-shade-50);
 
     border: 1px solid var(--tag-base-color);
     color: var(--tag-base-color);

@@ -129,16 +129,16 @@
     .h4,
     .h5,
     .h6 {
-      color: var(--color-white);
+      color: var(--color-gk-white);
     }
   }
 
   .text-orange {
-    color: var(--color-orange);
+    color: var(--color-gk-orange);
   }
 
   .text-green-blue {
-    color: var(--color-green-blue);
+    color: var(--color-gk-petrol);
 
     &%h1,
     &%h2,
@@ -152,17 +152,17 @@
     &.h4,
     &.h5,
     &.h6 {
-      color: var(--color-green-blue);
+      color: var(--color-gk-petrol);
     }
   }
 
   .highlight-orange {
-    background-color: var(--color-orange);
+    background-color: var(--color-gk-orange);
     padding: 0 0 3px;
   }
 
   .highlight-yellow {
-    background-color: var(--color-yellow);
+    background-color: var(--color-gk-yellow);
     padding: 0 0 3px;
   }
 

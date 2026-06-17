@@ -66,7 +66,7 @@ export default {
       return (this.toggleSwitchHint && this.toggleSwitchHint.bgColor) || 'var(--color-secondary)';
     },
     toggleSwitchHintColor() {
-      return (this.toggleSwitchHint && this.toggleSwitchHint.color) || 'var(--color-white)';
+      return (this.toggleSwitchHint && this.toggleSwitchHint.color) || 'var(--color-gk-white)';
     },
     toggleSwitchId() {
       return this.toggleSwitch.id || 'customToggleSwitch';

@@ -147,7 +147,7 @@ export const HomeProduct = {
       headline: 'SCEPman',
       subline: 'Lorem ipsum dolor sit',
       textShadow: true,
-      bgColor: 'var(--color-white)',
+      bgColor: 'var(--color-gk-white)',
       ctaList: [
         {
           ctaText: 'Try SCEPman now',

@@ -1,45 +1,49 @@
-// radius theme related styleing here
+// realmjoin theme — AUTO-GENERATED from figma/tokens/RealmJoin.tokens.json
+// Regenerate via: node scripts/sync-figma-tokens.mjs — do not edit by hand.
 
 :root {
   --site: 'realmjoin';
-  // Theme colors
-  --color-headlines: var(--color-midnight);
-  --color-copy: var(--color-midnight);
-  --color-primary: #f8842c;
-  --color-primary-accent: #c66a23;
-  --color-primary-accent-light: #fcb975;
-  --color-primary-on-surface: #FBF38C;
-  --color-primary-accent-on-surface: #E1D429;
-  --color-secondary: #f8842c;
-  --color-secondary-accent: #c66a23;
-  --color-secondary-accent-light: red;
-  --color-secondary-on-surface: #fff78f;
-  --color-secondary-accent-on-surface: #e1d429;
-  --color-highlight: #FBF38C;
-  --color-highlight-second: #e1d429;
-  --color-copy-highlight: var(--color-highlight);
-  --color-copy-on-primary: var(--color-copy-light);
-  --color-copy-on-primary-accent: var(--color-copy-light);
-  --color-copy-on-primary-on-surface: var(--color-copy);
-  --color-copy-on-primary-accent-on-surface: var(--color-copy);
-  --color-copy-on-secondary: var(--color-secondary);
-  --color-copy-on-secondary-accent: var(--color-secondary-accent);
-  --color-copy-on-secondary-on-surface: var(--color-secondary-on-surface);
-  --color-copy-on-secondary-accent-on-surface: var(--color-secondary-accent-on-surface);
 
-  // Element colors
-  --color-bg-grey: var(--color-porcelain);
-  --color-bg-dark-grey: var(--color-regent-grey);
-  --color-svg-icon: var(--color-primary);
-  --color-svg-icon--hover: var(--color-primary-accent);
-  --color-bg-checkbox: var(--color-blue-medium);
-  --color-border: var(--color-porcelain);
-  --color-loading: var(--color-primary);
-  --color-loading--1: var(--color-primary);
-  --color-loading--2: var(--color-yellow);
-  --color-loading--3: var(--color-conifer);
-  --color-loading--4: var(--color-orange);
+  // Theme colors (Figma source of truth)
+  --color-headlines: var(--color-products-dark-blue);
+  --color-copy: var(--color-products-dark-blue);
+  --color-primary: var(--color-gk-orange);
+  --color-primary-accent: var(--color-rj-dark-orange);
+  --color-primary-accent-light: var(--color-rj-dark-orange);
+  --color-primary-on-surface: #fbf38c;
+  --color-primary-accent-on-surface: var(--color-rj-yellow);
+  --color-secondary: var(--color-gk-orange);
+  --color-secondary-accent: var(--color-rj-dark-orange);
+  --color-secondary-accent-light: var(--color-rj-dark-orange);
+  --color-secondary-on-surface: #fbf38c;
+  --color-secondary-accent-on-surface: var(--color-rj-yellow);
+  --color-highlight: #fbf38c;
+  --color-highlight-second: #fbf38c;
+  --color-copy-highlight: var(--color-rj-yellow);
+  --color-copy-on-primary: var(--color-gk-white);
+  --color-copy-on-primary-accent: var(--color-gk-white);
+  --color-copy-on-primary-on-surface: var(--color-products-dark-blue);
+  --color-copy-on-primary-accent-on-surface: var(--color-gk-dark-blue);
+  --color-copy-on-secondary: var(--color-gk-orange);
+  --color-copy-on-secondary-accent: var(--color-rj-dark-orange);
+  --color-copy-on-secondary-on-surface: #fbf38c;
+  --color-copy-on-secondary-accent-on-surface: var(--color-rj-yellow);
+  --color-bg-grey: #f1f3f4;
+  --color-bg-dark-grey: var(--color-products-dark-grey);
+  --color-svg-icon: var(--color-gk-orange);
+  --color-svg-icon--hover: var(--color-rj-dark-orange);
+  --color-bg-checkbox: var(--color-gk-orange);
+  --color-border: var(--color-gk-orange);
+  --color-loading: var(--color-gk-orange);
+  --color-loading--1: var(--color-gk-orange);
+  --color-loading--2: var(--color-rj-yellow);
+  --color-loading--3: #fbf38c;
+  --color-loading--4: var(--color-rj-yellow);
 
   // fonts
   --font-family: 'Miriam Libre', sans-serif;
+
+  // cta
+  --cta-cutoff: 1;
+  --cta-normal: 0;
 }
