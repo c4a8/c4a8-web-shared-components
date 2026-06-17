@@ -241,6 +241,8 @@ export default {
       --cta-btn-color: var(--color-primary-accent-on-surface);
       --cta-copy-color: var(--color-copy-on-primary-accent-on-surface);
       --cta-background-accent-color: var(--cta-btn-color);
+      --cta-background-color: var(--cta-btn-color);
+      // --cta-background-color: transparent;
 
       &::after {
         color: inherit;
