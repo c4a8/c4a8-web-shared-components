@@ -33,9 +33,9 @@ export default {
   computed: {
     style() {
       return `
-                --color-event-background: ${this.bgColor ? this.bgColor : 'var(--color-primary-on-surface)'};
+                --color-event-background: ${this.bgColor ? this.bgColor : 'var(--color-copy-highlight)'};
                 --color-event-copy: ${this.color ? this.color : 'var(--color-copy-on-primary-on-surface)'};
-                --color-event-time: ${this.timeColor ? this.timeColor : 'var(--color-primary-accent-on-surface)'};
+                --color-event-time: ${this.timeColor ? this.timeColor : 'var(--color-copy-highlight)'};
             `;
     },
     textWithAmpersand() {
