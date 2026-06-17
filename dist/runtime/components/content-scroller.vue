@@ -254,7 +254,7 @@ export default {
   --content-scroller-top-offset: 20vh;
   --content-scroller-block-offset-xs: 40vh;
   --content-scroller-bottom-spacer: 38vh;
-  --content-scroller-content-background: var(--color-white);
+  --content-scroller-content-background: var(--color-gk-white);
   position: relative;
   padding-bottom: var(--content-scroller-bottom-spacer);
   background-color: var(--content-scroller-background);

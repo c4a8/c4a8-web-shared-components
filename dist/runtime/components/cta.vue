@@ -212,7 +212,7 @@ export default {
 }
 .hover__parent:hover .cta:not(.btn):not(.custom):not(.nav-link).is-light,
 .shared-components .cta:hover:not(.btn):not(.custom):not(.nav-link).is-light {
-  color: var(--color-white);
+  color: var(--color-gk-white);
 }
 .hover__parent:hover .cta.btn-primary,
 .shared-components .cta:hover.btn-primary {
@@ -448,7 +448,7 @@ export default {
   --cta-border-color: var(--color-copy) !important;
 }
 .shared-components .cta:not(.btn):not(.custom):not(.nav-link).is-light {
-  color: var(--color-white);
+  color: var(--color-gk-white);
 }
 .shared-components .cta.is-cutoff:not(.link) {
   clip-path: polygon(calc(100% - 15px) 0, 100% 15px, 100% 100%, 0 100%, 0 0);
@@ -519,11 +519,11 @@ export default {
   background-color: rgba(255, 255, 255, 0.9);
 }
 .shared-components .cta.btn-secondary.is-light {
-  border-color: var(--color-white);
-  color: var(--color-white);
+  border-color: var(--color-gk-white);
+  color: var(--color-gk-white);
 }
 .shared-components .cta.btn-secondary.is-light::before {
-  background: var(--color-white);
+  background: var(--color-gk-white);
 }
 .shared-components .cta.btn-secondary.is-light::after {
   position: absolute;
@@ -544,11 +544,11 @@ export default {
 }
 @media (min-width: 992px) {
   .shared-components .cta.btn-secondary.is-light-lg {
-    border-color: var(--color-white);
-    color: var(--color-white);
+    border-color: var(--color-gk-white);
+    color: var(--color-gk-white);
   }
   .shared-components .cta.btn-secondary.is-light-lg::before {
-    background: var(--color-white);
+    background: var(--color-gk-white);
   }
   .shared-components .cta.btn-secondary.is-light-lg::after {
     position: absolute;

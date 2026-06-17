@@ -489,7 +489,7 @@ input[readonly] {
 
 label.input-label,
 .form__label {
-  color: var(--color-midnight);
+  color: var(--color-products-dark-blue);
   opacity: 0.7;
 }
 label.input-label + .invalid-feedback,
@@ -527,7 +527,7 @@ input[type=radio]:hover,
 .is-light input[type=number].form-control,
 .is-light input[type=radio],
 .is-light .form__input {
-  background-color: var(--color-white);
+  background-color: var(--color-gk-white);
   border-color: var(--color-form-background);
 }
 .is-light textarea.form-textarea:hover,

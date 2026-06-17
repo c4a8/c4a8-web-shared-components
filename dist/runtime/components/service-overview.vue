@@ -114,7 +114,7 @@ export default {
 }
 
 .service-overview__logo {
-  background-color: var(--color-white);
+  background-color: var(--color-gk-white);
   padding: 0.75rem 1rem 0.75rem 15px;
   transform: translateY(-99%);
   position: absolute;

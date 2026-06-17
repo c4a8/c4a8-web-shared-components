@@ -270,7 +270,7 @@ export default {
 }
 
 .dropdown__items-list {
-  --scrollbar-background-color: var(--color-athens-gray);
+  --scrollbar-background-color: var(--color-gk-dark-blue-shade-10);
   padding: 0 var(--dropdown-inner-spacing) 1rem var(--dropdown-inner-spacing);
   max-height: 45vh;
   overflow-y: auto;
