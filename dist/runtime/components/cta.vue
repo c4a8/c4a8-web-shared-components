@@ -239,6 +239,7 @@ export default {
   --cta-btn-color: var(--color-primary-accent-on-surface);
   --cta-copy-color: var(--color-copy-on-primary-accent-on-surface);
   --cta-background-accent-color: var(--cta-btn-color);
+  --cta-background-color: var(--cta-btn-color);
 }
 .hover__parent:hover .cta.btn-primary.on-surface::after,
 .shared-components .cta:hover.btn-primary.on-surface::after {

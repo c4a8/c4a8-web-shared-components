@@ -6,12 +6,12 @@
   --color-primary-accent: var(--color-gk-mid-blue);
   --color-primary-accent-light: var(--color-gk-mid-blue);
   --color-primary-on-surface: var(--color-gk-white);
-  --color-primary-accent-on-surface: var(--color-gk-white);
+  --color-primary-accent-on-surface: var(--color-white-50);
   --color-secondary: var(--color-gk-light-blue);
   --color-secondary-accent: var(--color-gk-mid-blue);
   --color-secondary-accent-light: var(--color-gk-mid-blue);
   --color-secondary-on-surface: var(--color-gk-white);
-  --color-secondary-accent-on-surface: var(--color-gk-white);
+  --color-secondary-accent-on-surface: var(--color-white-50);
   --color-highlight: var(--color-gk-mid-blue);
   --color-highlight-second: var(--color-gk-yellow);
   --color-copy-highlight: var(--color-gk-petrol);
@@ -22,7 +22,7 @@
   --color-copy-on-secondary: var(--color-gk-light-blue);
   --color-copy-on-secondary-accent: var(--color-gk-mid-blue);
   --color-copy-on-secondary-on-surface: var(--color-gk-white);
-  --color-copy-on-secondary-accent-on-surface: var(--color-gk-white);
+  --color-copy-on-secondary-accent-on-surface: var(--color-white-50);
   --color-bg-grey: var(--color-gk-dark-blue-shade-10);
   --color-bg-dark-grey: var(--color-gk-dark-blue-shade-40);
   --color-svg-icon: var(--color-gk-light-blue);
@@ -34,6 +34,7 @@
   --color-loading--2: var(--color-gk-yellow);
   --color-loading--3: var(--color-gk-green);
   --color-loading--4: var(--color-gk-orange);
+  --color-override-event-copy: var(--color-gk-white);
   --font-family: "Lato", sans-serif;
   --cta-cutoff: 0;
   --cta-normal: 1;
