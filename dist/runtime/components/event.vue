@@ -34,7 +34,7 @@ export default {
     style() {
       return `
                 --color-event-background: ${this.bgColor ? this.bgColor : 'var(--color-copy-highlight)'};
-                --color-event-copy: ${this.color ? this.color : 'var(--color-copy-on-primary-on-surface)'};
+                --color-event-copy: ${this.color ? this.color : 'var(--color-event-copy-default)'};
                 --color-event-time: ${this.timeColor ? this.timeColor : 'var(--color-copy-highlight)'};
             `;
     },
@@ -131,6 +131,7 @@ export default {
 .event {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   transition: box-shadow 1.5s cubic-bezier(0.19, 1, 0.2, 1);
+  --color-event-copy-default: var(--color-override-event-copy, var(--color-copy-on-primary-on-surface));
   container-type: inline-size;
   background-color: var(--color-surface-background);
   overflow: hidden;
