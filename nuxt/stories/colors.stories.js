@@ -99,22 +99,51 @@ export default {
           return { ...styles.circle, backgroundColor: `var(${color.name})` };
         },
         copy(color) {
-          navigator.clipboard
-            .writeText(color.name)
-            .then(() => {
-              color.copied = true;
-            })
-            .catch((error) => {
-              console.debug(error);
-            });
+          const markCopied = () => {
+            color.copied = true;
+            setTimeout(() => {
+              color.copied = false;
+            }, 2000);
+          };
 
-          setTimeout(() => {
-            color.copied = false;
-          }, 2000);
+          const textarea = document.createElement('textarea');
+
+          textarea.value = color.name;
+          textarea.style.position = 'fixed';
+          textarea.style.top = '0';
+          textarea.style.left = '0';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.focus();
+          textarea.select();
+
+          let succeeded = false;
+
+          try {
+            succeeded = document.execCommand('copy');
+          } catch (error) {
+            console.debug(error);
+          }
+
+          textarea.remove();
+
+          if (succeeded) {
+            markCopied();
+
+            return;
+          }
+
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard
+              .writeText(color.name)
+              .then(markCopied)
+              .catch((error) => console.debug(error));
+          }
         },
       },
       mounted() {
         const probe = document.createElement('span');
+
         probe.style.display = 'none';
         this.$el.appendChild(probe);
 
