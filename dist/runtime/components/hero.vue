@@ -66,7 +66,7 @@
             <cta-list v-if="ctaList" classes="hero__cta-list" :list="ctaList"> </cta-list>
             <div class="hero__badges" v-if="badges">
               <div class="hero__badge-container" v-for="(badge, index) in badges" :key="index">
-                <v-img :cloudinary="true" v-bind="badge" class="hero__badge-image"></v-img>
+                <v-img :cloudinary="true" v-bind="badge" class="hero__badge-image" fetchpriority="high"></v-img>
               </div>
             </div>
           </div>
@@ -102,7 +102,6 @@
             :lottie="lottieFileData"
             :lottie-settings="lottieSettings"
             :img-src-sets="imgSrcSets"
-            :lazy="true"
             fetchpriority="high"
           >
           </v-img>
@@ -146,12 +145,12 @@ export default {
   created() {
     this.preloadKeyAsset();
     this.handleResize();
-  },
-  mounted() {
+
     this.setIntroStyle();
     this.setStyle();
     this.setBackgroundImgStyle();
-
+  },
+  mounted() {
     window.addEventListener('resize', this.handleResize);
 
     this.isMounted = true;
@@ -165,9 +164,12 @@ export default {
 
       const keyAssetPath = this.shape.img;
 
-      if (!keyAssetPath || !this.shape.cloudinary) return;
+      if (!keyAssetPath) return;
 
-      const cloudinaryLink = CloudinaryTools.getCloudinaryLink({ img: keyAssetPath });
+      const isCloudinary = this.shape.cloudinary;
+      const cloudinaryLink = isCloudinary
+        ? CloudinaryTools.getCloudinaryLink({ img: keyAssetPath })
+        : `/assets/${keyAssetPath}`;
 
       useHead({
         link: [
@@ -175,7 +177,8 @@ export default {
             href: cloudinaryLink,
             rel: 'preload',
             as: 'image',
-            crossorigin: 'anonymous',
+            ...(isCloudinary ? { crossorigin: 'anonymous' } : {}),
+            fetchpriority: 'high',
           },
         ],
       });

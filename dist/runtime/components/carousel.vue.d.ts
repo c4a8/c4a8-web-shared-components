@@ -24,6 +24,7 @@ declare namespace _default {
         let items: ArrayConstructor;
         let bgColor: StringConstructor;
         let component: StringConstructor;
+        let lazy: BooleanConstructor;
     }
 }
 export default _default;

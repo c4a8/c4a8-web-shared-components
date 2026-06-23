@@ -1,4 +1,3 @@
-import { parse } from 'node-html-parser';
 import { useRoute } from '#imports';
 
 class Tools {
@@ -16,9 +15,21 @@ class Tools {
   static decodeHTML = (input) => {
     if (!input) return '';
 
-    const document = parse(input, 'text/html');
+    if (typeof window !== 'undefined' && typeof globalThis.DOMParser !== 'undefined') {
+      const parser = new globalThis.DOMParser();
+      const doc = parser.parseFromString(input, 'text/html');
 
-    return document.textContent;
+      return doc.body.textContent || '';
+    }
+
+    return input
+      .replace(/<[^>]*>/g, '')
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&#x27;/g, "'")
+      .replace(/&#39;/g, "'");
   };
 
   static intersection = (r1, r2) => {

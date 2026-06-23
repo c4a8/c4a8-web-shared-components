@@ -1,6 +1,6 @@
 <template>
   <div class="footer__slider-container">
-    <carousel :items="items" :bg-color="bgColor"> </carousel>
+    <carousel :items="items" :bg-color="bgColor" :lazy="true"> </carousel>
   </div>
 </template>
 <script>
