@@ -115,6 +115,14 @@ const Cloudinary = {
       figure: 'never',
       loading: 'auto',
     },
+    teaser: {
+      min_width: 400,
+      max_width: 600,
+      steps: 2,
+      sizes: '(min-width: 50rem)',
+      figure: 'never',
+      loading: 'auto',
+    },
   },
 };
 

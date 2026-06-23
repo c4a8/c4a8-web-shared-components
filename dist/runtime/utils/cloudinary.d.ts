@@ -175,5 +175,19 @@ declare namespace Cloudinary {
             let loading_9: string;
             export { loading_9 as loading };
         }
+        export namespace teaser {
+            let min_width_10: number;
+            export { min_width_10 as min_width };
+            let max_width_10: number;
+            export { max_width_10 as max_width };
+            let steps_10: number;
+            export { steps_10 as steps };
+            let sizes_10: string;
+            export { sizes_10 as sizes };
+            let figure_10: string;
+            export { figure_10 as figure };
+            let loading_10: string;
+            export { loading_10 as loading };
+        }
     }
 }

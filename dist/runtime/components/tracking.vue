@@ -10,7 +10,7 @@ if (useEnvironment() !== 'development') {
   const googleTagManagerId = config?.public?.googleTagManagerId || 'NO_ID_PROVIDED';
   const googleTagManagerDomain = config?.public?.googleTagManagerDomain || 'NO_DOMAIN_PROVIDED';
 
-  const defaultGtagConfig = {
+  const gtagConfig = {
     ad_user_data: 'denied',
     ad_personalization: 'denied',
     ad_storage: 'denied',
@@ -19,19 +19,14 @@ if (useEnvironment() !== 'development') {
     security_storage: 'denied',
     analytics_storage: 'granted',
     wait_for_update: 500,
-  };
-
-  const customGtagConfig = config?.public?.gtag || {};
-
-  const gtagConfig = {
-    ...defaultGtagConfig,
-    ...customGtagConfig,
+    ...(config?.public?.gtag || {}),
   };
 
   useHead({
     script: [
       {
         type: 'text/javascript',
+        defer: true,
         innerHTML: `
           function loadGTM() {
             const originalDocumentCookie = document.cookie;
@@ -62,39 +57,33 @@ if (useEnvironment() !== 'development') {
             }
 
             Object.defineProperty(document, 'cookie', {
-              set: function (cookieValue) {
-                interceptCookieWrite(cookieValue);
-              },
-              get: function () {
-                return interceptCookieRead();
-              },
+              set: function (cookieValue) { interceptCookieWrite(cookieValue); },
+              get: function () { return interceptCookieRead(); },
               configurable: true,
             });
 
-            // limit the hosted Tag Manager to only statistical non-personal data
             window.dataLayer = window.dataLayer || [];
-            function gtag() {
-                dataLayer.push(arguments);
-            }
-
+            function gtag() { dataLayer.push(arguments); }
             window.gtag = gtag;
 
             gtag("consent", "default", ${JSON.stringify(gtagConfig)});
             gtag("set", "ads_data_redaction", true);
 
-          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             'https://${googleTagManagerDomain}/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
             })(window,document,'script','dataLayer','${googleTagManagerId}');
-        }
+          }
 
-        loadGTM();
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(loadGTM);
+          } else {
+            window.addEventListener('load', loadGTM);
+          }
         `,
       },
     ],
   });
-} else {
-  console.debug('Tag Manager not loaded in development');
 }
 </script>

@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.104
+
+- Adds performance improvements to increase lighthouse score
+
 # Release 0.4.103
 
 - Fixes Job List and Job List Detail page to work with all languages

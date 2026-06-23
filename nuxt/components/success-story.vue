@@ -21,7 +21,7 @@
           ref="container"
         >
           <div v-for="(video, index) in successStory.videos" :key="index" class="success-story__slide mb-lg-5">
-            <video-inner :video="video" />
+            <video-inner :video="video" :lazy="true" />
           </div>
         </div>
         <template v-else>
@@ -31,7 +31,7 @@
             class="col-lg-6 col-md-10 mb-lg-5 fade-in-bottom"
             data-utility-animation-step="1"
           >
-            <video-inner :video="video" />
+            <video-inner :video="video" :lazy="true" />
           </div>
         </template>
       </div>

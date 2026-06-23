@@ -52,9 +52,10 @@ const buildQuery = (collectionName) => {
   const query = queryCollection(collectionName);
 
   let queryBuilder = query;
+  const lQuery = localeQuery.value;
 
-  if (localeQuery.value.where && Object.keys(localeQuery.value.where).length > 0) {
-    Object.entries(localeQuery.value.where).forEach(([field, condition]) => {
+  if (lQuery.where && Object.keys(lQuery.where).length > 0) {
+    Object.entries(lQuery.where).forEach(([field, condition]) => {
       if (typeof condition === 'object') {
         Object.entries(condition).forEach(([operator, value]) => {
           queryBuilder = queryBuilder.where(field, operator, value);
@@ -63,6 +64,10 @@ const buildQuery = (collectionName) => {
         queryBuilder = queryBuilder.where(field, '=', condition);
       }
     });
+  }
+
+  if (lQuery.limit) {
+    queryBuilder = queryBuilder.limit(lQuery.limit);
   }
 
   return queryBuilder;
