@@ -130,7 +130,8 @@ class Personio {
 
   getConvertedJson(data) {
     const parser = new DOMParser();
-    const xmlData = parser.parseFromString(data, 'application/xml');
+    const sanitizedData = typeof data === 'string' ? data.trimStart() : data;
+    const xmlData = parser.parseFromString(sanitizedData, 'application/xml');
     const jsonData = Tools.XMLtoJSON(xmlData);
 
     return this.convertData(jsonData);

@@ -47,8 +47,8 @@
               :text="getTranslatedText(form.ctaText)"
               type="submit"
               :button="true"
-              :skin="form.cta.skin"
-              :width="form.cta.width"
+              :skin="form.cta?.skin"
+              :width="form.cta?.width"
               :analytics="analytics"
               @click="handleSubmit"
             />

@@ -7,7 +7,7 @@ declare class Tools {
     static storybookPath: string;
     static blogImagePath: string;
     static breakpointArray: string[];
-    static decodeHTML: (input: any) => string;
+    static decodeHTML: (input: any) => any;
     static intersection: (r1: any, r2: any) => number;
     static isInViewportPercent(element: any, percent: any): boolean;
     static getScrollTop(element: any, offset?: number): number | undefined;

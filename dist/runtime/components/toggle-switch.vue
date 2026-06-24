@@ -101,9 +101,11 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 .toggle-switch {
   cursor: default;
+  display: flex;
+  margin-bottom: 0;
 }
 .toggle-switch[data-utility-animation-step].is-starting {
   animation-delay: calc(var(--utility-animation-index) * 100ms + 0ms);
@@ -146,5 +148,64 @@ export default {
 .toggle-switch .toggle-switch__hint-text {
   margin-left: 0.125rem;
   margin-bottom: 0.5rem;
+}
+
+.toggle-switch__hint-text {
+  padding-right: 0.6em;
+  padding-left: 0.6em;
+  border-radius: 10rem;
+}
+
+.toggle-switch-input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+
+.toggle-switch-content {
+  flex: 1;
+  margin-left: 0.5rem;
+}
+
+.toggle-switch-label {
+  position: relative;
+  display: block;
+  width: 3rem;
+  height: 2rem;
+  background-color: #e7eaf3;
+  background-clip: content-box;
+  border: 0.125rem solid transparent;
+  border-radius: 6.1875rem;
+  transition: 0.3s;
+}
+
+.toggle-switch-indicator {
+  position: absolute;
+  left: 0.125rem;
+  bottom: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: #fff;
+  transform: initial;
+  box-shadow: 0 3px 6px 0 rgba(140, 152, 164, 0.25);
+  border-radius: 50%;
+  transform: translate3d(0, 50%, 0);
+  transition: 0.3s;
+}
+
+.toggle-switch-input:checked + .toggle-switch-label {
+  background-color: #377dff;
+}
+
+.toggle-switch-input:checked + .toggle-switch-label .toggle-switch-indicator {
+  transform: translate3d(1.025rem, 50%, 0);
+}
+
+.toggle-switch-input:disabled + .toggle-switch-label {
+  background-color: rgba(231, 234, 243, 0.5);
+}
+
+.toggle-switch-input:checked:disabled + .toggle-switch-label {
+  background-color: rgba(55, 125, 255, 0.5);
 }
 </style>

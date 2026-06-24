@@ -7,7 +7,7 @@
             <div :class="['mb-3', logo?.classes]" v-for="logo in dataValue.logos">
               <!--d-block-->
               <a :href="logo.url" :target="logo.target" aria-label="Front">
-                <v-img :cloudinary="true" v-bind="logo" class="footer__product-logo w-auto"></v-img>
+                <v-img :cloudinary="true" v-bind="logo" class="footer__product-logo w-auto" :lazy="true"></v-img>
               </a>
             </div>
 
@@ -78,7 +78,7 @@
                   brandLogo.classes ? brandLogo.classes : 'w-90',
                 ]"
               >
-                <v-img :cloudinary="true" v-bind="brandLogo"></v-img>
+                <v-img :cloudinary="true" v-bind="brandLogo" :lazy="true"></v-img>
               </a>
             </template>
           </div>
@@ -96,6 +96,7 @@
                     :cloudinary="true"
                     v-bind="partner"
                     :class="['footer__partner-image', isCorporate ? 'w-100' : '']"
+                    :lazy="true"
                   />
                 </component>
                 <div class="footer__vertical-line" v-if="index < dataValue.partners.length - 1"></div>

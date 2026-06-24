@@ -79,8 +79,6 @@ export default {
       hideData: ['tags'],
       filesValue: [],
       dataAuthorsValue: null,
-      retryLimit: 5,
-      retryTimeout: 200,
     };
   },
   setup() {
@@ -111,6 +109,8 @@ export default {
     query() {
       let query = {};
 
+      const maxItemsToFetch = 21;
+
       query.limit = this.limit;
       query.sort = [{ moment: this.reversed ? 1 : -1 }];
       query.reversed = this.reversed;
@@ -121,7 +121,7 @@ export default {
         };
 
         query.path = 'event-post-casestudies';
-        query.limit = null;
+        query.limit = maxItemsToFetch;
         query.limitEvents = this.limitEvents;
       } else {
         if (this.events === true) {
@@ -248,9 +248,11 @@ export default {
   watch: {
     filesValue(newValue) {
       if (newValue.length > 0) {
-        this.$nextTick(() => {
-          this.init();
-        });
+        if ('requestIdleCallback' in window) {
+          window.requestIdleCallback(() => this.init());
+        } else {
+          this.$nextTick(() => setTimeout(() => this.init(), 50));
+        }
       }
     },
   },
@@ -259,16 +261,9 @@ export default {
   },
   methods: {
     init() {
-      if (this.retryLimit > 0 && !this.$refs.container)
-        return setTimeout(() => {
-          this.retryLimit--;
-
-          this.init();
-        }, this.retryTimeout);
+      if (!this.$refs.container || !this.$refs.root) return;
 
       Tools.initSlickSlider(this.$refs.container, this.carouselOptions);
-
-      if (!this.$refs.root) return;
 
       if (this.sticky) {
         StickyScroller.init([this.$refs.root]);
