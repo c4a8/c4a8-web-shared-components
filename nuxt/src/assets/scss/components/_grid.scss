@@ -2,7 +2,7 @@
   @include utility-animation-options($distance: 15%, $delay: 100ms, $duration: 0.8s);
 
   --grid-spacing: #{spacing(30)};
-  --grid-border-color: var(--color-blue-medium);
+  --grid-border-color: var(--color-gk-mid-blue);
 
   color: var(--color-copy);
   padding: var(--grid-spacing) 0;

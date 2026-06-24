@@ -46,7 +46,7 @@ $service-overview-offset: $grid-gutter-half-width;
 }
 
 .service-overview__logo {
-  background-color: var(--color-white);
+  background-color: var(--color-gk-white);
   padding: spacing(3) spacing(4) spacing(3) #{$service-overview-offset};
   transform: translateY(-99%);
   position: absolute;

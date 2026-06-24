@@ -66,7 +66,7 @@ export const CornerImg = {
     href: "javascript:void(0)",
     name: "Matti Puolitaival",
     title: "Senior Consultant Azure",
-    bgColor: "var(--color-blue-dark)",
+    bgColor: "var(--color-gk-dark-blue)",
     bgColorHover: "var(--color-black)",
     cornerImg: {
       img: "people/testimonials/matti-puolitaival.png",

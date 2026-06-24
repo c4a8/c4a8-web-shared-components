@@ -82,7 +82,7 @@ export default {
     },
     iconColor: {
       type: String,
-      default: 'var(--color-orange)',
+      default: 'var(--color-gk-orange)',
     },
     text: {
       type: String,
@@ -104,7 +104,7 @@ export default {
       return ['newsletter font-weight-light', { [this.expandedClass]: this.isExpanded }, this.light ? 'is--light' : ''];
     },
     contrastColor() {
-      return this.light ? 'var(--color-white)' : 'var(--color-black)';
+      return this.light ? 'var(--color-gk-white)' : 'var(--color-black)';
     },
     bannerStyle() {
       return {
@@ -3198,18 +3198,18 @@ export default {
   @include z-index;
 
   &.is--light {
-    color: var(--color-white);
+    color: var(--color-gk-white);
     .form__label,
     label.input-label,
     .headline {
-      color: var(--color-white);
+      color: var(--color-gk-white);
     }
 
     .form .is-valid ~ .form__checkbox-label,
     .shared-components .form .is-valid ~ .form__label,
     .shared-components .form .is-valid ~ .input-label,
     .shared-components .form .is-valid ~ .headline {
-      color: var(--color-white);
+      color: var(--color-gk-white);
     }
   }
 

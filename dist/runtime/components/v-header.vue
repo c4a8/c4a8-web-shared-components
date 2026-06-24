@@ -1029,7 +1029,7 @@ export default {
   bottom: 0;
   right: 0;
   z-index: -2;
-  background-color: var(--color-white);
+  background-color: var(--color-gk-white);
   opacity: 0.3;
 }
 .header.vue-component:not(:hover):not(.is-scrolled):not(.is-expanded).header--light::after {
@@ -1885,7 +1885,7 @@ export default {
 
 .header__secondary-navigation {
   --header-secondary-background: var(--color-header-background);
-  --header-secondary-background-expanded: var(--color-white);
+  --header-secondary-background-expanded: var(--color-gk-white);
   position: fixed;
   opacity: 0;
   flex-direction: column;

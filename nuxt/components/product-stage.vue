@@ -225,7 +225,7 @@ export default {
       return bgColor.replace(';', '');
     },
     cutoffBgColor() {
-      const cutoffBgColor = this.stage.cutoff.bgColor || 'var(--color-black-4)';
+      const cutoffBgColor = this.stage.cutoff.bgColor || 'var(--color-gk-light-grey)';
 
       return cutoffBgColor.replace(';', '');
     },
@@ -277,7 +277,7 @@ export default {
     width: 100%;
     height: 100%;
     z-index: 0;
-    background: var(--color-white);
+    background: var(--color-gk-white);
     border-radius: 0.3125rem; // front theme class: rounded
     box-shadow: 0px 10px 40px 10px rgba(140, 152, 164, 0.18); // front theme class: shadow-lg
   }
@@ -297,8 +297,8 @@ export default {
     90deg,
     transparent 0%,
     transparent var(--product-stage-background-width),
-    var(--color-black-4) var(--product-stage-background-width),
-    var(--color-black-4) 100%
+    var(--color-gk-light-grey) var(--product-stage-background-width),
+    var(--color-gk-light-grey) 100%
   );
 
   @include media-breakpoint-up(md) {

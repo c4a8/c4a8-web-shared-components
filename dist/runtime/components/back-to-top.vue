@@ -66,7 +66,7 @@ export default {
 .back-to-top {
   z-index: 240;
   --back-to-top-bottom-position: 0rem;
-  --back-to-top-highlight-underline-color: var(--color-orange);
+  --back-to-top-highlight-underline-color: var(--color-gk-orange);
   width: 100%;
   position: sticky;
   top: calc(100vh - var(--back-to-top-bottom-position));

@@ -28,7 +28,7 @@ export default {
     settings: Object,
     color: {
       String,
-      default: 'var(--color-red)',
+      default: 'var(--color-gk-red)',
     },
     strokeColor: {
       String,

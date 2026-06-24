@@ -377,7 +377,7 @@ export default {
 }
 .job-list__entry .job-list__entry-title {
   text-decoration: none;
-  background-image: linear-gradient(var(--color-white), var(--color-white));
+  background-image: linear-gradient(var(--color-gk-white), var(--color-gk-white));
   background-repeat: no-repeat;
   background-position: bottom left;
   background-size: 0% 3px;
@@ -389,7 +389,7 @@ export default {
 .job-list__entry:hover {
   background-color: var(--color-primary-accent);
   border-color: var(--color-primary-accent);
-  color: var(--color-white);
+  color: var(--color-gk-white);
 }
 @media (min-width: 992px) {
   .job-list__entry {
@@ -462,7 +462,7 @@ export default {
 .job-list__expand-button:hover {
   background-color: var(--color-primary-accent);
   border-color: var(--color-primary-accent);
-  color: var(--color-white);
+  color: var(--color-gk-white);
 }
 @media (min-width: 992px) {
   .job-list__expand-button {

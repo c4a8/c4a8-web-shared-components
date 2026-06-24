@@ -27,10 +27,10 @@ export const EventList = {
         time: '14-15 Uhr',
         shapes: [
           {
-            color: 'var(--color-green-blue)',
+            color: 'var(--color-gk-petrol)',
           },
           {
-            color: 'var(--color-yellow)',
+            color: 'var(--color-gk-yellow)',
           },
         ],
         webcast: true,
@@ -60,7 +60,7 @@ export const EventList = {
         time: '14-15 Uhr',
         shapes: [
           {
-            color: 'var(--color-green)',
+            color: 'var(--color-gk-green)',
           },
         ],
         webcast: true,
@@ -87,34 +87,10 @@ export const EventList = {
         time: '1-4 Tage',
         shapes: [
           {
-            color: 'var(--color-yellow)',
+            color: 'var(--color-gk-yellow)',
           },
           {
-            color: 'var(--color-blue-medium)',
-          },
-        ],
-        author: ['Nadine Kern', 'Max Mustermann'],
-        image: {
-          img: '/demo/authors-demo.png',
-          alt: 'lorem ipsum',
-        },
-        badge: {
-          text: 'Training',
-          textColor: 'var(--color-black)',
-          color: 'var(--color-sunglow)',
-        },
-        price: 'Kostenlos',
-      },
-      {
-        url: 'javascript:void(0)',
-        headline: 'Microsoft 365 Holistic Workplace Security via Teams Meeting',
-        time: '1-4 Tage',
-        shapes: [
-          {
-            color: 'var(--color-yellow)',
-          },
-          {
-            color: 'var(--color-blue-medium)',
+            color: 'var(--color-gk-mid-blue)',
           },
         ],
         author: ['Nadine Kern', 'Max Mustermann'],
@@ -135,10 +111,10 @@ export const EventList = {
         time: '1-4 Tage',
         shapes: [
           {
-            color: 'var(--color-yellow)',
+            color: 'var(--color-gk-yellow)',
           },
           {
-            color: 'var(--color-blue-medium)',
+            color: 'var(--color-gk-mid-blue)',
           },
         ],
         author: ['Nadine Kern', 'Max Mustermann'],
@@ -159,10 +135,34 @@ export const EventList = {
         time: '1-4 Tage',
         shapes: [
           {
-            color: 'var(--color-yellow)',
+            color: 'var(--color-gk-yellow)',
           },
           {
-            color: 'var(--color-blue-medium)',
+            color: 'var(--color-gk-mid-blue)',
+          },
+        ],
+        author: ['Nadine Kern', 'Max Mustermann'],
+        image: {
+          img: '/demo/authors-demo.png',
+          alt: 'lorem ipsum',
+        },
+        badge: {
+          text: 'Training',
+          textColor: 'var(--color-black)',
+          color: 'var(--color-sunglow)',
+        },
+        price: 'Kostenlos',
+      },
+      {
+        url: 'javascript:void(0)',
+        headline: 'Microsoft 365 Holistic Workplace Security via Teams Meeting',
+        time: '1-4 Tage',
+        shapes: [
+          {
+            color: 'var(--color-gk-yellow)',
+          },
+          {
+            color: 'var(--color-gk-mid-blue)',
           },
         ],
         author: ['Nadine Kern', 'Max Mustermann'],

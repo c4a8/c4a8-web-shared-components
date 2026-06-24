@@ -28,7 +28,7 @@ export default {
     bgColor: {
       type: String,
       required: false,
-      default: 'var(--color-yellow)',
+      default: 'var(--color-gk-yellow)',
     },
     fontColor: {
       type: String,

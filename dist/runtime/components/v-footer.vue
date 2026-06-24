@@ -277,7 +277,7 @@ footer .footer__socials .btn {
 }
 footer .footer__socials .btn:hover {
   color: var(--color-copy);
-  background-color: var(--color-white);
+  background-color: var(--color-gk-white);
 }
 footer .footer__socials .fab {
   font-size: 1.6em;
@@ -299,7 +299,7 @@ footer .footer__nav-link.nav-link:not(.active):not([href]):hover {
   color: var(--color-white-80);
 }
 footer .footer__nav-link.nav-link:not(.active)[href]:hover {
-  color: var(--color-white);
+  color: var(--color-gk-white);
 }
 footer .streamline-site-phone.streamline-xs .streamline-icon {
   width: 1.3rem;

@@ -289,7 +289,7 @@ footer {
 
       &:hover {
         color: var(--color-copy);
-        background-color: var(--color-white);
+        background-color: var(--color-gk-white);
       }
     }
 
@@ -322,7 +322,7 @@ footer {
 
         &[href] {
           &:hover {
-            color: var(--color-white);
+            color: var(--color-gk-white);
           }
         }
       }

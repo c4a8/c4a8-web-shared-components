@@ -1631,16 +1631,16 @@ const ContentDe = [
     layout: 'event',
     meta: {
       headline: 'Teams Users Group',
-      detailShapeColor: 'var(--color-gigas)',
+      detailShapeColor: 'var(--color-gk-violet)',
       shapes: [
-        { color: 'var(--color-gigas)', peak: 'left', height: '5', width: '80' },
-        { color: 'var(--color-yellow)', peak: 'right', height: '5', width: '50' },
+        { color: 'var(--color-gk-violet)', peak: 'left', height: '5', width: '80' },
+        { color: 'var(--color-gk-yellow)', peak: 'right', height: '5', width: '50' },
       ],
       image: {
         img: '/events/authors/people-uwe-sonnenschein-ralf-mania-thorsten-pickhan.png',
         alt: 'Mit Uwe Sonnenschein, Ralf Mania & Thorsten Pickhan',
       },
-      badge: { text: 'Users Group', textColor: 'var(--color-white)', color: 'var(--color-gigas)' },
+      badge: { text: 'Users Group', textColor: 'var(--color-gk-white)', color: 'var(--color-gk-violet)' },
       price: 'kostenlos',
       form: {
         uncentered: true,
@@ -1843,10 +1843,10 @@ const ContentDe = [
     layout: 'event',
     meta: {
       headline: 'Enterprise Voice in Teams',
-      detailShapeColor: 'var(--color-gigas)',
+      detailShapeColor: 'var(--color-gk-violet)',
       shapes: [
-        { color: 'var(--color-gigas)', peak: 'left', height: '5', width: '80' },
-        { color: 'var(--color-yellow)', peak: 'right', height: '5', width: '50' },
+        { color: 'var(--color-gk-violet)', peak: 'left', height: '5', width: '80' },
+        { color: 'var(--color-gk-yellow)', peak: 'right', height: '5', width: '50' },
       ],
       image: {
         img: '/events/authors/people-ralf-mania-holger-bunkradt-v02.png',
@@ -1954,10 +1954,10 @@ const ContentDe = [
     layout: 'event',
     meta: {
       headline: 'Microsoft 365 Holistic Workplace Security',
-      detailShapeColor: 'var(--color-yellow)',
+      detailShapeColor: 'var(--color-gk-yellow)',
       shapes: [
-        { color: 'var(--color-yellow)', peak: 'left', height: '10', width: '80' },
-        { color: 'var(--color-blue-medium)', peak: 'right', height: '1', width: '60' },
+        { color: 'var(--color-gk-yellow)', peak: 'left', height: '10', width: '80' },
+        { color: 'var(--color-gk-mid-blue)', peak: 'right', height: '1', width: '60' },
       ],
       image: {
         img: '/events/authors/people-nadine-kern-thorben-poeschus.png',
@@ -2057,10 +2057,10 @@ const ContentDe = [
     layout: 'event',
     meta: {
       headline: 'Modern Desktop',
-      detailShapeColor: 'var(--color-blue-medium)',
+      detailShapeColor: 'var(--color-gk-mid-blue)',
       shapes: [
-        { color: 'var(--color-blue-light)', peak: 'left', height: '10', width: '80' },
-        { color: 'var(--color-blue-medium)', peak: 'right', height: '5', width: '80' },
+        { color: 'var(--color-gk-light-blue)', peak: 'left', height: '10', width: '80' },
+        { color: 'var(--color-gk-mid-blue)', peak: 'right', height: '5', width: '80' },
       ],
       image: {
         img: '/events/authors/people-moritz-pohl-oliver-kieselbach.png',
@@ -2169,10 +2169,10 @@ const ContentDe = [
     layout: 'event',
     meta: {
       headline: 'Microsoft Intune als MDM & MAM',
-      detailShapeColor: 'var(--color-blue-light)',
+      detailShapeColor: 'var(--color-gk-light-blue)',
       shapes: [
-        { color: 'var(--color-green)', peak: 'left', height: '3', width: '80' },
-        { color: 'var(--color-blue-light)', peak: 'right', height: '5', width: '80' },
+        { color: 'var(--color-gk-green)', peak: 'left', height: '3', width: '80' },
+        { color: 'var(--color-gk-light-blue)', peak: 'right', height: '5', width: '80' },
       ],
       image: {
         img: '/events/authors/people-steffen-schwerdtfeger-oliver-kieselbach.png',
@@ -2227,8 +2227,8 @@ const ContentDe = [
       time: '13-14 Uhr',
       tags: ['Modern Workplace', 'Tenant to Tenant'],
       shapes: [
-        { color: 'var(--color-yellow)', peak: 'left', height: '26' },
-        { color: 'var(--color-green-blue)', peak: 'right', width: '60' },
+        { color: 'var(--color-gk-yellow)', peak: 'left', height: '26' },
+        { color: 'var(--color-gk-petrol)', peak: 'right', width: '60' },
       ],
       image: {
         img: '/events/authors/people-andre-mueller-gerald-dobratz.png',
@@ -2284,8 +2284,8 @@ const ContentDe = [
       time: '11-12 Uhr',
       tags: ['Modern Workplace', 'Windows 11'],
       shapes: [
-        { color: 'var(--color-yellow', height: '50' },
-        { color: 'var(--color-blue-medium)', peak: 'right', width: '50', height: '10' },
+        { color: 'var(--color-gk-yellow', height: '50' },
+        { color: 'var(--color-gk-mid-blue)', peak: 'right', width: '50', height: '10' },
       ],
       image: {
         img: '/events/authors/people-manuel-abstreiter-oliver-kieselbach.png',
@@ -2475,8 +2475,8 @@ const ContentDe = [
       time: '11-12 Uhr',
       tags: ['Teams'],
       shapes: [
-        { color: 'var(--color-yellow)', height: '10', width: '60' },
-        { color: 'var(--color-gigas)', peak: 'right', width: '50', height: '10' },
+        { color: 'var(--color-gk-yellow)', height: '10', width: '60' },
+        { color: 'var(--color-gk-violet)', peak: 'right', width: '50', height: '10' },
       ],
       image: {
         img: '/events/authors/people-ralf-mania-thorsten-pickhan.png',
