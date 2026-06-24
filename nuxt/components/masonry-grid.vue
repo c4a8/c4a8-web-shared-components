@@ -188,7 +188,7 @@ export default {
   --masonry-outer-spacing: #{spacing(20)};
   --masonry-more-color: var(--color-copy);
   --masonry-more-background: var(--color-copy-light);
-  --masonry-background-color: var(--color-black-4);
+  --masonry-background-color: var(--color-gk-light-grey);
   --masonry-shadow-height: #{spacing(16)};
   --masonry-overlap-offset: 15px;
 

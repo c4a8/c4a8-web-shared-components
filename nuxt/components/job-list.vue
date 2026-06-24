@@ -373,7 +373,7 @@ $job-list-transition-time: 1.3s;
 }
 
 .job-list__entry {
-  @include underline(var(--color-white), '.job-list__entry-title');
+  @include underline(var(--color-gk-white), '.job-list__entry-title');
 
   border: 2px solid var(--color-border);
   padding: spacing(8);
@@ -386,7 +386,7 @@ $job-list-transition-time: 1.3s;
   &:hover {
     background-color: var(--color-primary-accent);
     border-color: var(--color-primary-accent);
-    color: var(--color-white);
+    color: var(--color-gk-white);
   }
 
   @include media-breakpoint-up(lg) {
@@ -431,7 +431,7 @@ $job-list-transition-time: 1.3s;
   &:hover {
     background-color: var(--color-primary-accent);
     border-color: var(--color-primary-accent);
-    color: var(--color-white);
+    color: var(--color-gk-white);
   }
 
   @include media-breakpoint-up(lg) {

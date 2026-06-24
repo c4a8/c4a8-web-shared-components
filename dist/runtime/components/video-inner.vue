@@ -440,7 +440,7 @@ export default {
 }
 
 .video__content {
-  background-color: var(--color-black-4);
+  background-color: var(--color-gk-light-grey);
 }
 
 .video__logo {

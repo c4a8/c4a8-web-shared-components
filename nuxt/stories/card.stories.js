@@ -208,7 +208,7 @@ export const Product = {
     tag: {
       text: 'Free',
       color: 'white',
-      bgColor: 'var(--color-cream-can)',
+      bgColor: 'var(--color-uc-yellow)',
     },
     product: [
       {
@@ -255,7 +255,7 @@ export const Product = {
     logo: {
       img: 'products/scepman/scepman-logo-all-white.svg',
       cloudinary: true,
-      bgColor: 'var(--color-yellow)',
+      bgColor: 'var(--color-gk-yellow)',
     },
   },
 };
@@ -270,7 +270,7 @@ export const ProductWithImage = {
     tag: {
       text: 'Free',
       color: 'white',
-      bgColor: 'var(--color-cream-can)',
+      bgColor: 'var(--color-uc-yellow)',
     },
     product: [
       {
@@ -337,8 +337,8 @@ export const Row = {
 
 export const StepList = {
   args: {
-    color: "var(--color-yellow)",
-    accentColor: "var(--color-cold-purple)",
+    color: "var(--color-gk-yellow)",
+    accentColor: "var(--color-scepman-light-purple)",
     overline: "For most Teams",
     title: "SaaS Bundle",
     underline: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",

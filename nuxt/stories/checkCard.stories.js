@@ -114,7 +114,7 @@ export const Products = {
         tag: {
           text: 'Free',
           color: 'var(--color-black)',
-          bgColor: 'var(--color-cream-can)',
+          bgColor: 'var(--color-uc-yellow)',
         },
         picture: 'products/unified-contacts/unified-contacts-products-header.png',
         product: [

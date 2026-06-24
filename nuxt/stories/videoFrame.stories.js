@@ -82,7 +82,7 @@ export const FullWidth = {
     fullWidth: true,
     headline: {
       text: 'Himmelsstürmer gesucht: <br/> glueckkanja sucht Verstärkung',
-      color: '--color-white',
+      color: '--color-gk-white',
       alignment: 'text-center',
     },
   },
@@ -96,7 +96,7 @@ export const HeadlineAlignment = {
     fullWidth: true,
     headline: {
       text: 'Himmelsstürmer gesucht: <br/> glueckkanja sucht Verstärkung',
-      color: '--color-white',
+      color: '--color-gk-white',
       alignment: 'text-left align-items-end',
     },
   },
@@ -111,7 +111,7 @@ export const Playlist = {
     fullWidth: true,
     headline: {
       text: 'Himmelsstürmer gesucht: <br/> glueckkanja sucht Verstärkung',
-      color: '--color-white',
+      color: '--color-gk-white',
       alignment: 'text-center align-items-end',
       classes: 'font-size-3',
     },
@@ -131,7 +131,7 @@ export const Cta = {
       text: 'Primary Link',
       link: true,
     },
-    color: 'var(--color-white)',
+    color: 'var(--color-gk-white)',
     fontSize: '30px',
   },
 };

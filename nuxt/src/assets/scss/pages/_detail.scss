@@ -16,7 +16,7 @@ $page-detail-subline-background-color: $white-30;
     .page-detail__back,
     .page-detail__headline,
     .page-detail__subline {
-      color: var(--color-white);
+      color: var(--color-gk-white);
     }
   }
 }
@@ -223,7 +223,7 @@ $page-detail-subline-background-color: $white-30;
     transform: translateX(-50%);
     height: calc(100% + #{spacing(10)});
     width: 101vw;
-    background-color: var(--color-white);
+    background-color: var(--color-gk-white);
   }
 
   @include media-breakpoint-up(lg) {

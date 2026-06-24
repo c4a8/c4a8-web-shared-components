@@ -125,9 +125,9 @@ export default {
 </script>
 <style lang="scss">
 .quotes {
-  --color-quotes-highlight: var(--color-yellow);
-  --color-quotes-background: var(--color-green-blue);
-  --color-quotes-copy: var(--color-white);
+  --color-quotes-highlight: var(--color-gk-yellow);
+  --color-quotes-background: var(--color-gk-petrol);
+  --color-quotes-copy: var(--color-gk-white);
 
   background-color: var(--color-quotes-background);
   color: var(--color-quotes-copy);
@@ -216,8 +216,8 @@ export default {
     &:not(.slick-disabled) {
       &:hover {
         background-color: transparent;
-        border-color: var(--color-white);
-        border: 1px solid var(--color-white);
+        border-color: var(--color-gk-white);
+        border: 1px solid var(--color-gk-white);
       }
     }
   }

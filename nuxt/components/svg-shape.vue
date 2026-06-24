@@ -26,7 +26,7 @@ export default {
     },
     color: {
       type: String,
-      default: 'var(--color-white)',
+      default: 'var(--color-gk-white)',
     },
     obliquity: {
       type: Number,

@@ -214,7 +214,7 @@ export default {
 
   &:not(.btn):not(.custom):not(.nav-link) {
     &.is-light {
-      color: var(--color-white);
+      color: var(--color-gk-white);
     }
   }
 
@@ -241,6 +241,8 @@ export default {
       --cta-btn-color: var(--color-primary-accent-on-surface);
       --cta-copy-color: var(--color-copy-on-primary-accent-on-surface);
       --cta-background-accent-color: var(--cta-btn-color);
+      --cta-background-color: var(--cta-btn-color);
+      // --cta-background-color: transparent;
 
       &::after {
         color: inherit;
@@ -473,16 +475,16 @@ export default {
 }
 
 @mixin cta-no-btn-is-light {
-  color: var(--color-white);
+  color: var(--color-gk-white);
 }
 
 @mixin cta-btn-primary-is-light {
   color: var(--color-primary);
-  background-color: var(--color-white);
+  background-color: var(--color-gk-white);
 
   &:not(label.btn):not([href]) {
     color: var(--color-primary);
-    background-color: var(--color-white);
+    background-color: var(--color-gk-white);
   }
 
   &::after {
@@ -491,11 +493,11 @@ export default {
 }
 
 @mixin cta-btn-secondary-is-light {
-  border-color: var(--color-white);
-  color: var(--color-white);
+  border-color: var(--color-gk-white);
+  color: var(--color-gk-white);
 
   &::before {
-    background: var(--color-white);
+    background: var(--color-gk-white);
   }
 
   &::after {

@@ -17,7 +17,7 @@ export const WithHint = {
       textRight: 'Annual',
       hint: {
         text: 'Save up to 10%',
-        color: 'var(--color-white)',
+        color: 'var(--color-gk-white)',
         bgColor: 'var(--color-secondary)',
       },
       id: 'pricingToggleSwitch',

@@ -520,7 +520,7 @@ input {
 
 label.input-label,
 .form__label {
-  color: var(--color-midnight);
+  color: var(--color-products-dark-blue);
   opacity: 0.7;
 
   + .invalid-feedback {
@@ -553,7 +553,7 @@ input[type='radio'],
   input[type='number'].form-control,
   input[type='radio'],
   .form__input {
-    background-color: var(--color-white);
+    background-color: var(--color-gk-white);
     border-color: $form-background-color;
 
     &:hover {

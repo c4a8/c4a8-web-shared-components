@@ -343,7 +343,7 @@ $transition-tween-t1: 0.2s ease-in-out;
 }
 
 @mixin light-text-shadow {
-  text-shadow: 0 0 14px var(--color-white);
+  text-shadow: 0 0 14px var(--color-gk-white);
 }
 
 @mixin hover-scale-transform {
@@ -422,7 +422,7 @@ $transition-tween-t1: 0.2s ease-in-out;
 }
 
 @mixin scrollbar {
-  --scrollbar-background-color: var(--color-athens-gray);
+  --scrollbar-background-color: var(--color-gk-dark-blue-shade-10);
 
   &::-webkit-scrollbar {
     width: 8px;

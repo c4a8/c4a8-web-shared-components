@@ -82,8 +82,8 @@ export const Default = {
 
 export const Light = {
   args: {
-    bgColor: 'var(--color-gigas)',
-    iconColor: 'var(--color-orange)',
+    bgColor: 'var(--color-gk-violet)',
+    iconColor: 'var(--color-gk-orange)',
     light: true,
     text: 'Jetzt zum Newsletter anmelden Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.',
     cta: {

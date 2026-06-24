@@ -1,45 +1,49 @@
-// unified-contacts theme related styling here
+// unifiedcontacts theme — AUTO-GENERATED from figma/tokens/Unified Contacts.tokens.json
+// Regenerate via: node scripts/sync-figma-tokens.mjs — do not edit by hand.
 
 :root {
   --site: 'unifiedcontacts';
-  // Theme colors
-  --color-headlines: var(--color-midnight);
-  --color-copy: var(--color-midnight);
-  --color-primary: #008187;
-  --color-primary-accent: #005a5f;
-  --color-primary-accent-light: #bfdfe1;
-  --color-primary-on-surface: #FFDF9C;
-  --color-primary-accent-on-surface: #F5C663;
-  --color-secondary: #008187;
-  --color-secondary-accent: #005a5f;
-  --color-secondary-accent-light: red;
-  --color-secondary-on-surface: #fad484;
-  --color-secondary-accent-on-surface: #e4b34a;
-  --color-highlight: #FFDF9C;
-  --color-highlight-second: var(--color-highlight);
-  --color-copy-highlight: var(--color-highlight);
-  --color-copy-on-primary: var(--color-copy-light);
-  --color-copy-on-primary-accent: var(--color-copy-light);
-  --color-copy-on-primary-on-surface: var(--color-copy);
-  --color-copy-on-primary-accent-on-surface: var(--color-copy);
-  --color-copy-on-secondary: var(--color-secondary);
-  --color-copy-on-secondary-accent: var(--color-secondary-accent);
-  --color-copy-on-secondary-on-surface: var(--color-secondary-on-surface);
-  --color-copy-on-secondary-accent-on-surface: var(--color-secondary-accent-on-surface);
 
-  // Element colors
-  --color-bg-grey: var(--color-porcelain);
-  --color-bg-dark-grey: var(--color-regent-grey);
-  --color-svg-icon: var(--color-primary);
-  --color-svg-icon--hover: var(--color-primary-accent);
-  --color-bg-checkbox: var(--color-blue-medium);
-  --color-border: red;
-  --color-loading: red;
-  --color-loading--1: var(--color-primary);
-  --color-loading--2: var(--color-yellow);
-  --color-loading--3: var(--color-conifer);
-  --color-loading--4: var(--color-orange);
+  // Theme colors (Figma source of truth)
+  --color-headlines: var(--color-products-dark-blue);
+  --color-copy: var(--color-products-dark-blue);
+  --color-primary: var(--color-gk-petrol);
+  --color-primary-accent: #005a5f;
+  --color-primary-accent-light: #005a5f;
+  --color-primary-on-surface: #ffdf9c;
+  --color-primary-accent-on-surface: var(--color-uc-yellow);
+  --color-secondary: var(--color-gk-petrol);
+  --color-secondary-accent: #005a5f;
+  --color-secondary-accent-light: #005a5f;
+  --color-secondary-on-surface: #ffdf9c;
+  --color-secondary-accent-on-surface: var(--color-uc-yellow);
+  --color-highlight: #ffdf9c;
+  --color-highlight-second: #ffdf9c;
+  --color-copy-highlight: var(--color-uc-yellow);
+  --color-copy-on-primary: var(--color-gk-white);
+  --color-copy-on-primary-accent: var(--color-gk-white);
+  --color-copy-on-primary-on-surface: var(--color-products-dark-blue);
+  --color-copy-on-primary-accent-on-surface: var(--color-gk-dark-blue);
+  --color-copy-on-secondary: var(--color-gk-petrol);
+  --color-copy-on-secondary-accent: #005a5f;
+  --color-copy-on-secondary-on-surface: #ffdf9c;
+  --color-copy-on-secondary-accent-on-surface: var(--color-uc-yellow);
+  --color-bg-grey: var(--color-gk-dark-blue-shade-10);
+  --color-bg-dark-grey: var(--color-products-dark-grey);
+  --color-svg-icon: var(--color-gk-petrol);
+  --color-svg-icon--hover: #005a5f;
+  --color-bg-checkbox: var(--color-gk-petrol);
+  --color-border: var(--color-gk-petrol);
+  --color-loading: var(--color-gk-petrol);
+  --color-loading--1: var(--color-gk-petrol);
+  --color-loading--2: var(--color-uc-yellow);
+  --color-loading--3: #ffdf9c;
+  --color-loading--4: var(--color-uc-yellow);
 
   // fonts
   --font-family: 'Miriam Libre', sans-serif;
+
+  // cta
+  --cta-cutoff: 1;
+  --cta-normal: 0;
 }

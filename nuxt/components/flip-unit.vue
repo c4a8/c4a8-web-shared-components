@@ -79,7 +79,7 @@ export default {
 }
 
 .flip-unit-container {
-  --flip-unit-background-color: var(--color-yellow);
+  --flip-unit-background-color: var(--color-gk-yellow);
   --flip-unit-font-color: var(--color-black);
 
   perspective: 1000px;

@@ -1,5 +1,14 @@
 import '../src/assets/scss/index.scss';
-import '../src/assets/scss/themes/_gk.scss';
+
+import gkTheme from '../src/assets/scss/themes/_gk.scss?inline';
+import konnektTheme from '../src/assets/scss/themes/_konnekt.scss?inline';
+import radiusaasTheme from '../src/assets/scss/themes/_radiusaas.scss?inline';
+import realmigratorTheme from '../src/assets/scss/themes/_realmigrator.scss?inline';
+import realmjoinTheme from '../src/assets/scss/themes/_realmjoin.scss?inline';
+import scepmanTheme from '../src/assets/scss/themes/_scepman.scss?inline';
+import sendmanTheme from '../src/assets/scss/themes/_sendman.scss?inline';
+import terraproviderTheme from '../src/assets/scss/themes/_terraprovider.scss?inline';
+import unifiedcontactsTheme from '../src/assets/scss/themes/_unified-contacts.scss?inline';
 
 import { h } from 'vue';
 // import { createPinia } from 'pinia';
@@ -38,6 +47,49 @@ import GlobalApp from '../components/global-app.vue';
 //   app.use(i18n);
 // });
 
+const THEMES: Record<string, { label: string; css: string }> = {
+  gk: { label: 'glueckkanja', css: gkTheme },
+  konnekt: { label: 'Konnekt', css: konnektTheme },
+  radiusaas: { label: 'RADIUSaaS', css: radiusaasTheme },
+  realmigrator: { label: 'RealMigrator', css: realmigratorTheme },
+  realmjoin: { label: 'RealmJoin', css: realmjoinTheme },
+  scepman: { label: 'SCEPman', css: scepmanTheme },
+  sendman: { label: 'Sendman', css: sendmanTheme },
+  terraprovider: { label: 'TerraProvider', css: terraproviderTheme },
+  unifiedcontacts: { label: 'Unified Contacts', css: unifiedcontactsTheme },
+};
+
+const DEFAULT_THEME = 'gk';
+const THEME_STYLE_ID = 'sb-active-theme';
+
+const applyTheme = (slug: string) => {
+  const theme = THEMES[slug] ?? THEMES[DEFAULT_THEME];
+
+  let styleEl = document.getElementById(THEME_STYLE_ID) as HTMLStyleElement | null;
+
+  if (!styleEl) {
+    styleEl = document.createElement('style');
+    styleEl.id = THEME_STYLE_ID;
+  }
+
+  styleEl.textContent = theme.css;
+
+  document.head.appendChild(styleEl);
+};
+
+export const globalTypes = {
+  theme: {
+    name: 'Theme',
+    description: 'Active product theme (src/assets/scss/themes)',
+    defaultValue: DEFAULT_THEME,
+    toolbar: {
+      icon: 'paintbrush',
+      dynamicTitle: true,
+      items: Object.entries(THEMES).map(([value, { label }]) => ({ value, title: label })),
+    },
+  },
+};
+
 const loadPlugins = () => {
   import('jquery')
     .then((module) => {
@@ -69,13 +121,17 @@ loadPlugins();
 
 export const decorators = [
   (storyFn, params) => {
+    const theme: string = params.globals?.theme ?? DEFAULT_THEME;
+
+    applyTheme(theme);
+
     const rootElement = document.getElementById('storybook-root');
 
     if (rootElement) {
-      // TODO add theme
-      const theme = 'gk';
-
       rootElement.classList.add('shared-components');
+
+      Object.keys(THEMES).forEach((slug) => rootElement.classList.remove(slug));
+
       rootElement.classList.add(theme);
     }
 
