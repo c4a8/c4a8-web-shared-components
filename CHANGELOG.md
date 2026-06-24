@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.105
+
+- Migrates colors from figma into our codebase. Adjusted colors through all our components.
+
 # Release 0.4.104
 
 - Adds performance improvements to increase lighthouse score
