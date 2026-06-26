@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.106
+
+- Fixes presorting before limiting items
+
 # Release 0.4.105
 
 - Migrates colors from figma into our codebase. Adjusted colors through all our components.
