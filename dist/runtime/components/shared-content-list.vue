@@ -66,6 +66,14 @@ const buildQuery = (collectionName) => {
     });
   }
 
+  if (Array.isArray(lQuery.sort)) {
+    lQuery.sort.forEach((sortItem) => {
+      Object.entries(sortItem).forEach(([field, direction]) => {
+        queryBuilder = queryBuilder.order(field, direction === 1 ? 'ASC' : 'DESC');
+      });
+    });
+  }
+
   if (lQuery.limit) {
     queryBuilder = queryBuilder.limit(lQuery.limit);
   }
