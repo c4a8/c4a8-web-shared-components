@@ -82,7 +82,7 @@ export default {
     },
     iconColor: {
       type: String,
-      default: 'var(--color-orange)',
+      default: 'var(--color-gk-orange)',
     },
     text: {
       type: String,
@@ -104,7 +104,7 @@ export default {
       return ['newsletter font-weight-light', { [this.expandedClass]: this.isExpanded }, this.light ? 'is--light' : ''];
     },
     contrastColor() {
-      return this.light ? 'var(--color-white)' : 'var(--color-black)';
+      return this.light ? 'var(--color-gk-white)' : 'var(--color-black)';
     },
     bannerStyle() {
       return {
@@ -3198,18 +3198,18 @@ export default {
   z-index: 320;
 }
 .newsletter.is--light {
-  color: var(--color-white);
+  color: var(--color-gk-white);
 }
 .newsletter.is--light .form__label,
 .newsletter.is--light label.input-label,
 .newsletter.is--light .headline {
-  color: var(--color-white);
+  color: var(--color-gk-white);
 }
 .newsletter.is--light .form .is-valid ~ .form__checkbox-label,
 .newsletter.is--light .shared-components .form .is-valid ~ .form__label,
 .newsletter.is--light .shared-components .form .is-valid ~ .input-label,
 .newsletter.is--light .shared-components .form .is-valid ~ .headline {
-  color: var(--color-white);
+  color: var(--color-gk-white);
 }
 .newsletter.is-expanded .newsletter__banner {
   visibility: collapse;

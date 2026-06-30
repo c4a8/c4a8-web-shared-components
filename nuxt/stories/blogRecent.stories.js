@@ -105,7 +105,7 @@ export const BlogRecentHeadline = {
     level: 'h2',
     headlineClasses: 'text-white',
     slider: true,
-    bgColor: 'var(--color-gigas)',
+    bgColor: 'var(--color-gk-violet)',
   },
 };
 

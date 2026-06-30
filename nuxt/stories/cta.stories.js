@@ -136,6 +136,94 @@ export default {
   title: 'Components/Cta',
 };
 
+const ctaBase = { href: 'javascript:void(0)' };
+
+const overviewRows = [
+  {
+    label: 'Primary / Secondary buttons',
+    variants: [
+      { ...ctaBase, text: 'Primary', skin: 'primary', button: true },
+      { ...ctaBase, text: 'Secondary', skin: 'secondary', button: true },
+      { ...ctaBase, text: 'Secondary monochrome', skin: 'secondary', button: true, monochrome: true },
+    ],
+  },
+  {
+    label: 'Cutoff buttons',
+    variants: [
+      { ...ctaBase, text: 'Primary cutoff', skin: 'primary is-cutoff', button: true },
+      { ...ctaBase, text: 'Secondary cutoff', skin: 'secondary is-cutoff', button: true },
+      { ...ctaBase, text: 'Secondary cutoff bg', skin: 'secondary is-cutoff', button: true, hasBackground: true },
+    ],
+  },
+  {
+    label: 'Buttons with icons',
+    variants: [
+      { ...ctaBase, text: 'Primary external', skin: 'primary', button: true, external: true },
+      { ...ctaBase, text: 'Primary download', skin: 'primary', button: true, download: true },
+      { ...ctaBase, text: 'Secondary external', skin: 'secondary', button: true, external: true },
+    ],
+  },
+  // {
+  //   label: 'Links',
+  //   variants: [
+  //     { ...ctaBase, text: 'Primary link', link: true },
+  //     { ...ctaBase, text: 'Link external', link: true, external: true },
+  //     { ...ctaBase, text: 'Link reversed', link: true, reversed: true },
+  //     { ...ctaBase, text: 'Link monochrome', link: true, monochrome: true },
+  //   ],
+  // },
+];
+
+const overviewSections = [
+  { label: 'Default', onSurface: false },
+  { label: 'On surface', onSurface: true },
+];
+
+export const Overview = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => ({
+    components: { CtaComponent },
+    setup() {
+      const sections = overviewSections.map((section) => ({
+        ...section,
+        rows: overviewRows.map((row) => ({
+          ...row,
+          variants: row.variants.map((variant) => ({ ...variant, onSurface: section.onSurface })),
+        })),
+      }));
+
+      return { sections };
+    },
+    template: `
+      <div style="display: flex; flex-direction: column; gap: 3rem;">
+        <section
+          v-for="section in sections"
+          :key="section.label"
+          :style="section.onSurface
+            ? 'background: var(--color-primary); padding: 2rem; border-radius: 4px; color: var(--color-copy-on-primary); --color-headlines: var(--color-copy-on-primary);'
+            : ''"
+        >
+          <h3 style="margin-bottom: 1.5rem;">{{ section.label }}</h3>
+          <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <div v-for="row in section.rows" :key="row.label">
+              <div style="font-size: 0.75rem; opacity: 0.8; margin-bottom: 0.5rem;">{{ row.label }}</div>
+              <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 1rem;">
+                <cta-component
+                  v-for="(variant, index) in row.variants"
+                  :key="index"
+                  v-bind="variant"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    `,
+  }),
+};
+
 export const PrimaryButtonCutoff = {
   args: {
     text: 'Primary Button Cutoff',

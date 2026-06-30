@@ -361,7 +361,7 @@ export default {
 </script>
 <style lang="scss">
 .tag-cloud {
-  background-color: var(--color-blue-dark);
+  background-color: var(--color-gk-dark-blue);
 }
 
 .tag-cloud__container {

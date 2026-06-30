@@ -46,8 +46,14 @@
           </div>
           <div class="header__logo" :style="headerLogoStyle">
             <a :href="homeObj?.url">
-              <v-img :img="home?.imgLight" class="header__logo-light" :cloudinary="true" alt="logo" />
-              <v-img :img="home?.img" class="header__logo-default" :cloudinary="true" alt="logo" />
+              <v-img
+                :img="home?.imgLight"
+                class="header__logo-light"
+                :cloudinary="true"
+                alt="logo"
+                fetchpriority="high"
+              />
+              <v-img :img="home?.img" class="header__logo-default" :cloudinary="true" alt="logo" fetchpriority="high" />
             </a>
           </div>
           <div class="header__menu" v-on:click="handleCloseClick">
@@ -1045,7 +1051,7 @@ $header-border-size: 1px;
         bottom: 0;
         right: 0;
         z-index: -2;
-        background-color: var(--color-white);
+        background-color: var(--color-gk-white);
         opacity: 0.3;
       }
 
@@ -2009,7 +2015,7 @@ $header-border-size: 1px;
 
 .header__secondary-navigation {
   --header-secondary-background: var(--color-header-background);
-  --header-secondary-background-expanded: var(--color-white);
+  --header-secondary-background-expanded: var(--color-gk-white);
 
   position: fixed;
   opacity: 0;

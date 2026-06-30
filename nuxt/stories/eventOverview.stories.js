@@ -80,7 +80,7 @@ export const ManualEvents = {
           'Audiocodes & hat mir mehrere Geräte für einen Test zur Verfügung gestellt. Ich habe sie alle eingerichtet und getestet. Hier ist eine kurze Zusammenfassung meiner Ergebnisse.',
       },
       {
-        bgColor: 'var(--color-yellow)',
+        bgColor: 'var(--color-gk-yellow)',
         color: 'var(--color-copy)',
         timeColor: 'var(--color-yellow-medium)',
         excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut lab',
@@ -96,10 +96,10 @@ export const ManualEvents = {
         time: '14-15 Uhr',
         shapes: [
           {
-            color: 'var(--color-green-blue)',
+            color: 'var(--color-gk-petrol)',
           },
           {
-            color: 'var(--color-yellow)',
+            color: 'var(--color-gk-yellow)',
           },
         ],
         webcast: true,

@@ -17,7 +17,7 @@ export const Default = {
         "Priced <a href='https://docs.radiusaas.com/licensing'><font color='#000000'>per user</font></a> with unlimited devices - no base price, setup fees or complicated product tiers. Get access to all features. ",
       shape: {
         isActive: true,
-        color: 'var(--color-white)',
+        color: 'var(--color-gk-white)',
       },
       background: {
         img: 'svg/product-backgrounds/radiusaas-background.svg',
@@ -54,7 +54,7 @@ export const NoDescription = {
       headline: "A price that's right for you",
       shape: {
         isActive: true,
-        color: 'var(--color-white)',
+        color: 'var(--color-gk-white)',
       },
       background: {
         img: 'svg/product-backgrounds/radiusaas-background.svg',
@@ -118,7 +118,7 @@ export const Tabs = {
       },
       shape: {
         isActive: true,
-        color: 'var(--color-white)',
+        color: 'var(--color-gk-white)',
       },
     },
   },
@@ -127,7 +127,7 @@ export const Tabs = {
 export const Cards = {
   args: {
     stage: {
-      bgColor: 'var(--color-blue-light);',
+      bgColor: 'var(--color-gk-light-blue);',
       headline: 'Become a Partner',
       description:
         'We aim to build the best technology for enabling Microsoft 365 and Windows workstations in enterprises. To support that goal, we are looking for a global community of trusted partners to help deliver sales, service, and support.',
@@ -160,7 +160,7 @@ export const Cards = {
       },
       shape: {
         isActive: true,
-        color: 'var(--color-white)',
+        color: 'var(--color-gk-white)',
       },
     },
   },
@@ -169,7 +169,7 @@ export const Cards = {
 export const Cutoff = {
   args: {
     stage: {
-      bgColor: 'var(--color-orange);',
+      bgColor: 'var(--color-gk-orange);',
       headline: 'Start now',
       headlineLevel: 'h3',
       headlineClasses: 'bold',

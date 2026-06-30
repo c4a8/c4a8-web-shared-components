@@ -8,6 +8,9 @@ declare namespace _default {
         function color(): any;
         function getUuid(): string;
     }
+    function setup(): {
+        locale: import("vue").WritableComputedRef<string, string>;
+    };
     function mounted(): void;
     function data(): {
         loadingDelay: number;

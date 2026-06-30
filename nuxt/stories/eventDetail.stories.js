@@ -178,10 +178,10 @@ export const EventDetail = {
     time: '1-4 Tage',
     shapes: [
       {
-        color: 'var(--color-yellow)',
+        color: 'var(--color-gk-yellow)',
       },
       {
-        color: 'var(--color-blue-medium)',
+        color: 'var(--color-gk-mid-blue)',
       },
     ],
     image: {

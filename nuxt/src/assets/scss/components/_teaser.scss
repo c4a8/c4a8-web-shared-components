@@ -2,7 +2,7 @@
   @include utility-animation-options($distance: 135%, $duration: 0.8s);
 
   --color-teaser-copy-highlight: var(--color-copy-highlight);
-  --color-teaser-background: var(--color-black-4);
+  --color-teaser-background: var(--color-gk-light-grey);
 
   position: relative;
   padding: spacing(16) 0 spacing(10);

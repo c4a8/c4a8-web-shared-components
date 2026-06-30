@@ -35,9 +35,9 @@ export const Default = {
 
 export const CustomAccentColor = {
   args: {
-    accentColor: 'var(--color-blue-medium)',
+    accentColor: 'var(--color-gk-mid-blue)',
     accentLightText: true,
-    background: 'var(--color-white)',
+    background: 'var(--color-gk-white)',
     color: 'var(--color-black)',
     headline: {
       text: 'Unser Bewerbungsprozess',

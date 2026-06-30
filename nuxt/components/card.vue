@@ -160,7 +160,7 @@
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path d="M0 118.969V0H557V183L0 118.969Z" :fill="'var(--color-yellow)'"/>
+              <path d="M0 118.969V0H557V183L0 118.969Z" :fill="'var(--color-gk-yellow)'"/>
               
               <path d="M529.5 137.5L556.5 129V182.94L532.5 180.19L529.5 137.5Z"  opacity="0.15" fill="white"/>
               <path d="M211 0L0.5 119.03L551 182.31L483 0H211Z"  opacity="0.15" fill="white"/>
@@ -641,7 +641,7 @@ export default {
   min-height: 70%;
 }
 .card.vue-component.card--products .card-body .headline {
-  color: var(--color-regent-grey);
+  color: var(--color-products-dark-grey);
   text-transform: uppercase;
 }
 .card.vue-component.card--large .headline {

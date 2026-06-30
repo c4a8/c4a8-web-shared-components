@@ -77,10 +77,10 @@ export const EventTeaserWebcast = {
     time: '14-15 Uhr',
     shapes: [
       {
-        color: 'var(--color-green-blue)',
+        color: 'var(--color-gk-petrol)',
       },
       {
-        color: 'var(--color-yellow)',
+        color: 'var(--color-gk-yellow)',
       },
     ],
     webcast: true,
@@ -112,7 +112,7 @@ export const EventTeaserBackground = {
     time: '14-15 Uhr',
     shapes: [
       {
-        color: 'var(--color-green)',
+        color: 'var(--color-gk-green)',
         height: 1,
         width: 110,
       },
@@ -172,7 +172,7 @@ export const EventTeaserFullWidth = {
     time: '14-15 Uhr',
     shapes: [
       {
-        color: 'var(--color-yellow)',
+        color: 'var(--color-gk-yellow)',
       },
     ],
     webcast: true,
@@ -202,12 +202,12 @@ export const EventTeaserCustomShapes = {
     time: '14-15 Uhr',
     shapes: [
       {
-        color: 'var(--color-green)',
+        color: 'var(--color-gk-green)',
         peak: 'right',
         height: 26,
       },
       {
-        color: 'var(--color-gigas)',
+        color: 'var(--color-gk-violet)',
         height: 10,
         width: 45,
       },
@@ -237,10 +237,10 @@ export const EventTeaserTraining = {
     time: '1-4 Tage',
     shape: [
       {
-        color: 'var(--color-yellow)',
+        color: 'var(--color-gk-yellow)',
       },
       {
-        color: 'var(--color-blue-medium)',
+        color: 'var(--color-gk-mid-blue)',
       },
     ],
     author: ['Nadine Kern', 'Max Mustermann'],
@@ -282,7 +282,7 @@ export const EventTeaserWithAnimation = {
     time: '14-15 Uhr',
     shapes: [
       {
-        color: 'var(--color-green-blue)',
+        color: 'var(--color-gk-petrol)',
       },
       {
         color: 'var(--color-summer-green)',

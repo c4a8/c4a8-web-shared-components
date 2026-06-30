@@ -116,7 +116,7 @@ export default {
     },
     bgColorHover: {
       type: String,
-      default: 'var(--color-blue-medium)',
+      default: 'var(--color-gk-mid-blue)',
     },
     aspectRatio: {
       type: String,
@@ -172,7 +172,7 @@ export default {
 }
 
 .testimonial-video-teaser {
-  --color-testimonial-teaser-foreground: var(--color-white);
+  --color-testimonial-teaser-foreground: var(--color-gk-white);
   position: relative;
   display: inline-block;
 
@@ -192,7 +192,7 @@ export default {
 }
 
 .testimonial-teaser {
-  --color-testimonial-teaser-foreground: var(--color-white);
+  --color-testimonial-teaser-foreground: var(--color-gk-white);
 
   position: relative;
   //max-width: unquote('min(500px, 100vw)');

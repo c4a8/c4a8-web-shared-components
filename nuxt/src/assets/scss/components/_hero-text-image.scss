@@ -33,11 +33,11 @@
 }
 
 .hero-text-image {
-  --hero-text-image-overline-bg-color: var(--color-yellow);
+  --hero-text-image-overline-bg-color: var(--color-gk-yellow);
   --hero-text-image-overline-color: var(--color-copy);
 
   &.text-white {
-    --hero-text-image-overline-color: var(--color-white);
+    --hero-text-image-overline-color: var(--color-gk-white);
   }
 
   position: relative;
@@ -474,7 +474,7 @@
 
   &:not(.text-white) {
     .hero-text-image__subline {
-      color: var(--color-blue-dark);
+      color: var(--color-gk-dark-blue);
     }
   }
 

@@ -4,7 +4,7 @@
     tabindex="-1"
     aria-hidden="true"
     :data-loading="loadingValue"
-    style="--color-icon-hover-color: var(--color-white)"
+    style="--color-icon-hover-color: var(--color-gk-white)"
     ref="modal"
     v-bind="settings"
   >

@@ -9,7 +9,6 @@ declare namespace Lang {
         let follow: string;
         let similarPosts: string;
         let withAuthor: string;
-        let adBlockInfo: string;
         let vatInfo: string;
     }
     namespace en {
@@ -29,8 +28,6 @@ declare namespace Lang {
         export { similarPosts_1 as similarPosts };
         let withAuthor_1: string;
         export { withAuthor_1 as withAuthor };
-        let adBlockInfo_1: string;
-        export { adBlockInfo_1 as adBlockInfo };
         let vatInfo_1: string;
         export { vatInfo_1 as vatInfo };
     }
@@ -51,8 +48,6 @@ declare namespace Lang {
         export { similarPosts_2 as similarPosts };
         let withAuthor_2: string;
         export { withAuthor_2 as withAuthor };
-        let adBlockInfo_2: string;
-        export { adBlockInfo_2 as adBlockInfo };
         let vatInfo_2: string;
         export { vatInfo_2 as vatInfo };
     }

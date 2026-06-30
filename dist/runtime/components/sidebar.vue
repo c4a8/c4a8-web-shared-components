@@ -539,7 +539,7 @@ export default {
 
 .sidebar__date,
 .sidebar__location {
-  color: var(--color-waterloo);
+  color: var(--color-gk-dark-blue-shade-50);
 }
 .sidebar__date,
 .sidebar__location {
@@ -586,7 +586,7 @@ export default {
   font-weight: 400 !important;
 }
 .sidebar__hint .icon {
-  color: var(--color-orange);
+  color: var(--color-gk-orange);
 }
 
 @keyframes sidebar-slide-in-background {

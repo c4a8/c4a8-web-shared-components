@@ -45,7 +45,7 @@
         class="iconHeart position-absolute"
         :class="[heartAnimationClass, isMobile ? iconHeartMobileClass : '']"
         icon="heart"
-        color="var(--color-red)"
+        color="var(--color-gk-red)"
         :strokeColor="contrastColor"
         :size="isMobile ? 200 : 380"
         style="opacity: 0"
@@ -83,7 +83,7 @@ export default {
     },
     iconColor: {
       type: String,
-      default: 'var(--color-orange)',
+      default: 'var(--color-gk-orange)',
     },
     confirmation: {
       type: Object,
@@ -103,7 +103,7 @@ export default {
       };
     },
     contrastColor() {
-      return this.light ? 'var(--color-white)' : 'var(--color-black)';
+      return this.light ? 'var(--color-gk-white)' : 'var(--color-black)';
     },
     /*
     isMobile() {

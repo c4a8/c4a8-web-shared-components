@@ -43,7 +43,7 @@ export const PeopleSquare = {
         number: 240,
         numberSuffix: '+',
         text: 'Mitarbeitende',
-        color: 'var(--color-blue-medium)',
+        color: 'var(--color-gk-mid-blue)',
       },
       {
         img: {

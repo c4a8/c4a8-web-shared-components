@@ -353,7 +353,7 @@ export default {
 }
 
 .text-image__overline {
-  color: var(--color-orange);
+  color: var(--color-gk-orange);
 }
 
 .text-image__floating-img {

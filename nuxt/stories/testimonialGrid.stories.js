@@ -29,7 +29,7 @@ export const TestimonialGrid = {
           alt: 'Video Casestudy Franz Haniel',
           id: '0U_mV706VKI',
         },
-        bgColor: 'var(--color-blue-light)',
+        bgColor: 'var(--color-gk-light-blue)',
       },
       {
         name: 'Matti Puolitaival',
@@ -40,7 +40,7 @@ export const TestimonialGrid = {
           alt: 'lorem ipsum',
         },
 
-        bgColor: 'var(--color-blue-light)',
+        bgColor: 'var(--color-gk-light-blue)',
       },
 
       {
@@ -64,7 +64,7 @@ export const TestimonialGrid = {
           id: '0U_mV706VKI',
         },
 
-        bgColor: 'var(--color-blue-light)',
+        bgColor: 'var(--color-gk-light-blue)',
       },
       {
         name: 'Erika Musterfrau',
@@ -75,9 +75,9 @@ export const TestimonialGrid = {
           id: '0U_mV706VKI',
           fullWidth: true,
         },
-        bgColor: 'var(--color-blue-light)',
+        bgColor: 'var(--color-gk-light-blue)',
 
-        bgColor: 'var(--color-blue-light)',
+        bgColor: 'var(--color-gk-light-blue)',
       },
       {
         name: 'Jane Doe',
@@ -90,7 +90,7 @@ export const TestimonialGrid = {
           id: '0U_mV706VKI',
         },
 
-        bgColor: 'var(--color-blue-light)',
+        bgColor: 'var(--color-gk-light-blue)',
       },
       {
         name: 'John Smith',
@@ -103,7 +103,7 @@ export const TestimonialGrid = {
           id: '0U_mV706VKI',
         },
 
-        bgColor: 'var(--color-blue-light)',
+        bgColor: 'var(--color-gk-light-blue)',
       },
     ],
   },

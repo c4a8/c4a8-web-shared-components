@@ -14,7 +14,7 @@ export const PricingDetails = {
       textRight: 'Annual',
       hint: {
         text: 'Save up to 10%',
-        color: 'var(--color-white)',
+        color: 'var(--color-gk-white)',
         bgColor: 'var(--color-secondary)',
       },
       id: 'pricingToggleSwitch',
@@ -32,7 +32,7 @@ export const PricingConditions = {
       textRight: 'Annual',
       hint: {
         text: 'Save up to 10%',
-        color: 'var(--color-white)',
+        color: 'var(--color-gk-white)',
         bgColor: 'var(--color-secondary)',
       },
       id: 'pricingToggleSwitch',
@@ -51,7 +51,7 @@ export const Buttons = {
       textRight: 'Annual',
       hint: {
         text: 'Save up to 10%',
-        color: 'var(--color-white)',
+        color: 'var(--color-gk-white)',
         bgColor: 'var(--color-secondary)',
       },
       id: 'pricingToggleSwitch',

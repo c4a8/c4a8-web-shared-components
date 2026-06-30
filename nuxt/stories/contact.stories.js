@@ -266,8 +266,8 @@ export const WithQuoteBgColor = {
     onSurface: true,
     bgColor: 'var(--color-blue-jeans)',
     color: 'var(--color-copy)',
-    boxBgColor: 'var(--color-gigas)',
-    boxColor: 'var(--color-white)',
+    boxBgColor: 'var(--color-gk-violet)',
+    boxColor: 'var(--color-gk-white)',
     quote: true,
     contact: {
       headline: 'Jetzt Gesprächstermin vereinbaren',
@@ -361,7 +361,7 @@ export const Small = {
     quote: true,
     collapsed: true,
     color: 'var(--color-black)',
-    boxBgColor: 'var(--color-yellow)',
+    boxBgColor: 'var(--color-gk-yellow)',
     quoteColor: 'var(--color-blue-jeans)',
     contact: {
       headline: 'Jetzt Gesprächstermin vereinbaren',

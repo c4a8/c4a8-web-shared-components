@@ -97,7 +97,7 @@ export default {
 <style>
 .teaser {
   --color-teaser-copy-highlight: var(--color-copy-highlight);
-  --color-teaser-background: var(--color-black-4);
+  --color-teaser-background: var(--color-gk-light-grey);
   position: relative;
   padding: 4rem 0 2.5rem;
 }

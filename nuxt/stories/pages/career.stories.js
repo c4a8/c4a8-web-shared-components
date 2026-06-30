@@ -53,13 +53,13 @@ export const Career = {
     },
     hero: {
       overline: 'Karriere',
-      bgColor: 'var(--color-blue-dark)',
+      bgColor: 'var(--color-gk-dark-blue)',
       light: true,
       lightOverline: false,
       fullscreen: true,
       background: {
         icon: 'smile',
-        iconColor: 'var(--color-yellow)',
+        iconColor: 'var(--color-gk-yellow)',
       },
       animation: {
         sequence: [

@@ -1,5 +1,21 @@
 # Releases
 
+# Release 0.4.106
+
+- Fixes presorting before limiting items
+
+# Release 0.4.105
+
+- Migrates colors from figma into our codebase. Adjusted colors through all our components.
+
+# Release 0.4.104
+
+- Adds performance improvements to increase lighthouse score
+
+# Release 0.4.103
+
+- Fixes Job List and Job List Detail page to work with all languages
+
 # Release 0.4.102
 
 - Fixes job-list empty state

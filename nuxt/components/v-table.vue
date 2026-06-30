@@ -16,7 +16,7 @@
                   v-if="item.speaker"
                   :style="
                     item.highlight
-                      ? '--color-highlight-underline: var(--color-yellow)'
+                      ? '--color-highlight-underline: var(--color-gk-yellow)'
                       : '--color-highlight-underline: null'
                   "
                   class="highlight-underline"
@@ -122,7 +122,7 @@ export default {
         this.$refs.head.style.backgroundColor = this.bgImg ? 'transparent' : this.headBg;
         this.$refs.head.style.backgroundImage = this.bgImg ? `url(${this.bgImg})` : 'none';
         this.$refs.head.style.backgroundSize = this.bgImg ? '100% 100%' : '';
-        this.$refs.headSticky.style.background = this.bgImg ? 'var(--color-white)' : '';
+        this.$refs.headSticky.style.background = this.bgImg ? 'var(--color-gk-white)' : '';
       }
     },
   },

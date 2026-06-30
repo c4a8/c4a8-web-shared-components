@@ -8,7 +8,7 @@
 }
 
 .testimonial-video-teaser {
-  --color-testimonial-teaser-foreground: var(--color-white);
+  --color-testimonial-teaser-foreground: var(--color-gk-white);
   position: relative;
   display: inline-block;
 
@@ -30,7 +30,7 @@
 };
 
 .testimonial-teaser {
-  --color-testimonial-teaser-foreground: var(--color-white);
+  --color-testimonial-teaser-foreground: var(--color-gk-white);
 
   position: relative;
   //max-width: unquote('min(500px, 100vw)');

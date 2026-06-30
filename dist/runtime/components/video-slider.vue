@@ -80,7 +80,7 @@ export default {
       return this.color ? this.color : 'var(--color-copy)';
     },
     backgroundColor() {
-      return this.bgColor ? this.bgColor : 'var(--color-black-4)';
+      return this.bgColor ? this.bgColor : 'var(--color-gk-light-grey)';
     },
     style() {
       // TODO create a base component that can use a style override like this, since we use this quite often
@@ -174,7 +174,7 @@ export default {
 </script>
 <style>
 .video-slider {
-  --color-video-slider-tab: var(--color-yellow);
+  --color-video-slider-tab: var(--color-gk-yellow);
   --video-slider-video-gap: 0.25rem;
   --video-slider-video-factor: 2;
   background-color: var(--color-video-slider-background);

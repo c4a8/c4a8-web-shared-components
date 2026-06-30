@@ -17,7 +17,7 @@ export default {
         color: {
             description: 'Color of the circle itself',
             type: 'string',
-            defaultValue: 'var(--color-yellow)',
+            defaultValue: 'var(--color-gk-yellow)',
         },
     },
     title: 'Components/Circle',

@@ -22,7 +22,7 @@
             <div class="job-list__detail-share">
               <!-- TODO share bar -->
             </div>
-            <div class="job-list__detail-cta">
+            <div class="job-list__detail-cta page-detail__animation-3">
               <cta :text="ctaText" :button="ctaButton" @click="handleCta" />
             </div>
           </div>
@@ -61,6 +61,8 @@
 </template>
 
 <script>
+import { useI18n } from '#imports';
+
 import JobListings from '../utils/job-listings.js';
 import State from '../utils/state.js';
 import Loading from '../utils/loading.js';
@@ -95,6 +97,11 @@ export default {
     getUuid() {
       return 'job-list-detail-style';
     },
+  },
+  setup() {
+    const { locale } = useI18n();
+
+    return { locale };
   },
   mounted() {
     this.loading = new Loading(this.$refs['job-list-detail'], () => {
@@ -134,7 +141,9 @@ export default {
         mockDocumentsUrl,
       });
 
-      this.api.setLang(this.lang);
+      const lang = this.lang || this.locale;
+
+      this.api.setLang(lang);
 
       const jobId = this.api.getJobId() || this.jobId;
 
@@ -264,3 +273,68 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+$job-list-detail-transition-1-delay: 0.9s;
+$job-list-detail-transition-2-delay: 1.3s;
+$job-list-detail-transition-3-delay: 1.8s;
+
+.job-list__detail {
+  &.is-loading {
+    &::before {
+      width: 0;
+    }
+
+    .job-list__detail-animation-1,
+    .job-list__detail-animation-2,
+    .cta,
+    .job-list__detail-gender,
+    .job-list__detail-headline {
+      opacity: 0;
+      transition: none;
+      pointer-events: none;
+    }
+  }
+
+  .job-list__detail-animation-1,
+  .job-list__detail-headline {
+    @include font-style($style: 'h2-font-size', $weight: 'bold');
+
+    color: var(--color-job-list-detail-copy);
+    word-break: break-word;
+  }
+
+  .job-list__detail-gender {
+    transition: opacity 0.6s $job-list-detail-transition-2-delay $animation-transition;
+  }
+}
+
+.job-list__detail-start {
+  padding-top: spacing(36);
+}
+
+.job-list__detail-gender {
+  @include font-style($style: 'font-size-4', $weight: bold);
+}
+
+.job-list__detail-share {
+  margin-bottom: spacing(10);
+}
+
+.job-list__detail-maps {
+  margin-top: spacing(22);
+}
+
+job-list-detail {
+  min-height: 100vh;
+  display: block;
+}
+
+.job-list__detail-description {
+  &.richtext {
+    span,
+    p {
+      font-family: inherit !important;
+    }
+  }
+}
+</style>

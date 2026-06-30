@@ -505,7 +505,7 @@ export default {
 .sidebar__location {
   @include font-style('font-size-2', 'bold');
 
-  color: var(--color-waterloo);
+  color: var(--color-gk-dark-blue-shade-50);
 }
 
 .sidebar__location {
@@ -525,7 +525,7 @@ export default {
   flex-direction: column;
 
   .icon {
-    color: var(--color-orange);
+    color: var(--color-gk-orange);
   }
 }
 

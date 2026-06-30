@@ -294,7 +294,7 @@ export default {
   position: absolute;
   right: -0.5rem;
   top: 0;
-  background-color: var(--color-gigas);
+  background-color: var(--color-gk-violet);
   z-index: 2;
 }
 

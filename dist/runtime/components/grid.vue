@@ -79,7 +79,7 @@ export default {
 <style>
 .grid {
   --grid-spacing: 7.5rem;
-  --grid-border-color: var(--color-blue-medium);
+  --grid-border-color: var(--color-gk-mid-blue);
   color: var(--color-copy);
   padding: var(--grid-spacing) 0;
 }

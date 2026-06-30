@@ -172,7 +172,7 @@ export default {
     hasGreyBackground: Boolean,
     svgShape: Object,
     small: { type: Boolean, default: false },
-    quoteColor: { type: String, default: 'var(--color-yellow)' },
+    quoteColor: { type: String, default: 'var(--color-gk-yellow)' },
     onSurface: { type: Boolean, default: false },
   },
 
@@ -229,10 +229,10 @@ export default {
 </script>
 <style>
 .contact {
-  --color-contact-box-background: var(--color-yellow);
+  --color-contact-box-background: var(--color-gk-yellow);
   --color-detail-highlight: var(--color-copy-highlight);
   --color-contact-background: var(--color-primary);
-  --color-contact-quote-background: var(--color-gigas);
+  --color-contact-quote-background: var(--color-gk-violet);
   --contact-spacing-collapsed: 0.75rem;
   --contact-copy-color: var(--color-copy);
   --contact-box-copy-color: var(--contact-copy-color);
@@ -260,7 +260,7 @@ export default {
 }
 .contact.contact--quote {
   --contact-copy-color: var(--color-copy-light);
-  --color-contact-box-background: var(--color-green-blue);
+  --color-contact-box-background: var(--color-gk-petrol);
 }
 .contact.contact--quote .contact__icon {
   width: 100%;

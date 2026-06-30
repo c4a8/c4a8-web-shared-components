@@ -91,8 +91,8 @@ export const Agenda = {
 export const StickyColumn = {
   args: {
     head: 'true',
-    headBg: 'var(--color-gigas)',
-    headColor: 'var(--color-white)',
+    headBg: 'var(--color-gk-violet)',
+    headColor: 'var(--color-gk-white)',
     theme: 'verticallyStriped',
     sticky: 'true',
     table: [
@@ -134,7 +134,7 @@ export const StickyColumn = {
 export const Products = {
   args: {
     head: 'true',
-    headBg: 'var(--color-yellow)',
+    headBg: 'var(--color-gk-yellow)',
     headColor: '#02071f',
     bgImg: 'https://res.cloudinary.com/c4a8/image/upload/v1757063548/products/scepman/scepman-products-header.jpg',
     theme: 'products',

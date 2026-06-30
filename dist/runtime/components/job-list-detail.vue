@@ -22,7 +22,7 @@
             <div class="job-list__detail-share">
               <!-- TODO share bar -->
             </div>
-            <div class="job-list__detail-cta">
+            <div class="job-list__detail-cta page-detail__animation-3">
               <cta :text="ctaText" :button="ctaButton" @click="handleCta" />
             </div>
           </div>
@@ -61,6 +61,8 @@
 </template>
 
 <script>
+import { useI18n } from '#imports';
+
 import JobListings from '../utils/job-listings.js';
 import State from '../utils/state.js';
 import Loading from '../utils/loading.js';
@@ -95,6 +97,11 @@ export default {
     getUuid() {
       return 'job-list-detail-style';
     },
+  },
+  setup() {
+    const { locale } = useI18n();
+
+    return { locale };
   },
   mounted() {
     this.loading = new Loading(this.$refs['job-list-detail'], () => {
@@ -134,7 +141,9 @@ export default {
         mockDocumentsUrl,
       });
 
-      this.api.setLang(this.lang);
+      const lang = this.lang || this.locale;
+
+      this.api.setLang(lang);
 
       const jobId = this.api.getJobId() || this.jobId;
 
@@ -264,3 +273,91 @@ export default {
   },
 };
 </script>
+<style>
+.job-list__detail.is-loading::before {
+  width: 0;
+}
+.job-list__detail.is-loading .job-list__detail-animation-1,
+.job-list__detail.is-loading .job-list__detail-animation-2,
+.job-list__detail.is-loading .cta,
+.job-list__detail.is-loading .job-list__detail-gender,
+.job-list__detail.is-loading .job-list__detail-headline {
+  opacity: 0;
+  transition: none;
+  pointer-events: none;
+}
+.job-list__detail .job-list__detail-animation-1,
+.job-list__detail .job-list__detail-headline {
+  color: var(--color-job-list-detail-copy);
+  word-break: break-word;
+}
+.job-list__detail .job-list__detail-animation-1,
+.job-list__detail .job-list__detail-headline {
+  font-size: calc(3.75rem / 1.8);
+  line-height: 1.2em;
+  font-weight: lighter;
+}
+@media (min-width: 992px) {
+  .job-list__detail .job-list__detail-animation-1,
+  .job-list__detail .job-list__detail-headline {
+    font-size: calc(3.75rem / 1.3);
+    line-height: 1.2em;
+  }
+}
+@media (min-width: 1200px) {
+  .job-list__detail .job-list__detail-animation-1,
+  .job-list__detail .job-list__detail-headline {
+    font-size: 3.75rem;
+    line-height: 1.2em;
+  }
+}
+.job-list__detail .job-list__detail-animation-1,
+.job-list__detail .job-list__detail-headline {
+  font-weight: bold !important;
+}
+.job-list__detail .job-list__detail-gender {
+  transition: opacity 0.6s 1.3s cubic-bezier(0.19, 1, 0.2, 1);
+}
+
+.job-list__detail-start {
+  padding-top: 9rem;
+}
+
+.job-list__detail-gender {
+  font-size: 1.375rem;
+  line-height: 1.6365em;
+}
+@media (min-width: 992px) {
+  .job-list__detail-gender {
+    font-size: 1.5625rem;
+    line-height: 1.7em;
+  }
+}
+@media (min-width: 1200px) {
+  .job-list__detail-gender {
+    font-size: 1.95313rem;
+    line-height: 1.7em;
+  }
+}
+.job-list__detail-gender {
+  font-weight: bold !important;
+}
+
+.job-list__detail-share {
+  margin-bottom: 2.5rem;
+}
+
+.job-list__detail-maps {
+  margin-top: 5.5rem;
+}
+
+job-list-detail {
+  min-height: 100vh;
+  display: block;
+}
+
+.job-list__detail-description.richtext span,
+.job-list__detail-description.richtext p {
+  font-family: inherit !important;
+}
+</style>

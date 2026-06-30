@@ -130,8 +130,8 @@ export const Contact = {
 
 export const Emergency = {
   args: {
-    bgColor: 'var(--color-orange)',
-    iconColor: 'var(--color-white)',
+    bgColor: 'var(--color-gk-orange)',
+    iconColor: 'var(--color-gk-white)',
     icon: 'emergency',
     modal: {
       contact: {

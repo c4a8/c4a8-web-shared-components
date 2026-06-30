@@ -102,7 +102,7 @@ export default {
   --fab-hint-bg-color: var(--color-fab-background);
   --fab-hint-icon-color: var(--color-copy);
   --fab-hint-bottom-position: -4rem;
-  --fab-hint-highlight-underline-color: var(--color-orange);
+  --fab-hint-highlight-underline-color: var(--color-gk-orange);
   width: 100%;
   position: sticky;
   top: calc(100vh - var(--fab-hint-icon-size) - var(--fab-hint-bottom-position));

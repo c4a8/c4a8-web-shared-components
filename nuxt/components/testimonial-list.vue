@@ -40,8 +40,8 @@ export default {
     headlineLevel: { type: [String, Number], default: '2' },
     subline: { type: String, default: '' },
     contents: { type: Array, default: () => [] },
-    bgColor: { type: String, default: 'var(--color-blue-light)' },
-    bgColorHover: { type: String, default: 'var(--color-blue-medium)' },
+    bgColor: { type: String, default: 'var(--color-gk-light-blue)' },
+    bgColorHover: { type: String, default: 'var(--color-gk-mid-blue)' },
   },
   computed: {
     listSize() {

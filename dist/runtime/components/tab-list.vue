@@ -362,14 +362,14 @@ export default {
   height: 74%;
   width: auto;
   top: -10%;
-  background-color: var(--color-white);
+  background-color: var(--color-gk-white);
   padding: 0 0.5rem;
   cursor: pointer;
   transition: opacity 0.5s cubic-bezier(0.19, 1, 0.2, 1);
 }
 .tab-list__left:hover::before,
 .tab-list__right:hover::before {
-  border-color: var(--color-blue-medium);
+  border-color: var(--color-gk-mid-blue);
 }
 .tab-list__left:hover::before,
 .tab-list__right:hover::before {

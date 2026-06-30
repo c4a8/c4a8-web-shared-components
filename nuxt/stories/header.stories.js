@@ -17,7 +17,7 @@ export default {
       },
       template: `
         <story />
-        <div v-if="args.onSurface" style="height: 200vh;background-color: var(--color-yellow);opacity: 1;" class="dummy-content is--dark"></div>
+        <div v-if="args.onSurface" style="height: 200vh;background-color: var(--color-gk-yellow);opacity: 1;" class="dummy-content is--dark"></div>
         <div v-else style="height: 200vh;" class="dummy-content is--dark"></div>
       `,
     }),
@@ -38,7 +38,7 @@ export const HeaderLight = {
     navigation: HeaderData.navigation,
     light: true,
     blendMode: true,
-    bgColor: 'var(--color-blue-dark)',
+    bgColor: 'var(--color-gk-dark-blue)',
   },
 };
 

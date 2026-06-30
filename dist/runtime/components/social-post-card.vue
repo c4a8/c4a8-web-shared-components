@@ -185,7 +185,7 @@ export default {
       default: () => ({}),
     },
     postedAt: {
-      type: String,
+      type: Number,
     },
     contentHtml: {
       type: String,

@@ -7,8 +7,6 @@ declare namespace _default {
         hideData: string[];
         filesValue: never[];
         dataAuthorsValue: null;
-        retryLimit: number;
-        retryTimeout: number;
     };
     function setup(): {
         config: {};
@@ -97,7 +95,7 @@ declare namespace _default {
     }
     function created(): void;
     namespace methods {
-        function init(): NodeJS.Timeout | undefined;
+        function init(): void;
         function getDataAuthors(): any;
         function event(post: any): boolean;
         function blogTitleUrl(post: any): any;

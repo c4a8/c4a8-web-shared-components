@@ -45,7 +45,7 @@ export const TextTeaser = {
   args: {
     copy: 'Als Advanced Specialization Partner können Sie über uns am Azure Migration Program teilnehmen und von attraktiven Rabatten und Azure Credits profitieren.',
     background: 'assets/svg/shapes/shape-5.svg',
-    bgColor: 'var(--color-black-4)',
+    bgColor: 'var(--color-gk-light-grey)',
     spacing: '',
     ctaList: [
       {

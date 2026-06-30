@@ -98,7 +98,7 @@ export default {
       return this.color ? this.color : 'var(--color-copy-light)';
     },
     backgroundColor() {
-      return this.bgColor ? this.bgColor : 'var(--color-blue-dark)';
+      return this.bgColor ? this.bgColor : 'var(--color-gk-dark-blue)';
     },
     style() {
       return `--color-timeline-background: ${this.backgroundColor}; --color-timeline-color: ${this.copyColor};`;
@@ -290,7 +290,7 @@ export default {
 <style>
 .timeline {
   --color-timeline-line: rgba(255, 255, 255, 0.4);
-  --color-timeline-dot: var(--color-blue-light);
+  --color-timeline-dot: var(--color-gk-light-blue);
   --timeline-line-size: 8px;
   --timeline-line-width: 100px;
   --timeline-line-width-lg: 200px;
