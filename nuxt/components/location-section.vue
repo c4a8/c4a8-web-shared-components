@@ -11,7 +11,7 @@
         <div class="slick__arrow-right rounded-circle" :class="`next-element-${instanceId}`"></div>
       </div>
       <slider v-bind="sliderConfig" :v2="true">
-        <div v-for="(img, index) in images" class="location-section__slider-image-wrapper">
+        <div v-for="(img, index) in sliderImages" class="location-section__slider-image-wrapper">
           <v-img
             :key="index"
             :cloudinary="img.cloudinary"
@@ -22,14 +22,15 @@
         </div>
       </slider>
     </div>
-    <div class="location-section__content container pt-8">
-      <div class="row row-cols-2 pb-5">
+
+    <div class="location-section__content container pt-lg-8 pt-5 pl-lg-0 pr-lg-0 pl-5 pr-5">
+      <div class="row pb-5">
         <div><headline level="h5" :text="overline" /> <headline level="h3" :text="headline" /></div>
         <div v-if="landingpageCta" class="d-flex align-items-center justify-content-end">
           <cta v-bind="landingpageCta" />
         </div>
       </div>
-      <div class="d-flex pt-2 row row-cols-3">
+      <div class="d-flex pt-2 row row-cols-lg-3 row-cols-2">
         <div class="d-flex flex-column">
           <headline level="h5" class="pv-2" :text="locationHeadline" />
           <div v-for="entry in locationEntries" class="font-size-1 py-1">
@@ -96,6 +97,16 @@ export default {
     classList() {
       return this.classes ? this.classes : 'mb-7 pb-11';
     },
+    sliderImages() {
+      if (!this.images || this.images.length === 0) return [];
+      const minRequired = 8;
+      if (this.images.length >= minRequired) return this.images;
+      const result = [];
+      while (result.length < minRequired) {
+        result.push(...this.images);
+      }
+      return result;
+    },
     sliderConfig() {
       return {
         hideContainer: true,
@@ -138,7 +149,8 @@ export default {
 }
 .location-section__slider-image {
   height: 100%;
-  width: 100%;
+  -o-object-fit: cover;
   object-fit: cover;
+  width: 100%;
 }
 </style>
