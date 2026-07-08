@@ -24,9 +24,9 @@
     </div>
 
     <div class="location-section__content container pt-lg-8 pt-5 pl-lg-0 pr-lg-0 pl-5 pr-5">
-      <div class="row pb-5">
+      <div class="row pb-5 d-flex justify-content-between">
         <div><headline level="h5" :text="overline" /> <headline level="h3" :text="headline" /></div>
-        <div v-if="landingpageCta" class="d-flex align-items-center justify-content-end">
+        <div v-if="landingpageCta" class="d-flex align-items-center">
           <cta v-bind="landingpageCta" />
         </div>
       </div>
