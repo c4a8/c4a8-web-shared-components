@@ -65,6 +65,17 @@ const LangData = {
     //     </div>`,
     vatInfo: '*Todos los precios son sin IVA. Nuestras ofertas se dirigen exclusivamente a clientes profesionales.',
   },
+  sv: {
+    loadMorePosts: 'Fler inlägg',
+    tags: 'Taggar',
+    tagsHeadline: 'Inlägg efter taggar',
+    tagsClear: 'Rensa alla',
+    posts: 'Inlägg',
+    follow: 'Följ',
+    similarPosts: 'Liknande inlägg',
+    withAuthor: 'Med',
+    vatInfo: '*Alla priser är exklusive moms. Våra erbjudanden riktar sig uteslutande till företagskunder.',
+  },
 };
 
 // const Lang = LangData[Tools.getLang()];

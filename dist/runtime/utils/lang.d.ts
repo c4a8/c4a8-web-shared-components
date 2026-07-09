@@ -51,4 +51,24 @@ declare namespace Lang {
         let vatInfo_2: string;
         export { vatInfo_2 as vatInfo };
     }
+    namespace sv {
+        let loadMorePosts_3: string;
+        export { loadMorePosts_3 as loadMorePosts };
+        let tags_3: string;
+        export { tags_3 as tags };
+        let tagsHeadline_3: string;
+        export { tagsHeadline_3 as tagsHeadline };
+        let tagsClear_3: string;
+        export { tagsClear_3 as tagsClear };
+        let posts_3: string;
+        export { posts_3 as posts };
+        let follow_3: string;
+        export { follow_3 as follow };
+        let similarPosts_3: string;
+        export { similarPosts_3 as similarPosts };
+        let withAuthor_3: string;
+        export { withAuthor_3 as withAuthor };
+        let vatInfo_3: string;
+        export { vatInfo_3 as vatInfo };
+    }
 }
