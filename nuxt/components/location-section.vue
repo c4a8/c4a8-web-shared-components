@@ -23,14 +23,14 @@
       </slider>
     </div>
 
-    <div class="location-section__content container pt-lg-8 pt-5 pl-lg-0 pr-lg-0 pl-5 pr-5">
+    <div class="location-section__content container pt-lg-8 pt-5 pl-lg-0 pr-lg-0 pl-7 pr-7 ">
       <div class="row pb-5 d-flex justify-content-between">
         <div><headline level="h5" :text="overline" /> <headline level="h3" :text="headline" /></div>
         <div v-if="landingpageCta" class="d-flex align-items-center">
           <cta v-bind="landingpageCta" />
         </div>
       </div>
-      <div class="d-flex pt-2 row row-cols-lg-3 row-cols-2">
+      <div class="d-flex pt-2 row row-cols-lg-3 row-cols-1 ">
         <div class="d-flex flex-column">
           <headline level="h5" class="pv-2" :text="locationHeadline" />
           <div v-for="entry in locationEntries" class="font-size-1 py-1">
@@ -39,11 +39,6 @@
               <p v-html="entry.content"></p>
             </div>
           </div>
-          <cta
-            v-bind="locationCta"
-            v-if="locationCta"
-            :class="locationCta.classes ? locationCta.classes : 'd-flex justify-content-end'"
-          />
         </div>
         <div class="d-flex flex-column">
           <headline level="h5" class="pb-2" :text="contactHeadline" />
@@ -55,6 +50,7 @@
           </div>
         </div>
       </div>
+      <cta v-bind="locationCta" v-if="locationCta" class="pt-3 pt-lg-0 row"/>
     </div>
   </div>
 </template>
@@ -81,7 +77,7 @@ export default {
     images: Array,
     backgroundColor: {
       type: String,
-      default: 'var(--color-surface-background)',
+      default: 'transparent',
     },
   },
   computed: {
@@ -95,7 +91,7 @@ export default {
       };
     },
     classList() {
-      return this.classes ? this.classes : 'mb-7 pb-11';
+      return this.classes ? this.classes : 'mb-5 pb-11';
     },
     sliderImages() {
       if (!this.images || this.images.length === 0) return [];
