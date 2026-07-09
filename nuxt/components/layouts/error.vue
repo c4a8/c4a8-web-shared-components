@@ -27,7 +27,7 @@
   ></page-default>
 </template>
 <script setup>
-import useHeaderData from '../../composables/useHeaderData.js';
+import { useHeaderData } from '#imports';
 
 const props = defineProps({
   error: Object,

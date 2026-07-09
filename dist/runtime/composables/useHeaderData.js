@@ -1,3 +1,5 @@
+import { useAsyncData } from '#imports';
+
 const legacyHeaderModule = import.meta.glob('~/content/header.json', { eager: true, import: 'default' });
 const headerConfigModule = import.meta.glob('~/content/header.config.{js,mjs,ts}', {
   eager: true,

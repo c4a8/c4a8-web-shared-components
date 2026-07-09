@@ -1,3 +1,5 @@
+import { useAsyncData } from '#imports';
+
 const legacyFooterModule = import.meta.glob('~/content/footer.json', { eager: true, import: 'default' });
 const footerConfigModule = import.meta.glob('~/content/footer.config.{js,mjs,ts}', {
   eager: true,
