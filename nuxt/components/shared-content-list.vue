@@ -48,11 +48,20 @@ const filterDuplicateItems = (items) => {
   });
 };
 
-const buildQuery = (collectionName) => {
+const getPrimarySort = (lQuery) => {
+  if (!Array.isArray(lQuery.sort) || lQuery.sort.length === 0) return null;
+
+  const [field, direction] = Object.entries(lQuery.sort[0])[0];
+
+  return { field, direction: direction === 1 ? 'ASC' : 'DESC' };
+};
+
+const buildQuery = (collectionName, { missingSortField = false } = {}) => {
   const query = queryCollection(collectionName);
 
   let queryBuilder = query;
   const lQuery = localeQuery.value;
+  const primarySort = getPrimarySort(lQuery);
 
   if (lQuery.where && Object.keys(lQuery.where).length > 0) {
     Object.entries(lQuery.where).forEach(([field, condition]) => {
@@ -66,12 +75,20 @@ const buildQuery = (collectionName) => {
     });
   }
 
-  if (Array.isArray(lQuery.sort)) {
-    lQuery.sort.forEach((sortItem) => {
-      Object.entries(sortItem).forEach(([field, direction]) => {
-        queryBuilder = queryBuilder.order(field, direction === 1 ? 'ASC' : 'DESC');
+  if (missingSortField) {
+    queryBuilder = queryBuilder.where(primarySort.field, 'IS NULL').order('stem', primarySort.direction);
+  } else {
+    if (primarySort && lQuery.limit) {
+      queryBuilder = queryBuilder.where(primarySort.field, 'IS NOT NULL');
+    }
+
+    if (Array.isArray(lQuery.sort)) {
+      lQuery.sort.forEach((sortItem) => {
+        Object.entries(sortItem).forEach(([field, direction]) => {
+          queryBuilder = queryBuilder.order(field, direction === 1 ? 'ASC' : 'DESC');
+        });
       });
-    });
+    }
   }
 
   if (lQuery.limit) {
@@ -79,6 +96,17 @@ const buildQuery = (collectionName) => {
   }
 
   return queryBuilder;
+};
+
+const fetchCollection = async (collectionName) => {
+  const lQuery = localeQuery.value;
+  const results = await buildQuery(collectionName).all();
+
+  if (!getPrimarySort(lQuery) || !lQuery.limit) return results;
+
+  const missingSortFieldResults = await buildQuery(collectionName, { missingSortField: true }).all();
+
+  return [...results, ...missingSortFieldResults];
 };
 
 const list = computed(() => {
@@ -91,7 +119,7 @@ const { data: asyncList } = await useAsyncData(dataKey, async () => {
   if (props.dataList.length > 0) return null;
 
   const mainCollection = 'content_' + locale.value;
-  const mainResults = await buildQuery(mainCollection).all();
+  const mainResults = await fetchCollection(mainCollection);
 
   if (!props.query.additionalCollections?.length) {
     return mainResults;
@@ -101,7 +129,7 @@ const { data: asyncList } = await useAsyncData(dataKey, async () => {
     props.query.additionalCollections.map(async (collection) => {
       const collectionName = collection;
 
-      return buildQuery(collectionName).all();
+      return fetchCollection(collectionName);
     })
   );
 
