@@ -4786,8 +4786,6 @@ a.badge-indigo:focus {
 }
 
 */
-/*
-
 .media {
   display: flex;
   align-items: flex-start;
@@ -4796,6 +4794,8 @@ a.badge-indigo:focus {
 .media-body {
   flex: 1;
 }
+
+/*
 
 .list-group {
   display: flex;
@@ -33226,7 +33226,7 @@ modal {
   padding-left: 1.5em;
   margin-top: 3rem;
 }
-.richtext h2[id=über], .richtext h2[id=Über], .richtext h2[id^=über-], .richtext h2[id^=Über-], .richtext h2[id=about], .richtext h2[id=About], .richtext h2[id^=about-], .richtext h2[id^=About-], .richtext h2#Fazit, .richtext h2#fazit, .richtext h2#Conclusion, .richtext h2#conclusion, .richtext h2#Slutsats, .richtext h2#slutsats,
+.richtext h2[id=über], .richtext h2[id=Über], .richtext h2[id^=über-], .richtext h2[id^=Über-], .richtext h2[id=about], .richtext h2[id=About], .richtext h2[id^=about-], .richtext h2[id^=About-], .richtext h2#Fazit, .richtext h2#fazit, .richtext h2#Conclusion, .richtext h2#conclusion, .richtext h2#Slutsats, .richtext h2#slutsats, .richtext h2#Konklusjon, .richtext h2#konklusjon, .richtext h2#Johtopäätös, .richtext h2#johtopäätös, .richtext h2#Konklusion, .richtext h2#konklusion, .richtext h2#Niðurstaða, .richtext h2#niðurstaða, .richtext h2#Conclusione, .richtext h2#conclusione, .richtext h2#Conclusie, .richtext h2#conclusie, .richtext h2#결론,
 .richtext h3[id=über],
 .richtext h3[id=Über],
 .richtext h3[id^=über-],
@@ -33241,6 +33241,19 @@ modal {
 .richtext h3#conclusion,
 .richtext h3#Slutsats,
 .richtext h3#slutsats,
+.richtext h3#Konklusjon,
+.richtext h3#konklusjon,
+.richtext h3#Johtopäätös,
+.richtext h3#johtopäätös,
+.richtext h3#Konklusion,
+.richtext h3#konklusion,
+.richtext h3#Niðurstaða,
+.richtext h3#niðurstaða,
+.richtext h3#Conclusione,
+.richtext h3#conclusione,
+.richtext h3#Conclusie,
+.richtext h3#conclusie,
+.richtext h3#결론,
 .richtext h4[id=über],
 .richtext h4[id=Über],
 .richtext h4[id^=über-],
@@ -33254,13 +33267,26 @@ modal {
 .richtext h4#Conclusion,
 .richtext h4#conclusion,
 .richtext h4#Slutsats,
-.richtext h4#slutsats {
+.richtext h4#slutsats,
+.richtext h4#Konklusjon,
+.richtext h4#konklusjon,
+.richtext h4#Johtopäätös,
+.richtext h4#johtopäätös,
+.richtext h4#Konklusion,
+.richtext h4#konklusion,
+.richtext h4#Niðurstaða,
+.richtext h4#niðurstaða,
+.richtext h4#Conclusione,
+.richtext h4#conclusione,
+.richtext h4#Conclusie,
+.richtext h4#conclusie,
+.richtext h4#결론 {
   background-color: var(--color-gk-petrol);
   color: var(--color-gk-white);
   padding: 1rem 1rem 2.5rem;
   margin: 5rem 0 0 0;
 }
-.richtext h2[id=über] ~ p, .richtext h2[id=Über] ~ p, .richtext h2[id^=über-] ~ p, .richtext h2[id^=Über-] ~ p, .richtext h2[id=about] ~ p, .richtext h2[id=About] ~ p, .richtext h2[id^=about-] ~ p, .richtext h2[id^=About-] ~ p, .richtext h2#Fazit ~ p, .richtext h2#fazit ~ p, .richtext h2#Conclusion ~ p, .richtext h2#conclusion ~ p, .richtext h2#Slutsats ~ p, .richtext h2#slutsats ~ p,
+.richtext h2[id=über] ~ p, .richtext h2[id=Über] ~ p, .richtext h2[id^=über-] ~ p, .richtext h2[id^=Über-] ~ p, .richtext h2[id=about] ~ p, .richtext h2[id=About] ~ p, .richtext h2[id^=about-] ~ p, .richtext h2[id^=About-] ~ p, .richtext h2#Fazit ~ p, .richtext h2#fazit ~ p, .richtext h2#Conclusion ~ p, .richtext h2#conclusion ~ p, .richtext h2#Slutsats ~ p, .richtext h2#slutsats ~ p, .richtext h2#Konklusjon ~ p, .richtext h2#konklusjon ~ p, .richtext h2#Johtopäätös ~ p, .richtext h2#johtopäätös ~ p, .richtext h2#Konklusion ~ p, .richtext h2#konklusion ~ p, .richtext h2#Niðurstaða ~ p, .richtext h2#niðurstaða ~ p, .richtext h2#Conclusione ~ p, .richtext h2#conclusione ~ p, .richtext h2#Conclusie ~ p, .richtext h2#conclusie ~ p, .richtext h2#결론 ~ p,
 .richtext h3[id=über] ~ p,
 .richtext h3[id=Über] ~ p,
 .richtext h3[id^=über-] ~ p,
@@ -33275,6 +33301,19 @@ modal {
 .richtext h3#conclusion ~ p,
 .richtext h3#Slutsats ~ p,
 .richtext h3#slutsats ~ p,
+.richtext h3#Konklusjon ~ p,
+.richtext h3#konklusjon ~ p,
+.richtext h3#Johtopäätös ~ p,
+.richtext h3#johtopäätös ~ p,
+.richtext h3#Konklusion ~ p,
+.richtext h3#konklusion ~ p,
+.richtext h3#Niðurstaða ~ p,
+.richtext h3#niðurstaða ~ p,
+.richtext h3#Conclusione ~ p,
+.richtext h3#conclusione ~ p,
+.richtext h3#Conclusie ~ p,
+.richtext h3#conclusie ~ p,
+.richtext h3#결론 ~ p,
 .richtext h4[id=über] ~ p,
 .richtext h4[id=Über] ~ p,
 .richtext h4[id^=über-] ~ p,
@@ -33288,7 +33327,20 @@ modal {
 .richtext h4#Conclusion ~ p,
 .richtext h4#conclusion ~ p,
 .richtext h4#Slutsats ~ p,
-.richtext h4#slutsats ~ p {
+.richtext h4#slutsats ~ p,
+.richtext h4#Konklusjon ~ p,
+.richtext h4#konklusjon ~ p,
+.richtext h4#Johtopäätös ~ p,
+.richtext h4#johtopäätös ~ p,
+.richtext h4#Konklusion ~ p,
+.richtext h4#konklusion ~ p,
+.richtext h4#Niðurstaða ~ p,
+.richtext h4#niðurstaða ~ p,
+.richtext h4#Conclusione ~ p,
+.richtext h4#conclusione ~ p,
+.richtext h4#Conclusie ~ p,
+.richtext h4#conclusie ~ p,
+.richtext h4#결론 ~ p {
   background-color: var(--color-gk-petrol);
   color: var(--color-gk-white);
   padding: 0 1rem 1rem;
@@ -33296,7 +33348,7 @@ modal {
   margin-bottom: 0;
 }
 @media (min-width: 992px) {
-  .richtext h2[id=über], .richtext h2[id=Über], .richtext h2[id^=über-], .richtext h2[id^=Über-], .richtext h2[id=about], .richtext h2[id=About], .richtext h2[id^=about-], .richtext h2[id^=About-], .richtext h2#Fazit, .richtext h2#fazit, .richtext h2#Conclusion, .richtext h2#conclusion, .richtext h2#Slutsats, .richtext h2#slutsats,
+  .richtext h2[id=über], .richtext h2[id=Über], .richtext h2[id^=über-], .richtext h2[id^=Über-], .richtext h2[id=about], .richtext h2[id=About], .richtext h2[id^=about-], .richtext h2[id^=About-], .richtext h2#Fazit, .richtext h2#fazit, .richtext h2#Conclusion, .richtext h2#conclusion, .richtext h2#Slutsats, .richtext h2#slutsats, .richtext h2#Konklusjon, .richtext h2#konklusjon, .richtext h2#Johtopäätös, .richtext h2#johtopäätös, .richtext h2#Konklusion, .richtext h2#konklusion, .richtext h2#Niðurstaða, .richtext h2#niðurstaða, .richtext h2#Conclusione, .richtext h2#conclusione, .richtext h2#Conclusie, .richtext h2#conclusie, .richtext h2#결론,
   .richtext h3[id=über],
   .richtext h3[id=Über],
   .richtext h3[id^=über-],
@@ -33311,6 +33363,19 @@ modal {
   .richtext h3#conclusion,
   .richtext h3#Slutsats,
   .richtext h3#slutsats,
+  .richtext h3#Konklusjon,
+  .richtext h3#konklusjon,
+  .richtext h3#Johtopäätös,
+  .richtext h3#johtopäätös,
+  .richtext h3#Konklusion,
+  .richtext h3#konklusion,
+  .richtext h3#Niðurstaða,
+  .richtext h3#niðurstaða,
+  .richtext h3#Conclusione,
+  .richtext h3#conclusione,
+  .richtext h3#Conclusie,
+  .richtext h3#conclusie,
+  .richtext h3#결론,
   .richtext h4[id=über],
   .richtext h4[id=Über],
   .richtext h4[id^=über-],
@@ -33324,10 +33389,23 @@ modal {
   .richtext h4#Conclusion,
   .richtext h4#conclusion,
   .richtext h4#Slutsats,
-  .richtext h4#slutsats {
+  .richtext h4#slutsats,
+  .richtext h4#Konklusjon,
+  .richtext h4#konklusjon,
+  .richtext h4#Johtopäätös,
+  .richtext h4#johtopäätös,
+  .richtext h4#Konklusion,
+  .richtext h4#konklusion,
+  .richtext h4#Niðurstaða,
+  .richtext h4#niðurstaða,
+  .richtext h4#Conclusione,
+  .richtext h4#conclusione,
+  .richtext h4#Conclusie,
+  .richtext h4#conclusie,
+  .richtext h4#결론 {
     padding: 3rem 3rem 2.5rem;
   }
-  .richtext h2[id=über] ~ p, .richtext h2[id=Über] ~ p, .richtext h2[id^=über-] ~ p, .richtext h2[id^=Über-] ~ p, .richtext h2[id=about] ~ p, .richtext h2[id=About] ~ p, .richtext h2[id^=about-] ~ p, .richtext h2[id^=About-] ~ p, .richtext h2#Fazit ~ p, .richtext h2#fazit ~ p, .richtext h2#Conclusion ~ p, .richtext h2#conclusion ~ p, .richtext h2#Slutsats ~ p, .richtext h2#slutsats ~ p,
+  .richtext h2[id=über] ~ p, .richtext h2[id=Über] ~ p, .richtext h2[id^=über-] ~ p, .richtext h2[id^=Über-] ~ p, .richtext h2[id=about] ~ p, .richtext h2[id=About] ~ p, .richtext h2[id^=about-] ~ p, .richtext h2[id^=About-] ~ p, .richtext h2#Fazit ~ p, .richtext h2#fazit ~ p, .richtext h2#Conclusion ~ p, .richtext h2#conclusion ~ p, .richtext h2#Slutsats ~ p, .richtext h2#slutsats ~ p, .richtext h2#Konklusjon ~ p, .richtext h2#konklusjon ~ p, .richtext h2#Johtopäätös ~ p, .richtext h2#johtopäätös ~ p, .richtext h2#Konklusion ~ p, .richtext h2#konklusion ~ p, .richtext h2#Niðurstaða ~ p, .richtext h2#niðurstaða ~ p, .richtext h2#Conclusione ~ p, .richtext h2#conclusione ~ p, .richtext h2#Conclusie ~ p, .richtext h2#conclusie ~ p, .richtext h2#결론 ~ p,
   .richtext h3[id=über] ~ p,
   .richtext h3[id=Über] ~ p,
   .richtext h3[id^=über-] ~ p,
@@ -33342,6 +33420,19 @@ modal {
   .richtext h3#conclusion ~ p,
   .richtext h3#Slutsats ~ p,
   .richtext h3#slutsats ~ p,
+  .richtext h3#Konklusjon ~ p,
+  .richtext h3#konklusjon ~ p,
+  .richtext h3#Johtopäätös ~ p,
+  .richtext h3#johtopäätös ~ p,
+  .richtext h3#Konklusion ~ p,
+  .richtext h3#konklusion ~ p,
+  .richtext h3#Niðurstaða ~ p,
+  .richtext h3#niðurstaða ~ p,
+  .richtext h3#Conclusione ~ p,
+  .richtext h3#conclusione ~ p,
+  .richtext h3#Conclusie ~ p,
+  .richtext h3#conclusie ~ p,
+  .richtext h3#결론 ~ p,
   .richtext h4[id=über] ~ p,
   .richtext h4[id=Über] ~ p,
   .richtext h4[id^=über-] ~ p,
@@ -33355,17 +33446,44 @@ modal {
   .richtext h4#Conclusion ~ p,
   .richtext h4#conclusion ~ p,
   .richtext h4#Slutsats ~ p,
-  .richtext h4#slutsats ~ p {
+  .richtext h4#slutsats ~ p,
+  .richtext h4#Konklusjon ~ p,
+  .richtext h4#konklusjon ~ p,
+  .richtext h4#Johtopäätös ~ p,
+  .richtext h4#johtopäätös ~ p,
+  .richtext h4#Konklusion ~ p,
+  .richtext h4#konklusion ~ p,
+  .richtext h4#Niðurstaða ~ p,
+  .richtext h4#niðurstaða ~ p,
+  .richtext h4#Conclusione ~ p,
+  .richtext h4#conclusione ~ p,
+  .richtext h4#Conclusie ~ p,
+  .richtext h4#conclusie ~ p,
+  .richtext h4#결론 ~ p {
     padding: 0 3rem 3rem;
   }
 }
-.richtext h2#fazit, .richtext h2#conclusion, .richtext h2#slutsats,
+.richtext h2#fazit, .richtext h2#conclusion, .richtext h2#slutsats, .richtext h2#konklusjon, .richtext h2#johtopäätös, .richtext h2#konklusion, .richtext h2#niðurstaða, .richtext h2#conclusione, .richtext h2#conclusie, .richtext h2#결론,
 .richtext h3#fazit,
 .richtext h3#conclusion,
 .richtext h3#slutsats,
+.richtext h3#konklusjon,
+.richtext h3#johtopäätös,
+.richtext h3#konklusion,
+.richtext h3#niðurstaða,
+.richtext h3#conclusione,
+.richtext h3#conclusie,
+.richtext h3#결론,
 .richtext h4#fazit,
 .richtext h4#conclusion,
-.richtext h4#slutsats {
+.richtext h4#slutsats,
+.richtext h4#konklusjon,
+.richtext h4#johtopäätös,
+.richtext h4#konklusion,
+.richtext h4#niðurstaða,
+.richtext h4#conclusione,
+.richtext h4#conclusie,
+.richtext h4#결론 {
   margin: 2rem 0 0 0;
 }
 .richtext h6:last-of-type {

@@ -153,3 +153,10 @@ exists to prevent repeating them:
 | `en` | `Conclusion` / `conclusion` |
 | `es` | *(missing — would be `Conclusión`, verify slugified ID)* |
 | `sv` | `Slutsats` / `slutsats` |
+| `no` | `Konklusjon` / `konklusjon` |
+| `fi` | `Johtopäätös` / `johtopäätös` *(verify slugified ID — diacritics)* |
+| `da` | `Konklusion` / `konklusion` |
+| `is` | `Niðurstaða` / `niðurstaða` *(verify slugified ID — diacritics)* |
+| `it` | `Conclusione` / `conclusione` |
+| `nl` | `Conclusie` / `conclusie` |
+| `ko` | `결론` *(no case distinction; verify slugified ID)* |

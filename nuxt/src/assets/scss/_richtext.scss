@@ -105,7 +105,20 @@ $richtext-conclusion-spacing-lg: $spacing-content-default;
     &#Conclusion,
     &#conclusion,
     &#Slutsats,
-    &#slutsats {
+    &#slutsats,
+    &#Konklusjon,
+    &#konklusjon,
+    &#Johtopäätös,
+    &#johtopäätös,
+    &#Konklusion,
+    &#konklusion,
+    &#Niðurstaða,
+    &#niðurstaða,
+    &#Conclusione,
+    &#conclusione,
+    &#Conclusie,
+    &#conclusie,
+    &#결론 {
       @include richtext-width;
 
       & {
@@ -134,7 +147,14 @@ $richtext-conclusion-spacing-lg: $spacing-content-default;
 
     &#fazit,
     &#conclusion,
-    &#slutsats {
+    &#slutsats,
+    &#konklusjon,
+    &#johtopäätös,
+    &#konklusion,
+    &#niðurstaða,
+    &#conclusione,
+    &#conclusie,
+    &#결론 {
       margin: spacing(8) 0 0 0;
     }
   }
