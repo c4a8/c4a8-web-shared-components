@@ -21,6 +21,7 @@ declare namespace _default {
         let onlyLanguageDE: string;
         let onlyLanguageEN: string;
         let onlyLanguageES: string;
+        let onlyLanguageSV: string;
         let moreEvents: string;
         let positionTypePermanently: string;
         let positionTypeInternship: string;
@@ -107,6 +108,8 @@ declare namespace _default {
         export { onlyLanguageEN_1 as onlyLanguageEN };
         let onlyLanguageES_1: string;
         export { onlyLanguageES_1 as onlyLanguageES };
+        let onlyLanguageSV_1: string;
+        export { onlyLanguageSV_1 as onlyLanguageSV };
         let moreEvents_1: string;
         export { moreEvents_1 as moreEvents };
         let positionTypePermanently_1: string;
@@ -229,6 +232,8 @@ declare namespace _default {
         export { onlyLanguageEN_2 as onlyLanguageEN };
         let onlyLanguageES_2: string;
         export { onlyLanguageES_2 as onlyLanguageES };
+        let onlyLanguageSV_2: string;
+        export { onlyLanguageSV_2 as onlyLanguageSV };
         let moreEvents_2: string;
         export { moreEvents_2 as moreEvents };
         let positionTypePermanently_2: string;
@@ -351,6 +356,8 @@ declare namespace _default {
         export { onlyLanguageEN_3 as onlyLanguageEN };
         let onlyLanguageES_3: string;
         export { onlyLanguageES_3 as onlyLanguageES };
+        let onlyLanguageSV_3: string;
+        export { onlyLanguageSV_3 as onlyLanguageSV };
         let moreEvents_3: string;
         export { moreEvents_3 as moreEvents };
         let positionTypePermanently_3: string;

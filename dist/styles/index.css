@@ -33226,7 +33226,7 @@ modal {
   padding-left: 1.5em;
   margin-top: 3rem;
 }
-.richtext h2[id=über], .richtext h2[id=Über], .richtext h2[id^=über-], .richtext h2[id^=Über-], .richtext h2[id=about], .richtext h2[id=About], .richtext h2[id^=about-], .richtext h2[id^=About-], .richtext h2#Fazit, .richtext h2#fazit, .richtext h2#Conclusion, .richtext h2#conclusion,
+.richtext h2[id=über], .richtext h2[id=Über], .richtext h2[id^=über-], .richtext h2[id^=Über-], .richtext h2[id=about], .richtext h2[id=About], .richtext h2[id^=about-], .richtext h2[id^=About-], .richtext h2#Fazit, .richtext h2#fazit, .richtext h2#Conclusion, .richtext h2#conclusion, .richtext h2#Slutsats, .richtext h2#slutsats,
 .richtext h3[id=über],
 .richtext h3[id=Über],
 .richtext h3[id^=über-],
@@ -33239,6 +33239,8 @@ modal {
 .richtext h3#fazit,
 .richtext h3#Conclusion,
 .richtext h3#conclusion,
+.richtext h3#Slutsats,
+.richtext h3#slutsats,
 .richtext h4[id=über],
 .richtext h4[id=Über],
 .richtext h4[id^=über-],
@@ -33250,13 +33252,15 @@ modal {
 .richtext h4#Fazit,
 .richtext h4#fazit,
 .richtext h4#Conclusion,
-.richtext h4#conclusion {
+.richtext h4#conclusion,
+.richtext h4#Slutsats,
+.richtext h4#slutsats {
   background-color: var(--color-gk-petrol);
   color: var(--color-gk-white);
   padding: 1rem 1rem 2.5rem;
   margin: 5rem 0 0 0;
 }
-.richtext h2[id=über] ~ p, .richtext h2[id=Über] ~ p, .richtext h2[id^=über-] ~ p, .richtext h2[id^=Über-] ~ p, .richtext h2[id=about] ~ p, .richtext h2[id=About] ~ p, .richtext h2[id^=about-] ~ p, .richtext h2[id^=About-] ~ p, .richtext h2#Fazit ~ p, .richtext h2#fazit ~ p, .richtext h2#Conclusion ~ p, .richtext h2#conclusion ~ p,
+.richtext h2[id=über] ~ p, .richtext h2[id=Über] ~ p, .richtext h2[id^=über-] ~ p, .richtext h2[id^=Über-] ~ p, .richtext h2[id=about] ~ p, .richtext h2[id=About] ~ p, .richtext h2[id^=about-] ~ p, .richtext h2[id^=About-] ~ p, .richtext h2#Fazit ~ p, .richtext h2#fazit ~ p, .richtext h2#Conclusion ~ p, .richtext h2#conclusion ~ p, .richtext h2#Slutsats ~ p, .richtext h2#slutsats ~ p,
 .richtext h3[id=über] ~ p,
 .richtext h3[id=Über] ~ p,
 .richtext h3[id^=über-] ~ p,
@@ -33269,6 +33273,8 @@ modal {
 .richtext h3#fazit ~ p,
 .richtext h3#Conclusion ~ p,
 .richtext h3#conclusion ~ p,
+.richtext h3#Slutsats ~ p,
+.richtext h3#slutsats ~ p,
 .richtext h4[id=über] ~ p,
 .richtext h4[id=Über] ~ p,
 .richtext h4[id^=über-] ~ p,
@@ -33280,7 +33286,9 @@ modal {
 .richtext h4#Fazit ~ p,
 .richtext h4#fazit ~ p,
 .richtext h4#Conclusion ~ p,
-.richtext h4#conclusion ~ p {
+.richtext h4#conclusion ~ p,
+.richtext h4#Slutsats ~ p,
+.richtext h4#slutsats ~ p {
   background-color: var(--color-gk-petrol);
   color: var(--color-gk-white);
   padding: 0 1rem 1rem;
@@ -33288,7 +33296,7 @@ modal {
   margin-bottom: 0;
 }
 @media (min-width: 992px) {
-  .richtext h2[id=über], .richtext h2[id=Über], .richtext h2[id^=über-], .richtext h2[id^=Über-], .richtext h2[id=about], .richtext h2[id=About], .richtext h2[id^=about-], .richtext h2[id^=About-], .richtext h2#Fazit, .richtext h2#fazit, .richtext h2#Conclusion, .richtext h2#conclusion,
+  .richtext h2[id=über], .richtext h2[id=Über], .richtext h2[id^=über-], .richtext h2[id^=Über-], .richtext h2[id=about], .richtext h2[id=About], .richtext h2[id^=about-], .richtext h2[id^=About-], .richtext h2#Fazit, .richtext h2#fazit, .richtext h2#Conclusion, .richtext h2#conclusion, .richtext h2#Slutsats, .richtext h2#slutsats,
   .richtext h3[id=über],
   .richtext h3[id=Über],
   .richtext h3[id^=über-],
@@ -33301,6 +33309,8 @@ modal {
   .richtext h3#fazit,
   .richtext h3#Conclusion,
   .richtext h3#conclusion,
+  .richtext h3#Slutsats,
+  .richtext h3#slutsats,
   .richtext h4[id=über],
   .richtext h4[id=Über],
   .richtext h4[id^=über-],
@@ -33312,10 +33322,12 @@ modal {
   .richtext h4#Fazit,
   .richtext h4#fazit,
   .richtext h4#Conclusion,
-  .richtext h4#conclusion {
+  .richtext h4#conclusion,
+  .richtext h4#Slutsats,
+  .richtext h4#slutsats {
     padding: 3rem 3rem 2.5rem;
   }
-  .richtext h2[id=über] ~ p, .richtext h2[id=Über] ~ p, .richtext h2[id^=über-] ~ p, .richtext h2[id^=Über-] ~ p, .richtext h2[id=about] ~ p, .richtext h2[id=About] ~ p, .richtext h2[id^=about-] ~ p, .richtext h2[id^=About-] ~ p, .richtext h2#Fazit ~ p, .richtext h2#fazit ~ p, .richtext h2#Conclusion ~ p, .richtext h2#conclusion ~ p,
+  .richtext h2[id=über] ~ p, .richtext h2[id=Über] ~ p, .richtext h2[id^=über-] ~ p, .richtext h2[id^=Über-] ~ p, .richtext h2[id=about] ~ p, .richtext h2[id=About] ~ p, .richtext h2[id^=about-] ~ p, .richtext h2[id^=About-] ~ p, .richtext h2#Fazit ~ p, .richtext h2#fazit ~ p, .richtext h2#Conclusion ~ p, .richtext h2#conclusion ~ p, .richtext h2#Slutsats ~ p, .richtext h2#slutsats ~ p,
   .richtext h3[id=über] ~ p,
   .richtext h3[id=Über] ~ p,
   .richtext h3[id^=über-] ~ p,
@@ -33328,6 +33340,8 @@ modal {
   .richtext h3#fazit ~ p,
   .richtext h3#Conclusion ~ p,
   .richtext h3#conclusion ~ p,
+  .richtext h3#Slutsats ~ p,
+  .richtext h3#slutsats ~ p,
   .richtext h4[id=über] ~ p,
   .richtext h4[id=Über] ~ p,
   .richtext h4[id^=über-] ~ p,
@@ -33339,15 +33353,19 @@ modal {
   .richtext h4#Fazit ~ p,
   .richtext h4#fazit ~ p,
   .richtext h4#Conclusion ~ p,
-  .richtext h4#conclusion ~ p {
+  .richtext h4#conclusion ~ p,
+  .richtext h4#Slutsats ~ p,
+  .richtext h4#slutsats ~ p {
     padding: 0 3rem 3rem;
   }
 }
-.richtext h2#fazit, .richtext h2#conclusion,
+.richtext h2#fazit, .richtext h2#conclusion, .richtext h2#slutsats,
 .richtext h3#fazit,
 .richtext h3#conclusion,
+.richtext h3#slutsats,
 .richtext h4#fazit,
-.richtext h4#conclusion {
+.richtext h4#conclusion,
+.richtext h4#slutsats {
   margin: 2rem 0 0 0;
 }
 .richtext h6:last-of-type {

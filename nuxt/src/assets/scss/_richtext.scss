@@ -103,7 +103,9 @@ $richtext-conclusion-spacing-lg: $spacing-content-default;
     &#Fazit,
     &#fazit,
     &#Conclusion,
-    &#conclusion {
+    &#conclusion,
+    &#Slutsats,
+    &#slutsats {
       @include richtext-width;
 
       & {
@@ -131,7 +133,8 @@ $richtext-conclusion-spacing-lg: $spacing-content-default;
     }
 
     &#fazit,
-    &#conclusion {
+    &#conclusion,
+    &#slutsats {
       margin: spacing(8) 0 0 0;
     }
   }
