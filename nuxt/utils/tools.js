@@ -332,7 +332,7 @@ class Tools {
   }
 
   static stripHtml(string) {
-    if (!string) return;
+    if (!string || typeof string !== 'string') return;
 
     return string.replace(new RegExp(/<.*?>/g), '');
   }
