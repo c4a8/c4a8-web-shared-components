@@ -147,6 +147,14 @@ exists to prevent repeating them:
 
 ## Word reference
 
+> **The table is a starting point, not the truth.** The word that matters is the one the
+> translator *actually used* as the conclusion heading, and translations drift from the
+> dictionary word (fi produced `Yhteenveto`, not `Johtopäätös`). After translating a
+> language's content, verify against the real headings and extend the selectors if needed:
+> `grep -rhoE '^#{2,3} \S+' content/<code>/ | sort | uniq -c` in the consuming site —
+> every recurring conclusion-style heading word must appear in both `_richtext.scss`
+> selector lists.
+
 | Locale | Conclusion word (ID selectors) |
 | --- | --- |
 | `de` | `Fazit` / `fazit` |
@@ -154,7 +162,7 @@ exists to prevent repeating them:
 | `es` | *(missing — would be `Conclusión`, verify slugified ID)* |
 | `sv` | `Slutsats` / `slutsats` |
 | `no` | `Konklusjon` / `konklusjon` |
-| `fi` | `Johtopäätös` / `johtopäätös` *(verify slugified ID — diacritics)* |
+| `fi` | `Yhteenveto` / `yhteenveto` **and** `Johtopäätös` / `johtopäätös` *(the fi translations consistently produced "Yhteenveto" ("summary"), not the dictionary word — both are in the CSS since 2026-07-15)* |
 | `da` | `Konklusion` / `konklusion` |
 | `is` | `Niðurstaða` / `niðurstaða` *(verify slugified ID — diacritics)* |
 | `it` | `Conclusione` / `conclusione` |
