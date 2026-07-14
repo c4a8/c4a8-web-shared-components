@@ -1046,7 +1046,7 @@ declare namespace _default {
         function getFolderSwitchUrl(lang: any, currentPath: any, segment: any): any;
         function isBlogTagsUrl(currentPath: any): boolean;
         function getBlogTagsUrl(lang: any, currentPath: any): string;
-        function getHrefLang(lang: any): string | null | undefined;
+        function getHrefLang(lang: any): string | undefined;
         function getParentLink(key: any): any;
         function setActiveLinks(): void;
         function updateProductListHeight(): void;

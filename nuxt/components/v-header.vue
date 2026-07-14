@@ -882,7 +882,9 @@ export default {
 
       if (!hrefLang) return;
 
-      return hrefLang.getAttribute('href');
+      const url = new URL(hrefLang.getAttribute('href'), document.location.origin);
+
+      return url.pathname + url.search + url.hash;
     },
     getParentLink(key) {
       const navi = this.clonedNavigation[key];
