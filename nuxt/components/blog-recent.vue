@@ -76,7 +76,7 @@ export default {
   tagName: 'blog-recent',
   data() {
     return {
-      hideData: ['tags'],
+      hideData: ['tags', 'footer'],
       filesValue: [],
       dataAuthorsValue: null,
     };
