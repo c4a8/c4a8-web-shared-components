@@ -403,6 +403,9 @@ export default {
   transition: all 0.2s ease-in-out;
   border: var(--cta-border-width) solid transparent;
 }
+.cta.link{
+  text-align: left;
+}
 .cta.btn:not(:disabled):not(.disabled) {
   cursor: pointer;
 }
@@ -581,6 +584,7 @@ export default {
 
 .cta__text {
   position: relative;
+
 }
 
 cta {

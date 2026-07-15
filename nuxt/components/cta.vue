@@ -440,7 +440,7 @@ export default {
     font-size: var(--cta-custom-font-size, #{$font-size-base});
     display: inline-flex;
     align-items: center;
-
+    text-align: left;
     &:not(:last-of-type) {
       margin-right: 0.5rem;
     }
