@@ -1,4 +1,4 @@
-import { useAsyncData } from '#imports';
+import { useAsyncData, useI18n, useRoute } from '#imports';
 
 const legacyFooterModule = import.meta.glob('~/content/footer.json', { eager: true, import: 'default' });
 const footerConfigModule = import.meta.glob('~/content/footer.config.{js,mjs,ts}', {
@@ -49,17 +49,37 @@ function resolveLocaleSettings(options) {
 }
 
 export function useFooterData(options = {}) {
-  return useAsyncData('sc:footer-data', () => {
-    const legacyFooter = Object.values(legacyFooterModule)[0];
+  const { sourceLocale } = resolveLocaleSettings(options);
+  let localeRef;
+  try {
+    localeRef = useI18n().locale;
+  } catch {
+    localeRef = undefined;
+  }
+  const currentLocale = () => {
+    if (localeRef?.value) return localeRef.value;
+    const m = /^\/([a-z]{2})(?:\/|$)/.exec(useRoute()?.path || '');
+    return m ? m[1] : sourceLocale;
+  };
 
-    if (legacyFooter) return Promise.resolve(legacyFooter);
+  // Keyed per locale: the prerenderer shares one useAsyncData cache across routes.
+  return useAsyncData(
+    `sc:footer-data-${currentLocale()}`,
+    () => {
+      const legacyFooter = Object.values(legacyFooterModule)[0];
 
-    const footerConfig = Object.values(footerConfigModule)[0];
+      if (legacyFooter) return Promise.resolve(legacyFooter);
 
-    if (!footerConfig) return Promise.resolve(null);
+      const footerConfig = Object.values(footerConfigModule)[0];
 
-    const { locales, sourceLocale } = resolveLocaleSettings(options);
+      if (!footerConfig) return Promise.resolve(null);
 
-    return Promise.resolve(buildFooter(footerConfig, locales, sourceLocale));
-  });
+      // v-footer falls back to the source-locale `links`, so keep both.
+      const current = currentLocale();
+      const locales = current === sourceLocale ? [sourceLocale] : [sourceLocale, current];
+
+      return Promise.resolve(buildFooter(footerConfig, locales, sourceLocale));
+    },
+    { watch: localeRef ? [localeRef] : [] },
+  );
 }

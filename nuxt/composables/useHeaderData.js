@@ -1,4 +1,4 @@
-import { useAsyncData } from '#imports';
+import { useAsyncData, useI18n, useRoute } from '#imports';
 
 const legacyHeaderModule = import.meta.glob('~/content/header.json', { eager: true, import: 'default' });
 const headerConfigModule = import.meta.glob('~/content/header.config.{js,mjs,ts}', {
@@ -100,17 +100,33 @@ function resolveLocaleSettings(options) {
 }
 
 export function useHeaderData(options = {}) {
-  return useAsyncData('sc:header-data', () => {
-    const legacyHeader = Object.values(legacyHeaderModule)[0];
+  const { sourceLocale } = resolveLocaleSettings(options);
+  let localeRef;
+  try {
+    localeRef = useI18n().locale;
+  } catch {
+    localeRef = undefined;
+  }
+  const currentLocale = () => {
+    if (localeRef?.value) return localeRef.value;
+    const m = /^\/([a-z]{2})(?:\/|$)/.exec(useRoute()?.path || '');
+    return m ? m[1] : sourceLocale;
+  };
 
-    if (legacyHeader) return Promise.resolve(legacyHeader);
+  // Keyed per locale: the prerenderer shares one useAsyncData cache across routes.
+  return useAsyncData(
+    `sc:header-data-${currentLocale()}`,
+    () => {
+      const legacyHeader = Object.values(legacyHeaderModule)[0];
 
-    const headerConfig = Object.values(headerConfigModule)[0];
+      if (legacyHeader) return Promise.resolve(legacyHeader);
 
-    if (!headerConfig) return Promise.resolve(null);
+      const headerConfig = Object.values(headerConfigModule)[0];
 
-    const { locales, sourceLocale } = resolveLocaleSettings(options);
+      if (!headerConfig) return Promise.resolve(null);
 
-    return Promise.resolve(buildHeader(headerConfig, locales, sourceLocale));
-  });
+      return Promise.resolve(buildHeader(headerConfig, [currentLocale()], sourceLocale));
+    },
+    { watch: localeRef ? [localeRef] : [] },
+  );
 }

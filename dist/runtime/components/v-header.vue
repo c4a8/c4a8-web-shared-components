@@ -104,7 +104,7 @@
               <div class="header__language-switch" v-if="hasLangSwitch">
                 <a
                   :key="key"
-                  v-for="(_, key) in home.languages"
+                  v-for="key in availableLocales"
                   :class="{ 'header__language-link custom': true, active: key === lowerLang }"
                   v-on:click="handleLanguageSwitch(key)"
                   >{{ key }}</a
@@ -128,7 +128,7 @@
             <icon class="header__link-icon" icon="expand" size="small" />
             <div class="header__language-switch-flyout" ref="languageSwitchFlyout">
               <a
-                v-for="(_, key) in home.languages"
+                v-for="key in availableLocales"
                 :class="{ 'header__language-link custom': true, 'd-none': key === lowerLang }"
                 v-on:click="handleLanguageSwitch(key)"
                 :key="key"
@@ -209,6 +209,8 @@
 </template>
 
 <script>
+import { computed } from 'vue';
+import { useI18n, useSwitchLocalePath } from '#imports';
 import { useAppStore } from '../stores/app.js';
 import Tools from '../utils/tools.js';
 import State from '../utils/state.js';
@@ -220,7 +222,13 @@ export default {
   setup() {
     const store = useAppStore();
 
-    return { store };
+    const switchLocalePath = useSwitchLocalePath();
+    const { locales } = useI18n();
+    const availableLocales = computed(() =>
+      (locales.value || []).map((l) => (typeof l === 'string' ? l : l.code)),
+    );
+
+    return { store, switchLocalePath, availableLocales };
   },
   computed: {
     classList() {
@@ -304,7 +312,7 @@ export default {
       return this.light === true;
     },
     hasLangSwitch() {
-      return Object.keys(this.home?.languages).length > 1;
+      return this.availableLocales.length > 1;
     },
     hasContact() {
       return this.contact;
@@ -769,13 +777,26 @@ export default {
 
       return nextLang[0];
     },
-    handleLanguageSwitch(nextLang) {
-      const activeUrl = this.getActiveUrlByLang(nextLang);
-      const gotoUrl = activeUrl ? activeUrl : this.home.languages[nextLang]?.url;
-
+    async handleLanguageSwitch(nextLang) {
       Tools.storageSave('preferedLanguage', nextLang, false);
 
-      document.location.href = gotoUrl;
+      const target = this.switchLocalePath(nextLang);
+      const stem = window.location.pathname.replace(/^\/[a-z]{2}(?=\/|$)/, '') || '/';
+
+      // Content pages absent in the target locale fall back to that locale's home.
+      const alternates = await this.loadContentAlternates();
+      const missing = alternates[stem] && !alternates[stem].includes(nextLang);
+
+      document.location.href = missing || !target ? `/${nextLang}` : target;
+    },
+    loadContentAlternates() {
+      if (!this._contentAlternates) {
+        this._contentAlternates = fetch('/i18n-content-alternates.json')
+          .then((res) => (res.ok ? res.json() : {}))
+          .catch(() => ({}));
+      }
+
+      return this._contentAlternates;
     },
     getActiveUrlByLang(lang, update) {
       const currentPath = Tools.getCurrentPath();
