@@ -109,7 +109,7 @@ export default {
     query() {
       let query = {};
 
-      const maxItemsToFetch = 21;
+      const maxItemsToFetch = 15;
 
       query.limit = this.limit;
       query.sort = [{ moment: this.reversed ? 1 : -1 }];

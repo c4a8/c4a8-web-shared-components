@@ -98,13 +98,62 @@ const buildQuery = (collectionName, { missingSortField = false } = {}) => {
   return queryBuilder;
 };
 
+const KEEP_TOP = new Set([
+  'id',
+  'path',
+  'stem',
+  'meta',
+  'moment',
+  'hideInRecent',
+  'webcast',
+  'layout',
+  'title',
+  'author',
+  'cta',
+  'tags',
+]);
+const DROP_META = new Set([
+  'keywords',
+  'contactInContent',
+  'seoTitle',
+  'socialimg',
+  'titleClass',
+  'scripts',
+  'asideNav',
+  'maxContent',
+  'quotes',
+  'footer',
+  'textImageTeaser',
+  'published',
+]);
+
+const projectForList = (doc) => {
+  const projected = {};
+
+  for (const [key, value] of Object.entries(doc)) {
+    if (!KEEP_TOP.has(key)) continue;
+
+    if (key === 'meta' && value && typeof value === 'object') {
+      projected.meta = Object.fromEntries(
+        Object.entries(value).filter(([metaKey]) => !DROP_META.has(metaKey) && !metaKey.startsWith('quote'))
+      );
+    } else {
+      projected[key] = value;
+    }
+  }
+
+  return projected;
+};
+
 const fetchCollection = async (collectionName) => {
   const lQuery = localeQuery.value;
-  const results = await buildQuery(collectionName).all();
+  const results = (await buildQuery(collectionName).all()).map(projectForList);
 
   if (!getPrimarySort(lQuery) || !lQuery.limit) return results;
 
-  const missingSortFieldResults = await buildQuery(collectionName, { missingSortField: true }).all();
+  const missingSortFieldResults = (await buildQuery(collectionName, { missingSortField: true }).all()).map(
+    projectForList
+  );
 
   return [...results, ...missingSortFieldResults];
 };

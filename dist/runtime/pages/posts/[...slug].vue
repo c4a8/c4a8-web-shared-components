@@ -62,7 +62,7 @@ const contactInContent = computed(() => post.value?.meta?.contactInContent);
 const textImageTeaser = computed(() => post.value?.meta?.textImageTeaser);
 const blogRecentData = computed(() => {
   return {
-    limit: 21,
+    limit: 15,
     headline: t('similarPosts'),
     slider: true,
     tag: post.value?.meta?.tags,
