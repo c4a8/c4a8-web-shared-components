@@ -1,6 +1,6 @@
 <template>
   <template v-if="showComponent">
-    <SharedContentList :data-list="postsArray" :query="query" v-slot="{ list }">
+    <SharedContentList :data-list="postsArray" :query="query" v-slot="{ list, authors }">
       <template v-if="list">
         <markdown-files
           :list="list"
@@ -36,7 +36,7 @@
                       :author="post.author"
                       :target="target(post)"
                       :event="event(post)"
-                      :dataAuthors="dataAuthorsValue"
+                      :dataAuthors="dataAuthors || authors"
                       :external-language="post.externalLanguage"
                       :excerpt="excerpt(post)"
                     />
@@ -67,7 +67,6 @@ import StickyScroller from '../utils/sticky-scroller.js';
 import UtilityAnimation from '../utils/utility-animation.js';
 import MarkdownFiles from './markdown-files.vue';
 import useConfig from '../composables/useConfig.js';
-import useAuthors from '../composables/useAuthors.js';
 
 import { useI18n } from 'vue-i18n';
 
@@ -78,17 +77,14 @@ export default {
     return {
       hideData: ['tags', 'footer'],
       filesValue: [],
-      dataAuthorsValue: null,
     };
   },
   setup() {
     const config = useConfig();
-    const { authors } = useAuthors();
     const { strategy } = useI18n();
 
     return {
       config,
-      authors,
       strategy,
     };
   },
@@ -256,9 +252,6 @@ export default {
       }
     },
   },
-  created() {
-    this.getDataAuthors();
-  },
   methods: {
     init() {
       if (!this.$refs.container || !this.$refs.root) return;
@@ -270,11 +263,6 @@ export default {
       }
 
       UtilityAnimation.init([this.$refs.root]);
-    },
-    async getDataAuthors() {
-      if (this.dataAuthors) return (this.dataAuthorsValue = this.dataAuthors);
-
-      this.dataAuthorsValue = this.authors;
     },
     event(post) {
       return post.layout === 'post' ? false : true;

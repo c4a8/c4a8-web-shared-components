@@ -4,7 +4,7 @@
       <!-- Search is currently not used -->
     </div>
 
-    <SharedContentList :data-list="posts" :query="query" v-slot="{ list }">
+    <SharedContentList :data-list="posts" :query="query" v-slot="{ list, authors }">
       <template v-if="list">
         <markdown-files :list="list" v-slot="{ files }" :query="query" :is-recent="true" :strategy="strategy">
           <template v-if="updateFiles(files)">
@@ -48,7 +48,6 @@ import { useI18n } from '#imports';
 
 import Tools from '../utils/tools.js';
 import useConfig from '../composables/useConfig.js';
-import useAuthors from '../composables/useAuthors.js';
 
 export default {
   tagName: 'blog',
@@ -60,13 +59,11 @@ export default {
   setup() {
     const config = useConfig();
     const { locale, strategy } = useI18n();
-    const { authors } = useAuthors();
 
     return {
       config,
       locale,
       strategy,
-      authors,
     };
   },
   computed: {

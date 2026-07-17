@@ -1,11 +1,12 @@
 <template>
-  <slot v-bind:list="contentList" :strategy="strategy" />
+  <slot v-bind:list="contentList" :authors="authors" :strategy="strategy" />
 </template>
 
 <script setup>
 import { useI18n } from 'vue-i18n';
 import { computed } from 'vue';
 import { useAsyncData, queryCollection } from '#imports';
+import { reduceAuthors } from '../composables/useAuthors';
 import Tools from '../utils/tools';
 
 const props = defineProps({
@@ -158,15 +159,7 @@ const fetchCollection = async (collectionName) => {
   return [...results, ...missingSortFieldResults];
 };
 
-const list = computed(() => {
-  if (props.dataList.length > 0) return props.dataList;
-
-  return null;
-});
-
-const { data: asyncList } = await useAsyncData(dataKey, async () => {
-  if (props.dataList.length > 0) return null;
-
+const buildList = async () => {
   const mainCollection = 'content_' + locale.value;
   const mainResults = await fetchCollection(mainCollection);
 
@@ -175,17 +168,29 @@ const { data: asyncList } = await useAsyncData(dataKey, async () => {
   }
 
   const additionalResults = await Promise.all(
-    props.query.additionalCollections.map(async (collection) => {
-      const collectionName = collection;
-
-      return fetchCollection(collectionName);
-    })
+    props.query.additionalCollections.map((collection) => fetchCollection(collection))
   );
 
-  const allResults = [...mainResults, ...additionalResults.flat()];
+  return filterDuplicateItems([...mainResults, ...additionalResults.flat()]);
+};
 
-  return filterDuplicateItems(allResults);
+// Ship only the authors the listed posts reference, not the whole authors map.
+const referencedAuthors = async (docs) => {
+  const names = docs.flatMap((doc) => (doc?.author ? [].concat(doc.author) : []));
+
+  if (names.length === 0) return null;
+
+  const doc = await queryCollection('authors_data').first();
+
+  return doc?.meta ? reduceAuthors(doc.meta, names) : null;
+};
+
+const { data: asyncData } = await useAsyncData(dataKey, async () => {
+  const list = props.dataList.length > 0 ? props.dataList : await buildList();
+
+  return { list, authors: await referencedAuthors(list) };
 });
 
-const contentList = computed(() => list.value || asyncList.value);
+const contentList = computed(() => asyncData.value?.list || null);
+const authors = computed(() => asyncData.value?.authors || null);
 </script>

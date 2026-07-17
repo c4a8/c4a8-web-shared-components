@@ -37,12 +37,6 @@ const { data: person } = await useAsyncData(dataKey, () => {
   return query.first();
 });
 
-const { authors } = useAuthors();
-
-const personData = computed(() => {
-  return authors ? authors[person?.value?.name] : null;
-});
-
 const authorName = computed(() => {
   return person?.value?.name;
 });
@@ -91,6 +85,14 @@ const { data: events } = await useAsyncData(eventsDataKey, async () => {
 
   return queryBuilder.all();
 });
+
+const { authors } = useAuthors([
+  person.value?.name,
+  ...(posts.value || []).flatMap((item) => (item.author ? [].concat(item.author) : [])),
+  ...(events.value || []).flatMap((item) => (item.author ? [].concat(item.author) : [])),
+]);
+
+const personData = computed(() => (authors ? authors[person?.value?.name] : null));
 
 const hasAuthor = computed(() => {
   if (person.value && person.value.stem) return true;
