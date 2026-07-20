@@ -23,14 +23,14 @@
       </slider>
     </div>
 
-    <div class="location-section__content container pt-lg-8 pt-5 pl-lg-0 pr-lg-0 pl-7 pr-7 ">
-      <div class="row pb-5 d-flex justify-content-between">
+    <div class="location-section__content container pt-lg-8 pt-5 ">
+      <div class="col-12 pb-5 d-flex justify-content-between">
         <div><headline level="h5" :text="overline" /> <headline level="h3" :text="headline" /></div>
         <div v-if="landingpageCta" class="d-flex align-items-center">
           <cta v-bind="landingpageCta" />
         </div>
       </div>
-      <div class="d-flex pt-2 row row-cols-lg-3 row-cols-1 ">
+      <div class="col-12 d-flex pt-2 flex-wrap row-cols-lg-3 row-cols-1">
         <div class="d-flex flex-column">
           <headline level="h5" class="pv-2" :text="locationHeadline" />
           <div v-for="entry in locationEntries" class="font-size-1 py-1">
@@ -50,7 +50,7 @@
           </div>
         </div>
       </div>
-      <cta v-bind="locationCta" v-if="locationCta" class="pt-3 pt-lg-0 row"/>
+      <cta v-bind="locationCta" v-if="locationCta" class=" col-12 pt-3 pt-lg-0"/>
     </div>
   </div>
 </template>
@@ -149,4 +149,5 @@ export default {
   object-fit: cover;
   width: 100%;
 }
+
 </style>
