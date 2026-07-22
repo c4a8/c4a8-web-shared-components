@@ -98,7 +98,7 @@ declare namespace _default {
         function target(post: any): "_blank" | "_self";
         function postUrl(post: any): any;
         function excerpt(post: any): any;
-        function updateFiles(files: any): true | undefined;
+        function updateFiles(files: any): boolean;
     }
     namespace props {
         namespace bgColor {
