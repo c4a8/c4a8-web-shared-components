@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.1.107
+
+- Fixes issue with timeline component not showing entry text
+
 # Release 0.4.106
 
 - Fixes presorting before limiting items
