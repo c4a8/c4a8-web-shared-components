@@ -918,6 +918,8 @@ declare namespace _default {
             resetHeader(): void;
             setPageIsLoaded(isLoaded: any): void;
         }>;
+        switchLocalePath: (locale: string) => string;
+        availableLocales: import("vue").ComputedRef<string[]>;
     };
     namespace computed {
         function classList(): string[];
@@ -1039,7 +1041,8 @@ declare namespace _default {
         function getHref(item: any): any;
         function getTarget(item: any): any;
         function getNextLanguage(): string | undefined;
-        function handleLanguageSwitch(nextLang: any): void;
+        function handleLanguageSwitch(nextLang: any): Promise<void>;
+        function loadContentAlternates(): any;
         function getActiveUrlByLang(lang: any, update: any): any;
         function getTranslatedUrl(currentPath: any, lang: any): any;
         function getFolderSwitchSegment(currentPath: any): any;

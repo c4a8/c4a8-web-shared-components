@@ -6,11 +6,9 @@ declare namespace _default {
     function data(): {
         hideData: string[];
         filesValue: never[];
-        dataAuthorsValue: null;
     };
     function setup(): {
         config: {};
-        authors: any;
         strategy: any;
     };
     namespace computed {
@@ -93,10 +91,8 @@ declare namespace _default {
     namespace watch {
         function filesValue(newValue: any): void;
     }
-    function created(): void;
     namespace methods {
         function init(): void;
-        function getDataAuthors(): any;
         function event(post: any): boolean;
         function blogTitleUrl(post: any): any;
         function target(post: any): "_blank" | "_self";

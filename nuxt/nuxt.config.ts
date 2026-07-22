@@ -1,10 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { defineNuxtConfig } from 'nuxt/config';
 import { writeFileSync, mkdirSync } from 'fs';
-// Canonical shared-component UI strings = the module's runtime source, i.e. the
-// same file that `vite build` ships to dist/runtime/locales/global.js. The dev
-// app and storybook read it directly so they preview exactly what ships.
-import sharedTranslations from './src/runtime/locales/global.js';
+// Canonical shared-component UI strings. The build pipeline (`npm run update` →
+// scripts/copy-components.js) copies this into src/runtime/locales/, which
+// nuxt-module-build then ships to dist/runtime/locales/global.js. The dev app
+// and storybook read the source directly so they preview exactly what ships.
+import sharedTranslations from './locales/global.js';
 
 const turnstileSiteKey = process.env.NUXT_PUBLIC_TURNSTILE_SITE_KEY ?? null;
 const personioApiKey = process.env.NUXT_PUBLIC_PERSONIO_API_KEY ?? null;

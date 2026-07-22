@@ -12,7 +12,7 @@ declare namespace _default {
         function dropdownCollection(): (() => any)[];
     }
     function setup(): {
-        locale: import("vue").WritableComputedRef<string, string>;
+        locale: string;
     };
     function created(): void;
     function beforeMount(): void;

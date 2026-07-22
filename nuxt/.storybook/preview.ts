@@ -12,7 +12,7 @@ import unifiedcontactsTheme from '../src/assets/scss/themes/_unified-contacts.sc
 
 import { h } from 'vue';
 import { useNuxtApp } from '#imports';
-import globalTranslations from '../src/runtime/locales/global.js';
+import globalTranslations from '../locales/global.js';
 // import { createPinia } from 'pinia';
 // import { setup } from '@storybook/vue3';
 // import { createI18n } from 'vue-i18n';

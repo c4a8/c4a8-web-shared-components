@@ -10,7 +10,7 @@ export default {
     posts: 'Einträge',
     follow: 'Folgen',
     similarPosts: 'Ähnliche Artikel',
-    withAuthor: 'Mit9999',
+    withAuthor: 'Mit',
     // adBlockInfo: `
     //     <div class="ad-block-info__content">
     //       <img src="${adBlockImage}" alt="Full Service" class="is-svg">

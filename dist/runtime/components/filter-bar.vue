@@ -76,7 +76,7 @@ export default {
     },
     normalizedItems() {
       return this.storedItems.slice(this.itemStartPoint).map((item) => {
-        if (item.lang !== this.locale) {
+        if (item.lang && item.lang !== this.locale) {
           item.externalLanguage = Tools.getExternalLanguageText(this.locale, item.lang, this.$t);
         }
 
@@ -123,7 +123,6 @@ export default {
   },
   setup() {
     const { $getLocale } = useI18n();
-    console.log('🚀 ~ getLocale:', $getLocale);
 
     return { locale: $getLocale() };
   },
@@ -390,7 +389,7 @@ export default {
 }
 .filter-bar__toggle-icon:not(:first-of-type)::before {
   position: absolute;
-  content: '';
+  content: "";
   display: block;
   left: 0;
   width: 1px;
