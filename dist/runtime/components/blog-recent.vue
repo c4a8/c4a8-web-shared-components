@@ -288,7 +288,7 @@ export default {
       return post.excerpt || post.hero?.subline;
     },
     updateFiles(files) {
-      if (!files) return;
+      if (!files || files.length === 0) return false;
 
       this.filesValue = files;
 
