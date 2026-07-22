@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import { useI18n } from 'vue-i18n';
+import { useI18n, useNuxtApp } from '#imports';
 import { computed } from 'vue';
 import { useAsyncData, queryCollection } from '#imports';
 import { reduceAuthors } from '../composables/useAuthors';
@@ -20,7 +20,8 @@ const props = defineProps({
   },
 });
 
-const { locale, strategy } = useI18n();
+const { $getLocale } = useI18n();
+const strategy = useNuxtApp().$getI18nConfig?.().strategy ?? 'prefix';
 
 const localeQuery = computed(() => ({
   ...props.query,
@@ -29,7 +30,7 @@ const localeQuery = computed(() => ({
   },
 }));
 
-const dataKey = props.query?.key || Tools.getDataKey('content', props.query, locale.value);
+const dataKey = props.query?.key || Tools.getDataKey('content', props.query, $getLocale());
 
 const filterDuplicateItems = (items) => {
   const seen = new Map();
@@ -160,7 +161,7 @@ const fetchCollection = async (collectionName) => {
 };
 
 const buildList = async () => {
-  const mainCollection = 'content_' + locale.value;
+  const mainCollection = 'content_' + $getLocale();
   const mainResults = await fetchCollection(mainCollection);
 
   if (!props.query.additionalCollections?.length) {

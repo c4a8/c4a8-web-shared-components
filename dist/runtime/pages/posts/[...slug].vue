@@ -36,22 +36,23 @@ import Tools from '../../utils/tools.js';
 
 const route = useRoute();
 
-const { t, strategy } = useI18n();
+const { $t: t } = useI18n();
 
 const nuxtApp = useNuxtApp();
-const currentLocale = nuxtApp.$i18n.locale;
+const strategy = nuxtApp.$getI18nConfig?.().strategy ?? 'prefix';
+const currentLocale = nuxtApp.$getLocale();
 
 const dynamicMeta = useDynamicPageMeta();
 
 const path = route.path.replace(/^\/[a-z]{2}\//, '/');
-const dataKey = Tools.getDataKey('post', null, currentLocale.value, path);
+const dataKey = Tools.getDataKey('post', null, currentLocale, path);
 const shareUrl = `${useRequestURL().origin}${route.path}`;
 
 const config = useRuntimeConfig();
 const postsMapping = config.public.postsMapping || {};
 
 const { data: post } = await useAsyncData(dataKey, () => {
-  const collectionName = 'content_' + currentLocale.value;
+  const collectionName = 'content_' + currentLocale;
   const queryPath = postsMapping[route.path] || postsMapping[route.path.replace(/\/$/, '')] || path;
   const query = queryCollection(collectionName).path(queryPath);
 

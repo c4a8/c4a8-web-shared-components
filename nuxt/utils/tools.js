@@ -750,6 +750,7 @@ class Tools {
   }
 
   static getExternalLanguageText(locale, lang, translateFn) {
+    console.log('🚀 ~ Tools ~ getExternalLanguageText ~ lang:', lang);
     if (lang !== locale) {
       return translateFn('onlyLanguage' + lang?.toUpperCase());
     }

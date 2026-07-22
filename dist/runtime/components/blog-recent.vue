@@ -68,7 +68,7 @@ import UtilityAnimation from '../utils/utility-animation.js';
 import MarkdownFiles from './markdown-files.vue';
 import useConfig from '../composables/useConfig.js';
 
-import { useI18n } from 'vue-i18n';
+import { useNuxtApp } from '#imports';
 
 export default {
   components: { MarkdownFiles },
@@ -81,7 +81,7 @@ export default {
   },
   setup() {
     const config = useConfig();
-    const { strategy } = useI18n();
+    const strategy = useNuxtApp().$getI18nConfig?.().strategy ?? 'prefix';
 
     return {
       config,

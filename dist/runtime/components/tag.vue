@@ -30,7 +30,8 @@ export default {
       ];
     },
     linkPrefix() {
-      return this.nuxtApp?.$i18n?.availableLocales?.length > 1 ? `/${this.nuxtApp?.$i18n?.locale?.value}` : '';
+      const locales = this.nuxtApp?.$getLocales?.() || [];
+      return locales.length > 1 ? `/${this.nuxtApp?.$getLocale?.()}` : '';
     },
     href() {
       return this.linkPrefix + '/blog/#' + encodeURIComponent(this.tag);

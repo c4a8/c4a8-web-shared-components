@@ -146,7 +146,48 @@ const module = defineNuxtModule({
       });
     });
     addImportsDir(resolve("./runtime/composables"));
+    try {
+      await registerSharedI18n(_nuxt, resolve);
+      console.log("✔ [sc-i18n] shared translations layer registered");
+    } catch (e) {
+      console.error("✖ [sc-i18n] FAILED:", e && e.stack || e);
+    }
   }
 });
+
+// Contribute shared-components' global UI translations (loadMorePosts,
+// moreEvents, form errors, onlyLanguage*, …) to the host's nuxt-i18n-micro.
+// Micro merges `translationDir` across every entry in nuxt.options._layers, so
+// writing these strings as per-locale JSON into a build-dir layer makes them
+// resolvable via $t on every consuming site automatically — no per-site config.
+// Replaces the old @nuxtjs/i18n `$i18n.mergeLocaleMessage` plugin merge.
+async function registerSharedI18n(_nuxt, resolve) {
+  const globalUrl = __cjs_url__.pathToFileURL(
+    resolve("./runtime/locales/global.js")
+  ).href;
+  const { default: translations } = await import(globalUrl);
+  // Match the host's translationDir so the layer path lines up (micro uses one
+  // translationDir name for all layers).
+  // Match the host's translationDir so the layer path lines up (micro uses one
+  // translationDir name for all layers). Write into the module's own package
+  // dir — NOT nuxt.options.buildDir, which Nuxt wipes after module setup, before
+  // micro reads the layer files from disk.
+  const translationDirName = _nuxt.options.i18n?.translationDir || "locales";
+  const layerDir = resolve("./sc-i18n-layer");
+  const localesDir = __cjs_path__.join(layerDir, translationDirName);
+  await promises.mkdir(localesDir, { recursive: true });
+  for (const [code, messages] of Object.entries(translations)) {
+    await promises.writeFile(
+      __cjs_path__.join(localesDir, `${code}.json`),
+      JSON.stringify(messages)
+    );
+  }
+  const base = _nuxt.options._layers[0];
+  _nuxt.options._layers.push({
+    ...base,
+    cwd: layerDir,
+    config: { ...base.config, rootDir: layerDir, srcDir: layerDir }
+  });
+}
 
 export { module as default };

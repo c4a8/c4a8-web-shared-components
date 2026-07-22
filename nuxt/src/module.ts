@@ -1,4 +1,6 @@
 import { promises as fs } from 'fs';
+import { pathToFileURL } from 'url';
+import { join } from 'path';
 import {
   defineNuxtModule,
   addPlugin,
@@ -188,5 +190,37 @@ export default defineNuxtModule({
     });
 
     addImportsDir(resolve('./runtime/composables'));
+    try {
+      await registerSharedI18n(_nuxt, resolve);
+      console.log('✔ [sc-i18n] shared translations layer registered');
+    } catch (e: any) {
+      console.error('✖ [sc-i18n] FAILED:', (e && e.stack) || e);
+    }
   },
 });
+
+// Contribute shared-components' global UI translations (loadMorePosts,
+// moreEvents, form errors, onlyLanguage*, …) to the host's nuxt-i18n-micro.
+// Micro merges `translationDir` across every entry in nuxt.options._layers, so
+// writing these strings as per-locale JSON into a layer dir makes them
+// resolvable via $t on every consuming site automatically — no per-site config.
+// Replaces the old @nuxtjs/i18n `$i18n.mergeLocaleMessage` plugin merge.
+// NB: write into the module's own package dir, NOT nuxt.options.buildDir, which
+// Nuxt wipes after module setup, before micro reads the layer files from disk.
+async function registerSharedI18n(_nuxt: any, resolve: (p: string) => string) {
+  const globalUrl = pathToFileURL(resolve('./runtime/locales/global.js')).href;
+  const { default: translations } = await import(globalUrl);
+  const translationDirName = _nuxt.options.i18n?.translationDir || 'locales';
+  const layerDir = resolve('./sc-i18n-layer');
+  const localesDir = join(layerDir, translationDirName);
+  await fs.mkdir(localesDir, { recursive: true });
+  for (const [code, messages] of Object.entries(translations)) {
+    await fs.writeFile(join(localesDir, `${code}.json`), JSON.stringify(messages));
+  }
+  const base = _nuxt.options._layers[0];
+  _nuxt.options._layers.push({
+    ...base,
+    cwd: layerDir,
+    config: { ...base.config, rootDir: layerDir, srcDir: layerDir },
+  });
+}

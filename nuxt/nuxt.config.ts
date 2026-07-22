@@ -1,8 +1,21 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { defineNuxtConfig } from 'nuxt/config';
+import { writeFileSync, mkdirSync } from 'fs';
+// Canonical shared-component UI strings = the module's runtime source, i.e. the
+// same file that `vite build` ships to dist/runtime/locales/global.js. The dev
+// app and storybook read it directly so they preview exactly what ships.
+import sharedTranslations from './src/runtime/locales/global.js';
 
 const turnstileSiteKey = process.env.NUXT_PUBLIC_TURNSTILE_SITE_KEY ?? null;
 const personioApiKey = process.env.NUXT_PUBLIC_PERSONIO_API_KEY ?? null;
+
+// Regenerate per-locale JSON from the canonical global.js so nuxt-i18n-micro
+// (translationDir: i18n/locales) always serves the current shared-component UI
+// strings — no drift between global.js and the dev app.
+mkdirSync('i18n/locales', { recursive: true });
+for (const [code, messages] of Object.entries(sharedTranslations)) {
+  writeFileSync(`i18n/locales/${code}.json`, JSON.stringify(messages));
+}
 
 declare module 'nuxt/config' {
   interface NuxtConfig {
@@ -37,24 +50,36 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/storybook',
     '@nuxt/content',
-    '@nuxtjs/i18n',
+    'nuxt-i18n-micro',
     '@pinia/nuxt',
     'nuxt-swiper',
     '@nuxtjs/turnstile',
     '@nuxt/scripts',
   ],
+  // nuxt-i18n-micro: translations live in i18n/locales/<code>.json (generated
+  // from locales/global.js — the shared-components UI strings). Single global
+  // file per locale; the per-page tier is off.
   i18n: {
-    bundle: {
-      optimizeTranslationDirective: false,
-    },
-    detectBrowserLanguage: false,
-    locale: 'de',
-    legacy: false,
+    locales: [
+      { code: 'de', iso: 'de-DE', dir: 'ltr' },
+      { code: 'en', iso: 'en-US', dir: 'ltr' },
+      { code: 'es', iso: 'es-ES', dir: 'ltr' },
+      { code: 'sv', iso: 'sv-SE', dir: 'ltr' },
+      { code: 'no', iso: 'no-NO', dir: 'ltr' },
+      { code: 'fi', iso: 'fi-FI', dir: 'ltr' },
+      { code: 'da', iso: 'da-DK', dir: 'ltr' },
+      { code: 'is', iso: 'is-IS', dir: 'ltr' },
+      { code: 'it', iso: 'it-IT', dir: 'ltr' },
+      { code: 'nl', iso: 'nl-NL', dir: 'ltr' },
+      { code: 'ko', iso: 'ko-KR', dir: 'ltr' },
+    ],
+    defaultLocale: 'de',
     fallbackLocale: 'en',
-    // defaultLocale: 'de',
-    // strategy: 'prefix',
-    locales: ['de', 'en', 'es', 'sv', 'no', 'fi', 'da', 'is', 'it', 'nl', 'ko'],
-    vueI18n: './i18n.config.js',
+    translationDir: 'i18n/locales',
+    strategy: 'prefix_except_default',
+    meta: true,
+    disablePageLocales: true,
+    disableWatcher: true,
   },
   runtimeConfig: {
     public: {

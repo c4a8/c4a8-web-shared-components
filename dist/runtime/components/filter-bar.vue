@@ -122,9 +122,10 @@ export default {
     },
   },
   setup() {
-    const { locale } = useI18n();
+    const { $getLocale } = useI18n();
+    console.log('🚀 ~ getLocale:', $getLocale);
 
-    return { locale };
+    return { locale: $getLocale() };
   },
   created() {
     const blogStore = useBlogStore();
@@ -389,7 +390,7 @@ export default {
 }
 .filter-bar__toggle-icon:not(:first-of-type)::before {
   position: absolute;
-  content: "";
+  content: '';
   display: block;
   left: 0;
   width: 1px;

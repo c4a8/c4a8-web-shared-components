@@ -44,7 +44,7 @@
   </div>
 </template>
 <script>
-import { useI18n } from '#imports';
+import { useI18n, useNuxtApp } from '#imports';
 
 import Tools from '../utils/tools.js';
 import useConfig from '../composables/useConfig.js';
@@ -58,11 +58,12 @@ export default {
   },
   setup() {
     const config = useConfig();
-    const { locale, strategy } = useI18n();
+    const { $getLocale } = useI18n();
+    const strategy = useNuxtApp().$getI18nConfig?.().strategy ?? 'prefix';
 
     return {
       config,
-      locale,
+      locale: $getLocale(),
       strategy,
     };
   },

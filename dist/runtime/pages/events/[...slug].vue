@@ -13,15 +13,15 @@ import EventForm from '../../utils/data/event-form.js';
 
 const route = useRoute();
 const nuxtApp = useNuxtApp();
-const currentLocale = nuxtApp.$i18n.locale;
+const currentLocale = nuxtApp.$getLocale();
 
 const dynamicMeta = useDynamicPageMeta();
 
 const path = route.path.replace(/^\/[a-z]{2}\//, '/');
-const dataKey = Tools.getDataKey('event', null, currentLocale.value, path);
+const dataKey = Tools.getDataKey('event', null, currentLocale, path);
 
 const { data: event } = await useAsyncData(dataKey, () => {
-  const collectionName = 'content_' + currentLocale.value;
+  const collectionName = 'content_' + currentLocale;
   const query = queryCollection(collectionName).path(path);
 
   return query.first();
@@ -43,7 +43,7 @@ const getFormular = (event) => {
     : {
         form: {
           ...EventForm,
-          action: `/${currentLocale.value}${EventForm.action}`,
+          action: `/${currentLocale}${EventForm.action}`,
           fields: [...EventForm.fields, ...additionalFields],
         },
         replaceValue,

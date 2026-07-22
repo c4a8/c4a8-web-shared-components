@@ -10,7 +10,7 @@ export default {
     posts: 'Einträge',
     follow: 'Folgen',
     similarPosts: 'Ähnliche Artikel',
-    withAuthor: 'Mit',
+    withAuthor: 'Mit9999',
     // adBlockInfo: `
     //     <div class="ad-block-info__content">
     //       <img src="${adBlockImage}" alt="Full Service" class="is-svg">
@@ -264,8 +264,7 @@ export default {
     follow: 'Följ',
     similarPosts: 'Liknande inlägg',
     withAuthor: 'Med',
-    vatInfo:
-      '*Alla priser är exklusive moms. Våra erbjudanden riktar sig uteslutande till företagskunder.',
+    vatInfo: '*Alla priser är exklusive moms. Våra erbjudanden riktar sig uteslutande till företagskunder.',
     address: 'Adress',
     full_time: 'Heltid',
     part_time: 'Deltid',
@@ -340,15 +339,13 @@ export default {
     follow: 'Følg',
     similarPosts: 'Lignende innlegg',
     withAuthor: 'Med',
-    vatInfo:
-      '*Alle priser er eksklusive merverdiavgift. Våre tilbud retter seg utelukkende mot bedriftskunder.',
+    vatInfo: '*Alle priser er eksklusive merverdiavgift. Våre tilbud retter seg utelukkende mot bedriftskunder.',
     address: 'Adresse',
     full_time: 'Heltid',
     part_time: 'Deltid',
     contract: 'Kontraktsarbeid',
     gender: '(m/k/d)',
-    formAttachmentsWrongType:
-      'Velg et gyldig filformat og pass på at filnavnet ikke inneholder spesialtegn.',
+    formAttachmentsWrongType: 'Velg et gyldig filformat og pass på at filnavnet ikke inneholder spesialtegn.',
     formAttachmentsMaxFiles: 'Maks. %s filer',
     formAttachmentsMaxSize: 'Én eller flere filer er for store.',
     onlyLanguage: 'Kun norsk',
@@ -416,8 +413,7 @@ export default {
     follow: 'Seuraa',
     similarPosts: 'Samankaltaiset artikkelit',
     withAuthor: 'Mukana',
-    vatInfo:
-      '*Kaikki hinnat ovat ilman arvonlisäveroa. Tarjouksemme on suunnattu ainoastaan yritysasiakkaille.',
+    vatInfo: '*Kaikki hinnat ovat ilman arvonlisäveroa. Tarjouksemme on suunnattu ainoastaan yritysasiakkaille.',
     address: 'Osoite',
     full_time: 'Kokoaikainen',
     part_time: 'Osa-aikainen',
@@ -492,15 +488,13 @@ export default {
     follow: 'Følg',
     similarPosts: 'Lignende indlæg',
     withAuthor: 'Med',
-    vatInfo:
-      '*Alle priser er eksklusive moms. Vores tilbud henvender sig udelukkende til erhvervskunder.',
+    vatInfo: '*Alle priser er eksklusive moms. Vores tilbud henvender sig udelukkende til erhvervskunder.',
     address: 'Adresse',
     full_time: 'Fuldtid',
     part_time: 'Deltid',
     contract: 'Kontraktarbejde',
     gender: '(m/k/d)',
-    formAttachmentsWrongType:
-      'Vælg et gyldigt filformat, og sørg for, at filnavnet ikke indeholder specialtegn.',
+    formAttachmentsWrongType: 'Vælg et gyldigt filformat, og sørg for, at filnavnet ikke indeholder specialtegn.',
     formAttachmentsMaxFiles: 'Maks. %s filer',
     formAttachmentsMaxSize: 'En eller flere filer er for store.',
     onlyLanguage: 'Kun dansk',
@@ -568,15 +562,13 @@ export default {
     follow: 'Fylgja',
     similarPosts: 'Svipaðar færslur',
     withAuthor: 'Með',
-    vatInfo:
-      '*Öll verð eru án virðisaukaskatts. Tilboð okkar eru eingöngu ætluð fyrirtækjum.',
+    vatInfo: '*Öll verð eru án virðisaukaskatts. Tilboð okkar eru eingöngu ætluð fyrirtækjum.',
     address: 'Heimilisfang',
     full_time: 'Fullt starf',
     part_time: 'Hlutastarf',
     contract: 'Verktakavinna',
     gender: '(kk/kvk/x)',
-    formAttachmentsWrongType:
-      'Veldu gilt skráarsnið og gættu þess að skráarnafnið innihaldi ekki sértákn.',
+    formAttachmentsWrongType: 'Veldu gilt skráarsnið og gættu þess að skráarnafnið innihaldi ekki sértákn.',
     formAttachmentsMaxFiles: 'Hám. %s skrár',
     formAttachmentsMaxSize: 'Ein eða fleiri skrár eru of stórar.',
     onlyLanguage: 'Aðeins íslenska',
@@ -644,8 +636,7 @@ export default {
     follow: 'Segui',
     similarPosts: 'Articoli simili',
     withAuthor: 'Con',
-    vatInfo:
-      '*Tutti i prezzi sono IVA esclusa. Le nostre offerte sono rivolte esclusivamente a clienti aziendali.',
+    vatInfo: '*Tutti i prezzi sono IVA esclusa. Le nostre offerte sono rivolte esclusivamente a clienti aziendali.',
     address: 'Indirizzo',
     full_time: 'Tempo pieno',
     part_time: 'Part-time',
@@ -720,8 +711,7 @@ export default {
     follow: 'Volgen',
     similarPosts: 'Vergelijkbare berichten',
     withAuthor: 'Met',
-    vatInfo:
-      '*Alle prijzen zijn exclusief btw. Onze aanbiedingen zijn uitsluitend gericht op zakelijke klanten.',
+    vatInfo: '*Alle prijzen zijn exclusief btw. Onze aanbiedingen zijn uitsluitend gericht op zakelijke klanten.',
     address: 'Adres',
     full_time: 'Voltijd',
     part_time: 'Deeltijd',

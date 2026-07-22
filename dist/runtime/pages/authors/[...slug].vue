@@ -19,16 +19,16 @@ import { computed } from 'vue';
 import Tools from '../../utils/tools.js';
 import useAuthors from '../../composables/useAuthors.js';
 
-const { strategy } = useI18n();
 const route = useRoute();
 const nuxtApp = useNuxtApp();
-const currentLocale = nuxtApp.$i18n.locale;
+const strategy = nuxtApp.$getI18nConfig?.().strategy ?? 'prefix';
+const currentLocale = nuxtApp.$getLocale();
 
 let path = route.path.replace(/^\/[a-z]{2}\//, '/').replace('/authors', '');
 path = !path.endsWith('/') ? path + '/' : path;
 
 const cleanPath = path.replaceAll('/', '');
-const dataKey = Tools.getDataKey('author', null, currentLocale.value, cleanPath);
+const dataKey = Tools.getDataKey('author', null, currentLocale, cleanPath);
 
 const { data: person } = await useAsyncData(dataKey, () => {
   const collectionName = 'authors';
@@ -41,10 +41,10 @@ const authorName = computed(() => {
   return person?.value?.name;
 });
 
-const authorDataKey = 'content-' + currentLocale.value + '-' + person.value?.stem;
+const authorDataKey = 'content-' + currentLocale + '-' + person.value?.stem;
 
 const { data: posts } = await useAsyncData(authorDataKey, async () => {
-  const collectionName = 'content_' + currentLocale.value;
+  const collectionName = 'content_' + currentLocale;
   const query = queryCollection(collectionName);
 
   let queryBuilder = query.where('path', 'LIKE', '/posts/%');
@@ -61,7 +61,7 @@ const postsOrdered = computed(() => {
     .map((item) => {
       const newItem = Tools.normalizeMarkdownItem(item);
 
-      newItem.url = Tools.addPathPrefix(newItem.url, currentLocale.value, strategy);
+      newItem.url = Tools.addPathPrefix(newItem.url, currentLocale, strategy);
 
       return newItem;
     })
@@ -73,10 +73,10 @@ const postsOrdered = computed(() => {
     });
 });
 
-const eventsDataKey = 'content-events-' + currentLocale.value + '-' + person.value?.stem;
+const eventsDataKey = 'content-events-' + currentLocale + '-' + person.value?.stem;
 
 const { data: events } = await useAsyncData(eventsDataKey, async () => {
-  const collectionName = 'content_' + currentLocale.value;
+  const collectionName = 'content_' + currentLocale;
   const query = queryCollection(collectionName);
 
   let queryBuilder = query.where('path', 'LIKE', '/events/%');

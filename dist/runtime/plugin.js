@@ -1,17 +1,11 @@
 import { defineNuxtPlugin, addRouteMiddleware, useAsyncData } from '#app';
 import Events from './utils/events.js';
-import translations from './locales/global.js';
 import { version } from '../../package.json';
 
+// Global UI translations (locales/global.js) are no longer merged here: the
+// module contributes them to nuxt-i18n-micro as a layer at build time, so $t
+// resolves them natively. See registerSharedI18n in the module.
 export default defineNuxtPlugin((_nuxtApp) => {
-  const i18n = _nuxtApp.$i18n;
-
-  if (i18n) {
-    for (const [locale, messages] of Object.entries(translations)) {
-      i18n?.mergeLocaleMessage(locale, messages);
-    }
-  }
-
   addRouteMiddleware(
     'global-collection-layouts',
     async (to) => {

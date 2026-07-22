@@ -210,7 +210,7 @@
 
 <script>
 import { computed } from 'vue';
-import { useI18n, useSwitchLocalePath } from '#imports';
+import { useI18n } from '#imports';
 import { useAppStore } from '../stores/app.js';
 import Tools from '../utils/tools.js';
 import State from '../utils/state.js';
@@ -222,10 +222,9 @@ export default {
   setup() {
     const store = useAppStore();
 
-    const switchLocalePath = useSwitchLocalePath();
-    const { locales } = useI18n();
+    const { $switchLocalePath: switchLocalePath, $getLocales } = useI18n();
     const availableLocales = computed(() =>
-      (locales.value || []).map((l) => (typeof l === 'string' ? l : l.code)),
+      ($getLocales() || []).map((l) => (typeof l === 'string' ? l : l.code)),
     );
 
     return { store, switchLocalePath, availableLocales };

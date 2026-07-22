@@ -7,9 +7,9 @@ import { useI18n } from '#imports';
 export default {
   tagName: 'markdown-files',
   setup() {
-    const { locale } = useI18n();
+    const { $getLocale } = useI18n();
 
-    return { currentLocale: locale };
+    return { currentLocale: $getLocale() };
   },
   computed: {
     structuredList() {
