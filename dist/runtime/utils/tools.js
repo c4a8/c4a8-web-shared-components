@@ -677,7 +677,7 @@ class Tools {
       url: path,
       date: dateValue,
       moment: moment,
-      excerpt: meta?.customExcerpt || seo?.description,
+      excerpt: meta?.customExcerpt || seo?.description || rest.description || meta?.content?.intro,
       headlineText: meta?.headline,
       author: typeof author === 'string' ? [author] : author,
       ...filteredRest,

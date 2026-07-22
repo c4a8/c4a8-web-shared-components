@@ -105,6 +105,7 @@ const KEEP_TOP = new Set([
   'path',
   'stem',
   'meta',
+  'description',
   'moment',
   'hideInRecent',
   'webcast',
