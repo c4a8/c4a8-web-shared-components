@@ -33944,6 +33944,19 @@ svg.streamline-icon {
   color: var(--color-primary-on-surface);
 }
 
+.location-section .location-section__slider-image-wrapper {
+  aspect-ratio: 4/3;
+}
+.location-section .location-section__slider-image {
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  width: 100%;
+}
+.location-section .cta.cta--reversed.link {
+  align-items: center;
+}
+
 .hover__parent:hover .scroll-arrow__button svg,
 .shared-components .scroll-arrow__button svg:hover {
   animation: moveRightLeft;

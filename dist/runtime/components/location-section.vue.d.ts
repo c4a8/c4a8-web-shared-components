@@ -27,6 +27,7 @@ declare namespace _default {
             }[];
         };
         function classList(): any;
+        function sliderImages(): any;
         function sliderConfig(): any;
     }
 }
