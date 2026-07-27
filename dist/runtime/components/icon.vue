@@ -56,6 +56,7 @@ import TileView from './icons/tile-view.vue';
 import User from './icons/user.vue';
 import Quote from './icons/quote.vue';
 import World from './icons/world.vue';
+import WorldDetailed from './icons/world-detailed.vue';
 import XMark from './icons/x-mark.vue';
 import Heart from './icons/heart.vue';
 import ChargingStation from './icons/charging-station.vue';
@@ -104,6 +105,7 @@ export default {
     user: User,
     quote: Quote,
     world: World,
+    'world-detailed': WorldDetailed,
     'x-mark': XMark,
     heart: Heart,
     'charging-station': ChargingStation,
