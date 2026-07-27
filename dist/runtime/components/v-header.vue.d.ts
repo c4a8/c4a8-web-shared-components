@@ -980,6 +980,12 @@ declare namespace _default {
         function clonedNavigation(): any;
         function isLight(): boolean;
         function hasLangSwitch(): boolean;
+        function languageOptions(): {
+            code: any;
+            label: any;
+            native: any;
+            translated: any;
+        }[];
         function hasContact(): any;
         function hasMeta(): any;
         function headerState(): any;
@@ -1032,6 +1038,7 @@ declare namespace _default {
         function setCtaClasses(): void;
         function handleMouseOver(item: any, index: any): void;
         function handleMouseOut(event: any): void;
+        function toggleLanguageList(): void;
         function handleLanguageOver(): void;
         function handleLanguageOut(event: any): void;
         function resetAllFlyouts(): void;
@@ -1118,6 +1125,7 @@ declare namespace _default {
         };
         initEvents: string[];
         renderMegaMenu: boolean;
+        languageListExpanded: boolean;
     };
 }
 export default _default;

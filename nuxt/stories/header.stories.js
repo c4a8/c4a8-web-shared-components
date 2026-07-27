@@ -137,75 +137,73 @@ export const HeaderProduct = {
 
 export const HeaderProduct2 = {
   args: {
-  home: HeaderData.home,
-  navigation: HeaderData.navigation,
-  lang: 'en',
-  product: true,
-  button: {
-    text: 'Start now',
-    href: '/start-now/',
-    skin: 'primary is-cutoff',
-  },
-  home: {
-    name: 'home',
-    imgLight: '/products/scepman/scepman-logo-all-white.svg',
-    img: '/products/terraprovider/logo-terraprovider.svg',
-    languages: {
-      en: {
-        title: 'Home EN',
-        url: '',
-        alt: 'alt text EN',
-      },
+    home: HeaderData.home,
+    navigation: HeaderData.navigation,
+    lang: 'en',
+    product: true,
+    button: {
+      text: 'Start now',
+      href: '/start-now/',
+      skin: 'primary is-cutoff',
     },
-  },
-  navigation: [
-    {
+    home: {
       name: 'home',
+      imgLight: '/products/scepman/scepman-logo-all-white.svg',
+      img: '/products/terraprovider/logo-terraprovider.svg',
       languages: {
-        de: {
-          title: 'Home',
-          url: '',
-        },
         en: {
           title: 'Home EN',
           url: '',
+          alt: 'alt text EN',
         },
       },
     },
-    {
-      name: 'pricing',
-      languages: {
-        en: {
-          title: 'Pricing EN',
-          url: '/iframe.html',
+    navigation: [
+      {
+        name: 'home',
+        languages: {
+          de: {
+            title: 'Home',
+            url: '',
+          },
+          en: {
+            title: 'Home EN',
+            url: '',
+          },
         },
       },
-    },
-    {
-      name: 'partner',
-      languages: {
-        en: {
-          title: 'Partner EN',
-          url: '',
+      {
+        name: 'pricing',
+        languages: {
+          en: {
+            title: 'Pricing EN',
+            url: '/iframe.html',
+          },
         },
       },
-    },
-    {
-      name: 'docs',
-      languages: {
-        en: {
-          title: 'Docs',
-          url: 'https://docs.radiusaas.com/',
-          target: '_blank',
+      {
+        name: 'partner',
+        languages: {
+          en: {
+            title: 'Partner EN',
+            url: '',
+          },
         },
       },
-    },
-  ],
-  showSecondaryNavigation: true,
-  theme: 'radiusaas',
-}
-
-
+      {
+        name: 'docs',
+        languages: {
+          en: {
+            title: 'Docs',
+            url: 'https://docs.radiusaas.com/',
+            target: '_blank',
+          },
+        },
+      },
+    ],
+    showSecondaryNavigation: true,
+    theme: 'radiusaas',
+  },
 };
 export const HeaderProductLight = {
   args: {

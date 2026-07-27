@@ -101,14 +101,36 @@
               <div class="header__button" v-if="button">
                 <cta :classes="ctaClassList" :on-surface="onSurfaceCta" v-bind="button" />
               </div>
-              <div class="header__language-switch" v-if="hasLangSwitch">
-                <a
-                  :key="key"
-                  v-for="key in availableLocales"
-                  :class="{ 'header__language-link custom': true, active: key === lowerLang }"
-                  v-on:click="handleLanguageSwitch(key)"
-                  >{{ key }}</a
-                >
+              <div
+                :class="{
+                  'header__language-switch header__language-switch--mobile': true,
+                  'is-expanded': languageListExpanded,
+                }"
+                v-if="hasLangSwitch"
+              >
+                <a class="header__link custom" v-on:click="toggleLanguageList">
+                  <div class="header__link-content">
+                    <span class="header__language-label">
+                      <icon icon="world-detailed" :size="22" />
+                      {{ $t('changeLanguage') }}
+                    </span>
+                    <icon class="header__link-icon" icon="expand" size="small" />
+                  </div>
+                </a>
+                <div class="header__language-switch-list">
+                  <a
+                    v-for="option in languageOptions"
+                    :class="{ 'header__language-link custom': true, active: option.code === lowerLang }"
+                    v-on:click="handleLanguageSwitch(option.code)"
+                    :key="option.code"
+                  >
+                    <span class="header__language-names">
+                      <span class="header__language-native">{{ option.native }}</span>
+                      <span class="header__language-translated" v-if="option.translated">{{ option.translated }}</span>
+                    </span>
+                    <span class="header__language-code">{{ option.label }}</span>
+                  </a>
+                </div>
               </div>
             </div>
           </nav>
@@ -123,17 +145,22 @@
             v-if="hasLangSwitch"
             ref="languageSwitch"
           >
-            <span class="header__link-text">{{ lang }}</span>
-            <span class="header__link-text-spacer">{{ lang }}</span>
+            <span class="header__link-text">{{ lowerLang }}</span>
+            <span class="header__link-text-spacer">{{ lowerLang }}</span>
             <icon class="header__link-icon" icon="expand" size="small" />
             <div class="header__language-switch-flyout" ref="languageSwitchFlyout">
               <a
-                v-for="key in availableLocales"
-                :class="{ 'header__language-link custom': true, 'd-none': key === lowerLang }"
-                v-on:click="handleLanguageSwitch(key)"
-                :key="key"
-                >{{ key }}</a
+                v-for="option in languageOptions"
+                :class="{ 'header__language-link custom': true, active: option.code === lowerLang }"
+                v-on:click="handleLanguageSwitch(option.code)"
+                :key="option.code"
               >
+                <span class="header__language-names">
+                  <span class="header__language-native">{{ option.native }}</span>
+                  <span class="header__language-translated" v-if="option.translated">{{ option.translated }}</span>
+                </span>
+                <span class="header__language-code">{{ option.label }}</span>
+              </a>
             </div>
           </div>
         </div>
@@ -216,6 +243,7 @@ import Tools from '../utils/tools.js';
 import State from '../utils/state.js';
 import Events from '../utils/events.js';
 import SecondaryNavigation from '../utils/data/secondary-navigation.js';
+import Languages from '../utils/languages.js';
 
 export default {
   tagName: 'v-header',
@@ -223,9 +251,7 @@ export default {
     const store = useAppStore();
 
     const { $switchLocalePath: switchLocalePath, $getLocales } = useI18n();
-    const availableLocales = computed(() =>
-      ($getLocales() || []).map((l) => (typeof l === 'string' ? l : l.code)),
-    );
+    const availableLocales = computed(() => ($getLocales() || []).map((l) => (typeof l === 'string' ? l : l.code)));
 
     return { store, switchLocalePath, availableLocales };
   },
@@ -312,6 +338,9 @@ export default {
     },
     hasLangSwitch() {
       return this.availableLocales.length > 1;
+    },
+    languageOptions() {
+      return Languages.getOptions(this.availableLocales, this.lowerLang);
     },
     hasContact() {
       return this.contact;
@@ -700,6 +729,9 @@ export default {
 
       ref.classList.remove(State.EXPANDED);
     },
+    toggleLanguageList() {
+      this.languageListExpanded = !this.languageListExpanded;
+    },
     handleLanguageOver() {
       this.resetAllFlyouts();
 
@@ -712,7 +744,7 @@ export default {
       languageSwitch.classList.add(State.EXPANDED);
     },
     handleLanguageOut(event) {
-      if (event.relatedTarget?.closest('.header__flyout')) return;
+      if (event.relatedTarget?.closest('.header__language-switch')) return;
 
       this.hover = false;
 
@@ -733,6 +765,8 @@ export default {
       this.$refs['flyout']?.forEach((flyout) => {
         flyout.classList.remove(State.EXPANDED);
       });
+
+      this.$refs['languageSwitch']?.classList.remove(State.EXPANDED);
     },
     getFlyoutRef(refName) {
       return this.getRef('flyout', refName);
@@ -777,12 +811,13 @@ export default {
       return nextLang[0];
     },
     async handleLanguageSwitch(nextLang) {
+      if (nextLang === this.lowerLang) return;
+
       Tools.storageSave('preferedLanguage', nextLang, false);
 
       const target = this.switchLocalePath(nextLang);
       const stem = window.location.pathname.replace(/^\/[a-z]{2}(?=\/|$)/, '') || '/';
 
-      // Content pages absent in the target locale fall back to that locale's home.
       const alternates = await this.loadContentAlternates();
       const missing = alternates[stem] && !alternates[stem].includes(nextLang);
 
@@ -990,6 +1025,7 @@ export default {
       },
       initEvents: ['mousemove', 'scroll', 'touchstart', 'click'],
       renderMegaMenu: false,
+      languageListExpanded: false,
     };
   },
 };
@@ -1409,9 +1445,12 @@ export default {
   }
 }
 
+.header__link.is-expanded .header__link-icon,
+.header__language-switch.is-expanded .header__link-icon {
+  --icon-rotation: 180deg !important;
+}
 .header__link.is-expanded .icon,
 .header__language-switch.is-expanded .icon {
-  --icon-rotation: 180deg !important;
   color: var(--color-header-active);
 }
 @media (min-width: 992px) {
@@ -1569,6 +1608,8 @@ export default {
 }
 
 .header__language-switch {
+  --header-language-flyout-width: 640px;
+  --header-language-bridge-width: 200px;
   position: relative;
   cursor: pointer;
   text-transform: uppercase;
@@ -1582,12 +1623,26 @@ export default {
 .header__language-switch .header__link-icon {
   pointer-events: none;
 }
+.header__language-switch::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: var(--header-language-bridge-width);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  pointer-events: none;
+}
 @media (min-width: 992px) {
   .header__language-switch.is-expanded .header__link-text {
     font-weight: bold;
   }
+  .header__language-switch.is-expanded::after {
+    pointer-events: auto;
+  }
 }
-.header__language-switch:not(.is-expanded) .header__language-switch-flyout {
+.header__language-switch:not(.is-expanded) .header__language-switch-flyout,
+.header__language-switch:not(.is-expanded) .header__language-switch-list {
   visibility: collapse;
   opacity: 0;
   height: 0;
@@ -1596,7 +1651,25 @@ export default {
   padding: 0 !important;
   border-width: 0;
   pointer-events: none;
-  transform: translateY(-100%);
+}
+.header__language-switch:not(.is-expanded) .header__language-switch-flyout .header__language-link {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition-delay: 0s;
+}
+.header__language-switch.header__language-switch--mobile {
+  flex-direction: column;
+  place-items: stretch;
+  gap: 0;
+  padding: 0;
+  text-transform: none;
+}
+.header__language-switch.header__language-switch--mobile::after {
+  content: none;
+}
+.header__language-switch.header__language-switch--mobile .header__link {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .header__search {
@@ -1826,25 +1899,95 @@ export default {
 .header__language-link {
   color: var(--color-copy);
 }
-.header__language-link.active {
+.header__language-link:hover {
+  color: var(--color-copy);
+}
+.header__language-link.active, .header__language-link.active:hover {
   color: var(--color-active);
 }
 @media (min-width: 992px) {
   .header__language-link:hover {
-    color: var(--color-copy);
     font-weight: bold;
+  }
+  .header__language-link:hover:not(.active) {
+    color: var(--color-copy-hover);
   }
 }
 
+.header__language-switch-flyout,
+.header__language-switch-list {
+  text-transform: none;
+}
+.header__language-switch-flyout .header__language-link,
+.header__language-switch-list .header__language-link {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  break-inside: avoid;
+}
+
 .header__language-switch-flyout {
-  padding: 0 2rem 1rem;
+  padding: 1.5rem 2rem;
   bottom: 0;
   right: -0.75rem;
   z-index: 5;
-  display: flex;
-  gap: 1rem;
-  flex-direction: column;
+  min-width: var(--header-language-flyout-width);
+  columns: 2;
+  column-gap: 2.5rem;
   transition: transform cubic-bezier(0.19, 1, 0.2, 1) 0.5s, opacity cubic-bezier(0.19, 1, 0.2, 1) 0.4s 0.1s;
+}
+.header__language-switch-flyout .header__language-link {
+  transition: opacity 0.4s 0.15s cubic-bezier(0.19, 1, 0.2, 1), transform 0.4s 0.15s cubic-bezier(0.19, 1, 0.2, 1);
+}
+
+.header__language-switch-list {
+  width: 100%;
+  padding: 0.5rem 0 1rem;
+  transition: height 0.4s cubic-bezier(0.19, 1, 0.2, 1), opacity 0.5s 0.15s cubic-bezier(0.19, 1, 0.2, 1), transform 0.4s 0.15s cubic-bezier(0.19, 1, 0.2, 1);
+}
+
+.header__language-label {
+  font-size: 1.125rem;
+  display: flex;
+  place-items: center;
+  gap: 0.5rem;
+}
+.header__language-label .icon {
+  margin-left: 0;
+  color: var(--color-secondary-accent);
+}
+
+.header__language-names {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.header__language-native {
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.header__language-translated {
+  font-size: 0.75rem;
+  color: var(--color-copy-reduced);
+  line-height: 1.3;
+}
+
+.header__language-code {
+  font-size: 0.75rem;
+  justify-self: end;
+  padding: 1px 0.25rem;
+  border: 1px solid var(--color-header-border);
+  border-radius: 2px;
+  color: var(--color-copy-reduced);
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+.header__language-code {
+  font-weight: bold;
 }
 
 .header__highlight-cta {
@@ -1855,30 +1998,6 @@ export default {
     margin-top: 3rem;
     display: block;
   }
-}
-
-.header__language-link {
-  color: var(--color-copy);
-}
-.header__language-link.active {
-  color: var(--color-active);
-}
-@media (min-width: 992px) {
-  .header__language-link:hover {
-    color: var(--color-copy);
-    font-weight: bold;
-  }
-}
-
-.header__language-switch-flyout {
-  padding: 0 2rem 1rem;
-  bottom: 0;
-  right: -0.75rem;
-  z-index: 5;
-  display: flex;
-  gap: 1rem;
-  flex-direction: column;
-  transition: transform cubic-bezier(0.19, 1, 0.2, 1) 0.5s, opacity cubic-bezier(0.19, 1, 0.2, 1) 0.4s 0.1s;
 }
 
 .header__nav-highlight {

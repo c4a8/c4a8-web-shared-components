@@ -17,6 +17,7 @@ declare namespace _default {
         let formAttachmentsWrongType: string;
         let formAttachmentsMaxFiles: string;
         let formAttachmentsMaxSize: string;
+        let changeLanguage: string;
         let onlyLanguage: string;
         let onlyLanguageDE: string;
         let onlyLanguageEN: string;
@@ -107,6 +108,8 @@ declare namespace _default {
         export { formAttachmentsMaxFiles_1 as formAttachmentsMaxFiles };
         let formAttachmentsMaxSize_1: string;
         export { formAttachmentsMaxSize_1 as formAttachmentsMaxSize };
+        let changeLanguage_1: string;
+        export { changeLanguage_1 as changeLanguage };
         let onlyLanguage_1: string;
         export { onlyLanguage_1 as onlyLanguage };
         let onlyLanguageDE_1: string;
@@ -245,6 +248,8 @@ declare namespace _default {
         export { formAttachmentsMaxFiles_2 as formAttachmentsMaxFiles };
         let formAttachmentsMaxSize_2: string;
         export { formAttachmentsMaxSize_2 as formAttachmentsMaxSize };
+        let changeLanguage_2: string;
+        export { changeLanguage_2 as changeLanguage };
         let onlyLanguage_2: string;
         export { onlyLanguage_2 as onlyLanguage };
         let onlyLanguageDE_2: string;
@@ -383,6 +388,8 @@ declare namespace _default {
         export { formAttachmentsMaxFiles_3 as formAttachmentsMaxFiles };
         let formAttachmentsMaxSize_3: string;
         export { formAttachmentsMaxSize_3 as formAttachmentsMaxSize };
+        let changeLanguage_3: string;
+        export { changeLanguage_3 as changeLanguage };
         let onlyLanguage_3: string;
         export { onlyLanguage_3 as onlyLanguage };
         let onlyLanguageDE_3: string;
@@ -523,6 +530,8 @@ declare namespace _default {
         export { formAttachmentsMaxFiles_4 as formAttachmentsMaxFiles };
         let formAttachmentsMaxSize_4: string;
         export { formAttachmentsMaxSize_4 as formAttachmentsMaxSize };
+        let changeLanguage_4: string;
+        export { changeLanguage_4 as changeLanguage };
         let onlyLanguage_4: string;
         export { onlyLanguage_4 as onlyLanguage };
         let onlyLanguageDE_4: string;
@@ -663,6 +672,8 @@ declare namespace _default {
         export { formAttachmentsMaxFiles_5 as formAttachmentsMaxFiles };
         let formAttachmentsMaxSize_5: string;
         export { formAttachmentsMaxSize_5 as formAttachmentsMaxSize };
+        let changeLanguage_5: string;
+        export { changeLanguage_5 as changeLanguage };
         let onlyLanguage_5: string;
         export { onlyLanguage_5 as onlyLanguage };
         let onlyLanguageDE_5: string;
@@ -803,6 +814,8 @@ declare namespace _default {
         export { formAttachmentsMaxFiles_6 as formAttachmentsMaxFiles };
         let formAttachmentsMaxSize_6: string;
         export { formAttachmentsMaxSize_6 as formAttachmentsMaxSize };
+        let changeLanguage_6: string;
+        export { changeLanguage_6 as changeLanguage };
         let onlyLanguage_6: string;
         export { onlyLanguage_6 as onlyLanguage };
         let onlyLanguageDE_6: string;
@@ -943,6 +956,8 @@ declare namespace _default {
         export { formAttachmentsMaxFiles_7 as formAttachmentsMaxFiles };
         let formAttachmentsMaxSize_7: string;
         export { formAttachmentsMaxSize_7 as formAttachmentsMaxSize };
+        let changeLanguage_7: string;
+        export { changeLanguage_7 as changeLanguage };
         let onlyLanguage_7: string;
         export { onlyLanguage_7 as onlyLanguage };
         let onlyLanguageDE_7: string;
@@ -1083,6 +1098,8 @@ declare namespace _default {
         export { formAttachmentsMaxFiles_8 as formAttachmentsMaxFiles };
         let formAttachmentsMaxSize_8: string;
         export { formAttachmentsMaxSize_8 as formAttachmentsMaxSize };
+        let changeLanguage_8: string;
+        export { changeLanguage_8 as changeLanguage };
         let onlyLanguage_8: string;
         export { onlyLanguage_8 as onlyLanguage };
         let onlyLanguageDE_8: string;
@@ -1223,6 +1240,8 @@ declare namespace _default {
         export { formAttachmentsMaxFiles_9 as formAttachmentsMaxFiles };
         let formAttachmentsMaxSize_9: string;
         export { formAttachmentsMaxSize_9 as formAttachmentsMaxSize };
+        let changeLanguage_9: string;
+        export { changeLanguage_9 as changeLanguage };
         let onlyLanguage_9: string;
         export { onlyLanguage_9 as onlyLanguage };
         let onlyLanguageDE_9: string;
@@ -1363,6 +1382,8 @@ declare namespace _default {
         export { formAttachmentsMaxFiles_10 as formAttachmentsMaxFiles };
         let formAttachmentsMaxSize_10: string;
         export { formAttachmentsMaxSize_10 as formAttachmentsMaxSize };
+        let changeLanguage_10: string;
+        export { changeLanguage_10 as changeLanguage };
         let onlyLanguage_10: string;
         export { onlyLanguage_10 as onlyLanguage };
         let onlyLanguageDE_10: string;
