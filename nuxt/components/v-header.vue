@@ -1712,8 +1712,10 @@ $header-border-size: 1px;
 }
 
 .header__language-switch {
-  --header-language-flyout-width: 640px;
+  --header-language-flyout-width: 580px;
   --header-language-bridge-width: 200px;
+  --header-language-underline-offset: #{spacing($size: 2, $negative: true)};
+  --header-language-name-width: 160px;
 
   position: relative;
   cursor: pointer;
@@ -1738,6 +1740,29 @@ $header-border-size: 1px;
     width: var(--header-language-bridge-width);
     clip-path: polygon(100% 0, 100% 100%, 0 100%);
     pointer-events: none;
+  }
+
+  &::before {
+    display: none;
+    content: '';
+    position: absolute;
+    bottom: var(--header-language-underline-offset);
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-header-active);
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  &:hover {
+    &::before {
+      @include media-breakpoint-up($header-expand-breakpoint) {
+        --color-header-active: var(--color-primary-accent);
+
+        display: block;
+      }
+    }
   }
 
   &.is-expanded {
@@ -2044,6 +2069,10 @@ $header-border-size: 1px;
     &:hover:not(.active) {
       color: var(--color-copy-hover);
     }
+
+    &:hover .header__language-code {
+      color: inherit;
+    }
   }
 }
 
@@ -2068,12 +2097,13 @@ $header-border-size: 1px;
   z-index: 5;
   min-width: var(--header-language-flyout-width);
   columns: 2;
-  column-gap: spacing(10);
+  column-gap: spacing(16);
   transition:
     transform $animation-transition 0.5s,
     opacity $animation-transition 0.4s 0.1s;
 
   .header__language-link {
+    grid-template-columns: var(--header-language-name-width) auto;
     transition:
       opacity 0.4s 0.15s $animation-transition,
       transform 0.4s 0.15s $animation-transition;

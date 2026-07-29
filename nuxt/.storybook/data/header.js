@@ -541,15 +541,15 @@ const Header = {
       name: 'cases',
       languages: {
         de: {
-          title: 'Cases',
+          title: 'Case Studies',
           url: '/cases-de/',
         },
         en: {
-          title: 'Cases',
+          title: 'Case Studies',
           url: '/cases-en/',
         },
         es: {
-          title: 'Cases',
+          title: 'Case Studies',
           url: '/cases-es/',
         },
       },
