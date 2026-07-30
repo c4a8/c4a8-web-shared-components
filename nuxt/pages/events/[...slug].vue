@@ -27,7 +27,7 @@ const { data: event } = await useAsyncData(dataKey, () => {
   return query.first();
 });
 
-const nextRoute = `/${currentLocale.value}${EventForm.action}`;
+const nextRoute = EventForm.action;
 const actionRoute = '/send';
 
 const getFormular = (event) => {
