@@ -31,6 +31,8 @@
                   :options="getOptions(field)"
                   :replace-value="replaceValue"
                   :id="getId(field)"
+                  :name="getName(field)"
+                  :form-id="formId"
                   :has-animation="hasAnimationValue"
                   @action-changed="updateAction"
                   :has-error="hasError(field)"
@@ -61,6 +63,8 @@
   </div>
 </template>
 <script>
+import { useId } from 'vue';
+
 import useConfig from '../composables/useConfig';
 import State from '../utils/state.js';
 import Tools from '../utils/tools.js';
@@ -91,8 +95,11 @@ export default {
   setup() {
     const config = useConfig();
 
+    const formId = useId();
+
     return {
       config,
+      formId,
     };
   },
   computed: {
@@ -227,7 +234,7 @@ export default {
       return this.useTranslation ? this.$t(text) : text;
     },
     hasError(field) {
-      return this.errors[field.id];
+      return this.errors[this.getId(field)];
     },
     getOptions(field) {
       if (!field.options) return null;
@@ -246,13 +253,18 @@ export default {
     getFieldClassList(field) {
       return ['px-3', `${field.col ? 'col-md-' + field.col : 'col-md-12'}`];
     },
-    getId(field) {
+    getFieldId(field) {
       const groupField = field?.radios || field?.checkboxes;
-      const fieldId = groupField ? groupField[0].id : field?.id;
 
-      if (!Tools.isTrue(this.hasUuid)) return fieldId;
+      if (groupField) return groupField[0].id;
 
-      return Form.getId(fieldId);
+      return field?.formAttachments?.id || field?.id;
+    },
+    getId(field) {
+      return Form.getScopedId(this.formId, this.getFieldId(field));
+    },
+    getName(field) {
+      return this.getFieldId(field);
     },
     updateAction(newAction) {
       if (newAction) {
@@ -379,6 +391,7 @@ export default {
       default: null,
     },
     options: Object,
+    // Deprecated no-op, still declared so configs passing it do not leak it to the DOM.
     hasUuid: {
       default: null,
     },
