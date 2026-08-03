@@ -27,8 +27,16 @@ const { data: event } = await useAsyncData(dataKey, () => {
   return query.first();
 });
 
+const nextRoute = EventForm.action;
+const actionRoute = '/send';
+
 const getFormular = (event) => {
   const additionalFields = [
+    {
+      type: 'hidden',
+      id: '_next',
+      value: nextRoute,
+    },
     {
       type: 'hidden',
       id: 'eventid',
@@ -43,7 +51,7 @@ const getFormular = (event) => {
     : {
         form: {
           ...EventForm,
-          action: `/${currentLocale.value}${EventForm.action}`,
+          action: actionRoute,
           fields: [...EventForm.fields, ...additionalFields],
         },
         replaceValue,
