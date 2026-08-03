@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.1.108
+
+- Fixes issue with duplicate id's
+
 # Release 0.1.107
 
 - Fixes issue with timeline component not showing entry text
