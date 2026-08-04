@@ -1166,6 +1166,40 @@ $header-border-size: 1px;
         }
       }
 
+      @include media-breakpoint-between($header-expand-breakpoint, xl) {
+        --header-container-width: #{get-container-max-width(lg)};
+
+        .header__container {
+          max-width: none;
+          padding-left: calc((100% - var(--header-container-width)) / 2 + #{$grid-gutter-half-width});
+          padding-right: $grid-gutter-half-width;
+        }
+      }
+
+      @include media-breakpoint-between(xl, xl) {
+        --header-container-width: #{get-container-max-width(xl)};
+      }
+
+      @include media-breakpoint-between($header-expand-breakpoint, $header-expand-breakpoint) {
+        .header__logo {
+          flex-basis: 20%;
+          padding-right: spacing(4);
+        }
+
+        .header__link-content {
+          padding-left: spacing(2);
+          padding-right: spacing(2);
+        }
+
+        .header__button {
+          margin-left: spacing(2);
+        }
+
+        .header__language-switch {
+          --header-language-spacing: #{spacing(4)};
+        }
+      }
+
       nav {
         bottom: 0;
       }
@@ -1420,12 +1454,12 @@ $header-border-size: 1px;
   justify-content: space-between;
   position: relative;
 
-  > .header__search + .header__language-switch {
-    margin-left: spacing(5);
-  }
-
   > .header__language-switch {
     margin-left: auto;
+  }
+
+  > .header__search + .header__language-switch {
+    margin-left: 0;
   }
 
   &::after {
@@ -1713,14 +1747,15 @@ $header-border-size: 1px;
 
 .header__language-switch {
   --header-language-flyout-width: 580px;
-  --header-language-bridge-width: 200px;
+  --header-language-bridge-width: 100%;
   --header-language-underline-offset: #{spacing($size: 2, $negative: true)};
   --header-language-name-width: 160px;
+  --header-language-spacing: #{spacing(8)};
 
   position: relative;
   cursor: pointer;
   text-transform: uppercase;
-  padding: 0 0 var(--header-vertical-spacing) 0;
+  padding: 0 0 var(--header-vertical-spacing) var(--header-language-spacing);
   display: none;
   order: 1;
   gap: spacing(10);
@@ -1747,8 +1782,8 @@ $header-border-size: 1px;
     content: '';
     position: absolute;
     bottom: var(--header-language-underline-offset);
-    left: 0;
-    width: 100%;
+    left: var(--header-language-spacing);
+    width: calc(100% - var(--header-language-spacing));
     height: 3px;
     background-color: var(--color-header-active);
     z-index: 10;

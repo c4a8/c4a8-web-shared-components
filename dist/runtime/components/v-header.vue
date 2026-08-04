@@ -1137,6 +1137,37 @@ export default {
     margin: 0 -1rem;
   }
 }
+@media (min-width: 992px) and (max-width: 1339.98px) {
+  .header.vue-component.header--product {
+    --header-container-width: 960px;
+  }
+  .header.vue-component.header--product .header__container {
+    max-width: none;
+    padding-left: calc((100% - var(--header-container-width)) / 2 + 15px);
+    padding-right: 15px;
+  }
+}
+@media (min-width: 1200px) and (max-width: 1339.98px) {
+  .header.vue-component.header--product {
+    --header-container-width: 1140px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .header.vue-component.header--product .header__logo {
+    flex-basis: 20%;
+    padding-right: 1rem;
+  }
+  .header.vue-component.header--product .header__link-content {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  .header.vue-component.header--product .header__button {
+    margin-left: 0.5rem;
+  }
+  .header.vue-component.header--product .header__language-switch {
+    --header-language-spacing: 1rem;
+  }
+}
 .header.vue-component.header--product nav {
   bottom: 0;
 }
@@ -1351,11 +1382,11 @@ export default {
   justify-content: space-between;
   position: relative;
 }
-.header__col > .header__search + .header__language-switch {
-  margin-left: 1.25rem;
-}
 .header__col > .header__language-switch {
   margin-left: auto;
+}
+.header__col > .header__search + .header__language-switch {
+  margin-left: 0;
 }
 .header__col::after {
   position: absolute;
@@ -1609,13 +1640,14 @@ export default {
 
 .header__language-switch {
   --header-language-flyout-width: 580px;
-  --header-language-bridge-width: 200px;
+  --header-language-bridge-width: 100%;
   --header-language-underline-offset: -0.5rem;
   --header-language-name-width: 160px;
+  --header-language-spacing: 2rem;
   position: relative;
   cursor: pointer;
   text-transform: uppercase;
-  padding: 0 0 var(--header-vertical-spacing) 0;
+  padding: 0 0 var(--header-vertical-spacing) var(--header-language-spacing);
   display: none;
   order: 1;
   gap: 2.5rem;
@@ -1640,8 +1672,8 @@ export default {
   content: "";
   position: absolute;
   bottom: var(--header-language-underline-offset);
-  left: 0;
-  width: 100%;
+  left: var(--header-language-spacing);
+  width: calc(100% - var(--header-language-spacing));
   height: 3px;
   background-color: var(--color-header-active);
   z-index: 10;

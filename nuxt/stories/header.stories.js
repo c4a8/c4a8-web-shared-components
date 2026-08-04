@@ -78,6 +78,11 @@ const productArgs = {
         url: '',
         alt: 'alt text EN',
       },
+      es: {
+        title: 'Home ES',
+        url: '',
+        alt: 'alt text ES',
+      },
     },
   },
   navigation: [
@@ -92,6 +97,10 @@ const productArgs = {
           title: 'Home EN',
           url: '',
         },
+        es: {
+          title: 'Inicio ES',
+          url: '',
+        },
       },
     },
     {
@@ -99,6 +108,10 @@ const productArgs = {
       languages: {
         en: {
           title: 'Pricing EN',
+          url: '/iframe.html',
+        },
+        es: {
+          title: 'Precios ES',
           url: '/iframe.html',
         },
       },
@@ -110,12 +123,21 @@ const productArgs = {
           title: 'Partner EN',
           url: '',
         },
+        es: {
+          title: 'Socios ES',
+          url: '',
+        },
       },
     },
     {
       name: 'docs',
       languages: {
         en: {
+          title: 'Docs',
+          url: 'https://docs.radiusaas.com/',
+          target: '_blank',
+        },
+        es: {
           title: 'Docs',
           url: 'https://docs.radiusaas.com/',
           target: '_blank',
@@ -133,6 +155,51 @@ export const HeaderProductOnSurface = {
 
 export const HeaderProduct = {
   args: { ...productArgs },
+};
+
+export const HeaderProductEN = {
+  args: { ...productArgs, lang: 'en' },
+};
+
+export const HeaderProductES = {
+  args: { ...productArgs, lang: 'es' },
+};
+
+const konnektNav = ['Home', 'Preise', 'Partner', 'Support Hub', 'Events', 'Über uns'].map((title, index) => ({
+  name: `konnekt-${index}`,
+  languages: {
+    de: {
+      title,
+      url: '',
+    },
+  },
+}));
+
+export const HeaderProductKonnektDE = {
+  args: {
+    lang: 'de',
+    product: true,
+    theme: 'konnekt',
+    showSecondaryNavigation: true,
+    button: {
+      text: 'Kostenlos testen',
+      href: '/trial/',
+      skin: 'primary is-cutoff',
+    },
+    home: {
+      name: 'home',
+      imgLight: '/products/konnekt/gkgab-konnekt-logo-white.svg',
+      img: '/products/konnekt/KONNEKT-logo-rgb.svg',
+      languages: {
+        de: {
+          title: 'Home',
+          url: '',
+          alt: 'KONNEKT Logo',
+        },
+      },
+    },
+    navigation: konnektNav,
+  },
 };
 
 export const HeaderProduct2 = {
