@@ -165,7 +165,7 @@ export const HeaderProductES = {
   args: { ...productArgs, lang: 'es' },
 };
 
-const konnektNav = ['Home', 'Preise', 'Partner', 'Support Hub', 'Events', 'Über uns'].map((title, index) => ({
+const konnektNav = ['Preise', 'Partner', 'Support Hub', 'Events', 'Über uns'].map((title, index) => ({
   name: `konnekt-${index}`,
   languages: {
     de: {

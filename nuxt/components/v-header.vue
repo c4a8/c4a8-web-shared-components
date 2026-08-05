@@ -1120,6 +1120,21 @@ $header-border-size: 1px;
       }
     }
 
+    &:not(.header--product) {
+      @include media-breakpoint-between($header-expand-breakpoint, $header-expand-breakpoint) {
+        .header__nav {
+          flex-shrink: 0;
+        }
+      }
+
+      @media (min-width: #{breakpoint-min($header-expand-breakpoint, $grid-breakpoints)}) and (max-width: 1040px) {
+        .header__link-content {
+          padding-left: spacing(3);
+          padding-right: spacing(3);
+        }
+      }
+    }
+
     &.header--product {
       --header-logo-height-small: 38px;
       --header-logo-height-medium: 34px;
@@ -1181,22 +1196,26 @@ $header-border-size: 1px;
       }
 
       @include media-breakpoint-between($header-expand-breakpoint, $header-expand-breakpoint) {
+        --header-logo-height-large: 38px;
+
         .header__logo {
           flex-basis: 20%;
           padding-right: spacing(4);
         }
 
+        .header__language-switch {
+          --header-language-spacing: #{spacing(4)};
+        }
+      }
+
+      @media (min-width: #{breakpoint-min($header-expand-breakpoint, $grid-breakpoints)}) and (max-width: 1010px) {
         .header__link-content {
-          padding-left: spacing(2);
-          padding-right: spacing(2);
+          padding-left: spacing(3);
+          padding-right: spacing(3);
         }
 
         .header__button {
-          margin-left: spacing(2);
-        }
-
-        .header__language-switch {
-          --header-language-spacing: #{spacing(4)};
+          margin-left: spacing(3);
         }
       }
 

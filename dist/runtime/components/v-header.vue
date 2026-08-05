@@ -1093,6 +1093,17 @@ export default {
 .header.vue-component:not(:hover):not(.is-scrolled):not(.is-expanded).header--light::after {
   background-color: var(--color-black);
 }
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .header.vue-component:not(.header--product) .header__nav {
+    flex-shrink: 0;
+  }
+}
+@media (min-width: 992px) and (max-width: 1040px) {
+  .header.vue-component:not(.header--product) .header__link-content {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+}
 .header.vue-component.header--product {
   --header-logo-height-small: 38px;
   --header-logo-height-medium: 34px;
@@ -1153,19 +1164,24 @@ export default {
   }
 }
 @media (min-width: 992px) and (max-width: 1199.98px) {
+  .header.vue-component.header--product {
+    --header-logo-height-large: 38px;
+  }
   .header.vue-component.header--product .header__logo {
     flex-basis: 20%;
     padding-right: 1rem;
   }
-  .header.vue-component.header--product .header__link-content {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-  }
-  .header.vue-component.header--product .header__button {
-    margin-left: 0.5rem;
-  }
   .header.vue-component.header--product .header__language-switch {
     --header-language-spacing: 1rem;
+  }
+}
+@media (min-width: 992px) and (max-width: 1010px) {
+  .header.vue-component.header--product .header__link-content {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  .header.vue-component.header--product .header__button {
+    margin-left: 0.75rem;
   }
 }
 .header.vue-component.header--product nav {
