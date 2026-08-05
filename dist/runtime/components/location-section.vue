@@ -1,27 +1,20 @@
 <template>
   <div :class="[classList, 'location-section']" :style="{ backgroundColor: backgroundColor }">
-    <div
+    <slider
       v-if="images && images.length > 0"
-      class="location-section__slider-container d-flex align-items-center justify-content-center"
+      v-bind="sliderConfig"
+      :v2="true"
     >
-      <div
-        class="location-section__slider-controls position-absolute d-flex align-items-center justify-content-center col-10 col-xxl-11 mx-auto z-index-2"
-      >
-        <div class="slick__arrow-left rounded-circle" :class="`prev-element-${instanceId}`"></div>
-        <div class="slick__arrow-right rounded-circle" :class="`next-element-${instanceId}`"></div>
+      <div v-for="(img, index) in sliderImages" class="location-section__slider-image-wrapper">
+        <v-img
+          :key="index"
+          :cloudinary="img.cloudinary"
+          :img="img.img"
+          :imgSrcSets="img.srcSets || imgSrcSets"
+          class="location-section__slider-image"
+        />
       </div>
-      <slider v-bind="sliderConfig" :v2="true">
-        <div v-for="(img, index) in sliderImages" class="location-section__slider-image-wrapper">
-          <v-img
-            :key="index"
-            :cloudinary="img.cloudinary"
-            :img="img.img"
-            :imgSrcSets="img.srcSets || imgSrcSets"
-            class="location-section__slider-image"
-          />
-        </div>
-      </slider>
-    </div>
+    </slider>
 
     <div class="location-section__content container pt-lg-8 pt-5 ">
       <div class="col-12 pb-5 d-flex justify-content-between">
@@ -55,15 +48,8 @@
   </div>
 </template>
 <script>
-let instanceCounter = 0;
-
 export default {
   tagName: 'location-section',
-  data() {
-    return {
-      instanceId: ++instanceCounter,
-    };
-  },
   props: {
     classes: String,
     overline: String,
@@ -108,12 +94,8 @@ export default {
         hideContainer: true,
         hideBackground: true,
         options: {
-          dots: false,
-          navigation: {
-            enabled: true,
-            nextEl: `.next-element-${this.instanceId}`,
-            prevEl: `.prev-element-${this.instanceId}`,
-          },
+          navigation: true,
+          controlsClass: 'slider__controls--full-width',
           loop: true,
           breakpoints: {
             320: {

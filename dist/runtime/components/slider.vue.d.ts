@@ -82,10 +82,14 @@ declare namespace _default {
         function style(): {
             'background-color': () => any;
         } | undefined;
+        function hasControls(): any;
+        function hasPagination(): any;
+        function v2Options(): any;
     }
     function mounted(): void;
     function data(): {
         defaultBgColor: string;
+        instanceId: number;
     };
     namespace props {
         let headline: StringConstructor;
