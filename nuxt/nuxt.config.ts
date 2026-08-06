@@ -42,6 +42,7 @@ export default defineNuxtConfig({
     'nuxt-swiper',
     '@nuxtjs/turnstile',
     '@nuxt/scripts',
+    'nuxt-schema-org',
   ],
   i18n: {
     bundle: {
