@@ -10,7 +10,7 @@ declare namespace _default {
         function hasIcon(): any;
     }
     function setup(): {
-        nuxtApp: import("nuxt/app").NuxtApp;
+        nuxtApp: import("#app").NuxtApp;
     };
     namespace props {
         namespace tag {
