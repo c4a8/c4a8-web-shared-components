@@ -1,8 +1,5 @@
 declare namespace _default {
     let tagName: string;
-    function data(): {
-        instanceId: number;
-    };
     namespace props {
         let classes: StringConstructor;
         let overline: StringConstructor;
@@ -28,7 +25,33 @@ declare namespace _default {
         };
         function classList(): any;
         function sliderImages(): any;
-        function sliderConfig(): any;
+        function sliderConfig(): {
+            hideContainer: boolean;
+            hideBackground: boolean;
+            options: {
+                navigation: boolean;
+                controlsClass: string;
+                loop: boolean;
+                breakpoints: {
+                    320: {
+                        slidesPerView: number;
+                        spaceBetween: number;
+                    };
+                    576: {
+                        slidesPerView: number;
+                        spaceBetween: number;
+                    };
+                    992: {
+                        slidesPerView: number;
+                        spaceBetween: number;
+                    };
+                    1200: {
+                        slidesPerView: number;
+                        spaceBetween: number;
+                    };
+                };
+            };
+        };
     }
 }
 export default _default;

@@ -18,9 +18,21 @@
         <wrapper-slot-items v-if="wrapped" :items="$slots?.default"></wrapper-slot-items>
         <slot v-else></slot>
       </div>
-      <div class="slider__container" v-else>
+      <div
+        class="slider__container slider__container--v2"
+        :class="{ 'slider__container--has-pagination': hasPagination }"
+        v-else
+      >
         <ClientOnly>
-          <swiper-container class="slider__swiper-container" ref="containerRef" v-bind="options">
+          <div
+            v-if="hasControls"
+            class="slider__controls position-absolute d-flex align-items-center justify-content-center z-index-2"
+            :class="options?.controlsClass"
+          >
+            <div class="slick__arrow-left rounded-circle" :class="`prev-element-${instanceId}`"></div>
+            <div class="slick__arrow-right rounded-circle" :class="`next-element-${instanceId}`"></div>
+          </div>
+          <swiper-container class="slider__swiper-container" ref="containerRef" v-bind="v2Options">
             <swiper-slide v-for="(item, index) in subChilds" :key="index">
               <component :is="item" :no-row="true" />
             </swiper-slide>
@@ -34,6 +46,8 @@
 <script>
 import Tools from '../utils/tools.js';
 import State from '../utils/state.js';
+
+let sliderInstanceCounter = 0;
 
 // TODO move shape to a vue component and insert it here in the template
 // TODO try to export this to the other components that use carousel options
@@ -89,7 +103,8 @@ export default {
         'slider',
         `${Tools.isTrue(this.hideContainer) === true ? '' : this.getSpacing}`,
         `${this.backgroundClass}`,
-        this.overflow ? 'slider--overflow' : '',
+        this.overflow || this.hasControls || this.fade ? 'slider--overflow' : '',
+        this.fade ? 'slider--fade' : '',
         'vue-component',
       ];
     },
@@ -162,6 +177,31 @@ export default {
         'background-color': this.backgroundColor,
       };
     },
+    hasControls() {
+      return this.v2 && !!this.options?.navigation;
+    },
+    hasPagination() {
+      return this.v2 && !!this.options?.pagination;
+    },
+    v2Options() {
+      const { controlsClass, ...opts } = this.options || {};
+      if (this.hasControls) {
+        opts.navigation = {
+          ...(typeof opts.navigation === 'object' ? opts.navigation : {}),
+          enabled: true,
+          nextEl: `.next-element-${this.instanceId}`,
+          prevEl: `.prev-element-${this.instanceId}`,
+        };
+      }
+      if (this.hasPagination) {
+        opts.pagination = {
+          ...(typeof opts.pagination === 'object' ? opts.pagination : {}),
+          enabled: true,
+          clickable: true,
+        };
+      }
+      return opts;
+    },
   },
   mounted() {
     Tools.initSlickSlider(this.$refs.container, this.carouselOptions);
@@ -169,6 +209,7 @@ export default {
   data() {
     return {
       defaultBgColor: 'var(--color-bg-grey)',
+      instanceId: ++sliderInstanceCounter,
     };
   },
   props: {
@@ -195,70 +236,13 @@ export default {
       type: Boolean,
       default: false,
     },
+    fade: {
+      type: Boolean,
+      default: false,
+    },
   },
 };
 </script>
 <style>
-.slider {
-  overflow: hidden;
-}
-.slider.slider--overflow {
-  overflow: visible;
-}
-.slider.has-background {
-  position: relative;
-  padding-bottom: 4rem;
-}
-.slider.has-background .slider__wrapper:before {
-  display: block;
-}
-@media (min-width: 992px) {
-  .slider.has-background {
-    padding-bottom: 5.5rem;
-  }
-}
-.slider .is--desktop,
-.slider .slider__item--desktop {
-  display: none;
-}
-@media (min-width: 576px) {
-  .slider .slick-list {
-    width: 100%;
-  }
-}
-@media (min-width: 992px) {
-  .slider .slick-list .slick-track {
-    left: 0;
-  }
-}
-.slider swiper-container::part(container) {
-  overflow: visible;
-}
-.slider swiper-slide {
-  height: auto;
-}
-.slider swiper-slide > * {
-  height: 100%;
-}
-@media (min-width: 992px) {
-  .slider .is--desktop,
-  .slider .slider__item--desktop {
-    display: block;
-  }
-  .slider .is--mobile,
-  .slider .slider__item--mobile {
-    display: none;
-  }
-}
-
-.slider__wrapper:before {
-  display: none;
-  content: "";
-  background-color: inherit;
-  position: absolute;
-  width: 100vw;
-  height: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-}
+.slider{overflow:hidden!important}.slider.slider--overflow{overflow:visible}.slider.has-background{padding-bottom:4rem;position:relative}.slider.has-background .slider__wrapper:before{display:block}@media (min-width:992px){.slider.has-background{padding-bottom:5.5rem}}.slider .is--desktop,.slider .slider__item--desktop{display:none}@media (min-width:576px){.slider .slick-list{width:100%}}@media (min-width:992px){.slider .slick-list .slick-track{left:0}}.slider .slider__container--v2{position:relative}.slider--fade .slider__container--v2:after,.slider--fade .slider__container--v2:before{bottom:0;content:"";margin-top:-2em;pointer-events:none;position:absolute;top:0;width:0;z-index:2}.slider--fade .slider__container--v2:before{background:linear-gradient(90deg,#fff 60%,hsla(0,0%,100%,0));right:100%}.slider--fade .slider__container--v2:after{background:linear-gradient(270deg,#fff 60%,hsla(0,0%,100%,0));left:100%}@media (min-width:992px){.slider--fade .slider__container--v2:after,.slider--fade .slider__container--v2:before{width:calc(50vw - 415px)}}@media (min-width:1200px){.slider--fade .slider__container--v2:after,.slider--fade .slider__container--v2:before{width:calc(50vw - 555px)}}@media (min-width:1340px){.slider--fade .slider__container--v2:after,.slider--fade .slider__container--v2:before{width:calc(50vw - 430)}}.slider .slider__container--v2.slider__container--has-pagination{padding-bottom:2.5rem}.slider .slider__container--v2.slider__container--has-pagination swiper-container{--swiper-pagination-bottom:-2rem}.slider .slider__controls{left:0;pointer-events:none;right:0;top:50%;transform:translateY(-50%);z-index:3}.slider .slider__controls>*{pointer-events:auto}.slider .slider__controls.slider__controls--full-width{left:50%;right:auto;transform:translate(-50%,-50%);width:99vw}.slider .slider__controls.slider__controls--full-width .slick__arrow-left{left:.5rem}.slider .slider__controls.slider__controls--full-width .slick__arrow-right{right:.5rem}.slider .slider__controls .slick__arrow-left.swiper-button-disabled,.slider .slider__controls .slick__arrow-right.swiper-button-disabled{cursor:default;opacity:.3;pointer-events:none}.slider swiper-container::part(container){overflow:visible}.slider swiper-slide{height:auto}.slider swiper-slide>*{height:100%}@media (min-width:992px){.slider--fade .slider__container--v2:after,.slider--fade .slider__container--v2:before{width:calc(50vw - 444px)}}@media (min-width:1200px){.slider--fade .slider__container--v2:after,.slider--fade .slider__container--v2:before{width:calc(50vw - 534px)}}@media (min-width:1340px){.slider--fade .slider__container--v2:after,.slider--fade .slider__container--v2:before{width:calc(50vw - 599px)}}.slider__wrapper:before{background-color:inherit;content:"";display:none;height:100%;left:50%;position:absolute;transform:translateX(-50%);width:100vw}
 </style>

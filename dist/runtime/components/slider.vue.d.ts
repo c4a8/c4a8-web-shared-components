@@ -82,10 +82,14 @@ declare namespace _default {
         function style(): {
             'background-color': () => any;
         } | undefined;
+        function hasControls(): any;
+        function hasPagination(): any;
+        function v2Options(): any;
     }
     function mounted(): void;
     function data(): {
         defaultBgColor: string;
+        instanceId: number;
     };
     namespace props {
         let headline: StringConstructor;
@@ -115,6 +119,12 @@ declare namespace _default {
             export { type_1 as type };
             let _default_3: boolean;
             export { _default_3 as default };
+        }
+        namespace fade {
+            let type_2: BooleanConstructor;
+            export { type_2 as type };
+            let _default_4: boolean;
+            export { _default_4 as default };
         }
     }
 }
