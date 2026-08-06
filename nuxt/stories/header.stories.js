@@ -165,26 +165,45 @@ export const HeaderProductES = {
   args: { ...productArgs, lang: 'es' },
 };
 
-const konnektNav = ['Preise', 'Partner', 'Support Hub', 'Events', 'Über uns'].map((title, index) => ({
-  name: `konnekt-${index}`,
-  languages: {
-    de: {
-      title,
-      url: '',
+const konnektNav = ['Preise', 'Partner', 'Support Hub', 'Events', 'Über uns'].map((title, index) => {
+  const isDropdown = title === 'Support Hub';
+
+  return {
+    name: `konnekt-${index}`,
+    languages: {
+      de: {
+        title,
+        ...(isDropdown ? {} : { url: '' }),
+      },
     },
-  },
-}));
+    ...(isDropdown
+      ? {
+          children: ['Dokumentation', 'Downloads', 'Kontakt'].map((childTitle) => ({
+            name: `konnekt-${index}-${childTitle.toLowerCase()}`,
+            languages: {
+              de: {
+                title: childTitle,
+                url: '',
+              },
+            },
+          })),
+        }
+      : {}),
+  };
+});
 
 export const HeaderProductKonnektDE = {
   args: {
     lang: 'de',
     product: true,
     theme: 'konnekt',
+    collapse: 22,
     showSecondaryNavigation: true,
     button: {
       text: 'Kostenlos testen',
       href: '/trial/',
       skin: 'primary is-cutoff',
+      external: true,
     },
     home: {
       name: 'home',

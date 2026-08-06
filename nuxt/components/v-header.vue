@@ -46,14 +46,22 @@
           </div>
           <div class="header__logo" :style="headerLogoStyle">
             <a :href="homeObj?.url">
-              <v-img
-                :img="home?.imgLight"
-                class="header__logo-light"
-                :cloudinary="true"
-                alt="logo"
-                fetchpriority="high"
-              />
-              <v-img :img="home?.img" class="header__logo-default" :cloudinary="true" alt="logo" fetchpriority="high" />
+              <span class="header__logo-media" ref="logoMedia">
+                <v-img
+                  :img="home?.imgLight"
+                  class="header__logo-light"
+                  :cloudinary="true"
+                  alt="logo"
+                  fetchpriority="high"
+                />
+                <v-img
+                  :img="home?.img"
+                  class="header__logo-default"
+                  :cloudinary="true"
+                  alt="logo"
+                  fetchpriority="high"
+                />
+              </span>
             </a>
           </div>
           <div class="header__menu" v-on:click="handleCloseClick">
@@ -265,6 +273,7 @@ export default {
         Tools.isTrue(this.product) ? 'header--product' : '',
         !Tools.isTrue(this.closed) ? State.EXPANDED : '',
         Tools.isTrue(this.blendMode) ? 'header--blending' : '',
+        this.collapseRatio ? 'header--collapsible' : '',
         this.onSurface ? State.ON_SURFACE : '',
         this.inUpdate ? 'is-updating' : '',
         'vue-component',
@@ -289,10 +298,29 @@ export default {
         })),
       };
     },
-    headerLogoStyle() {
-      if (!this.secondaryNavigation || !this.logoOffsetPosition) return;
+    collapseRatio() {
+      const ratio = parseFloat(this.collapse);
 
-      return `padding-left: ${this.logoOffsetPosition}px;`;
+      if (!ratio || ratio <= 0) return null;
+
+      return ratio > 1 ? ratio / 100 : ratio;
+    },
+    headerLogoStyle() {
+      const styles = [];
+
+      if (this.secondaryNavigation && this.logoOffsetPosition) {
+        styles.push(`padding-left: ${this.logoOffsetPosition}px`);
+      }
+
+      if (this.collapseRatio) {
+        styles.push(`--header-logo-collapse: ${this.collapseRatio}`);
+      }
+
+      if (this.collapseRatio && this.logoNaturalWidth) {
+        styles.push(`--header-logo-natural-width: ${this.logoNaturalWidth}px`);
+      }
+
+      return styles.length ? `${styles.join(';')};` : undefined;
     },
     headerContainerClassList() {
       return ['header__container', this.containerClass];
@@ -397,6 +425,7 @@ export default {
 
     this.setCtaClasses();
     this.setLinkWidth();
+    this.setLogoNaturalWidth();
     this.handleScroll();
 
     if (this.secondaryNavigation) {
@@ -548,6 +577,26 @@ export default {
         this.shrinkWidthSecondaryNavigation();
       }
     },
+    setLogoNaturalWidth() {
+      if (!this.collapseRatio) return;
+
+      const media = this.$refs.logoMedia;
+
+      if (!media) return;
+
+      const images = [...media.querySelectorAll('img')];
+      const width = Math.max(0, ...images.map((image) => image.getBoundingClientRect().width));
+
+      if (!width) {
+        images
+          .filter((image) => !image.complete)
+          .forEach((image) => image.addEventListener('load', this.setLogoNaturalWidth, { once: true }));
+
+        return;
+      }
+
+      this.logoNaturalWidth = width;
+    },
     calculateLogoOffsetPosition() {
       this.logoOffsetPosition = 0;
 
@@ -607,6 +656,7 @@ export default {
     handleResize() {
       this.reset();
       this.setLinkWidth();
+      this.setLogoNaturalWidth();
       this.closeSecondaryNavigation();
       this.getSecondaryNavigationDimensions();
     },
@@ -995,6 +1045,9 @@ export default {
     },
     theme: String,
     onSurface: Boolean,
+    collapse: {
+      default: null,
+    },
   },
   data() {
     return {
@@ -1013,6 +1066,7 @@ export default {
       maxLinkListsInFlyout: 3,
       activeNavigation: {},
       logoOffsetPosition: null,
+      logoNaturalWidth: null,
       secondaryNavigationInTransition: false,
       secondaryNavigationIsExpanded: false,
       secondaryNavigationDimensions: null,
@@ -1125,9 +1179,11 @@ $header-border-size: 1px;
         .header__nav {
           flex-shrink: 0;
         }
-      }
 
-      @media (min-width: #{breakpoint-min($header-expand-breakpoint, $grid-breakpoints)}) and (max-width: 1040px) {
+        .header__logo {
+          padding-right: spacing(4);
+        }
+
         .header__link-content {
           padding-left: spacing(3);
           padding-right: spacing(3);
@@ -1206,9 +1262,7 @@ $header-border-size: 1px;
         .header__language-switch {
           --header-language-spacing: #{spacing(4)};
         }
-      }
 
-      @media (min-width: #{breakpoint-min($header-expand-breakpoint, $grid-breakpoints)}) and (max-width: 1010px) {
         .header__link-content {
           padding-left: spacing(3);
           padding-right: spacing(3);
@@ -1226,6 +1280,23 @@ $header-border-size: 1px;
       .header__logo {
         @include media-breakpoint-up($header-expand-breakpoint) {
           flex-grow: 1;
+        }
+      }
+    }
+
+    &.header--collapsible {
+      .header__logo-media {
+        width: var(--header-logo-natural-width, max-content);
+        transition: width 0.5s $animation-transition;
+      }
+
+      @include media-breakpoint-between($header-expand-breakpoint, $header-expand-breakpoint) {
+        .header__logo {
+          flex: 1 1 auto;
+        }
+
+        .header__logo-media {
+          width: calc(var(--header-logo-natural-width) * var(--header-logo-collapse));
         }
       }
     }
@@ -1459,6 +1530,11 @@ $header-border-size: 1px;
     flex: 0 1 25%;
     padding-right: spacing(8);
   }
+}
+
+.header__logo-media {
+  display: block;
+  overflow: hidden;
 }
 
 .header__logo-light {
