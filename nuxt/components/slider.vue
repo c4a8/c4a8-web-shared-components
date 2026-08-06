@@ -103,7 +103,8 @@ export default {
         'slider',
         `${Tools.isTrue(this.hideContainer) === true ? '' : this.getSpacing}`,
         `${this.backgroundClass}`,
-        this.overflow || this.hasControls ? 'slider--overflow' : '',
+        this.overflow || this.hasControls || this.fade ? 'slider--overflow' : '',
+        this.fade ? 'slider--fade' : '',
         'vue-component',
       ];
     },
@@ -235,19 +236,23 @@ export default {
       type: Boolean,
       default: false,
     },
+    fade: {
+      type: Boolean,
+      default: false,
+    },
   },
 };
 </script>
 <style>
 .slider {
-  overflow: hidden;
+  overflow: hidden !important;
 }
 .slider.slider--overflow {
   overflow: visible;
 }
 .slider.has-background {
-  position: relative;
   padding-bottom: 4rem;
+  position: relative;
 }
 .slider.has-background .slider__wrapper:before {
   display: block;
@@ -274,6 +279,43 @@ export default {
 .slider .slider__container--v2 {
   position: relative;
 }
+.slider--fade .slider__container--v2:after,
+.slider--fade .slider__container--v2:before {
+  bottom: 0;
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 0;
+  z-index: 2;
+  margin-top: -2em;
+}
+.slider--fade .slider__container--v2:before {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 1) 60%, rgba(255, 255, 255, 0) 100%);
+  right: 100%;
+}
+.slider--fade .slider__container--v2:after {
+  background: linear-gradient(270deg, rgba(255, 255, 255, 1) 60%, rgba(255, 255, 255, 0) 100%);
+  left: 100%;
+}
+@media (min-width: 992px) {
+  .slider--fade .slider__container--v2:after,
+  .slider--fade .slider__container--v2:before {
+    width: calc(50vw - 415px);
+  }
+}
+@media (min-width: 1200px) {
+  .slider--fade .slider__container--v2:after,
+  .slider--fade .slider__container--v2:before {
+    width: calc(50vw - 555px);
+  }
+}
+@media (min-width: 1340px) {
+  .slider--fade .slider__container--v2:after,
+  .slider--fade .slider__container--v2:before {
+    width: calc(50vw -430);
+  }
+}
 .slider .slider__container--v2.slider__container--has-pagination {
   padding-bottom: 2.5rem;
 }
@@ -281,11 +323,12 @@ export default {
   --swiper-pagination-bottom: -2rem;
 }
 .slider .slider__controls {
-  top: 50%;
   left: 0;
-  right: 0;
-  transform: translateY(-50%);
   pointer-events: none;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
 }
 .slider .slider__controls > * {
   pointer-events: auto;
@@ -293,10 +336,8 @@ export default {
 .slider .slider__controls.slider__controls--full-width {
   left: 50%;
   right: auto;
-  width: 99vw;
-
   transform: translate(-50%, -50%);
-
+  width: 99vw;
 }
 .slider .slider__controls.slider__controls--full-width .slick__arrow-left {
   left: 0.5rem;
@@ -306,9 +347,9 @@ export default {
 }
 .slider .slider__controls .slick__arrow-left.swiper-button-disabled,
 .slider .slider__controls .slick__arrow-right.swiper-button-disabled {
+  cursor: default;
   opacity: 0.3;
   pointer-events: none;
-  cursor: default;
 }
 .slider swiper-container::part(container) {
   overflow: visible;
@@ -319,25 +360,34 @@ export default {
 .slider swiper-slide > * {
   height: 100%;
 }
+
 @media (min-width: 992px) {
-  .slider .is--desktop,
-  .slider .slider__item--desktop {
-    display: block;
+  .slider--fade .slider__container--v2:after,
+  .slider--fade .slider__container--v2:before {
+    width: calc((100vw - 890px) / 2 + 1px);
   }
-  .slider .is--mobile,
-  .slider .slider__item--mobile {
-    display: none;
+}
+@media (min-width: 1200px) {
+  .slider--fade .slider__container--v2:after,
+  .slider--fade .slider__container--v2:before {
+    width: calc((100vw - 1070px) / 2 + 1px);
+  }
+}
+@media (min-width: 1340px) {
+  .slider--fade .slider__container--v2:after,
+  .slider--fade .slider__container--v2:before {
+    width: calc((100vw - 1200px) / 2 + 1px);
   }
 }
 
 .slider__wrapper:before {
-  display: none;
-  content: "";
   background-color: inherit;
-  position: absolute;
-  width: 100vw;
+  content: '';
+  display: none;
   height: 100%;
   left: 50%;
+  position: absolute;
   transform: translateX(-50%);
+  width: 100vw;
 }
 </style>
