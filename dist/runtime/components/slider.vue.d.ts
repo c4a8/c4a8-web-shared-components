@@ -120,6 +120,12 @@ declare namespace _default {
             let _default_3: boolean;
             export { _default_3 as default };
         }
+        namespace fade {
+            let type_2: BooleanConstructor;
+            export { type_2 as type };
+            let _default_4: boolean;
+            export { _default_4 as default };
+        }
     }
 }
 export default _default;
