@@ -1,10 +1,15 @@
 # Releases
 
-# Release 0.1.108
+# Release 0.4.109
+
+- Adds schema.org structured data for organization, events, authors and articles
+- Improves slider controls styling and behaviour
+
+# Release 0.4.108
 
 - Fixes issue with duplicate id's
 
-# Release 0.1.107
+# Release 0.4.107
 
 - Fixes issue with timeline component not showing entry text
 
