@@ -165,59 +165,61 @@ export const HeaderProductES = {
   args: { ...productArgs, lang: 'es' },
 };
 
-const konnektNav = ['Preise', 'Partner', 'Support Hub', 'Events', 'Über uns'].map((title, index) => {
-  const isDropdown = title === 'Support Hub';
+const terraProviderNav = ['Precios', 'Partners', 'Support Hub', 'Eventos', 'Acerca de nosotros'].map(
+  (title, index) => {
+    const isDropdown = title === 'Support Hub';
 
-  return {
-    name: `konnekt-${index}`,
-    languages: {
-      de: {
-        title,
-        ...(isDropdown ? {} : { url: '' }),
+    return {
+      name: `terraprovider-${index}`,
+      languages: {
+        es: {
+          title,
+          ...(isDropdown ? {} : { url: '' }),
+        },
       },
-    },
-    ...(isDropdown
-      ? {
-          children: ['Dokumentation', 'Downloads', 'Kontakt'].map((childTitle) => ({
-            name: `konnekt-${index}-${childTitle.toLowerCase()}`,
-            languages: {
-              de: {
-                title: childTitle,
-                url: '',
+      ...(isDropdown
+        ? {
+            children: ['Documentacion', 'Descargas', 'Contacto'].map((childTitle) => ({
+              name: `terraprovider-${index}-${childTitle.toLowerCase()}`,
+              languages: {
+                es: {
+                  title: childTitle,
+                  url: '',
+                },
               },
-            },
-          })),
-        }
-      : {}),
-  };
-});
+            })),
+          }
+        : {}),
+    };
+  }
+);
 
-export const HeaderProductKonnektDE = {
+export const HeaderProductTerraProviderES = {
   args: {
-    lang: 'de',
+    lang: 'es',
     product: true,
-    theme: 'konnekt',
+    theme: 'terraprovider',
     collapse: 22,
     showSecondaryNavigation: true,
     button: {
-      text: 'Kostenlos testen',
+      text: 'Prueba gratuita',
       href: '/trial/',
       skin: 'primary is-cutoff',
       external: true,
     },
     home: {
       name: 'home',
-      imgLight: '/products/konnekt/gkgab-konnekt-logo-white.svg',
-      img: '/products/konnekt/KONNEKT-logo-rgb.svg',
+      imgLight: '/products/terraprovider/logo-terraprovider-white.svg',
+      img: '/products/terraprovider/logo-terraprovider.svg',
       languages: {
-        de: {
+        es: {
           title: 'Home',
           url: '',
-          alt: 'KONNEKT Logo',
+          alt: 'TerraProvider Logo',
         },
       },
     },
-    navigation: konnektNav,
+    navigation: terraProviderNav,
   },
 };
 

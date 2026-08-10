@@ -273,7 +273,11 @@ export default {
         Tools.isTrue(this.product) ? 'header--product' : '',
         !Tools.isTrue(this.closed) ? State.EXPANDED : '',
         Tools.isTrue(this.blendMode) ? 'header--blending' : '',
+        this.secondaryNavigation ? 'header--has-secondary' : '',
         this.collapseRatio ? 'header--collapsible' : '',
+        this.collapseRatio && !this.logoCollapseReady ? 'is-measuring' : '',
+        this.logoCollapsed ? 'is-logo-collapsed' : '',
+        this.headerCondensed ? 'is-condensed' : '',
         this.onSurface ? State.ON_SURFACE : '',
         this.inUpdate ? 'is-updating' : '',
         'vue-component',
@@ -307,10 +311,6 @@ export default {
     },
     headerLogoStyle() {
       const styles = [];
-
-      if (this.secondaryNavigation && this.logoOffsetPosition) {
-        styles.push(`padding-left: ${this.logoOffsetPosition}px`);
-      }
 
       if (this.collapseRatio) {
         styles.push(`--header-logo-collapse: ${this.collapseRatio}`);
@@ -397,13 +397,6 @@ export default {
     });
   },
   watch: {
-    secondaryNavigationDimensions(newVal) {
-      if (newVal !== null && newVal.width >= 0) {
-        this.$nextTick(() => {
-          this.calculateLogoOffsetPosition();
-        });
-      }
-    },
     isScrolled(newVal) {
       this.store.setHeader({ ...this.headerState, isScrolled: newVal });
     },
@@ -435,6 +428,11 @@ export default {
     this.initEvents.forEach((event) =>
       window.addEventListener(event, this.initMegaMenu, { once: true, passive: true })
     );
+
+    this.observeLogoCollapse();
+  },
+  beforeUnmount() {
+    this.logoCollapseObserver?.disconnect();
   },
   updated() {
     if (this.inUpdate) {
@@ -588,36 +586,114 @@ export default {
       const width = Math.max(0, ...images.map((image) => image.getBoundingClientRect().width));
 
       if (!width) {
-        images
-          .filter((image) => !image.complete)
-          .forEach((image) => image.addEventListener('load', this.setLogoNaturalWidth, { once: true }));
+        const pending = images.filter((image) => !image.complete);
+
+        if (!pending.length) {
+          this.logoCollapseReady = true;
+
+          return;
+        }
+
+        pending.forEach((image) => {
+          image.addEventListener('load', this.setLogoNaturalWidth, { once: true });
+          image.addEventListener('error', () => (this.logoCollapseReady = true), { once: true });
+        });
 
         return;
       }
 
       this.logoNaturalWidth = width;
+
+      this.evaluateLogoCollapse();
     },
-    calculateLogoOffsetPosition() {
-      this.logoOffsetPosition = 0;
+    observeLogoCollapse() {
+      if (!this.collapseRatio || !window.ResizeObserver) return;
 
-      if (!Tools.isUpperBreakpoint()) return;
+      const col = this.$refs.logoMedia?.closest('.header__col');
+      const nav = col?.querySelector('.header__nav');
 
-      const headerContainer = this.$refs.headerContainer;
+      if (!col) return;
 
-      if (!headerContainer) return { leftSpace: 0 };
+      this.logoCollapseObserver = new ResizeObserver(() => this.evaluateLogoCollapse());
 
-      const style = window.getComputedStyle(headerContainer);
-      const containerWidth = parseFloat(style.width);
-      const windowWidth = window.innerWidth;
-      const offsetCorrection = 20;
+      [col, nav].filter(Boolean).forEach((element) => this.logoCollapseObserver.observe(element));
+    },
+    evaluateLogoCollapse() {
+      if (!this.collapseRatio) return;
 
-      const margin = (windowWidth - containerWidth) / 2;
-      const buttonDimensions = this.getSecondaryNavigationButtonDimensions();
-      const buttonWidth = buttonDimensions.width;
+      if (!Tools.isAboveBreakpoint('lg')) {
+        this.logoCollapsed = false;
+        this.headerCondensed = false;
+        this.logoCollapseReady = true;
+        return;
+      }
 
-      const leftSpace = margin < buttonWidth ? buttonWidth - margin - offsetCorrection : 0;
+      const media = this.$refs.logoMedia;
+      const header = media?.closest('.header');
+      const col = media?.closest('.header__col');
+      const logo = media?.closest('.header__logo');
 
-      this.logoOffsetPosition = leftSpace;
+      if (!header || !col || !logo) return;
+
+      const wasCondensed = header.classList.contains('is-condensed');
+
+      if (wasCondensed) header.classList.remove('is-condensed');
+
+      const imageWidth = [...media.querySelectorAll('img')]
+        .map((image) => image.getBoundingClientRect().width)
+        .reduce((widest, width) => Math.max(widest, width), 0);
+
+      let measurements = null;
+
+      if (imageWidth) {
+        const colStyle = window.getComputedStyle(col);
+        const available =
+          col.getBoundingClientRect().width - parseFloat(colStyle.paddingLeft) - parseFloat(colStyle.paddingRight);
+
+        const logoStyle = window.getComputedStyle(logo);
+        const logoPadding = parseFloat(logoStyle.paddingLeft) + parseFloat(logoStyle.paddingRight);
+
+        const siblingsRequired = [...col.children]
+          .filter((child) => child !== logo && child.offsetParent)
+          .reduce((total, child) => {
+            const childStyle = window.getComputedStyle(child);
+            const margins = child.classList.contains('header__language-switch')
+              ? 0
+              : parseFloat(childStyle.marginLeft) + parseFloat(childStyle.marginRight);
+            const width = Math.max(child.scrollWidth, child.getBoundingClientRect().width);
+
+            return total + width + margins;
+          }, 0);
+
+        measurements = {
+          available,
+          expanded: imageWidth + logoPadding + siblingsRequired,
+          collapsed: imageWidth * this.collapseRatio + logoPadding + siblingsRequired,
+        };
+      }
+
+      if (wasCondensed) header.classList.add('is-condensed');
+
+      if (!measurements) return;
+
+      const condensed = measurements.collapsed > measurements.available + 1;
+      const collapsed = !condensed && measurements.expanded > measurements.available + 1;
+
+      if (!this.logoCollapseReady && collapsed) {
+        this.$nextTick(() =>
+          requestAnimationFrame(() => requestAnimationFrame(() => (this.logoCollapsed = true)))
+        );
+      } else {
+        this.logoCollapsed = collapsed;
+      }
+
+      this.logoCollapseReady = true;
+
+      if (condensed === this.headerCondensed) return;
+
+      this.headerCondensed = condensed;
+      this.reset();
+      this.$nextTick(this.setLogoNaturalWidth);
     },
     getSecondaryNavigationButtonDimensions() {
       const secondaryNavigationButton = this.$refs.secondaryNavigationButton;
@@ -646,7 +722,7 @@ export default {
       return children.length > this.maxLinkListsInFlyout ? false : true;
     },
     isLowerBreakpoint() {
-      return Tools.isBelowBreakpoint('md');
+      return this.headerCondensed || Tools.isBelowBreakpoint('md');
     },
     bindEvents() {
       window.addEventListener('scroll', this.handleScroll.bind(this));
@@ -742,6 +818,7 @@ export default {
       }
     },
     handleMouseOver(item, index) {
+      if (this.headerCondensed) return;
       if (!item.children) return;
 
       this.resetAllFlyouts();
@@ -1065,8 +1142,11 @@ export default {
       ctaClassList: null,
       maxLinkListsInFlyout: 3,
       activeNavigation: {},
-      logoOffsetPosition: null,
       logoNaturalWidth: null,
+      logoCollapsed: false,
+      headerCondensed: false,
+      logoCollapseReady: false,
+      logoCollapseObserver: null,
       secondaryNavigationInTransition: false,
       secondaryNavigationIsExpanded: false,
       secondaryNavigationDimensions: null,
@@ -1092,8 +1172,8 @@ export default {
   transition-duration: 0s;
 }
 @media (min-width: 992px) {
-  .shared-components .header.vue-component .header__language-switch .icon,
-  .shared-components .header.vue-component .header__link-content .icon {
+  .shared-components .header.vue-component:not(.is-condensed) .header__language-switch .icon,
+  .shared-components .header.vue-component:not(.is-condensed) .header__link-content .icon {
     width: 0.75rem;
     height: 0.75rem;
   }
@@ -1148,13 +1228,13 @@ export default {
   background-color: var(--color-black);
 }
 @media (min-width: 992px) and (max-width: 1199.98px) {
-  .header.vue-component:not(.header--product) .header__nav {
+  .header.vue-component:not(.header--product):not(.is-condensed) .header__nav {
     flex-shrink: 0;
   }
-  .header.vue-component:not(.header--product) .header__logo {
+  .header.vue-component:not(.header--product):not(.is-condensed) .header__logo {
     padding-right: 1rem;
   }
-  .header.vue-component:not(.header--product) .header__link-content {
+  .header.vue-component:not(.header--product):not(.is-condensed) .header__link-content {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
   }
@@ -1175,13 +1255,13 @@ export default {
   display: none;
 }
 @media (min-width: 992px) {
-  .header.vue-component.header--product .header__item {
+  .header.vue-component.header--product:not(.is-condensed) .header__item {
     position: relative;
   }
-  .header.vue-component.header--product .header__item.active {
+  .header.vue-component.header--product:not(.is-condensed) .header__item.active {
     color: inherit;
   }
-  .header.vue-component.header--product .header__item.active::before {
+  .header.vue-component.header--product:not(.is-condensed) .header__item.active::before {
     background-color: var(--color-highlight);
     content: "";
     height: 8px;
@@ -1197,43 +1277,43 @@ export default {
   border-bottom: 0;
 }
 @media (min-width: 992px) {
-  .header.vue-component.header--product .header__row {
+  .header.vue-component.header--product:not(.is-condensed) .header__row {
     padding-left: 2rem;
     padding-right: 2rem;
     margin: 0 -1rem;
   }
 }
 @media (min-width: 992px) and (max-width: 1339.98px) {
-  .header.vue-component.header--product {
+  .header.vue-component.header--product:not(.is-condensed) {
     --header-container-width: 960px;
   }
-  .header.vue-component.header--product .header__container {
+  .header.vue-component.header--product:not(.is-condensed) .header__container {
     max-width: none;
     padding-left: calc((100% - var(--header-container-width)) / 2 + 15px);
     padding-right: 15px;
   }
 }
 @media (min-width: 1200px) and (max-width: 1339.98px) {
-  .header.vue-component.header--product {
+  .header.vue-component.header--product:not(.is-condensed) {
     --header-container-width: 1140px;
   }
 }
 @media (min-width: 992px) and (max-width: 1199.98px) {
-  .header.vue-component.header--product {
+  .header.vue-component.header--product:not(.is-condensed) {
     --header-logo-height-large: 38px;
   }
-  .header.vue-component.header--product .header__logo {
+  .header.vue-component.header--product:not(.is-condensed) .header__logo {
     flex-basis: 20%;
     padding-right: 1rem;
   }
-  .header.vue-component.header--product .header__language-switch {
+  .header.vue-component.header--product:not(.is-condensed) .header__language-switch {
     --header-language-spacing: 1rem;
   }
-  .header.vue-component.header--product .header__link-content {
+  .header.vue-component.header--product:not(.is-condensed) .header__link-content {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
   }
-  .header.vue-component.header--product .header__button {
+  .header.vue-component.header--product:not(.is-condensed) .header__button {
     margin-left: 0.75rem;
   }
 }
@@ -1241,20 +1321,50 @@ export default {
   bottom: 0;
 }
 @media (min-width: 992px) {
-  .header.vue-component.header--product .header__logo {
+  .header.vue-component.header--product:not(.is-condensed) .header__logo {
     flex-grow: 1;
+  }
+}
+@media (min-width: 992px) {
+  .header.vue-component.header--product:not(.is-condensed) .header__nav {
+    flex-shrink: 0;
   }
 }
 .header.vue-component.header--collapsible .header__logo-media {
   width: var(--header-logo-natural-width, max-content);
   transition: width 0.5s cubic-bezier(0.19, 1, 0.2, 1);
 }
-@media (min-width: 992px) and (max-width: 1199.98px) {
-  .header.vue-component.header--collapsible .header__logo {
+.header.vue-component.header--collapsible.is-measuring .header__nav,
+.header.vue-component.header--collapsible.is-measuring .header__button,
+.header.vue-component.header--collapsible.is-measuring .header__language-switch,
+.header.vue-component.header--collapsible.is-measuring .header__menu {
+  opacity: 0;
+  pointer-events: none;
+}
+@media (min-width: 992px) {
+  .header.vue-component.header--collapsible.is-logo-collapsed .header__logo {
     flex: 1 1 auto;
   }
-  .header.vue-component.header--collapsible .header__logo-media {
+  .header.vue-component.header--collapsible.is-logo-collapsed .header__logo-media {
     width: calc(var(--header-logo-natural-width) * var(--header-logo-collapse));
+  }
+}
+@media (min-width: 992px) {
+  .header.vue-component.header--has-secondary {
+    --header-grid-width: 960px;
+  }
+  .header.vue-component.header--has-secondary .header__logo {
+    padding-left: max(0px, calc(3.75rem - (100vw - var(--header-grid-width)) / 2 - 15px));
+  }
+}
+@media (min-width: 1200px) {
+  .header.vue-component.header--has-secondary {
+    --header-grid-width: 1140px;
+  }
+}
+@media (min-width: 1340px) {
+  .header.vue-component.header--has-secondary {
+    --header-grid-width: 1320px;
   }
 }
 .header.vue-component.is-expanded nav {
@@ -1272,22 +1382,22 @@ export default {
   backdrop-filter: blur(30px);
 }
 @media (min-width: 992px) {
-  .header.vue-component:not(:hover):not(.is-scrolled).header--light {
+  .header.vue-component:not(:hover):not(.is-scrolled):not(.is-condensed).header--light {
     --color-header-background: transparent;
     --color-header-border: transparent;
     box-shadow: none;
     color: var(--color-copy-light);
   }
-  .header.vue-component:not(:hover):not(.is-scrolled).header--light .header__link {
+  .header.vue-component:not(:hover):not(.is-scrolled):not(.is-condensed).header--light .header__link {
     color: inherit;
   }
-  .header.vue-component:not(:hover):not(.is-scrolled).header--light .header__link .icon {
+  .header.vue-component:not(:hover):not(.is-scrolled):not(.is-condensed).header--light .header__link .icon {
     color: inherit;
   }
-  .header.vue-component:not(:hover):not(.is-scrolled).header--light .header__logo-light {
+  .header.vue-component:not(:hover):not(.is-scrolled):not(.is-condensed).header--light .header__logo-light {
     display: block;
   }
-  .header.vue-component:not(:hover):not(.is-scrolled).header--light .header__logo-default {
+  .header.vue-component:not(:hover):not(.is-scrolled):not(.is-condensed).header--light .header__logo-default {
     display: none;
   }
 }
@@ -1303,6 +1413,17 @@ export default {
     pointer-events: none;
     transform: translateY(-100%) translateX(-50%);
   }
+}
+.header.vue-component:not(.is-expanded).is-condensed nav {
+  visibility: collapse;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-width: 0;
+  pointer-events: none;
+  transform: translateY(-100%) translateX(-50%);
 }
 @media (min-width: 992px) {
   .header.vue-component:not(.is-hovering) .header__flyout {
@@ -1345,44 +1466,44 @@ export default {
   display: flex;
 }
 @media (min-width: 992px) {
-  .header.vue-component nav {
+  .header.vue-component:not(.is-condensed) nav {
     bottom: 0;
     transition: none;
   }
-  .header.vue-component nav .header__item:hover .header__link-text {
+  .header.vue-component:not(.is-condensed) nav .header__item:hover .header__link-text {
     font-weight: bold;
   }
 }
 @media (min-width: 992px) {
-  .header.vue-component {
+  .header.vue-component:not(.is-condensed) {
     --header-vertical-spacing: 1.25rem;
   }
-  .header.vue-component .header__contact.header__contact--mobile,
-  .header.vue-component nav .header__language-switch,
-  .header.vue-component .header__meta-list,
-  .header.vue-component .header__menu,
-  .header.vue-component .header__footer {
+  .header.vue-component:not(.is-condensed) .header__contact.header__contact--mobile,
+  .header.vue-component:not(.is-condensed) nav .header__language-switch,
+  .header.vue-component:not(.is-condensed) .header__meta-list,
+  .header.vue-component:not(.is-condensed) .header__menu,
+  .header.vue-component:not(.is-condensed) .header__footer {
     display: none;
   }
-  .header.vue-component .header__link {
+  .header.vue-component:not(.is-condensed) .header__link {
     display: flex;
   }
-  .header.vue-component .header__link::after {
+  .header.vue-component:not(.is-condensed) .header__link::after {
     bottom: 0;
   }
-  .header.vue-component .header__button,
-  .header.vue-component nav {
+  .header.vue-component:not(.is-condensed) .header__button,
+  .header.vue-component:not(.is-condensed) nav {
     display: block;
   }
-  .header.vue-component .header__button {
+  .header.vue-component:not(.is-condensed) .header__button {
     flex-shrink: 0;
   }
-  .header.vue-component .header__language-switch {
+  .header.vue-component:not(.is-condensed) .header__language-switch {
     padding-top: var(--header-vertical-spacing);
     display: flex;
     gap: 0;
   }
-  .header.vue-component nav {
+  .header.vue-component:not(.is-condensed) nav {
     position: relative;
     width: auto;
     left: auto;
@@ -1392,36 +1513,36 @@ export default {
     overflow: visible;
     z-index: 1;
   }
-  .header.vue-component .header__list {
+  .header.vue-component:not(.is-condensed) .header__list {
     flex-wrap: nowrap;
   }
-  .header.vue-component .header__item {
+  .header.vue-component:not(.is-condensed) .header__item {
     flex: 0 0 auto;
   }
-  .header.vue-component .header__col {
+  .header.vue-component:not(.is-condensed) .header__col {
     padding: 0;
     justify-content: left;
   }
-  .header.vue-component .header__col::after {
+  .header.vue-component:not(.is-condensed) .header__col::after {
     display: none;
   }
-  .header.vue-component .header__flyout .col {
+  .header.vue-component:not(.is-condensed) .header__flyout .col {
     padding: 0;
   }
-  .header.vue-component .header__link {
+  .header.vue-component:not(.is-condensed) .header__link {
     width: auto;
     border: 0;
     padding: 0;
   }
-  .header.vue-component .header__link-content {
+  .header.vue-component:not(.is-condensed) .header__link-content {
     width: auto;
     pointer-events: all;
     padding: calc(var(--header-vertical-spacing) + 0.5rem) 1rem;
   }
-  .header.vue-component.header--blending:not(.is-hovering):not(.is-scrolled):not(:hover) {
+  .header.vue-component:not(.is-condensed).header--blending:not(.is-hovering):not(.is-scrolled):not(:hover) {
     mix-blend-mode: difference;
   }
-  .header.vue-component.header--blending:not(.is-hovering):not(.is-scrolled):not(:hover) .header__link-text {
+  .header.vue-component:not(.is-condensed).header--blending:not(.is-hovering):not(.is-scrolled):not(:hover) .header__link-text {
     font-weight: 300;
   }
 }
@@ -1440,12 +1561,12 @@ export default {
   }
 }
 @media (min-width: 992px) {
-  .header__logo img {
+  :where(.header:not(.is-condensed)) .header__logo img {
     height: var(--header-logo-height-large);
   }
 }
 @media (min-width: 992px) {
-  .header__logo {
+  :where(.header:not(.is-condensed)) .header__logo {
     flex: 0 1 25%;
     padding-right: 2rem;
   }
@@ -1534,12 +1655,12 @@ export default {
   transition: background-color 0.5s cubic-bezier(0.19, 1, 0.2, 1), height 0.5s cubic-bezier(0.19, 1, 0.2, 1), width 0.5s cubic-bezier(0.19, 1, 0.2, 1), left 0.5s cubic-bezier(0.19, 1, 0.2, 1);
 }
 @media (min-width: 992px) {
-  .header__link::before {
+  :where(.header:not(.is-condensed)) .header__link::before {
     display: none;
   }
 }
 @media (min-width: 992px) {
-  .header__link.is-expanded::after {
+  :where(.header:not(.is-condensed)) .header__link.is-expanded::after {
     display: block;
   }
 }
@@ -1550,13 +1671,13 @@ export default {
   height: 3px;
 }
 @media (min-width: 992px) {
-  .header__link.is-expanded {
+  :where(.header:not(.is-condensed)) .header__link.is-expanded {
     border-bottom-width: 1px;
     padding-bottom: var(--header-vertical-spacing);
   }
 }
 @media (min-width: 992px) {
-  .header__link:hover::after {
+  :where(.header:not(.is-condensed)) .header__link:hover::after {
     --color-header-active: var(--color-primary-accent);
     display: block;
   }
@@ -1571,8 +1692,8 @@ export default {
   color: var(--color-header-active);
 }
 @media (min-width: 992px) {
-  .header__link.is-expanded .icon,
-  .header__language-switch.is-expanded .icon {
+  :where(.header:not(.is-condensed)) .header__link.is-expanded .icon,
+  :where(.header:not(.is-condensed)) .header__language-switch.is-expanded .icon {
     color: inherit;
   }
 }
@@ -1603,14 +1724,14 @@ export default {
   color: var(--color-copy);
 }
 @media (min-width: 992px) {
-  .header__item.active .header__link {
+  :where(.header:not(.is-condensed)) .header__item.active .header__link {
     color: inherit;
   }
-  .header__item.active .header__link:not(:hover)::after {
+  :where(.header:not(.is-condensed)) .header__item.active .header__link:not(:hover)::after {
     display: block;
     background-color: var(--color-active);
   }
-  .header__item.active .header__link.is-expanded .header__link-icon {
+  :where(.header:not(.is-condensed)) .header__item.active .header__link.is-expanded .header__link-icon {
     color: var(--color-copy);
   }
 }
@@ -1921,7 +2042,7 @@ export default {
   margin-bottom: 1.5rem;
 }
 @media (min-width: 992px) {
-  .header__link-list {
+  :where(.header:not(.is-condensed)) .header__link-list {
     margin-top: 2.5rem;
     width: 70%;
   }
@@ -1996,7 +2117,7 @@ export default {
   margin-right: 0.5rem;
 }
 @media (min-width: 992px) {
-  .header__link-icon {
+  :where(.header:not(.is-condensed)) .header__link-icon {
     margin-right: 0;
   }
 }
@@ -2136,7 +2257,7 @@ export default {
   display: none;
 }
 @media (min-width: 992px) {
-  .header__highlight-cta {
+  :where(.header:not(.is-condensed)) .header__highlight-cta {
     margin-top: 3rem;
     display: block;
   }
