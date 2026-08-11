@@ -11,6 +11,9 @@ import {
   queryCollection,
   useNuxtApp,
   useRequestURL,
+  useRuntimeConfig,
+  useLocalePath,
+  navigateTo,
   useDynamicPageMeta,
   useSeo,
   useSchemaOrg,
@@ -37,6 +40,13 @@ const { data: event } = await useAsyncData(dataKey, () => {
 
   return query.first();
 });
+
+const { sharedComponents } = useRuntimeConfig().public;
+const isDetailPage = computed(() => event.value?.detailPage ?? event.value?.meta?.detailPage ?? false);
+
+if (sharedComponents?.requireEventDetailPage && event.value && !isDetailPage.value) {
+  await navigateTo(useLocalePath()('/'), { redirectCode: 301, replace: true });
+}
 
 const nextRoute = EventForm.action;
 const actionRoute = '/send';
