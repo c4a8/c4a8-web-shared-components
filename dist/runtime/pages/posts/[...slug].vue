@@ -121,7 +121,7 @@ if (post.value) {
       '@type': 'BlogPosting',
       headline: post.value.title || post.value.meta?.seoTitle,
       ...(post.value.meta?.customExcerpt ? { description: post.value.meta.customExcerpt } : {}),
-      ...(socialImgUrl ? { image: socialImgUrl } : {}),
+      ...(socialImgUrl ? { image: { '@type': 'ImageObject', '@id': socialImgUrl, url: socialImgUrl } } : {}),
       ...(post.value.meta?.keywords ? { keywords: post.value.meta.keywords } : {}),
       ...(post.value.meta?.date ? { datePublished: post.value.meta.date } : {}),
       ...(post.value.moment || post.value.meta?.date
