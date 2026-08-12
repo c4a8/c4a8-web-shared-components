@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.110
+
+- Updates the simple-git dependency to a newer version
+
 # Release 0.4.109
 
 - Adds schema.org structured data for organization, events, authors and articles
