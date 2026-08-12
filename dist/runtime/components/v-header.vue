@@ -273,7 +273,6 @@ export default {
         Tools.isTrue(this.product) ? 'header--product' : '',
         !Tools.isTrue(this.closed) ? State.EXPANDED : '',
         Tools.isTrue(this.blendMode) ? 'header--blending' : '',
-        this.secondaryNavigation ? 'header--has-secondary' : '',
         this.collapseRatio ? 'header--collapsible' : '',
         this.collapseRatio && !this.logoCollapseReady ? 'is-measuring' : '',
         this.logoCollapsed ? 'is-logo-collapsed' : '',
@@ -311,6 +310,10 @@ export default {
     },
     headerLogoStyle() {
       const styles = [];
+
+      if (this.secondaryNavigation && this.logoOffsetPosition) {
+        styles.push(`padding-left: ${this.logoOffsetPosition}px`);
+      }
 
       if (this.collapseRatio) {
         styles.push(`--header-logo-collapse: ${this.collapseRatio}`);
@@ -397,6 +400,13 @@ export default {
     });
   },
   watch: {
+    secondaryNavigationDimensions(newVal) {
+      if (newVal !== null && newVal.width >= 0) {
+        this.$nextTick(() => {
+          this.calculateLogoOffsetPosition();
+        });
+      }
+    },
     isScrolled(newVal) {
       this.store.setHeader({ ...this.headerState, isScrolled: newVal });
     },
@@ -429,10 +439,9 @@ export default {
       window.addEventListener(event, this.initMegaMenu, { once: true, passive: true })
     );
 
-    this.observeLogoCollapse();
-  },
-  beforeUnmount() {
-    this.logoCollapseObserver?.disconnect();
+    if (this.collapseRatio && document.fonts?.ready) {
+      document.fonts.ready.then(() => this.setLogoNaturalWidth());
+    }
   },
   updated() {
     if (this.inUpdate) {
@@ -606,17 +615,27 @@ export default {
 
       this.evaluateLogoCollapse();
     },
-    observeLogoCollapse() {
-      if (!this.collapseRatio || !window.ResizeObserver) return;
+    calculateLogoOffsetPosition() {
+      this.logoOffsetPosition = 0;
 
-      const col = this.$refs.logoMedia?.closest('.header__col');
-      const nav = col?.querySelector('.header__nav');
+      if (!Tools.isUpperBreakpoint() || this.headerCondensed) return;
 
-      if (!col) return;
+      this.logoOffsetPosition = this.getLogoOffsetSpace();
+    },
+    getLogoOffsetSpace() {
+      if (!this.secondaryNavigation) return 0;
 
-      this.logoCollapseObserver = new ResizeObserver(() => this.evaluateLogoCollapse());
+      const headerContainer = this.$refs.headerContainer;
 
-      [col, nav].filter(Boolean).forEach((element) => this.logoCollapseObserver.observe(element));
+      if (!headerContainer) return 0;
+
+      const offsetCorrection = 20;
+
+      const margin = headerContainer.getBoundingClientRect().left;
+      const buttonDimensions = this.getSecondaryNavigationButtonDimensions();
+      const buttonWidth = buttonDimensions.width;
+
+      return margin < buttonWidth ? Math.max(0, buttonWidth - margin - offsetCorrection) : 0;
     },
     evaluateLogoCollapse() {
       if (!this.collapseRatio) return;
@@ -651,7 +670,7 @@ export default {
           col.getBoundingClientRect().width - parseFloat(colStyle.paddingLeft) - parseFloat(colStyle.paddingRight);
 
         const logoStyle = window.getComputedStyle(logo);
-        const logoPadding = parseFloat(logoStyle.paddingLeft) + parseFloat(logoStyle.paddingRight);
+        const logoPadding = parseFloat(logoStyle.paddingRight) + this.getLogoOffsetSpace();
 
         const siblingsRequired = [...col.children]
           .filter((child) => child !== logo && child.offsetParent)
@@ -679,9 +698,11 @@ export default {
       const condensed = measurements.collapsed > measurements.available + 1;
       const collapsed = !condensed && measurements.expanded > measurements.available + 1;
 
+      this.pendingLogoCollapse = collapsed;
+
       if (!this.logoCollapseReady && collapsed) {
         this.$nextTick(() =>
-          requestAnimationFrame(() => requestAnimationFrame(() => (this.logoCollapsed = true)))
+          requestAnimationFrame(() => requestAnimationFrame(() => (this.logoCollapsed = this.pendingLogoCollapse)))
         );
       } else {
         this.logoCollapsed = collapsed;
@@ -693,7 +714,10 @@ export default {
 
       this.headerCondensed = condensed;
       this.reset();
-      this.$nextTick(this.setLogoNaturalWidth);
+      this.$nextTick(() => {
+        this.setLogoNaturalWidth();
+        this.getSecondaryNavigationDimensions();
+      });
     },
     getSecondaryNavigationButtonDimensions() {
       const secondaryNavigationButton = this.$refs.secondaryNavigationButton;
@@ -1143,10 +1167,11 @@ export default {
       maxLinkListsInFlyout: 3,
       activeNavigation: {},
       logoNaturalWidth: null,
+      logoOffsetPosition: 0,
       logoCollapsed: false,
+      pendingLogoCollapse: false,
       headerCondensed: false,
       logoCollapseReady: false,
-      logoCollapseObserver: null,
       secondaryNavigationInTransition: false,
       secondaryNavigationIsExpanded: false,
       secondaryNavigationDimensions: null,
@@ -1254,6 +1279,12 @@ export default {
 .header.vue-component.header--product .header__item.active .header__link::after {
   display: none;
 }
+.header.vue-component.header--product .header__link {
+  border-bottom: 0;
+}
+.header.vue-component.header--product nav {
+  bottom: 0;
+}
 @media (min-width: 992px) {
   .header.vue-component.header--product:not(.is-condensed) .header__item {
     position: relative;
@@ -1273,9 +1304,6 @@ export default {
     z-index: -1;
   }
 }
-.header.vue-component.header--product .header__link {
-  border-bottom: 0;
-}
 @media (min-width: 992px) {
   .header.vue-component.header--product:not(.is-condensed) .header__row {
     padding-left: 2rem;
@@ -1289,8 +1317,10 @@ export default {
   }
   .header.vue-component.header--product:not(.is-condensed) .header__container {
     max-width: none;
-    padding-left: calc((100% - var(--header-container-width)) / 2 + 15px);
-    padding-right: 15px;
+    width: auto;
+    flex-grow: 1;
+    margin-left: calc((100% - var(--header-container-width)) / 2);
+    margin-right: 0;
   }
 }
 @media (min-width: 1200px) and (max-width: 1339.98px) {
@@ -1316,9 +1346,6 @@ export default {
   .header.vue-component.header--product:not(.is-condensed) .header__button {
     margin-left: 0.75rem;
   }
-}
-.header.vue-component.header--product nav {
-  bottom: 0;
 }
 @media (min-width: 992px) {
   .header.vue-component.header--product:not(.is-condensed) .header__logo {
@@ -1347,24 +1374,6 @@ export default {
   }
   .header.vue-component.header--collapsible.is-logo-collapsed .header__logo-media {
     width: calc(var(--header-logo-natural-width) * var(--header-logo-collapse));
-  }
-}
-@media (min-width: 992px) {
-  .header.vue-component.header--has-secondary {
-    --header-grid-width: 960px;
-  }
-  .header.vue-component.header--has-secondary .header__logo {
-    padding-left: max(0px, calc(3.75rem - (100vw - var(--header-grid-width)) / 2 - 15px));
-  }
-}
-@media (min-width: 1200px) {
-  .header.vue-component.header--has-secondary {
-    --header-grid-width: 1140px;
-  }
-}
-@media (min-width: 1340px) {
-  .header.vue-component.header--has-secondary {
-    --header-grid-width: 1320px;
   }
 }
 .header.vue-component.is-expanded nav {
@@ -1425,6 +1434,9 @@ export default {
   pointer-events: none;
   transform: translateY(-100%) translateX(-50%);
 }
+.header.vue-component.is-condensed .header__item.is--mobile {
+  display: block;
+}
 @media (min-width: 992px) {
   .header.vue-component:not(.is-hovering) .header__flyout {
     visibility: collapse;
@@ -1466,15 +1478,6 @@ export default {
   display: flex;
 }
 @media (min-width: 992px) {
-  .header.vue-component:not(.is-condensed) nav {
-    bottom: 0;
-    transition: none;
-  }
-  .header.vue-component:not(.is-condensed) nav .header__item:hover .header__link-text {
-    font-weight: bold;
-  }
-}
-@media (min-width: 992px) {
   .header.vue-component:not(.is-condensed) {
     --header-vertical-spacing: 1.25rem;
   }
@@ -1507,11 +1510,16 @@ export default {
     position: relative;
     width: auto;
     left: auto;
+    bottom: 0;
     transform: translateY(0);
     background-color: transparent;
     box-shadow: none;
     overflow: visible;
     z-index: 1;
+    transition: none;
+  }
+  .header.vue-component:not(.is-condensed) nav .header__item:hover .header__link-text {
+    font-weight: bold;
   }
   .header.vue-component:not(.is-condensed) .header__list {
     flex-wrap: nowrap;
@@ -2295,6 +2303,7 @@ export default {
   flex-direction: column;
   top: 0;
   left: 0;
+  z-index: 2;
   display: none;
   background-color: var(--header-secondary-background);
   pointer-events: none;
@@ -2335,7 +2344,7 @@ export default {
   height: 2rem;
 }
 @media (min-width: 992px) {
-  .header__secondary-navigation {
+  :where(.header:not(.is-condensed)) .header__secondary-navigation {
     display: flex;
   }
 }

@@ -969,6 +969,7 @@ declare namespace _default {
                 };
             };
         } | null;
+        function collapseRatio(): number | null;
         function headerLogoStyle(): string | undefined;
         function headerContainerClassList(): (string | (() => "container" | "container-xxl"))[];
         function containerClass(): "container" | "container-xxl";
@@ -1012,9 +1013,10 @@ declare namespace _default {
         function expandWidthSecondaryNavigation(secondaryNavigation: any): void;
         function expandSecondaryNavigation(): void;
         function handleSecondaryNavigationTransitionEnd(event: any): void;
-        function calculateLogoOffsetPosition(): {
-            leftSpace: number;
-        } | undefined;
+        function setLogoNaturalWidth(): void;
+        function calculateLogoOffsetPosition(): void;
+        function getLogoOffsetSpace(): number;
+        function evaluateLogoCollapse(): void;
         function getSecondaryNavigationButtonDimensions(): {
             width: any;
             height: any;
@@ -1022,7 +1024,7 @@ declare namespace _default {
         function setActiveNavigation(): void;
         function setLinkWidth(): void;
         function showFlyoutBlock(children: any): boolean;
-        function isLowerBreakpoint(): boolean;
+        function isLowerBreakpoint(): any;
         function bindEvents(): void;
         function handleResize(): void;
         function handleScroll(): void;
@@ -1096,6 +1098,10 @@ declare namespace _default {
         }
         let theme: StringConstructor;
         let onSurface: BooleanConstructor;
+        namespace collapse {
+            let _default_6: null;
+            export { _default_6 as default };
+        }
     }
     function data(): {
         hoverHeader: boolean;
@@ -1112,7 +1118,12 @@ declare namespace _default {
         ctaClassList: null;
         maxLinkListsInFlyout: number;
         activeNavigation: {};
-        logoOffsetPosition: null;
+        logoNaturalWidth: null;
+        logoOffsetPosition: number;
+        logoCollapsed: boolean;
+        pendingLogoCollapse: boolean;
+        headerCondensed: boolean;
+        logoCollapseReady: boolean;
         secondaryNavigationInTransition: boolean;
         secondaryNavigationIsExpanded: boolean;
         secondaryNavigationDimensions: null;

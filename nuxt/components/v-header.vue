@@ -273,7 +273,6 @@ export default {
         Tools.isTrue(this.product) ? 'header--product' : '',
         !Tools.isTrue(this.closed) ? State.EXPANDED : '',
         Tools.isTrue(this.blendMode) ? 'header--blending' : '',
-        this.secondaryNavigation ? 'header--has-secondary' : '',
         this.collapseRatio ? 'header--collapsible' : '',
         this.collapseRatio && !this.logoCollapseReady ? 'is-measuring' : '',
         this.logoCollapsed ? 'is-logo-collapsed' : '',
@@ -311,6 +310,10 @@ export default {
     },
     headerLogoStyle() {
       const styles = [];
+
+      if (this.secondaryNavigation && this.logoOffsetPosition) {
+        styles.push(`padding-left: ${this.logoOffsetPosition}px`);
+      }
 
       if (this.collapseRatio) {
         styles.push(`--header-logo-collapse: ${this.collapseRatio}`);
@@ -397,6 +400,13 @@ export default {
     });
   },
   watch: {
+    secondaryNavigationDimensions(newVal) {
+      if (newVal !== null && newVal.width >= 0) {
+        this.$nextTick(() => {
+          this.calculateLogoOffsetPosition();
+        });
+      }
+    },
     isScrolled(newVal) {
       this.store.setHeader({ ...this.headerState, isScrolled: newVal });
     },
@@ -429,10 +439,9 @@ export default {
       window.addEventListener(event, this.initMegaMenu, { once: true, passive: true })
     );
 
-    this.observeLogoCollapse();
-  },
-  beforeUnmount() {
-    this.logoCollapseObserver?.disconnect();
+    if (this.collapseRatio && document.fonts?.ready) {
+      document.fonts.ready.then(() => this.setLogoNaturalWidth());
+    }
   },
   updated() {
     if (this.inUpdate) {
@@ -606,17 +615,27 @@ export default {
 
       this.evaluateLogoCollapse();
     },
-    observeLogoCollapse() {
-      if (!this.collapseRatio || !window.ResizeObserver) return;
+    calculateLogoOffsetPosition() {
+      this.logoOffsetPosition = 0;
 
-      const col = this.$refs.logoMedia?.closest('.header__col');
-      const nav = col?.querySelector('.header__nav');
+      if (!Tools.isUpperBreakpoint() || this.headerCondensed) return;
 
-      if (!col) return;
+      this.logoOffsetPosition = this.getLogoOffsetSpace();
+    },
+    getLogoOffsetSpace() {
+      if (!this.secondaryNavigation) return 0;
 
-      this.logoCollapseObserver = new ResizeObserver(() => this.evaluateLogoCollapse());
+      const headerContainer = this.$refs.headerContainer;
 
-      [col, nav].filter(Boolean).forEach((element) => this.logoCollapseObserver.observe(element));
+      if (!headerContainer) return 0;
+
+      const offsetCorrection = 20;
+
+      const margin = headerContainer.getBoundingClientRect().left;
+      const buttonDimensions = this.getSecondaryNavigationButtonDimensions();
+      const buttonWidth = buttonDimensions.width;
+
+      return margin < buttonWidth ? Math.max(0, buttonWidth - margin - offsetCorrection) : 0;
     },
     evaluateLogoCollapse() {
       if (!this.collapseRatio) return;
@@ -651,7 +670,7 @@ export default {
           col.getBoundingClientRect().width - parseFloat(colStyle.paddingLeft) - parseFloat(colStyle.paddingRight);
 
         const logoStyle = window.getComputedStyle(logo);
-        const logoPadding = parseFloat(logoStyle.paddingLeft) + parseFloat(logoStyle.paddingRight);
+        const logoPadding = parseFloat(logoStyle.paddingRight) + this.getLogoOffsetSpace();
 
         const siblingsRequired = [...col.children]
           .filter((child) => child !== logo && child.offsetParent)
@@ -679,9 +698,11 @@ export default {
       const condensed = measurements.collapsed > measurements.available + 1;
       const collapsed = !condensed && measurements.expanded > measurements.available + 1;
 
+      this.pendingLogoCollapse = collapsed;
+
       if (!this.logoCollapseReady && collapsed) {
         this.$nextTick(() =>
-          requestAnimationFrame(() => requestAnimationFrame(() => (this.logoCollapsed = true)))
+          requestAnimationFrame(() => requestAnimationFrame(() => (this.logoCollapsed = this.pendingLogoCollapse)))
         );
       } else {
         this.logoCollapsed = collapsed;
@@ -693,7 +714,10 @@ export default {
 
       this.headerCondensed = condensed;
       this.reset();
-      this.$nextTick(this.setLogoNaturalWidth);
+      this.$nextTick(() => {
+        this.setLogoNaturalWidth();
+        this.getSecondaryNavigationDimensions();
+      });
     },
     getSecondaryNavigationButtonDimensions() {
       const secondaryNavigationButton = this.$refs.secondaryNavigationButton;
@@ -1143,10 +1167,11 @@ export default {
       maxLinkListsInFlyout: 3,
       activeNavigation: {},
       logoNaturalWidth: null,
+      logoOffsetPosition: 0,
       logoCollapsed: false,
+      pendingLogoCollapse: false,
       headerCondensed: false,
       logoCollapseReady: false,
-      logoCollapseObserver: null,
       secondaryNavigationInTransition: false,
       secondaryNavigationIsExpanded: false,
       secondaryNavigationDimensions: null,
@@ -1331,8 +1356,10 @@ $header-border-size: 1px;
 
           .header__container {
             max-width: none;
-            padding-left: calc((100% - var(--header-container-width)) / 2 + #{$grid-gutter-half-width});
-            padding-right: $grid-gutter-half-width;
+            width: auto;
+            flex-grow: 1;
+            margin-left: calc((100% - var(--header-container-width)) / 2);
+            margin-right: 0;
           }
         }
 
@@ -1405,24 +1432,6 @@ $header-border-size: 1px;
       }
     }
 
-    &.header--has-secondary {
-      @include media-breakpoint-up($header-expand-breakpoint) {
-        --header-grid-width: #{get-container-max-width(lg)};
-
-        .header__logo {
-          padding-left: max(0px, calc(#{spacing(15)} - (100vw - var(--header-grid-width)) / 2 - #{$grid-gutter-half-width}));
-        }
-      }
-
-      @include media-breakpoint-up(xl) {
-        --header-grid-width: #{get-container-max-width(xl)};
-      }
-
-      @include media-breakpoint-up(xxl) {
-        --header-grid-width: #{get-container-max-width(xxl)};
-      }
-    }
-
     &.is-expanded {
       nav {
         overflow-y: auto;
@@ -1484,6 +1493,12 @@ $header-border-size: 1px;
 
           transform: translateY(-100%) translateX(-50%);
         }
+      }
+    }
+
+    &.is-condensed {
+      .header__item.is--mobile {
+        display: block;
       }
     }
 
@@ -2487,6 +2502,7 @@ $header-border-size: 1px;
   flex-direction: column;
   top: 0;
   left: 0;
+  z-index: 2;
   display: none;
   background-color: var(--header-secondary-background);
   pointer-events: none;
@@ -2540,7 +2556,9 @@ $header-border-size: 1px;
   }
 
   @include media-breakpoint-up($header-expand-breakpoint) {
-    display: flex;
+    :where(.header:not(.is-condensed)) & {
+      display: flex;
+    }
   }
 }
 
