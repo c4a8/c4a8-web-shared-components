@@ -349,6 +349,9 @@ export default {
 .sidebar__dialog-section-title {
   font-size: 4rem;
   line-height: 1.1em;
+   display: flex;
+   justify-content: end
+
 }
 @media (min-width: 992px) {
   .sidebar__dialog-section-title {
@@ -473,6 +476,7 @@ export default {
   display: flex;
   gap: 3rem;
   flex-direction: column;
+
 }
 
 .sidebar__dialog-section {
