@@ -5,11 +5,25 @@
   </content>
 </template>
 <script setup>
-import { useRoute, useAsyncData, queryCollection, useNuxtApp, useDynamicPageMeta, useSeo } from '#imports';
+import {
+  useRoute,
+  useAsyncData,
+  queryCollection,
+  useNuxtApp,
+  useRequestURL,
+  useRuntimeConfig,
+  useLocalePath,
+  navigateTo,
+  useDynamicPageMeta,
+  useSeo,
+  useSchemaOrg,
+  defineEvent,
+} from '#imports';
 import { computed } from 'vue';
 
 import Tools from '../../utils/tools.js';
 import EventForm from '../../utils/data/event-form.js';
+import { parseEventTime, resolveEventEndDate, personSlug, decodeEntities } from '../../utils/event-schema.js';
 
 const route = useRoute();
 const nuxtApp = useNuxtApp();
@@ -26,6 +40,13 @@ const { data: event } = await useAsyncData(dataKey, () => {
 
   return query.first();
 });
+
+const { sharedComponents } = useRuntimeConfig().public;
+const isDetailPage = computed(() => event.value?.detailPage ?? event.value?.meta?.detailPage ?? false);
+
+if (sharedComponents?.requireEventDetailPage && event.value && !isDetailPage.value) {
+  await navigateTo(useLocalePath()('/'), { redirectCode: 301, replace: true });
+}
 
 const nextRoute = EventForm.action;
 const actionRoute = '/send';
@@ -82,12 +103,52 @@ dynamicMeta.value = {
 if (event.value && eventNormalized.value) {
   const baseSocialImg = eventNormalized.value.socialimg;
   const socialImg = baseSocialImg?.startsWith('/') ? baseSocialImg.slice(1) : baseSocialImg;
+  const socialImgUrl = socialImg ? `https://res.cloudinary.com/c4a8/image/upload/${socialImg}` : null;
 
   useSeo({
     title: eventNormalized.value.title,
     description: eventNormalized.value.customExcerpt ?? null,
     keywords: eventNormalized.value.keywords ?? null,
-    image: socialImg ? `https://res.cloudinary.com/c4a8/image/upload/${socialImg}` : null,
+    image: socialImgUrl,
   });
+
+  const { time, youtubeUrl, organizer } = eventNormalized.value;
+  const startDate = eventNormalized.value.date;
+  const endDate = resolveEventEndDate(time, startDate);
+  const { online, place } = parseEventTime(time);
+  const isOnline = online || (event.value.webcast === true && !!youtubeUrl && !place);
+
+  const location = isOnline
+    ? { '@type': 'VirtualLocation', url: youtubeUrl || `${useRequestURL().origin}${route.path}` }
+    : place
+      ? { '@type': 'Place', name: place, address: { '@type': 'PostalAddress', addressLocality: place } }
+      : null;
+
+  const performer = (eventNormalized.value.author || []).filter(Boolean).map((name) => {
+    const slug = personSlug(name);
+
+    return {
+      '@type': 'Person',
+      ...(slug ? { '@id': `#/schema/person/${slug}` } : {}),
+      name,
+    };
+  });
+
+  if (startDate) {
+    useSchemaOrg([
+      defineEvent({
+        name: decodeEntities(eventNormalized.value.title || eventNormalized.value.headlineText),
+        ...(eventNormalized.value.customExcerpt ? { description: eventNormalized.value.customExcerpt } : {}),
+        ...(socialImgUrl ? { image: { '@type': 'ImageObject', '@id': socialImgUrl, url: socialImgUrl } } : {}),
+        startDate,
+        ...(endDate ? { endDate } : {}),
+        eventStatus: 'EventScheduled',
+        eventAttendanceMode: isOnline ? 'OnlineEventAttendanceMode' : 'OfflineEventAttendanceMode',
+        ...(location ? { location } : {}),
+        ...(performer.length ? { performer } : {}),
+        ...(organizer ? { organizer: { '@type': 'Organization', name: organizer } } : {}),
+      }),
+    ]);
+  }
 }
 </script>
