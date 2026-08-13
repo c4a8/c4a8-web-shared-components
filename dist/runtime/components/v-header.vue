@@ -2172,6 +2172,9 @@ export default {
 .header__language-link.active, .header__language-link.active:hover {
   color: var(--color-active);
 }
+.header__language-link.active .header__language-code, .header__language-link.active:hover .header__language-code {
+  color: inherit;
+}
 @media (min-width: 992px) {
   .header__language-link:hover {
     font-weight: bold;

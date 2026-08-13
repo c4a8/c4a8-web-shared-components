@@ -2353,6 +2353,10 @@ $header-border-size: 1px;
   &.active,
   &.active:hover {
     color: var(--color-active);
+
+    .header__language-code {
+      color: inherit;
+    }
   }
 
   @include media-breakpoint-up($header-expand-breakpoint) {
