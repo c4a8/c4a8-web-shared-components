@@ -27,7 +27,26 @@ export default {
 export const Header = {
   args: {
     home: HeaderData.home,
-    navigation: HeaderData.navigation,
+    navigation: [
+      ...HeaderData.navigation,
+      {
+        name: 'lorem-ipsum-extra',
+        languages: {
+          de: {
+            title: 'Lorem Ipsum',
+            url: 'javascript:void(0);',
+          },
+          en: {
+            title: 'Lorem Ipsum',
+            url: 'javascript:void(0);',
+          },
+          es: {
+            title: 'Lorem Ipsum',
+            url: 'javascript:void(0);',
+          },
+        },
+      },
+    ],
     // lang: 'de', // should be default
   },
 };

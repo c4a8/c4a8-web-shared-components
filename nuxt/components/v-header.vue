@@ -439,7 +439,7 @@ export default {
       window.addEventListener(event, this.initMegaMenu, { once: true, passive: true })
     );
 
-    if (this.collapseRatio && document.fonts?.ready) {
+    if (document.fonts?.ready) {
       document.fonts.ready.then(() => this.setLogoNaturalWidth());
     }
   },
@@ -585,8 +585,6 @@ export default {
       }
     },
     setLogoNaturalWidth() {
-      if (!this.collapseRatio) return;
-
       const media = this.$refs.logoMedia;
 
       if (!media) return;
@@ -638,8 +636,6 @@ export default {
       return margin < buttonWidth ? Math.max(0, buttonWidth - margin - offsetCorrection) : 0;
     },
     evaluateLogoCollapse() {
-      if (!this.collapseRatio) return;
-
       if (!Tools.isAboveBreakpoint('lg')) {
         this.logoCollapsed = false;
         this.headerCondensed = false;
@@ -687,7 +683,7 @@ export default {
         measurements = {
           available,
           expanded: imageWidth + logoPadding + siblingsRequired,
-          collapsed: imageWidth * this.collapseRatio + logoPadding + siblingsRequired,
+          collapsed: imageWidth * (this.collapseRatio || 1) + logoPadding + siblingsRequired,
         };
       }
 
@@ -698,17 +694,15 @@ export default {
       const condensed = measurements.collapsed > measurements.available + 1;
       const collapsed = !condensed && measurements.expanded > measurements.available + 1;
 
-      this.pendingLogoCollapse = collapsed;
+      this.logoCollapsed = collapsed;
 
       if (!this.logoCollapseReady && collapsed) {
         this.$nextTick(() =>
-          requestAnimationFrame(() => requestAnimationFrame(() => (this.logoCollapsed = this.pendingLogoCollapse)))
+          requestAnimationFrame(() => requestAnimationFrame(() => (this.logoCollapseReady = true)))
         );
       } else {
-        this.logoCollapsed = collapsed;
+        this.logoCollapseReady = true;
       }
-
-      this.logoCollapseReady = true;
 
       if (condensed === this.headerCondensed) return;
 
@@ -1169,7 +1163,6 @@ export default {
       logoNaturalWidth: null,
       logoOffsetPosition: 0,
       logoCollapsed: false,
-      pendingLogoCollapse: false,
       headerCondensed: false,
       logoCollapseReady: false,
       secondaryNavigationInTransition: false,
@@ -1410,12 +1403,18 @@ $header-border-size: 1px;
       }
 
       &.is-measuring {
-        .header__nav,
-        .header__button,
-        .header__language-switch,
-        .header__menu {
-          opacity: 0;
-          pointer-events: none;
+        .header__logo-media {
+          transition: none;
+        }
+
+        @include media-breakpoint-up($header-expand-breakpoint) {
+          .header__nav,
+          .header__button,
+          .header__language-switch,
+          .header__menu {
+            opacity: 0;
+            pointer-events: none;
+          }
         }
       }
 
