@@ -253,6 +253,20 @@ import Events from '../utils/events.js';
 import SecondaryNavigation from '../utils/data/secondary-navigation.js';
 import Languages from '../utils/languages.js';
 
+const HEADER_LAYOUT_CACHE_KEY = 'vHeaderLayout';
+
+const readHeaderLayoutCache = () => {
+  if (typeof window === 'undefined') return null;
+
+  try {
+    const cache = JSON.parse(window.sessionStorage.getItem(HEADER_LAYOUT_CACHE_KEY));
+
+    return cache && cache.viewport === window.innerWidth ? cache : null;
+  } catch {
+    return null;
+  }
+};
+
 export default {
   tagName: 'v-header',
   setup() {
@@ -616,9 +630,11 @@ export default {
     calculateLogoOffsetPosition() {
       this.logoOffsetPosition = 0;
 
-      if (!Tools.isUpperBreakpoint() || this.headerCondensed) return;
+      if (Tools.isUpperBreakpoint() && !this.headerCondensed) {
+        this.logoOffsetPosition = this.getLogoOffsetSpace();
+      }
 
-      this.logoOffsetPosition = this.getLogoOffsetSpace();
+      this.saveHeaderLayoutCache();
     },
     getLogoOffsetSpace() {
       if (!this.secondaryNavigation) return 0;
@@ -640,6 +656,7 @@ export default {
         this.logoCollapsed = false;
         this.headerCondensed = false;
         this.logoCollapseReady = true;
+        this.saveHeaderLayoutCache();
         return;
       }
 
@@ -704,14 +721,30 @@ export default {
         this.logoCollapseReady = true;
       }
 
-      if (condensed === this.headerCondensed) return;
+      if (condensed !== this.headerCondensed) {
+        this.headerCondensed = condensed;
+        this.reset();
+        this.$nextTick(() => {
+          this.setLogoNaturalWidth();
+          this.getSecondaryNavigationDimensions();
+        });
+      }
 
-      this.headerCondensed = condensed;
-      this.reset();
-      this.$nextTick(() => {
-        this.setLogoNaturalWidth();
-        this.getSecondaryNavigationDimensions();
-      });
+      this.saveHeaderLayoutCache();
+    },
+    saveHeaderLayoutCache() {
+      try {
+        window.sessionStorage.setItem(
+          HEADER_LAYOUT_CACHE_KEY,
+          JSON.stringify({
+            viewport: window.innerWidth,
+            condensed: this.headerCondensed,
+            collapsed: this.logoCollapsed,
+            naturalWidth: this.collapseRatio ? this.logoNaturalWidth : null,
+            logoOffset: this.logoOffsetPosition,
+          })
+        );
+      } catch {}
     },
     getSecondaryNavigationButtonDimensions() {
       const secondaryNavigationButton = this.$refs.secondaryNavigationButton;
@@ -1145,6 +1178,8 @@ export default {
     },
   },
   data() {
+    const layoutCache = readHeaderLayoutCache();
+
     return {
       hoverHeader: false,
       inUpdate: false,
@@ -1160,11 +1195,11 @@ export default {
       ctaClassList: null,
       maxLinkListsInFlyout: 3,
       activeNavigation: {},
-      logoNaturalWidth: null,
-      logoOffsetPosition: 0,
-      logoCollapsed: false,
-      headerCondensed: false,
-      logoCollapseReady: false,
+      logoNaturalWidth: layoutCache?.naturalWidth || null,
+      logoOffsetPosition: layoutCache?.logoOffset || 0,
+      logoCollapsed: layoutCache?.collapsed || false,
+      headerCondensed: layoutCache?.condensed || false,
+      logoCollapseReady: !!layoutCache,
       secondaryNavigationInTransition: false,
       secondaryNavigationIsExpanded: false,
       secondaryNavigationDimensions: null,

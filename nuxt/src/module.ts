@@ -43,6 +43,32 @@ export default defineNuxtModule({
 
     _nuxt.options.runtimeConfig.public.sharedComponents = _options || {};
 
+    const headerLayoutScript =
+      "(function(){try{" +
+      "var raw=window.sessionStorage.getItem('vHeaderLayout');if(!raw)return;" +
+      "var cache=JSON.parse(raw);if(!cache||cache.viewport!==window.innerWidth)return;" +
+      "var apply=function(header,logo){" +
+      "if(cache.condensed)header.classList.add('is-condensed');" +
+      "if(cache.collapsed)header.classList.add('is-logo-collapsed');" +
+      "header.classList.remove('is-measuring');" +
+      "if(cache.naturalWidth)logo.style.setProperty('--header-logo-natural-width',cache.naturalWidth+'px');" +
+      "if(cache.logoOffset)logo.style.paddingLeft=cache.logoOffset+'px';" +
+      "};" +
+      "var find=function(){" +
+      "var header=document.querySelector('.header.vue-component');" +
+      "var logo=header&&header.querySelector('.header__logo');" +
+      "if(logo)apply(header,logo);" +
+      "return !!logo;" +
+      "};" +
+      "if(find())return;" +
+      "var observer=new MutationObserver(function(){if(find())observer.disconnect();});" +
+      "observer.observe(document.documentElement,{childList:true,subtree:true});" +
+      "window.addEventListener('DOMContentLoaded',function(){observer.disconnect();});" +
+      "}catch(e){}})();";
+
+    _nuxt.options.app.head.script = _nuxt.options.app.head.script || [];
+    _nuxt.options.app.head.script.push({ innerHTML: headerLayoutScript, tagPosition: 'head' });
+
     const defaultSitemapOptions = {
       discoverImages: false,
       discoverVideos: false,
