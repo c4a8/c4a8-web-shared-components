@@ -38,6 +38,22 @@
             </swiper-slide>
           </swiper-container>
         </ClientOnly>
+        <template v-if="fade">
+          <blur-fade
+            class="slider__fade slider__fade--left"
+            direction="right"
+            :max-blur="24"
+            :steps="4"
+            tint="rgba(255, 255, 255, 0.5)"
+          />
+          <blur-fade
+            class="slider__fade slider__fade--right"
+            direction="left"
+            :max-blur="24"
+            :steps="4"
+            tint="rgba(255, 255, 255, 0.5)"
+          />
+        </template>
       </div>
     </wrapper>
   </div>
@@ -105,6 +121,7 @@ export default {
         `${this.backgroundClass}`,
         this.overflow || this.hasControls || this.fade ? 'slider--overflow' : '',
         this.fade ? 'slider--fade' : '',
+        this.fade && this.hideContainerValue ? 'slider--fade-inset' : '',
         'vue-component',
       ];
     },
@@ -244,5 +261,5 @@ export default {
 };
 </script>
 <style>
-.slider{overflow:hidden!important}.slider.slider--overflow{overflow:visible}.slider.has-background{padding-bottom:4rem;position:relative}.slider.has-background .slider__wrapper:before{display:block}@media (min-width:992px){.slider.has-background{padding-bottom:5.5rem}}.slider .is--desktop,.slider .slider__item--desktop{display:none}@media (min-width:576px){.slider .slick-list{width:100%}}@media (min-width:992px){.slider .slick-list .slick-track{left:0}}.slider .slider__container--v2{position:relative}.slider--fade .slider__container--v2:after,.slider--fade .slider__container--v2:before{bottom:0;content:"";margin-top:-2em;pointer-events:none;position:absolute;top:0;width:0;z-index:2}.slider--fade .slider__container--v2:before{background:linear-gradient(90deg,#fff 60%,hsla(0,0%,100%,0));right:100%}.slider--fade .slider__container--v2:after{background:linear-gradient(270deg,#fff 60%,hsla(0,0%,100%,0));left:100%}@media (min-width:992px){.slider--fade .slider__container--v2:after,.slider--fade .slider__container--v2:before{width:calc(50vw - 415px)}}@media (min-width:1200px){.slider--fade .slider__container--v2:after,.slider--fade .slider__container--v2:before{width:calc(50vw - 555px)}}@media (min-width:1340px){.slider--fade .slider__container--v2:after,.slider--fade .slider__container--v2:before{width:calc(50vw - 430)}}.slider .slider__container--v2.slider__container--has-pagination{padding-bottom:2.5rem}.slider .slider__container--v2.slider__container--has-pagination swiper-container{--swiper-pagination-bottom:-2rem}.slider .slider__controls{left:0;pointer-events:none;right:0;top:50%;transform:translateY(-50%);z-index:3}.slider .slider__controls>*{pointer-events:auto}.slider .slider__controls.slider__controls--full-width{left:50%;right:auto;transform:translate(-50%,-50%);width:99vw}.slider .slider__controls.slider__controls--full-width .slick__arrow-left{left:.5rem}.slider .slider__controls.slider__controls--full-width .slick__arrow-right{right:.5rem}.slider .slider__controls .slick__arrow-left.swiper-button-disabled,.slider .slider__controls .slick__arrow-right.swiper-button-disabled{cursor:default;opacity:.3;pointer-events:none}.slider swiper-container::part(container){overflow:visible}.slider swiper-slide{height:auto}.slider swiper-slide>*{height:100%}@media (min-width:992px){.slider--fade .slider__container--v2:after,.slider--fade .slider__container--v2:before{width:calc(50vw - 444px)}}@media (min-width:1200px){.slider--fade .slider__container--v2:after,.slider--fade .slider__container--v2:before{width:calc(50vw - 534px)}}@media (min-width:1340px){.slider--fade .slider__container--v2:after,.slider--fade .slider__container--v2:before{width:calc(50vw - 599px)}}.slider__wrapper:before{background-color:inherit;content:"";display:none;height:100%;left:50%;position:absolute;transform:translateX(-50%);width:100vw}
+.slider{overflow:hidden!important}.slider.slider--overflow{overflow:visible}.slider.has-background{padding-bottom:4rem;position:relative}.slider.has-background .slider__wrapper:before{display:block}@media (min-width:992px){.slider.has-background{padding-bottom:5.5rem}}.slider .is--desktop,.slider .slider__item--desktop{display:none}@media (min-width:576px){.slider .slick-list{width:100%}}@media (min-width:992px){.slider .slick-list .slick-track{left:0}}.slider .slider__container--v2{position:relative}.slider--fade .slider__fade{bottom:--slider-pagination-offset;position:absolute;top:0;width:0;z-index:2}.slider--fade .slider__fade--left{left:auto;right:100%}.slider--fade .slider__fade--right{left:100%;right:auto}.slider .slider__container--v2.slider__container--has-pagination{--slider-pagination-offset:3rem;--slider-pagination-space:calc(var(--slider-pagination-offset) + 0.5rem);padding-bottom:var(--slider-pagination-space)}.slider .slider__container--v2.slider__container--has-pagination swiper-container{--swiper-pagination-bottom:calc(var(--slider-pagination-offset)*-1)}.slider--fade .slider__container--v2.slider__container--has-pagination .slider__fade{bottom:var(--slider-pagination-space)}.slider .slider__controls{left:0;pointer-events:none;right:0;top:50%;transform:translateY(-50%);z-index:3}.slider .slider__controls>*{pointer-events:auto}.slider .slider__controls.slider__controls--full-width{left:50%;right:auto;transform:translate(-50%,-50%);width:99vw}.slider .slider__controls.slider__controls--full-width .slick__arrow-left{left:.5rem}.slider .slider__controls.slider__controls--full-width .slick__arrow-right{right:.5rem}.slider .slider__controls .slick__arrow-left.swiper-button-disabled,.slider .slider__controls .slick__arrow-right.swiper-button-disabled{cursor:default;opacity:.3;pointer-events:none}.slider swiper-container::part(container){overflow:visible}.slider swiper-slide{height:auto}.slider swiper-slide>*{height:100%}@media (min-width:992px){.slider--fade .slider__fade{width:calc(50vw - 444px)}}@media (min-width:1200px){.slider--fade .slider__fade{width:calc(50vw - 534px)}}@media (min-width:1340px){.slider--fade .slider__fade{width:calc(50vw - 599px)}}.slider--fade-inset{--slider-fade-width:60px}.slider--fade.slider--fade-inset .slider__fade{width:var(--slider-fade-width)}.slider--fade.slider--fade-inset .slider__fade--left{left:0;right:auto}.slider--fade.slider--fade-inset .slider__fade--right{left:auto;right:0}@media (min-width:992px){.slider--fade-inset{--slider-fade-width:120px}}.slider__wrapper:before{background-color:inherit;content:"";display:none;height:100%;left:50%;position:absolute;transform:translateX(-50%);width:100vw}
 </style>
