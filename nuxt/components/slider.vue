@@ -297,7 +297,10 @@ export default {
   position: relative;
 }
 .slider--fade .slider__fade {
-  bottom: --slider-pagination-offset;
+  /* hidden below lg – the blur layers are expensive and the gutter is too narrow to read */
+  display: none;
+  /* the variable only exists on containers with pagination, so the dots stay clear of the fade */
+  bottom: var(--slider-pagination-space, 0px);
   position: absolute;
   top: 0;
   width: 0;
@@ -320,10 +323,6 @@ export default {
 }
 .slider .slider__container--v2.slider__container--has-pagination swiper-container {
   --swiper-pagination-bottom: calc(var(--slider-pagination-offset) * -1);
-}
-/* the fade covers the slides only, the dots stay clear of it */
-.slider--fade .slider__container--v2.slider__container--has-pagination .slider__fade {
-  bottom: var(--slider-pagination-space);
 }
 .slider .slider__controls {
   left: 0;
@@ -366,6 +365,7 @@ export default {
 
 @media (min-width: 992px) {
   .slider--fade .slider__fade {
+    display: block;
     width: calc((100vw - 890px) / 2 + 1px);
   }
 }
@@ -386,7 +386,7 @@ export default {
  * In that case they move inside the slider edges instead.
  */
 .slider--fade-inset {
-  --slider-fade-width: 60px;
+  --slider-fade-width: 120px;
 }
 .slider--fade.slider--fade-inset .slider__fade {
   width: var(--slider-fade-width);
@@ -398,11 +398,6 @@ export default {
 .slider--fade.slider--fade-inset .slider__fade--right {
   left: auto;
   right: 0;
-}
-@media (min-width: 992px) {
-  .slider--fade-inset {
-    --slider-fade-width: 120px;
-  }
 }
 
 .slider__wrapper:before {
