@@ -1,5 +1,12 @@
 # Releases
 
+# Release 0.4.111
+
+- Adds schema.org structured data to event detail pages
+- Adds a redirect for events without a detail page
+- Fixes sidebar text alignment and prevents overflow
+- Fixes carousel tile width
+
 # Release 0.4.110
 
 - Updates the simple-git dependency to a newer version
