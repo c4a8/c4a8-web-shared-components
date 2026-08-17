@@ -255,7 +255,7 @@ export default {
     },
     fade: {
       type: Boolean,
-      default: false,
+      default: true,
     },
   },
 };
