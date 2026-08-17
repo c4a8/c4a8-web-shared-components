@@ -254,6 +254,13 @@ import SecondaryNavigation from '../utils/data/secondary-navigation.js';
 import Languages from '../utils/languages.js';
 
 const HEADER_LAYOUT_CACHE_KEY = 'vHeaderLayout';
+const HEADER_COLLAPSE_MAX_VIEWPORT = 1400;
+
+const isOutsideCollapseMeasureRange = () => {
+  if (typeof window === 'undefined') return false;
+
+  return !Tools.isAboveBreakpoint('lg') || window.innerWidth >= HEADER_COLLAPSE_MAX_VIEWPORT;
+};
 
 const readHeaderLayoutCache = () => {
   if (typeof window === 'undefined') return null;
@@ -652,7 +659,7 @@ export default {
       return margin < buttonWidth ? Math.max(0, buttonWidth - margin - offsetCorrection) : 0;
     },
     evaluateLogoCollapse() {
-      if (!Tools.isAboveBreakpoint('lg')) {
+      if (isOutsideCollapseMeasureRange()) {
         this.logoCollapsed = false;
         this.headerCondensed = false;
         this.logoCollapseReady = true;
@@ -1199,7 +1206,7 @@ export default {
       logoOffsetPosition: layoutCache?.logoOffset || 0,
       logoCollapsed: layoutCache?.collapsed || false,
       headerCondensed: layoutCache?.condensed || false,
-      logoCollapseReady: !!layoutCache,
+      logoCollapseReady: !!layoutCache || isOutsideCollapseMeasureRange(),
       secondaryNavigationInTransition: false,
       secondaryNavigationIsExpanded: false,
       secondaryNavigationDimensions: null,
@@ -1220,6 +1227,7 @@ export default {
 <style lang="scss">
 $header-expand-breakpoint: 'lg';
 $header-border-size: 1px;
+$header-collapse-max-viewport: 1400px;
 
 .shared-components {
   .header {
@@ -1443,12 +1451,14 @@ $header-border-size: 1px;
         }
 
         @include media-breakpoint-up($header-expand-breakpoint) {
-          .header__nav,
-          .header__button,
-          .header__language-switch,
-          .header__menu {
-            opacity: 0;
-            pointer-events: none;
+          @media (max-width: ($header-collapse-max-viewport - 0.02px)) {
+            .header__nav,
+            .header__button,
+            .header__language-switch,
+            .header__menu {
+              opacity: 0;
+              pointer-events: none;
+            }
           }
         }
       }

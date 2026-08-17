@@ -1017,6 +1017,7 @@ declare namespace _default {
         function calculateLogoOffsetPosition(): void;
         function getLogoOffsetSpace(): number;
         function evaluateLogoCollapse(): void;
+        function saveHeaderLayoutCache(): void;
         function getSecondaryNavigationButtonDimensions(): {
             width: any;
             height: any;
@@ -1118,11 +1119,10 @@ declare namespace _default {
         ctaClassList: null;
         maxLinkListsInFlyout: number;
         activeNavigation: {};
-        logoNaturalWidth: null;
-        logoOffsetPosition: number;
-        logoCollapsed: boolean;
-        pendingLogoCollapse: boolean;
-        headerCondensed: boolean;
+        logoNaturalWidth: any;
+        logoOffsetPosition: any;
+        logoCollapsed: any;
+        headerCondensed: any;
         logoCollapseReady: boolean;
         secondaryNavigationInTransition: boolean;
         secondaryNavigationIsExpanded: boolean;

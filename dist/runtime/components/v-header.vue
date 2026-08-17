@@ -254,6 +254,13 @@ import SecondaryNavigation from '../utils/data/secondary-navigation.js';
 import Languages from '../utils/languages.js';
 
 const HEADER_LAYOUT_CACHE_KEY = 'vHeaderLayout';
+const HEADER_COLLAPSE_MAX_VIEWPORT = 1400;
+
+const isOutsideCollapseMeasureRange = () => {
+  if (typeof window === 'undefined') return false;
+
+  return !Tools.isAboveBreakpoint('lg') || window.innerWidth >= HEADER_COLLAPSE_MAX_VIEWPORT;
+};
 
 const readHeaderLayoutCache = () => {
   if (typeof window === 'undefined') return null;
@@ -652,7 +659,7 @@ export default {
       return margin < buttonWidth ? Math.max(0, buttonWidth - margin - offsetCorrection) : 0;
     },
     evaluateLogoCollapse() {
-      if (!Tools.isAboveBreakpoint('lg')) {
+      if (isOutsideCollapseMeasureRange()) {
         this.logoCollapsed = false;
         this.headerCondensed = false;
         this.logoCollapseReady = true;
@@ -1199,7 +1206,7 @@ export default {
       logoOffsetPosition: layoutCache?.logoOffset || 0,
       logoCollapsed: layoutCache?.collapsed || false,
       headerCondensed: layoutCache?.condensed || false,
-      logoCollapseReady: !!layoutCache,
+      logoCollapseReady: !!layoutCache || isOutsideCollapseMeasureRange(),
       secondaryNavigationInTransition: false,
       secondaryNavigationIsExpanded: false,
       secondaryNavigationDimensions: null,
@@ -1392,7 +1399,7 @@ export default {
 .header.vue-component.header--collapsible.is-measuring .header__logo-media {
   transition: none;
 }
-@media (min-width: 992px) {
+@media (min-width: 992px) and (max-width: 1399.98px) {
   .header.vue-component.header--collapsible.is-measuring .header__nav,
   .header.vue-component.header--collapsible.is-measuring .header__button,
   .header.vue-component.header--collapsible.is-measuring .header__language-switch,
