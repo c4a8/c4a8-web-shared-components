@@ -33435,13 +33435,17 @@ modal {
   pointer-events: none;
   display: none !important;
 }
-.slick__arrow-left.slick-arrow:not(.slick-disabled):hover,
-.slick__arrow-right.slick-arrow:not(.slick-disabled):hover {
+.slick__arrow-left:not(.slick-disabled):not(.swiper-button-disabled),
+.slick__arrow-right:not(.slick-disabled):not(.swiper-button-disabled) {
+  cursor: pointer;
+}
+.slick__arrow-left:not(.slick-disabled):not(.swiper-button-disabled):hover,
+.slick__arrow-right:not(.slick-disabled):not(.swiper-button-disabled):hover {
   background-color: transparent;
   border-color: transparent;
 }
-.slick__arrow-left.slick-arrow:not(.slick-disabled):hover::before,
-.slick__arrow-right.slick-arrow:not(.slick-disabled):hover::before {
+.slick__arrow-left:not(.slick-disabled):not(.swiper-button-disabled):hover::before,
+.slick__arrow-right:not(.slick-disabled):not(.swiper-button-disabled):hover::before {
   border-color: var(--color-gk-mid-blue);
   filter: invert(28%) sepia(97%) saturate(1365%) hue-rotate(185deg) brightness(96%) contrast(101%);
 }

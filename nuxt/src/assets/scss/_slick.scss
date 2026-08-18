@@ -33,7 +33,11 @@ $slick-arrow-offset: 2;
     display: none !important;
   }
 
-  &.slick-arrow:not(.slick-disabled) {
+  // keyed on the disabled states rather than on .slick-arrow, so the swiper arrows
+  // in slider.vue – which only ever get .swiper-button-disabled – are covered too
+  &:not(.slick-disabled):not(.swiper-button-disabled) {
+    cursor: pointer;
+
     &:hover {
       background-color: transparent;
       border-color: transparent;
