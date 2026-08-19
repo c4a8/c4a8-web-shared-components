@@ -38,6 +38,22 @@
             </swiper-slide>
           </swiper-container>
         </ClientOnly>
+        <template v-if="fade">
+          <blur-fade
+            class="slider__fade slider__fade--left"
+            direction="right"
+            :max-blur="24"
+            :steps="4"
+            tint="rgba(255, 255, 255, 0.5)"
+          />
+          <blur-fade
+            class="slider__fade slider__fade--right"
+            direction="left"
+            :max-blur="24"
+            :steps="4"
+            tint="rgba(255, 255, 255, 0.5)"
+          />
+        </template>
       </div>
     </wrapper>
   </div>
@@ -105,6 +121,7 @@ export default {
         `${this.backgroundClass}`,
         this.overflow || this.hasControls || this.fade ? 'slider--overflow' : '',
         this.fade ? 'slider--fade' : '',
+        this.fade && this.hideContainerValue ? 'slider--fade-inset' : '',
         'vue-component',
       ];
     },
@@ -238,7 +255,7 @@ export default {
     },
     fade: {
       type: Boolean,
-      default: false,
+      default: true,
     },
   },
 };
@@ -279,48 +296,33 @@ export default {
 .slider .slider__container--v2 {
   position: relative;
 }
-.slider--fade .slider__container--v2:after,
-.slider--fade .slider__container--v2:before {
-  bottom: 0;
-  content: '';
-  pointer-events: none;
+.slider--fade .slider__fade {
+  /* hidden below lg – the blur layers are expensive and the gutter is too narrow to read */
+  display: none;
+  /* the variable only exists on containers with pagination, so the dots stay clear of the fade */
+  bottom: var(--slider-pagination-space, 0px);
   position: absolute;
   top: 0;
   width: 0;
   z-index: 2;
-  margin-top: -2em;
 }
-.slider--fade .slider__container--v2:before {
-  background: linear-gradient(90deg, rgba(255, 255, 255, 1) 60%, rgba(255, 255, 255, 0) 100%);
+.slider--fade .slider__fade--left {
+  left: auto;
   right: 100%;
 }
-.slider--fade .slider__container--v2:after {
-  background: linear-gradient(270deg, rgba(255, 255, 255, 1) 60%, rgba(255, 255, 255, 0) 100%);
+.slider--fade .slider__fade--right {
   left: 100%;
-}
-@media (min-width: 992px) {
-  .slider--fade .slider__container--v2:after,
-  .slider--fade .slider__container--v2:before {
-    width: calc(50vw - 415px);
-  }
-}
-@media (min-width: 1200px) {
-  .slider--fade .slider__container--v2:after,
-  .slider--fade .slider__container--v2:before {
-    width: calc(50vw - 555px);
-  }
-}
-@media (min-width: 1340px) {
-  .slider--fade .slider__container--v2:after,
-  .slider--fade .slider__container--v2:before {
-    width: calc(50vw -430);
-  }
+  right: auto;
 }
 .slider .slider__container--v2.slider__container--has-pagination {
-  padding-bottom: 2.5rem;
+  /* distance between the slides and the dots – padding keeps the dots inside the box */
+  --slider-pagination-offset: 3rem;
+  --slider-pagination-space: calc(var(--slider-pagination-offset) + 0.5rem);
+
+  padding-bottom: var(--slider-pagination-space);
 }
 .slider .slider__container--v2.slider__container--has-pagination swiper-container {
-  --swiper-pagination-bottom: -2rem;
+  --swiper-pagination-bottom: calc(var(--slider-pagination-offset) * -1);
 }
 .slider .slider__controls {
   left: 0;
@@ -362,22 +364,40 @@ export default {
 }
 
 @media (min-width: 992px) {
-  .slider--fade .slider__container--v2:after,
-  .slider--fade .slider__container--v2:before {
+  .slider--fade .slider__fade {
+    display: block;
     width: calc((100vw - 890px) / 2 + 1px);
   }
 }
 @media (min-width: 1200px) {
-  .slider--fade .slider__container--v2:after,
-  .slider--fade .slider__container--v2:before {
+  .slider--fade .slider__fade {
     width: calc((100vw - 1070px) / 2 + 1px);
   }
 }
 @media (min-width: 1340px) {
-  .slider--fade .slider__container--v2:after,
-  .slider--fade .slider__container--v2:before {
+  .slider--fade .slider__fade {
     width: calc((100vw - 1200px) / 2 + 1px);
   }
+}
+
+/*
+ * hideContainer removes the .container around the slider, so there is no gutter
+ * left for the fades to sit in (right: 100% / left: 100% would push them off screen).
+ * In that case they move inside the slider edges instead.
+ */
+.slider--fade-inset {
+  --slider-fade-width: 120px;
+}
+.slider--fade.slider--fade-inset .slider__fade {
+  width: var(--slider-fade-width);
+}
+.slider--fade.slider--fade-inset .slider__fade--left {
+  left: 0;
+  right: auto;
+}
+.slider--fade.slider--fade-inset .slider__fade--right {
+  left: auto;
+  right: 0;
 }
 
 .slider__wrapper:before {
