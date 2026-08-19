@@ -1,5 +1,11 @@
 # Releases
 
+# Release 0.4.112
+
+- Adds a blurry fade option to the slider, enabled by default
+- Adds a hover color to the slider controls
+- Updates dependencies to remove a compromised package
+
 # Release 0.4.111
 
 - Adds schema.org structured data to event detail pages
