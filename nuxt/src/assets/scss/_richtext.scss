@@ -120,7 +120,9 @@ $richtext-conclusion-spacing-lg: $spacing-content-default;
     &#conclusione,
     &#Conclusie,
     &#conclusie,
-    &#결론 {
+    &#결론,
+    &#結論,
+    &#まとめ {
       @include richtext-width;
 
       & {
@@ -157,7 +159,9 @@ $richtext-conclusion-spacing-lg: $spacing-content-default;
     &#niðurstaða,
     &#conclusione,
     &#conclusie,
-    &#결론 {
+    &#결론,
+    &#結論,
+    &#まとめ {
       margin: spacing(8) 0 0 0;
     }
   }

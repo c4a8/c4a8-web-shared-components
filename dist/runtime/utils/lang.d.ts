@@ -211,4 +211,24 @@ declare namespace Lang {
         let vatInfo_10: string;
         export { vatInfo_10 as vatInfo };
     }
+    namespace ja {
+        let loadMorePosts_11: string;
+        export { loadMorePosts_11 as loadMorePosts };
+        let tags_11: string;
+        export { tags_11 as tags };
+        let tagsHeadline_11: string;
+        export { tagsHeadline_11 as tagsHeadline };
+        let tagsClear_11: string;
+        export { tagsClear_11 as tagsClear };
+        let posts_11: string;
+        export { posts_11 as posts };
+        let follow_11: string;
+        export { follow_11 as follow };
+        let similarPosts_11: string;
+        export { similarPosts_11 as similarPosts };
+        let withAuthor_11: string;
+        export { withAuthor_11 as withAuthor };
+        let vatInfo_11: string;
+        export { vatInfo_11 as vatInfo };
+    }
 }

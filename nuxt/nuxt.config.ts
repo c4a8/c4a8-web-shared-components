@@ -73,6 +73,7 @@ export default defineNuxtConfig({
       { code: 'it', iso: 'it-IT', dir: 'ltr' },
       { code: 'nl', iso: 'nl-NL', dir: 'ltr' },
       { code: 'ko', iso: 'ko-KR', dir: 'ltr' },
+      { code: 'ja', iso: 'ja-JP', dir: 'ltr' },
     ],
     defaultLocale: 'de',
     fallbackLocale: 'en',

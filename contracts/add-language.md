@@ -168,3 +168,4 @@ exists to prevent repeating them:
 | `it` | `Conclusione` / `conclusione` |
 | `nl` | `Conclusie` / `conclusie` |
 | `ko` | `결론` *(no case distinction; verify slugified ID)* |
+| `ja` | `結論` **and** `まとめ` *(no case distinction; Japanese articles typically close with a "まとめ" heading, so both are covered — verify slugified ID against real content)* |

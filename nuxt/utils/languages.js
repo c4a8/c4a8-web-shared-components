@@ -7,6 +7,7 @@ const NativeNames = {
   fr: 'Français',
   is: 'Íslenska',
   it: 'Italiano',
+  ja: '日本語',
   ko: '한국어',
   nl: 'Nederlands',
   no: 'Norsk',
