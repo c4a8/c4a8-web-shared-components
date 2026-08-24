@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.113
+
+- Fixes the Sendman text underline color (highlight-second now uses light yellow)
+
 # Release 0.4.112
 
 - Adds a blurry fade option to the slider, enabled by default
