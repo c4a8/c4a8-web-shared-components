@@ -210,11 +210,11 @@ $step-list-color-img-tint: $color-copy;
     }
 
     .step-list__icon {
-      opacity: 0;
       pointer-events: none;
 
       svg {
         width: spacing(2);
+        visibility: hidden;
       }
     }
 
