@@ -12,7 +12,7 @@
   </a>
 </template>
 <script>
-import { useNuxtApp } from '#imports';
+import { useI18n } from '#imports';
 
 import Tools from '../utils/tools.js';
 
@@ -29,20 +29,17 @@ export default {
         this.classes ? this.classes : null,
       ];
     },
-    linkPrefix() {
-      return this.nuxtApp?.$i18n?.availableLocales?.length > 1 ? `/${this.nuxtApp?.$i18n?.locale?.value}` : '';
-    },
     href() {
-      return this.linkPrefix + '/blog/#' + encodeURIComponent(this.tag);
+      return Tools.addPathPrefix(`/blog/#${encodeURIComponent(this.tag)}`, this.locale, this.strategy);
     },
     hasIcon() {
       return this.variant === 'icon';
     },
   },
   setup() {
-    const nuxtApp = useNuxtApp();
+    const { locale, strategy } = useI18n();
 
-    return { nuxtApp };
+    return { locale, strategy };
   },
   props: {
     tag: {

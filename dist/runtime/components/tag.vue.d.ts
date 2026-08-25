@@ -5,12 +5,12 @@ declare namespace _default {
     };
     namespace computed {
         function classList(): any[];
-        function linkPrefix(): any;
-        function href(): string;
+        function href(): any;
         function hasIcon(): any;
     }
     function setup(): {
-        nuxtApp: import("#app").NuxtApp;
+        locale: import("vue").WritableComputedRef<string, string>;
+        strategy: any;
     };
     namespace props {
         namespace tag {
