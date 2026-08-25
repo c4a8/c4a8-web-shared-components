@@ -228,11 +228,11 @@ export default {
   transform: translateX(1rem);
 }
 .step-list.step-list--small .step-list__icon {
-  opacity: 0;
   pointer-events: none;
 }
 .step-list.step-list--small .step-list__icon svg {
   width: 0.5rem;
+  visibility: hidden;
 }
 .step-list.step-list--small .step-list__title--no-small {
   display: none;

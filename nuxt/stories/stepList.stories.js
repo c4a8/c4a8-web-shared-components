@@ -97,7 +97,7 @@ export const SmallWithIcons = {
     variant: 'small',
     list: [
       {
-        img: '/assets/svg/icons/icon-hand.svg',
+        img: 'assets/svg/icons/icon-hand.svg',
         tint: true,
         alt: 'lorem ipsum dolor sit amet, consectetur adipis',
         title: 'Anmelden',
@@ -107,13 +107,13 @@ export const SmallWithIcons = {
         link: true,
       },
       {
-        img: '/assets/svg/icons/icon-consulting-services.svg',
+        img: 'assets/svg/icons/icon-consulting-services.svg',
         alt: 'lorem ipsum dolor sit amet, consectetur adipis',
         title: 'Wo',
         content: 'Remote per Teams Meeting',
       },
       {
-        img: '/assets/svg/icons/phone-mail.svg',
+        img: 'assets/svg/icons/phone-mail.svg',
         tint: true,
         alt: 'lorem ipsum dolor sit amet, consectetur adipis',
         title: 'Gebühr',
@@ -121,7 +121,7 @@ export const SmallWithIcons = {
           '1300,00 € pro Teilnehmer<br/>(200,00 € Discount bei laufenden Projekten oder ab zwei Teilnehmern eines Unternehmens)',
       },
       {
-        img: '/assets/svg/icons/icon-checklist-write.svg',
+        img: 'assets/svg/icons/icon-checklist-write.svg',
         overlapping: true,
         alt: 'lorem ipsum dolor sit amet, consectetur adipis',
         title: 'Zielgruppe',
