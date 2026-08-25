@@ -1,5 +1,12 @@
 # Releases
 
+# Release 0.4.114
+
+- Exposes the shared components version number in the DOM
+- Fixes double assets prefix in v-img
+- Removes trailing chevron in the small step-list variant
+- Fixes link-list style ordering issue
+
 # Release 0.4.113
 
 - Fixes the Sendman text underline color (highlight-second now uses light yellow)
