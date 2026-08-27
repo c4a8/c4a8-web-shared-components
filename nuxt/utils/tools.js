@@ -687,7 +687,8 @@ class Tools {
   static addPathPrefix(path, lang, strategy, defaultLocale) {
     const needsPrefix =
       strategy === 'prefix' ||
-      ((strategy === 'prefix_except_default' || strategy === 'prefix_and_default') && lang !== defaultLocale);
+      strategy === 'prefix_and_default' ||
+      (strategy === 'prefix_except_default' && lang !== defaultLocale);
 
     return needsPrefix ? `/${lang}${path}` : path;
   }
