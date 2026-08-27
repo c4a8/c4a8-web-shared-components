@@ -7,9 +7,9 @@ import { useI18n } from '#imports';
 export default {
   tagName: 'markdown-files',
   setup() {
-    const { locale } = useI18n();
+    const { locale, defaultLocale } = useI18n();
 
-    return { currentLocale: locale };
+    return { currentLocale: locale, defaultLocale };
   },
   computed: {
     structuredList() {
@@ -61,7 +61,7 @@ export default {
           processedItem.lang = defaultLang;
         }
 
-        processedItem.url = this.addPathPrefix(path, processedItem.lang, this.strategy);
+        processedItem.url = this.addPathPrefix(path, processedItem.lang, this.strategy, this.defaultLocale);
 
         if (this.hideItems && this.hideItems(processedItem)) {
           continue;
@@ -91,8 +91,12 @@ export default {
     },
   },
   methods: {
-    addPathPrefix(path, lang, strategy) {
-      return strategy === 'prefix' ? `/${lang}${path}` : path;
+    addPathPrefix(path, lang, strategy, defaultLocale) {
+      const needsPrefix =
+        strategy === 'prefix' ||
+        ((strategy === 'prefix_except_default' || strategy === 'prefix_and_default') && lang !== defaultLocale);
+
+      return needsPrefix ? `/${lang}${path}` : path;
     },
     extractDate(path) {
       if (!path) return null;

@@ -19,7 +19,7 @@ import { computed } from 'vue';
 import Tools from '../../utils/tools.js';
 import useAuthors from '../../composables/useAuthors.js';
 
-const { strategy } = useI18n();
+const { strategy, defaultLocale } = useI18n();
 const route = useRoute();
 const nuxtApp = useNuxtApp();
 const currentLocale = nuxtApp.$i18n.locale;
@@ -67,7 +67,7 @@ const postsOrdered = computed(() => {
     .map((item) => {
       const newItem = Tools.normalizeMarkdownItem(item);
 
-      newItem.url = Tools.addPathPrefix(newItem.url, currentLocale.value, strategy);
+      newItem.url = Tools.addPathPrefix(newItem.url, currentLocale.value, strategy, defaultLocale);
 
       return newItem;
     })

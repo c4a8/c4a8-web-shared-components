@@ -30,16 +30,16 @@ export default {
       ];
     },
     href() {
-      return Tools.addPathPrefix(`/blog/#${encodeURIComponent(this.tag)}`, this.locale, this.strategy);
+      return Tools.addPathPrefix(`/blog/#${encodeURIComponent(this.tag)}`, this.locale, this.strategy, this.defaultLocale);
     },
     hasIcon() {
       return this.variant === 'icon';
     },
   },
   setup() {
-    const { locale, strategy } = useI18n();
+    const { locale, strategy, defaultLocale } = useI18n();
 
-    return { locale, strategy };
+    return { locale, strategy, defaultLocale };
   },
   props: {
     tag: {

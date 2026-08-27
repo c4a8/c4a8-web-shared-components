@@ -38,7 +38,7 @@ import Tools from '../../utils/tools.js';
 
 const route = useRoute();
 
-const { t, strategy } = useI18n();
+const { t, strategy, defaultLocale } = useI18n();
 
 const nuxtApp = useNuxtApp();
 const currentLocale = nuxtApp.$i18n.locale;
@@ -91,7 +91,9 @@ const articleAuthors = computed(() => {
 
   return names.filter(Boolean).map((name) => {
     const author = knownAuthors[name];
-    const permalink = author?.permalink ? Tools.addPathPrefix(author.permalink, currentLocale.value, strategy) : null;
+    const permalink = author?.permalink
+      ? Tools.addPathPrefix(author.permalink, currentLocale.value, strategy, defaultLocale)
+      : null;
 
     const slug = author?.permalink?.split('/').filter(Boolean).pop();
 

@@ -33,6 +33,10 @@ const FooterData = {
   ],
   highlights: [
     {
+      img: 'logos/apt-response.svg',
+      alt: 'APT Response Qualification'
+    },
+    {
       img: '/logos/msft-misa-xdr.svg',
       alt: 'Microsoft Intelligent Security Association',
     },
