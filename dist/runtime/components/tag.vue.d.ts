@@ -10,7 +10,8 @@ declare namespace _default {
         function hasIcon(): any;
     }
     function setup(): {
-        nuxtApp: import("#app").NuxtApp;
+        locale: import("vue").WritableComputedRef<string, string>;
+        availableLocales: string[];
     };
     namespace props {
         namespace tag {
