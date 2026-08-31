@@ -71,7 +71,7 @@
             </div>
           </div>
         </div>
-        <text-icon-animation
+        <lazy-text-icon-animation
           v-if="animation"
           :animation="animation"
           :cta="cta"
@@ -79,7 +79,7 @@
           :iconColor="iconColor"
           classes="hero__animation"
         >
-        </text-icon-animation>
+        </lazy-text-icon-animation>
       </main>
     </div>
     <wrapper
