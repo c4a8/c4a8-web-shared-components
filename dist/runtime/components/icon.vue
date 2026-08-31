@@ -11,7 +11,7 @@
   </span>
 </template>
 <script>
-import { defineAsyncComponent } from 'vue';
+import { defineAsyncComponent, hydrateOnIdle } from 'vue';
 import Tools from '../utils/tools.js';
 
 // TODO figure out why auto-import does not work here correctly. rendering it manually works fine.
@@ -46,28 +46,28 @@ import World from './icons/world.vue';
 
 export default {
   components: {
-    'arrow-curl': defineAsyncComponent(() => import('./icons/arrow-curl.vue')),
+    'arrow-curl': defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/arrow-curl.vue') }),
     'arrow-external': ArrowExternal,
     'arrow-narrow': ArrowNarrow,
     arrow: Arrow,
-    bin: defineAsyncComponent(() => import('./icons/bin.vue')),
-    booking: defineAsyncComponent(() => import('./icons/booking.vue')),
+    bin: defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/bin.vue') }),
+    booking: defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/booking.vue') }),
     'check-mark': CheckMark,
     check: Check,
     checkbox: Checkbox,
     close: Close,
-    'computer-shield': defineAsyncComponent(() => import('./icons/computer-shield.vue')),
+    'computer-shield': defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/computer-shield.vue') }),
     'email-action-unread': EmailActionUnread,
-    emergency: defineAsyncComponent(() => import('./icons/emergency.vue')),
+    emergency: defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/emergency.vue') }),
     expand: Expand,
-    grid: defineAsyncComponent(() => import('./icons/grid-icon.vue')),
-    hand: defineAsyncComponent(() => import('./icons/hand.vue')),
+    grid: defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/grid-icon.vue') }),
+    hand: defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/hand.vue') }),
     'image-credits': ImageCredits,
     info: Info,
-    'list-view': defineAsyncComponent(() => import('./icons/list-view.vue')),
-    magnifier: defineAsyncComponent(() => import('./icons/magnifier.vue')),
+    'list-view': defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/list-view.vue') }),
+    magnifier: defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/magnifier.vue') }),
     mail: Mail,
-    meerkat: defineAsyncComponent(() => import('./icons/meerkat.vue')),
+    meerkat: defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/meerkat.vue') }),
     minus: Minus,
     'outline-heart': OutlineHeart,
     'outline-comment': OutlineComment,
@@ -79,18 +79,18 @@ export default {
     plus: Plus,
     'v-menu': VMenu,
     'plus-minus': PlusMinus,
-    rocket: defineAsyncComponent(() => import('./icons/rocket.vue')),
+    rocket: defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/rocket.vue') }),
     reload: Reload,
-    ribbon: defineAsyncComponent(() => import('./icons/ribbon.vue')),
-    smile: defineAsyncComponent(() => import('./icons/smile.vue')),
-    'strategy-split': defineAsyncComponent(() => import('./icons/strategy-split.vue')),
+    ribbon: defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/ribbon.vue') }),
+    smile: defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/smile.vue') }),
+    'strategy-split': defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/strategy-split.vue') }),
     'tile-view': TileView,
     user: User,
     quote: Quote,
     world: World,
-    'x-mark': defineAsyncComponent(() => import('./icons/x-mark.vue')),
-    heart: defineAsyncComponent(() => import('./icons/heart.vue')),
-    'charging-station': defineAsyncComponent(() => import('./icons/charging-station.vue')),
+    'x-mark': defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/x-mark.vue') }),
+    heart: defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/heart.vue') }),
+    'charging-station': defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/charging-station.vue') }),
   },
   tagName: 'icon',
   data() {
