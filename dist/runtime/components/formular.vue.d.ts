@@ -16,6 +16,7 @@ declare namespace _default {
     };
     function setup(): {
         config: {};
+        formId: string;
     };
     namespace computed {
         function loaderClasses(): string[];
@@ -41,7 +42,9 @@ declare namespace _default {
         function getOptions(field: any): any;
         function getBlockClassList(block: any): string[];
         function getFieldClassList(field: any): string[];
+        function getFieldId(field: any): any;
         function getId(field: any): any;
+        function getName(field: any): any;
         function updateAction(newAction: any): void;
         function handleSubmit(e: any): void;
         function handleFormFieldUpdate(e: any): void;

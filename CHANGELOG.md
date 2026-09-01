@@ -1,6 +1,26 @@
 # Releases
 
-# Release 0.1.107
+# Release 0.4.111
+
+- Adds schema.org structured data to event detail pages
+- Adds a redirect for events without a detail page
+- Fixes sidebar text alignment and prevents overflow
+- Fixes carousel tile width
+
+# Release 0.4.110
+
+- Updates the simple-git dependency to a newer version
+
+# Release 0.4.109
+
+- Adds schema.org structured data for organization, events, authors and articles
+- Improves slider controls styling and behaviour
+
+# Release 0.4.108
+
+- Fixes issue with duplicate id's
+
+# Release 0.4.107
 
 - Fixes issue with timeline component not showing entry text
 
