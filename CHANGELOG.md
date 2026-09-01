@@ -1,5 +1,22 @@
 # Releases
 
+# Release 0.4.114
+
+- Exposes the shared components version number in the DOM
+- Fixes double assets prefix in v-img
+- Removes trailing chevron in the small step-list variant
+- Fixes link-list style ordering issue
+
+# Release 0.4.113
+
+- Fixes the Sendman text underline color (highlight-second now uses light yellow)
+
+# Release 0.4.112
+
+- Adds a blurry fade option to the slider, enabled by default
+- Adds a hover color to the slider controls
+- Updates dependencies to remove a compromised package
+
 # Release 0.4.111
 
 - Adds schema.org structured data to event detail pages
