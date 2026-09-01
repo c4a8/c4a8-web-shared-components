@@ -30,7 +30,7 @@ export default {
       ];
     },
     linkPrefix() {
-      return this.availableLocales?.length > 1 ? `/${this.locale}` : '';
+      return this.strategy === 'prefix' ? `/${this.locale}` : '';
     },
     href() {
       return this.linkPrefix + '/blog/#' + encodeURIComponent(this.tag);
@@ -40,9 +40,9 @@ export default {
     },
   },
   setup() {
-    const { locale, availableLocales } = useI18n();
+    const { locale, strategy } = useI18n();
 
-    return { locale, availableLocales };
+    return { locale, strategy };
   },
   props: {
     tag: {
