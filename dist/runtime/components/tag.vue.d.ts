@@ -11,7 +11,7 @@ declare namespace _default {
     }
     function setup(): {
         locale: import("vue").WritableComputedRef<string, string>;
-        availableLocales: string[];
+        strategy: string;
     };
     namespace props {
         namespace tag {
