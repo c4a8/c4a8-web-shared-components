@@ -97,9 +97,10 @@ export default {
 
     if (!carousel) return;
 
-    this.slickElement = $(carousel);
-
-    this.bindEvents();
+    import('jquery').then((module) => {
+      this.slickElement = module.default(carousel);
+      this.bindEvents();
+    });
   },
   beforeUnmount() {
     this.swiperObserver?.disconnect();
