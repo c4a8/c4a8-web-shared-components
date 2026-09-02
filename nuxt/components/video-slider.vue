@@ -45,6 +45,7 @@
 
 <script>
 import Tools from '../utils/tools.js';
+import { registerSwiperWhenVisible } from '../utils/lazy-swiper.js';
 
 export default {
   tagName: 'video-slider',
@@ -89,6 +90,8 @@ export default {
     },
   },
   mounted() {
+    this.swiperObserver = registerSwiperWhenVisible(this.$el);
+
     const maxWidth = this.$refs['max-width'];
     const carousel = maxWidth?.querySelector('.js-slick-carousel');
 
@@ -97,6 +100,9 @@ export default {
     this.slickElement = $(carousel);
 
     this.bindEvents();
+  },
+  beforeUnmount() {
+    this.swiperObserver?.disconnect();
   },
   methods: {
     bindEvents() {

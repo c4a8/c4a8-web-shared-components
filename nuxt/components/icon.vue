@@ -11,31 +11,22 @@
   </span>
 </template>
 <script>
+import { defineAsyncComponent, hydrateOnIdle } from 'vue';
 import Tools from '../utils/tools.js';
 
 // TODO figure out why auto-import does not work here correctly. rendering it manually works fine.
-import ArrowCurl from './icons/arrow-curl.vue';
 import ArrowExternal from './icons/arrow-external.vue';
 import ArrowNarrow from './icons/arrow-narrow.vue';
 import Arrow from './icons/arrow.vue';
-import Bin from './icons/bin.vue';
-import Booking from './icons/booking.vue';
 import CheckMark from './icons/check-mark.vue';
 import Check from './icons/check.vue';
 import Checkbox from './icons/checkbox.vue';
 import Close from './icons/close.vue';
-import ComputerShield from './icons/computer-shield.vue';
 import EmailActionUnread from './icons/email-action-unread.vue';
-import Emergency from './icons/emergency.vue';
 import Expand from './icons/expand.vue';
-import Grid from './icons/grid-icon.vue';
-import Hand from './icons/hand.vue';
 import ImageCredits from './icons/image-credits.vue';
 import Info from './icons/info.vue';
-import ListView from './icons/list-view.vue';
-import Magnifier from './icons/magnifier.vue';
 import Mail from './icons/mail.vue';
-import Meerkat from './icons/meerkat.vue';
 import Minus from './icons/minus.vue';
 import OutlineHeart from './icons/outline-heart.vue';
 import OutlineComment from './icons/outline-comment.vue';
@@ -47,43 +38,36 @@ import Pin from './icons/pin.vue';
 import Plus from './icons/plus.vue';
 import VMenu from './icons/v-menu.vue';
 import PlusMinus from './icons/plus-minus.vue';
-import Rocket from './icons/rocket.vue';
 import Reload from './icons/reload.vue';
-import Ribbon from './icons/ribbon.vue';
-import Smile from './icons/smile.vue';
-import StrategySplit from './icons/strategy-split.vue';
 import TileView from './icons/tile-view.vue';
 import User from './icons/user.vue';
 import Quote from './icons/quote.vue';
 import World from './icons/world.vue';
-import XMark from './icons/x-mark.vue';
-import Heart from './icons/heart.vue';
-import ChargingStation from './icons/charging-station.vue';
 
 export default {
   components: {
-    'arrow-curl': ArrowCurl,
+    'arrow-curl': defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/arrow-curl.vue') }),
     'arrow-external': ArrowExternal,
     'arrow-narrow': ArrowNarrow,
     arrow: Arrow,
-    bin: Bin,
-    booking: Booking,
+    bin: defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/bin.vue') }),
+    booking: defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/booking.vue') }),
     'check-mark': CheckMark,
     check: Check,
     checkbox: Checkbox,
     close: Close,
-    'computer-shield': ComputerShield,
+    'computer-shield': defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/computer-shield.vue') }),
     'email-action-unread': EmailActionUnread,
-    emergency: Emergency,
+    emergency: defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/emergency.vue') }),
     expand: Expand,
-    grid: Grid,
-    hand: Hand,
+    grid: defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/grid-icon.vue') }),
+    hand: defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/hand.vue') }),
     'image-credits': ImageCredits,
     info: Info,
-    'list-view': ListView,
-    magnifier: Magnifier,
+    'list-view': defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/list-view.vue') }),
+    magnifier: defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/magnifier.vue') }),
     mail: Mail,
-    meerkat: Meerkat,
+    meerkat: defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/meerkat.vue') }),
     minus: Minus,
     'outline-heart': OutlineHeart,
     'outline-comment': OutlineComment,
@@ -95,18 +79,18 @@ export default {
     plus: Plus,
     'v-menu': VMenu,
     'plus-minus': PlusMinus,
-    rocket: Rocket,
+    rocket: defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/rocket.vue') }),
     reload: Reload,
-    ribbon: Ribbon,
-    smile: Smile,
-    'strategy-split': StrategySplit,
+    ribbon: defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/ribbon.vue') }),
+    smile: defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/smile.vue') }),
+    'strategy-split': defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/strategy-split.vue') }),
     'tile-view': TileView,
     user: User,
     quote: Quote,
     world: World,
-    'x-mark': XMark,
-    heart: Heart,
-    'charging-station': ChargingStation,
+    'x-mark': defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/x-mark.vue') }),
+    heart: defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/heart.vue') }),
+    'charging-station': defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/charging-station.vue') }),
   },
   tagName: 'icon',
   data() {

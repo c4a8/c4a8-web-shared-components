@@ -27,6 +27,7 @@ declare namespace _default {
         function style(): string;
     }
     function mounted(): void;
+    function beforeUnmount(): void;
     namespace methods {
         function bindEvents(): void;
         function handlePositionChange(_: any, slick: any, currentSlide: any): void;
