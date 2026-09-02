@@ -34,12 +34,16 @@ declare module 'nuxt/config' {
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => tag.startsWith('swiper-'),
+    },
+  },
   modules: [
     '@nuxtjs/storybook',
     '@nuxt/content',
     '@nuxtjs/i18n',
     '@pinia/nuxt',
-    'nuxt-swiper',
     '@nuxtjs/turnstile',
     '@nuxt/scripts',
     'nuxt-schema-org',
