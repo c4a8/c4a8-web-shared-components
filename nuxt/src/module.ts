@@ -65,9 +65,11 @@ export default defineNuxtModule({
     await installModule('@nuxtjs/sitemap');
     await installModule('nuxt-schema-org');
 
-    if (!_nuxt.options.modules.includes('nuxt-swiper')) {
-      _nuxt.options.modules.push('nuxt-swiper');
-    }
+    _nuxt.options.vue ||= {};
+    _nuxt.options.vue.compilerOptions ||= {};
+    const prevIsCustomElement = _nuxt.options.vue.compilerOptions.isCustomElement;
+    _nuxt.options.vue.compilerOptions.isCustomElement = (tag) =>
+      tag.startsWith('swiper-') || prevIsCustomElement?.(tag) || false;
 
     const runtimeDir = resolve(__dirname, './runtime');
 
