@@ -1,5 +1,15 @@
 # Releases
 
+# Release 0.4.116
+
+- Lazy loads the swiper, hero text-icon animation and less frequent icons for better performance
+- Hydrates async components on idle
+
+# Release 0.4.115
+
+- Fixes tag blog link prefix when using an i18n strategy
+- Fixes tag prerendering
+
 # Release 0.4.114
 
 - Exposes the shared components version number in the DOM
