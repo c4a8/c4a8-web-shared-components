@@ -143,7 +143,7 @@
             </div>
           </nav>
           <div class="header__button" v-if="button">
-            <cta :classes="ctaClassList" :on-surface="onSurfaceCta" v-bind="button" />
+            <cta :classes="ctaClassList" :on-surface="onSurfaceCta" v-bind="button" :small="true" />
           </div>
           <search v-if="searchValue" class="header__search" language="de" placeholder="search" />
           <div
@@ -721,9 +721,7 @@ export default {
       this.logoCollapsed = collapsed;
 
       if (!this.logoCollapseReady && collapsed) {
-        this.$nextTick(() =>
-          requestAnimationFrame(() => requestAnimationFrame(() => (this.logoCollapseReady = true)))
-        );
+        this.$nextTick(() => requestAnimationFrame(() => requestAnimationFrame(() => (this.logoCollapseReady = true))));
       } else {
         this.logoCollapseReady = true;
       }
