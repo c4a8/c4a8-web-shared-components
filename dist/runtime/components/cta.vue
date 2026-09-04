@@ -46,6 +46,7 @@ export default {
         this.icon ? `cta--has-icon cta--icon-${this.icon}` : '',
         Tools.isTrue(this.reversed) === true ? 'cta--reversed' : '',
         Tools.isTrue(this.monochrome) === true ? 'cta--monochrome' : '',
+        Tools.isTrue(this.small) === true ? 'cta--small' : '',
         this.link && Tools.isTrue(this.active) === true ? State.ACTIVE : '',
         Tools.isTrue(this.loading) ? State.LOADING : '',
         Tools.isTrue(this.hasBackground) === true ? 'cta--has-background' : '',
@@ -144,6 +145,9 @@ export default {
       default: null,
     },
     monochrome: {
+      default: null,
+    },
+    small: {
       default: null,
     },
     active: {
@@ -428,6 +432,15 @@ export default {
 .cta.cta--has-icon.cta--icon-emergency .icon svg {
   stroke-width: 0.3;
   stroke: currentColor;
+}
+.cta.cta--small::after, .cta.cta--small.btn {
+  padding: 0.5rem 2.5rem 0.5rem 0.5rem;
+}
+.cta.cta--small:not(.link) .icon {
+  transform: translateY(-50%) scale(0.75);
+}
+.cta.cta--small.cta--download:not(.link) .icon {
+  transform: translateY(-50%) rotate(135deg) scale(0.75);
 }
 
 .shared-components .cta {
