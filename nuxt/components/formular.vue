@@ -42,7 +42,7 @@
             </div>
           </template>
           <div v-if="hasRecaptcha" class="form__recaptcha-infos">
-            <NuxtTurnstile ref="turnstile" />
+            <NuxtTurnstile v-if="turnstileReady" ref="turnstile" />
           </div>
           <div :class="formClassList">
             <cta
@@ -67,6 +67,7 @@ import { useId } from 'vue';
 
 import useConfig from '../composables/useConfig';
 import State from '../utils/state.js';
+import { whenVisible } from '../utils/when-visible.js';
 import Tools from '../utils/tools.js';
 import Form from '../utils/components/form.js';
 import UtilityAnimation from '../utils/utility-animation.js';
@@ -90,6 +91,7 @@ export default {
       loading: {},
       hasLoading: false,
       hasLoader: true,
+      turnstileReady: false,
     };
   },
   setup() {
@@ -210,9 +212,22 @@ export default {
 
     this.novalidateValue = 'novalidate';
 
+    if (this.hasRecaptcha) {
+      this.turnstileObserver = whenVisible(
+        this.$refs.root,
+        () => {
+          this.turnstileReady = true;
+        },
+        '200% 0px'
+      );
+    }
+
     if (!this.$refs.headline) return;
 
     UtilityAnimation.init([this.$refs.headline]);
+  },
+  beforeUnmount() {
+    this.turnstileObserver?.disconnect();
   },
 
   methods: {
