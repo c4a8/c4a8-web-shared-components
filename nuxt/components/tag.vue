@@ -30,8 +30,7 @@ export default {
       ];
     },
     linkPrefix() {
-      const locales = this.nuxtApp?.$getLocales?.() || [];
-      return locales.length > 1 ? `/${this.nuxtApp?.$getLocale?.()}` : '';
+      return this.strategy === 'prefix' ? `/${this.locale}` : '';
     },
     href() {
       return this.linkPrefix + '/blog/#' + encodeURIComponent(this.tag);
@@ -42,8 +41,10 @@ export default {
   },
   setup() {
     const nuxtApp = useNuxtApp();
+    const locale = nuxtApp.$getLocale?.();
+    const strategy = nuxtApp.$getI18nConfig?.().strategy ?? 'prefix';
 
-    return { nuxtApp };
+    return { locale, strategy };
   },
   props: {
     tag: {

@@ -414,6 +414,7 @@ export default {
   font-size: var(--cta-custom-font-size, 1rem);
   display: inline-flex;
   align-items: center;
+  text-align: left;
 }
 .cta.link:not(:last-of-type) {
   margin-right: 0.5rem;

@@ -21,9 +21,19 @@ $slick-arrow-offset: 2;
     height: 100%;
     left: 50%;
     top: 50%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 50%;
+    // the arrow is painted as a mask, so its colour is a real colour value instead of a
+    // filter approximation – only that way it matches --color-gk-mid-blue exactly
+    background-color: var(--color-slick-arrow, #000);
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: 50%;
+    // background-origin defaults to padding-box but mask-origin to border-box – pinning it
+    // keeps the transparent border below from changing the arrow size
+    mask-origin: padding-box;
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: 50%;
+    -webkit-mask-origin: padding-box;
     border: 2px solid transparent;
     border-radius: 50%;
   }
@@ -33,14 +43,19 @@ $slick-arrow-offset: 2;
     display: none !important;
   }
 
-  &.slick-arrow:not(.slick-disabled) {
+  // keyed on the disabled states rather than on .slick-arrow, so the swiper arrows
+  // in slider.vue – which only ever get .swiper-button-disabled – are covered too
+  &:not(.slick-disabled):not(.swiper-button-disabled) {
+    cursor: pointer;
+
     &:hover {
-      background-color: transparent;
-      border-color: transparent;
+      // the ring sits on the element itself now: a border on ::before would be cut away
+      // by the mask, and box-shadow keeps the former 2px look without a layout shift
+      border-color: var(--color-gk-mid-blue);
+      box-shadow: 0 0 0 1px var(--color-gk-mid-blue);
 
       &::before {
-        border-color: var(--color-gk-mid-blue);
-        filter: invert(28%) sepia(97%) saturate(1365%) hue-rotate(185deg) brightness(96%) contrast(101%);
+        background-color: var(--color-gk-mid-blue);
       }
     }
   }
@@ -59,7 +74,8 @@ $slick-arrow-offset: 2;
   left: -#{spacing($slick-arrow-offset-lg + $slick-arrow-offset)};
 
   &::before {
-    background-image: assets('../../assets/svg/arrow-slider.svg');
+    mask-image: assets('../../assets/svg/arrow-slider.svg');
+    -webkit-mask-image: assets('../../assets/svg/arrow-slider.svg');
     transform: rotate(90deg) translate(-50%, 50%);
   }
 
@@ -72,7 +88,8 @@ $slick-arrow-offset: 2;
   right: -#{spacing($slick-arrow-offset-lg + $slick-arrow-offset)};
 
   &::before {
-    background-image: assets('../../assets/svg/arrow-slider.svg');
+    mask-image: assets('../../assets/svg/arrow-slider.svg');
+    -webkit-mask-image: assets('../../assets/svg/arrow-slider.svg');
     transform: rotate(-90deg) translate(50%, -50%);
   }
 

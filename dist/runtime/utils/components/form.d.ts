@@ -4,7 +4,7 @@ declare class Form extends BaseComponent {
     static noCustomSubmitClass: string;
     static regularExpression: RegExp;
     static reset(form: any): void;
-    static getId(fieldId: any): string;
+    static getScopedId(prefix: any, fieldId: any): any;
     static getName(string: any): any;
     static isOptionalInputInvisible(input: any): any;
     static getFormData(form: any): string | string[];

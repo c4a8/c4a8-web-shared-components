@@ -23,13 +23,13 @@ export const PeopleSquare = {
         number: 1000,
         text: 'Kunden',
         shape: {
-          src: '/assets/svg/shapes/shape-career-3.svg',
+          src: 'assets/svg/shapes/shape-career-3.svg',
           cloudinary: false,
         },
       },
       {
         shape: {
-          src: '/assets/svg/shapes/shape-career-2.svg',
+          src: 'assets/svg/shapes/shape-career-2.svg',
           cloudinary: false,
         },
       },
@@ -53,7 +53,7 @@ export const PeopleSquare = {
       },
       {
         shape: {
-          src: '/assets/svg/shapes/shape-career-4.svg',
+          src: 'assets/svg/shapes/shape-career-4.svg',
           cloudinary: false,
         },
       },

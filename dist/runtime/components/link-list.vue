@@ -294,11 +294,11 @@ export default {
   animation: none !important;
 }
 
-.link-list__icon {
+.link-list__icon.icon {
   margin-right: 0.5rem;
 }
 @media (min-width: 992px) {
-  .link-list__icon {
+  .link-list__icon.icon {
     display: none;
   }
 }

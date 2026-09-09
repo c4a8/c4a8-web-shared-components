@@ -189,7 +189,7 @@ export default {
 
       const baseURL = this.config.public.baseURL && this.config.public.baseURL != '' ? this.config.public.baseURL : '/';
 
-      return this.img?.indexOf('/assets/') !== -1
+      return /(^|\/)assets\//.test(this.img ?? '')
         ? this.img
         : this.hasProtocol()
           ? this.img

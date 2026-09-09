@@ -130,12 +130,14 @@ export default {
     if (!this.$refs.root) return;
 
     UtilityAnimation.init([this.$refs.root]);
+
     if (this.accentColor) {
       this.$refs.root.style.setProperty('--color-step-list-highlight', this.accentColor);
     }
+
     this.$refs.root.style.setProperty(
       '--color-step-list-highlight-copy',
-      this.accentLightText ? 'var(--color-copy-light)' : 'var(--color-copy)'
+      this.accentLightText ? 'var(--color-copy-light)' : 'var(--color-step-list-override-copy, var(--color-copy))'
     );
   },
   methods: {
@@ -173,9 +175,9 @@ $step-list-color-img-tint: $color-copy;
   }
 
   &.step-list--small {
+    --color-step-list-override-copy: var(--color-override-step-list-copy, var(--color-copy-on-primary-on-surface));
     --step-list-color: var(--color-copy);
-    --color-step-list-highlight: var(--color-primary-accent-light);
-    --color-step-list-highlight-copy: var(--color-primary-accent);
+    --color-step-list-highlight: var(--color-copy-highlight);
 
     .step-list__counter-icon {
       width: $step-list-counter-width-small;
@@ -210,11 +212,11 @@ $step-list-color-img-tint: $color-copy;
     }
 
     .step-list__icon {
-      opacity: 0;
       pointer-events: none;
 
       svg {
         width: spacing(2);
+        visibility: hidden;
       }
     }
 
