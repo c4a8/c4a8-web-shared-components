@@ -5,7 +5,7 @@ declare namespace _default {
     };
     function setup(): {
         config: {};
-        locale: any;
+        locale: import("vue").WritableComputedRef<string, string>;
         strategy: any;
         authors: any;
     };
