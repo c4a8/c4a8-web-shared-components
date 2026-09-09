@@ -12,7 +12,7 @@ declare namespace _default {
         function dropdownCollection(): (() => any)[];
     }
     function setup(): {
-        locale: string;
+        locale: any;
     };
     function created(): void;
     function beforeMount(): void;

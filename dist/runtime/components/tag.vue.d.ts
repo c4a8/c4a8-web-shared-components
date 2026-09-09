@@ -5,12 +5,12 @@ declare namespace _default {
     };
     namespace computed {
         function classList(): any[];
-        function linkPrefix(): string;
+        function linkPrefix(): any;
         function href(): string;
         function hasIcon(): any;
     }
     function setup(): {
-        locale: string;
+        locale: any;
         strategy: any;
     };
     namespace props {

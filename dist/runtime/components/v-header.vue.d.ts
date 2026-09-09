@@ -918,8 +918,8 @@ declare namespace _default {
             resetHeader(): void;
             setPageIsLoaded(isLoaded: any): void;
         }>;
-        switchLocalePath: (locale: string) => string;
-        availableLocales: import("vue").ComputedRef<string[]>;
+        switchLocalePath: any;
+        availableLocales: import("vue").ComputedRef<any>;
     };
     namespace computed {
         function classList(): string[];
