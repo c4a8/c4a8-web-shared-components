@@ -1,5 +1,13 @@
 # Releases
 
+# Release 0.4.119
+
+- Aligns small step list colors with the event component and adds a theme override for the step list copy color
+
+# Release 0.4.118
+
+- Fixes markdown images not rendering due to a missing import
+
 # Release 0.4.117
 
 - Adds automatic Cloudinary transforms (format, quality, width limit) to markdown images
