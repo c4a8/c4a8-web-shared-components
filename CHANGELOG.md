@@ -1,5 +1,13 @@
 # Releases
 
+# Release 0.4.117
+
+- Adds automatic Cloudinary transforms (format, quality, width limit) to markdown images
+- Limits markdown image width inside the aside wrapper
+- Loads the Turnstile widget only when the form comes into view
+- Removes the nuxt-swiper module dependency
+- Fixes race condition when loading jQuery for the video slider
+
 # Release 0.4.116
 
 - Lazy loads the swiper, hero text-icon animation and less frequent icons for better performance
