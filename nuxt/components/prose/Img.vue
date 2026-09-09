@@ -3,6 +3,8 @@
 </template>
 
 <script setup>
+import { computed, inject } from 'vue';
+
 const props = defineProps({
   src: { type: String, default: '' },
   alt: { type: String, default: '' },

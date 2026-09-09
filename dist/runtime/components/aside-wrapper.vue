@@ -15,7 +15,7 @@ export default {
     'aside-scope': {
       provide: { proseImgMaxWidth: 700 },
       render() {
-        return this.$slots.default();
+        return this.$slots.default?.();
       },
     },
   },
