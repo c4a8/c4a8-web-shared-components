@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.120
+
+- Aligns the post detail tags with the article content when an aside navigation is present
+
 # Release 0.4.119
 
 - Aligns small step list colors with the event component and adds a theme override for the step list copy color
