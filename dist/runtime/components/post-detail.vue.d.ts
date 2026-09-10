@@ -937,6 +937,7 @@ declare namespace _default {
     }
     namespace computed {
         function contentWidth(): (string | null)[];
+        function tagsWidth(): "full-width content-grid--side-bar" | null;
         function stickyOffsetTop(): 100 | 124;
         function asideNavValue(): any;
         function enhancedPost(): {
