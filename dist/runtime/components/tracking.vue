@@ -86,6 +86,33 @@ if (useEnvironment() !== 'development') {
               configurable: true,
             });
 
+            // The Google tag served through googleTagManagerDomain reports the gateway's health by
+            // loading gtm.js?gtg_health=1 straight from www.googletagmanager.com, the one request the
+            // first-party host is meant to avoid. Dropping the URL in the src setter means the request
+            // is never made (no CSP violation, no console error). The synthetic error event leaves the
+            // tag in the same "check failed" state as a blocked request, visible only as gtb=3 on the
+            // GA4 hits; the tag itself keeps working.
+            function interceptScriptSrc(scriptSrc) {
+              Object.defineProperty(HTMLScriptElement.prototype, 'src', {
+                configurable: true,
+                enumerable: scriptSrc.enumerable,
+                get: scriptSrc.get,
+                set: function (value) {
+                  if (String(value).indexOf('gtg_health=1') === -1) {
+                    scriptSrc.set.call(this, value);
+                    return;
+                  }
+                  const script = this;
+                  setTimeout(function () { script.dispatchEvent(new Event('error')); }, 0);
+                },
+              });
+            }
+
+            const scriptSrc = Object.getOwnPropertyDescriptor(HTMLScriptElement.prototype, 'src');
+            if (scriptSrc && scriptSrc.set) {
+              interceptScriptSrc(scriptSrc);
+            }
+
             window.dataLayer = window.dataLayer || [];
             function gtag() { dataLayer.push(arguments); }
             window.gtag = gtag;
