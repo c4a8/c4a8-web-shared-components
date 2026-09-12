@@ -31,9 +31,33 @@ if (useEnvironment() !== 'development') {
           function loadGTM() {
             const originalDocumentCookie = document.cookie;
             function interceptCookieWrite(cookieValue) {
-              const cookieData = cookieValue.split(';')[0];
-              const [cookieName, cookieContent] = cookieData.split('=');
-              sessionStorage.setItem(cookieName.trim(), cookieContent.trim());
+              const [pair, ...attributes] = String(cookieValue).split(';');
+              const separator = pair.indexOf('=');
+              const cookieName = (separator < 0 ? pair : pair.slice(0, separator)).trim();
+              const cookieContent = separator < 0 ? '' : pair.slice(separator + 1).trim();
+              if (!cookieName) return;
+
+              // A write with Max-Age <= 0 or a past Expires date is a deletion: a real cookie jar
+              // drops the cookie, so the sessionStorage mirror must not keep the stale value either.
+              // Max-Age takes precedence over Expires (RFC 6265).
+              let maxAge = null;
+              let expires = null;
+              for (const attribute of attributes) {
+                const attributeSeparator = attribute.indexOf('=');
+                const attributeName = (attributeSeparator < 0 ? attribute : attribute.slice(0, attributeSeparator)).trim().toLowerCase();
+                const attributeValue = attributeSeparator < 0 ? '' : attribute.slice(attributeSeparator + 1).trim();
+                if (attributeName === 'max-age') maxAge = Number(attributeValue);
+                if (attributeName === 'expires') expires = Date.parse(attributeValue);
+              }
+              const isDeletion = maxAge !== null && !Number.isNaN(maxAge)
+                ? maxAge <= 0
+                : expires !== null && !Number.isNaN(expires) && expires <= Date.now();
+
+              if (isDeletion) {
+                sessionStorage.removeItem(cookieName);
+                return;
+              }
+              sessionStorage.setItem(cookieName, cookieContent);
             }
 
             function interceptCookieRead() {
