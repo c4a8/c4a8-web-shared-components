@@ -143,31 +143,56 @@ const secondaryNavigation = {
             },
           },
         },
-        // {
-        //   name: 'sendman',
-        //   img: 'products/global/Sendman-ListView.svg',
-        //   target: '_blank',
-        //   languages: {
-        //     de: {
-        //       title: 'Sendman',
-        //       subtitle: 'Senden Sie Ihre E-Mails aus der Cloud',
-        //       url: 'https://www.sendman.com/',
-        //       alt: 'Sendman Produktlogo',
-        //     },
-        //     en: {
-        //       title: 'Sendman',
-        //       subtitle: 'Send your emails from the cloud',
-        //       url: 'https://www.sendman.com/',
-        //       alt: 'Sendman Product logo',
-        //     },
-        //     es: {
-        //       title: 'Sendman',
-        //       subtitle: 'Send your emails from the cloud',
-        //       url: 'https://www.sendman.com/',
-        //       alt: 'Logotipo del producto Sendman',
-        //     },
-        //   },
-        // },
+        {
+          name: 'sendman',
+          img: 'products/global/Sendman-ListView.svg',
+          target: '_blank',
+          languages: {
+            de: {
+              title: 'Sendman',
+              subtitle: 'Senden Sie Ihre E-Mails aus der Cloud',
+              url: 'https://www.sendman.com/',
+              alt: 'Sendman Produktlogo',
+            },
+            en: {
+              title: 'Sendman',
+              subtitle: 'Send your emails from the cloud',
+              url: 'https://www.sendman.com/',
+              alt: 'Sendman Product logo',
+            },
+            es: {
+              title: 'Sendman',
+              subtitle: 'Send your emails from the cloud',
+              url: 'https://www.sendman.com/',
+              alt: 'Logotipo del producto Sendman',
+            },
+          },
+        },
+        {
+          name: 'autopilot Monitor',
+          img: 'products/global/AutopilotMonitor-ListView.svg',
+          target: '_blank',
+          languages: {
+            de: {
+              title: 'Autopilot Monitor',
+              subtitle: 'Jedes Autopilot-Enrollment im Blick. Live.',
+              url: 'https://www.autopilotmonitor.com/',
+              alt: 'Autopilot Monitor Produktlogo',
+            },
+            en: {
+              title: 'Autopilot Monitor',
+              subtitle: 'See every Autopilot enrollment. Live.',
+              url: 'https://www.autopilotmonitor.com/',
+              alt: 'Autopilot Monitor Product logo',
+            },
+            es: {
+              title: 'Autopilot Monitor',
+              subtitle: 'Vea cada inscripción de Autopilot. En vivo.',
+              url: 'https://www.autopilotmonitor.com/',
+              alt: 'Logotipo del producto Autopilot Monitor',
+            },
+          },
+        },
       ],
     },
   ],
