@@ -1,5 +1,16 @@
 # Releases
 
+# Release 0.4.121
+
+- Adds Sendman and Autopilot Monitor to the secondary navigation product list
+- Renders the same tracking placeholder on the server and the client to avoid hydration mismatches
+- Keeps the Google tag gateway health check off the wire
+- Treats expired cookie writes as deletions in the tracking sessionStorage mirror
+- Takes the header logo alt text from the home entry
+- Removes a stray quote from the card body class attribute
+- Fixes the ProseImg component by adding the missing import
+- Pins GitHub Actions to commit hashes and restricts workflow permissions
+
 # Release 0.4.120
 
 - Aligns the post detail tags with the article content when an aside navigation is present
