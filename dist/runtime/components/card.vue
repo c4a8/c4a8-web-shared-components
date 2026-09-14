@@ -88,7 +88,7 @@
           <v-img itemprop="image" :img="img" :cloudinary="cloudinary" :alt="alt" class="w-100" />
         </div>
       </div>
-      <div class="card__body card-body mt-0 pt-0 z-index-2 d-flex flex-column"">
+      <div class="card__body card-body mt-0 pt-0 z-index-2 d-flex flex-column">
         <template v-for="(info, index) in subPointsList(productValue)" v-bind:key="index">
           <headline :class="headlineClassValue(index)" level="h6">{{ info.title }}</headline>
           <template v-for="(point, pointIndex) in info.subpoints" v-bind:key="pointIndex">

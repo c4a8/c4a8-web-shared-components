@@ -971,6 +971,7 @@ declare namespace _default {
         function headerContainerClassList(): (string | (() => "container" | "container-xxl"))[];
         function containerClass(): "container" | "container-xxl";
         function homeObj(): any;
+        function logoAlt(): any;
         function lowerLang(): any;
         function searchValue(): boolean;
         function metaList(): any;
