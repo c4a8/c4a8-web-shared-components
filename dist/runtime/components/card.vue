@@ -79,7 +79,7 @@
               fill-opacity="0.2"
             />
           </svg>
-          <div class="pb-5 pt-5 mx-11 d-flex justify-content-center" >
+          <div class="pb-5 pt-5 mx-11 d-flex justify-content-center">
             <v-img itemprop="image" :img="logo.img" :cloudinary="logo.cloudinary" class="w-100" />
           </div>
           <div class="card-img-cutoff" />
@@ -146,25 +146,17 @@
     <template v-else-if="steps">
       <div>
         <div class="d-flex flex-column justify-content-center">
-          <div
-            class="position-absolute d-flex w-100 d-flex flex-column justify-content-center align-items-center pb-3"
-          >
+          <div class="position-absolute d-flex w-100 d-flex flex-column justify-content-center align-items-center pb-3">
             <span class="">{{ overline }}</span>
             <span class="h2">{{ title }}</span>
           </div>
-          <div  :style="{ backgroundColor: '#f5f5f5' }">
-            <svg
-              width="100%"
-              height="100%"
-              viewBox="0 0 557 183"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M0 118.969V0H557V183L0 118.969Z" :fill="'var(--color-gk-yellow)'"/>
-              
-              <path d="M529.5 137.5L556.5 129V182.94L532.5 180.19L529.5 137.5Z"  opacity="0.15" fill="white"/>
-              <path d="M211 0L0.5 119.03L551 182.31L483 0H211Z"  opacity="0.15" fill="white"/>
-              <path d="M1 119.08V0H23L374 161.96L1 119.08Z"  opacity="0.15" fill="white"/>
+          <div :style="{ backgroundColor: '#f5f5f5' }">
+            <svg width="100%" height="100%" viewBox="0 0 557 183" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 118.969V0H557V183L0 118.969Z" :fill="'var(--color-gk-yellow)'" />
+
+              <path d="M529.5 137.5L556.5 129V182.94L532.5 180.19L529.5 137.5Z" opacity="0.15" fill="white" />
+              <path d="M211 0L0.5 119.03L551 182.31L483 0H211Z" opacity="0.15" fill="white" />
+              <path d="M1 119.08V0H23L374 161.96L1 119.08Z" opacity="0.15" fill="white" />
             </svg>
           </div>
         </div>
