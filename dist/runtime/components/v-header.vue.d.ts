@@ -949,6 +949,60 @@ declare namespace _default {
                             url: string;
                             alt: string;
                         };
+                        sv: {
+                            title: string;
+                            subtitle: string;
+                            url: string;
+                            alt: string;
+                        };
+                        fi: {
+                            title: string;
+                            subtitle: string;
+                            url: string;
+                            alt: string;
+                        };
+                        da: {
+                            title: string;
+                            subtitle: string;
+                            url: string;
+                            alt: string;
+                        };
+                        ko: {
+                            title: string;
+                            subtitle: string;
+                            url: string;
+                            alt: string;
+                        };
+                        nl: {
+                            title: string;
+                            subtitle: string;
+                            url: string;
+                            alt: string;
+                        };
+                        it: {
+                            title: string;
+                            subtitle: string;
+                            url: string;
+                            alt: string;
+                        };
+                        is: {
+                            title: string;
+                            subtitle: string;
+                            url: string;
+                            alt: string;
+                        };
+                        no: {
+                            title: string;
+                            subtitle: string;
+                            url: string;
+                            alt: string;
+                        };
+                        ja: {
+                            title: string;
+                            subtitle: string;
+                            url: string;
+                            alt: string;
+                        };
                     };
                 }[];
                 name: string;
@@ -965,6 +1019,33 @@ declare namespace _default {
                     title: string;
                 };
                 es: {
+                    title: string;
+                };
+                sv: {
+                    title: string;
+                };
+                fi: {
+                    title: string;
+                };
+                da: {
+                    title: string;
+                };
+                ko: {
+                    title: string;
+                };
+                nl: {
+                    title: string;
+                };
+                it: {
+                    title: string;
+                };
+                is: {
+                    title: string;
+                };
+                no: {
+                    title: string;
+                };
+                ja: {
                     title: string;
                 };
             };

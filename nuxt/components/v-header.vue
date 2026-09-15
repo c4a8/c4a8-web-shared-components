@@ -16,7 +16,9 @@
               @click="toggleSecondaryNavigation"
             >
               <icon class="header__secondary-navigation-icon" icon="grid" />
-              <span class="header__secondary-navigation-text">{{ secondaryNavigation.text }}</span>
+              <span class="header__secondary-navigation-text">{{
+                secondaryNavigation.languages?.[lowerLang]?.title || secondaryNavigation.text
+              }}</span>
             </div>
             <div class="header__secondary-navigation-content">
               <div
@@ -482,6 +484,14 @@ export default {
       if (this.renderMegaMenu) return;
 
       this.renderMegaMenu = true;
+
+      if (this.secondaryNavigation) {
+        this.$nextTick(() => {
+          if (this.secondaryNavigationIsExpanded || this.secondaryNavigationInTransition) return;
+
+          this.getSecondaryNavigationDimensions();
+        });
+      }
 
       this.initEvents.forEach((event) => window.removeEventListener(event, this.initMegaMenu));
     },
@@ -2664,8 +2674,9 @@ $header-collapse-max-viewport: 1400px;
   }
 
   .header__secondary-navigation-item-img {
-    max-height: 38px;
-    width: auto;
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
     object-fit: contain;
     object-position: left;
   }
