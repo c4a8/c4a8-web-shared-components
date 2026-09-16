@@ -80,7 +80,7 @@
             />
           </svg>
           <div class="pb-5 pt-5 mx-11 d-flex justify-content-center">
-            <v-img itemprop="image" :img="logo.img" :cloudinary="logo.cloudinary" class="w-100" />
+            <v-img itemprop="image" :img="logo?.img" :cloudinary="logo?.cloudinary" class="w-100" />
           </div>
           <div class="card-img-cutoff" />
         </div>
