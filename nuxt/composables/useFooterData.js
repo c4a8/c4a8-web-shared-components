@@ -25,7 +25,7 @@ function buildFooter(config, locales, sourceLocale) {
       .filter((link) => !link.locales || link.locales.includes(locale))
       .map((link) => ({
         title: resolveLocalized(link.title, locale),
-        url: link.href !== undefined ? link.href : `/${locale}${link.path}`,
+        url: link.href !== undefined ? resolveLocalized(link.href, locale) : `/${locale}${link.path}`,
         ...(link.target !== undefined && { target: link.target }),
       }));
 
