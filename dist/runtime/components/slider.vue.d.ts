@@ -87,9 +87,11 @@ declare namespace _default {
         function v2Options(): any;
     }
     function mounted(): void;
+    function beforeUnmount(): void;
     function data(): {
         defaultBgColor: string;
         instanceId: number;
+        swiperReady: boolean;
     };
     namespace props {
         let headline: StringConstructor;

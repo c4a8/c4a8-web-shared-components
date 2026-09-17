@@ -1,9 +1,15 @@
-import { defineNuxtPlugin, addRouteMiddleware, useAsyncData } from '#app';
+import { defineNuxtPlugin, addRouteMiddleware, useAsyncData, useHead } from '#app';
 import Events from './utils/events.js';
 import translations from './locales/global.js';
 import { version } from '../../package.json';
 
 export default defineNuxtPlugin((_nuxtApp) => {
+  useHead({
+    htmlAttrs: {
+      'data-shared-components-version': version,
+    },
+  });
+
   const i18n = _nuxtApp.$i18n;
 
   if (i18n) {

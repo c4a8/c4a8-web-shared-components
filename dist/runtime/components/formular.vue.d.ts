@@ -13,6 +13,7 @@ declare namespace _default {
         loading: {};
         hasLoading: boolean;
         hasLoader: boolean;
+        turnstileReady: boolean;
     };
     function setup(): {
         config: {};
@@ -34,6 +35,7 @@ declare namespace _default {
         function preparedBlocks(): any[];
     }
     function mounted(): void;
+    function beforeUnmount(): void;
     namespace methods {
         function startLoading(): void;
         function stopLoading(): void;

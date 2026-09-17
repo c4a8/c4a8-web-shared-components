@@ -47,9 +47,10 @@ const module = defineNuxtModule({
     _nuxt.options.sitemap = sitemapOptions;
     await installModule("@nuxtjs/sitemap");
     await installModule("nuxt-schema-org");
-    if (!_nuxt.options.modules.includes("nuxt-swiper")) {
-      _nuxt.options.modules.push("nuxt-swiper");
-    }
+    _nuxt.options.vue ||= {};
+    _nuxt.options.vue.compilerOptions ||= {};
+    const prevIsCustomElement = _nuxt.options.vue.compilerOptions.isCustomElement;
+    _nuxt.options.vue.compilerOptions.isCustomElement = (tag) => tag.startsWith("swiper-") || prevIsCustomElement?.(tag) || false;
     const runtimeDir = resolve(__dirname, "./runtime");
     const optimizeDeps = [runtimeDir, "jquery", "slick-carousel"];
     _nuxt.options.build.transpile = _nuxt.options.build.transpile || [];

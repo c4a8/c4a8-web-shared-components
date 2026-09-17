@@ -50,10 +50,10 @@
                 :img="home?.imgLight"
                 class="header__logo-light"
                 :cloudinary="true"
-                alt="logo"
+                :alt="logoAlt"
                 fetchpriority="high"
               />
-              <v-img :img="home?.img" class="header__logo-default" :cloudinary="true" alt="logo" fetchpriority="high" />
+              <v-img :img="home?.img" class="header__logo-default" :cloudinary="true" :alt="logoAlt" fetchpriority="high" />
             </a>
           </div>
           <div class="header__menu" v-on:click="handleCloseClick">
@@ -269,6 +269,11 @@ export default {
     },
     homeObj() {
       return this.home?.languages[this.lowerLang];
+    },
+    logoAlt() {
+      // The logo is the only content of the home link, so the alt text names the site,
+      // taken from the home entry's alt (or title) instead of a hardcoded "logo".
+      return this.homeObj?.alt || this.homeObj?.title || 'logo';
     },
     lowerLang() {
       return this.lang ? this.lang.toLowerCase() : this.defaultLang;

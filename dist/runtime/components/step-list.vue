@@ -130,12 +130,14 @@ export default {
     if (!this.$refs.root) return;
 
     UtilityAnimation.init([this.$refs.root]);
+
     if (this.accentColor) {
       this.$refs.root.style.setProperty('--color-step-list-highlight', this.accentColor);
     }
+
     this.$refs.root.style.setProperty(
       '--color-step-list-highlight-copy',
-      this.accentLightText ? 'var(--color-copy-light)' : 'var(--color-copy)'
+      this.accentLightText ? 'var(--color-copy-light)' : 'var(--color-step-list-override-copy, var(--color-copy))'
     );
   },
   methods: {
@@ -181,9 +183,9 @@ export default {
   font-weight: inherit;
 }
 .step-list.step-list--small {
+  --color-step-list-override-copy: var(--color-override-step-list-copy, var(--color-copy-on-primary-on-surface));
   --step-list-color: var(--color-copy);
-  --color-step-list-highlight: var(--color-primary-accent-light);
-  --color-step-list-highlight-copy: var(--color-primary-accent);
+  --color-step-list-highlight: var(--color-copy-highlight);
 }
 .step-list.step-list--small .step-list__counter-icon {
   width: 3.25rem;
@@ -228,11 +230,11 @@ export default {
   transform: translateX(1rem);
 }
 .step-list.step-list--small .step-list__icon {
-  opacity: 0;
   pointer-events: none;
 }
 .step-list.step-list--small .step-list__icon svg {
   width: 0.5rem;
+  visibility: hidden;
 }
 .step-list.step-list--small .step-list__title--no-small {
   display: none;

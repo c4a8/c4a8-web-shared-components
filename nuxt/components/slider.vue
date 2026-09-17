@@ -24,6 +24,7 @@
         v-else
       >
         <ClientOnly>
+          <template v-if="swiperReady">
           <div
             v-if="hasControls"
             class="slider__controls position-absolute d-flex align-items-center justify-content-center z-index-2"
@@ -37,6 +38,7 @@
               <component :is="item" :no-row="true" />
             </swiper-slide>
           </swiper-container>
+          </template>
         </ClientOnly>
         <template v-if="fade">
           <blur-fade
@@ -61,6 +63,7 @@
 
 <script>
 import Tools from '../utils/tools.js';
+import { registerSwiperWhenVisible } from '../utils/lazy-swiper.js';
 import State from '../utils/state.js';
 
 let sliderInstanceCounter = 0;
@@ -221,12 +224,22 @@ export default {
     },
   },
   mounted() {
-    Tools.initSlickSlider(this.$refs.container, this.carouselOptions);
+    if (!this.v2) {
+      Tools.initSlickSlider(this.$refs.container, this.carouselOptions);
+      return;
+    }
+    this.swiperObserver = registerSwiperWhenVisible(this.$el, () => {
+      this.swiperReady = true;
+    });
+  },
+  beforeUnmount() {
+    this.swiperObserver?.disconnect();
   },
   data() {
     return {
       defaultBgColor: 'var(--color-bg-grey)',
       instanceId: ++sliderInstanceCounter,
+      swiperReady: false,
     };
   },
   props: {

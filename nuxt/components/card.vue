@@ -79,7 +79,7 @@
               fill-opacity="0.2"
             />
           </svg>
-          <div class="pb-5 pt-5 mx-11 d-flex justify-content-center" >
+          <div class="pb-5 pt-5 mx-11 d-flex justify-content-center">
             <v-img itemprop="image" :img="logo.img" :cloudinary="logo.cloudinary" class="w-100" />
           </div>
           <div class="card-img-cutoff" />
@@ -88,7 +88,7 @@
           <v-img itemprop="image" :img="img" :cloudinary="cloudinary" :alt="alt" class="w-100" />
         </div>
       </div>
-      <div class="card__body card-body mt-0 pt-0 z-index-2 d-flex flex-column"">
+      <div class="card__body card-body mt-0 pt-0 z-index-2 d-flex flex-column">
         <template v-for="(info, index) in subPointsList(productValue)" v-bind:key="index">
           <headline :class="headlineClassValue(index)" level="h6">{{ info.title }}</headline>
           <template v-for="(point, pointIndex) in info.subpoints" v-bind:key="pointIndex">
@@ -146,25 +146,17 @@
     <template v-else-if="steps">
       <div>
         <div class="d-flex flex-column justify-content-center">
-          <div
-            class="position-absolute d-flex w-100 d-flex flex-column justify-content-center align-items-center pb-3"
-          >
+          <div class="position-absolute d-flex w-100 d-flex flex-column justify-content-center align-items-center pb-3">
             <span class="">{{ overline }}</span>
             <span class="h2">{{ title }}</span>
           </div>
-          <div  :style="{ backgroundColor: '#f5f5f5' }">
-            <svg
-              width="100%"
-              height="100%"
-              viewBox="0 0 557 183"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M0 118.969V0H557V183L0 118.969Z" :fill="'var(--color-gk-yellow)'"/>
-              
-              <path d="M529.5 137.5L556.5 129V182.94L532.5 180.19L529.5 137.5Z"  opacity="0.15" fill="white"/>
-              <path d="M211 0L0.5 119.03L551 182.31L483 0H211Z"  opacity="0.15" fill="white"/>
-              <path d="M1 119.08V0H23L374 161.96L1 119.08Z"  opacity="0.15" fill="white"/>
+          <div :style="{ backgroundColor: '#f5f5f5' }">
+            <svg width="100%" height="100%" viewBox="0 0 557 183" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 118.969V0H557V183L0 118.969Z" :fill="'var(--color-gk-yellow)'" />
+
+              <path d="M529.5 137.5L556.5 129V182.94L532.5 180.19L529.5 137.5Z" opacity="0.15" fill="white" />
+              <path d="M211 0L0.5 119.03L551 182.31L483 0H211Z" opacity="0.15" fill="white" />
+              <path d="M1 119.08V0H23L374 161.96L1 119.08Z" opacity="0.15" fill="white" />
             </svg>
           </div>
         </div>
@@ -585,22 +577,26 @@ export default {
 .card.vue-component:not(.card--large):not(.card--long):not(.card--products) {
   max-width: min(480px, 100%);
 }
-.card.vue-component:not(.card--large):not(.card--long):not(.card--products).card--default, .card.vue-component:not(.card--large):not(.card--long):not(.card--products).card--row {
+.card.vue-component:not(.card--large):not(.card--long):not(.card--products).card--default,
+.card.vue-component:not(.card--large):not(.card--long):not(.card--products).card--row {
   max-width: none;
 }
 @media (min-width: 768px) {
   .card.vue-component:not(.card--large):not(.card--long):not(.card--products) {
     max-width: min(480px, 100vw);
   }
-  .card.vue-component:not(.card--large):not(.card--long):not(.card--products).card--default, .card.vue-component:not(.card--large):not(.card--long):not(.card--products).card--row {
+  .card.vue-component:not(.card--large):not(.card--long):not(.card--products).card--default,
+  .card.vue-component:not(.card--large):not(.card--long):not(.card--products).card--row {
     max-width: none;
   }
 }
-.card.vue-component.card--products, .card.vue-component.card--long {
+.card.vue-component.card--products,
+.card.vue-component.card--long {
   max-width: 100%;
 }
 @media (min-width: 992px) {
-  .card.vue-component.card--products, .card.vue-component.card--long {
+  .card.vue-component.card--products,
+  .card.vue-component.card--long {
     max-width: min(580px, 100%);
   }
 }
@@ -656,7 +652,7 @@ export default {
   position: relative;
 }
 .card.vue-component:not(.card--no-aspect-ratio) .card__img-top:before {
-  content: "";
+  content: '';
   display: block;
   width: 100%;
   padding-top: calc(9 / 16 * 100%);
@@ -724,7 +720,13 @@ export default {
 }
 .card.vue-component .card-img-cutoff {
   height: 3rem;
-  background: linear-gradient(4deg, var(--color-card-background) 0%, var(--color-card-background) 55%, rgba(255, 0, 0, 0) 56%, rgba(255, 0, 0, 0) 100%);
+  background: linear-gradient(
+    4deg,
+    var(--color-card-background) 0%,
+    var(--color-card-background) 55%,
+    rgba(255, 0, 0, 0) 56%,
+    rgba(255, 0, 0, 0) 100%
+  );
 }
 .card.vue-component .card-footer:last-child {
   border-radius: 0;
