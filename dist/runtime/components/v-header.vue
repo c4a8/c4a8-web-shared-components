@@ -140,6 +140,7 @@
                     </span>
                     <span class="header__language-code">{{ option.label }}</span>
                   </a>
+                  <p class="header__language-note">{{ languageNote }}</p>
                 </div>
               </div>
             </div>
@@ -171,6 +172,7 @@
                 </span>
                 <span class="header__language-code">{{ option.label }}</span>
               </a>
+              <p class="header__language-note">{{ languageNote }}</p>
             </div>
           </div>
         </div>
@@ -247,7 +249,7 @@
 
 <script>
 import { computed } from 'vue';
-import { useI18n } from '#imports';
+import { useI18n, useNuxtApp } from '#imports';
 import { useAppStore } from '../stores/app.js';
 import Tools from '../utils/tools.js';
 import State from '../utils/state.js';
@@ -364,6 +366,16 @@ export default {
     },
     lowerLang() {
       return this.lang ? this.lang.toLowerCase() : this.defaultLang;
+    },
+    languageNote() {
+      // The source language is the site's default locale: German on corporate, English
+      // on the product sites. Its name is itself translated, so the sentence reads
+      // naturally in every language.
+      const source = useNuxtApp().$getI18nConfig?.().defaultLocale ?? 'en';
+      const sourceKey = `languageSource${Tools.capitalize(source)}`;
+      const sourceName = this.$t(sourceKey);
+
+      return this.$t('languageNote', { source: sourceName === sourceKey ? this.$t('languageSourceEn') : sourceName });
     },
     searchValue() {
       return Tools.isTrue(this.search);
@@ -2477,5 +2489,24 @@ export default {
   color: var(--color-copy);
   display: inline-block;
   margin-left: 0.75rem;
+}
+
+.header__language-note {
+  color: var(--color-copy);
+  font-size: 0.625rem;
+  line-height: 1.45;
+  margin: 1rem 0 0;
+  opacity: 0.45;
+  text-transform: none;
+  white-space: normal;
+  /* The flyout is a two-column layout; the note runs under both columns. */
+  column-span: all;
+  /* Fades in like the language links, a beat after them. */
+  transition: opacity 0.4s 0.25s cubic-bezier(0.19, 1, 0.2, 1), transform 0.4s 0.25s cubic-bezier(0.19, 1, 0.2, 1);
+}
+.header__language-switch:not(.is-expanded) .header__language-note {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition-delay: 0s;
 }
 </style>
