@@ -133,6 +133,8 @@ declare namespace _default {
         export { reset_1 as reset };
         let jobListEmpty_1: string;
         export { jobListEmpty_1 as jobListEmpty };
+        let jobListYoungProfessionalsEmpty_1: string;
+        export { jobListYoungProfessionalsEmpty_1 as jobListYoungProfessionalsEmpty };
         let imageCredits_1: string;
         export { imageCredits_1 as imageCredits };
         let topicsOnPage_1: string;
@@ -255,6 +257,8 @@ declare namespace _default {
         export { reset_2 as reset };
         let jobListEmpty_2: string;
         export { jobListEmpty_2 as jobListEmpty };
+        let jobListYoungProfessionalsEmpty_2: string;
+        export { jobListYoungProfessionalsEmpty_2 as jobListYoungProfessionalsEmpty };
         let imageCredits_2: string;
         export { imageCredits_2 as imageCredits };
         let topicsOnPage_2: string;
