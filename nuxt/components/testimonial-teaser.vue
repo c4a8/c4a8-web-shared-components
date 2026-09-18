@@ -24,7 +24,7 @@
             />
           </div>
         </div>
-        <a class="testimonial-teaser__content">
+        <div class="testimonial-teaser__content">
           <div class="testimonial-teaser__name font-size-4 bold">
             <span v-for="(part, idx) in name.split(' ')" :key="idx">
               <div class="testimonial-teaser__name-background">
@@ -39,16 +39,15 @@
             </span>
           </div>
           <div class="testimonial-teaser__title font-size-1 bg">{{ title }}</div>
-        </a>
+        </div>
       </div>
     </a>
   </template>
   <template v-if="video && video.thumb">
-    <a
+    <div
       class="utility-animation fade-in-bottom testimonial-video-teaser"
       :class="[]"
       :style="bgStyling"
-      :href="href"
       data-utility-animation-step="1"
       ref="root"
     >
@@ -56,7 +55,7 @@
         <video-inner :video="video" ref="video-frame" />
       </div>
       <div>
-        <a class="testimonial-teaser__content" @click="triggerVideoStart" style="cursor: pointer">
+        <div class="testimonial-teaser__content" @click="triggerVideoStart" style="cursor: pointer">
           <div class="testimonial-teaser__name font-size-4 bold">
             <span v-for="(part, idx) in name.split(' ')" :key="idx">
               <div class="testimonial-teaser__name-background">
@@ -71,9 +70,9 @@
             </span>
           </div>
           <div class="testimonial-teaser__title font-size-1 bg">{{ title }}</div>
-        </a>
+        </div>
       </div>
-    </a>
+    </div>
   </template>
 </template>
 <script>

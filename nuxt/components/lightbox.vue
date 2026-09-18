@@ -1,9 +1,6 @@
 <template>
   <a :class="['lightbox', classes]" aria-haspopup="dialog" :aria-expanded="isOpen" @click="open">
     <slot />
-
-    <!-- render the teleport only after mount: Vue cannot hydrate SSR teleports
-         into body, which duplicates the surrounding elements -->
     <Teleport v-if="isMounted" to="body">
       <dialog v-show="isOpen" class="lightbox__modal" @click.self="close" ref="modal">
         <div class="lightbox__controls">
