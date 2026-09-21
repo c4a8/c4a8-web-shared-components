@@ -480,7 +480,16 @@ export default {
   &.cta--small {
     &::after,
     &.btn {
-      padding: spacing(2) spacing(10) spacing(2) spacing(2);
+      padding: spacing(2);
+    }
+
+    &.cta--has-icon,
+    &.cta--download,
+    &.cta--external {
+      &::after,
+      &.btn {
+        padding-right: spacing(10);
+      }
     }
 
     &:not(.link) .icon {

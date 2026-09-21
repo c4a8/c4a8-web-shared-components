@@ -435,7 +435,10 @@ export default {
   stroke: currentColor;
 }
 .cta.cta--small::after, .cta.cta--small.btn {
-  padding: 0.5rem 2.5rem 0.5rem 0.5rem;
+  padding: 0.5rem;
+}
+.cta.cta--small.cta--has-icon::after, .cta.cta--small.cta--has-icon.btn, .cta.cta--small.cta--download::after, .cta.cta--small.cta--download.btn, .cta.cta--small.cta--external::after, .cta.cta--small.cta--external.btn {
+  padding-right: 2.5rem;
 }
 .cta.cta--small:not(.link) .icon {
   transform: translateY(-50%) scale(0.75);
