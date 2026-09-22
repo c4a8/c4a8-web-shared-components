@@ -15,11 +15,10 @@ declare namespace _default {
         locale: import("vue").WritableComputedRef<string, string>;
     };
     function created(): void;
-    function beforeMount(): void;
     function mounted(): void;
     function beforeDestroy(): void;
     namespace methods {
-        function getFilteredTags(): any;
+        function selectTagFromHash(): void;
         function addTagToSelection(tag: any, index: any): void;
         function getMaxItems(items: any): any;
         function handleResize(): void;
@@ -38,7 +37,7 @@ declare namespace _default {
         function updateDropdownSelection(selection: any, index: any): void;
     }
     function data(): {
-        activeView: string;
+        activeView: any;
         views: string[];
         filterDropdowns: never[];
         selections: never[];
