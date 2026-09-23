@@ -19,7 +19,6 @@ export default {
         functionality_storage: 'denied',
         security_storage: 'denied',
         analytics_storage: 'granted',
-        wait_for_update: 500,
         ...(config?.public?.gtag || {}),
       };
 
