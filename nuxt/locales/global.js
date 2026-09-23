@@ -155,6 +155,8 @@ export default {
     apply: 'Apply',
     reset: 'Reset',
     jobListEmpty: 'We currently have no positions in this language.',
+    jobListYoungProfessionalsEmpty:
+      'We currently have no open positions for young professionals. Would you still like to get to know us? Then feel free to send us an unsolicited application.',
     imageCredits: 'Picture Credits',
     topicsOnPage: 'Topics on page',
     noPostsFound: 'No Posts founds',
@@ -244,6 +246,8 @@ export default {
     apply: 'Aplicar',
     reset: 'Reiniciar',
     jobListEmpty: 'Actualmente no tenemos posiciones en este idioma.',
+    jobListYoungProfessionalsEmpty:
+      'Actualmente no tenemos vacantes para young professionals. ¿Aun así te gustaría conocernos? Envíanos tu candidatura espontánea.',
     imageCredits: 'Créditos de las fotos',
     topicsOnPage: 'Temas en la página',
     noPostsFound: 'No se encontraron artículos',

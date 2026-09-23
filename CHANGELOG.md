@@ -1,5 +1,16 @@
 # Releases
 
+# Release 0.4.123
+
+- Removes the 500 ms wait for update from the default gtag consent settings
+
+# Release 0.4.122
+
+- Fixes hydration mismatches by rendering the lightbox and dropdown teleports only after mount
+- Fixes filter bar hydration by setting the active view in data and selecting the tag from the URL hash after mount
+- Replaces nested anchors in the testimonial teaser with plain elements
+- Adds the empty-state text for young professional job lists in English and Spanish
+
 # Release 0.4.121
 
 - Adds Sendman and Autopilot Monitor to the secondary navigation product list
