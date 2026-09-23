@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.123
+
+- Removes the 500 ms wait for update from the default gtag consent settings
+
 # Release 0.4.122
 
 - Fixes hydration mismatches by rendering the lightbox and dropdown teleports only after mount
