@@ -1,9 +1,5 @@
 declare namespace _default {
     let tagName: string;
-    namespace methods {
-        function getCheckboxId(checkbox: any): any;
-        function getCheckboxName(checkbox: any): any;
-    }
     namespace computed {
         function required(): any;
         function message(): any;
@@ -14,10 +10,6 @@ declare namespace _default {
         namespace id {
             let _default: null;
             export { _default as default };
-        }
-        namespace formId {
-            let _default_1: null;
-            export { _default_1 as default };
         }
     }
 }

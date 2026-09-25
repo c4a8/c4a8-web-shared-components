@@ -42,7 +42,6 @@ declare namespace _default {
         user: any;
         quote: any;
         world: any;
-        'world-detailed': any;
         'x-mark': any;
         heart: any;
         'charging-station': any;

@@ -267,12 +267,10 @@ class Form extends BaseComponent {
     });
   }
 
-  // Scopes ids per form instance so two forms on one page cannot collide. Names stay
-  // unscoped, since that is what the backend receives.
-  static getScopedId(prefix, fieldId) {
-    if (!prefix || !fieldId) return fieldId;
+  static getId(fieldId) {
+    const uuidWithDelimiter = Tools.uuid() + this.delimiter + fieldId;
 
-    return `${prefix}${this.delimiter}${fieldId}`;
+    return uuidWithDelimiter;
   }
 
   static getName(string) {

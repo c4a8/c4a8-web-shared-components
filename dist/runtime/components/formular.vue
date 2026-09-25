@@ -31,8 +31,6 @@
                   :options="getOptions(field)"
                   :replace-value="replaceValue"
                   :id="getId(field)"
-                  :name="getName(field)"
-                  :form-id="formId"
                   :has-animation="hasAnimationValue"
                   @action-changed="updateAction"
                   :has-error="hasError(field)"
@@ -42,7 +40,7 @@
             </div>
           </template>
           <div v-if="hasRecaptcha" class="form__recaptcha-infos">
-            <NuxtTurnstile v-if="turnstileReady" ref="turnstile" />
+            <NuxtTurnstile ref="turnstile" />
           </div>
           <div :class="formClassList">
             <cta
@@ -63,11 +61,8 @@
   </div>
 </template>
 <script>
-import { useId } from 'vue';
-
 import useConfig from '../composables/useConfig';
 import State from '../utils/state.js';
-import { whenVisible } from '../utils/when-visible.js';
 import Tools from '../utils/tools.js';
 import Form from '../utils/components/form.js';
 import UtilityAnimation from '../utils/utility-animation.js';
@@ -91,17 +86,13 @@ export default {
       loading: {},
       hasLoading: false,
       hasLoader: true,
-      turnstileReady: false,
     };
   },
   setup() {
     const config = useConfig();
 
-    const formId = useId();
-
     return {
       config,
-      formId,
     };
   },
   computed: {
@@ -161,14 +152,16 @@ export default {
       let index = 0;
       let tempBlock = [];
 
-      this.form?.fields?.forEach((sourceField) => {
-        const field = this.useTranslation
-          ? {
-              ...sourceField,
-              ...(sourceField.label && { label: this.$t(sourceField.label) }),
-              ...(sourceField.requiredMsg && { requiredMsg: this.$t(sourceField.requiredMsg) }),
-            }
-          : sourceField;
+      this.form?.fields?.forEach((field) => {
+        if (this.useTranslation) {
+          if (field.label) {
+            field.label = this.$t(field.label);
+          }
+
+          if (field.requiredMsg) {
+            field.requiredMsg = this.$t(field.requiredMsg);
+          }
+        }
 
         if (field.rowStart || field.rowEnd) {
           if (field.rowStart) {
@@ -210,22 +203,9 @@ export default {
 
     this.novalidateValue = 'novalidate';
 
-    if (this.hasRecaptcha) {
-      this.turnstileObserver = whenVisible(
-        this.$refs.root,
-        () => {
-          this.turnstileReady = true;
-        },
-        '200% 0px'
-      );
-    }
-
     if (!this.$refs.headline) return;
 
     UtilityAnimation.init([this.$refs.headline]);
-  },
-  beforeUnmount() {
-    this.turnstileObserver?.disconnect();
   },
 
   methods: {
@@ -247,7 +227,7 @@ export default {
       return this.useTranslation ? this.$t(text) : text;
     },
     hasError(field) {
-      return this.errors[this.getId(field)];
+      return this.errors[field.id];
     },
     getOptions(field) {
       if (!field.options) return null;
@@ -266,18 +246,13 @@ export default {
     getFieldClassList(field) {
       return ['px-3', `${field.col ? 'col-md-' + field.col : 'col-md-12'}`];
     },
-    getFieldId(field) {
-      const groupField = field?.radios || field?.checkboxes;
-
-      if (groupField) return groupField[0].id;
-
-      return field?.formAttachments?.id || field?.id;
-    },
     getId(field) {
-      return Form.getScopedId(this.formId, this.getFieldId(field));
-    },
-    getName(field) {
-      return this.getFieldId(field);
+      const groupField = field?.radios || field?.checkboxes;
+      const fieldId = groupField ? groupField[0].id : field?.id;
+
+      if (!Tools.isTrue(this.hasUuid)) return fieldId;
+
+      return Form.getId(fieldId);
     },
     updateAction(newAction) {
       if (newAction) {
@@ -404,7 +379,6 @@ export default {
       default: null,
     },
     options: Object,
-    // Deprecated no-op, still declared so configs passing it do not leak it to the DOM.
     hasUuid: {
       default: null,
     },

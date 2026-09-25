@@ -127,6 +127,6 @@ export function useHeaderData(options = {}) {
 
       return Promise.resolve(buildHeader(headerConfig, [currentLocale()], sourceLocale));
     },
-    { watch: localeRef ? [localeRef] : [] }
+    { watch: localeRef ? [localeRef] : [] },
   );
 }

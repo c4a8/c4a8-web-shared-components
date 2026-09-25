@@ -349,8 +349,6 @@ export default {
 .sidebar__dialog-section-title {
   font-size: 4rem;
   line-height: 1.1em;
-  display: flex !important;
-  justify-content: end !important;
 }
 @media (min-width: 992px) {
   .sidebar__dialog-section-title {
@@ -372,13 +370,6 @@ export default {
 .sidebar__dialog-section-overline {
   text-transform: uppercase;
   line-height: 1em;
-  word-break: break-word;
-}
-@media (min-width: 1300px) {
-  .sidebar__dialog-section-title,
-  .sidebar__dialog-section-overline {
-    word-break: initial !important;
-  }
 }
 
 .sidebar__section-overline {
@@ -395,12 +386,6 @@ export default {
   .sidebar__section-overline {
     font-size: 1.25rem;
     line-height: 1.7em;
-  }
-}
-@media (min-width: 1200px) {
-  .sidebar__section-overline {
-    display: flex;
-    justify-content: end;
   }
 }
 

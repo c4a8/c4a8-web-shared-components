@@ -2,7 +2,6 @@ declare namespace _default {
     let tagName: string;
     namespace computed {
         function otherId(): string;
-        function otherName(): string;
         function required(): any;
         function idValue(): any;
     }

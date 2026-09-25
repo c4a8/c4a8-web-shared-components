@@ -29,21 +29,13 @@ declare namespace _default {
             let _default: null;
             export { _default as default };
         }
-        namespace name {
+        namespace replaceValue {
             let _default_1: null;
             export { _default_1 as default };
         }
-        namespace formId {
+        namespace hasAnimation {
             let _default_2: null;
             export { _default_2 as default };
-        }
-        namespace replaceValue {
-            let _default_3: null;
-            export { _default_3 as default };
-        }
-        namespace hasAnimation {
-            let _default_4: null;
-            export { _default_4 as default };
         }
         let hasError: BooleanConstructor;
     }

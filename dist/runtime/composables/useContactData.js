@@ -5,12 +5,14 @@ export function useContactData(contactData) {
   const { $getLocale } = useI18n();
 
   const data = computed(() => {
-    const locale = $getLocale();
-    if (!locale || locale === 'de') return contactData.infos;
-
-    const key = `infos${locale.charAt(0).toUpperCase()}${locale.slice(1)}`;
-
-    return contactData[key] ?? contactData.infos;
+    switch ($getLocale()) {
+      case 'en':
+        return contactData.infosEn;
+      case 'es':
+        return contactData.infosEs;
+      default:
+        return contactData.infos;
+    }
   });
 
   return data;

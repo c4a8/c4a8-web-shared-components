@@ -27,26 +27,7 @@ export default {
 export const Header = {
   args: {
     home: HeaderData.home,
-    navigation: [
-      ...HeaderData.navigation,
-      {
-        name: 'lorem-ipsum-extra',
-        languages: {
-          de: {
-            title: 'Lorem Ipsum',
-            url: 'javascript:void(0);',
-          },
-          en: {
-            title: 'Lorem Ipsum',
-            url: 'javascript:void(0);',
-          },
-          es: {
-            title: 'Lorem Ipsum',
-            url: 'javascript:void(0);',
-          },
-        },
-      },
-    ],
+    navigation: HeaderData.navigation,
     // lang: 'de', // should be default
   },
 };
@@ -97,11 +78,6 @@ const productArgs = {
         url: '',
         alt: 'alt text EN',
       },
-      es: {
-        title: 'Home ES',
-        url: '',
-        alt: 'alt text ES',
-      },
     },
   },
   navigation: [
@@ -116,10 +92,6 @@ const productArgs = {
           title: 'Home EN',
           url: '',
         },
-        es: {
-          title: 'Inicio ES',
-          url: '',
-        },
       },
     },
     {
@@ -127,10 +99,6 @@ const productArgs = {
       languages: {
         en: {
           title: 'Pricing EN',
-          url: '/iframe.html',
-        },
-        es: {
-          title: 'Precios ES',
           url: '/iframe.html',
         },
       },
@@ -142,21 +110,12 @@ const productArgs = {
           title: 'Partner EN',
           url: '',
         },
-        es: {
-          title: 'Socios ES',
-          url: '',
-        },
       },
     },
     {
       name: 'docs',
       languages: {
         en: {
-          title: 'Docs',
-          url: 'https://docs.radiusaas.com/',
-          target: '_blank',
-        },
-        es: {
           title: 'Docs',
           url: 'https://docs.radiusaas.com/',
           target: '_blank',
@@ -176,141 +135,77 @@ export const HeaderProduct = {
   args: { ...productArgs },
 };
 
-export const HeaderProductEN = {
-  args: { ...productArgs, lang: 'en' },
-};
-
-export const HeaderProductES = {
-  args: { ...productArgs, lang: 'es' },
-};
-
-const terraProviderNav = ['Precios', 'Partners', 'Support Hub', 'Eventos', 'Acerca de nosotros'].map(
-  (title, index) => {
-    const isDropdown = title === 'Support Hub';
-
-    return {
-      name: `terraprovider-${index}`,
-      languages: {
-        es: {
-          title,
-          ...(isDropdown ? {} : { url: '' }),
-        },
-      },
-      ...(isDropdown
-        ? {
-            children: ['Documentacion', 'Descargas', 'Contacto'].map((childTitle) => ({
-              name: `terraprovider-${index}-${childTitle.toLowerCase()}`,
-              languages: {
-                es: {
-                  title: childTitle,
-                  url: '',
-                },
-              },
-            })),
-          }
-        : {}),
-    };
-  }
-);
-
-export const HeaderProductTerraProviderES = {
-  args: {
-    lang: 'es',
-    product: true,
-    theme: 'terraprovider',
-    collapse: 22,
-    showSecondaryNavigation: true,
-    button: {
-      text: 'Prueba gratuita',
-      href: '/trial/',
-      skin: 'primary is-cutoff',
-      external: true,
-    },
-    home: {
-      name: 'home',
-      imgLight: '/products/terraprovider/logo-terraprovider-white.svg',
-      img: '/products/terraprovider/logo-terraprovider.svg',
-      languages: {
-        es: {
-          title: 'Home',
-          url: '',
-          alt: 'TerraProvider Logo',
-        },
-      },
-    },
-    navigation: terraProviderNav,
-  },
-};
-
 export const HeaderProduct2 = {
   args: {
-    home: HeaderData.home,
-    navigation: HeaderData.navigation,
-    lang: 'en',
-    product: true,
-    button: {
-      text: 'Start now',
-      href: '/start-now/',
-      skin: 'primary is-cutoff',
+  home: HeaderData.home,
+  navigation: HeaderData.navigation,
+  lang: 'en',
+  product: true,
+  button: {
+    text: 'Start now',
+    href: '/start-now/',
+    skin: 'primary is-cutoff',
+  },
+  home: {
+    name: 'home',
+    imgLight: '/products/scepman/scepman-logo-all-white.svg',
+    img: '/products/terraprovider/logo-terraprovider.svg',
+    languages: {
+      en: {
+        title: 'Home EN',
+        url: '',
+        alt: 'alt text EN',
+      },
     },
-    home: {
+  },
+  navigation: [
+    {
       name: 'home',
-      imgLight: '/products/scepman/scepman-logo-all-white.svg',
-      img: '/products/terraprovider/logo-terraprovider.svg',
       languages: {
+        de: {
+          title: 'Home',
+          url: '',
+        },
         en: {
           title: 'Home EN',
           url: '',
-          alt: 'alt text EN',
         },
       },
     },
-    navigation: [
-      {
-        name: 'home',
-        languages: {
-          de: {
-            title: 'Home',
-            url: '',
-          },
-          en: {
-            title: 'Home EN',
-            url: '',
-          },
+    {
+      name: 'pricing',
+      languages: {
+        en: {
+          title: 'Pricing EN',
+          url: '/iframe.html',
         },
       },
-      {
-        name: 'pricing',
-        languages: {
-          en: {
-            title: 'Pricing EN',
-            url: '/iframe.html',
-          },
+    },
+    {
+      name: 'partner',
+      languages: {
+        en: {
+          title: 'Partner EN',
+          url: '',
         },
       },
-      {
-        name: 'partner',
-        languages: {
-          en: {
-            title: 'Partner EN',
-            url: '',
-          },
+    },
+    {
+      name: 'docs',
+      languages: {
+        en: {
+          title: 'Docs',
+          url: 'https://docs.radiusaas.com/',
+          target: '_blank',
         },
       },
-      {
-        name: 'docs',
-        languages: {
-          en: {
-            title: 'Docs',
-            url: 'https://docs.radiusaas.com/',
-            target: '_blank',
-          },
-        },
-      },
-    ],
-    showSecondaryNavigation: true,
-    theme: 'radiusaas',
-  },
+    },
+  ],
+  showSecondaryNavigation: true,
+  theme: 'radiusaas',
+}
+
+
 };
 export const HeaderProductLight = {
   args: {

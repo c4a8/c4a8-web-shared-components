@@ -918,8 +918,8 @@ declare namespace _default {
             resetHeader(): void;
             setPageIsLoaded(isLoaded: any): void;
         }>;
-        switchLocalePath: any;
-        availableLocales: import("vue").ComputedRef<any>;
+        switchLocalePath: (locale: string) => string;
+        availableLocales: import("vue").ComputedRef<string[]>;
     };
     namespace computed {
         function classList(): string[];
@@ -949,60 +949,6 @@ declare namespace _default {
                             url: string;
                             alt: string;
                         };
-                        sv: {
-                            title: string;
-                            subtitle: string;
-                            url: string;
-                            alt: string;
-                        };
-                        fi: {
-                            title: string;
-                            subtitle: string;
-                            url: string;
-                            alt: string;
-                        };
-                        da: {
-                            title: string;
-                            subtitle: string;
-                            url: string;
-                            alt: string;
-                        };
-                        ko: {
-                            title: string;
-                            subtitle: string;
-                            url: string;
-                            alt: string;
-                        };
-                        nl: {
-                            title: string;
-                            subtitle: string;
-                            url: string;
-                            alt: string;
-                        };
-                        it: {
-                            title: string;
-                            subtitle: string;
-                            url: string;
-                            alt: string;
-                        };
-                        is: {
-                            title: string;
-                            subtitle: string;
-                            url: string;
-                            alt: string;
-                        };
-                        no: {
-                            title: string;
-                            subtitle: string;
-                            url: string;
-                            alt: string;
-                        };
-                        ja: {
-                            title: string;
-                            subtitle: string;
-                            url: string;
-                            alt: string;
-                        };
                     };
                 }[];
                 name: string;
@@ -1021,55 +967,19 @@ declare namespace _default {
                 es: {
                     title: string;
                 };
-                sv: {
-                    title: string;
-                };
-                fi: {
-                    title: string;
-                };
-                da: {
-                    title: string;
-                };
-                ko: {
-                    title: string;
-                };
-                nl: {
-                    title: string;
-                };
-                it: {
-                    title: string;
-                };
-                is: {
-                    title: string;
-                };
-                no: {
-                    title: string;
-                };
-                ja: {
-                    title: string;
-                };
             };
         } | null;
-        function collapseRatio(): number | null;
         function headerLogoStyle(): string | undefined;
         function headerContainerClassList(): (string | (() => "container" | "container-xxl"))[];
         function containerClass(): "container" | "container-xxl";
         function homeObj(): any;
-        function logoAlt(): any;
         function lowerLang(): any;
-        function languageNote(): any;
         function searchValue(): boolean;
         function metaList(): any;
         function spacerBgColor(): string;
         function clonedNavigation(): any;
         function isLight(): boolean;
         function hasLangSwitch(): boolean;
-        function languageOptions(): {
-            code: any;
-            label: any;
-            native: any;
-            translated: any;
-        }[];
         function hasContact(): any;
         function hasMeta(): any;
         function headerState(): any;
@@ -1096,11 +1006,9 @@ declare namespace _default {
         function expandWidthSecondaryNavigation(secondaryNavigation: any): void;
         function expandSecondaryNavigation(): void;
         function handleSecondaryNavigationTransitionEnd(event: any): void;
-        function setLogoNaturalWidth(): void;
-        function calculateLogoOffsetPosition(): void;
-        function getLogoOffsetSpace(): number;
-        function evaluateLogoCollapse(): void;
-        function saveHeaderLayoutCache(): void;
+        function calculateLogoOffsetPosition(): {
+            leftSpace: number;
+        } | undefined;
         function getSecondaryNavigationButtonDimensions(): {
             width: any;
             height: any;
@@ -1108,7 +1016,7 @@ declare namespace _default {
         function setActiveNavigation(): void;
         function setLinkWidth(): void;
         function showFlyoutBlock(children: any): boolean;
-        function isLowerBreakpoint(): any;
+        function isLowerBreakpoint(): boolean;
         function bindEvents(): void;
         function handleResize(): void;
         function handleScroll(): void;
@@ -1124,7 +1032,6 @@ declare namespace _default {
         function setCtaClasses(): void;
         function handleMouseOver(item: any, index: any): void;
         function handleMouseOut(event: any): void;
-        function toggleLanguageList(): void;
         function handleLanguageOver(): void;
         function handleLanguageOut(event: any): void;
         function resetAllFlyouts(): void;
@@ -1182,10 +1089,6 @@ declare namespace _default {
         }
         let theme: StringConstructor;
         let onSurface: BooleanConstructor;
-        namespace collapse {
-            let _default_6: null;
-            export { _default_6 as default };
-        }
     }
     function data(): {
         hoverHeader: boolean;
@@ -1202,11 +1105,7 @@ declare namespace _default {
         ctaClassList: null;
         maxLinkListsInFlyout: number;
         activeNavigation: {};
-        logoNaturalWidth: any;
-        logoOffsetPosition: any;
-        logoCollapsed: any;
-        headerCondensed: any;
-        logoCollapseReady: boolean;
+        logoOffsetPosition: null;
         secondaryNavigationInTransition: boolean;
         secondaryNavigationIsExpanded: boolean;
         secondaryNavigationDimensions: null;
@@ -1219,7 +1118,6 @@ declare namespace _default {
         };
         initEvents: string[];
         renderMegaMenu: boolean;
-        languageListExpanded: boolean;
     };
 }
 export default _default;

@@ -4,21 +4,13 @@
       <slot name="content"></slot>
     </div>
     <aside class="aside-wrapper__aside">
-      <aside-scope><slot name="aside"></slot></aside-scope>
+      <slot name="aside"></slot>
     </aside>
   </div>
 </template>
 <script>
 export default {
   tagName: 'aside-wrapper',
-  components: {
-    'aside-scope': {
-      provide: { proseImgMaxWidth: 700 },
-      render() {
-        return this.$slots.default?.();
-      },
-    },
-  },
   methods: {},
   props: {},
 };

@@ -187,9 +187,17 @@ export default {
       return this.data ? { ...FooterData, ...Tools.getJSON(this.data) } : { ...FooterData };
     },
     links() {
-      const capitalizedLang = Tools.capitalize(this.lang ?? '');
+      const lowerCaseLang = this.lang.toLowerCase();
 
-      return this.dataValue[`links${capitalizedLang}`] ?? this.dataValue.links;
+      if (lowerCaseLang === 'de' || lowerCaseLang === '') {
+        return this.dataValue.links;
+      } else {
+        const capitalizedLang = Tools.capitalize(this.lang);
+
+        const links = this.dataValue[`links${capitalizedLang}`];
+
+        return links ? links : this.dataValue.links;
+      }
     },
     locations() {
       const newLocations = [];

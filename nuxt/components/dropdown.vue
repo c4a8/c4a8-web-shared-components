@@ -4,7 +4,7 @@
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseDown"
   >
-    <teleport :to="teleportSelector" v-if="isMounted && !isStorybook">
+    <teleport :to="teleportSelector" v-if="!isStorybook">
       <div :class="{ 'dropdown__background-shim': true, show: isOpen }" @click="toggleDropdown"></div>
     </teleport>
     <div :class="dropdownLabelClasses" @click="handleClick" :style="style" data-utility-animation-step="1" ref="label">
@@ -193,7 +193,6 @@ export default {
     this.initActiveSelection();
   },
   mounted() {
-    this.isMounted = true;
     this.updateUtilityAnimation();
 
     window.addEventListener('resize', this.handleResize);
@@ -204,7 +203,6 @@ export default {
   data() {
     return {
       activeSelection: [],
-      isMounted: false,
       isOpen: false,
       filterText: '',
       minCharsToFilter: 1,

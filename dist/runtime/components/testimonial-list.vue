@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import { get } from 'jquery';
 import State from '../utils/state.js';
 import Tools from '../utils/tools.js';
 

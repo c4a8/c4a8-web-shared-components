@@ -6,7 +6,7 @@
         type="radio"
         :data-form-group="group"
         :required="required"
-        :name="otherName"
+        :name="otherId"
         :id="otherId"
       />
       <label class="form__radio-label" :for="otherId"></label>
@@ -38,9 +38,6 @@ export default {
   tagName: 'form-radio',
   computed: {
     otherId() {
-      return `${this.idValue}_radio`;
-    },
-    otherName() {
       return `${this.radio.id}_radio`;
     },
     required() {

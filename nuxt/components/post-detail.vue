@@ -80,10 +80,8 @@
       itemprop="articleBody"
       :components="{ a: ContentRendererLink }"
     />
-    <div class="post-detail__tags mt-5" :class="tagsWidth" v-if="!noTags">
-      <div class="post-detail__tags-list">
-        <tag v-for="(tag, index) in normalizedPost.tags" :key="index" :tag="tag" variant="small" />
-      </div>
+    <div class="post-detail__tags mt-5" v-if="!noTags">
+      <tag v-for="(tag, index) in normalizedPost.tags" :key="index" :tag="tag" variant="small" />
     </div>
     <aside-nav v-if="!shouldShowStickyBlocks && asideNavValue" v-bind="asideNavValue" />
   </article>
@@ -149,9 +147,6 @@ export default {
         this.asideNavValue ? 'content-grid--side-bar' : 'content-grid',
         this.post?.meta?.maxContent === true ? 'richtext--full-width' : null,
       ];
-    },
-    tagsWidth() {
-      return this.asideNavValue ? 'full-width content-grid--side-bar' : null;
     },
     stickyOffsetTop() {
       return this.asideNavValue ? 124 : 100;
@@ -255,10 +250,6 @@ export default {
   &.post-detail--aside-nav {
     .aside-nav {
       padding-top: spacing(3);
-    }
-
-    > .post-detail__tags > .post-detail__tags-list {
-      grid-column: content;
     }
   }
 

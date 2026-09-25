@@ -12,13 +12,14 @@ declare namespace _default {
         function dropdownCollection(): (() => any)[];
     }
     function setup(): {
-        locale: any;
+        locale: string;
     };
     function created(): void;
+    function beforeMount(): void;
     function mounted(): void;
     function beforeDestroy(): void;
     namespace methods {
-        function selectTagFromHash(): void;
+        function getFilteredTags(): any;
         function addTagToSelection(tag: any, index: any): void;
         function getMaxItems(items: any): any;
         function handleResize(): void;
@@ -37,7 +38,7 @@ declare namespace _default {
         function updateDropdownSelection(selection: any, index: any): void;
     }
     function data(): {
-        activeView: any;
+        activeView: string;
         views: string[];
         filterDropdowns: never[];
         selections: never[];

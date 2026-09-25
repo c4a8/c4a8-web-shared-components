@@ -46,7 +46,6 @@ declare namespace _default {
     function beforeDestroy(): void;
     function data(): {
         activeSelection: never[];
-        isMounted: boolean;
         isOpen: boolean;
         filterText: string;
         minCharsToFilter: number;

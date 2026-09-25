@@ -23,11 +23,7 @@ function buildFooter(config, locales, sourceLocale) {
   for (const locale of locales) {
     const links = config.links
       .filter((link) => !link.locales || link.locales.includes(locale))
-      .map((link) => ({
-        title: resolveLocalized(link.title, locale),
-        url: link.href !== undefined ? resolveLocalized(link.href, locale) : `/${locale}${link.path}`,
-        ...(link.target !== undefined && { target: link.target }),
-      }));
+      .map((link) => ({ title: resolveLocalized(link.title, locale), url: `/${locale}${link.path}` }));
 
     const linksKey = locale === sourceLocale ? 'links' : 'links' + capitalize(locale);
 
@@ -66,6 +62,7 @@ export function useFooterData(options = {}) {
     return m ? m[1] : sourceLocale;
   };
 
+  // Keyed per locale: the prerenderer shares one useAsyncData cache across routes.
   return useAsyncData(
     `sc:footer-data-${currentLocale()}`,
     () => {
@@ -77,11 +74,12 @@ export function useFooterData(options = {}) {
 
       if (!footerConfig) return Promise.resolve(null);
 
+      // v-footer falls back to the source-locale `links`, so keep both.
       const current = currentLocale();
       const locales = current === sourceLocale ? [sourceLocale] : [sourceLocale, current];
 
       return Promise.resolve(buildFooter(footerConfig, locales, sourceLocale));
     },
-    { watch: localeRef ? [localeRef] : [] }
+    { watch: localeRef ? [localeRef] : [] },
   );
 }

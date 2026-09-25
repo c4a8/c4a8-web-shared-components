@@ -33225,7 +33225,7 @@ modal {
   padding-left: 1.5em;
   margin-top: 3rem;
 }
-.richtext h2[id=über], .richtext h2[id=Über], .richtext h2[id^=über-], .richtext h2[id^=Über-], .richtext h2[id=about], .richtext h2[id=About], .richtext h2[id^=about-], .richtext h2[id^=About-], .richtext h2#Fazit, .richtext h2#fazit, .richtext h2#Conclusion, .richtext h2#conclusion, .richtext h2#Slutsats, .richtext h2#slutsats, .richtext h2#Konklusjon, .richtext h2#konklusjon, .richtext h2#Johtopäätös, .richtext h2#johtopäätös, .richtext h2#Yhteenveto, .richtext h2#yhteenveto, .richtext h2#Konklusion, .richtext h2#konklusion, .richtext h2#Niðurstaða, .richtext h2#niðurstaða, .richtext h2#Conclusione, .richtext h2#conclusione, .richtext h2#Conclusie, .richtext h2#conclusie, .richtext h2#결론, .richtext h2#結論, .richtext h2#まとめ,
+.richtext h2[id=über], .richtext h2[id=Über], .richtext h2[id^=über-], .richtext h2[id^=Über-], .richtext h2[id=about], .richtext h2[id=About], .richtext h2[id^=about-], .richtext h2[id^=About-], .richtext h2#Fazit, .richtext h2#fazit, .richtext h2#Conclusion, .richtext h2#conclusion, .richtext h2#Slutsats, .richtext h2#slutsats, .richtext h2#Konklusjon, .richtext h2#konklusjon, .richtext h2#Johtopäätös, .richtext h2#johtopäätös, .richtext h2#Yhteenveto, .richtext h2#yhteenveto, .richtext h2#Konklusion, .richtext h2#konklusion, .richtext h2#Niðurstaða, .richtext h2#niðurstaða, .richtext h2#Conclusione, .richtext h2#conclusione, .richtext h2#Conclusie, .richtext h2#conclusie, .richtext h2#결론,
 .richtext h3[id=über],
 .richtext h3[id=Über],
 .richtext h3[id^=über-],
@@ -33255,8 +33255,6 @@ modal {
 .richtext h3#Conclusie,
 .richtext h3#conclusie,
 .richtext h3#결론,
-.richtext h3#結論,
-.richtext h3#まとめ,
 .richtext h4[id=über],
 .richtext h4[id=Über],
 .richtext h4[id^=über-],
@@ -33285,15 +33283,13 @@ modal {
 .richtext h4#conclusione,
 .richtext h4#Conclusie,
 .richtext h4#conclusie,
-.richtext h4#결론,
-.richtext h4#結論,
-.richtext h4#まとめ {
+.richtext h4#결론 {
   background-color: var(--color-gk-petrol);
   color: var(--color-gk-white);
   padding: 1rem 1rem 2.5rem;
   margin: 5rem 0 0 0;
 }
-.richtext h2[id=über] ~ p, .richtext h2[id=Über] ~ p, .richtext h2[id^=über-] ~ p, .richtext h2[id^=Über-] ~ p, .richtext h2[id=about] ~ p, .richtext h2[id=About] ~ p, .richtext h2[id^=about-] ~ p, .richtext h2[id^=About-] ~ p, .richtext h2#Fazit ~ p, .richtext h2#fazit ~ p, .richtext h2#Conclusion ~ p, .richtext h2#conclusion ~ p, .richtext h2#Slutsats ~ p, .richtext h2#slutsats ~ p, .richtext h2#Konklusjon ~ p, .richtext h2#konklusjon ~ p, .richtext h2#Johtopäätös ~ p, .richtext h2#johtopäätös ~ p, .richtext h2#Yhteenveto ~ p, .richtext h2#yhteenveto ~ p, .richtext h2#Konklusion ~ p, .richtext h2#konklusion ~ p, .richtext h2#Niðurstaða ~ p, .richtext h2#niðurstaða ~ p, .richtext h2#Conclusione ~ p, .richtext h2#conclusione ~ p, .richtext h2#Conclusie ~ p, .richtext h2#conclusie ~ p, .richtext h2#결론 ~ p, .richtext h2#結論 ~ p, .richtext h2#まとめ ~ p,
+.richtext h2[id=über] ~ p, .richtext h2[id=Über] ~ p, .richtext h2[id^=über-] ~ p, .richtext h2[id^=Über-] ~ p, .richtext h2[id=about] ~ p, .richtext h2[id=About] ~ p, .richtext h2[id^=about-] ~ p, .richtext h2[id^=About-] ~ p, .richtext h2#Fazit ~ p, .richtext h2#fazit ~ p, .richtext h2#Conclusion ~ p, .richtext h2#conclusion ~ p, .richtext h2#Slutsats ~ p, .richtext h2#slutsats ~ p, .richtext h2#Konklusjon ~ p, .richtext h2#konklusjon ~ p, .richtext h2#Johtopäätös ~ p, .richtext h2#johtopäätös ~ p, .richtext h2#Yhteenveto ~ p, .richtext h2#yhteenveto ~ p, .richtext h2#Konklusion ~ p, .richtext h2#konklusion ~ p, .richtext h2#Niðurstaða ~ p, .richtext h2#niðurstaða ~ p, .richtext h2#Conclusione ~ p, .richtext h2#conclusione ~ p, .richtext h2#Conclusie ~ p, .richtext h2#conclusie ~ p, .richtext h2#결론 ~ p,
 .richtext h3[id=über] ~ p,
 .richtext h3[id=Über] ~ p,
 .richtext h3[id^=über-] ~ p,
@@ -33323,8 +33319,6 @@ modal {
 .richtext h3#Conclusie ~ p,
 .richtext h3#conclusie ~ p,
 .richtext h3#결론 ~ p,
-.richtext h3#結論 ~ p,
-.richtext h3#まとめ ~ p,
 .richtext h4[id=über] ~ p,
 .richtext h4[id=Über] ~ p,
 .richtext h4[id^=über-] ~ p,
@@ -33353,9 +33347,7 @@ modal {
 .richtext h4#conclusione ~ p,
 .richtext h4#Conclusie ~ p,
 .richtext h4#conclusie ~ p,
-.richtext h4#결론 ~ p,
-.richtext h4#結論 ~ p,
-.richtext h4#まとめ ~ p {
+.richtext h4#결론 ~ p {
   background-color: var(--color-gk-petrol);
   color: var(--color-gk-white);
   padding: 0 1rem 1rem;
@@ -33363,7 +33355,7 @@ modal {
   margin-bottom: 0;
 }
 @media (min-width: 992px) {
-  .richtext h2[id=über], .richtext h2[id=Über], .richtext h2[id^=über-], .richtext h2[id^=Über-], .richtext h2[id=about], .richtext h2[id=About], .richtext h2[id^=about-], .richtext h2[id^=About-], .richtext h2#Fazit, .richtext h2#fazit, .richtext h2#Conclusion, .richtext h2#conclusion, .richtext h2#Slutsats, .richtext h2#slutsats, .richtext h2#Konklusjon, .richtext h2#konklusjon, .richtext h2#Johtopäätös, .richtext h2#johtopäätös, .richtext h2#Yhteenveto, .richtext h2#yhteenveto, .richtext h2#Konklusion, .richtext h2#konklusion, .richtext h2#Niðurstaða, .richtext h2#niðurstaða, .richtext h2#Conclusione, .richtext h2#conclusione, .richtext h2#Conclusie, .richtext h2#conclusie, .richtext h2#결론, .richtext h2#結論, .richtext h2#まとめ,
+  .richtext h2[id=über], .richtext h2[id=Über], .richtext h2[id^=über-], .richtext h2[id^=Über-], .richtext h2[id=about], .richtext h2[id=About], .richtext h2[id^=about-], .richtext h2[id^=About-], .richtext h2#Fazit, .richtext h2#fazit, .richtext h2#Conclusion, .richtext h2#conclusion, .richtext h2#Slutsats, .richtext h2#slutsats, .richtext h2#Konklusjon, .richtext h2#konklusjon, .richtext h2#Johtopäätös, .richtext h2#johtopäätös, .richtext h2#Yhteenveto, .richtext h2#yhteenveto, .richtext h2#Konklusion, .richtext h2#konklusion, .richtext h2#Niðurstaða, .richtext h2#niðurstaða, .richtext h2#Conclusione, .richtext h2#conclusione, .richtext h2#Conclusie, .richtext h2#conclusie, .richtext h2#결론,
   .richtext h3[id=über],
   .richtext h3[id=Über],
   .richtext h3[id^=über-],
@@ -33393,8 +33385,6 @@ modal {
   .richtext h3#Conclusie,
   .richtext h3#conclusie,
   .richtext h3#결론,
-  .richtext h3#結論,
-  .richtext h3#まとめ,
   .richtext h4[id=über],
   .richtext h4[id=Über],
   .richtext h4[id^=über-],
@@ -33423,12 +33413,10 @@ modal {
   .richtext h4#conclusione,
   .richtext h4#Conclusie,
   .richtext h4#conclusie,
-  .richtext h4#결론,
-  .richtext h4#結論,
-  .richtext h4#まとめ {
+  .richtext h4#결론 {
     padding: 3rem 3rem 2.5rem;
   }
-  .richtext h2[id=über] ~ p, .richtext h2[id=Über] ~ p, .richtext h2[id^=über-] ~ p, .richtext h2[id^=Über-] ~ p, .richtext h2[id=about] ~ p, .richtext h2[id=About] ~ p, .richtext h2[id^=about-] ~ p, .richtext h2[id^=About-] ~ p, .richtext h2#Fazit ~ p, .richtext h2#fazit ~ p, .richtext h2#Conclusion ~ p, .richtext h2#conclusion ~ p, .richtext h2#Slutsats ~ p, .richtext h2#slutsats ~ p, .richtext h2#Konklusjon ~ p, .richtext h2#konklusjon ~ p, .richtext h2#Johtopäätös ~ p, .richtext h2#johtopäätös ~ p, .richtext h2#Yhteenveto ~ p, .richtext h2#yhteenveto ~ p, .richtext h2#Konklusion ~ p, .richtext h2#konklusion ~ p, .richtext h2#Niðurstaða ~ p, .richtext h2#niðurstaða ~ p, .richtext h2#Conclusione ~ p, .richtext h2#conclusione ~ p, .richtext h2#Conclusie ~ p, .richtext h2#conclusie ~ p, .richtext h2#결론 ~ p, .richtext h2#結論 ~ p, .richtext h2#まとめ ~ p,
+  .richtext h2[id=über] ~ p, .richtext h2[id=Über] ~ p, .richtext h2[id^=über-] ~ p, .richtext h2[id^=Über-] ~ p, .richtext h2[id=about] ~ p, .richtext h2[id=About] ~ p, .richtext h2[id^=about-] ~ p, .richtext h2[id^=About-] ~ p, .richtext h2#Fazit ~ p, .richtext h2#fazit ~ p, .richtext h2#Conclusion ~ p, .richtext h2#conclusion ~ p, .richtext h2#Slutsats ~ p, .richtext h2#slutsats ~ p, .richtext h2#Konklusjon ~ p, .richtext h2#konklusjon ~ p, .richtext h2#Johtopäätös ~ p, .richtext h2#johtopäätös ~ p, .richtext h2#Yhteenveto ~ p, .richtext h2#yhteenveto ~ p, .richtext h2#Konklusion ~ p, .richtext h2#konklusion ~ p, .richtext h2#Niðurstaða ~ p, .richtext h2#niðurstaða ~ p, .richtext h2#Conclusione ~ p, .richtext h2#conclusione ~ p, .richtext h2#Conclusie ~ p, .richtext h2#conclusie ~ p, .richtext h2#결론 ~ p,
   .richtext h3[id=über] ~ p,
   .richtext h3[id=Über] ~ p,
   .richtext h3[id^=über-] ~ p,
@@ -33458,8 +33446,6 @@ modal {
   .richtext h3#Conclusie ~ p,
   .richtext h3#conclusie ~ p,
   .richtext h3#결론 ~ p,
-  .richtext h3#結論 ~ p,
-  .richtext h3#まとめ ~ p,
   .richtext h4[id=über] ~ p,
   .richtext h4[id=Über] ~ p,
   .richtext h4[id^=über-] ~ p,
@@ -33488,13 +33474,11 @@ modal {
   .richtext h4#conclusione ~ p,
   .richtext h4#Conclusie ~ p,
   .richtext h4#conclusie ~ p,
-  .richtext h4#결론 ~ p,
-  .richtext h4#結論 ~ p,
-  .richtext h4#まとめ ~ p {
+  .richtext h4#결론 ~ p {
     padding: 0 3rem 3rem;
   }
 }
-.richtext h2#fazit, .richtext h2#conclusion, .richtext h2#slutsats, .richtext h2#konklusjon, .richtext h2#johtopäätös, .richtext h2#yhteenveto, .richtext h2#konklusion, .richtext h2#niðurstaða, .richtext h2#conclusione, .richtext h2#conclusie, .richtext h2#결론, .richtext h2#結論, .richtext h2#まとめ,
+.richtext h2#fazit, .richtext h2#conclusion, .richtext h2#slutsats, .richtext h2#konklusjon, .richtext h2#johtopäätös, .richtext h2#yhteenveto, .richtext h2#konklusion, .richtext h2#niðurstaða, .richtext h2#conclusione, .richtext h2#conclusie, .richtext h2#결론,
 .richtext h3#fazit,
 .richtext h3#conclusion,
 .richtext h3#slutsats,
@@ -33506,8 +33490,6 @@ modal {
 .richtext h3#conclusione,
 .richtext h3#conclusie,
 .richtext h3#결론,
-.richtext h3#結論,
-.richtext h3#まとめ,
 .richtext h4#fazit,
 .richtext h4#conclusion,
 .richtext h4#slutsats,
@@ -33518,9 +33500,7 @@ modal {
 .richtext h4#niðurstaða,
 .richtext h4#conclusione,
 .richtext h4#conclusie,
-.richtext h4#결론,
-.richtext h4#結論,
-.richtext h4#まとめ {
+.richtext h4#결론 {
   margin: 2rem 0 0 0;
 }
 .richtext h6:last-of-type {
@@ -33597,15 +33577,9 @@ modal {
   height: 100%;
   left: 50%;
   top: 50%;
-  background-color: var(--color-slick-arrow, #000);
-  mask-position: center;
-  mask-repeat: no-repeat;
-  mask-size: 50%;
-  mask-origin: padding-box;
-  -webkit-mask-position: center;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-size: 50%;
-  -webkit-mask-origin: padding-box;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 50%;
   border: 2px solid transparent;
   border-radius: 50%;
 }
@@ -33614,18 +33588,15 @@ modal {
   pointer-events: none;
   display: none !important;
 }
-.slick__arrow-left:not(.slick-disabled):not(.swiper-button-disabled),
-.slick__arrow-right:not(.slick-disabled):not(.swiper-button-disabled) {
-  cursor: pointer;
+.slick__arrow-left.slick-arrow:not(.slick-disabled):hover,
+.slick__arrow-right.slick-arrow:not(.slick-disabled):hover {
+  background-color: transparent;
+  border-color: transparent;
 }
-.slick__arrow-left:not(.slick-disabled):not(.swiper-button-disabled):hover,
-.slick__arrow-right:not(.slick-disabled):not(.swiper-button-disabled):hover {
+.slick__arrow-left.slick-arrow:not(.slick-disabled):hover::before,
+.slick__arrow-right.slick-arrow:not(.slick-disabled):hover::before {
   border-color: var(--color-gk-mid-blue);
-  box-shadow: 0 0 0 1px var(--color-gk-mid-blue);
-}
-.slick__arrow-left:not(.slick-disabled):not(.swiper-button-disabled):hover::before,
-.slick__arrow-right:not(.slick-disabled):not(.swiper-button-disabled):hover::before {
-  background-color: var(--color-gk-mid-blue);
+  filter: invert(28%) sepia(97%) saturate(1365%) hue-rotate(185deg) brightness(96%) contrast(101%);
 }
 @media (min-width: 992px) {
   .slick__arrow-left,
@@ -33645,8 +33616,7 @@ modal {
   left: -3rem;
 }
 .slick__arrow-left::before {
-  mask-image: url("../../assets/svg/arrow-slider.svg");
-  -webkit-mask-image: url("../../assets/svg/arrow-slider.svg");
+  background-image: url("../../assets/svg/arrow-slider.svg");
   transform: rotate(90deg) translate(-50%, 50%);
 }
 @media (min-width: 1200px) {
@@ -33659,8 +33629,7 @@ modal {
   right: -3rem;
 }
 .slick__arrow-right::before {
-  mask-image: url("../../assets/svg/arrow-slider.svg");
-  -webkit-mask-image: url("../../assets/svg/arrow-slider.svg");
+  background-image: url("../../assets/svg/arrow-slider.svg");
   transform: rotate(-90deg) translate(50%, -50%);
 }
 @media (min-width: 1200px) {
@@ -34126,19 +34095,6 @@ svg.streamline-icon {
 .shared-components .on-surface .link:not(.btn):not(.custom):not(.nav-link):not(.cta):not(.page-link):not(.dropdown-item),
 .shared-components .on-surface a:not(.btn):not(.custom):not(.nav-link):not(.cta):not(.page-link):not(.dropdown-item) {
   color: var(--color-primary-on-surface);
-}
-
-.location-section .location-section__slider-image-wrapper {
-  aspect-ratio: 4/3;
-}
-.location-section .location-section__slider-image {
-  height: 100%;
-  -o-object-fit: cover;
-  object-fit: cover;
-  width: 100%;
-}
-.location-section .cta.cta--reversed.link {
-  align-items: center;
 }
 
 .hover__parent:hover .scroll-arrow__button svg,

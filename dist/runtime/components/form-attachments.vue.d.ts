@@ -35,7 +35,6 @@ declare namespace _default {
         }
         let extensions: ArrayConstructor;
         let id: StringConstructor;
-        let name: StringConstructor;
         let maxFiles: NumberConstructor;
     }
     function mounted(): void;

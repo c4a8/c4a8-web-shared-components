@@ -1,29 +1,35 @@
 <template>
   <div :class="[classList, 'location-section']" :style="{ backgroundColor: backgroundColor }">
-    <slider
+    <div
       v-if="images && images.length > 0"
-      v-bind="sliderConfig"
-      :v2="true"
+      class="location-section__slider-container d-flex align-items-center justify-content-center"
     >
-      <div v-for="(img, index) in sliderImages" class="location-section__slider-image-wrapper">
-        <v-img
-          :key="index"
-          :cloudinary="img.cloudinary"
-          :img="img.img"
-          :imgSrcSets="img.srcSets || imgSrcSets"
-          class="location-section__slider-image"
-        />
+      <div
+        class="location-section__slider-controls position-absolute d-flex align-items-center justify-content-center col-10 col-xxl-11 mx-auto z-index-2"
+      >
+        <div class="slick__arrow-left rounded-circle" :class="`prev-element-${instanceId}`"></div>
+        <div class="slick__arrow-right rounded-circle" :class="`next-element-${instanceId}`"></div>
       </div>
-    </slider>
-
-    <div class="location-section__content container pt-lg-8 pt-5 ">
-      <div class="col-12 pb-5 d-flex justify-content-between">
+      <slider v-bind="sliderConfig" :v2="true">
+        <div v-for="(img, index) in images" class="location-section__slider-image-wrapper">
+          <v-img
+            :key="index"
+            :cloudinary="img.cloudinary"
+            :img="img.img"
+            :imgSrcSets="img.srcSets || imgSrcSets"
+            class="location-section__slider-image"
+          />
+        </div>
+      </slider>
+    </div>
+    <div class="location-section__content container pt-8">
+      <div class="row row-cols-2 pb-5">
         <div><headline level="h5" :text="overline" /> <headline level="h3" :text="headline" /></div>
-        <div v-if="landingpageCta" class="d-flex align-items-center">
+        <div v-if="landingpageCta" class="d-flex align-items-center justify-content-end">
           <cta v-bind="landingpageCta" />
         </div>
       </div>
-      <div class="col-12 d-flex pt-2 flex-wrap row-cols-lg-3 row-cols-1">
+      <div class="d-flex pt-2 row row-cols-3">
         <div class="d-flex flex-column">
           <headline level="h5" class="pv-2" :text="locationHeadline" />
           <div v-for="entry in locationEntries" class="font-size-1 py-1">
@@ -32,6 +38,11 @@
               <p v-html="entry.content"></p>
             </div>
           </div>
+          <cta
+            v-bind="locationCta"
+            v-if="locationCta"
+            :class="locationCta.classes ? locationCta.classes : 'd-flex justify-content-end'"
+          />
         </div>
         <div class="d-flex flex-column">
           <headline level="h5" class="pb-2" :text="contactHeadline" />
@@ -43,13 +54,19 @@
           </div>
         </div>
       </div>
-      <cta v-bind="locationCta" v-if="locationCta" class=" col-12 pt-3 pt-lg-0"/>
     </div>
   </div>
 </template>
 <script>
+let instanceCounter = 0;
+
 export default {
   tagName: 'location-section',
+  data() {
+    return {
+      instanceId: ++instanceCounter,
+    };
+  },
   props: {
     classes: String,
     overline: String,
@@ -63,7 +80,7 @@ export default {
     images: Array,
     backgroundColor: {
       type: String,
-      default: 'transparent',
+      default: 'var(--color-surface-background)',
     },
   },
   computed: {
@@ -77,25 +94,19 @@ export default {
       };
     },
     classList() {
-      return this.classes ? this.classes : 'mb-5 pb-11';
-    },
-    sliderImages() {
-      if (!this.images || this.images.length === 0) return [];
-      const minRequired = 8;
-      if (this.images.length >= minRequired) return this.images;
-      const result = [];
-      while (result.length < minRequired) {
-        result.push(...this.images);
-      }
-      return result;
+      return this.classes ? this.classes : 'mb-7 pb-11';
     },
     sliderConfig() {
       return {
         hideContainer: true,
         hideBackground: true,
         options: {
-          navigation: true,
-          controlsClass: 'slider__controls--full-width',
+          dots: false,
+          navigation: {
+            enabled: true,
+            nextEl: `.next-element-${this.instanceId}`,
+            prevEl: `.prev-element-${this.instanceId}`,
+          },
           loop: true,
           breakpoints: {
             320: {
