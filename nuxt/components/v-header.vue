@@ -199,7 +199,10 @@
                       <div class="header__product-list-data">
                         <div class="header__product-list-title font-size-8 bold">
                           {{ subChild.languages[lowerLang]?.title }}
-                          <span v-if="subChild.isOpensource" class="header__product-list-opensource">OpenSource</span>
+                          <span v-if="subChild.isOpenSource" class="header__product-list-opensource">{{
+                            openSourceText
+                          }}</span
+                          >pan>
                         </div>
                         <div class="header__product-list-subtitle">{{ subChild.languages[lowerLang]?.subtitle }}</div>
                       </div>
@@ -980,6 +983,7 @@ export default {
       },
       initEvents: ['mousemove', 'scroll', 'touchstart', 'click'],
       renderMegaMenu: false,
+      openSourceText: 'OpenSource',
     };
   },
 };
