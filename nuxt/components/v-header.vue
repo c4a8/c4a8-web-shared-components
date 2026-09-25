@@ -53,7 +53,13 @@
                 :alt="logoAlt"
                 fetchpriority="high"
               />
-              <v-img :img="home?.img" class="header__logo-default" :cloudinary="true" :alt="logoAlt" fetchpriority="high" />
+              <v-img
+                :img="home?.img"
+                class="header__logo-default"
+                :cloudinary="true"
+                :alt="logoAlt"
+                fetchpriority="high"
+              />
             </a>
           </div>
           <div class="header__menu" v-on:click="handleCloseClick">
@@ -193,6 +199,7 @@
                       <div class="header__product-list-data">
                         <div class="header__product-list-title font-size-8 bold">
                           {{ subChild.languages[lowerLang]?.title }}
+                          <span v-if="subChild.isOpensource" class="header__product-list-opensource">OpenSource</span>
                         </div>
                         <div class="header__product-list-subtitle">{{ subChild.languages[lowerLang]?.subtitle }}</div>
                       </div>
@@ -2146,5 +2153,11 @@ $header-border-size: 1px;
   color: var(--color-copy);
   display: inline-block;
   margin-left: spacing(3);
+}
+.header__product-list-opensource {
+  color: #fff;
+  background-color: var(--color-gk-grey);
+  padding: 0.1em 0.3em;
+  border-radius: 0.1em;
 }
 </style>
