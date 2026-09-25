@@ -35,7 +35,7 @@
                     <v-img
                       :img="child.img"
                       class="header__secondary-navigation-item-img"
-                      :cloudinary="true"
+                      :cloudinary="child.cloudinary ?? true"
                       :alt="child.languages[lowerLang]?.alt || child.languages[lowerLang]?.title"
                     />
                     <span class="header__secondary-navigation-item-text">{{ child.languages[lowerLang]?.title }}</span>
@@ -49,11 +49,11 @@
               <v-img
                 :img="home?.imgLight"
                 class="header__logo-light"
-                :cloudinary="true"
-                alt="logo"
+                :cloudinary="home?.cloudinary ?? true"
+                :alt="logoAlt"
                 fetchpriority="high"
               />
-              <v-img :img="home?.img" class="header__logo-default" :cloudinary="true" alt="logo" fetchpriority="high" />
+              <v-img :img="home?.img" class="header__logo-default" :cloudinary="home?.cloudinary ?? true" :alt="logoAlt" fetchpriority="high" />
             </a>
           </div>
           <div class="header__menu" v-on:click="handleCloseClick">
@@ -104,7 +104,7 @@
               <div class="header__language-switch" v-if="hasLangSwitch">
                 <a
                   :key="key"
-                  v-for="key in availableLocales"
+                  v-for="(_, key) in home.languages"
                   :class="{ 'header__language-link custom': true, active: key === lowerLang }"
                   v-on:click="handleLanguageSwitch(key)"
                   >{{ key }}</a
@@ -128,7 +128,7 @@
             <icon class="header__link-icon" icon="expand" size="small" />
             <div class="header__language-switch-flyout" ref="languageSwitchFlyout">
               <a
-                v-for="key in availableLocales"
+                v-for="(_, key) in home.languages"
                 :class="{ 'header__language-link custom': true, 'd-none': key === lowerLang }"
                 v-on:click="handleLanguageSwitch(key)"
                 :key="key"
@@ -187,7 +187,7 @@
                       <v-img
                         :img="subChild.img"
                         class="header__product-list-image"
-                        :cloudinary="true"
+                        :cloudinary="subChild.cloudinary ?? true"
                         :alt="subChild.languages[lowerLang]?.alt || subChild.languages[lowerLang]?.title"
                       />
                       <div class="header__product-list-data">
@@ -209,8 +209,6 @@
 </template>
 
 <script>
-import { computed } from 'vue';
-import { useI18n } from '#imports';
 import { useAppStore } from '../stores/app.js';
 import Tools from '../utils/tools.js';
 import State from '../utils/state.js';
@@ -222,12 +220,7 @@ export default {
   setup() {
     const store = useAppStore();
 
-    const { $switchLocalePath: switchLocalePath, $getLocales } = useI18n();
-    const availableLocales = computed(() =>
-      ($getLocales() || []).map((l) => (typeof l === 'string' ? l : l.code)),
-    );
-
-    return { store, switchLocalePath, availableLocales };
+    return { store };
   },
   computed: {
     classList() {
@@ -277,6 +270,11 @@ export default {
     homeObj() {
       return this.home?.languages[this.lowerLang];
     },
+    logoAlt() {
+      // The logo is the only content of the home link, so the alt text names the site,
+      // taken from the home entry's alt (or title) instead of a hardcoded "logo".
+      return this.homeObj?.alt || this.homeObj?.title || 'logo';
+    },
     lowerLang() {
       return this.lang ? this.lang.toLowerCase() : this.defaultLang;
     },
@@ -311,7 +309,7 @@ export default {
       return this.light === true;
     },
     hasLangSwitch() {
-      return this.availableLocales.length > 1;
+      return Object.keys(this.home?.languages).length > 1;
     },
     hasContact() {
       return this.contact;
@@ -776,26 +774,13 @@ export default {
 
       return nextLang[0];
     },
-    async handleLanguageSwitch(nextLang) {
+    handleLanguageSwitch(nextLang) {
+      const activeUrl = this.getActiveUrlByLang(nextLang);
+      const gotoUrl = activeUrl ? activeUrl : this.home.languages[nextLang]?.url;
+
       Tools.storageSave('preferedLanguage', nextLang, false);
 
-      const target = this.switchLocalePath(nextLang);
-      const stem = window.location.pathname.replace(/^\/[a-z]{2}(?=\/|$)/, '') || '/';
-
-      // Content pages absent in the target locale fall back to that locale's home.
-      const alternates = await this.loadContentAlternates();
-      const missing = alternates[stem] && !alternates[stem].includes(nextLang);
-
-      document.location.href = missing || !target ? `/${nextLang}` : target;
-    },
-    loadContentAlternates() {
-      if (!this._contentAlternates) {
-        this._contentAlternates = fetch('/i18n-content-alternates.json')
-          .then((res) => (res.ok ? res.json() : {}))
-          .catch(() => ({}));
-      }
-
-      return this._contentAlternates;
+      document.location.href = gotoUrl;
     },
     getActiveUrlByLang(lang, update) {
       const currentPath = Tools.getCurrentPath();
@@ -902,9 +887,7 @@ export default {
 
       if (!hrefLang) return;
 
-      const url = new URL(hrefLang.getAttribute('href'), document.location.origin);
-
-      return url.pathname + url.search + url.hash;
+      return hrefLang.getAttribute('href');
     },
     getParentLink(key) {
       const navi = this.clonedNavigation[key];

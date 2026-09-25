@@ -50,7 +50,7 @@ function buildLanguageEntry(node, locale) {
 function buildNavigationNode(node, locales) {
   const built = { name: node.id };
 
-  for (const configKey of ['folderSwitch', 'imgLight', 'img', 'target', 'products']) {
+  for (const configKey of ['folderSwitch', 'imgLight', 'img', 'cloudinary', 'target', 'products']) {
     if (node[configKey] !== undefined) built[configKey] = node[configKey];
   }
 
