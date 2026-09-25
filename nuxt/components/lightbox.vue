@@ -1,8 +1,7 @@
 <template>
   <a :class="['lightbox', classes]" aria-haspopup="dialog" :aria-expanded="isOpen" @click="open">
     <slot />
-
-    <Teleport to="body">
+    <Teleport v-if="isMounted" to="body">
       <dialog v-show="isOpen" class="lightbox__modal" @click.self="close" ref="modal">
         <div class="lightbox__controls">
           <button class="lightbox__close" @click="close">
@@ -38,7 +37,11 @@ export default {
   data() {
     return {
       isOpen: false,
+      isMounted: false,
     };
+  },
+  mounted() {
+    this.isMounted = true;
   },
   methods: {
     open() {

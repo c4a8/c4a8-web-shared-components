@@ -30,7 +30,16 @@ const localeQuery = computed(() => ({
   },
 }));
 
-const dataKey = props.query?.key || Tools.getDataKey('content', props.query, $getLocale());
+// A supplied dataList must key its own cache entry: the prerenderer shares one
+// useAsyncData cache across routes, and two pages with the same query but different
+// lists (e.g. blog vs glossary) would otherwise render each other's data.
+const dataKey =
+  props.query?.key ||
+  Tools.getDataKey(
+    'content',
+    props.dataList.length > 0 ? { list: props.dataList.map((item) => item.path ?? item.id) } : props.query,
+    $getLocale()
+  );
 
 const filterDuplicateItems = (items) => {
   const seen = new Map();

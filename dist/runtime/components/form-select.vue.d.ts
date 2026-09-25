@@ -7,6 +7,7 @@ declare namespace _default {
         let options: ArrayConstructor;
         let field: ObjectConstructor;
         let id: StringConstructor;
+        let name: StringConstructor;
     }
 }
 export default _default;

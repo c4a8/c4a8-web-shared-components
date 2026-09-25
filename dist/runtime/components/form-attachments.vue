@@ -27,7 +27,7 @@
         multiple
         :required="requiredValue"
         :id="id"
-        :name="id"
+        :name="name"
         :accept="acceptList"
         @change="handleChange"
       />
@@ -120,6 +120,7 @@ export default {
     },
     extensions: Array,
     id: String,
+    name: String,
     maxFiles: Number,
   },
   mounted() {

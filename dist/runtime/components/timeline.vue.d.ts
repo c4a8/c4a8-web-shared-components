@@ -1,16 +1,5 @@
 declare namespace _default {
     let tagName: string;
-    let components: {
-        'timeline-entry-inner-text': {
-            tagName: string;
-            computed: {};
-            template: string;
-            props: {
-                entry: ObjectConstructor;
-                simple: BooleanConstructor;
-            };
-        };
-    };
     namespace computed {
         function classList(): any[];
         function copyColor(): any;

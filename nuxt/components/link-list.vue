@@ -313,7 +313,7 @@ $link-list-breakpoint: 'lg';
   }
 }
 
-.link-list__icon {
+.link-list__icon.icon {
   margin-right: spacing(2);
 
   @include media-breakpoint-up($link-list-breakpoint) {

@@ -51,7 +51,7 @@ export const Home = {
       },
       light: false,
       shape: {
-        img: '/assets/svg/shapes/s-block.svg',
+        img: 'assets/svg/shapes/s-block.svg',
         alt: 'Shape Animation',
         top: true,
         mobileOrder: 4,

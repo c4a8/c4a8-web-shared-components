@@ -58,29 +58,8 @@
 import State from '../utils/state.js';
 import Tools from '../utils/tools.js';
 
-const timelineEntryInnerText = {
-  tagName: 'timeline-entry-inner-text',
-  computed: {},
-  template: `
-    <div :class="['timeline__entry-inner-text', { 'timeline__entry-inner-text--simple': simple }]">
-      <template v-if="entry.title">
-        <div class="timeline__entry-title">{{ entry.title }}</div>
-        <p class="timeline__entry-text">{{ entry.text }}</p>
-      </template>
-      <template v-else><span v-html="entry"></span></template>
-    </div>
-  `,
-  props: {
-    entry: Object,
-    simple: Boolean,
-  },
-};
-
 export default {
   tagName: 'timeline',
-  components: {
-    'timeline-entry-inner-text': timelineEntryInnerText,
-  },
   computed: {
     classList() {
       return [

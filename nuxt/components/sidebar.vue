@@ -364,16 +364,29 @@ export default {
 .sidebar__dialog-section-title {
   @include font-size-6;
   @include font-weight('bold');
+
+  display: flex !important;
+  justify-content: end !important;
 }
 
 .sidebar__dialog-section-title,
 .sidebar__dialog-section-overline {
   text-transform: uppercase;
   line-height: 1em;
+  word-break: break-word;
+
+  @media (min-width: 1300px) {
+    word-break: initial !important;
+  }
 }
 
 .sidebar__section-overline {
   @include font-size-2;
+
+  @include media-breakpoint-up('xl') {
+    display: flex;
+    justify-content: end;
+  }
 }
 
 .sidebar__section-title {

@@ -131,9 +131,6 @@ export default {
 
     blogStore.setBlogItems(this.items);
     blogStore.setBlogView(this.activeView);
-  },
-  beforeMount() {
-    this.activeView = this.onlyView ? this.onlyView : this.defaultView;
 
     const dropdownConfig = {
       author: {
@@ -150,7 +147,7 @@ export default {
       },
       tags: {
         label: this.$t('filterTags'),
-        items: this.getFilteredTags(),
+        items: this.tags,
         key: 'tags',
         filterable: true,
         condition: () => true,
@@ -170,6 +167,8 @@ export default {
       });
   },
   mounted() {
+    this.selectTagFromHash();
+
     window.addEventListener('resize', this.handleResize);
 
     this.handleResize();
@@ -178,24 +177,12 @@ export default {
     window.removeEventListener('resize', this.handleResize);
   },
   methods: {
-    getFilteredTags() {
+    selectTagFromHash() {
       const hash = Tools.getHash();
 
-      if (!hash) return this.tags;
+      if (!hash) return;
 
-      const filteredTag = decodeURIComponent(hash.substring(1))?.toLowerCase();
-
-      const tags = this.tags.map((tag) => {
-        if (tag?.text?.toLowerCase() === filteredTag) {
-          this.addTagToSelection(tag);
-
-          return { ...tag, checked: true };
-        }
-
-        return tag;
-      });
-
-      return tags;
+      this.getTagByName(decodeURIComponent(hash.substring(1)).toLowerCase());
     },
     addTagToSelection(tag, index) {
       const selectedIndex = index ? index : this.dropdownCollection.length - 1;
@@ -336,7 +323,7 @@ export default {
   },
   data() {
     return {
-      activeView: '',
+      activeView: this.onlyView || this.defaultView,
       views: ['tile-view', 'list-view'],
       filterDropdowns: [],
       selections: [],

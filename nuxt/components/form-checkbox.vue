@@ -6,7 +6,7 @@
         type="checkbox"
         :data-form-group="group"
         :required="required"
-        :name="otherId"
+        :name="otherName"
         :id="otherId"
         @change="handleChange"
       />
@@ -14,7 +14,7 @@
       <input
         class="form__input form-control form-control-sm"
         type="text"
-        :name="idValue"
+        :name="nameValue"
         :id="idValue"
         :placeholder="checkbox?.placeholder"
         :data-form-group="group"
@@ -24,7 +24,7 @@
       <input
         class="form__checkbox form-check-input custom-control-input"
         type="checkbox"
-        :name="idValue"
+        :name="nameValue"
         :id="idValue"
         :data-form-group="group"
         :required="required"
@@ -43,11 +43,17 @@ export default {
     otherId() {
       return `${this.idValue}_checkbox`;
     },
+    otherName() {
+      return `${this.nameValue}_checkbox`;
+    },
     required() {
       return this.checkbox?.required ? 'required' : null;
     },
     idValue() {
       return this.id ? this.id : this.checkbox.id;
+    },
+    nameValue() {
+      return this.name ? this.name : this.checkbox.id;
     },
   },
   methods: {
@@ -55,13 +61,14 @@ export default {
       const currentTarget = e.currentTarget;
       const value = currentTarget.value;
 
-      this.$emit(Events.FORM_FIELD_UPDATED, { value, id: this.id });
+      this.$emit(Events.FORM_FIELD_UPDATED, { value, id: this.idValue });
     },
   },
   props: {
     checkbox: Object,
     group: String,
     id: String,
+    name: String,
   },
 };
 </script>

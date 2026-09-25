@@ -153,6 +153,17 @@ const LangData = {
     withAuthor: '함께',
     vatInfo: '*모든 가격은 부가가치세를 포함하지 않습니다. 당사의 상품은 기업 고객만을 대상으로 합니다.',
   },
+  ja: {
+    loadMorePosts: 'さらに記事を読み込む',
+    tags: 'タグ',
+    tagsHeadline: 'タグ別の記事',
+    tagsClear: 'すべてクリア',
+    posts: '記事',
+    follow: 'フォロー',
+    similarPosts: '関連記事',
+    withAuthor: '出演',
+    vatInfo: '*すべての価格に付加価値税は含まれていません。当社の製品・サービスは法人のお客様のみを対象としています。',
+  },
 };
 
 // const Lang = LangData[Tools.getLang()];

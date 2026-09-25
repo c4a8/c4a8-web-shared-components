@@ -18,7 +18,9 @@ declare namespace _default {
     }
     function data(): {
         isOpen: boolean;
+        isMounted: boolean;
     };
+    function mounted(): void;
     namespace methods {
         function open(): void;
         function close(): void;
