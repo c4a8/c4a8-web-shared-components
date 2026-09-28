@@ -1,6 +1,6 @@
 <template>
   <label class="input-label" :for="id">{{ field.label }}</label>
-  <select class="form-control custom-select text-muted" :name="id" :required="required">
+  <select class="form-control custom-select text-muted" :id="id" :name="name" :required="required">
     <option value>{{ field.placeholder }}</option>
     <template v-for="option in options">
       <option :value="option.value">{{ option.text }}</option>
@@ -19,6 +19,7 @@ export default {
     options: Array,
     field: Object,
     id: String,
+    name: String,
   },
 };
 </script>

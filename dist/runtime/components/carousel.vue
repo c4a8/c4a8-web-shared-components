@@ -185,7 +185,8 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 190px;
+  max-width: 270px;
+  min-width: 250px;
   white-space: normal;
   height: 100%;
   align-content: flex-start;
@@ -198,6 +199,7 @@ export default {
   text-transform: uppercase;
   padding-right: 2.25rem;
   width: 100%;
+  word-wrap: break-word;
 }
 
 .carousel__item-overline {

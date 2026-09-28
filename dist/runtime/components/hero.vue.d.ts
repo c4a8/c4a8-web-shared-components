@@ -1,5 +1,8 @@
 declare namespace _default {
     let tagName: string;
+    let components: {
+        'text-icon-animation': any;
+    };
     function setup(): {
         store: import("pinia").Store<"app", {
             loading: boolean;

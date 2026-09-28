@@ -6,16 +6,23 @@
         class="pr-10"
         :radio="radio"
         :group="id"
-        :name="id"
-        :id="field.id + radio.id"
+        :name="name"
+        :id="getRadioId(radio)"
         @action-changed="$emit('action-changed', $event)"
       />
     </template>
   </div>
 </template>
 <script>
+import Form from '../utils/components/form.js';
+
 export default {
   tagName: 'form-radios',
+  methods: {
+    getRadioId(radio) {
+      return Form.getScopedId(this.formId, this.field.id + radio.id);
+    },
+  },
   computed: {
     otherId() {
       return `${this.radio.id}_radio`;
@@ -30,6 +37,12 @@ export default {
   props: {
     field: Object,
     id: {
+      default: null,
+    },
+    name: {
+      default: null,
+    },
+    formId: {
       default: null,
     },
   },

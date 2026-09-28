@@ -1,5 +1,98 @@
 # Releases
 
+# Release 0.4.123
+
+- Removes the 500 ms wait for update from the default gtag consent settings
+
+# Release 0.4.122
+
+- Fixes hydration mismatches by rendering the lightbox and dropdown teleports only after mount
+- Fixes filter bar hydration by setting the active view in data and selecting the tag from the URL hash after mount
+- Replaces nested anchors in the testimonial teaser with plain elements
+- Adds the empty-state text for young professional job lists in English and Spanish
+
+# Release 0.4.121
+
+- Adds Sendman and Autopilot Monitor to the secondary navigation product list
+- Renders the same tracking placeholder on the server and the client to avoid hydration mismatches
+- Keeps the Google tag gateway health check off the wire
+- Treats expired cookie writes as deletions in the tracking sessionStorage mirror
+- Takes the header logo alt text from the home entry
+- Removes a stray quote from the card body class attribute
+- Fixes the ProseImg component by adding the missing import
+- Pins GitHub Actions to commit hashes and restricts workflow permissions
+
+# Release 0.4.120
+
+- Aligns the post detail tags with the article content when an aside navigation is present
+
+# Release 0.4.119
+
+- Aligns small step list colors with the event component and adds a theme override for the step list copy color
+
+# Release 0.4.118
+
+- Fixes markdown images not rendering due to a missing import
+
+# Release 0.4.117
+
+- Adds automatic Cloudinary transforms (format, quality, width limit) to markdown images
+- Limits markdown image width inside the aside wrapper
+- Loads the Turnstile widget only when the form comes into view
+- Removes the nuxt-swiper module dependency
+- Fixes race condition when loading jQuery for the video slider
+
+# Release 0.4.116
+
+- Lazy loads the swiper, hero text-icon animation and less frequent icons for better performance
+- Hydrates async components on idle
+
+# Release 0.4.115
+
+- Fixes tag blog link prefix when using an i18n strategy
+- Fixes tag prerendering
+
+# Release 0.4.114
+
+- Exposes the shared components version number in the DOM
+- Fixes double assets prefix in v-img
+- Removes trailing chevron in the small step-list variant
+- Fixes link-list style ordering issue
+
+# Release 0.4.113
+
+- Fixes the Sendman text underline color (highlight-second now uses light yellow)
+
+# Release 0.4.112
+
+- Adds a blurry fade option to the slider, enabled by default
+- Adds a hover color to the slider controls
+- Updates dependencies to remove a compromised package
+
+# Release 0.4.111
+
+- Adds schema.org structured data to event detail pages
+- Adds a redirect for events without a detail page
+- Fixes sidebar text alignment and prevents overflow
+- Fixes carousel tile width
+
+# Release 0.4.110
+
+- Updates the simple-git dependency to a newer version
+
+# Release 0.4.109
+
+- Adds schema.org structured data for organization, events, authors and articles
+- Improves slider controls styling and behaviour
+
+# Release 0.4.108
+
+- Fixes issue with duplicate id's
+
+# Release 0.4.107
+
+- Fixes issue with timeline component not showing entry text
+
 # Release 0.4.106
 
 - Fixes presorting before limiting items

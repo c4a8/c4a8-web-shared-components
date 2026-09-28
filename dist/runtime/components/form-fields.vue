@@ -8,7 +8,7 @@
           @change="handleChangeTextarea"
           @keyup="handleChangeTextarea"
           :id="id"
-          :name="id"
+          :name="name"
           rows="4"
           :placeholder="placeholder"
           :required="required"
@@ -17,19 +17,30 @@
         ></textarea>
       </template>
       <template v-else-if="field.type === 'checkbox'">
-        <form-checkbox :checkbox="field" :id="id" @form-field-updated="handleFormFieldUpdate($event)" />
+        <form-checkbox
+          :checkbox="field"
+          :id="id"
+          :name="name"
+          @form-field-updated="handleFormFieldUpdate($event)"
+        />
       </template>
       <template v-else-if="field.type === 'hidden'">
-        <input type="hidden" :name="id" :value="value" />
+        <input type="hidden" :name="name" :value="value" />
       </template>
       <template v-else-if="field.checkboxes">
-        <form-checkboxes :field="field" :id="id" />
+        <form-checkboxes :field="field" :id="id" :form-id="formId" />
       </template>
       <template v-else-if="field.type === 'radio'">
-        <form-radio :radio="field" :id="id" />
+        <form-radio :radio="field" :id="id" :name="name" />
       </template>
       <template v-else-if="field.radios">
-        <form-radios :field="field" :id="id" @action-changed="$emit('action-changed', $event)" />
+        <form-radios
+          :field="field"
+          :id="id"
+          :name="name"
+          :form-id="formId"
+          @action-changed="$emit('action-changed', $event)"
+        />
       </template>
       <template v-else-if="field.type === 'file'">
         <form-attachments
@@ -37,13 +48,14 @@
           :text="field.formAttachments?.text"
           :extensions="field.formAttachments?.extensions"
           :maxSize="field.formAttachments?.maxSize"
-          :id="field.formAttachments?.id"
+          :id="id"
+          :name="name"
           :required="field.formAttachments?.required"
           :required-msg="getRequiredMsg(field.formAttachments)"
         />
       </template>
       <template v-else-if="field.type === 'select'">
-        <form-select :field="field" :options="options" :id="id" />
+        <form-select :field="field" :options="options" :id="id" :name="name" />
       </template>
       <template v-else-if="field.type">
         <label class="input-label" :for="id">{{ field.label }}</label>
@@ -53,7 +65,7 @@
           @keyup="handleChange"
           :type="field.type"
           :id="id"
-          :name="id"
+          :name="name"
           class="form-control"
           :data-msg="getRequiredMsg(field)"
           :value="value"
@@ -172,6 +184,12 @@ export default {
     options: Array,
     field: Object,
     id: {
+      default: null,
+    },
+    name: {
+      default: null,
+    },
+    formId: {
       default: null,
     },
     replaceValue: {

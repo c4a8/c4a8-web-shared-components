@@ -122,12 +122,16 @@
 import { useHead } from '@unhead/vue';
 import { useAppStore } from '../stores/app';
 
+import { defineAsyncComponent, hydrateOnIdle } from 'vue';
 import Tools from '../utils/tools.js';
 import CloudinaryTools from '../utils/cloudinary-tools.js';
 import StickyScroller from '../utils/sticky-scroller.js';
 
 export default {
   tagName: 'hero',
+  components: {
+    'text-icon-animation': defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./text-icon-animation.vue') }),
+  },
   setup() {
     const store = useAppStore();
 

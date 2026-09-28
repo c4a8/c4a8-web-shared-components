@@ -48,14 +48,19 @@ declare module 'nuxt/config' {
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => tag.startsWith('swiper-'),
+    },
+  },
   modules: [
     '@nuxtjs/storybook',
     '@nuxt/content',
     'nuxt-i18n-micro',
     '@pinia/nuxt',
-    'nuxt-swiper',
     '@nuxtjs/turnstile',
     '@nuxt/scripts',
+    'nuxt-schema-org',
   ],
   // nuxt-i18n-micro: translations live in i18n/locales/<code>.json (generated
   // from locales/global.js — the shared-components UI strings). Single global
@@ -73,6 +78,7 @@ export default defineNuxtConfig({
       { code: 'it', iso: 'it-IT', dir: 'ltr' },
       { code: 'nl', iso: 'nl-NL', dir: 'ltr' },
       { code: 'ko', iso: 'ko-KR', dir: 'ltr' },
+      { code: 'ja', iso: 'ja-JP', dir: 'ltr' },
     ],
     defaultLocale: 'de',
     fallbackLocale: 'en',
