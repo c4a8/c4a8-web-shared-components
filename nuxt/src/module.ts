@@ -224,6 +224,8 @@ export default defineNuxtModule({
     } catch (e: any) {
       console.error('✖ [sc-i18n] FAILED:', (e && e.stack) || e);
     }
+
+    _nuxt.hook('nitro:build:public-assets', (nitro) => writeSecurityTxt(_nuxt, nitro.options.output.publicDir));
   },
 });
 
@@ -251,4 +253,29 @@ async function registerSharedI18n(_nuxt: any, resolve: (p: string) => string) {
     cwd: layerDir,
     config: { ...base.config, rootDir: layerDir, srcDir: layerDir },
   });
+}
+
+async function writeSecurityTxt(_nuxt: any, publicDir: string) {
+  const siteUrl = _nuxt.options.site?.url;
+  if (!siteUrl) return;
+
+  const origin = /^https?:\/\//.test(siteUrl) ? siteUrl : `https://${siteUrl}`;
+  const now = new Date();
+  const expires = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + 7, 1));
+  const wellKnownDir = join(publicDir, '.well-known');
+
+  await fs.mkdir(wellKnownDir, { recursive: true });
+  await fs.writeFile(
+    join(wellKnownDir, 'security.txt'),
+    [
+      '# glueckkanja AG security contact',
+      '# Report security vulnerabilities responsibly. Thank you.',
+      '',
+      'Contact: mailto:c4a8-support@glueckkanja.com',
+      `Expires: ${expires.toISOString()}`,
+      'Preferred-Languages: en, de',
+      `Canonical: ${origin.replace(/\/$/, '')}/.well-known/security.txt`,
+      '',
+    ].join('\n')
+  );
 }
