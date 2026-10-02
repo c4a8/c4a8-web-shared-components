@@ -107,7 +107,7 @@ export default {
   mounted() {
     this.reinitUtilityAnimation();
 
-    if (process.client) {
+    if (import.meta.client) {
       this.observer = new ResizeObserver((entries) => {
         if (!entries.length) return;
         this.containerHeight = entries[0].contentRect.height;
