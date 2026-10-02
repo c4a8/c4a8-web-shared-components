@@ -7,12 +7,13 @@
     <template v-else><span v-html="entry"></span></template>
   </div>
 </template>
+
 <script>
 export default {
-  tagName: 'timeline-entry-inner-text',
+  tagName: "timeline-entry-inner-text",
   props: {
     entry: [Object, String],
-    simple: Boolean,
-  },
+    simple: Boolean
+  }
 };
 </script>

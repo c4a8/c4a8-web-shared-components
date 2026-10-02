@@ -18,23 +18,23 @@
         </div>
     </div>
 </template>
+
 <script>
 export default {
-    name: 'event-detail-content',
-    props: {
-        headline: String,
-        intro: String,
-        paragraphs: Array,
-        bulletpoints: Array,
-        headlineLevel: {
-            type: String,
-            default: 'h1',
-        },
-        headlineClasses: {
-            type: String,
-            default: '',
-        },
+  name: "event-detail-content",
+  props: {
+    headline: String,
+    intro: String,
+    paragraphs: Array,
+    bulletpoints: Array,
+    headlineLevel: {
+      type: String,
+      default: "h1"
     },
-
+    headlineClasses: {
+      type: String,
+      default: ""
+    }
+  }
 };
 </script>

@@ -315,46 +315,43 @@
 
 <script>
 export default {
-  tagName: 'smile',
+  tagName: "smile",
   computed: {
     style() {
       return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
-    },
+    }
   },
   data() {
     return {
-      iconSmileStepTime: 'indefinite',
-      'step-1': [],
-      'step-2': [],
-      'step-3': [],
+      iconSmileStepTime: "indefinite",
+      "step-1": [],
+      "step-2": [],
+      "step-3": []
     };
   },
   props: {
     settings: Object,
     color: String,
-    step: Number,
+    step: Number
   },
   watch: {
     step() {
       this.startStep();
-    },
+    }
   },
   methods: {
     setElementRef(element, index) {
-      const stepList = this['step-' + index];
-
+      const stepList = this["step-" + index];
       if (!element || stepList.includes(element)) return;
-
       stepList.push(element);
     },
     startStep() {
-      const stepList = this['step-' + this.step];
-
+      const stepList = this["step-" + this.step];
       [].forEach.call(stepList, (animation) => {
-        animation.setAttribute('begin', '0s');
+        animation.setAttribute("begin", "0s");
         animation.beginElement();
       });
-    },
-  },
+    }
+  }
 };
 </script>

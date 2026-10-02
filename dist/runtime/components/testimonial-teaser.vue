@@ -75,52 +75,53 @@
     </div>
   </template>
 </template>
+
 <script>
-import UtilityAnimation from '../utils/utility-animation.js';
+import UtilityAnimation from "../utils/utility-animation.js";
 export default {
-  tagName: 'testimonial-teaser',
+  tagName: "testimonial-teaser",
   props: {
     href: {
-      type: String,
+      type: String
     },
     name: {
-      type: String,
+      type: String
     },
     title: {
-      type: String,
+      type: String
     },
     img: {
       type: Object,
-      required: false,
+      required: false
     },
     imgPosition: {
       type: String,
-      default: '50% 50%',
+      default: "50% 50%"
     },
     cloudinary: {
       type: Boolean,
-      default: true,
+      default: true
     },
     video: {
       type: Object,
-      required: false,
+      required: false
     },
     cornerImg: {
       type: Object,
-      default: null,
+      default: null
     },
     bgColor: {
       type: String,
-      default: 'var(--color-primary)',
+      default: "var(--color-primary)"
     },
     bgColorHover: {
       type: String,
-      default: 'var(--color-gk-mid-blue)',
+      default: "var(--color-gk-mid-blue)"
     },
     aspectRatio: {
       type: String,
-      default: '16/9',
-    },
+      default: "16/9"
+    }
   },
   mounted() {
     if (!this.$refs.root) return;
@@ -134,32 +135,28 @@ export default {
       return `--testimonial-teaser-img-object-position: ${this.imgPosition};`;
     },
     cornerPosition() {
-      return this.cornerImg?.position === 'left'
-        ? 'testimonial-teaser__corner--left'
-        : 'testimonial-teaser__corner--right';
+      return this.cornerImg?.position === "left" ? "testimonial-teaser__corner--left" : "testimonial-teaser__corner--right";
     },
     bgStyling() {
       return `--color-testimonial-teaser-background: ${this.bgColor}; --color-testimonial-teaser-background-hover: ${this.bgColorHover}; width: 100%;`;
     },
     nameReplaced() {
-      return this.name
-        .split(' ')
-        .map((word) => `<div class="testimonial-teaser__name-background">${word}</div>`)
-        .join('<br/>');
+      return this.name.split(" ").map((word) => `<div class="testimonial-teaser__name-background">${word}</div>`).join("<br/>");
     },
     imgSrcSet() {
       if (!this.aspectRatio) return false;
       const key = `testimonialTeaser${this.aspectRatio}`;
       return this.$site?.data?.imgSrcSets?.[key] || false;
-    },
+    }
   },
   methods: {
     triggerVideoStart() {
-      this.$refs['video-frame']?.$el.querySelector('a')?.click();
-    },
-  },
+      this.$refs["video-frame"]?.$el.querySelector("a")?.click();
+    }
+  }
 };
 </script>
+
 <style>
 .hover__parent:hover .testimonial-teaser .icon svg,
 .shared-components .testimonial-teaser:hover .icon svg {
@@ -202,8 +199,6 @@ export default {
 }
 .testimonial-teaser.testimonial-teaser--aspect-ratio .testimonial-teaser__img-wrapper {
   position: relative;
-  height: 100%;
-  width: 100%;
 }
 .testimonial-teaser.testimonial-teaser--aspect-ratio .testimonial-teaser__img-wrapper:before {
   content: "";
@@ -217,6 +212,10 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
+}
+.testimonial-teaser.testimonial-teaser--aspect-ratio .testimonial-teaser__img-wrapper {
+  height: 100%;
+  width: 100%;
 }
 @media (min-width: 992px) {
   .testimonial-teaser.testimonial-teaser--aspect-ratio .testimonial-teaser__img-wrapper {

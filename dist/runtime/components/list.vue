@@ -13,26 +13,27 @@
     </ul>
   </div>
 </template>
-<script>
-import UtilityAnimation from '../utils/utility-animation.js';
 
+<script>
+import UtilityAnimation from "../utils/utility-animation.js";
 export default {
-  tagName: 'list',
+  tagName: "list",
   mounted() {
     UtilityAnimation.init([this.$el]);
   },
   props: {
     items: {
       type: Array,
-      required: true,
+      required: true
     },
     noAnimation: {
       type: Boolean,
-      default: false,
-    },
-  },
+      default: false
+    }
+  }
 };
 </script>
+
 <style>
 .list.utility-animation .list__item[data-utility-animation-step].is-starting {
   animation-delay: calc(var(--utility-animation-index) * 80ms + 0ms);

@@ -8,25 +8,21 @@
 </template>
 
 <script>
-import Tools from '../utils/tools.js';
-
+import Tools from "../utils/tools.js";
 export default {
-  tagName: 'headline',
+  tagName: "headline",
   computed: {
     tag() {
-      return this.level ? this.level : 'h2';
+      return this.level ? this.level : "h2";
     },
     classList() {
-      const classes =
-        this.classes && Tools.hasFontSizeClass(this.classes)
-          ? this.classes
-          : `${this.tag}-font-size ${this.classes ? this.classes : ''}`;
+      const classes = this.classes && Tools.hasFontSizeClass(this.classes) ? this.classes : `${this.tag}-font-size ${this.classes ? this.classes : ""}`;
       return `${classes} headline vue-component`;
     },
     dataUtilityAnimationStep() {
       return this.utilityAnimationStep ? this.utilityAnimationStep : null;
-    },
+    }
   },
-  props: { text: String, level: String, classes: String, utilityAnimationStep: Number },
+  props: { text: String, level: String, classes: String, utilityAnimationStep: Number }
 };
 </script>

@@ -1,18 +1,3 @@
-declare namespace _default {
-    namespace props {
-        let tabs: {
-            id: StringConstructor;
-            open: BooleanConstructor;
-            headlineText: StringConstructor;
-            headlineLevel: (NumberConstructor | StringConstructor)[];
-            headlineClasses: (ObjectConstructor | ArrayConstructor | StringConstructor)[];
-            content: {
-                headline: StringConstructor;
-                headlineLevel: StringConstructor;
-                copy: StringConstructor;
-                grid: ObjectConstructor;
-            };
-        }[];
-    }
-}
+declare const _default: typeof __VLS_export;
 export default _default;
+declare const __VLS_export: import("vue").DefineSetupFnComponent<Record<string, any>, {}, {}, Record<string, any> & {}, import("vue").PublicProps>;

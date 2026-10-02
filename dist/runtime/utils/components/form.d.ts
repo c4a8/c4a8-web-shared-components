@@ -41,7 +41,7 @@ declare class Form extends BaseComponent {
     updateSubject(): void;
     handleRecaptcha(): Promise<any>;
     reCaptchaField: {
-        value: any;
+        value: string;
     } | undefined;
     addRecaptchaField(): void;
     submit(e: any): void;

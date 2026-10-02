@@ -5,17 +5,18 @@
     />
   </svg>
 </template>
+
 <script>
 export default {
-  tagName: 'check',
+  tagName: "check",
   computed: {
     style() {
       return `fill: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
-    },
+    }
   },
   props: {
     settings: Object,
-    color: String,
-  },
+    color: String
+  }
 };
 </script>

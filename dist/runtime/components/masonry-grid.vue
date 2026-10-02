@@ -35,29 +35,28 @@
     </div>
   </div>
 </template>
-<script>
-import State from '../utils/state.js';
-import FooterData from '../utils/data/footer-data.js';
-import UtilityAnimation from '../utils/utility-animation.js';
 
+<script>
+import State from "../utils/state.js";
+import FooterData from "../utils/data/footer-data.js";
+import UtilityAnimation from "../utils/utility-animation.js";
 export default {
-  tagName: 'masonry-grid',
+  tagName: "masonry-grid",
   data() {
     return {
       itemsChanged: false,
       displayedCount: this.initialItemsCount || null,
       State,
       observer: null,
-      containerHeight: 0,
+      containerHeight: 0
     };
   },
-
   computed: {
     headlineValue() {
       return {
         ...this.headline,
-        level: this.headline.level || 'h2',
-        classes: `masonry-grid__headline ${this.headline.classes}`,
+        level: this.headline.level || "h2",
+        classes: `masonry-grid__headline ${this.headline.classes}`
       };
     },
     styleVars() {
@@ -66,33 +65,30 @@ export default {
       const lg = this.columns?.lg || md;
       const xl = this.columns?.xl || lg;
       const gap = this.gap;
-
       return {
-        '--masonry-columns-sm': sm,
-        '--masonry-columns-md': md,
-        '--masonry-columns-lg': lg,
-        '--masonry-columns-xl': xl,
-        '--masonry-gap': gap,
+        "--masonry-columns-sm": sm,
+        "--masonry-columns-md": md,
+        "--masonry-columns-lg": lg,
+        "--masonry-columns-xl": xl,
+        "--masonry-gap": gap
       };
     },
     clipperStyle() {
       if (!this.showLoadMore || !this.containerHeight) return {};
-
       return {
         maxHeight: `${this.containerHeight * 0.85}px`,
-        overflow: 'hidden',
+        overflow: "hidden"
       };
     },
     displayedItems() {
       if (this.displayedCount === null || this.displayedCount >= this.items.length) {
         return this.items;
       }
-
       return this.items.slice(0, this.displayedCount + this.itemsPerLoad);
     },
     showLoadMore() {
       return this.initialItemsCount !== null && this.displayedCount < this.items.length;
-    },
+    }
   },
   watch: {
     items() {
@@ -102,23 +98,20 @@ export default {
       if (newVal !== null) {
         this.displayedCount = newVal;
       }
-    },
+    }
   },
   mounted() {
     this.reinitUtilityAnimation();
-
-    if (process.client) {
+    if (import.meta.client) {
       this.observer = new ResizeObserver((entries) => {
         if (!entries.length) return;
         this.containerHeight = entries[0].contentRect.height;
       });
-
       this.observer.observe(this.$refs.group);
     }
   },
   updated() {
     if (!this.itemsChanged) return;
-
     this.itemsChanged = false;
     this.reinitUtilityAnimation();
   },
@@ -131,7 +124,6 @@ export default {
     reinitUtilityAnimation() {
       if (!this.observeOnScroll) return;
       if (!this.$refs.items || this.$refs.items.length === 0) return;
-
       UtilityAnimation.instances = [];
       UtilityAnimation.init(Array.from(this.$refs.items));
       UtilityAnimation.addObserver();
@@ -145,44 +137,45 @@ export default {
       this.$nextTick(() => {
         this.reinitUtilityAnimation();
       });
-    },
+    }
   },
   props: {
     items: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     columns: {
       type: Object,
-      default: () => ({ sm: 1, md: 2, lg: 3, xl: 3 }),
+      default: () => ({ sm: 1, md: 2, lg: 3, xl: 3 })
     },
     gap: {
       type: String,
-      default: '1rem',
+      default: "1rem"
     },
     observeOnScroll: {
       type: Boolean,
-      default: true,
+      default: true
     },
     initialItemsCount: {
       type: Number,
-      default: null,
+      default: null
     },
     itemsPerLoad: {
       type: Number,
-      default: 6,
+      default: 6
     },
     headline: {
       type: Object,
-      default: null,
+      default: null
     },
     socials: {
       type: Array,
-      default: () => FooterData.socials,
-    },
-  },
+      default: () => FooterData.socials
+    }
+  }
 };
 </script>
+
 <style>
 .masonry-grid {
   --masonry-outer-spacing: 5rem;

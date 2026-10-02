@@ -22,17 +22,18 @@
     />
   </svg>
 </template>
+
 <script>
 export default {
-  tagName: 'charging-station',
+  tagName: "charging-station",
   computed: {
     style() {
       return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
-    },
+    }
   },
   props: {
     settings: Object,
-    color: String,
-  },
+    color: String
+  }
 };
 </script>

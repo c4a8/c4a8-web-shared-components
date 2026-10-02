@@ -11,15 +11,15 @@
 
 <script>
 export default {
-  tagName: 'phone-charger',
+  tagName: "phone-charger",
   computed: {
     style() {
       return `stroke: ${this.color}; transform: rotate(var(--icon-rotation));`;
-    },
+    }
   },
   props: {
     settings: Object,
-    color: String,
-  },
+    color: String
+  }
 };
 </script>

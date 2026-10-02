@@ -13,23 +13,24 @@
         </div>
     </div>
 </template>
+
 <script>
 export default {
-    tagName: 'circle',
-    props: {
-        circleContent: String,
-        circleIcon: String,
-        color: {
-            type: String,
-            default: '#6BB8FF'
-        }
-    },
-computed: {
+  tagName: "circle",
+  props: {
+    circleContent: String,
+    circleIcon: String,
+    color: {
+      type: String,
+      default: "#6BB8FF"
+    }
+  },
+  computed: {
     circleStyle() {
-        return {
-            backgroundColor: this.color
-        };
-    },
-}
-}
+      return {
+        backgroundColor: this.color
+      };
+    }
+  }
+};
 </script>

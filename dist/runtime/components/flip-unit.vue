@@ -20,30 +20,30 @@
 
 <script>
 export default {
-  name: 'FlipUnit',
+  name: "FlipUnit",
   props: {
     value: {
       type: [String, Number],
-      required: true,
+      required: true
     },
     label: {
       type: String,
-      required: false,
+      required: false
     },
     bgColor: {
       type: String,
-      required: false,
+      required: false
     },
     fontColor: {
       type: String,
-      required: false,
-    },
+      required: false
+    }
   },
   data() {
     return {
       current: this.value,
       next: this.value,
-      isFlipping: false,
+      isFlipping: false
     };
   },
   watch: {
@@ -51,13 +51,12 @@ export default {
       if (newVal !== oldVal) {
         this.next = newVal;
         this.isFlipping = true;
-
         setTimeout(() => {
           this.current = newVal;
           this.isFlipping = false;
         }, 600);
       }
-    },
+    }
   },
   computed: {
     color() {
@@ -65,13 +64,14 @@ export default {
     },
     style() {
       return {
-        ...(this.bgColor ? { '--flip-unit-background-color': this.bgColor } : {}),
-        ...(this.fontColor ? { '--flip-unit-font-color': this.fontColor } : {}),
+        ...this.bgColor ? { "--flip-unit-background-color": this.bgColor } : {},
+        ...this.fontColor ? { "--flip-unit-font-color": this.fontColor } : {}
       };
-    },
-  },
+    }
+  }
 };
 </script>
+
 <style>
 .flip-unit {
   margin-right: 0.5rem;

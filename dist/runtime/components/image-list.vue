@@ -8,16 +8,17 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
-  tagName: 'image-list',
+  tagName: "image-list",
   computed: {
     imagesObject() {
       return this.images || [];
-    },
+    }
   },
   props: {
-    images: Array,
-  },
+    images: Array
+  }
 };
 </script>

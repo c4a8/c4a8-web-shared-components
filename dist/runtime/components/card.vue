@@ -208,20 +208,20 @@
     </template>
   </article>
 </template>
-<script>
-import Tools from '../utils/tools.js';
-import Events from '../utils/events.js';
-import UtilityAnimation from '../utils/utility-animation.js';
-import { useBlogStore } from '../stores/blog';
 
+<script>
+import Tools from "../utils/tools.js";
+import Events from "../utils/events.js";
+import UtilityAnimation from "../utils/utility-animation.js";
+import { useBlogStore } from "../stores/blog";
 export default {
-  tagName: 'card',
+  tagName: "card",
   data() {
     return {
       wordsToTruncate: 20,
       activeView: null,
       // TODO pass this down from blog-recent
-      imgSrcSets: null,
+      imgSrcSets: null
     };
   },
   computed: {
@@ -232,13 +232,13 @@ export default {
       return this.activeView;
     },
     combinedTitle() {
-      return `${this.title} ${this.externalLanguage ? '(' + this.externalLanguage + ')' : ''}`;
+      return `${this.title} ${this.externalLanguage ? "(" + this.externalLanguage + ")" : ""}`;
     },
     noLink() {
-      return this.url === undefined || this.url === '' ? true : false;
+      return this.url === void 0 || this.url === "" ? true : false;
     },
     indexValue() {
-      return this.index != '' && this.index >= 0 ? this.index : null;
+      return this.index != "" && this.index >= 0 ? this.index : null;
     },
     style() {
       return this.index ? `--utility-animation-index: ${this.index}` : null;
@@ -247,45 +247,40 @@ export default {
       return Tools.isTrue(this.hasAnimation) === true;
     },
     utilityAnimationStep() {
-      return this.hasAnimationValue ? '1' : null;
+      return this.hasAnimationValue ? "1" : null;
     },
     rowValue() {
       return Tools.isTrue(this.row) === true;
     },
     variant() {
       if (this.long === true) {
-        return 'card--long';
+        return "card--long";
       } else if (this.productValue || this.steps) {
-        return 'card--products';
+        return "card--products";
       } else if (this.event === true || this.webcast === true) {
-        return 'card--event';
+        return "card--event";
       } else if (this.rowValue) {
-        return 'card--row';
+        return "card--row";
       }
-
-      return 'card--default';
+      return "card--default";
     },
     classList() {
       return [
-        'card',
-        this.hasAnimationValue ? 'utility-animation fade-in-bottom' : '',
-        `${this.noLink ? 'card--no-link' : ''}`,
-        `${Tools.isTrue(this.large) === true ? 'card--large mb-11' : 'h-100'}`,
+        "card",
+        this.hasAnimationValue ? "utility-animation fade-in-bottom" : "",
+        `${this.noLink ? "card--no-link" : ""}`,
+        `${Tools.isTrue(this.large) === true ? "card--large mb-11" : "h-100"}`,
         this.variant,
         this.spacing,
-        this.hasNoAspectRatio ? 'card--no-aspect-ratio' : '',
-        'vue-component',
+        this.hasNoAspectRatio ? "card--no-aspect-ratio" : "",
+        "vue-component"
       ];
     },
     productValue() {
       return Tools.getJSON(this.product);
     },
     truncatedExcerpt() {
-      const excerptValue =
-        Tools.isTrue(this.long) === true
-          ? this.strippedExcerpt
-          : Tools.truncateWords(this.strippedExcerpt, this.wordsToTruncate);
-
+      const excerptValue = Tools.isTrue(this.long) === true ? this.strippedExcerpt : Tools.truncateWords(this.strippedExcerpt, this.wordsToTruncate);
       return Tools.decodeHTML(excerptValue);
     },
     strippedExcerpt() {
@@ -301,7 +296,7 @@ export default {
         if (/^.+\.(jpg|webp|png)/.test(this.blogtitlepic)) {
           return this.blogtitlepic;
         } else {
-          return this.blogtitlepic + '.jpg';
+          return this.blogtitlepic + ".jpg";
         }
       }
     },
@@ -313,11 +308,9 @@ export default {
     },
     ctaValue() {
       const cta = Tools.getJSON(this.cta);
-
-      if (cta && cta.link === undefined) {
+      if (cta && cta.link === void 0) {
         cta.link = true;
       }
-
       return cta;
     },
     cardFooterData() {
@@ -328,17 +321,14 @@ export default {
         hasNoLink: this.hasNoLink,
         dataAuthors: this.dataAuthors,
         isRow: this.rowValue,
-        tags: this.tags,
+        tags: this.tags
       };
-    },
+    }
   },
   created() {
     if (Tools.isTrue(this.store) !== true) return;
-
     const blogStore = useBlogStore();
     this.activeView = blogStore.getBlogView;
-
-    // Subscribe to view changes using watch
     this.$watch(
       () => blogStore.getBlogView,
       (newView) => {
@@ -348,68 +338,52 @@ export default {
   },
   mounted() {
     if (!this.hasAnimationValue) return;
-
     UtilityAnimation.init([this.$refs.root]);
   },
   methods: {
     isTags(target) {
-      return target.parentElement.classList.contains('tags__btn') ||
-        target.parentElement.classList.contains('card__tags')
-        ? true
-        : false;
+      return target.parentElement.classList.contains("tags__btn") || target.parentElement.classList.contains("card__tags") ? true : false;
     },
     formatDate(date) {
       if (!date) return;
-
       if (Tools.isGermanDate(date)) return date;
-
-      const splitted = date.split(' ');
-      const formatedDate = splitted[0].split('-');
+      const splitted = date.split(" ");
+      const formatedDate = splitted[0].split("-");
       const year = formatedDate[0];
       const month = formatedDate[1];
       const day = formatedDate[2];
-
       return `${day}.${month}.${year}`;
     },
     authorList(author) {
-      if (author && typeof author === 'object' && author.length > 0) return author;
-
-      if (author && typeof author === 'string') return [author];
-
+      if (author && typeof author === "object" && author.length > 0) return author;
+      if (author && typeof author === "string") return [author];
       return author;
     },
     subPointsList(subpoints) {
       return Tools.getJSON(subpoints);
     },
     headlineClassValue(index) {
-      return index !== 0 ? 'mt-5' : '';
+      return index !== 0 ? "mt-5" : "";
     },
     handleClick(e) {
       if (this.noLink) return;
-
-      const title = this.$refs['title'];
+      const title = this.$refs["title"];
       const target = e.target;
-
-      if (target.classList.contains('card__title')) return;
-
+      if (target.classList.contains("card__title")) return;
       const isTags = this.isTags(target);
-
-      if (!target.parentElement.classList.contains('authors__link') && !isTags) {
+      if (!target.parentElement.classList.contains("authors__link") && !isTags) {
         e.stopImmediatePropagation();
-
         title.click();
       } else {
         if (!isTags) return;
-
         e.stopImmediatePropagation();
         e.preventDefault();
-
         this.$emit(Events.CARD_TAG_CLICKED, target.dataset.tag);
       }
     },
     isIncluded(include) {
-      return Tools.isTrue(include) ? 'check-mark' : 'x-mark';
-    },
+      return Tools.isTrue(include) ? "check-mark" : "x-mark";
+    }
   },
   props: {
     overline: String,
@@ -417,11 +391,11 @@ export default {
     steps: Array,
     color: {
       type: String,
-      default: 'var(--color-primary)',
+      default: "var(--color-primary)"
     },
     accentColor: {
       type: String,
-      default: 'var(--color-highlight)',
+      default: "var(--color-highlight)"
     },
     blogtitlepic: String,
     url: String,
@@ -429,60 +403,61 @@ export default {
     target: String,
     excerpt: String,
     author: {
-      type: [String, Array],
+      type: [String, Array]
     },
     date: String,
     footer: String,
     tag: {
-      default: null,
+      default: null
     },
     large: {
-      default: null,
+      default: null
     },
     long: {
-      default: null,
+      default: null
     },
     product: {
-      default: null,
+      default: null
     },
     subPoints: {
-      default: null,
+      default: null
     },
     event: {
-      default: null,
+      default: null
     },
     webcast: {
-      default: null,
+      default: null
     },
     youtubeUrl: String,
     dataAuthors: Object,
     scope: String,
     cta: {
-      default: null,
+      default: null
     },
     hasAnimation: {
-      default: null,
+      default: null
     },
     index: Number,
     externalLanguage: String,
     spacing: String,
     store: {
-      default: null,
+      default: null
     },
     row: {
-      default: null,
+      default: null
     },
     tags: Array,
     hasNoAspectRatio: {
-      type: Boolean,
+      type: Boolean
     },
     logo: Object,
     img: String,
     cloudinary: Boolean,
-    alt: String,
-  },
+    alt: String
+  }
 };
 </script>
+
 <style>
 .card.vue-component.utility-animation[data-utility-animation-step] {
   --utility-animation-distance: 25%;
@@ -500,7 +475,6 @@ export default {
 }
 .card.vue-component:not(.card--no-link) {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 1.5s cubic-bezier(0.19, 1, 0.2, 1);
 }
 .card.vue-component:not(.card--no-link) .is-foreground :is(img, svg, .lottie),
 .card.vue-component:not(.card--no-link) .is-background {
@@ -512,6 +486,9 @@ export default {
 .card.vue-component:not(.card--no-link):hover .is-background {
   transform: scale(1.025);
   transition-duration: 1.3s;
+}
+.card.vue-component:not(.card--no-link) {
+  transition: box-shadow 1.5s cubic-bezier(0.19, 1, 0.2, 1);
 }
 .card.vue-component:not(.card--no-link):hover {
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.25);
@@ -790,7 +767,6 @@ export default {
 
 .card:not(.vue-component):not(.card--no-link) {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 1.5s cubic-bezier(0.19, 1, 0.2, 1);
 }
 .card:not(.vue-component):not(.card--no-link) .is-foreground :is(img, svg, .lottie),
 .card:not(.vue-component):not(.card--no-link) .is-background {
@@ -802,6 +778,9 @@ export default {
 .card:not(.vue-component):not(.card--no-link):hover .is-background {
   transform: scale(1.025);
   transition-duration: 1.3s;
+}
+.card:not(.vue-component):not(.card--no-link) {
+  transition: box-shadow 1.5s cubic-bezier(0.19, 1, 0.2, 1);
 }
 .card:not(.vue-component):not(.card--no-link):hover {
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.25);

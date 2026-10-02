@@ -248,160 +248,133 @@
 </template>
 
 <script>
-import { computed } from 'vue';
-import { useI18n, useNuxtApp } from '#imports';
-import { useAppStore } from '../stores/app.js';
-import Tools from '../utils/tools.js';
-import State from '../utils/state.js';
-import Events from '../utils/events.js';
-import SecondaryNavigation from '../utils/data/secondary-navigation.js';
-import Languages from '../utils/languages.js';
-
-const HEADER_LAYOUT_CACHE_KEY = 'vHeaderLayout';
+import { computed } from "vue";
+import { useI18n, useNuxtApp } from "#imports";
+import { useAppStore } from "../stores/app.js";
+import Tools from "../utils/tools.js";
+import State from "../utils/state.js";
+import Events from "../utils/events.js";
+import SecondaryNavigation from "../utils/data/secondary-navigation.js";
+import Languages from "../utils/languages.js";
+const HEADER_LAYOUT_CACHE_KEY = "vHeaderLayout";
 const HEADER_COLLAPSE_MAX_VIEWPORT = 1400;
-
 const isOutsideCollapseMeasureRange = () => {
-  if (typeof window === 'undefined') return false;
-
-  return !Tools.isAboveBreakpoint('lg') || window.innerWidth >= HEADER_COLLAPSE_MAX_VIEWPORT;
+  if (typeof window === "undefined") return false;
+  return !Tools.isAboveBreakpoint("lg") || window.innerWidth >= HEADER_COLLAPSE_MAX_VIEWPORT;
 };
-
 const readHeaderLayoutCache = () => {
-  if (typeof window === 'undefined') return null;
-
+  if (typeof window === "undefined") return null;
   try {
     const cache = JSON.parse(window.sessionStorage.getItem(HEADER_LAYOUT_CACHE_KEY));
-
     return cache && cache.viewport === window.innerWidth ? cache : null;
   } catch {
     return null;
   }
 };
-
 export default {
-  tagName: 'v-header',
+  tagName: "v-header",
   setup() {
     const store = useAppStore();
-
     const { $switchLocalePath: switchLocalePath, $getLocales } = useI18n();
-    const availableLocales = computed(() => ($getLocales() || []).map((l) => (typeof l === 'string' ? l : l.code)));
-
+    const availableLocales = computed(() => ($getLocales() || []).map((l) => typeof l === "string" ? l : l.code));
     return { store, switchLocalePath, availableLocales };
   },
   computed: {
     classList() {
       return [
-        'header',
-        this.isScrolled ? State.IS_SCROLLED : '',
-        this.isLight ? 'header--light' : '',
-        Tools.isTrue(this.hover) ? State.HOVERING : '',
-        Tools.isTrue(this.product) ? 'header--product' : '',
-        !Tools.isTrue(this.closed) ? State.EXPANDED : '',
-        Tools.isTrue(this.blendMode) ? 'header--blending' : '',
-        this.collapseRatio ? 'header--collapsible' : '',
-        this.collapseRatio && !this.logoCollapseReady ? 'is-measuring' : '',
-        this.logoCollapsed ? 'is-logo-collapsed' : '',
-        this.headerCondensed ? 'is-condensed' : '',
-        this.onSurface ? State.ON_SURFACE : '',
-        this.inUpdate ? 'is-updating' : '',
-        'vue-component',
+        "header",
+        this.isScrolled ? State.IS_SCROLLED : "",
+        this.isLight ? "header--light" : "",
+        Tools.isTrue(this.hover) ? State.HOVERING : "",
+        Tools.isTrue(this.product) ? "header--product" : "",
+        !Tools.isTrue(this.closed) ? State.EXPANDED : "",
+        Tools.isTrue(this.blendMode) ? "header--blending" : "",
+        this.collapseRatio ? "header--collapsible" : "",
+        this.collapseRatio && !this.logoCollapseReady ? "is-measuring" : "",
+        this.logoCollapsed ? "is-logo-collapsed" : "",
+        this.headerCondensed ? "is-condensed" : "",
+        this.onSurface ? State.ON_SURFACE : "",
+        this.inUpdate ? "is-updating" : "",
+        "vue-component"
       ];
     },
     secondaryNavigationClassList() {
       return [
-        'header__secondary-navigation',
-        this.secondaryNavigationInTransition ? State.IN_TRANSITION : '',
-        this.secondaryNavigationDimensions ? State.READY : '',
-        this.secondaryNavigationIsExpanded ? State.IS_EXPANDED : '',
+        "header__secondary-navigation",
+        this.secondaryNavigationInTransition ? State.IN_TRANSITION : "",
+        this.secondaryNavigationDimensions ? State.READY : "",
+        this.secondaryNavigationIsExpanded ? State.IS_EXPANDED : ""
       ];
     },
     secondaryNavigation() {
       if (!this.showSecondaryNavigation) return null;
-
       return {
         ...SecondaryNavigation,
         children: SecondaryNavigation.children.map((item) => ({
           ...item,
-          children: item.children.filter((child) => child.name !== this.theme),
-        })),
+          children: item.children.filter((child) => child.name !== this.theme)
+        }))
       };
     },
     collapseRatio() {
       const ratio = parseFloat(this.collapse);
-
       if (!ratio || ratio <= 0) return null;
-
       return ratio > 1 ? ratio / 100 : ratio;
     },
     headerLogoStyle() {
       const styles = [];
-
       if (this.secondaryNavigation && this.logoOffsetPosition) {
         styles.push(`padding-left: ${this.logoOffsetPosition}px`);
       }
-
       if (this.collapseRatio) {
         styles.push(`--header-logo-collapse: ${this.collapseRatio}`);
       }
-
       if (this.collapseRatio && this.logoNaturalWidth) {
         styles.push(`--header-logo-natural-width: ${this.logoNaturalWidth}px`);
       }
-
-      return styles.length ? `${styles.join(';')};` : undefined;
+      return styles.length ? `${styles.join(";")};` : void 0;
     },
     headerContainerClassList() {
-      return ['header__container', this.containerClass];
+      return ["header__container", this.containerClass];
     },
     containerClass() {
-      return Tools.isTrue(this.product) ? 'container' : 'container-xxl';
+      return Tools.isTrue(this.product) ? "container" : "container-xxl";
     },
     homeObj() {
       return this.home?.languages[this.lowerLang];
     },
     logoAlt() {
-      // The logo is the only content of the home link, so the alt text names the site,
-      // taken from the home entry's alt (or title) instead of a hardcoded "logo".
-      return this.homeObj?.alt || this.homeObj?.title || 'logo';
+      return this.homeObj?.alt || this.homeObj?.title || "logo";
     },
     lowerLang() {
       return this.lang ? this.lang.toLowerCase() : this.defaultLang;
     },
     languageNote() {
-      // The source language is the site's default locale: German on corporate, English
-      // on the product sites. Its name is itself translated, so the sentence reads
-      // naturally in every language.
-      const source = useNuxtApp().$getI18nConfig?.().defaultLocale ?? 'en';
+      const source = useNuxtApp().$getI18nConfig?.().defaultLocale ?? "en";
       const sourceKey = `languageSource${Tools.capitalize(source)}`;
       const sourceName = this.$t(sourceKey);
-
-      return this.$t('languageNote', { source: sourceName === sourceKey ? this.$t('languageSourceEn') : sourceName });
+      return this.$t("languageNote", { source: sourceName === sourceKey ? this.$t("languageSourceEn") : sourceName });
     },
     searchValue() {
       return Tools.isTrue(this.search);
     },
     metaList() {
-      if (!this.meta || typeof this.meta !== 'object') return null;
-
+      if (!this.meta || typeof this.meta !== "object") return null;
       return {
         ...this.meta,
-        children: this.meta,
+        children: this.meta
       };
     },
     spacerBgColor() {
-      const color = this.bgColor ? this.bgColor : 'var(--color-header-background)';
-
+      const color = this.bgColor ? this.bgColor : "var(--color-header-background)";
       return `--color-header-spacer-background: ${color}; background-color: var(--color-header-spacer-background);`;
     },
     clonedNavigation() {
       const clonedNavigation = JSON.parse(JSON.stringify(this.navigation));
-
       if (this.secondaryNavigation) {
         this.secondaryNavigation.isMobile = true;
-
         clonedNavigation.push(this.secondaryNavigation);
       }
-
       return clonedNavigation;
     },
     isLight() {
@@ -423,12 +396,11 @@ export default {
       return this.store.getHeader;
     },
     onSurfaceCta() {
-      return this.hoverHeader || this.isScrolled ? null : this.onSurface || (this.isLight && this.onSurface);
-    },
+      return this.hoverHeader || this.isScrolled ? null : this.onSurface || this.isLight && this.onSurface;
+    }
   },
   created() {
     this.setActiveNavigation();
-
     this.store.setHeader({
       isScrolled: this.isScrolled,
       isLight: this.isLight,
@@ -436,7 +408,7 @@ export default {
       isProduct: this.product,
       isExpanded: !this.closed,
       isBlending: this.blendMode,
-      isUpdating: this.inUpdate,
+      isUpdating: this.inUpdate
     });
   },
   watch: {
@@ -461,24 +433,20 @@ export default {
     },
     inUpdate(newVal) {
       this.store.setHeader({ ...this.headerState, isUpdating: newVal });
-    },
+    }
   },
   mounted() {
     this.bindEvents();
-
     this.setCtaClasses();
     this.setLinkWidth();
     this.setLogoNaturalWidth();
     this.handleScroll();
-
     if (this.secondaryNavigation) {
       this.getSecondaryNavigationDimensions();
     }
-
-    this.initEvents.forEach((event) =>
-      window.addEventListener(event, this.initMegaMenu, { once: true, passive: true })
+    this.initEvents.forEach(
+      (event) => window.addEventListener(event, this.initMegaMenu, { once: true, passive: true })
     );
-
     if (document.fonts?.ready) {
       document.fonts.ready.then(() => this.setLogoNaturalWidth());
     }
@@ -486,7 +454,6 @@ export default {
   updated() {
     if (this.inUpdate) {
       this.updateProductListHeight();
-
       this.inUpdate = false;
       this.inTransition = false;
     }
@@ -494,195 +461,136 @@ export default {
   methods: {
     initMegaMenu() {
       if (this.renderMegaMenu) return;
-
       this.renderMegaMenu = true;
-
       if (this.secondaryNavigation) {
         this.$nextTick(() => {
           if (this.secondaryNavigationIsExpanded || this.secondaryNavigationInTransition) return;
-
           this.getSecondaryNavigationDimensions();
         });
       }
-
       this.initEvents.forEach((event) => window.removeEventListener(event, this.initMegaMenu));
     },
     getSecondaryNavigationDimensions() {
       if (!this.secondaryNavigation) return;
-
       const secondaryNavigation = this.$refs.secondaryNavigation;
-
       secondaryNavigation.dataset.updating = true;
-
       this.secondaryNavigationDimensions = null;
-
       secondaryNavigation.style.width = null;
       secondaryNavigation.style.height = null;
-      secondaryNavigation.removeAttribute('data-width-expanded');
-      secondaryNavigation.removeAttribute('data-height-expanded');
-
+      secondaryNavigation.removeAttribute("data-width-expanded");
+      secondaryNavigation.removeAttribute("data-height-expanded");
       this.secondaryNavigationDimensions = {
-        width: secondaryNavigation.offsetWidth,
+        width: secondaryNavigation.offsetWidth
       };
-
-      secondaryNavigation.removeAttribute('data-updating');
+      secondaryNavigation.removeAttribute("data-updating");
     },
     closeSecondaryNavigation() {
       if (!this.secondaryNavigation || !this.secondaryNavigationIsExpanded) return;
-
       this.secondaryNavigationInTransition = !this.secondaryNavigationInTransition;
       this.secondaryNavigationIsExpanded = !this.secondaryNavigationIsExpanded;
-
       const secondaryNavigation = this.$refs.secondaryNavigation;
-
-      secondaryNavigation.removeAttribute('data-height-expanded');
-      secondaryNavigation.removeAttribute('data-width-expanded');
+      secondaryNavigation.removeAttribute("data-height-expanded");
+      secondaryNavigation.removeAttribute("data-width-expanded");
       secondaryNavigation.style.height = null;
       secondaryNavigation.style.width = null;
-
       this.secondaryNavigationTransitionState = null;
     },
     toggleSecondaryNavigation() {
       if (!this.secondaryNavigation) return;
-
       const secondaryNavigation = this.$refs.secondaryNavigation;
       const secondaryNavigationButton = this.$refs.secondaryNavigationButton;
-
       if (!secondaryNavigation || !secondaryNavigationButton) return;
-
       clearTimeout(this.secondaryNavigationTimeout);
-
       this.secondaryNavigationInTransition = !this.secondaryNavigationInTransition;
       this.secondaryNavigationIsExpanded = !this.secondaryNavigationIsExpanded;
-
       if (this.secondaryNavigationIsExpanded) return this.expandWidthSecondaryNavigation(secondaryNavigation);
-
       this.shrinkSecondaryNavigation(secondaryNavigation, secondaryNavigationButton);
     },
     shrinkWidthSecondaryNavigation() {
       const secondaryNavigation = this.$refs.secondaryNavigation;
-
       if (!secondaryNavigation) return;
-
-      secondaryNavigation.removeAttribute('data-height-expanded');
+      secondaryNavigation.removeAttribute("data-height-expanded");
       secondaryNavigation.style.height = null;
-
       const buttonDimensions = this.getSecondaryNavigationButtonDimensions();
       const buttonHeight = buttonDimensions.height;
-
       secondaryNavigation.style.width = `${buttonHeight}px`;
-
-      secondaryNavigation.removeAttribute('data-width-expanded');
+      secondaryNavigation.removeAttribute("data-width-expanded");
       this.secondaryNavigationTransitionState = null;
     },
     shrinkSecondaryNavigation(secondaryNavigation) {
       const buttonDimensions = this.getSecondaryNavigationButtonDimensions();
       const buttonHeight = buttonDimensions.height;
-
       secondaryNavigation.style.height = `${buttonHeight}px`;
-
       this.secondaryNavigationTransitionState = this.secondaryNavigationTransitionStates.SHRINKING_HEIGHT;
     },
     expandWidthSecondaryNavigation(secondaryNavigation) {
       if (!this.secondaryNavigationInTransition) return;
-
       const dimensions = this.secondaryNavigationDimensions;
       const buttonDimensions = this.getSecondaryNavigationButtonDimensions();
       const buttonWidth = buttonDimensions.width;
-
       secondaryNavigation.style.width = `${buttonWidth}px`;
-
       this.secondaryNavigationTimeout = setTimeout(() => {
         secondaryNavigation.style.width = `${dimensions.width}px`;
-
         this.expandSecondaryNavigation();
       }, this.secondaryNaivgationTransitionDelay);
     },
     expandSecondaryNavigation() {
       const secondaryNavigation = this.$refs.secondaryNavigation;
-
       if (!secondaryNavigation) return;
-
       secondaryNavigation.dataset.widthExpanded = true;
-
       const secondaryNavigationInnerContent = this.$refs.secondaryNavigationInnerContent;
       const buttonDimensions = this.getSecondaryNavigationButtonDimensions();
       const buttonHeight = buttonDimensions.height;
-
       secondaryNavigation.style.height = `${buttonHeight}px`;
-
       this.secondaryNavigationTimeout = setTimeout(() => {
-        this.secondaryNavigationDimensions['height'] = secondaryNavigationInnerContent.offsetHeight;
-
+        this.secondaryNavigationDimensions["height"] = secondaryNavigationInnerContent.offsetHeight;
         const dimensions = this.secondaryNavigationDimensions;
-
         secondaryNavigation.dataset.heightExpanded = true;
-
         secondaryNavigation.style.height = `${buttonHeight + dimensions.height}px`;
       }, this.secondaryNaivgationTransitionDelay * 4);
     },
     handleSecondaryNavigationTransitionEnd(event) {
-      if (
-        this.secondaryNavigationTransitionState &&
-        (event?.propertyName !== 'height' || event?.propertyName !== 'width')
-      )
+      if (this.secondaryNavigationTransitionState && (event?.propertyName !== "height" || event?.propertyName !== "width"))
         return;
-
       if (this.secondaryNavigationTransitionState === this.secondaryNavigationTransitionStates.SHRINKING_HEIGHT) {
         this.shrinkWidthSecondaryNavigation();
       }
     },
     setLogoNaturalWidth() {
       const media = this.$refs.logoMedia;
-
       if (!media) return;
-
-      const images = [...media.querySelectorAll('img')];
+      const images = [...media.querySelectorAll("img")];
       const width = Math.max(0, ...images.map((image) => image.getBoundingClientRect().width));
-
       if (!width) {
         const pending = images.filter((image) => !image.complete);
-
         if (!pending.length) {
           this.logoCollapseReady = true;
-
           return;
         }
-
         pending.forEach((image) => {
-          image.addEventListener('load', this.setLogoNaturalWidth, { once: true });
-          image.addEventListener('error', () => (this.logoCollapseReady = true), { once: true });
+          image.addEventListener("load", this.setLogoNaturalWidth, { once: true });
+          image.addEventListener("error", () => this.logoCollapseReady = true, { once: true });
         });
-
         return;
       }
-
       this.logoNaturalWidth = width;
-
       this.evaluateLogoCollapse();
     },
     calculateLogoOffsetPosition() {
       this.logoOffsetPosition = 0;
-
       if (Tools.isUpperBreakpoint() && !this.headerCondensed) {
         this.logoOffsetPosition = this.getLogoOffsetSpace();
       }
-
       this.saveHeaderLayoutCache();
     },
     getLogoOffsetSpace() {
       if (!this.secondaryNavigation) return 0;
-
       const headerContainer = this.$refs.headerContainer;
-
       if (!headerContainer) return 0;
-
       const offsetCorrection = 20;
-
       const margin = headerContainer.getBoundingClientRect().left;
       const buttonDimensions = this.getSecondaryNavigationButtonDimensions();
       const buttonWidth = buttonDimensions.width;
-
       return margin < buttonWidth ? Math.max(0, buttonWidth - margin - offsetCorrection) : 0;
     },
     evaluateLogoCollapse() {
@@ -693,66 +601,42 @@ export default {
         this.saveHeaderLayoutCache();
         return;
       }
-
       const media = this.$refs.logoMedia;
-      const header = media?.closest('.header');
-      const col = media?.closest('.header__col');
-      const logo = media?.closest('.header__logo');
-
+      const header = media?.closest(".header");
+      const col = media?.closest(".header__col");
+      const logo = media?.closest(".header__logo");
       if (!header || !col || !logo) return;
-
-      const wasCondensed = header.classList.contains('is-condensed');
-
-      if (wasCondensed) header.classList.remove('is-condensed');
-
-      const imageWidth = [...media.querySelectorAll('img')]
-        .map((image) => image.getBoundingClientRect().width)
-        .reduce((widest, width) => Math.max(widest, width), 0);
-
+      const wasCondensed = header.classList.contains("is-condensed");
+      if (wasCondensed) header.classList.remove("is-condensed");
+      const imageWidth = [...media.querySelectorAll("img")].map((image) => image.getBoundingClientRect().width).reduce((widest, width) => Math.max(widest, width), 0);
       let measurements = null;
-
       if (imageWidth) {
         const colStyle = window.getComputedStyle(col);
-        const available =
-          col.getBoundingClientRect().width - parseFloat(colStyle.paddingLeft) - parseFloat(colStyle.paddingRight);
-
+        const available = col.getBoundingClientRect().width - parseFloat(colStyle.paddingLeft) - parseFloat(colStyle.paddingRight);
         const logoStyle = window.getComputedStyle(logo);
         const logoPadding = parseFloat(logoStyle.paddingRight) + this.getLogoOffsetSpace();
-
-        const siblingsRequired = [...col.children]
-          .filter((child) => child !== logo && child.offsetParent)
-          .reduce((total, child) => {
-            const childStyle = window.getComputedStyle(child);
-            const margins = child.classList.contains('header__language-switch')
-              ? 0
-              : parseFloat(childStyle.marginLeft) + parseFloat(childStyle.marginRight);
-            const width = Math.max(child.scrollWidth, child.getBoundingClientRect().width);
-
-            return total + width + margins;
-          }, 0);
-
+        const siblingsRequired = [...col.children].filter((child) => child !== logo && child.offsetParent).reduce((total, child) => {
+          const childStyle = window.getComputedStyle(child);
+          const margins = child.classList.contains("header__language-switch") ? 0 : parseFloat(childStyle.marginLeft) + parseFloat(childStyle.marginRight);
+          const width = Math.max(child.scrollWidth, child.getBoundingClientRect().width);
+          return total + width + margins;
+        }, 0);
         measurements = {
           available,
           expanded: imageWidth + logoPadding + siblingsRequired,
-          collapsed: imageWidth * (this.collapseRatio || 1) + logoPadding + siblingsRequired,
+          collapsed: imageWidth * (this.collapseRatio || 1) + logoPadding + siblingsRequired
         };
       }
-
-      if (wasCondensed) header.classList.add('is-condensed');
-
+      if (wasCondensed) header.classList.add("is-condensed");
       if (!measurements) return;
-
       const condensed = measurements.collapsed > measurements.available + 1;
       const collapsed = !condensed && measurements.expanded > measurements.available + 1;
-
       this.logoCollapsed = collapsed;
-
       if (!this.logoCollapseReady && collapsed) {
-        this.$nextTick(() => requestAnimationFrame(() => requestAnimationFrame(() => (this.logoCollapseReady = true))));
+        this.$nextTick(() => requestAnimationFrame(() => requestAnimationFrame(() => this.logoCollapseReady = true)));
       } else {
         this.logoCollapseReady = true;
       }
-
       if (condensed !== this.headerCondensed) {
         this.headerCondensed = condensed;
         this.reset();
@@ -761,7 +645,6 @@ export default {
           this.getSecondaryNavigationDimensions();
         });
       }
-
       this.saveHeaderLayoutCache();
     },
     saveHeaderLayoutCache() {
@@ -773,43 +656,38 @@ export default {
             condensed: this.headerCondensed,
             collapsed: this.logoCollapsed,
             naturalWidth: this.collapseRatio ? this.logoNaturalWidth : null,
-            logoOffset: this.logoOffsetPosition,
+            logoOffset: this.logoOffsetPosition
           })
         );
-      } catch {}
+      } catch {
+      }
     },
     getSecondaryNavigationButtonDimensions() {
       const secondaryNavigationButton = this.$refs.secondaryNavigationButton;
-
       return { width: secondaryNavigationButton.offsetWidth, height: secondaryNavigationButton.offsetHeight };
     },
     setActiveNavigation() {
       this.setActiveLinks();
-
       this.activeNavigation = this.clonedNavigation;
     },
     setLinkWidth() {
-      const headerItems = this.$refs['headerItem'];
-      const links = headerItems?.$refs['link'];
-
+      const headerItems = this.$refs["headerItem"];
+      const links = headerItems?.$refs["link"];
       if (!links) return;
-
       for (let i = 0; i < links.length; i++) {
         const link = links[i];
-        const textWidth = link?.querySelector('.header__link-text-spacer')?.clientWidth;
-
-        link.style.setProperty('--header-link-text-width', textWidth + 'px');
+        const textWidth = link?.querySelector(".header__link-text-spacer")?.clientWidth;
+        link.style.setProperty("--header-link-text-width", textWidth + "px");
       }
     },
     showFlyoutBlock(children) {
       return children.length > this.maxLinkListsInFlyout ? false : true;
     },
     isLowerBreakpoint() {
-      return this.headerCondensed || Tools.isBelowBreakpoint('md');
+      return this.headerCondensed || Tools.isBelowBreakpoint("md");
     },
     bindEvents() {
-      window.addEventListener('scroll', this.handleScroll.bind(this));
-
+      window.addEventListener("scroll", this.handleScroll.bind(this));
       document.addEventListener(Events.WINDOW_RESIZE, this.handleResize.bind(this));
     },
     handleResize() {
@@ -821,20 +699,16 @@ export default {
     },
     handleScroll() {
       this.isScrolled = window.scrollY > this.scrollThreshold;
-
       this.setCtaClasses();
     },
     reset() {
       this.resetFlyouts();
       this.updateProductListHeight();
-
       this.closed = true;
     },
     handleCloseClick() {
       if (this.initMegaMenu) this.initMegaMenu();
-
       this.closed = !this.closed;
-
       if (this.closed) {
         this.reset();
       }
@@ -846,23 +720,17 @@ export default {
     },
     handleClick(item, index) {
       if (!this.isLowerBreakpoint()) return;
-
       const id = this.getId(item, index);
-
       this.linkLists[id] = !this.linkLists[id];
-
       if (this.linkLists[id]) {
         this.inTransition = true;
       }
-
       this.inUpdate = true;
-
       this.closeAllSiblings(id);
       this.closeAllChildren();
     },
     closeAllSiblings(id) {
       const keys = Object.keys(this.linkLists);
-
       keys.forEach((key) => {
         if (key !== id) {
           this.linkLists[key] = false;
@@ -871,72 +739,51 @@ export default {
     },
     closeAllChildren() {
       const customEvent = new CustomEvent(Events.CHILD_HAS_UPDATE, {
-        detail: {},
+        detail: {}
       });
-
-      this.$refs['list'].dispatchEvent(customEvent);
+      this.$refs["list"].dispatchEvent(customEvent);
     },
     getId(item, index) {
       return `${item.name}_${index}`;
     },
     handleHeaderMouseOver() {
       if (this.initMegaMenu) this.initMegaMenu();
-
       this.hoverHeader = true;
-
       this.setCtaClasses();
     },
     handleHeaderMouseOut() {
       this.hoverHeader = false;
-
       this.setCtaClasses();
     },
     setCtaClasses() {
       if (!this.isLight) return;
-
       if (this.hoverHeader || this.isScrolled) {
         this.ctaClassList = null;
       } else {
-        this.ctaClassList = 'is-light-lg';
+        this.ctaClassList = "is-light-lg";
       }
     },
     handleMouseOver(item, index) {
       if (this.headerCondensed) return;
       if (!item.children) return;
-
       this.resetAllFlyouts();
-
       this.hover = true;
-
       const link = this.getLinkRef(index);
-
       if (!link) return;
-
       link.classList.add(State.EXPANDED);
-
       const flyout = this.getFlyoutRef(index);
-
       if (!flyout) return;
-
       this.flyoutIndex = index;
-
       flyout.classList.add(State.EXPANDED);
     },
     handleMouseOut(event) {
-      if (event.relatedTarget?.closest('.header__flyout')) return;
-
+      if (event.relatedTarget?.closest(".header__flyout")) return;
       this.hover = false;
-
       const link = this.getLinkRef(this.flyoutIndex);
-
       if (!link) return;
-
       link.classList.remove(State.EXPANDED);
-
       const ref = this.getFlyoutRef(this.flyoutIndex);
-
       if (!ref) return;
-
       ref.classList.remove(State.EXPANDED);
     },
     toggleLanguageList() {
@@ -944,279 +791,215 @@ export default {
     },
     handleLanguageOver() {
       this.resetAllFlyouts();
-
       this.hover = true;
-
-      const languageSwitch = this.$refs['languageSwitch'];
-
+      const languageSwitch = this.$refs["languageSwitch"];
       if (!languageSwitch) return;
-
       languageSwitch.classList.add(State.EXPANDED);
     },
     handleLanguageOut(event) {
-      if (event.relatedTarget?.closest('.header__language-switch')) return;
-
+      if (event.relatedTarget?.closest(".header__language-switch")) return;
       this.hover = false;
-
-      const languageSwitch = this.$refs['languageSwitch'];
-
+      const languageSwitch = this.$refs["languageSwitch"];
       if (!languageSwitch) return;
-
       languageSwitch.classList.remove(State.EXPANDED);
     },
     resetAllFlyouts() {
-      const headerItems = this.$refs['headerItem'];
-      const links = headerItems?.$refs['link'];
-
+      const headerItems = this.$refs["headerItem"];
+      const links = headerItems?.$refs["link"];
       links?.forEach((link) => {
         link.classList.remove(State.EXPANDED);
       });
-
-      this.$refs['flyout']?.forEach((flyout) => {
+      this.$refs["flyout"]?.forEach((flyout) => {
         flyout.classList.remove(State.EXPANDED);
       });
-
-      this.$refs['languageSwitch']?.classList.remove(State.EXPANDED);
+      this.$refs["languageSwitch"]?.classList.remove(State.EXPANDED);
     },
     getFlyoutRef(refName) {
-      return this.getRef('flyout', refName);
+      return this.getRef("flyout", refName);
     },
     getLinkRef(refName) {
-      return this.getRef('link', refName);
+      return this.getRef("link", refName);
     },
     getRef(name, refName) {
       let ref = null;
-
       if (this.$refs[name]) {
         ref = this.$refs[name][refName];
-      } else if (this.$refs['headerItem'] && this.$refs['headerItem'].$refs[name]) {
-        ref = this.$refs['headerItem'].$refs[name][refName];
+      } else if (this.$refs["headerItem"] && this.$refs["headerItem"].$refs[name]) {
+        ref = this.$refs["headerItem"].$refs[name][refName];
       }
-
       return ref || null;
     },
     getHref(item) {
-      return item.children ? 'javascript:void(0);' : item.languages[this.lowerLang]?.url;
+      return item.children ? "javascript:void(0);" : item.languages[this.lowerLang]?.url;
     },
     getTarget(item) {
       if (!item || !item.languages) return null;
-
       const target = item?.languages[this.lowerLang]?.target || item.target;
-
       return target ? target : null;
     },
     getNextLanguage() {
       const languages = this.home.languages;
-
       if (!languages) return;
-
       const keys = Object.keys(languages);
-
       if (!keys.length) return;
-
       const nextLang = keys.filter((lang) => lang !== this.lowerLang);
-
       if (!nextLang.length) return;
-
       return nextLang[0];
     },
     async handleLanguageSwitch(nextLang) {
       if (nextLang === this.lowerLang) return;
-
-      Tools.storageSave('preferedLanguage', nextLang, false);
-
+      Tools.storageSave("preferedLanguage", nextLang, false);
       const target = this.switchLocalePath(nextLang);
-      const stem = window.location.pathname.replace(/^\/[a-z]{2}(?=\/|$)/, '') || '/';
-
+      const stem = window.location.pathname.replace(/^\/[a-z]{2}(?=\/|$)/, "") || "/";
       const alternates = await this.loadContentAlternates();
       const missing = alternates[stem] && !alternates[stem].includes(nextLang);
-
       document.location.href = missing || !target ? `/${nextLang}` : target;
     },
     loadContentAlternates() {
       if (!this._contentAlternates) {
-        this._contentAlternates = fetch('/i18n-content-alternates.json')
-          .then((res) => (res.ok ? res.json() : {}))
-          .catch(() => ({}));
+        this._contentAlternates = fetch("/i18n-content-alternates.json").then((res) => res.ok ? res.json() : {}).catch(() => ({}));
       }
-
       return this._contentAlternates;
     },
     getActiveUrlByLang(lang, update) {
       const currentPath = Tools.getCurrentPath();
-      const lastCharacter = '/';
-
+      const lastCharacter = "/";
       const matcher = (obj, parentKey) => {
         if (!obj?.title) return;
-
         let url = obj?.url;
-
         if (currentPath[currentPath?.length - 1] === lastCharacter && url && url[url?.length - 1] !== lastCharacter) {
           url = url + lastCharacter;
         }
-
         const condition = url === currentPath || url === currentPath + lastCharacter;
         const parentLink = this.getParentLink(parentKey);
-
         if (update && condition) {
           obj.active = true;
-
           if (parentLink) parentLink.active = true;
         } else {
           obj.active = false;
-
           if (parentLink) parentLink.active = false;
         }
-
         return condition;
       };
-
-      const callback = (_, parent) => {
-        return parent;
+      const callback = (_, parent2) => {
+        return parent2;
       };
-
       let parent = Tools.findRecursive(this.clonedNavigation, matcher, callback);
-
       if (!parent) {
         parent = Tools.findRecursive(this.meta, matcher, callback);
       }
-
       if (!parent) {
         parent = Tools.findRecursive(this.contact, matcher, callback);
       }
-
       if (!parent) {
         const hrefLang = this.getHrefLang(lang);
-
         return hrefLang ? hrefLang : this.getTranslatedUrl(currentPath, lang);
       }
-
       return parent[lang]?.url;
     },
     getTranslatedUrl(currentPath, lang) {
       if (this.isBlogTagsUrl(currentPath)) return this.getBlogTagsUrl(lang, currentPath);
-
       const segment = this.getFolderSwitchSegment(currentPath);
-
       if (segment) return this.getFolderSwitchUrl(lang, currentPath, segment);
-
       return null;
     },
     getFolderSwitchSegment(currentPath) {
       const folderSwitch = this.home.folderSwitch;
-
       if (!folderSwitch) return null;
-
       const foundSegment = folderSwitch.find((segment) => currentPath.includes(segment));
-
       return foundSegment || null;
     },
     getFolderSwitchUrl(lang, currentPath, segment) {
       if (!segment) return currentPath;
-
       const langPrefix = new RegExp(`^/${this.lowerLang}/`);
-
       return currentPath.replace(langPrefix, `/${lang}/`);
     },
     isBlogTagsUrl(currentPath) {
       const regex = /\/blog\/tags/;
-
       return regex.test(currentPath);
     },
     getBlogTagsUrl(lang, currentPath) {
       let newPath;
-
-      const tagsIdentifier = 'tags';
-
+      const tagsIdentifier = "tags";
       switch (lang) {
-        case 'en':
+        case "en":
           newPath = currentPath.replace(tagsIdentifier, `${tagsIdentifier}-${lang}`);
           break;
         default:
         case this.defaultLang:
           const regex = new RegExp(`${tagsIdentifier}-..`);
-
           newPath = currentPath.replace(regex, tagsIdentifier);
           break;
       }
-
       return newPath + document.location.search;
     },
     getHrefLang(lang) {
       const hrefLang = document?.querySelector(`link[hreflang=${lang}]`);
-
       if (!hrefLang) return;
-
-      const url = new URL(hrefLang.getAttribute('href'), document.location.origin);
-
+      const url = new URL(hrefLang.getAttribute("href"), document.location.origin);
       return url.pathname + url.search + url.hash;
     },
     getParentLink(key) {
       const navi = this.clonedNavigation[key];
-
       return navi?.languages[this.lowerLang];
     },
     setActiveLinks() {
       this.getActiveUrlByLang(this.lowerLang, true);
     },
     updateProductListHeight() {
-      const headerItems = this.$refs['headerItem'];
-      const productList = headerItems?.$refs['product-list'];
-
+      const headerItems = this.$refs["headerItem"];
+      const productList = headerItems?.$refs["product-list"];
       if (!productList) return;
-
       for (let i = 0; i < productList.length; i++) {
         const list = productList[i];
         const isExpanded = list.classList.contains(State.EXPANDED);
-        const newHeight = !isExpanded || list.style.height !== '' ? '' : list.scrollHeight + 'px';
-
+        const newHeight = !isExpanded || list.style.height !== "" ? "" : list.scrollHeight + "px";
         list.style.height = newHeight;
       }
     },
     hasContactLink(item) {
       return this.contact?.languages && !item.languages[this.lowerLang]?.emergency;
-    },
+    }
   },
   props: {
     home: Object,
     navigation: Object,
     meta: Object,
     light: {
-      default: null,
+      default: null
     },
     search: {
-      default: null,
+      default: null
     },
     lang: String,
     contact: Object,
     bgColor: String,
     product: {
-      default: null,
+      default: null
     },
     button: {
-      default: null,
+      default: null
     },
     blendMode: {
-      default: null,
+      default: null
     },
     showSecondaryNavigation: {
       default: false,
-      type: Boolean,
+      type: Boolean
     },
     theme: String,
     onSurface: Boolean,
     collapse: {
-      default: null,
-    },
+      default: null
+    }
   },
   data() {
     const layoutCache = readHeaderLayoutCache();
-
     return {
       hoverHeader: false,
       inUpdate: false,
       inTransition: false,
-      defaultLang: 'de',
+      defaultLang: "de",
       closed: true,
       hover: false,
       headerHover: false,
@@ -1240,15 +1023,16 @@ export default {
       secondaryNavigationTransitionState: null,
       secondaryNavigationTransitionStates: {
         SHRINKING_HEIGHT: 0,
-        SHRINKING_WIDTH: 1,
+        SHRINKING_WIDTH: 1
       },
-      initEvents: ['mousemove', 'scroll', 'touchstart', 'click'],
+      initEvents: ["mousemove", "scroll", "touchstart", "click"],
       renderMegaMenu: false,
-      languageListExpanded: false,
+      languageListExpanded: false
     };
-  },
+  }
 };
 </script>
+
 <style>
 .shared-components .header {
   z-index: 1001;
@@ -2317,6 +2101,11 @@ export default {
 
 .header__language-code {
   font-size: 0.75rem;
+}
+.header__language-code {
+  font-weight: bold;
+}
+.header__language-code {
   justify-self: end;
   padding: 1px 0.25rem;
   border: 1px solid var(--color-header-border);
@@ -2324,9 +2113,6 @@ export default {
   color: var(--color-copy-reduced);
   line-height: 1.4;
   text-transform: uppercase;
-}
-.header__language-code {
-  font-weight: bold;
 }
 
 .header__highlight-cta {
@@ -2418,14 +2204,11 @@ export default {
 }
 
 .header__secondary-navigation-text {
-  font-size: 1rem;
-  line-height: 1.6;
-  transition: opacity 0.5s ease-in-out;
-  padding-right: 2.5rem;
-  margin-left: -0.5rem;
+  font-weight: bold;
 }
 .header__secondary-navigation-text {
-  font-weight: bold;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 @media (min-width: 992px) {
   .header__secondary-navigation-text {
@@ -2438,6 +2221,11 @@ export default {
     font-size: 1rem;
     line-height: 1.6;
   }
+}
+.header__secondary-navigation-text {
+  transition: opacity 0.5s ease-in-out;
+  padding-right: 2.5rem;
+  margin-left: -0.5rem;
 }
 
 .header__secondary-navigation-button {

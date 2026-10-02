@@ -3,21 +3,12 @@ import { pathToFileURL } from 'url';
 import { join } from 'path';
 import { defineNuxtModule, createResolver, installModule, addComponentsDir, addTemplate, addLayout, addPlugin, extendPages, addImportsDir } from '@nuxt/kit';
 
-
-
-// -- Unbuild CommonJS Shims --
-import __cjs_url__ from 'url';
-import __cjs_path__ from 'path';
-import __cjs_mod__ from 'module';
-const __filename = __cjs_url__.fileURLToPath(import.meta.url);
-const __dirname = __cjs_path__.dirname(__filename);
-const require = __cjs_mod__.createRequire(import.meta.url);
-const module = defineNuxtModule({
+const module$1 = defineNuxtModule({
   meta: {
     name: "shared-components",
     configKey: "sharedComponents",
     compatibility: {
-      nuxt: ">=3.16.1"
+      nuxt: "^3.17.0 || ^4.0.0"
     }
   },
   defaults: {
@@ -56,7 +47,7 @@ const module = defineNuxtModule({
     _nuxt.options.vue.compilerOptions ||= {};
     const prevIsCustomElement = _nuxt.options.vue.compilerOptions.isCustomElement;
     _nuxt.options.vue.compilerOptions.isCustomElement = (tag) => tag.startsWith("swiper-") || prevIsCustomElement?.(tag) || false;
-    const runtimeDir = resolve(__dirname, "./runtime");
+    const runtimeDir = resolve("./runtime");
     const optimizeDeps = [runtimeDir, "jquery", "slick-carousel"];
     _nuxt.options.build.transpile = _nuxt.options.build.transpile || [];
     _nuxt.options.build.transpile.push(...optimizeDeps);
@@ -180,8 +171,7 @@ async function registerSharedI18n(_nuxt, resolve) {
 }
 async function writeSecurityTxt(_nuxt, publicDir) {
   const siteUrl = _nuxt.options.site?.url;
-  if (!siteUrl)
-    return;
+  if (!siteUrl) return;
   const origin = /^https?:\/\//.test(siteUrl) ? siteUrl : `https://${siteUrl}`;
   const now = /* @__PURE__ */ new Date();
   const expires = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + 7, 1));
@@ -202,4 +192,4 @@ async function writeSecurityTxt(_nuxt, publicDir) {
   );
 }
 
-export { module as default };
+export { module$1 as default };

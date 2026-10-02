@@ -38,31 +38,30 @@
     </div>
   </wrapper>
 </template>
-<script>
-import Tools from '../utils/tools.js';
-import UtilityAnimation from '../utils/utility-animation.js';
 
+<script>
+import Tools from "../utils/tools.js";
+import UtilityAnimation from "../utils/utility-animation.js";
 export default {
-  tagName: 'event-overview',
+  tagName: "event-overview",
   data() {
     return {
       translationData: null,
       defaultLimit: 3,
       maxLimitDefault: 6,
       showMore: false,
-      filesValue: [],
+      filesValue: []
     };
   },
   computed: {
     classList() {
       return [
-        'event-overview has-no-row is-component utility-animation vue-component',
-        Tools.isTrue(this.overlap) ? 'event-overview--overlap' : null,
+        "event-overview has-no-row is-component utility-animation vue-component",
+        Tools.isTrue(this.overlap) ? "event-overview--overlap" : null
       ];
     },
     lastIndex() {
       const radix = 10;
-
       return parseInt(this.limitValue, radix) + 1;
     },
     limitValue() {
@@ -73,7 +72,6 @@ export default {
     },
     eventsValue() {
       if (!this.events) return [];
-
       return this.events.slice(0, this.maxLimitValue) || [];
     },
     hasMore() {
@@ -81,20 +79,17 @@ export default {
     },
     query() {
       let query = {};
-
       if (this.order && Array.isArray(this.order)) {
         query.where = {
-          eventid: { IN: this.order },
+          eventid: { IN: this.order }
         };
       }
-
-      query.path = '/events';
-
+      query.path = "/events";
       return query;
     },
     sort() {
       return this.sortBy || { moment: 1 };
-    },
+    }
   },
   mounted() {
     UtilityAnimation.init([this.$refs.root]);
@@ -107,7 +102,6 @@ export default {
       } else {
         event.external = false;
       }
-
       return event;
     },
     isVisible(index) {
@@ -115,16 +109,13 @@ export default {
     },
     handleShowMore() {
       if (this.moreUrl) document.location.href = this.moreUrl;
-
       this.showMore = true;
     },
     updateFiles(files) {
       if (!files) return;
-
       this.filesValue = files;
-
       return true;
-    },
+    }
   },
   props: {
     events: Array,
@@ -138,10 +129,11 @@ export default {
     sortBy: Object,
     bgColor: String,
     color: String,
-    timeColor: String,
-  },
+    timeColor: String
+  }
 };
 </script>
+
 <style scoped>
 .event-overview {
   --event-overview-vertical-padding: 1.5rem;

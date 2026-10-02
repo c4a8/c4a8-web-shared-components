@@ -43,33 +43,31 @@
     </SharedContentList>
   </div>
 </template>
+
 <script>
-import { useI18n, useNuxtApp } from '#imports';
-
-import Tools from '../utils/tools.js';
-import useConfig from '../composables/useConfig.js';
-
+import { useI18n, useNuxtApp } from "#imports";
+import Tools from "../utils/tools.js";
+import useConfig from "../composables/useConfig.js";
 export default {
-  tagName: 'blog',
+  tagName: "blog",
   data() {
     return {
-      filesValue: [],
+      filesValue: []
     };
   },
   setup() {
     const config = useConfig();
     const { $getLocale } = useI18n();
-    const strategy = useNuxtApp().$getI18nConfig?.().strategy ?? 'prefix';
-
+    const strategy = useNuxtApp().$getI18nConfig?.().strategy ?? "prefix";
     return {
       config,
       locale: $getLocale(),
-      strategy,
+      strategy
     };
   },
   computed: {
     blogContainerClassList() {
-      return ['blog container space-bottom-2 space-bottom-lg-3', !this.hasHighlight ? 'mt-lg-7' : ''];
+      return ["blog container space-bottom-2 space-bottom-lg-3", !this.hasHighlight ? "mt-lg-7" : ""];
     },
     showNoPosts() {
       return this.filesValue.length === 0;
@@ -82,9 +80,7 @@ export default {
     },
     highlightPost() {
       if (!this.hasHighlight) return;
-
       const firstPostArray = this.filesValue.slice(0, 1);
-
       return firstPostArray ? firstPostArray[0] : null;
     },
     highlightPostExternalLanguage() {
@@ -95,23 +91,18 @@ export default {
     },
     query() {
       let query = {};
-
       query.limit = this.blogMaxBlogPosts;
       query.sort = [{ moment: this.reversed ? 1 : -1 }];
       query.reversed = this.reversed;
-
       query.where = {
-        path: { LIKE: ['/posts/%'] },
+        path: { LIKE: ["/posts/%"] }
       };
-      query.path = 'posts';
-
-      if (this.locale === 'es') {
-        // Add english posts to spanish ones
-        query.additionalCollections = ['content_en'];
+      query.path = "posts";
+      if (this.locale === "es") {
+        query.additionalCollections = ["content_en"];
       }
-
       return query;
-    },
+    }
   },
   methods: {
     blogTitleUrl(post) {
@@ -123,19 +114,17 @@ export default {
     },
     updateFiles(files) {
       if (!files) return;
-
       this.filesValue = files;
-
       return true;
-    },
+    }
   },
   props: {
     posts: {
-      type: Array,
+      type: Array
     },
     blogMaxBlogPosts: {
       type: Number,
-      default: 100,
+      default: 100
     },
     paginator_page: Number,
     paginator_total_pages: Number,
@@ -145,26 +134,27 @@ export default {
     paginator_next_page_path: String,
     hasHighlight: {
       type: Boolean,
-      default: true,
+      default: true
     },
     defaultView: {
       type: String,
-      default: 'tile-view',
+      default: "tile-view"
     },
     onlyView: {
-      type: String,
+      type: String
     },
     enabledDropdowns: {
       type: Array,
-      default: () => ['author', 'categories', 'tags'],
+      default: () => ["author", "categories", "tags"]
     },
     reversed: {
       type: Boolean,
-      default: false,
-    },
-  },
+      default: false
+    }
+  }
 };
 </script>
+
 <style scoped>
 .blog__highlight-post {
   z-index: 70;

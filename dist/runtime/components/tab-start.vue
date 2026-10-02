@@ -4,26 +4,28 @@
     <slot />
   </section>
 </template>
+
 <script>
 export default {
-  tagName: 'tab-start',
+  tagName: "tab-start",
   props: {
     id: String,
     open: Boolean,
     headlineText: String,
-    headlineLevel: { type: String, default: 'h3' },
-    headlineClasses: String,
+    headlineLevel: { type: String, default: "h3" },
+    headlineClasses: String
   },
   computed: {
     classList() {
-      return ['tab-start tab-pane fade', { 'show active': this.open }];
+      return ["tab-start tab-pane fade", { "show active": this.open }];
     },
     headlineClassList() {
-      return ['h2-font-size tab-start__headline-small mb-6', this.headlineClasses];
-    },
-  },
+      return ["h2-font-size tab-start__headline-small mb-6", this.headlineClasses];
+    }
+  }
 };
 </script>
+
 <style>
 @media (min-width: 992px) {
   .tab-start .tab-start__headline {

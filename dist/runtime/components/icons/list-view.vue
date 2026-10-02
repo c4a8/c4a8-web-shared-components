@@ -27,19 +27,19 @@
     />
   </svg>
 </template>
+
 <script>
 export default {
-  tagName: 'list-view',
+  tagName: "list-view",
   computed: {
     style() {
-      const color = this.color ? this.color : '#5CBBFF';
-
+      const color = this.color ? this.color : "#5CBBFF";
       return `fill: ${color}; stroke: ${color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
-    },
+    }
   },
   props: {
     settings: Object,
-    color: String,
-  },
+    color: String
+  }
 };
 </script>

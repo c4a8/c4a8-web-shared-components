@@ -7,19 +7,19 @@
             d="M85.2718 110.67L125.556 166.626C128.431 170.632 132.788 173.338 137.667 174.148C142.547 174.959 147.55 173.809 151.577 170.95C152.868 170.013 154.036 168.92 155.054 167.694L287 10"
             stroke="#000520" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" />
     </svg>
-
 </template>
+
 <script>
 export default {
-    tagName: 'checkbox',
-    computed: {
-        style() {
-            return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
-        },
-    },
-    props: {
-        settings: Object,
-        color: String,
-    },
+  tagName: "checkbox",
+  computed: {
+    style() {
+      return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
+    }
+  },
+  props: {
+    settings: Object,
+    color: String
+  }
 };
 </script>

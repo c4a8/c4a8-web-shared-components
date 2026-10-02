@@ -27,6 +27,7 @@
     </tab-start>
   </div>
 </template>
+
 <script>
 export default {
   props: {
@@ -41,13 +42,14 @@ export default {
           headline: String,
           headlineLevel: String,
           copy: String,
-          grid: Object,
-        },
-      },
-    ],
-  },
+          grid: Object
+        }
+      }
+    ]
+  }
 };
 </script>
+
 <style>
 .tab-content p {
   font-size: 1.125rem;

@@ -13,38 +13,38 @@
     </template>
   </div>
 </template>
-<script>
-import Form from '../utils/components/form.js';
 
+<script>
+import Form from "../utils/components/form.js";
 export default {
-  tagName: 'form-radios',
+  tagName: "form-radios",
   methods: {
     getRadioId(radio) {
       return Form.getScopedId(this.formId, this.field.id + radio.id);
-    },
+    }
   },
   computed: {
     otherId() {
       return `${this.radio.id}_radio`;
     },
     required() {
-      return this.radio?.required ? 'required' : null;
+      return this.radio?.required ? "required" : null;
     },
     message() {
       return this.field.required ? this.field.requiredMsg : null;
-    },
+    }
   },
   props: {
     field: Object,
     id: {
-      default: null,
+      default: null
     },
     name: {
-      default: null,
+      default: null
     },
     formId: {
-      default: null,
-    },
-  },
+      default: null
+    }
+  }
 };
 </script>

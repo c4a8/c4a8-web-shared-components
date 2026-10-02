@@ -54,38 +54,36 @@
     </div>
   </div>
 </template>
-<script>
-import State from '../utils/state.js';
-import Tools from '../utils/tools.js';
 
+<script>
+import State from "../utils/state.js";
+import Tools from "../utils/tools.js";
 export default {
-  tagName: 'timeline',
+  tagName: "timeline",
   computed: {
     classList() {
       return [
-        'timeline',
-        'has-background',
-        'timeline--headline-sticky has-headline-sticky',
-        this.isReady ? State.READY : '',
-        this.expanded ? State.EXPANDED : '',
+        "timeline",
+        "has-background",
+        "timeline--headline-sticky has-headline-sticky",
+        this.isReady ? State.READY : "",
+        this.expanded ? State.EXPANDED : "",
         this.spacing,
-        this.simpleValue ? 'timeline--simple' : '',
-        'vue-component',
+        this.simpleValue ? "timeline--simple" : "",
+        "vue-component"
       ];
     },
     copyColor() {
-      return this.color ? this.color : 'var(--color-copy-light)';
+      return this.color ? this.color : "var(--color-copy-light)";
     },
     backgroundColor() {
-      return this.bgColor ? this.bgColor : 'var(--color-gk-dark-blue)';
+      return this.bgColor ? this.bgColor : "var(--color-gk-dark-blue)";
     },
     style() {
       return `--color-timeline-background: ${this.backgroundColor}; --color-timeline-color: ${this.copyColor};`;
     },
     headlineClasses() {
-      return `timeline__headline headline-sticky__target h2-font-size light ${
-        this.headline?.classes ? this.headline.classes : ''
-      }`;
+      return `timeline__headline headline-sticky__target h2-font-size light ${this.headline?.classes ? this.headline.classes : ""}`;
     },
     lineEndStyle() {
       return `--timeline-line-position: ${this.entries?.length}`;
@@ -94,8 +92,8 @@ export default {
       return Tools.isTrue(this.simple);
     },
     iconName() {
-      return 'strategy-split';
-    },
+      return "strategy-split";
+    }
   },
   mounted() {
     this.bindEvents();
@@ -111,12 +109,12 @@ export default {
       minPercentage: -10,
       maxPercentage: 100,
       entryContainerStates: [],
-      entryContainerStyles: [],
+      entryContainerStyles: []
     };
   },
   methods: {
     bindEvents() {
-      document.addEventListener('scroll', this.handleScroll);
+      document.addEventListener("scroll", this.handleScroll);
     },
     startAnimation() {
       setTimeout(() => {
@@ -135,14 +133,11 @@ export default {
     },
     updateAnimation() {
       const percentage = this.getScrollPercentage();
-
       if (percentage <= this.minPercentage) return this.setAnimationStart();
       if (percentage >= this.maxPercentage) return this.setAnimationEnd();
-
       if (!this.isReady) {
         this.startAnimation();
       }
-
       this.showEntryByPercent(percentage);
     },
     setAnimationStart() {
@@ -150,7 +145,6 @@ export default {
     },
     setAnimationEnd() {
       const fullPercentage = 0;
-
       for (let i = 0; i < this.entries.length; i++) {
         this.entryContainerStyles[i] = `${fullPercentage}`;
         this.entryContainerStates[i] = [State.SHOW, State.IS_FULL];
@@ -158,29 +152,23 @@ export default {
     },
     showEntryByPercent(percentage) {
       const stepSize = this.maxPercentage / this.entries.length;
-
       for (let i = 0; i < this.entries.length; i++) {
         this.updateNextStep(i, percentage, stepSize);
       }
     },
     updateNextStep(index, percentage, stepSize) {
       this.entryContainerStates[index] = State.SHOW;
-
       const minPercentage = 0;
       const startPercentage = stepSize * index;
       const endPercentage = stepSize * (index + 1);
-
       let currentPercentage = 0;
-
       if (percentage >= startPercentage && percentage <= endPercentage) {
         const end = stepSize;
         const localPercentage = percentage - startPercentage;
         const showThreshold = 60;
-
-        currentPercentage = this.maxPercentage - Math.ceil((localPercentage * 100) / end);
-
+        currentPercentage = this.maxPercentage - Math.ceil(localPercentage * 100 / end);
         if (currentPercentage < showThreshold) {
-          this.entryContainerStates[index] = [State.SHOW, 'timeline__entry-container--visible'];
+          this.entryContainerStates[index] = [State.SHOW, "timeline__entry-container--visible"];
         }
       } else if (percentage > endPercentage) {
         currentPercentage = minPercentage;
@@ -188,7 +176,6 @@ export default {
       } else {
         currentPercentage = this.maxPercentage;
       }
-
       if (this.simpleValue) {
         if (currentPercentage < this.maxPercentage && currentPercentage > minPercentage) {
           currentPercentage = 1;
@@ -196,76 +183,59 @@ export default {
           currentPercentage = 0;
         }
       }
-
       this.entryContainerStyles[index] = `${currentPercentage}`;
     },
     getEntryContainerClasses(index) {
-      return ['timeline__entry-container', this.entryContainerStates[index]];
+      return ["timeline__entry-container", this.entryContainerStates[index]];
     },
     getEntryContainerStyle(index) {
       const minPercentage = 0;
-
-      const percentage = this.entryContainerStyles[index]
-        ? this.entryContainerStyles[index]
-        : this.simpleValue
-          ? minPercentage
-          : this.maxPercentage;
-
+      const percentage = this.entryContainerStyles[index] ? this.entryContainerStyles[index] : this.simpleValue ? minPercentage : this.maxPercentage;
       return `--timeline-entry-container-percentage: ${percentage}`;
     },
     getScrollPercentage() {
-      const root = this.$refs['root'];
-
+      const root = this.$refs["root"];
       if (!root) return;
-
       const height = root.getBoundingClientRect().height;
       const heightOffset = window.innerHeight / 3;
-
       let elementTop = Tools.getScrollTop(root) - heightOffset;
-
       if (elementTop < 0) {
         elementTop = 0;
       }
-
       const startPosition = window.scrollY - elementTop;
       const endPosition = height - heightOffset;
-
-      return (startPosition * 100) / endPosition;
+      return startPosition * 100 / endPosition;
     },
     isInViewport() {
       if (this.isVisible) return;
-
-      const root = this.$refs['root'];
-
+      const root = this.$refs["root"];
       if (!root) return;
-
       const isInViewport = Tools.isInViewportPercent(root, this.percentageInViewport);
-
       if (!isInViewport) return;
-
       this.startAnimation();
-    },
+    }
   },
   props: {
     headline: Object,
     bgColor: {
-      default: null,
+      default: null
     },
     color: {
-      default: null,
+      default: null
     },
     entries: Array,
     expanded: {
-      default: null,
+      default: null
     },
     spacing: String,
     simple: {
-      default: null,
+      default: null
     },
-    subline: String,
-  },
+    subline: String
+  }
 };
 </script>
+
 <style>
 .timeline {
   --color-timeline-line: rgba(255, 255, 255, 0.4);
@@ -755,15 +725,6 @@ export default {
 }
 
 .timeline__entry-inner-text {
-  border: 1px solid var(--color-timeline-line);
-  border-radius: 4px;
-  padding: 1rem 1.5rem;
-  min-height: 5rem;
-  display: flex;
-  align-items: center;
-  max-width: 80%;
-}
-.timeline__entry-inner-text {
   font-size: 1.125rem;
   line-height: 1.6667em;
 }
@@ -784,6 +745,15 @@ export default {
 }
 .timeline__entry-inner-text strong {
   font-weight: inherit;
+}
+.timeline__entry-inner-text {
+  border: 1px solid var(--color-timeline-line);
+  border-radius: 4px;
+  padding: 1rem 1.5rem;
+  min-height: 5rem;
+  display: flex;
+  align-items: center;
+  max-width: 80%;
 }
 .timeline__entry-inner-text.timeline__entry-inner-text--simple {
   border: 0;
@@ -828,7 +798,6 @@ export default {
 .timeline__entry-title {
   font-size: 1.25rem;
   line-height: 1.6em;
-  margin-bottom: 0.75rem;
 }
 @media (min-width: 992px) {
   .timeline__entry-title {
@@ -841,6 +810,9 @@ export default {
     font-size: 1.5625rem;
     line-height: 1.6em;
   }
+}
+.timeline__entry-title {
+  margin-bottom: 0.75rem;
 }
 
 .timeline__entry-text {

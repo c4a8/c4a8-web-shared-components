@@ -12,28 +12,29 @@
     <slot></slot>
   </template>
 </template>
+
 <script>
 export default {
-  tagName: 'wrapper',
+  tagName: "wrapper",
   computed: {
     classList() {
-      return ['wrapper vue-component', this.classes ? this.classes : null, this.hideContainerClass ? '' : 'container'];
-    },
+      return ["wrapper vue-component", this.classes ? this.classes : null, this.hideContainerClass ? "" : "container"];
+    }
   },
   props: {
     hideContainer: {
-      default: false,
+      default: false
     },
     hideContainerClass: {
-      default: false,
+      default: false
     },
     classes: {
-      default: '',
+      default: ""
     },
     row: {
       type: Boolean,
-      default: false,
-    },
-  },
+      default: false
+    }
+  }
 };
 </script>

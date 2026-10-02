@@ -66,21 +66,19 @@
 </template>
 
 <script>
-// TODO figure out why they don't render properly in storybook but when you change the markup they do
-
 export default {
-  tagName: 'site-icons',
+  tagName: "site-icons",
   computed: {
     svgTemplate() {
-      return templates[this.icon] || '';
+      return templates[this.icon] || "";
     },
     classList() {
-      return 'streamline-sm mr-4';
-    },
+      return "streamline-sm mr-4";
+    }
   },
   props: {
     icon: String,
-    noSpan: Boolean,
-  },
+    noSpan: Boolean
+  }
 };
 </script>

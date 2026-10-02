@@ -130,66 +130,65 @@
     </wrapper>
   </div>
 </template>
-<script>
-import UtilityAnimation from '../utils/utility-animation.js';
-import YoutubePlayer from '../utils/youtube-player.js';
-import Tools from '../utils/tools.js';
-import Analytics from '../utils/data-an.js';
 
+<script>
+import UtilityAnimation from "../utils/utility-animation.js";
+import YoutubePlayer from "../utils/youtube-player.js";
+import Tools from "../utils/tools.js";
+import Analytics from "../utils/data-an.js";
 export default {
-  tagName: 'video-inner',
+  tagName: "video-inner",
   computed: {
     videoClass() {
       return [
-        'video',
-        this.noAnimation ? '' : 'utility-animation',
-        `${this.videoParsed.id ? 'video--has-video' : 'hover__parent'}`,
-        `${this.isVariantRow ? 'container' : 'd-flex flex-column'}`,
-        `${Tools.isTrue(this.overlapping) ? 'video--is-overlapping' : ''}`,
-        `${this.spacing ? this.spacing : 'space-bottom-1 space-bottom-lg-0'}`,
-        `${!this.isReversed() ? 'h-100' : ''}`,
-        `${this.variant ? 'video--' + this.variant : ''}`,
+        "video",
+        this.noAnimation ? "" : "utility-animation",
+        `${this.videoParsed.id ? "video--has-video" : "hover__parent"}`,
+        `${this.isVariantRow ? "container" : "d-flex flex-column"}`,
+        `${Tools.isTrue(this.overlapping) ? "video--is-overlapping" : ""}`,
+        `${this.spacing ? this.spacing : "space-bottom-1 space-bottom-lg-0"}`,
+        `${!this.isReversed() ? "h-100" : ""}`,
+        `${this.variant ? "video--" + this.variant : ""}`,
         this.elementClasses.root,
-        'vue-component',
+        "vue-component"
       ];
     },
     videoPlayerClass() {
       return [
-        'video__player',
-        this.noAnimation ? '' : 'fade-in-bottom',
+        "video__player",
+        this.noAnimation ? "" : "fade-in-bottom",
         `${this.variantClasses}`,
-        `${this.isPlayed ? 'video-player-played is-starting' : ''}`,
-        `${this.videoParsed.ctaText ? 'video__player--has-link' : ''}`,
-        this.elementClasses['video-player'],
-        'vue-component',
+        `${this.isPlayed ? "video-player-played is-starting" : ""}`,
+        `${this.videoParsed.ctaText ? "video__player--has-link" : ""}`,
+        this.elementClasses["video-player"],
+        "vue-component"
       ];
     },
     videoContentClass() {
-      const paddingHorizontal = this.isCompact ? 'pt-4' : 'py-4 px-3';
-      const padding = !this.isReversed() ? ` ${paddingHorizontal} p-lg-5` : 'pb-4';
-
+      const paddingHorizontal = this.isCompact ? "pt-4" : "py-4 px-3";
+      const padding = !this.isReversed() ? ` ${paddingHorizontal} p-lg-5` : "pb-4";
       return [
-        'video__content',
-        this.noAnimation ? '' : 'fade-in-bottom',
-        `${this.videoParsed.ctaText ? 'hover__parent' : ''}`,
-        `${this.isVariantRow ? 'col-md-6 ' : 'flex-grow-1 ' + padding}`,
-        this.elementClasses['video-content'],
+        "video__content",
+        this.noAnimation ? "" : "fade-in-bottom",
+        `${this.videoParsed.ctaText ? "hover__parent" : ""}`,
+        `${this.isVariantRow ? "col-md-6 " : "flex-grow-1 " + padding}`,
+        this.elementClasses["video-content"]
       ];
     },
     videoTextClasses() {
-      return ['video__text col-lg-12 order-lg-3', this.isCompact ? '' : 'pt-2 pt-lg-4'];
+      return ["video__text col-lg-12 order-lg-3", this.isCompact ? "" : "pt-2 pt-lg-4"];
     },
     isCompact() {
-      return this.variant === 'compact';
+      return this.variant === "compact";
     },
     variantClasses() {
-      return !this.variant ? 'bg-dark' : this.isVariantRow ? 'col-md-6 order-md-2' : '';
+      return !this.variant ? "bg-dark" : this.isVariantRow ? "col-md-6 order-md-2" : "";
     },
     isVariantRow() {
-      return this.variant === 'row';
+      return this.variant === "row";
     },
     videoParsed() {
-      return typeof this.video !== 'object' ? JSON.parse(this.video) : this.video;
+      return typeof this.video !== "object" ? JSON.parse(this.video) : this.video;
     },
     onClickVideoContent() {
       return this.videoParsed.ctaText ? `this.querySelector('a').click()` : null;
@@ -198,58 +197,55 @@ export default {
       return this.videoParsed.ctaText && this.videoParsed.id ? `this.querySelector('a').click()` : null;
     },
     videoId() {
-      return 'video-id__' + this.videoParsed.id;
+      return "video-id__" + this.videoParsed.id;
     },
     videoFrameId() {
-      return this.videoId + '-frame';
+      return this.videoId + "-frame";
     },
     headlineClasses() {
-      const variantClasses = this.isVariantRow || this.isCompact ? 'mb-0' : '';
-      const headlineClasses = this.isCompact ? 'h5-font-size' : 'h4-font-size';
-
+      const variantClasses = this.isVariantRow || this.isCompact ? "mb-0" : "";
+      const headlineClasses = this.isCompact ? "h5-font-size" : "h4-font-size";
       return `${headlineClasses} ${variantClasses}`;
     },
     dataOptionsLightBox() {
       const options = {
-        selector: '#' + `${this.videoId}` + ' .js-video-button',
+        selector: `#${this.videoId} .js-video-button`,
         speed: 700,
-        buttons: ['fullScreen', 'close'],
+        buttons: ["fullScreen", "close"],
         media: {
           youtube: {
-            url: 'https://www.youtube-nocookie.com/embed/$4',
+            url: "https://www.youtube-nocookie.com/embed/$4",
             params: {
-              autoplay: 1,
-            },
-          },
-        },
+              autoplay: 1
+            }
+          }
+        }
       };
-
       return JSON.stringify(options);
     },
     options() {
       return {
         videoId: this.videoParsed.id,
-        parentSelector: '#' + this.videoId,
-        targetSelector: '#' + this.videoFrameId,
-        isAutoplay: true,
+        parentSelector: "#" + this.videoId,
+        targetSelector: "#" + this.videoFrameId,
+        isAutoplay: true
       };
     },
     dataOptionsRegular() {
       return JSON.stringify(this.options);
     },
     dataSrc() {
-      return 'https://www.youtube-nocookie.com/' + this.videoParsed.id;
+      return "https://www.youtube-nocookie.com/" + this.videoParsed.id;
     },
     embedSrc() {
       return YoutubePlayer.getEmbedSrc(this.videoParsed.id, this.options.isAutoplay, this.playlist, this.subtitles);
     },
     dataCaption() {
       return this.videoParsed.headline;
-    },
+    }
   },
   mounted() {
     if (!this.$refs.root) return;
-
     UtilityAnimation.init([this.$refs.root], this);
   },
   beforeDestroy() {
@@ -258,11 +254,10 @@ export default {
   },
   methods: {
     isReversed() {
-      return this.variant === 'reversed';
+      return this.variant === "reversed";
     },
     handleButtonClick() {
       this.isPlayed = true;
-
       this.$nextTick(() => {
         if (!this._videoTracker) {
           this._videoTracker = Analytics.createVideoTracker(
@@ -281,12 +276,12 @@ export default {
     },
     handleClose() {
       this.isPlayed = false;
-    },
+    }
   },
   data() {
     return {
       isPlayed: false,
-      elementClasses: {},
+      elementClasses: {}
     };
   },
   props: {
@@ -295,27 +290,28 @@ export default {
     spacing: String,
     overlapping: String,
     level: {
-      default: 'h4',
+      default: "h4"
     },
     noAnimation: {
       type: Boolean,
-      default: false,
+      default: false
     },
     playlist: {
       type: Boolean,
-      default: false,
+      default: false
     },
     subtitles: {
       type: String,
-      default: null,
+      default: null
     },
     lazy: {
       type: Boolean,
-      default: false,
-    },
-  },
+      default: false
+    }
+  }
 };
 </script>
+
 <style>
 .video__player-btn:hover,
 .video__player.video__player--has-link:hover {
@@ -343,12 +339,6 @@ export default {
   background-color: transparent;
 }
 .video.video--row .headline {
-  display: flex;
-  align-self: flex-end;
-  padding-top: 1.75rem;
-  padding-right: 0;
-}
-.video.video--row .headline {
   font-size: 1.125rem;
   line-height: 1.6667em;
 }
@@ -369,6 +359,12 @@ export default {
 }
 .video.video--row .headline strong {
   font-weight: inherit;
+}
+.video.video--row .headline {
+  display: flex;
+  align-self: flex-end;
+  padding-top: 1.75rem;
+  padding-right: 0;
 }
 @media (min-width: 768px) {
   .video.video--row .headline {

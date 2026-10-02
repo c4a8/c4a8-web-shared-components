@@ -35,33 +35,32 @@
     </div>
   </div>
 </template>
-<script>
-import UtilityAnimation from '../utils/utility-animation.js';
 
+<script>
+import UtilityAnimation from "../utils/utility-animation.js";
 export default {
-  tagName: 'quotes-entry',
+  tagName: "quotes-entry",
   mounted() {
     if (!this.$refs.root) return;
-
     UtilityAnimation.init([this.$refs.root]);
   },
   props: {
     entry: {
       type: Object,
-      required: true,
+      required: true
     },
     image: {
       type: Boolean,
-      default: false,
+      default: false
     },
     hasAnimation: {
       type: Boolean,
-      default: false,
+      default: false
     },
     active: {
       type: Boolean,
-      default: false,
-    },
-  },
+      default: false
+    }
+  }
 };
 </script>

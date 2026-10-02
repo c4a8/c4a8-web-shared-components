@@ -13,27 +13,28 @@
     />
   </svg>
 </template>
+
 <script>
 export default {
-  tagName: 'origami-bird',
+  tagName: "origami-bird",
   computed: {
     fillStyle() {
       return `fill: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
     },
     strokeStyle() {
       return `stroke: ${this.strokeColor};`;
-    },
+    }
   },
   props: {
     settings: Object,
     color: {
       String,
-      default: 'var(--color-gk-red)',
+      default: "var(--color-gk-red)"
     },
     strokeColor: {
       String,
-      default: 'var(--color-black)',
-    },
-  },
+      default: "var(--color-black)"
+    }
+  }
 };
 </script>

@@ -43,7 +43,7 @@ export default defineNuxtPlugin((_nuxtApp) => {
     { global: true }
   );
 
-  if (process.client) {
+  if (import.meta.client) {
     console.debug(`Shared Components v${version}`);
 
     import('jquery')

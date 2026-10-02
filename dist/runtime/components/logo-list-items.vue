@@ -17,29 +17,29 @@
     <v-img :img="item.img" :alt="item.alt" preset="logoList" :cloudinary="true" :lazy="true" />
   </component>
 </template>
+
 <script>
 export default {
-  tagName: 'logo-list-items',
+  tagName: "logo-list-items",
   computed: {},
   methods: {
     getItemComponent(item) {
-      return item?.url ? 'a' : 'span';
+      return item?.url ? "a" : "span";
     },
     getDelay(index) {
       const localIndex = this.getIndex(index);
       const miliseconds = localIndex > 0 ? 100 : 0;
       const delay = `${localIndex * miliseconds}ms`;
-
       return `--utility-animation-delay: ${delay};`;
     },
     getIndex(index) {
       return this.isClone ? this.list.length + index : index;
-    },
+    }
   },
   props: {
     list: Array,
     isOverlapping: Boolean,
-    isClone: Boolean,
-  },
+    isClone: Boolean
+  }
 };
 </script>

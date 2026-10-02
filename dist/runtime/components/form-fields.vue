@@ -78,98 +78,83 @@
     </div>
   </template>
 </template>
-<script>
-import Events from '../utils/events.js';
-import UtilityAnimation from '../utils/utility-animation.js';
 
+<script>
+import Events from "../utils/events.js";
+import UtilityAnimation from "../utils/utility-animation.js";
 export default {
-  tagName: 'form-fields',
+  tagName: "form-fields",
   data() {
     return {
       edited: false,
-      userValue: null,
+      userValue: null
     };
   },
   computed: {
     classList() {
       return [
-        'form-field js-form-message form-group',
-        `${this.field.type === 'hidden' ? 'd-none' : ''}`,
+        "form-field js-form-message form-group",
+        `${this.field.type === "hidden" ? "d-none" : ""}`,
         this.groupClass,
-        this.hasAnimation ? 'utility-animation utility-animation--small-offset fade-in-bottom' : '',
-        `${this.field.showIn ? 'd-none form-field--show-in ' + this.showInClasses : ''}`,
-        'vue-component',
+        this.hasAnimation ? "utility-animation utility-animation--small-offset fade-in-bottom" : "",
+        `${this.field.showIn ? "d-none form-field--show-in " + this.showInClasses : ""}`,
+        "vue-component"
       ];
     },
     showInClasses() {
-      return this.field?.showIn?.map((id) => 'show-in-' + id).join(' ');
+      return this.field?.showIn?.map((id) => "show-in-" + id).join(" ");
     },
     groupClass() {
-      if (this.field.type === 'checkbox') {
-        return 'mb-3';
-      } else if (this.field.type === 'file') {
-        return 'mb-8';
+      if (this.field.type === "checkbox") {
+        return "mb-3";
+      } else if (this.field.type === "file") {
+        return "mb-8";
       } else {
-        return '';
+        return "";
       }
     },
     errorId() {
       return `${this.id}-error`;
     },
     readonly() {
-      return this.field.readonly ? 'readonly' : null;
+      return this.field.readonly ? "readonly" : null;
     },
     required() {
-      return this.field.required ? 'required' : null;
+      return this.field.required ? "required" : null;
     },
     placeholder() {
       return this.field.placeholder ? this.field.placeholder : null;
     },
     value() {
       if (this.edited) return this.userValue;
-
-      const fieldValue =
-        this.replaceValue && this.field.value === '#form-field-replace-value#'
-          ? this.replaceValue
-          : this.field.value
-          ? this.field.value
-          : null;
-
+      const fieldValue = this.replaceValue && this.field.value === "#form-field-replace-value#" ? this.replaceValue : this.field.value ? this.field.value : null;
       return fieldValue;
-    },
+    }
   },
   mounted() {
     if (this.$refs.root) {
       UtilityAnimation.init([this.$refs.root]);
     }
-
     const parent = this.$parent;
-
     if (!parent) return;
-
     const parentElement = parent.$el;
-
     if (!parentElement) return;
-
-    parentElement.addEventListener('reset', this.handleReset);
+    parentElement.addEventListener("reset", this.handleReset);
   },
   methods: {
     getRequiredMsg(element) {
-      return element.requiredMsg ? element.requiredMsg : '';
+      return element.requiredMsg ? element.requiredMsg : "";
     },
     handleChange(e) {
       const currentTarget = e.currentTarget;
       const value = currentTarget.value;
-
       this.edited = true;
       this.userValue = value;
-
       this.$emit(Events.FORM_FIELD_UPDATED, { value, id: this.id });
     },
     handleChangeTextarea(e) {
       const currentTarget = e.currentTarget;
       const value = currentTarget.value;
-
       this.$emit(Events.FORM_FIELD_UPDATED, { value, id: this.id });
     },
     handleReset() {
@@ -178,27 +163,27 @@ export default {
     },
     handleFormFieldUpdate(e) {
       this.$emit(Events.FORM_FIELD_UPDATED, e);
-    },
+    }
   },
   props: {
     options: Array,
     field: Object,
     id: {
-      default: null,
+      default: null
     },
     name: {
-      default: null,
+      default: null
     },
     formId: {
-      default: null,
+      default: null
     },
     replaceValue: {
-      default: null,
+      default: null
     },
     hasAnimation: {
-      default: null,
+      default: null
     },
-    hasError: Boolean,
-  },
+    hasError: Boolean
+  }
 };
 </script>

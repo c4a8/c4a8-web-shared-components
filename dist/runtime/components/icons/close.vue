@@ -20,26 +20,27 @@
     />
   </svg>
 </template>
+
 <script>
 export default {
-  tagName: 'close',
+  tagName: "close",
   computed: {
     outerPosition() {
       return this.viewBoxWidth - this.padding;
     },
     style() {
       return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
-    },
+    }
   },
   props: {
     padding: Number,
     settings: Object,
-    color: String,
+    color: String
   },
   data() {
     return {
-      viewBoxWidth: 48,
+      viewBoxWidth: 48
     };
-  },
+  }
 };
 </script>

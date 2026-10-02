@@ -7,19 +7,18 @@
     />
   </svg>
 </template>
+
 <script>
 export default {
-  tagName: 'tile-view',
+  tagName: "tile-view",
   computed: {
     style() {
-      return `fill: ${
-        this.color ? this.color : '#5CBBFF'
-      }; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
-    },
+      return `fill: ${this.color ? this.color : "#5CBBFF"}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
+    }
   },
   props: {
     settings: Object,
-    color: String,
-  },
+    color: String
+  }
 };
 </script>

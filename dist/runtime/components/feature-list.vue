@@ -15,48 +15,41 @@
 
 <script>
 export default {
-  tagName: 'feature-list',
-  
-    data() {
+  tagName: "feature-list",
+  data() {
     return {
-      defaultIcon: 'check',
+      defaultIcon: "check"
     };
   },
   computed: {
     classList() {
-      return ['feature-list container space-2 vue-component'];
+      return ["feature-list container space-2 vue-component"];
     },
     itemsWithFallback() {
       const items = [];
-
       this.items.forEach((item) => {
         const icon = item.icon ? item.icon : this.defaultIcon;
         const isDefaultIcon = icon === this.defaultIcon;
-
-        const color = isDefaultIcon ? 'var(--color-blue-jeans)' : item.color;
+        const color = isDefaultIcon ? "var(--color-blue-jeans)" : item.color;
         const hasBackground = isDefaultIcon;
         const circle = isDefaultIcon ? true : item.circle;
-        const size = isDefaultIcon ? 'medium' : item.size;
+        const size = isDefaultIcon ? "medium" : item.size;
         const bullet = item.bullet;
-
         const entry = {
-          icon: icon,
-          color: color,
-          hasBackground: hasBackground,
-          circle: circle,
-          size: size,
-          bullet: bullet,
+          icon,
+          color,
+          hasBackground,
+          circle,
+          size,
+          bullet
         };
-
         items.push(entry);
       });
-
       return items;
-    },
+    }
   },
-
   props: {
-    items: Array,
+    items: Array
   }
 };
 </script>

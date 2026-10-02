@@ -9,16 +9,13 @@
 </template>
 
 <script>
-import Tools from '../utils/tools.js';
-
-// TODO this should be nuxt ClientOnly
-
+import Tools from "../utils/tools.js";
 export default {
-  name: 'SharedClientOnly',
+  name: "SharedClientOnly",
   computed: {
     isStorybook() {
       return Tools.isStorybook();
-    },
-  },
+    }
+  }
 };
 </script>

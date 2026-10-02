@@ -3,12 +3,13 @@
     <carousel :items="items" :bg-color="bgColor" :lazy="true"> </carousel>
   </div>
 </template>
+
 <script>
 export default {
-  tagName: 'v-footer-slider',
+  tagName: "v-footer-slider",
   props: {
     items: Array,
-    bgColor: String,
-  },
+    bgColor: String
+  }
 };
 </script>

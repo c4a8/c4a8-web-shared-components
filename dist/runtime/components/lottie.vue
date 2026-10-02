@@ -5,38 +5,35 @@
 </template>
 
 <script>
-// TODO use a differentn lib that does't use defineComponent
-// import { Vue3Lottie } from 'vue3-lottie';
-
 export default {
-  tagName: 'lottie',
+  tagName: "lottie",
   // components: {
   //   Vue3Lottie,
   // },
   computed: {
     classList() {
-      return ['lottie', 'vue-component'];
+      return ["lottie", "vue-component"];
     },
     widthValue() {
-      return this.width && this.width !== '' ? this.width : '100%';
+      return this.width && this.width !== "" ? this.width : "100%";
     },
     heightValue() {
-      return this.height && this.height !== '' ? this.height : '100%';
+      return this.height && this.height !== "" ? this.height : "100%";
     },
     backgroundValue() {
-      return this.background && this.background !== '' ? this.background : 'transparent';
+      return this.background && this.background !== "" ? this.background : "transparent";
     },
     loopValue() {
-      return this.loop && this.loop !== '' ? this.loop : true;
+      return this.loop && this.loop !== "" ? this.loop : true;
     },
     autoplayValue() {
-      return this.autoplay && this.autoplay !== '' ? this.autoplay : true;
+      return this.autoplay && this.autoplay !== "" ? this.autoplay : true;
     },
     nameValue() {
-      return this.name && this.name !== '' ? this.name : 'lottie-' + Math.random();
+      return this.name && this.name !== "" ? this.name : "lottie-" + Math.random();
     },
     rendererValue() {
-      return this.renderer && this.renderer !== '' ? this.renderer : 'svg';
+      return this.renderer && this.renderer !== "" ? this.renderer : "svg";
     },
     options() {
       return {
@@ -46,13 +43,13 @@ export default {
         width: this.getSize(this.widthValue),
         height: this.getSize(this.heightValue),
         animationData: this.data,
-        noMargin: true,
+        noMargin: true
       };
-    },
+    }
   },
   data() {
     return {
-      style: {},
+      style: {}
     };
   },
   mounted() {
@@ -63,41 +60,40 @@ export default {
       this.style = {
         width: this.getSize(this.widthValue),
         height: this.getSize(this.heightValue),
-        background: this.backgroundValue,
+        background: this.backgroundValue
       };
     },
     getSize(size) {
-      return !size.indexOf || (size.indexOf('px') === -1 && size.indexOf('%') === -1 && size.indexOf('auto'))
-        ? `${size}px`
-        : size;
-    },
+      return !size.indexOf || size.indexOf("px") === -1 && size.indexOf("%") === -1 && size.indexOf("auto") ? `${size}px` : size;
+    }
   },
   props: {
     data: Object,
     name: {
-      type: String,
+      type: String
     },
     width: {
-      type: [String, Number],
+      type: [String, Number]
     },
     height: {
-      type: [String, Number],
+      type: [String, Number]
     },
     background: {
-      type: String,
+      type: String
     },
     loop: {
-      type: [Boolean, Number],
+      type: [Boolean, Number]
     },
     autoplay: {
-      type: Boolean,
+      type: Boolean
     },
     renderer: {
-      type: String,
-    },
-  },
+      type: String
+    }
+  }
 };
 </script>
+
 <style>
 .lottie {
   display: inline-block;

@@ -57,53 +57,53 @@
 </template>
 
 <script>
-import Tools from '../utils/tools';
+import Tools from "../utils/tools";
 const SCREEN_XS_THRESHOLD = 750;
 const LOTTIE_SIZE_MOBILE = 170;
 const LOTTIE_SIZE_DESKTOP = 220;
 const LOTTIE_SPEED_SUCCESS = 40;
 const LOTTIE_SPEED_NORMAL = 1;
 export default {
-  tagName: 'newsletter-modal',
+  tagName: "newsletter-modal",
   props: {
     bgColor: {
-      type: String,
+      type: String
     },
     headline: {
-      type: String,
+      type: String
     },
     text: {
-      type: String,
+      type: String
     },
     formular: {
-      type: Object,
+      type: Object
     },
     lottie: {
-      type: Object,
+      type: Object
     },
     iconColor: {
       type: String,
-      default: 'var(--color-gk-orange)',
+      default: "var(--color-gk-orange)"
     },
     confirmation: {
       type: Object,
-      default: null,
+      default: null
     },
     light: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   computed: {
     formularConfig() {
       if (!this.isMobile) return this.formular;
       return {
         ...this.formular,
-        form: { ...this.formular.form, ctaPosition: 'justify-content-start' },
+        form: { ...this.formular.form, ctaPosition: "justify-content-start" }
       };
     },
     contrastColor() {
-      return this.light ? 'var(--color-gk-white)' : 'var(--color-black)';
+      return this.light ? "var(--color-gk-white)" : "var(--color-black)";
     },
     /*
     isMobile() {
@@ -117,16 +117,16 @@ export default {
       return this.success ? this.confirmation?.text : this.text;
     },
     contentClasses() {
-      return [this.isMobile ? 'my-md-4' : 'my-6 col-10', this.success ? 'd-flex align-items-center' : ''];
+      return [this.isMobile ? "my-md-4" : "my-6 col-10", this.success ? "d-flex align-items-center" : ""];
     },
     headlineClasses() {
-      return [this.isMobile ? '' : 'mb-5', this.success ? 'mb-5' : 'mb-2'];
+      return [this.isMobile ? "" : "mb-5", this.success ? "mb-5" : "mb-2"];
     },
     formularClasses() {
-      return this.isMobile ? 'mt-n5 d-flex justify-content-center align-items-center' : '';
+      return this.isMobile ? "mt-n5 d-flex justify-content-center align-items-center" : "";
     },
     containerClasses() {
-      return this.isMobile ? 'flex-column justify-content-between p-2' : 'align-items-center container';
+      return this.isMobile ? "flex-column justify-content-between p-2" : "align-items-center container";
     },
     lottieAnimation() {
       return this.idle ? this.lottie?.idle : this.lottie?.fly;
@@ -138,38 +138,36 @@ export default {
       return this.screenXS ? LOTTIE_SIZE_MOBILE : LOTTIE_SIZE_DESKTOP;
     },
     iconHeartDisplay() {
-      return this.success ? '' : 'none';
+      return this.success ? "" : "none";
     },
     birdAnimationClass() {
-      return this.success ? 'fade-out-animation' : '';
+      return this.success ? "fade-out-animation" : "";
     },
     heartAnimationClass() {
-      return this.success ? 'fade-in-animation' : '';
+      return this.success ? "fade-in-animation" : "";
     },
     iconHeartMobileClass() {
-      return this.screenXS ? '' : 'mb-11';
-    },
+      return this.screenXS ? "" : "mb-11";
+    }
   },
   data() {
     return {
       success: false,
       idle: true,
       screenXS: false,
-      heightFixed: 'auto',
-      isMobile: Tools.isBelowBreakpoint('lg'),
+      heightFixed: "auto",
+      isMobile: Tools.isBelowBreakpoint("lg")
     };
   },
   mounted() {
     this.checkBreakpoint();
-
-    window.addEventListener('resize', this.checkBreakpoint);
-    document.addEventListener('form-ajax-submit', this.handleFormSubmit);
+    window.addEventListener("resize", this.checkBreakpoint);
+    document.addEventListener("form-ajax-submit", this.handleFormSubmit);
   },
   beforeUnmount() {
-    window.removeEventListener('resize', this.checkBreakpoint);
-    document.removeEventListener('form-ajax-submit', this.handleFormSubmit);
+    window.removeEventListener("resize", this.checkBreakpoint);
+    document.removeEventListener("form-ajax-submit", this.handleFormSubmit);
   },
-
   methods: {
     handleFormSubmit(event) {
       const formElement = this.$refs.form?.$el || this.$refs.form?.$refs?.root;
@@ -187,16 +185,16 @@ export default {
     setIdle() {
       this.idle = !this.success;
     },
-
     checkBreakpoint() {
-      this.isMobile = Tools.isBelowBreakpoint('lg');
-      if (typeof window !== 'undefined' && window.visualViewport) {
+      this.isMobile = Tools.isBelowBreakpoint("lg");
+      if (typeof window !== "undefined" && window.visualViewport) {
         this.screenXS = window.visualViewport.height <= SCREEN_XS_THRESHOLD;
       }
-    },
-  },
+    }
+  }
 };
 </script>
+
 <style>
 .newsletter-modal {
   z-index: 330;

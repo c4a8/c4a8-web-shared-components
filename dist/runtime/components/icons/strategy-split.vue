@@ -28,17 +28,18 @@
     <path d="M23 11.1646V43.0292" stroke-linecap="round" stroke-linejoin="round" />
   </svg>
 </template>
+
 <script>
 export default {
-  tagName: 'strategy-split',
+  tagName: "strategy-split",
   computed: {
     style() {
       return `stroke: ${this.color}; fill: none; transform: rotate(var(--icon-rotation)); stroke-linecap: round; stroke-linejoin: round;`;
-    },
+    }
   },
   props: {
     settings: Object,
-    color: String,
-  },
+    color: String
+  }
 };
 </script>

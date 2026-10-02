@@ -17,24 +17,26 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
-  tagName: 'author-header',
+  tagName: "author-header",
   computed: {
     classList() {
-      return ['author-header row mb-4 mb-lg-5 vue-component', this.classes ? this.classes : ''];
-    },
+      return ["author-header row mb-4 mb-lg-5 vue-component", this.classes ? this.classes : ""];
+    }
   },
   props: {
     author: {
-      default: null,
+      default: null
     },
     classes: String,
     imgUrl: String,
-    postCount: Number,
-  },
+    postCount: Number
+  }
 };
 </script>
+
 <style scoped>
 .author-header .author-header__back {
   display: none;

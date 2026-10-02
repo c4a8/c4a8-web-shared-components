@@ -39,20 +39,21 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
-  tagName: 'modal-application',
+  tagName: "modal-application",
   computed: {
     hasRecaptcha() {
-      return this.form?.hasRecaptcha !== undefined ? this.form.hasRecaptcha : undefined;
-    },
+      return this.form?.hasRecaptcha !== void 0 ? this.form.hasRecaptcha : void 0;
+    }
   },
   props: {
     form: Object,
     success: {
       type: Object,
-      default: () => ({}),
-    },
-  },
+      default: () => ({})
+    }
+  }
 };
 </script>

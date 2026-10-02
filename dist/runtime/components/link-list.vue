@@ -49,57 +49,54 @@
     </ul>
   </figure>
 </template>
-<script>
-import Tools from '../utils/tools.js';
-import State from '../utils/state.js';
-import Events from '../utils/events.js';
 
+<script>
+import Tools from "../utils/tools.js";
+import State from "../utils/state.js";
+import Events from "../utils/events.js";
 export default {
-  tagName: 'link-list',
+  tagName: "link-list",
   computed: {
     classList() {
       return [
-        'link-list',
-        this.hasNoAnimation ? '' : 'utility-animation',
-        `${this.isExpanded ? State.EXPANDED : ''}`,
-        `${this.isExpandable() ? State.EXPANDABLE : ''}`,
-        `${this.hasActiveItem ? State.ACTIVE : ''}`,
-        `${this.isHidden ? 'link-list--hidden' : ''}`,
-        `${this.inTransition ? 'link-list--in-transition' : ''}`,
+        "link-list",
+        this.hasNoAnimation ? "" : "utility-animation",
+        `${this.isExpanded ? State.EXPANDED : ""}`,
+        `${this.isExpandable() ? State.EXPANDABLE : ""}`,
+        `${this.hasActiveItem ? State.ACTIVE : ""}`,
+        `${this.isHidden ? "link-list--hidden" : ""}`,
+        `${this.inTransition ? "link-list--in-transition" : ""}`,
         this.classes,
-        'vue-component',
+        "vue-component"
       ];
     },
     hasNoAnimation() {
       return Tools.isTrue(this.noAnimation);
     },
     classListTitle() {
-      return ['link-list__title font-size-8 bold', this.hasNoAnimation ? '' : 'fade-in-bottom'];
+      return ["link-list__title font-size-8 bold", this.hasNoAnimation ? "" : "fade-in-bottom"];
     },
     classListList() {
-      return ['link-list__list header__list--expanded', this.hasNoAnimation ? '' : 'fade-in-bottom'];
+      return ["link-list__list header__list--expanded", this.hasNoAnimation ? "" : "fade-in-bottom"];
     },
     hasActiveItem() {
       const items = this.list.children;
-
-      if (!items || items === ' ') return;
-
+      if (!items || items === " ") return;
       return items.filter((item) => item.languages[this.lang]?.active === true).length > 0;
     },
     isHidden() {
       return Tools.isTrue(this.hidden) === true;
-    },
+    }
   },
   watch: {
     hidden(oldValue, _) {
       if (!oldValue) {
         this.inTransition = true;
       }
-    },
+    }
   },
   updated() {
     this.updateHeight();
-
     this.inTransition = false;
   },
   mounted() {
@@ -107,92 +104,79 @@ export default {
   },
   methods: {
     bindEvents() {
-      this.parentOfParent = this.$refs['root'].parentNode.parentNode;
-
+      this.parentOfParent = this.$refs["root"].parentNode.parentNode;
       this.parentOfParent.addEventListener(Events.CHILD_HAS_UPDATE, this.handleUpdate.bind(this));
     },
     handleUpdate(event) {
       const eventRoot = event.detail.root;
-
-      if (this.isExpanded && this.$refs['root'] !== eventRoot) {
+      if (this.isExpanded && this.$refs["root"] !== eventRoot) {
         this.handleClick();
       }
     },
     isLowerBreakpoint() {
-      return Tools.isBelowBreakpoint('md');
+      return Tools.isBelowBreakpoint("md");
     },
     isExpandable() {
       return this.isLowerBreakpoint() && this.list.languages && this.list.languages[this.lang]?.title ? true : false;
     },
     updateHeight() {
-      const root = this.$refs['root'];
-
+      const root = this.$refs["root"];
       if (!root) return;
-
-      const newHeight = this.isHidden ? '' : root.scrollHeight + 'px';
-
+      const newHeight = this.isHidden ? "" : root.scrollHeight + "px";
       root.style.height = newHeight;
     },
     handleClick(event) {
       if (!this.isExpandable()) return;
-
       this.isExpanded = !this.isExpanded;
-
-      const root = this.$refs['root'];
-
+      const root = this.$refs["root"];
       if (event) {
         const customEvent = new CustomEvent(Events.CHILD_HAS_UPDATE, {
           detail: {
-            root,
-          },
+            root
+          }
         });
-
         this.parentOfParent.dispatchEvent(customEvent);
       }
-
       if (!root || this.isExpanded) return;
-
-      root.style.height = '';
+      root.style.height = "";
     },
-
     handleMouseOver(index) {
       if (this.list.children[index].subchildren && this.list.children[index].subchildren.length > 0) {
         this.hover = true;
-        const listItem = this.$refs['listItem'][index];
+        const listItem = this.$refs["listItem"][index];
         listItem.classList.add(State.EXPANDED);
       }
     },
-
     handleMouseOut(index) {
       if (this.list.children[index].subchildren && this.list.children[index].subchildren.length > 0) {
         this.hover = false;
-        const listItem = this.$refs['listItem'][index];
+        const listItem = this.$refs["listItem"][index];
         listItem.classList.remove(State.EXPANDED);
       }
-    },
+    }
   },
-
   props: {
     list: Object,
     lang: String,
     classes: String,
     hidden: {
-      default: null,
+      default: null
     },
     noAnimation: {
-      default: null,
-    },
+      default: null
+    }
   },
   data() {
     return {
       inTransition: false,
       isExpanded: false,
       parentOfParent: null,
-      hover: false,
+      hover: false
     };
-  },
+  }
 };
 </script>
+
 <style>
 .link-list {
   --link-list-border-size: 1px;

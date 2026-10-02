@@ -57,15 +57,15 @@
 
 <script>
 export default {
-  tagName: 'phone-mail',
+  tagName: "phone-mail",
   computed: {
     style() {
       return `fill: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
-    },
+    }
   },
   props: {
     settings: Object,
-    color: String,
-  },
+    color: String
+  }
 };
 </script>

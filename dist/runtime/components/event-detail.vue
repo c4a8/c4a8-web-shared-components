@@ -42,27 +42,28 @@
     </template>
   </page-detail>
 </template>
+
 <script>
 export default {
-  tagName: 'event-detail',
+  tagName: "event-detail",
   props: {
     detailColor: {
       type: String,
-      default: '--color-event-detail',
+      default: "--color-event-detail"
     },
     detailShapeColor: {
       type: String,
-      default: 'var(--color-event-detail-shape)',
+      default: "var(--color-event-detail-shape)"
     },
     headlineText: String,
     author: Array,
     headlineLevel: {
       type: String,
-      default: 'h1',
+      default: "h1"
     },
     headlineClasses: {
       type: String,
-      default: 'bold',
+      default: "bold"
     },
     form: Object,
     image: Object,
@@ -70,13 +71,13 @@ export default {
     badge: Object,
     showBadge: {
       type: Boolean,
-      default: false,
+      default: false
     },
     moment: String,
     time: String,
     lang: {
       type: String,
-      default: 'de',
+      default: "de"
     },
     body: Object,
     content: Object,
@@ -84,8 +85,8 @@ export default {
     price: String,
     odooForm: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   computed: {
     hasContent() {
@@ -101,7 +102,7 @@ export default {
         headlineText: this.headlineText,
         headlineClasses: this.headlineClassesComputed,
         name: this.author,
-        showBadge: this.showBadge,
+        showBadge: this.showBadge
       };
     },
     contentData() {
@@ -111,28 +112,29 @@ export default {
         paragraphs: this.content.paragraphs,
         bulletpoints: this.content.bulletpoints,
         headlineLevel: this.headlineLevelComputed,
-        headlineClasses: this.headlineClassesComputed,
+        headlineClasses: this.headlineClassesComputed
       };
     },
     headlineLevelComputed() {
-      return this.headlineLevel || 'h1';
+      return this.headlineLevel || "h1";
     },
     headlineClassesComputed() {
       return `page-detail__headline event-detail__headline ${this.headlineClasses}`;
     },
     stickyOptions() {
       return JSON.stringify({
-        parentSelector: '.page-detail__sticky-start',
-        breakpoint: 'lg',
-        startPoint: '.page-detail__sticky-start',
-        endPoint: '.page-detail__sticky-end',
+        parentSelector: ".page-detail__sticky-start",
+        breakpoint: "lg",
+        startPoint: ".page-detail__sticky-start",
+        endPoint: ".page-detail__sticky-end",
         stickyOffsetTop: 200,
-        stickyOffsetBottom: 20,
+        stickyOffsetBottom: 20
       });
-    },
-  },
+    }
+  }
 };
 </script>
+
 <style>
 .page-detail__intro-content .event-detail__headline {
   font-size: calc(3.75rem / 1.8);

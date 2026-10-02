@@ -26,24 +26,17 @@
       </div></div
   ></page-default>
 </template>
+
 <script setup>
-import { useHeaderData } from '#imports';
-
+import { useHeaderData } from "#imports";
 const props = defineProps({
-  error: Object,
+  error: Object
 });
-
 const { data: headerData } = await useHeaderData();
-
 const mergedHeaderData = computed(() => {
   return { ...headerData.value, light: true };
 });
-
-// TODO only log error in dev environment
-// console.error('Shared Error: ', props.error);
-
 const event = useRequestEvent();
-
 if (event) {
   setResponseStatus(event, 404);
 }

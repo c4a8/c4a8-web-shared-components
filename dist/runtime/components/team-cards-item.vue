@@ -32,7 +32,7 @@
 
 <script>
 export default {
-  name: 'team-cards-item',
+  name: "team-cards-item",
   props: {
     img: String,
     alt: String,
@@ -44,15 +44,16 @@ export default {
     linkedin: String,
     noRow: {
       type: Boolean,
-      default: false,
+      default: false
     },
     noBorder: {
       type: Boolean,
-      default: true,
-    },
-  },
+      default: true
+    }
+  }
 };
 </script>
+
 <style>
 .team-cards-item--default {
   max-width: 300px;

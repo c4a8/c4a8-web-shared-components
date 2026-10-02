@@ -4,9 +4,10 @@
     <path d="M33.79,33.79v-30a2,2,0,0,0-2-2h-30" transform="translate(-0.79 -0.79)" :style="pathStyle"></path>
   </svg>
 </template>
+
 <script>
 export default {
-  tagName: 'arrow-external',
+  tagName: "arrow-external",
   computed: {
     style() {
       return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
@@ -16,15 +17,15 @@ export default {
     },
     strokeWidthValue() {
       return this.strokeWidth;
-    },
+    }
   },
   props: {
     settings: Object,
     color: String,
     strokeWidth: {
       type: Number,
-      default: 3,
-    },
-  },
+      default: 3
+    }
+  }
 };
 </script>

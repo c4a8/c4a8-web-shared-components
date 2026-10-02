@@ -19,15 +19,15 @@
 
 <script>
 export default {
-  tagName: 'reload',
+  tagName: "reload",
   computed: {
     style() {
       return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
-    },
+    }
   },
   props: {
     settings: Object,
-    color: String,
-  },
+    color: String
+  }
 };
 </script>

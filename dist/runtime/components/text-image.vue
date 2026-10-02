@@ -97,15 +97,14 @@
     />
   </div>
 </template>
-<script>
-//import { str } from 'storybook/internal/docs-tools';
-import StickyScroller from '../utils/sticky-scroller.js';
-import UtilityAnimation from '../utils/utility-animation.js';
 
+<script>
+import StickyScroller from "../utils/sticky-scroller.js";
+import UtilityAnimation from "../utils/utility-animation.js";
 export default {
-  tagName: 'text-image',
+  tagName: "text-image",
   props: {
-    spacing: { type: String, default: 'space-top-2' },
+    spacing: { type: String, default: "space-top-2" },
     image: String,
     imageClasses: String,
     imagePreset: String,
@@ -136,14 +135,14 @@ export default {
     noAnimation: Boolean,
     index: Number,
     noGutters: { type: Boolean, default: false },
-    level: { type: String, default: 'h3' },
+    level: { type: String, default: "h3" },
     headlineClasses: String,
     listTitle: String,
-    listItems: Array,
+    listItems: Array
   },
   computed: {
     textImageLightText() {
-      return this.copyLight ? 'text-light' : '';
+      return this.copyLight ? "text-light" : "";
     },
     textImageFirstColWidthXl() {
       return this.firstColWidth || 4;
@@ -158,103 +157,90 @@ export default {
       return this.secondColWidth || 6;
     },
     textImageHeadlineClassesComputed() {
-      let classes = `${this.headlineClasses || ''} ${this.textImageLightText} mb-2 mb-lg-4`;
-
+      let classes = `${this.headlineClasses || ""} ${this.textImageLightText} mb-2 mb-lg-4`;
       if (!this.headlineClasses) {
-        classes += this.float ? ' h3-font-size' : ' h4-font-size font-weight-normal';
+        classes += this.float ? " h3-font-size" : " h4-font-size font-weight-normal";
       }
-
       return classes.trim();
     },
     textImageImgSrcSets() {
       if (this.float) {
-        return this.imagePreset ? this.imagePreset : 'textImageFloatingSmall';
+        return this.imagePreset ? this.imagePreset : "textImageFloatingSmall";
       } else {
         return this.imagePreset ? this.imagePreset : null;
       }
     },
     textImagePreset() {
       if (this.float) {
-        return this.imagePreset || 'textImageFloatingSmall';
+        return this.imagePreset || "textImageFloatingSmall";
       } else {
         return this.imagePreset || null;
       }
     },
     textImageClass() {
       return [
-        'text-image',
-        'is-component',
+        "text-image",
+        "is-component",
         this.spacing,
-        { 'text-image--bg-color': this.bgColor },
-        { 'is-sticky-scroller': this.sticky },
-        { 'utility-animation utility-animation--enter-exit': !this.noAnimation },
-        { 'text-image--float': this.float },
-        'vue-component',
+        { "text-image--bg-color": this.bgColor },
+        { "is-sticky-scroller": this.sticky },
+        { "utility-animation utility-animation--enter-exit": !this.noAnimation },
+        { "text-image--float": this.float },
+        "vue-component"
       ];
     },
     textImageStyle() {
       return {
-        'background-color': this.bgColor,
-        '--utility-animation-index': this.index,
-        'background-image': this.background ? `url('${this.background}')` : undefined,
+        "background-color": this.bgColor,
+        "--utility-animation-index": this.index,
+        "background-image": this.background ? `url('${this.background}')` : void 0
       };
     },
     textImageFirstColClasses() {
       const classes = [
-        'text-image__first-col',
-        'd-flex',
-        'text-image__img',
-        'justify-content-center',
+        "text-image__first-col",
+        "d-flex",
+        "text-image__img",
+        "justify-content-center",
         this.imageClasses,
-        `col-lg-${
-          this.float
-            ? this.textImageFirstColWidthComputed
-            : this.offset
-              ? this.textImageFirstColWidthComputed - 1
-              : this.textImageFirstColWidthComputed
-        }`,
+        `col-lg-${this.float ? this.textImageFirstColWidthComputed : this.offset ? this.textImageFirstColWidthComputed - 1 : this.textImageFirstColWidthComputed}`
       ];
       if (this.float) {
-        classes.push(`col-xl-${this.textImageFirstColWidthXl}`, 'text-image__img--floating');
+        classes.push(`col-xl-${this.textImageFirstColWidthXl}`, "text-image__img--floating");
       } else if (this.offset && !this.left) {
-        classes.push('offset-lg-1');
+        classes.push("offset-lg-1");
       }
       return classes;
     },
     textImageSecondColClasses() {
       const classes = [
-        'text-image__second-col',
-        { 'no-gutters': this.noGutters },
-        { 'pt-2 pt-lg-4': !this.noGutters },
+        "text-image__second-col",
+        { "no-gutters": this.noGutters },
+        { "pt-2 pt-lg-4": !this.noGutters },
         `col-lg-${this.textImageSecondColWidthComputed}`,
-        { 'fade-in-bottom': !this.noAnimation },
-        { 'text-white': this.white },
-        { [this.reduceSpacing]: this.reduceSpacing },
+        { "fade-in-bottom": !this.noAnimation },
+        { "text-white": this.white },
+        { [this.reduceSpacing]: this.reduceSpacing }
       ];
-
       if (!this.reduceSpacing) {
-        classes.push(`${this.left ? 'pr-lg-' : 'pl-lg-'}${this.textImageSecondColWidthComputed}`);
+        classes.push(`${this.left ? "pr-lg-" : "pl-lg-"}${this.textImageSecondColWidthComputed}`);
       }
-
       if (this.float) {
         classes.push(`col-xl-${this.textImageSecondColWidthXl}`);
       } else if (this.left && this.offset) {
-        classes.push('offset-lg-1');
+        classes.push("offset-lg-1");
       }
-
       return classes;
     },
     textImageLightTextClass() {
-      return [this.copyClasses || '', this.textImageLightText, 'richtext'];
-    },
+      return [this.copyClasses || "", this.textImageLightText, "richtext"];
+    }
   },
   mounted() {
     if (!this.$refs.root) return;
-
     if (this.sticky) {
       StickyScroller.init([this.$refs.root]);
     }
-
     UtilityAnimation.init([this.$refs.root]);
   },
   methods: {
@@ -262,10 +248,11 @@ export default {
       if (this.href) {
         document.location.href = this.href;
       }
-    },
-  },
+    }
+  }
 };
 </script>
+
 <style>
 .text-image {
   position: relative;
@@ -308,7 +295,6 @@ export default {
 }
 .text-image .img__picture-wrapper.ratio-1x1 {
   position: relative;
-  overflow: hidden;
 }
 .text-image .img__picture-wrapper.ratio-1x1:before {
   content: "";
@@ -322,6 +308,9 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
+}
+.text-image .img__picture-wrapper.ratio-1x1 {
+  overflow: hidden;
 }
 .text-image .img__picture-wrapper.ratio-1x1 > img {
   top: 50%;

@@ -86,79 +86,71 @@
     </div>
   </section>
 </template>
-<script>
-import Tools from '../utils/tools.js';
-import State from '../utils/state.js';
-import UtilityAnimation from '../utils/utility-animation.js';
 
+<script>
+import Tools from "../utils/tools.js";
+import State from "../utils/state.js";
+import UtilityAnimation from "../utils/utility-animation.js";
 export default {
-  tagName: 'accordion',
+  tagName: "accordion",
   computed: {
     outsidePreset() {
-      return this.isOutsideImageWebpOrGif ? 'animated' : null;
+      return this.isOutsideImageWebpOrGif ? "animated" : null;
     },
     isOutsideImageWebpOrGif() {
       if (!this.outsideImage) return false;
-
-      return this.outsideImage.endsWith('.webp') || this.outsideImage.endsWith('.gif');
+      return this.outsideImage.endsWith(".webp") || this.outsideImage.endsWith(".gif");
     },
     imageWrapperClasses() {
-      return ['accordion__floating-image-wrapper', Tools.isTrue(this.shadowless) === true ? null : 'drop-shadow'];
+      return ["accordion__floating-image-wrapper", Tools.isTrue(this.shadowless) === true ? null : "drop-shadow"];
     },
     containerClasses() {
       return [
-        'accordion__container utility-animation container vue-component',
+        "accordion__container utility-animation container vue-component",
         this.spacing,
-        this.accordion.image ? 'accordion--has-image' : null,
+        this.accordion.image ? "accordion--has-image" : null
       ];
     },
     accordionClasses() {
       return [
-        'accordion utility-animation container mt-6 mb-4 my-lg-8 vue-component',
-        this.accordion.image ? 'accordion--has-image' : null,
+        "accordion utility-animation container mt-6 mb-4 my-lg-8 vue-component",
+        this.accordion.image ? "accordion--has-image" : null
       ];
     },
     fallbackImageClasses() {
       return [
-        'accordion__fallback-image-wrapper',
-        Tools.isTrue(this.shadowless) === true ? null : 'drop-shadow',
-        this.showOutsideImage ? State.SHOW : null,
+        "accordion__fallback-image-wrapper",
+        Tools.isTrue(this.shadowless) === true ? null : "drop-shadow",
+        this.showOutsideImage ? State.SHOW : null
       ];
     },
     columnClasses() {
-      return ['col', Tools.isTrue(this.left) ? null : 'text-center'];
+      return ["col", Tools.isTrue(this.left) ? null : "text-center"];
     },
     headlineClasses() {
       return `accordion__headline  ${this.accordion?.headlineClasses}`;
-    },
+    }
   },
   created() {
     if (!document) return;
-
     this.tabs = this.accordion.tabs;
-
     this.changeExpandedStateOnAnchor();
   },
   mounted() {
     if (!this.accordion.tabs) return;
-
     this.selectFallbackImage();
-
     if (this.isUpperBreakpoint()) {
       this.changeOutsideImage();
     } else {
       this.outsideImage = this.fallbackImage;
       this.outsideAlt = this.fallbackAlt;
     }
-
     this.accordion.tabs.forEach((element) => {
       this.states.push(element.expanded ? true : false);
     });
-
     if (this.$refs.container) {
       UtilityAnimation.init([this.$refs.container]);
     }
-
     if (this.$refs.accordion) {
       UtilityAnimation.init([this.$refs.accordion]);
     }
@@ -166,35 +158,26 @@ export default {
   methods: {
     changeExpandedStateOnAnchor() {
       const hash = this.getHash();
-      const id = hash
-        .substring(1)
-        .replace(/^(Heading|Content)/, '')
-        .slice(0, -1);
-
+      const id = hash.substring(1).replace(/^(Heading|Content)/, "").slice(0, -1);
       if (this.accordion?.id !== id) return;
-
       const index = hash.substring(hash.length - 1);
-
       for (let i = 0; i < this.tabs.length; i++) {
         if (this.tabs[i].expanded === true) {
           this.tabs[i].expanded = false;
         }
       }
-
       if (!this.tabs[index]) return;
-
       this.tabs[index].expanded = true;
     },
     getHash() {
       return window.location.hash;
     },
     isUpperBreakpoint() {
-      return !Tools.isBelowBreakpoint('md');
+      return !Tools.isBelowBreakpoint("md");
     },
     selectFallbackImage() {
       if (!this.fallbackImage) {
         const activeTab = this.getActiveTab();
-
         this.fallbackImage = this.accordion.image || activeTab?.image;
         this.fallbackAnimated = this.accordion.image ? this.accordion.animated : activeTab.animated;
         this.fallbackAlt = this.accordion.image ? this.accordion.alt : activeTab?.alt;
@@ -202,26 +185,20 @@ export default {
     },
     getActiveTab() {
       const expandedTabs = this.tabs.filter((item) => item.expanded);
-
       return expandedTabs ? expandedTabs[0] : null;
     },
     handleClick(index) {
       const lastState = this.states[index];
-
       this.states = this.states.map((_) => false);
       this.states[index] = !lastState;
-
       if (this.isUpperBreakpoint()) {
         this.changeOutsideImage(index);
       }
-
       if (!this.allTabsClosed()) return;
-
       this.changeToFallbackImage();
     },
     changeToFallbackImage() {
       this.showOutsideImage = true;
-
       this.accordion.image = this.fallbackImage;
       this.outsideImage = this.fallbackImage;
       this.outsideAnimated = this.fallbackAnimated;
@@ -229,15 +206,13 @@ export default {
     },
     changeOutsideImage(index) {
       const tab = this.getTabByIndex(index);
-
       this.showOutsideImage = true;
       this.outsideImage = tab?.image || this.fallbackImage;
       this.outsideAnimated = tab?.image ? tab.animated : this.fallbackAnimated;
       this.outsideAlt = tab?.image ? tab.alt : this.fallbackAlt;
     },
     getTabByIndex(index) {
-      if (typeof index === 'undefined') return this.getActiveTab();
-
+      if (typeof index === "undefined") return this.getActiveTab();
       return this.accordion?.tabs[index];
     },
     allTabsClosed() {
@@ -250,21 +225,20 @@ export default {
       return `${name}${accordion.id}${index}`;
     },
     isExpanded(tab) {
-      return tab.expanded ? 'true' : 'false';
+      return tab.expanded ? "true" : "false";
     },
     buttonClasses(tab) {
       return [
-        'accordion__btn btn btn-link btn-block d-flex justify-content-between',
-        !tab.expanded ? 'collapsed' : null,
+        "accordion__btn btn btn-link btn-block d-flex justify-content-between",
+        !tab.expanded ? "collapsed" : null
       ];
     },
     contentClasses(tab) {
-      return ['accordion__content collapse position-static', tab.expanded ? 'show' : null];
+      return ["accordion__content collapse position-static", tab.expanded ? "show" : null];
     },
     cardClasses(index) {
       const state = this.getStateByIndex(index);
-
-      return ['accordion__card', state ? State.EXPANDED : null];
+      return ["accordion__card", state ? State.EXPANDED : null];
     },
     cardStyle(index) {
       return `--utility-animation-index: ${index}`;
@@ -277,40 +251,39 @@ export default {
     },
     getImage(tab) {
       if (tab.image) return tab.image;
-
       if (this.accordion.image) return this.accordion.image;
-
       return null;
     },
     getTab(tab) {
       return tab.image ? tab : this.accordion;
-    },
+    }
   },
   data() {
     return {
       showOutsideImage: false,
       outsideImage: false,
       outsideAnimated: false,
-      outsideAlt: '',
+      outsideAlt: "",
       states: [],
       fallbackImage: false,
       fallbackAnimated: false,
-      fallbackAlt: '',
-      tabs: [],
+      fallbackAlt: "",
+      tabs: []
     };
   },
   props: {
     accordion: Object,
     shadowless: {
-      default: null,
+      default: null
     },
     left: {
-      default: null,
+      default: null
     },
-    spacing: String,
-  },
+    spacing: String
+  }
 };
 </script>
+
 <style scoped>
 .accordion .accordion__text,
 .accordion .accordion__btn,
@@ -372,12 +345,14 @@ export default {
 
 .accordion__container {
   opacity: 0;
-  overflow: hidden;
 }
 .accordion__container[data-utility-animation-in-viewport=true] {
   transform: translate3d(0, var(--utility-animation-distance), 0);
   animation: fade-in-from-bottom 0.5s forwards;
   animation-timing-function: cubic-bezier(0.19, 1, 0.2, 1);
+}
+.accordion__container {
+  overflow: hidden;
 }
 .accordion__container.accordion--has-image .accordion__image {
   display: block;

@@ -38,40 +38,37 @@
     </div>
   </div>
 </template>
-<script>
-import UtilityAnimation from '../utils/utility-animation.js';
-import StickyScroller from '../utils/sticky-scroller.js';
-import Tools from '../utils/tools.js';
 
+<script>
+import UtilityAnimation from "../utils/utility-animation.js";
+import StickyScroller from "../utils/sticky-scroller.js";
+import Tools from "../utils/tools.js";
 export default {
-  tagName: 'success-story',
+  tagName: "success-story",
   props: {
     successStory: {
       type: Object,
-      required: true,
+      required: true
     },
     level: {
       type: String,
-      default: 'h2',
+      default: "h2"
     },
     sticky: {
       type: Boolean,
-      default: false,
+      default: false
     },
     spacing: {
       type: String,
-      default: '',
-    },
+      default: ""
+    }
   },
   mounted() {
     if (!this.$refs.root) return;
-
     Tools.initSlickSlider(this.$refs.container, this.slickOptions);
-
     if (this.sticky) {
       StickyScroller.init([this.$refs.root]);
     }
-
     UtilityAnimation.init([this.$refs.root]);
   },
   computed: {
@@ -79,7 +76,7 @@ export default {
       return this.successStory?.videos?.length > 2;
     },
     successStoryLevel() {
-      return this.level || 'h2';
+      return this.level || "h2";
     },
     successStorySticky() {
       return this.sticky;
@@ -88,7 +85,7 @@ export default {
       return this.spacing;
     },
     successStoryHeadlineClass() {
-      return this.successStory.headlineClasses || 'h2-font-size';
+      return this.successStory.headlineClasses || "h2-font-size";
     },
     slickOptions() {
       return {
@@ -99,44 +96,45 @@ export default {
         nextArrow: '<span class="slick__arrow-right rounded-circle"></span>',
         dots: true,
         centerMode: false,
-        dotsClass: 'slick-pagination is-default',
+        dotsClass: "slick-pagination is-default",
         responsive: [
           {
             breakpoint: 992,
             settings: {
               centerMode: true,
               infinite: true,
-              centerPadding: '30px',
+              centerPadding: "30px",
               slidesToShow: 2,
-              slidesToScroll: 2,
-            },
+              slidesToScroll: 2
+            }
           },
           {
             breakpoint: 768,
             settings: {
               centerMode: true,
               infinite: false,
-              centerPadding: '30px',
+              centerPadding: "30px",
               slidesToShow: 1,
-              slidesToScroll: 1,
-            },
+              slidesToScroll: 1
+            }
           },
           {
             breakpoint: 576,
             settings: {
               centerMode: true,
               infinite: false,
-              centerPadding: '20px',
+              centerPadding: "20px",
               slidesToShow: 1,
-              slidesToScroll: 1,
-            },
-          },
-        ],
+              slidesToScroll: 1
+            }
+          }
+        ]
       };
-    },
-  },
+    }
+  }
 };
 </script>
+
 <style>
 .success-story {
   position: relative;

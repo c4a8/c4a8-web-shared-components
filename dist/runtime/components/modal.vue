@@ -65,45 +65,45 @@
     </div>
   </div>
 </template>
-<script>
-import Modal from '../utils/modal.js';
-import Events from '../utils/events.js';
-import Tools from '../utils/tools.js';
-import State from '../utils/state.js';
-import Form from '../utils/components/form.js';
 
+<script>
+import Modal from "../utils/modal.js";
+import Events from "../utils/events.js";
+import Tools from "../utils/tools.js";
+import State from "../utils/state.js";
+import Form from "../utils/components/form.js";
 export default {
-  tagName: 'modal',
+  tagName: "modal",
   computed: {
     modalErrorValue() {
       return Tools.getJSON(this.modalError);
     },
     classList() {
       return [
-        'modal fade',
-        this.slimValue ? 'modal--slim' : '',
-        this.notificationValue ? 'modal--notification' : '',
-        this.isCenterSlim ? 'modal--center-slim' : '',
-        'vue-component',
-        this.light ? 'modal--light' : '',
+        "modal fade",
+        this.slimValue ? "modal--slim" : "",
+        this.notificationValue ? "modal--notification" : "",
+        this.isCenterSlim ? "modal--center-slim" : "",
+        "vue-component",
+        this.light ? "modal--light" : ""
       ];
     },
     dialogClassList() {
       return [
-        'modal-dialog',
-        `${this.slimValue ? 'modal-lg' : 'modal-xl'}`,
-        `${this.centerValue ? 'modal-dialog-centered' : ''}`,
+        "modal-dialog",
+        `${this.slimValue ? "modal-lg" : "modal-xl"}`,
+        `${this.centerValue ? "modal-dialog-centered" : ""}`
       ];
     },
     settings() {
       return {
-        'data-client-name': this.clientName ? this.clientName : null,
-        'data-api-url': this.apiUrl ? this.apiUrl : null,
-        'data-job-id': this.jobId ? this.jobId : null,
-        'data-modal-id': this.modalId ? this.modalId : null,
-        'data-api-key': this.apiKey ? this.apiKey : null,
-        'data-mock-apply-url': this.mockApplyUrl ? this.mockApplyUrl : null,
-        'data-mock-documents-url': this.mockDocumentsUrl ? this.mockDocumentsUrl : null,
+        "data-client-name": this.clientName ? this.clientName : null,
+        "data-api-url": this.apiUrl ? this.apiUrl : null,
+        "data-job-id": this.jobId ? this.jobId : null,
+        "data-modal-id": this.modalId ? this.modalId : null,
+        "data-api-key": this.apiKey ? this.apiKey : null,
+        "data-mock-apply-url": this.mockApplyUrl ? this.mockApplyUrl : null,
+        "data-mock-documents-url": this.mockDocumentsUrl ? this.mockDocumentsUrl : null
       };
     },
     isCenterSlim() {
@@ -125,7 +125,7 @@ export default {
       return Tools.isTrue(this.notification);
     },
     size() {
-      return this.slimValue || this.notificationValue ? 'small' : null;
+      return this.slimValue || this.notificationValue ? "small" : null;
     },
     hasCircleAndHover() {
       return this.isCenterSlim || this.notificationValue ? false : true;
@@ -137,59 +137,46 @@ export default {
       return this.hasCircleAndHover;
     },
     bodyClasses() {
-      return ['modal__body', this.loading ? State.LOADING : null];
-    },
+      return ["modal__body", this.loading ? State.LOADING : null];
+    }
   },
   mounted() {
     this.bindEvents();
-
     if (this.show !== true) return;
-
     this.openModal();
   },
   unmounted() {
     this.observer.disconnect();
-
     document.removeEventListener(Events.LOAD_MODAL, this.handleLoading);
   },
   methods: {
     isModalOpen() {
-      return document.body.classList.contains('modal-open') ? true : false;
+      return document.body.classList.contains("modal-open") ? true : false;
     },
     setModalMode(mode) {
-      const html = document.querySelector('html');
-
+      const html = document.querySelector("html");
       if (mode) {
         html.classList.add(State.MODAL_OPEN);
       } else {
         html.classList.remove(State.MODAL_OPEN);
-
         this.handleClose();
       }
     },
     handleClose() {
       this.$refs.application.$refs.form.hasLoading = false;
-
-      const modal = this.$refs['modal'];
+      const modal = this.$refs["modal"];
       const form = modal.querySelector(Form.rootSelector);
-
       if (!form) return;
-
       const formInstance = Form.getInstance(form);
-
       if (formInstance) return;
-
       Form.reset(formInstance.form);
     },
     bindEvents() {
       this.observer = new MutationObserver(this.handleMutation);
-
       const observerStartingDelay = 200;
-
       setTimeout(() => {
         this.observer.observe(document.body, { attributes: true });
       }, observerStartingDelay);
-
       document.addEventListener(Events.LOAD_MODAL, this.handleLoading);
     },
     handleMutation() {
@@ -197,21 +184,19 @@ export default {
     },
     handleLoading(e) {
       const loading = e?.detail;
-
       this.loading = loading;
     },
     openModal() {
       const openDelay = 70;
-
       setTimeout(() => {
-        Modal.open(this.$refs['modal']);
+        Modal.open(this.$refs["modal"]);
       }, openDelay);
-    },
+    }
   },
   data() {
     return {
       observer: null,
-      loading: false,
+      loading: false
     };
   },
   props: {
@@ -223,16 +208,16 @@ export default {
     jobId: String,
     modalId: String,
     slim: {
-      default: null,
+      default: null
     },
     show: {
-      default: null,
+      default: null
     },
     center: {
-      default: null,
+      default: null
     },
     notification: {
-      default: null,
+      default: null
     },
     apiKey: String,
     mockApplyUrl: String,
@@ -241,8 +226,8 @@ export default {
     content: String,
     light: {
       type: Boolean,
-      default: false,
-    },
-  },
+      default: false
+    }
+  }
 };
 </script>

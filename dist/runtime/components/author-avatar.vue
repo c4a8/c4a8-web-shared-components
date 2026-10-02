@@ -7,42 +7,40 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
-  tagName: 'author-avatar',
+  tagName: "author-avatar",
   data() {
     return {
-      defaultImageOffsetLeft: '50%',
-      defaultImageOffsetTop: '60%',
+      defaultImageOffsetLeft: "50%",
+      defaultImageOffsetTop: "60%"
     };
   },
   computed: {
     classList() {
-      return ['author__avatar vue-component', this.classes ? this.classes : ''];
+      return ["author__avatar vue-component", this.classes ? this.classes : ""];
     },
     style() {
       const imageOffsetLeft = this.author.imageOffsetLeft || this.defaultImageOffsetLeft;
       const imageOffsetTop = this.author.imageOffsetTop || this.defaultImageOffsetTop;
-
       return `left:${imageOffsetLeft};top:${imageOffsetTop}`;
-    },
+    }
   },
   methods: {},
   props: {
     author: {
-      default: null,
+      default: null
     },
     classes: String,
-    imgUrl: String,
-  },
+    imgUrl: String
+  }
 };
 </script>
+
 <style scoped>
 .author__avatar-frame {
   position: relative;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  border-radius: 100%;
 }
 .author__avatar-frame:before {
   content: "";
@@ -56,6 +54,11 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
+}
+.author__avatar-frame {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border-radius: 100%;
 }
 .author__avatar-frame > * {
   width: 100%;

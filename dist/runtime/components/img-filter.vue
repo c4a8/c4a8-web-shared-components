@@ -5,26 +5,25 @@
 </template>
 
 <script>
-import Tools from '../utils/tools.js';
-
+import Tools from "../utils/tools.js";
 export default {
-  tagName: 'img-filter',
+  tagName: "img-filter",
   props: {
     img: String,
     alt: String,
     cloudinary: {
-      default: null,
+      default: null
     },
     lazy: Boolean,
     classes: String,
-    color: String,
+    color: String
   },
   computed: {
     cloudinaryValue() {
       return Tools.isTrue(this.cloudinary);
     },
     colorValue() {
-      return this.color ? this.color : '#000520';
+      return this.color ? this.color : "#000520";
     },
     svgFilter() {
       const red = parseFloat((Tools.red(this.colorValue) / 255).toFixed(5));
@@ -33,28 +32,18 @@ export default {
       const opacity = 1;
       const max = Math.max(red, green, blue);
       const min = Math.min(red, green, blue);
-      const lightness = (100 * (max + min)) / 2 + '%';
-      const svgFilterId = 'img-to-color';
-
+      const lightness = 100 * (max + min) / 2 + "%";
+      const svgFilterId = "img-to-color";
       return `
         filter: saturate(0%) brightness(0%) invert(${lightness}) opacity(${opacity});
-        filter: url('data:image/svg+xml;utf8,\
-<svg xmlns="http://www.w3.org/2000/svg">\
-          <filter id="${svgFilterId}" color-interpolation-filters="sRGB">\
-            <feColorMatrix type="matrix" values="\
-              0 0 0 0 ${red}\
-              0 0 0 0 ${green}\
-              0 0 0 0 ${blue}\
-              0 0 0 ${opacity} 0\
-            "/>\
-          </filter>\
-        </svg>
-\ #${svgFilterId}')
+        filter: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg">          <filter id="${svgFilterId}" color-interpolation-filters="sRGB">            <feColorMatrix type="matrix" values="              0 0 0 0 ${red}              0 0 0 0 ${green}              0 0 0 0 ${blue}              0 0 0 ${opacity} 0            "/>          </filter>        </svg>
+ #${svgFilterId}')
       `;
-    },
-  },
+    }
+  }
 };
 </script>
+
 <style scoped>
 .img-filter {
   display: inline-block;

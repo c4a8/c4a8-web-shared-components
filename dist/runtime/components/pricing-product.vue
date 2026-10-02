@@ -57,12 +57,12 @@
     </div>
   </div>
 </template>
-<script>
-import UtilityAnimation from '../utils/utility-animation.js';
-import Tools from '../utils/tools.js';
 
+<script>
+import UtilityAnimation from "../utils/utility-animation.js";
+import Tools from "../utils/tools.js";
 export default {
-  tagName: 'pricing-product',
+  tagName: "pricing-product",
   props: {
     product: Object,
     index: Number,
@@ -70,31 +70,27 @@ export default {
     targetSelectorClass: String,
     visibleTabs: {
       type: Array,
-      default: null,
+      default: null
     },
     selectedPlan: String,
-    pricing: Object,
+    pricing: Object
   },
   mounted() {
     this.updatePrices();
-
     if (!this.$refs.root) return;
-
     UtilityAnimation.init([this.$refs.root]);
   },
   methods: {
     updatePrices() {
       if (!this.pricing) return;
-
-      const elements = [this.$refs.price, this.$refs['additionalUsersFee']];
+      const elements = [this.$refs.price, this.$refs["additionalUsersFee"]];
       const formatter = Tools.getPriceFormatter(this.pricing);
-
       elements.forEach((element) => {
         if (element) {
           Tools.updateElementPrice(element, element.innerHTML, formatter);
         }
       });
-    },
+    }
   },
   computed: {
     title() {
@@ -113,7 +109,7 @@ export default {
       return this.product.buttons;
     },
     includedTargetSelectorClass() {
-      return this.targetSelectorClass || 'pricingSwitch';
+      return this.targetSelectorClass || "pricingSwitch";
     },
     computedTargetSelectorClass() {
       return this.product.targetSelectorClass || this.includedTargetSelectorClass;
@@ -135,30 +131,30 @@ export default {
       return this.filteredButtons.filter(this.visibleTabExpression);
     },
     buttonClasses() {
-      const classes = ['row', 'justify-content-end', 'ml-md-4', 'ml-lg-6'];
-
+      const classes = ["row", "justify-content-end", "ml-md-4", "ml-lg-6"];
       if (this.visibleTabButtons.length > 1) {
-        classes.push('mb-2');
+        classes.push("mb-2");
       }
-      return classes.join(' ');
+      return classes.join(" ");
     },
     pricingProductClasses() {
       if (this.visibleTabButtons.length > 0) {
-        return ['bg-white', 'p-4', 'pl-md-6', 'pr-md-2'];
+        return ["bg-white", "p-4", "pl-md-6", "pr-md-2"];
       } else {
-        return ['pricint-product--list', 'py-5', 'px-4', 'px-md-0', 'ml-md-6'];
+        return ["pricint-product--list", "py-5", "px-4", "px-md-0", "ml-md-6"];
       }
     },
     pricingProductPriceColumns() {
       if (this.visibleTabButtons.length > 0) {
-        return ['col-md-4', 'col-lg-4'];
+        return ["col-md-4", "col-lg-4"];
       } else {
-        return ['col-md-8', 'col-lg-7'];
+        return ["col-md-8", "col-lg-7"];
       }
-    },
-  },
+    }
+  }
 };
 </script>
+
 <style>
 .pricing-product[data-utility-animation-step].is-starting {
   animation-delay: calc(var(--utility-animation-index) * 80ms + 0ms);

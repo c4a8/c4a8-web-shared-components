@@ -28,94 +28,69 @@
 </template>
 
 <script setup>
-import Tools from '../utils/tools';
-import State from '../utils/state';
-import { ref, onMounted, onUnmounted } from 'vue';
-
+import Tools from "../utils/tools";
+import State from "../utils/state";
+import { ref, onMounted, onUnmounted } from "vue";
 const props = defineProps({
   menuItems: {
     type: Array,
-    required: true,
-  },
+    required: true
+  }
 });
-
 const isMenuOpen = ref(false);
 const isMobile = ref(false);
-const activeSection = ref('');
+const activeSection = ref("");
 let observer = null;
-
 const checkBreakpoint = () => {
-  isMobile.value = Tools.isBelowBreakpoint('lg');
-
+  isMobile.value = Tools.isBelowBreakpoint("lg");
   if (!isMobile.value) {
     isMenuOpen.value = false;
   }
 };
-
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
 };
-
-const isAnchorLink = (href) => href.startsWith('#');
-
+const isAnchorLink = (href) => href.startsWith("#");
 const handleAnchorClick = (href) => {
   const id = href.substring(1);
   const idTarget = document.querySelector(`#${id}`);
-
   if (idTarget) {
     Tools.scrollIntoView(idTarget, true);
   }
-
   if (isMobile.value) {
     isMenuOpen.value = false;
   }
 };
-
 const getListItemClass = (item) => {
   return {
-    'aside-nav__list-item': true,
-    [State.ACTIVE]: activeSection.value === item.href,
+    "aside-nav__list-item": true,
+    [State.ACTIVE]: activeSection.value === item.href
   };
 };
-
 const setupIntersectionObserver = () => {
-  const headlines = props.menuItems
-    .filter((item) => isAnchorLink(item.href))
-    .map((item) => {
-      const id = item.href.substring(1);
-      const element = document.querySelector(`#${id}`);
-
-      return { id: item.href, element };
-    })
-    .filter((item) => item.element);
-
+  const headlines = props.menuItems.filter((item) => isAnchorLink(item.href)).map((item) => {
+    const id = item.href.substring(1);
+    const element = document.querySelector(`#${id}`);
+    return { id: item.href, element };
+  }).filter((item) => item.element);
   const topOffset = 200;
   const enterTop = -window.innerHeight + topOffset;
-
   const enterObserver = new IntersectionObserver(
     (entries) => {
-      const visibleEntry = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.boundingClientRect.top - a.boundingClientRect.top)[0];
-
+      const visibleEntry = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.boundingClientRect.top - a.boundingClientRect.top)[0];
       if (visibleEntry) {
-        const id = '#' + visibleEntry.target.id;
-
+        const id = "#" + visibleEntry.target.id;
         activeSection.value = id;
       }
     },
     {
-      rootMargin: enterTop + 'px 0px 0px 0px',
-      threshold: 1,
+      rootMargin: enterTop + "px 0px 0px 0px",
+      threshold: 1
     }
   );
-
   const leaveObserver = new IntersectionObserver(
     (entries) => {
-      const leavingEntry = entries
-        .filter((entry) => !entry.isIntersecting && entry.boundingClientRect.top > 0)
-        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
-
+      const leavingEntry = entries.filter((entry) => !entry.isIntersecting && entry.boundingClientRect.top > 0).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
       if (leavingEntry) {
         const currentIndex = headlines.findIndex((item) => item.element === leavingEntry.target);
         if (currentIndex > 0) {
@@ -124,39 +99,33 @@ const setupIntersectionObserver = () => {
       }
     },
     {
-      rootMargin: '200px 0px 0px 0px',
-      threshold: 1,
+      rootMargin: "200px 0px 0px 0px",
+      threshold: 1
     }
   );
-
   headlines.forEach((item) => {
     enterObserver.observe(item.element);
     leaveObserver.observe(item.element);
   });
-
   observer = {
     enter: enterObserver,
-    leave: leaveObserver,
+    leave: leaveObserver
   };
 };
-
 onMounted(() => {
   checkBreakpoint();
-
-  window.addEventListener('resize', checkBreakpoint);
-
+  window.addEventListener("resize", checkBreakpoint);
   setupIntersectionObserver();
 });
-
 onUnmounted(() => {
-  window.removeEventListener('resize', checkBreakpoint);
-
+  window.removeEventListener("resize", checkBreakpoint);
   if (observer) {
     observer.enter.disconnect();
     observer.leave.disconnect();
   }
 });
 </script>
+
 <style scoped>
 .aside-nav {
   --aside-nav-background-color: var(--color-black-2);

@@ -10,12 +10,12 @@
 
 <script>
 export default {
-  name: 'team-cards',
+  name: "team-cards",
   props: {
     teamCards: {
       type: Object,
-      required: true,
-    },
-  },
+      required: true
+    }
+  }
 };
 </script>

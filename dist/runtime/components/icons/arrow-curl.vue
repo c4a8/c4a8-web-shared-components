@@ -6,17 +6,18 @@
     />
   </svg>
 </template>
+
 <script>
 export default {
-  tagName: 'arrow-curl',
+  tagName: "arrow-curl",
   computed: {
     style() {
       return `fill: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
-    },
+    }
   },
   props: {
     settings: Object,
-    color: String,
-  },
+    color: String
+  }
 };
 </script>

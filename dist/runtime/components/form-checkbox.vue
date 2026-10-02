@@ -34,11 +34,11 @@
     </template>
   </div>
 </template>
-<script>
-import Events from '../utils/events.js';
 
+<script>
+import Events from "../utils/events.js";
 export default {
-  tagName: 'form-checkbox',
+  tagName: "form-checkbox",
   computed: {
     otherId() {
       return `${this.idValue}_checkbox`;
@@ -47,28 +47,27 @@ export default {
       return `${this.nameValue}_checkbox`;
     },
     required() {
-      return this.checkbox?.required ? 'required' : null;
+      return this.checkbox?.required ? "required" : null;
     },
     idValue() {
       return this.id ? this.id : this.checkbox.id;
     },
     nameValue() {
       return this.name ? this.name : this.checkbox.id;
-    },
+    }
   },
   methods: {
     handleChange(e) {
       const currentTarget = e.currentTarget;
       const value = currentTarget.value;
-
       this.$emit(Events.FORM_FIELD_UPDATED, { value, id: this.idValue });
-    },
+    }
   },
   props: {
     checkbox: Object,
     group: String,
     id: String,
-    name: String,
-  },
+    name: String
+  }
 };
 </script>

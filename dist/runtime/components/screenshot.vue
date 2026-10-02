@@ -39,20 +39,20 @@
     </div>
   </div>
 </template>
-<script>
-import Tools from '../utils/tools.js';
 
+<script>
+import Tools from "../utils/tools.js";
 export default {
-  tagName: 'screenshot',
+  tagName: "screenshot",
   computed: {
     style() {
       return {
-        'background-color': this.bgColor,
+        "background-color": this.bgColor
       };
     },
     leftValue() {
       return Tools.isTrue(this.left);
-    },
+    }
   },
   props: {
     spacing: String,
@@ -67,10 +67,11 @@ export default {
     cloudinary: Boolean,
     alt: String,
     classes: String,
-    list: Object,
-  },
+    list: Object
+  }
 };
 </script>
+
 <style>
 .screenshot .flex-row-reverse .screenshot__img {
   position: relative;

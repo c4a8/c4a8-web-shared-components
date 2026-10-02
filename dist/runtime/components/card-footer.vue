@@ -13,14 +13,14 @@
     </div>
   </div>
 </template>
-<script>
-import Tools from '../utils/tools.js';
 
+<script>
+import Tools from "../utils/tools.js";
 export default {
-  tagName: 'card-footer',
+  tagName: "card-footer",
   data() {
     return {
-      maxTags: 3,
+      maxTags: 3
     };
   },
   computed: {
@@ -28,29 +28,26 @@ export default {
       return Tools.getLang();
     },
     tagsList() {
-      let tags = Array.isArray(this.tags) ? this.tags : this.tags.split(',');
-
+      let tags = Array.isArray(this.tags) ? this.tags : this.tags.split(",");
       return tags.slice(0, this.maxTags);
     },
     dataAuthorsList() {
       if (!this.dataAuthors) return null;
-
       if (!this.dataAuthors.display_name) return this.dataAuthors;
-
       return { [this.dataAuthors.display_name]: this.dataAuthors };
-    },
+    }
   },
   props: {
     classes: String,
     date: String,
     author: {
-      type: [String, Array],
+      type: [String, Array]
     },
     authorsList: Array,
     hasNoLink: Boolean,
     dataAuthors: Object,
     isRow: Boolean,
-    tags: Array,
-  },
+    tags: Array
+  }
 };
 </script>

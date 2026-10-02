@@ -201,16 +201,17 @@
     />
   </svg>
 </template>
+
 <script>
 export default {
-  tagName: 'hand',
+  tagName: "hand",
   data() {
     return {
-      iconHandStepTime: '0s',
-      iconHandDuration: '0.5s',
-      iconResetAndSetDuration: '0.3s',
-      iconHandRepetition: '2',
-      iconHandPause: '2s',
+      iconHandStepTime: "0s",
+      iconHandDuration: "0.5s",
+      iconResetAndSetDuration: "0.3s",
+      iconHandRepetition: "2",
+      iconHandPause: "2s"
     };
   },
   computed: {
@@ -219,11 +220,11 @@ export default {
     },
     stroke() {
       return this.color;
-    },
+    }
   },
   props: {
     settings: Object,
-    color: String,
-  },
+    color: String
+  }
 };
 </script>

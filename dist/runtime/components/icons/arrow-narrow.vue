@@ -9,17 +9,18 @@
     ></polyline>
   </svg>
 </template>
+
 <script>
 export default {
-  tagName: 'arrow-narrow',
+  tagName: "arrow-narrow",
   computed: {
     style() {
       return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
-    },
+    }
   },
   props: {
     settings: Object,
-    color: String,
-  },
+    color: String
+  }
 };
 </script>

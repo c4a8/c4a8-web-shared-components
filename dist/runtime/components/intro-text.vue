@@ -18,22 +18,21 @@
     </div>
   </figure>
 </template>
-<script>
-import UtilityAnimation from '../utils/utility-animation.js';
 
+<script>
+import UtilityAnimation from "../utils/utility-animation.js";
 export default {
-  tagName: 'intro-text',
+  tagName: "intro-text",
   computed: {
     classList() {
-      return ['intro-text', 'utility-animation', 'vue-component', this.variant, this.spacing];
+      return ["intro-text", "utility-animation", "vue-component", this.variant, this.spacing];
     },
     containerClasses() {
-      return ['container', this.containerSpacing || 'space-lg-2'];
-    },
+      return ["container", this.containerSpacing || "space-lg-2"];
+    }
   },
   mounted() {
     if (!this.$refs.root) return;
-
     UtilityAnimation.init([this.$refs.root]);
   },
   props: {
@@ -43,16 +42,17 @@ export default {
     spacing: String,
     containerSpacing: {
       type: String,
-      default: 'space-lg-2',
+      default: "space-lg-2"
     },
     headlineClasses: {
       type: String,
-      default: 'text-center',
+      default: "text-center"
     },
-    copyClasses: String,
-  },
+    copyClasses: String
+  }
 };
 </script>
+
 <style>
 @media (min-width: 992px) {
   .intro-text.intro-text--large .intro-text__copy {

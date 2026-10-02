@@ -29,24 +29,21 @@
 </template>
 
 <script>
-import State from '../utils/state.js';
-import Tools from '../utils/tools.js';
-
-import { useAppStore } from '../stores/app';
-import { ref } from 'vue';
-
+import State from "../utils/state.js";
+import Tools from "../utils/tools.js";
+import { useAppStore } from "../stores/app";
+import { ref } from "vue";
 export default {
-  name: 'page-detail',
+  name: "page-detail",
   setup() {
     const isAtEnd = ref(false);
     const endPoint = ref(null);
     const store = useAppStore();
-
     return {
       isAtEnd,
       endPoint,
       State,
-      store,
+      store
     };
   },
   data() {
@@ -58,24 +55,24 @@ export default {
       stickyOffsetTop: 200,
       stickyUnstuckOffsetTop: 0,
       isLoading: true,
-      loadingDelay: 100,
+      loadingDelay: 100
     };
   },
   props: {
     detailColor: {
-      type: String,
+      type: String
     },
     detailShapeColor: {
-      type: String,
+      type: String
     },
     noContent: {
-      type: Boolean,
-    },
+      type: Boolean
+    }
   },
   computed: {
     hasShape() {
       return !!this.$refs.shape;
-    },
+    }
   },
   methods: {
     showBackButton() {
@@ -88,13 +85,10 @@ export default {
     },
     setStickyPosition() {
       if (!this.hasShape || !this.isInViewport() || !Tools.isUpperBreakpoint()) return;
-
-      const heightOffset = Tools.isBelowBreakpoint('lg') ? 10 : -40;
-      const badgeHeight = this.getDOMElement('.page-detail__intro-content .page-detail__badge')?.offsetHeight || 0;
-      const detailsHeight = this.getDOMElement('.page-detail__intro-content .page-detail__details')?.offsetHeight || 0;
-      const headlineHeight =
-        this.getDOMElement('.page-detail__intro-content .page-detail__headline')?.offsetHeight || 0;
-
+      const heightOffset = Tools.isBelowBreakpoint("lg") ? 10 : -40;
+      const badgeHeight = this.getDOMElement(".page-detail__intro-content .page-detail__badge")?.offsetHeight || 0;
+      const detailsHeight = this.getDOMElement(".page-detail__intro-content .page-detail__details")?.offsetHeight || 0;
+      const headlineHeight = this.getDOMElement(".page-detail__intro-content .page-detail__headline")?.offsetHeight || 0;
       this.stickyPosition = badgeHeight + detailsHeight + headlineHeight - heightOffset;
     },
     isInViewport() {
@@ -103,34 +97,30 @@ export default {
     setShapePosition() {
       if (!this.hasShape || !this.isInViewport()) return;
       if (!Tools.isUpperBreakpoint()) return this.resetShape();
-
       if (this.isAtEnd) {
         this.handleStickyShapeEnd();
       } else if (this.isSticky()) {
         this.$refs.shape.classList.add(State.STICKY);
-        this.$refs.shape.style.top = -this.stickyPosition + 'px';
+        this.$refs.shape.style.top = -this.stickyPosition + "px";
       } else {
         this.resetShape();
       }
     },
     handleStickyShapeEnd() {
       this.$refs.shape.classList.add(State.STICKY);
-      this.$refs.shape.style.top = -this.stickyPosition - this.getRelativePosition() + 'px';
+      this.$refs.shape.style.top = -this.stickyPosition - this.getRelativePosition() + "px";
     },
     getStickyBlock() {
-      return this.getDOMElement('.js-sticky-block');
+      return this.getDOMElement(".js-sticky-block");
     },
     getRelativePosition() {
       const stickyBlock = this.getStickyBlock();
-      const stickyBlockTop = stickyBlock?.style.top.replace('px', '') || 0;
-
-      return stickyBlockTop >= 0
-        ? this.stickyOffsetTop - Math.abs(stickyBlockTop)
-        : this.stickyOffsetTop - parseFloat(stickyBlockTop);
+      const stickyBlockTop = stickyBlock?.style.top.replace("px", "") || 0;
+      return stickyBlockTop >= 0 ? this.stickyOffsetTop - Math.abs(stickyBlockTop) : this.stickyOffsetTop - parseFloat(stickyBlockTop);
     },
     resetShape() {
       this.$refs.shape.classList.remove(State.STICKY);
-      this.$refs.shape.style.top = '';
+      this.$refs.shape.style.top = "";
     },
     isSticky() {
       return window.scrollY > this.stickyPosition;
@@ -145,28 +135,24 @@ export default {
       this.setStickyPosition();
       this.setShapePosition();
       this.setStickyUnstuckOffsetTop();
-    },
+    }
   },
   mounted() {
     this.showBackButton();
     this.setStickyPosition();
     this.setShapePosition();
     this.setStickyUnstuckOffsetTop();
-
-    document.addEventListener('scroll', this.handleScroll);
-    document.addEventListener('resize', this.handleResize);
-
+    document.addEventListener("scroll", this.handleScroll);
+    document.addEventListener("resize", this.handleResize);
     if (this.noContent) return Tools.gotoHome();
-
     this.store.setPageIsLoaded(true);
-
     setTimeout(() => {
       this.isLoading = false;
     }, this.loadingDelay);
   },
   beforeUnmount() {
-    document.removeEventListener('scroll', this.handleScroll);
-    document.removeEventListener('resize', this.handleResize);
-  },
+    document.removeEventListener("scroll", this.handleScroll);
+    document.removeEventListener("resize", this.handleResize);
+  }
 };
 </script>

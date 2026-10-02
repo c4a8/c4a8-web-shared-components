@@ -47,14 +47,15 @@
     </svg>
   </div>
 </template>
+
 <script>
 export default {
-  tagName: 'svg-shape-animation',
+  tagName: "svg-shape-animation",
   props: {
     cutoff: {
       type: Boolean,
-      default: false,
-    },
-  },
+      default: false
+    }
+  }
 };
 </script>

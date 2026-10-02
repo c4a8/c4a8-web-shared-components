@@ -17,27 +17,28 @@
     </Teleport>
   </a>
 </template>
+
 <script>
 export default {
-  tagName: 'lightbox',
+  tagName: "lightbox",
   props: {
     images: {
       type: Array,
-      required: true,
+      required: true
     },
     classes: String,
     source: String,
     alt: String,
     cloudinary: {
       type: Boolean,
-      default: false,
+      default: false
     },
-    sourceCaption: String,
+    sourceCaption: String
   },
   data() {
     return {
       isOpen: false,
-      isMounted: false,
+      isMounted: false
     };
   },
   mounted() {
@@ -46,27 +47,21 @@ export default {
   methods: {
     open() {
       this.isOpen = true;
-
-      const modal = this.$refs['modal'];
-
+      const modal = this.$refs["modal"];
       if (!modal) return;
-
       modal.showModal();
     },
     close() {
       this.isOpen = false;
-
-      const modal = this.$refs['modal'];
-
+      const modal = this.$refs["modal"];
       if (!modal) return;
-
       modal.close();
-
-      this.$emit('lightbox-close');
-    },
-  },
+      this.$emit("lightbox-close");
+    }
+  }
 };
 </script>
+
 <style>
 .lightbox {
   cursor: pointer;

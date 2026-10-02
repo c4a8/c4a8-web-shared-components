@@ -19,14 +19,13 @@
 </template>
 
 <script>
-import State from '../utils/state.js';
-import Tools from '../utils/tools.js';
-
+import State from "../utils/state.js";
+import Tools from "../utils/tools.js";
 export default {
-  tagName: 'cta',
+  tagName: "cta",
   computed: {
     tag() {
-      return this.href || this.alternativeHref || this.target ? 'a' : 'button';
+      return this.href || this.alternativeHref || this.target ? "a" : "button";
     },
     hasIcon() {
       return this.link || this.externalValue || this.icon || this.downloadValue;
@@ -40,92 +39,85 @@ export default {
     classList() {
       return [
         `${this.baseClass} ${this.innerSkin}`,
-        this.classes ? this.classes : '',
-        this.download ? 'cta--download' : '',
-        this.external ? 'cta--external' : '',
-        this.icon ? `cta--has-icon cta--icon-${this.icon}` : '',
-        Tools.isTrue(this.reversed) === true ? 'cta--reversed' : '',
-        Tools.isTrue(this.monochrome) === true ? 'cta--monochrome' : '',
-        Tools.isTrue(this.small) === true ? 'cta--small' : '',
-        this.link && Tools.isTrue(this.active) === true ? State.ACTIVE : '',
-        Tools.isTrue(this.loading) ? State.LOADING : '',
-        Tools.isTrue(this.hasBackground) === true ? 'cta--has-background' : '',
-        this.onSurface ? State.ON_SURFACE : '',
-        'vue-component',
+        this.classes ? this.classes : "",
+        this.download ? "cta--download" : "",
+        this.external ? "cta--external" : "",
+        this.icon ? `cta--has-icon cta--icon-${this.icon}` : "",
+        Tools.isTrue(this.reversed) === true ? "cta--reversed" : "",
+        Tools.isTrue(this.monochrome) === true ? "cta--monochrome" : "",
+        Tools.isTrue(this.small) === true ? "cta--small" : "",
+        this.link && Tools.isTrue(this.active) === true ? State.ACTIVE : "",
+        Tools.isTrue(this.loading) ? State.LOADING : "",
+        Tools.isTrue(this.hasBackground) === true ? "cta--has-background" : "",
+        this.onSurface ? State.ON_SURFACE : "",
+        "vue-component"
       ];
     },
     innerSkin() {
       if (this.link) {
-        return this.skin ? this.skin : '';
+        return this.skin ? this.skin : "";
       } else {
-        return this.skin ? `btn-${this.skin}` : 'btn-primary';
+        return this.skin ? `btn-${this.skin}` : "btn-primary";
       }
     },
     innerWidth() {
       if (this.width) {
         return this.width;
       } else {
-        return `w-100 ${this.grow ? '' : 'w-lg-auto'}`;
+        return `w-100 ${this.grow ? "" : "w-lg-auto"}`;
       }
     },
     baseClass() {
       let baseClass = this.$.type.tagName;
-
       if (this.link) {
-        baseClass += ' link';
+        baseClass += " link";
       } else {
-        baseClass += ' btn ' + this.innerWidth;
+        baseClass += " btn " + this.innerWidth;
       }
-
       return baseClass;
     },
     iconName() {
       let iconName;
-
       if (this.icon) {
         iconName = this.icon;
       } else if (this.externalValue) {
-        iconName = 'arrow-external';
+        iconName = "arrow-external";
       } else if (this.downloadValue) {
-        iconName = 'arrow-external';
+        iconName = "arrow-external";
       } else if (this.link) {
-        iconName = 'arrow';
+        iconName = "arrow";
       }
       return iconName;
     },
     targetValue() {
-      return this.externalValue ? '_blank' : this.target;
+      return this.externalValue ? "_blank" : this.target;
     },
     sizeValue() {
-      return 'medium';
-    },
+      return "medium";
+    }
   },
   methods: {
     handleClick(e) {
       if (!this.javascript) return;
-
       e.preventDefault();
-
-      const functionName = this.javascript.split('(')[0];
-      const params = this.javascript.match(/\(([^)]+)\)/)[1].replace(/'/g, '');
-
+      const functionName = this.javascript.split("(")[0];
+      const params = this.javascript.match(/\(([^)]+)\)/)[1].replace(/'/g, "");
       if (!window[functionName]) return console.debug(`Function ${functionName} not found.`);
-
       window[functionName](params);
-    },
+    }
   },
   props: {
     href: {
-      default: null,
+      default: null
     },
     button: Boolean,
     text: String,
     analytics: {
-      default: null,
+      default: null
     },
     link: Boolean,
     external: {
-      default: null,
+      default: null
     },
     skin: String,
     width: String,
@@ -133,47 +125,48 @@ export default {
     type: String,
     target: String,
     alternativeHref: {
-      default: null,
+      default: null
     },
     trigger: String,
     triggerId: String,
     icon: String,
     download: {
-      default: null,
+      default: null
     },
     reversed: {
-      default: null,
+      default: null
     },
     monochrome: {
-      default: null,
+      default: null
     },
     small: {
-      default: null,
+      default: null
     },
     active: {
-      default: null,
+      default: null
     },
     classes: {
-      default: '',
-      type: String,
+      default: "",
+      type: String
     },
     loading: {
-      default: null,
+      default: null
     },
     hasBackground: {
-      default: null,
+      default: null
     },
     javascript: {
       default: null,
-      type: String,
+      type: String
     },
     onSurface: {
       default: null,
-      type: Boolean,
-    },
-  },
+      type: Boolean
+    }
+  }
 };
 </script>
+
 <style>
 :root {
   --cta-loading-spacing: 3rem;
@@ -228,13 +221,13 @@ export default {
 .shared-components .cta:hover.btn-primary:not(.is-loading) {
   --cta-border-color: transparent;
 }
-.hover__parent:hover .cta.btn-primary.is-light,
-.shared-components .cta:hover.btn-primary.is-light {
+.hover__parent:hover .cta.btn-primary.is-light:not(label.btn):not([href]),
+.shared-components .cta:hover.btn-primary.is-light:not(label.btn):not([href]) {
   background-color: var(--color-primary-accent-light);
   color: var(--color-primary-accent);
 }
-.hover__parent:hover .cta.btn-primary.is-light:not(label.btn):not([href]),
-.shared-components .cta:hover.btn-primary.is-light:not(label.btn):not([href]) {
+.hover__parent:hover .cta.btn-primary.is-light,
+.shared-components .cta:hover.btn-primary.is-light {
   background-color: var(--color-primary-accent-light);
   color: var(--color-primary-accent);
 }
@@ -302,13 +295,15 @@ export default {
 .cta.is-loading, .is-loading .cta:not(.header .cta) {
   --cta-loading-delay: 0.4s;
   --cta-loading-start-duration: 1.1s;
-  pointer-events: none;
-  opacity: 0.8;
-  animation: ctaLoadingButton 1s forwards;
 }
 .cta.is-loading:active, .cta.is-loading:focus, .is-loading .cta:not(.header .cta):active, .is-loading .cta:not(.header .cta):focus {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   box-shadow: none;
+}
+.cta.is-loading, .is-loading .cta:not(.header .cta) {
+  pointer-events: none;
+  opacity: 0.8;
+  animation: ctaLoadingButton 1s forwards;
 }
 .cta.is-loading::before, .is-loading .cta:not(.header .cta)::before {
   content: "";

@@ -589,7 +589,7 @@ class Tools {
   static getOrigin() {
     let origin = '';
 
-    if (typeof process !== 'undefined' && process.server) {
+    if (import.meta.server) {
       origin = process.env.BASE_URL;
     } else {
       origin = window.location.origin + '/';
@@ -601,7 +601,7 @@ class Tools {
   static getCurrentPath() {
     let path = '';
 
-    if (typeof process !== 'undefined' && process.server) {
+    if (import.meta.server) {
       const route = useRoute();
 
       path = route.fullPath;

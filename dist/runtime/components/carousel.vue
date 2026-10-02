@@ -26,29 +26,25 @@
     </div>
   </div>
 </template>
+
 <script>
-import Tools from '../utils/tools.js';
-import State from '../utils/state.js';
-
-import { useModalStore } from '../stores/modal.js';
-
+import Tools from "../utils/tools.js";
+import State from "../utils/state.js";
+import { useModalStore } from "../stores/modal.js";
 export default {
-  tagName: 'carousel',
+  tagName: "carousel",
   data() {
     return {
       clientWidth: null,
-      resizeObserver: null,
+      resizeObserver: null
     };
   },
   setup(props) {
     if (!props.component) return {};
-
     const modalStore = useModalStore();
-
     const openSidebarModal = (sectionTitle) => {
       modalStore.openModal(sectionTitle);
     };
-
     return { openSidebarModal };
   },
   computed: {
@@ -57,21 +53,20 @@ export default {
     },
     classList() {
       return [
-        'carousel vue-component',
-        this.bgColor ? State.HAS_BACKGROUND : '',
-        this.component ? 'carousel--' + this.component : '',
+        "carousel vue-component",
+        this.bgColor ? State.HAS_BACKGROUND : "",
+        this.component ? "carousel--" + this.component : ""
       ];
     },
     style() {
       return [
-        this.bgColor ? `--color-carousel-background: ${this.bgColor};` : '',
-        this.clientWidth ? `--animation-scroll-width: -${this.clientWidth}px;` : '',
+        this.bgColor ? `--color-carousel-background: ${this.bgColor};` : "",
+        this.clientWidth ? `--animation-scroll-width: -${this.clientWidth}px;` : ""
       ];
-    },
+    }
   },
   mounted() {
-    const rowSection = this.$refs['row-section'];
-
+    const rowSection = this.$refs["row-section"];
     this.resizeObserver = new ResizeObserver((entries) => {
       for (let entry of entries) {
         if (entry.target === rowSection) {
@@ -79,34 +74,31 @@ export default {
         }
       }
     });
-
     if (!rowSection) return;
-
     this.resizeObserver.observe(rowSection);
-
-    window.addEventListener('resize', this.updateClientWidth);
+    window.addEventListener("resize", this.updateClientWidth);
   },
   beforeDestroy() {
-    window.removeEventListener('resize', this.updateClientWidth);
+    window.removeEventListener("resize", this.updateClientWidth);
   },
   methods: {
     updateClientWidth() {
-      this.clientWidth = this.$refs['row-section']?.clientWidth;
+      this.clientWidth = this.$refs["row-section"]?.clientWidth;
     },
     handleItemClick(item) {
       if (!(this.component && this.openSidebarModal && item.title)) return;
-
       this.openSidebarModal(item.title);
-    },
+    }
   },
   props: {
     items: Array,
     bgColor: String,
     component: String,
-    lazy: Boolean,
-  },
+    lazy: Boolean
+  }
 };
 </script>
+
 <style>
 .carousel {
   --color-carousel-background: rgba(255, 255, 255, 0);

@@ -1,31 +1,28 @@
 <script>
-import { useHead } from '#imports';
-import useEnvironment from '../composables/useEnvironment';
-import useConfig from '../composables/useConfig';
-
+import { useHead } from "#imports";
+import useEnvironment from "../composables/useEnvironment";
+import useConfig from "../composables/useConfig";
 export default {
-  tagName: 'tracking',
+  tagName: "tracking",
   setup() {
-    if (useEnvironment() !== 'development') {
+    if (useEnvironment() !== "development") {
       const config = useConfig();
-      const googleTagManagerId = config?.public?.googleTagManagerId || 'NO_ID_PROVIDED';
-      const googleTagManagerDomain = config?.public?.googleTagManagerDomain || 'NO_DOMAIN_PROVIDED';
-
+      const googleTagManagerId = config?.public?.googleTagManagerId || "NO_ID_PROVIDED";
+      const googleTagManagerDomain = config?.public?.googleTagManagerDomain || "NO_DOMAIN_PROVIDED";
       const gtagConfig = {
-        ad_user_data: 'denied',
-        ad_personalization: 'denied',
-        ad_storage: 'denied',
-        personalization_storage: 'denied',
-        functionality_storage: 'denied',
-        security_storage: 'denied',
-        analytics_storage: 'granted',
-        ...(config?.public?.gtag || {}),
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        personalization_storage: "denied",
+        functionality_storage: "denied",
+        security_storage: "denied",
+        analytics_storage: "granted",
+        ...config?.public?.gtag || {}
       };
-
       useHead({
         script: [
           {
-            type: 'text/javascript',
+            type: "text/javascript",
             defer: true,
             innerHTML: `
           function loadGTM() {
@@ -132,21 +129,12 @@ export default {
           } else {
             window.addEventListener('load', loadGTM);
           }
-        `,
-          },
-        ],
+        `
+          }
+        ]
       });
     }
-
-    // The component only registers the head script and renders nothing. It must
-    // still render the same "nothing" on the server and on the client: an empty
-    // <template> compiles to "write nothing" for the server but to "return null"
-    // for the client, and the client turns null into a placeholder comment. The
-    // server HTML then lacks the comment the client expects in front of #app
-    // (global-app.vue renders <tracking /> as its first root node), Vue reports a
-    // hydration mismatch and re-renders the whole page on the client. A render
-    // function that returns null produces the placeholder comment on both sides.
     return () => null;
-  },
+  }
 };
 </script>

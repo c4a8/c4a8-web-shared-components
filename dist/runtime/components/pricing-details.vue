@@ -32,36 +32,35 @@
     </div>
   </section>
 </template>
-<script>
-import Tools from '../utils/tools.js';
-import Lang from '../utils/lang.js';
-import UtilityAnimation from '../utils/utility-animation.js';
 
+<script>
+import Tools from "../utils/tools.js";
+import Lang from "../utils/lang.js";
+import UtilityAnimation from "../utils/utility-animation.js";
 export default {
-  tagName: 'pricing-details',
+  tagName: "pricing-details",
   props: {
     products: Object,
     headline: String,
     description: String,
     bgColor: {
       type: String,
-      default: 'var(--color-bg-grey)',
+      default: "var(--color-bg-grey)"
     },
     toggleSwitch: Object,
     visibleTabs: Array,
     lang: {
       type: String,
-      default: 'de',
-    },
+      default: "de"
+    }
   },
   mounted() {
     if (!this.$refs.description) return;
-
     UtilityAnimation.init([this.$refs.description]);
   },
   computed: {
     pricingDetailTargetSelector() {
-      return (this.toggleSwitch && this.toggleSwitch.targetSelectorClass) || 'pricingSwitch';
+      return this.toggleSwitch && this.toggleSwitch.targetSelectorClass || "pricingSwitch";
     },
     langData() {
       return Lang[Tools.getLang()];
@@ -73,20 +72,19 @@ export default {
       return this.products?.list || [];
     },
     pricing() {
-      return (
-        this.products?.pricing || {
-          format: 'de-DE',
-          currency: 'EUR',
-          defaultPlan: 'monthly',
-        }
-      );
+      return this.products?.pricing || {
+        format: "de-DE",
+        currency: "EUR",
+        defaultPlan: "monthly"
+      };
     },
     selectedPlan() {
-      return this.pricing?.defaultPlan || 'monthly';
-    },
-  },
+      return this.pricing?.defaultPlan || "monthly";
+    }
+  }
 };
 </script>
+
 <style>
 .pricing-details .pricing-product:not(.bg-white) + .pricing-details__infos {
   padding: 0 0.75rem;

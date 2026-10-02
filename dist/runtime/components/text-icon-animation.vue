@@ -21,24 +21,24 @@
     </div>
   </div>
 </template>
-<script>
-import Tools from '../utils/tools.js';
 
+<script>
+import Tools from "../utils/tools.js";
 export default {
-  tagName: 'text-icon-animation',
+  tagName: "text-icon-animation",
   props: {
     animation: Object,
     icon: String,
     iconColor: String,
     fixed: Boolean,
     cta: Object,
-    classes: String,
+    classes: String
   },
   data() {
     return {
       textAnimationStep: 0,
       isEnded: false,
-      isSecondLast: false,
+      isSecondLast: false
     };
   },
   computed: {
@@ -50,11 +50,11 @@ export default {
     },
     classList() {
       return [
-        'text-icon-animation row vue-component',
+        "text-icon-animation row vue-component",
         this.classes,
-        this.isFixed ? 'text-icon-animation--fixed' : '',
-        this.isEnded ? 'text-icon-animation--ended' : '',
-        this.isSecondLast ? 'text-icon-animation--is-second-last' : '',
+        this.isFixed ? "text-icon-animation--fixed" : "",
+        this.isEnded ? "text-icon-animation--ended" : "",
+        this.isSecondLast ? "text-icon-animation--is-second-last" : ""
       ];
     },
     isFixed() {
@@ -62,7 +62,7 @@ export default {
     },
     iconClassList() {
       return `text-icon-animation__icon icon--step-${this.textAnimationStep}`;
-    },
+    }
   },
   methods: {
     handleTextAnimationState(state) {
@@ -71,10 +71,11 @@ export default {
     },
     handleTextAnimationEnded(event) {
       this.isEnded = event;
-    },
-  },
+    }
+  }
 };
 </script>
+
 <style>
 .text-icon-animation {
   --text-icon-animation-icon-color: var(--color-secondary);

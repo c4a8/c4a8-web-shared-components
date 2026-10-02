@@ -49,28 +49,27 @@
     </div>
   </div>
 </template>
-<script>
-import UtilityAnimation from '../utils/utility-animation.js';
 
+<script>
+import UtilityAnimation from "../utils/utility-animation.js";
 export default {
-  tagName: 'quotes',
+  tagName: "quotes",
   props: {
     quotes: {
       type: Object,
-      required: true,
+      required: true
     },
     spacing: {
       type: String,
-      default: '',
+      default: ""
     },
     noFullscreen: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   mounted() {
     if (!this.$refs.header) return;
-
     UtilityAnimation.init([this.$refs.header]);
   },
   computed: {
@@ -96,11 +95,11 @@ export default {
       return {
         rows: 0,
         centerMode: true,
-        centerPadding: this.quotesImage ? '0px' : '15px',
+        centerPadding: this.quotesImage ? "0px" : "15px",
         prevArrow: '<span class="quotes__arrow-left slick-arrow rounded-circle"></span>',
         nextArrow: '<span class="quotes__arrow-right slick-arrow rounded-circle"></span>',
         dots: this.quotes.items.length > 1,
-        dotsClass: 'slick-pagination mt-8',
+        dotsClass: "slick-pagination mt-8",
         slidesToShow: 1,
         slidesToScroll: 1,
         infinite: false,
@@ -108,21 +107,22 @@ export default {
           {
             breakpoint: 992,
             settings: {
-              slidesToShow: this.quotesSlidesToShow,
-            },
+              slidesToShow: this.quotesSlidesToShow
+            }
           },
           {
             breakpoint: 576,
             settings: {
-              slidesToShow: this.quotesSlidesToShow,
-            },
-          },
-        ],
+              slidesToShow: this.quotesSlidesToShow
+            }
+          }
+        ]
       };
-    },
-  },
+    }
+  }
 };
 </script>
+
 <style>
 .quotes {
   --color-quotes-highlight: var(--color-gk-yellow);
@@ -131,13 +131,13 @@ export default {
   background-color: var(--color-quotes-background);
   color: var(--color-quotes-copy);
 }
+.quotes.quotes--no-image:not(.quotes--no-fullscreenn) {
+  min-height: 100vh;
+}
 .quotes.quotes--no-image {
   display: flex;
   align-items: center;
   padding-bottom: 6rem;
-}
-.quotes.quotes--no-image:not(.quotes--no-fullscreenn) {
-  min-height: 100vh;
 }
 .quotes.quotes--no-image .quotes__entry-quote,
 .quotes.quotes--no-image .quotes__entry-infos,
@@ -146,9 +146,6 @@ export default {
 }
 .quotes.quotes--no-image .quotes__row .slick-slide {
   margin-right: 0;
-}
-.quotes.quotes--no-image .quotes__entry-text {
-  width: 100%;
 }
 .quotes.quotes--no-image .quotes__entry-text {
   font-size: 1.5rem;
@@ -175,6 +172,9 @@ export default {
 }
 .quotes.quotes--no-image .quotes__entry-text {
   line-height: 1.4em !important;
+}
+.quotes.quotes--no-image .quotes__entry-text {
+  width: 100%;
 }
 .quotes.quotes--no-image .quotes__entry-infos {
   width: 100%;
@@ -345,12 +345,12 @@ export default {
   }
 }
 
+.safari .quotes__arrow-left {
+  transform: rotate(180deg);
+}
 .quotes__arrow-left {
   background-image: url("../../assets/svg/left.svg");
   right: 5rem;
-}
-.safari .quotes__arrow-left {
-  transform: rotate(180deg);
 }
 @media (min-width: 992px) {
   .quotes__arrow-left {
@@ -417,21 +417,21 @@ export default {
   opacity: 0;
   pointer-events: none;
 }
-.slick-active .quotes__entry .quotes__entry-quote-wrapper, .slick-current .quotes__entry .quotes__entry-quote-wrapper {
-  pointer-events: all;
-}
 .slick-active .quotes__entry .quotes__entry-quote-wrapper:not(.utility-animation), .slick-current .quotes__entry .quotes__entry-quote-wrapper:not(.utility-animation) {
   opacity: 1;
 }
-
-.quotes__entry-quote-wrapper {
-  position: relative;
+.slick-active .quotes__entry .quotes__entry-quote-wrapper, .slick-current .quotes__entry .quotes__entry-quote-wrapper {
+  pointer-events: all;
 }
+
 .quotes__entry-quote-wrapper.utility-animation[data-utility-animation-step] {
   --utility-animation-distance: 15%;
 }
 .quotes__entry-quote-wrapper.utility-animation[data-utility-animation-step].is-starting {
   animation-delay: calc(var(--utility-animation-index) * 200ms + 0ms);
+}
+.quotes__entry-quote-wrapper {
+  position: relative;
 }
 @media (min-width: 992px) {
   .quotes__entry-quote-wrapper {

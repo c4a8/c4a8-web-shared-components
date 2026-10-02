@@ -6,46 +6,48 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
-  tagName: 'badge',
+  tagName: "badge",
   props: {
     text: String,
     overlapping: Boolean,
     icon: String,
     color: {
       type: String,
-      default: 'var(--color-badge-background)',
+      default: "var(--color-badge-background)"
     },
     textColor: {
       type: String,
-      default: 'var(--color-badge-icon)',
+      default: "var(--color-badge-icon)"
     },
     uppercase: Boolean,
-    classes: String,
+    classes: String
   },
   computed: {
     classList() {
       return [
-        'badge',
-        'badge--normal',
-        'font-size-1',
-        'normal',
-        { 'badge--overlapping': this.overlapping },
-        { 'badge--uppercase': this.uppercase },
-        { 'badge--icon': this.icon && this.icon !== '' },
-        this.classes,
+        "badge",
+        "badge--normal",
+        "font-size-1",
+        "normal",
+        { "badge--overlapping": this.overlapping },
+        { "badge--uppercase": this.uppercase },
+        { "badge--icon": this.icon && this.icon !== "" },
+        this.classes
       ];
     },
     style() {
       return {
         backgroundColor: this.color,
-        color: this.textColor,
+        color: this.textColor
       };
-    },
-  },
+    }
+  }
 };
 </script>
+
 <style>
 .badge.badge--normal {
   display: inline-flex;

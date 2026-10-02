@@ -6,20 +6,21 @@
     />
   </svg>
 </template>
+
 <script>
 export default {
-  tagName: 'magnifier',
+  tagName: "magnifier",
   computed: {
     style() {
       return `transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
     },
     fill() {
       return this.color;
-    },
+    }
   },
   props: {
     settings: Object,
-    color: String,
-  },
+    color: String
+  }
 };
 </script>

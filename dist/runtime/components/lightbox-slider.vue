@@ -12,22 +12,23 @@
         </template>
     </lightbox>
 </template>
+
 <script>
 export default {
-    tagName: 'lightbox-slider',
-    computed: {
-        sliderOptions() {
-            return {
-                dots: false,
-                prevArrow: '<span class="slick__arrow-left rounded-circle bg-white"></span>',
-                nextArrow: '<span class="slick__arrow-right rounded-circle bg-white"></span>',
-            };
-        },
-    },
-    props: {
-        variant: String,
-        teaser: Object,
-        images: Array,
-    },
+  tagName: "lightbox-slider",
+  computed: {
+    sliderOptions() {
+      return {
+        dots: false,
+        prevArrow: '<span class="slick__arrow-left rounded-circle bg-white"></span>',
+        nextArrow: '<span class="slick__arrow-right rounded-circle bg-white"></span>'
+      };
+    }
+  },
+  props: {
+    variant: String,
+    teaser: Object,
+    images: Array
+  }
 };
 </script>

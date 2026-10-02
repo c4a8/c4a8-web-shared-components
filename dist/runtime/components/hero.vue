@@ -119,22 +119,19 @@
 </template>
 
 <script>
-import { useHead } from '@unhead/vue';
-import { useAppStore } from '../stores/app';
-
-import { defineAsyncComponent, hydrateOnIdle } from 'vue';
-import Tools from '../utils/tools.js';
-import CloudinaryTools from '../utils/cloudinary-tools.js';
-import StickyScroller from '../utils/sticky-scroller.js';
-
+import { useHead } from "@unhead/vue";
+import { useAppStore } from "../stores/app";
+import { defineAsyncComponent, hydrateOnIdle } from "vue";
+import Tools from "../utils/tools.js";
+import CloudinaryTools from "../utils/cloudinary-tools.js";
+import StickyScroller from "../utils/sticky-scroller.js";
 export default {
-  tagName: 'hero',
+  tagName: "hero",
   components: {
-    'text-icon-animation': defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./text-icon-animation.vue') }),
+    "text-icon-animation": defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import("./text-icon-animation.vue") })
   },
   setup() {
     const store = useAppStore();
-
     return { store };
   },
   data() {
@@ -143,48 +140,40 @@ export default {
       style: null,
       isUpperBreakpoint: null,
       backgroundImgStyle: null,
-      isMounted: false,
+      isMounted: false
     };
   },
   created() {
     this.preloadKeyAsset();
     this.handleResize();
-
     this.setIntroStyle();
     this.setStyle();
     this.setBackgroundImgStyle();
   },
   mounted() {
-    window.addEventListener('resize', this.handleResize);
-
+    window.addEventListener("resize", this.handleResize);
     this.isMounted = true;
   },
   beforeDestroy() {
-    window.removeEventListener('resize', this.handleResize);
+    window.removeEventListener("resize", this.handleResize);
   },
   methods: {
     preloadKeyAsset() {
       if (!this.shape || !this.shape.img) return;
-
       const keyAssetPath = this.shape.img;
-
       if (!keyAssetPath) return;
-
       const isCloudinary = this.shape.cloudinary;
-      const cloudinaryLink = isCloudinary
-        ? CloudinaryTools.getCloudinaryLink({ img: keyAssetPath })
-        : `/assets/${keyAssetPath}`;
-
+      const cloudinaryLink = isCloudinary ? CloudinaryTools.getCloudinaryLink({ img: keyAssetPath }) : `/assets/${keyAssetPath}`;
       useHead({
         link: [
           {
             href: cloudinaryLink,
-            rel: 'preload',
-            as: 'image',
-            ...(isCloudinary ? { crossorigin: 'anonymous' } : {}),
-            fetchpriority: 'high',
-          },
-        ],
+            rel: "preload",
+            as: "image",
+            ...isCloudinary ? { crossorigin: "anonymous" } : {},
+            fetchpriority: "high"
+          }
+        ]
       });
     },
     handleResize() {
@@ -192,79 +181,67 @@ export default {
     },
     setStyle() {
       this.style = [
-        this.bgColor
-          ? `--hero-background-color: ${this.bgColor}; --hero-background-color-rgb: ${Tools.hexToRgb(this.bgColor)}`
-          : '',
-        this.bgWidth ? `--hero-background-width: ${this.bgWidth}%;` : '',
-        this.overlineBgColor ? `--hero-overline-background-color: ${this.overlineBgColor};` : '',
+        this.bgColor ? `--hero-background-color: ${this.bgColor}; --hero-background-color-rgb: ${Tools.hexToRgb(this.bgColor)}` : "",
+        this.bgWidth ? `--hero-background-width: ${this.bgWidth}%;` : "",
+        this.overlineBgColor ? `--hero-overline-background-color: ${this.overlineBgColor};` : ""
       ];
     },
     setBackgroundImgStyle() {
-      this.backgroundImgStyle = [this.bgFit ? `--hero-background-img-fit: ${this.bgFit};` : ''];
+      this.backgroundImgStyle = [this.bgFit ? `--hero-background-img-fit: ${this.bgFit};` : ""];
     },
-
     setIntroStyle() {
       if (!this.isCentered) return;
-
-      const intro = this.$refs['intro'];
-
+      const intro = this.$refs["intro"];
       if (!intro) return;
-
       this.introHeight = intro.offsetHeight;
-
       intro.style.height = `0`;
     },
     handleLetterSwitcherEnded() {
-      const intro = this.$refs['intro'];
-
+      const intro = this.$refs["intro"];
       if (!intro) return;
-
       intro.style.height = `${this.introHeight}px`;
       intro.style.opacity = 1;
-    },
+    }
   },
   computed: {
     classList() {
       return [
-        'hero vue-component',
+        "hero vue-component",
         this.variant,
-        this.isLight ? 'is-light' : '',
-        this.isLightOverline ? 'is-light-overline' : '',
+        this.isLight ? "is-light" : "",
+        this.isLightOverline ? "is-light-overline" : "",
         this.shapePosition,
-        this.fullscreen ? 'hero--fullscreen' : '',
-        this.shapeFullscreen ? 'hero--shape-fullscreen' : '',
-        this.animation ? 'hero--animation' : '',
-        this.textShadow ? 'hero--text-shadow' : '',
-        this.bgWidth ? 'hero--bg-width' : '',
-        this.isCentered ? 'hero--centered' : '',
-        this.shapeInContentValue ? 'hero--shape-in-content' : '',
-        this.hasStickyScroller ? StickyScroller.getRootClass() : '',
-        this.shapeMobileOrder ? 'hero--shape-mobile-order' : '',
-        this.shapeIsSVG ? 'hero--shape-svg' : '',
-        this.shapeMobileSmall ? 'hero--shape-mobile-small' : '',
+        this.fullscreen ? "hero--fullscreen" : "",
+        this.shapeFullscreen ? "hero--shape-fullscreen" : "",
+        this.animation ? "hero--animation" : "",
+        this.textShadow ? "hero--text-shadow" : "",
+        this.bgWidth ? "hero--bg-width" : "",
+        this.isCentered ? "hero--centered" : "",
+        this.shapeInContentValue ? "hero--shape-in-content" : "",
+        this.hasStickyScroller ? StickyScroller.getRootClass() : "",
+        this.shapeMobileOrder ? "hero--shape-mobile-order" : "",
+        this.shapeIsSVG ? "hero--shape-svg" : "",
+        this.shapeMobileSmall ? "hero--shape-mobile-small" : ""
       ];
     },
     shape() {
       return this.heroJson && this.heroJson.shape ? this.heroJson.shape : null;
     },
     overlineClassList() {
-      return ['hero__overline', this.overlineFull ? 'hero__overline--full' : ''];
+      return ["hero__overline", this.overlineFull ? "hero__overline--full" : ""];
     },
     contentClassList() {
-      return ['hero__content', this.spacing ? this.spacing : this.animation ? '' : 'py-10 py-lg-11'];
+      return ["hero__content", this.spacing ? this.spacing : this.animation ? "" : "py-10 py-lg-11"];
     },
     cta() {
       return this.heroJson ? this.heroJson.cta : null;
     },
     isLight() {
-      if (this.heroJson && typeof this.heroJson.light !== 'undefined') return this.heroJson.light;
-
+      if (this.heroJson && typeof this.heroJson.light !== "undefined") return this.heroJson.light;
       return this.store.header?.isLight;
     },
     isLightOverline() {
-      return this.heroJson && typeof this.heroJson.lightOverline !== 'undefined'
-        ? this.heroJson.lightOverline
-        : this.isLight;
+      return this.heroJson && typeof this.heroJson.lightOverline !== "undefined" ? this.heroJson.lightOverline : this.isLight;
     },
     background() {
       return this.heroJson && this.heroJson.background ? this.heroJson.background : null;
@@ -273,7 +250,7 @@ export default {
       return this.heroJson ? this.heroJson.bgColor : null;
     },
     bgFit() {
-      return this.heroJson ? this.heroJson.bgFit : 'cover';
+      return this.heroJson ? this.heroJson.bgFit : "cover";
     },
     bgWidth() {
       return this.heroJson ? this.heroJson.bgWidth : null;
@@ -297,13 +274,13 @@ export default {
       return this.heroJson ? this.heroJson.headlineClasses : null;
     },
     headlineClassList() {
-      return ['hero__headline', this.headlineClasses];
+      return ["hero__headline", this.headlineClasses];
     },
     textShadow() {
       return this.heroJson ? this.heroJson.textShadow : null;
     },
     level() {
-      return this.heroJson && this.heroJson.level ? this.heroJson.level : 'h1';
+      return this.heroJson && this.heroJson.level ? this.heroJson.level : "h1";
     },
     animation() {
       return this.heroJson ? this.heroJson.animation : null;
@@ -334,18 +311,15 @@ export default {
     },
     lottieSettings() {
       if (!this.shape || !this.shape.lottie) return;
-
-      const height = this.shapeFullscreen ? '100%' : 'auto';
-
+      const height = this.shapeFullscreen ? "100%" : "auto";
       return {
         ...this.shape.lottieSettings,
-        width: 'auto',
-        height,
+        width: "auto",
+        height
       };
     },
     lottieFileData() {
       if (!this.shape) return null;
-
       return this.shape.lottie ? this.shape.lottie : this.lottieData ? Tools.getJSON(this.lottieData) : null;
     },
     showShape() {
@@ -355,29 +329,26 @@ export default {
       return this.shape && this.shape.fullscreen ? true : false;
     },
     shapeOffsetY() {
-      return (this.shape && this.shape.offsetY) || null;
+      return this.shape && this.shape.offsetY || null;
     },
     shapeOffsetX() {
-      return (this.shape && this.shape.offsetX) || null;
+      return this.shape && this.shape.offsetX || null;
     },
     shapeStyle() {
       const style = {};
-
       if (this.shapeOffsetY) {
-        style['--hero-shape-offset-y'] = this.shapeOffsetY;
+        style["--hero-shape-offset-y"] = this.shapeOffsetY;
       }
-
       if (this.shapeOffsetX) {
-        style['--hero-shape-offset-x'] = this.shapeOffsetX;
+        style["--hero-shape-offset-x"] = this.shapeOffsetX;
       }
-
       return style;
     },
     shapeBottom() {
-      return (this.shape && this.shape.bottom) || null;
+      return this.shape && this.shape.bottom || null;
     },
     shapeTop() {
-      return (this.shape && this.shape.top) || null;
+      return this.shape && this.shape.top || null;
     },
     shapeMobileOrder() {
       return this.shape && this.shape.mobileOrder ? this.shape.mobileOrder : null;
@@ -387,10 +358,8 @@ export default {
     },
     shapePosition() {
       if (!this.shape) return null;
-
-      if (this.shapeFullscreen) return 'hero--shape-top';
-
-      return this.shapeTop ? 'hero--shape-top' : this.shapeBottom ? 'hero--shape-bottom' : 'hero--shape-center';
+      if (this.shapeFullscreen) return "hero--shape-top";
+      return this.shapeTop ? "hero--shape-top" : this.shapeBottom ? "hero--shape-bottom" : "hero--shape-center";
     },
     shapeInContentMobile() {
       return this.shape && (this.shape.inContentMobile || this.shapeMobileOrder) ? true : false;
@@ -408,7 +377,7 @@ export default {
       return this.shape && this.shape.mobileClasses ? this.shape.mobileClasses : null;
     },
     shapeIsSVG() {
-      return (this.shape && this.shape.img && this.shape.img.endsWith('.svg')) || this.shape?.isSvg;
+      return this.shape && this.shape.img && this.shape.img.endsWith(".svg") || this.shape?.isSvg;
     },
     variant() {
       return this.heroJson && this.heroJson.variant ? this.heroJson.variant : null;
@@ -417,26 +386,24 @@ export default {
       return this.heroJson && this.heroJson.pattern ? this.heroJson.pattern : null;
     },
     ctaList() {
-      if (!this.heroJson || this.animation || (!this.heroJson.cta && !this.heroJson.ctaList)) return null;
-
+      if (!this.heroJson || this.animation || !this.heroJson.cta && !this.heroJson.ctaList) return null;
       return this.heroJson.cta ? [this.heroJson.cta] : this.heroJson.ctaList;
     },
     svgShapeAnimation() {
       return this.heroJson && this.heroJson.svgShapeAnimation ? this.heroJson.svgShapeAnimation : false;
     },
     showShapeContainer() {
-      return this.bgWidth || this.isSmall || (this.showShape && this.shapeInContentValue);
+      return this.bgWidth || this.isSmall || this.showShape && this.shapeInContentValue;
     },
     isCentered() {
       return this.letterSwitcher ? true : false;
     },
     isSmall() {
-      return this.variant === 'hero--small';
+      return this.variant === "hero--small";
     },
     imgSrcSets() {
       if (!this.bgWidth) return null;
-
-      return 'heroStudy';
+      return "heroStudy";
     },
     badges() {
       return this.heroJson && this.heroJson.badges ? this.heroJson.badges : false;
@@ -445,18 +412,19 @@ export default {
       return this.heroJson && this.heroJson.back ? this.heroJson.back : false;
     },
     svgShapePeak() {
-      return this.heroJson && this.heroJson.svgShapePeak ? this.heroJson.svgShapePeak : 'left';
+      return this.heroJson && this.heroJson.svgShapePeak ? this.heroJson.svgShapePeak : "left";
     },
     heroJson() {
       return Tools.getJSON(this.hero);
-    },
+    }
   },
   props: {
     hero: Object,
-    lottieData: String,
-  },
+    lottieData: String
+  }
 };
 </script>
+
 <style>
 .hero {
   --hero-background-color: transparent;
@@ -758,10 +726,6 @@ export default {
 .hero__overline {
   position: relative;
   z-index: 1;
-  display: inline-block;
-  margin-bottom: 0.5rem;
-  padding: 0.25rem 1.5rem 0.25rem 0.5rem;
-  color: var(--hero-copy-overline-color);
 }
 .hero__overline::before {
   position: absolute;
@@ -777,6 +741,12 @@ export default {
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.19, 1, 0.2, 1);
   z-index: -1;
+}
+.hero__overline {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  padding: 0.25rem 1.5rem 0.25rem 0.5rem;
+  color: var(--hero-copy-overline-color);
 }
 .hero__overline.hero__overline--full::before {
   animation-name: growFull;
@@ -845,7 +815,6 @@ export default {
 .hero__subline {
   font-size: 1.125rem;
   line-height: 1.6667em;
-  display: inline;
 }
 @media (min-width: 992px) {
   .hero__subline {
@@ -858,6 +827,9 @@ export default {
     font-size: 1.25rem;
     line-height: 1.7em;
   }
+}
+.hero__subline {
+  display: inline;
 }
 .hero__subline .highlight {
   background-position-x: 1em;

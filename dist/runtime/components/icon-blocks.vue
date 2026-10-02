@@ -40,40 +40,39 @@
 </template>
 
 <script>
-import StickyScroller from '../utils/sticky-scroller.js';
-import UtilityAnimation from '../utils/utility-animation.js';
-
+import StickyScroller from "../utils/sticky-scroller.js";
+import UtilityAnimation from "../utils/utility-animation.js";
 export default {
-  tagName: 'icon-blocks',
+  tagName: "icon-blocks",
   props: {
     iconBlocks: {
       type: Object,
-      required: true,
+      required: true
     },
     level: {
       type: String,
-      default: 'h3',
+      default: "h3"
     },
     classes: {
       type: String,
-      default: 'font-size-3 bold',
+      default: "font-size-3 bold"
     },
     columns: {
       type: [Boolean, Number],
-      default: false,
+      default: false
     },
     headline: {
       type: String,
-      default: null,
+      default: null
     },
     sticky: {
       type: Boolean,
-      default: false,
+      default: false
     },
     spacing: {
       type: String,
-      default: '',
-    },
+      default: ""
+    }
   },
   computed: {
     columnClass() {
@@ -84,28 +83,27 @@ export default {
         const isDivisibleByTwo = colWidth % 2 === 0;
         return isDivisibleByTwo ? `col-6 ${baseClass}` : baseClass;
       }
-
-      return 'col-md-4';
-    },
+      return "col-md-4";
+    }
   },
   mounted() {
     if (this.sticky) {
       StickyScroller.init([this.$el]);
     }
-
     UtilityAnimation.init([this.$el]);
-  },
+  }
 };
 </script>
+
 <style>
-.icon-blocks {
-  margin-bottom: 2rem;
-}
 .icon-blocks [data-utility-animation-step] {
   --utility-animation-distance: 15%;
 }
 .icon-blocks [data-utility-animation-step].is-starting {
   animation-delay: calc(var(--utility-animation-index) * 100ms + 0ms);
   animation-duration: 0.6s;
+}
+.icon-blocks {
+  margin-bottom: 2rem;
 }
 </style>

@@ -44,57 +44,51 @@
 </template>
 
 <script>
-import 'leaflet/dist/leaflet.css';
-import { LMap, LTileLayer, LMarker, LPopup } from '@vue-leaflet/vue-leaflet';
-
-import Tools from '../utils/tools.js';
-
+import "leaflet/dist/leaflet.css";
+import { LMap, LTileLayer, LMarker, LPopup } from "@vue-leaflet/vue-leaflet";
+import Tools from "../utils/tools.js";
 export default {
-  tagName: 'google-map',
+  tagName: "google-map",
   components: { LMap, LTileLayer, LMarker, LPopup },
   data() {
     return {
       zoom: 13,
       loaded: false,
-      icon: null,
+      icon: null
     };
   },
   computed: {
     classList() {
-      return ['google-map position-relative mx-3 mx-md-8 vue-component'];
+      return ["google-map position-relative mx-3 mx-md-8 vue-component"];
     },
     center() {
       const defaultCenter = [50.10343087097074, 8.760059035466721];
-
       return this.location ? [this.location.coordinates[0], this.location.coordinates[1]] : defaultCenter;
     },
     markerIcon() {
       if (!this.icon) return;
-
       const iconSize = [50, 45];
-
       return this.icon({
-        iconUrl: Tools.getAssetPath('svg/icons/map-pin.svg'),
-        iconSize: iconSize,
+        iconUrl: Tools.getAssetPath("svg/icons/map-pin.svg"),
+        iconSize
       });
     },
     leafletOptions() {
       return {
         scrollWheelZoom: false,
-        id: 'mapbox/streets-v11',
+        id: "mapbox/streets-v11"
       };
     },
     sliderOptions() {
       return {
         dots: false,
         prevArrow: '<span class="slick__arrow-left rounded-circle mx-11 bg-white"></span>',
-        nextArrow: '<span class="slick__arrow-right rounded-circle mx-11 bg-white"></span>',
+        nextArrow: '<span class="slick__arrow-right rounded-circle mx-11 bg-white"></span>'
       };
-    },
+    }
   },
   async beforeMount() {
-    const { icon } = await import('leaflet/dist/leaflet-src.esm');
-
+    const { icon } = await import("leaflet/dist/leaflet-src.esm");
     this.icon = icon;
   },
   mounted() {
@@ -103,17 +97,18 @@ export default {
   methods: {},
   props: {
     location: {
-      default: null,
+      default: null
     },
     entries: {
-      default: null,
+      default: null
     },
     images: {
-      default: null,
-    },
-  },
+      default: null
+    }
+  }
 };
 </script>
+
 <style>
 .google-map .leaflet-attribution-flag {
   display: none !important;

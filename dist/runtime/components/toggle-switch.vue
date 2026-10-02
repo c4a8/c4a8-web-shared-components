@@ -26,53 +26,51 @@
     </span>
   </div>
 </template>
-<script>
-// TODO move this inside the vue component
-import ToggleSwitch from '../utils/toggle-switch.js';
 
+<script>
+import ToggleSwitch from "../utils/toggle-switch.js";
 export default {
   props: {
     toggleSwitch: {
       type: Object,
-      default: () => ({}),
+      default: () => ({})
     },
     toggleSwitchHasAnimation: {
       type: Boolean,
-      default: false,
+      default: false
     },
     products: {
-      type: Object,
-    },
+      type: Object
+    }
   },
   mounted() {
     if (!this.$refs.root) return;
-
     new ToggleSwitch(this.$refs.root);
   },
   computed: {
     toggleSwitchTextLeft() {
-      return this.toggleSwitch.textLeft || 'Monthly';
+      return this.toggleSwitch.textLeft || "Monthly";
     },
     toggleSwitchTextRight() {
-      return this.toggleSwitch.textRight || 'Annual';
+      return this.toggleSwitch.textRight || "Annual";
     },
     toggleSwitchHint() {
       return this.toggleSwitch.hint || null;
     },
     toggleSwitchHintText() {
-      return (this.toggleSwitchHint && this.toggleSwitchHint.text) || 'Save up to 10%';
+      return this.toggleSwitchHint && this.toggleSwitchHint.text || "Save up to 10%";
     },
     toggleSwitchHintBgColor() {
-      return (this.toggleSwitchHint && this.toggleSwitchHint.bgColor) || 'var(--color-secondary)';
+      return this.toggleSwitchHint && this.toggleSwitchHint.bgColor || "var(--color-secondary)";
     },
     toggleSwitchHintColor() {
-      return (this.toggleSwitchHint && this.toggleSwitchHint.color) || 'var(--color-gk-white)';
+      return this.toggleSwitchHint && this.toggleSwitchHint.color || "var(--color-gk-white)";
     },
     toggleSwitchId() {
-      return this.toggleSwitch.id || 'customToggleSwitch';
+      return this.toggleSwitch.id || "customToggleSwitch";
     },
     toggleSwitchTargetSelector() {
-      return this.toggleSwitch.targetSelector || '#pricingCount1, #pricingCount2, #pricingCount3';
+      return this.toggleSwitch.targetSelector || "#pricingCount1, #pricingCount2, #pricingCount3";
     },
     toggleSwitchLimit() {
       return this.toggleSwitch.limit || false;
@@ -81,34 +79,35 @@ export default {
       return this.products && this.products.pricing && this.products.pricing.defaultPlan;
     },
     toggleSwitchActive() {
-      return this.toggleSwitch.active || this.defaultPlan === 'annual';
+      return this.toggleSwitch.active || this.defaultPlan === "annual";
     },
     toggleSwitchLimitLeftClass() {
-      return this.toggleSwitchLimit ? 'toggle-switch__text--right' : '';
+      return this.toggleSwitchLimit ? "toggle-switch__text--right" : "";
     },
     toggleSwitchClasses() {
       return [
-        'toggle-switch',
-        'overflow-hidden',
-        'd-flex',
-        'justify-content-center',
-        'align-items-center',
-        'pt-6',
-        'mb-5',
-        this.toggleSwitchHasAnimation ? 'utility-animation fade-in-bottom' : '',
+        "toggle-switch",
+        "overflow-hidden",
+        "d-flex",
+        "justify-content-center",
+        "align-items-center",
+        "pt-6",
+        "mb-5",
+        this.toggleSwitchHasAnimation ? "utility-animation fade-in-bottom" : ""
       ];
-    },
-  },
+    }
+  }
 };
 </script>
+
 <style scoped>
+.toggle-switch[data-utility-animation-step].is-starting {
+  animation-delay: calc(var(--utility-animation-index) * 100ms + 0ms);
+}
 .toggle-switch {
   cursor: default;
   display: flex;
   margin-bottom: 0;
-}
-.toggle-switch[data-utility-animation-step].is-starting {
-  animation-delay: calc(var(--utility-animation-index) * 100ms + 0ms);
 }
 .toggle-switch .toggle-switch-label,
 .toggle-switch .toggle-switch-input:checked + .toggle-switch-label {

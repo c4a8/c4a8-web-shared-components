@@ -47,18 +47,18 @@
 
 <script>
 export default {
-  tagName: 'world-detailed',
+  tagName: "world-detailed",
   computed: {
     style() {
       return `scale(var(--icon-scale));`;
     },
     stroke() {
       return this.color;
-    },
+    }
   },
   props: {
     settings: Object,
-    color: String,
-  },
+    color: String
+  }
 };
 </script>

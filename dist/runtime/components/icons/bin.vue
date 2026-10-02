@@ -8,17 +8,18 @@
     <line x1="7.5" y1="9" x2="8" y2="19.5" />
   </svg>
 </template>
+
 <script>
 export default {
-  tagName: 'bin',
+  tagName: "bin",
   computed: {
     style() {
       return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale)); stroke-linecap:round; stroke-linejoin:round;`;
-    },
+    }
   },
   props: {
     settings: Object,
-    color: String,
-  },
+    color: String
+  }
 };
 </script>

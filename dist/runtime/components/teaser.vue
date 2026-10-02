@@ -28,11 +28,11 @@
     </div>
   </div>
 </template>
-<script>
-import UtilityAnimation from '../utils/utility-animation.js';
 
+<script>
+import UtilityAnimation from "../utils/utility-animation.js";
 export default {
-  tagName: 'teaser',
+  tagName: "teaser",
   props: {
     ctaText: String,
     ctaHref: String,
@@ -51,61 +51,61 @@ export default {
     text: String,
     textHtml: {
       type: Boolean,
-      default: false,
+      default: false
     },
     preset: {
       type: String,
-      default: 'teaser',
+      default: "teaser"
     },
-    spacing: String,
+    spacing: String
   },
   computed: {
     classList() {
       return [
-        'teaser',
-        'utility-animation',
-        this.logo ? '' : 'teaser--no-img',
+        "teaser",
+        "utility-animation",
+        this.logo ? "" : "teaser--no-img",
         this.spacing,
-        this.id ? 'teaser--has-video' : 'hover__parent',
+        this.id ? "teaser--has-video" : "hover__parent"
       ];
     },
     computedText() {
       if (!this.textHtml && this.text) {
-        return this.text.replace(/<[^>]*>/g, '');
+        return this.text.replace(/<[^>]*>/g, "");
       }
       return this.text;
     },
     headlineClassesWithDefault() {
-      return (this.headlineClasses || '') + ' teaser__headline fade-in-bottom';
-    },
+      return (this.headlineClasses || "") + " teaser__headline fade-in-bottom";
+    }
   },
   mounted() {
     if (!this.$refs.root) return;
-
     UtilityAnimation.init([this.$refs.root]);
   },
   methods: {
     handleClick() {
       if (!this.id) {
-        const link = this.$el.querySelector('.teaser__cta a');
+        const link = this.$el.querySelector(".teaser__cta a");
         if (link) link.click();
       }
-    },
-  },
+    }
+  }
 };
 </script>
+
 <style>
-.teaser {
-  --color-teaser-copy-highlight: var(--color-copy-highlight);
-  --color-teaser-background: var(--color-gk-light-grey);
-  position: relative;
-  padding: 4rem 0 2.5rem;
-}
 .teaser [data-utility-animation-step] {
   --utility-animation-distance: 135%;
 }
 .teaser [data-utility-animation-step].is-starting {
   animation-duration: 0.8s;
+}
+.teaser {
+  --color-teaser-copy-highlight: var(--color-copy-highlight);
+  --color-teaser-background: var(--color-gk-light-grey);
+  position: relative;
+  padding: 4rem 0 2.5rem;
 }
 .teaser:not(.teaser--has-video) {
   cursor: pointer;

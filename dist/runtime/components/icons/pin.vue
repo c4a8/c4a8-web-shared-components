@@ -11,15 +11,15 @@
 
 <script>
 export default {
-  tagName: 'pin',
+  tagName: "pin",
   computed: {
     style() {
       return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)); fill: none; stroke-linecap: round; stroke-linejoin: round;`;
-    },
+    }
   },
   props: {
     settings: Object,
-    color: String,
-  },
+    color: String
+  }
 };
 </script>

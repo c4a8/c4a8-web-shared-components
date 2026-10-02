@@ -11,13 +11,12 @@
     ><span class="tag__icon" v-if="hasIcon"><icon icon="close" size="xs" /></span>
   </a>
 </template>
+
 <script>
-import { useNuxtApp } from '#imports';
-
-import Tools from '../utils/tools.js';
-
+import { useNuxtApp } from "#imports";
+import Tools from "../utils/tools.js";
 export default {
-  tagName: 'tag',
+  tagName: "tag",
   data() {
     return Tools.validateVueProps(this);
   },
@@ -25,55 +24,55 @@ export default {
     classList() {
       return [
         `tags__btn btn btn-xs mb-2 vue-component`,
-        this.variant ? 'tag--' + this.variant : `mx-sm-${this.props?.spacing}`,
-        this.classes ? this.classes : null,
+        this.variant ? "tag--" + this.variant : `mx-sm-${this.props?.spacing}`,
+        this.classes ? this.classes : null
       ];
     },
     linkPrefix() {
-      return this.strategy === 'prefix' ? `/${this.locale}` : '';
+      return this.strategy === "prefix" ? `/${this.locale}` : "";
     },
     href() {
-      return this.linkPrefix + '/blog/#' + encodeURIComponent(this.tag);
+      return this.linkPrefix + "/blog/#" + encodeURIComponent(this.tag);
     },
     hasIcon() {
-      return this.variant === 'icon';
-    },
+      return this.variant === "icon";
+    }
   },
   setup() {
     const nuxtApp = useNuxtApp();
     const locale = nuxtApp.$getLocale?.();
-    const strategy = nuxtApp.$getI18nConfig?.().strategy ?? 'prefix';
-
+    const strategy = nuxtApp.$getI18nConfig?.().strategy ?? "prefix";
     return { locale, strategy };
   },
   props: {
     tag: {
       type: String,
-      required: true,
+      required: true
     },
     count: {
       type: Number,
-      default: null,
+      default: null
     },
     filter: {
       type: Boolean,
-      default: false,
+      default: false
     },
     spacing: {
       type: Number,
-      default: 1,
+      default: 1
     },
     classes: {
       type: String,
-      default: null,
+      default: null
     },
     variant: {
       type: String,
-      default: null,
-    },
-  },
+      default: null
+    }
+  }
 };
 </script>
+
 <style>
 .tags__btn {
   color: #71869d;
@@ -122,11 +121,11 @@ export default {
   color: var(--tag-base-color) !important;
 }
 .tags__btn.tag--small, .tags__btn.tag--icon {
-  margin-right: 0.5rem;
-  text-transform: uppercase;
+  font-weight: bold;
 }
 .tags__btn.tag--small, .tags__btn.tag--icon {
-  font-weight: bold;
+  margin-right: 0.5rem;
+  text-transform: uppercase;
 }
 
 .tag__icon .icon {

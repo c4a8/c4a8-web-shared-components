@@ -120,73 +120,71 @@
 </template>
 
 <script>
-import UtilityAnimation from '../utils/utility-animation.js';
-import YoutubePlayer from '../utils/youtube-player.js';
-import Analytics from '../utils/data-an.js';
-
+import UtilityAnimation from "../utils/utility-animation.js";
+import YoutubePlayer from "../utils/youtube-player.js";
+import Analytics from "../utils/data-an.js";
 export default {
-  tagName: 'video-frame',
+  tagName: "video-frame",
   props: {
     thumb: String,
     alt: String,
     id: String,
     preset: {
       type: String,
-      default: 'fullscreen4k',
+      default: "fullscreen4k"
     },
     container: {
       type: Boolean,
-      default: false,
+      default: false
     },
     corner: {
       type: [Object, Boolean],
-      default: false,
+      default: false
     },
     spacingTop: {
       type: Boolean,
-      default: false,
+      default: false
     },
     fullWidth: {
       type: Boolean,
-      default: false,
+      default: false
     },
     headline: {
       type: [Object, Boolean],
-      default: false,
+      default: false
     },
     sticky: {
       type: Boolean,
-      default: false,
+      default: false
     },
     ctaData: {
-      type: Object,
+      type: Object
     },
     playlist: {
       type: Boolean,
-      default: false,
+      default: false
     },
     subtitles: {
       type: String,
-      default: null,
+      default: null
     },
     color: {
-      type: String,
+      type: String
     },
     fontSize: {
-      type: String,
+      type: String
     },
     cover: {
       type: Boolean,
-      default: false,
+      default: false
     },
     lightbox: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   mounted() {
     if (!this.$refs.root) return;
-
     UtilityAnimation.init([this.$refs.root]);
   },
   beforeDestroy() {
@@ -195,14 +193,12 @@ export default {
   },
   computed: {
     headlineClasses() {
-      let classes = this.headline?.classes || '';
-      let classList = [classes, 'video-frame__headline'];
-
-      if (classes && classes.includes('font-size')) {
-        classList.push('video-frame__headline--custom');
+      let classes = this.headline?.classes || "";
+      let classList = [classes, "video-frame__headline"];
+      if (classes && classes.includes("font-size")) {
+        classList.push("video-frame__headline--custom");
       }
-
-      return classList.join(' ');
+      return classList.join(" ");
     },
     hasVideo() {
       return !!this.id;
@@ -215,88 +211,84 @@ export default {
     },
     stickyClassList() {
       return [
-        'video-frame__sticky',
+        "video-frame__sticky",
         {
-          'video-frame--cover': this.cover,
-        },
+          "video-frame--cover": this.cover
+        }
       ];
     },
     rootClassList() {
       return [
         {
-          'video-frame--played': this.isPlayed,
+          "video-frame--played": this.isPlayed
           // 'video-frame--cover': this.cover,
-        },
+        }
       ];
     },
     containerClass() {
       return [
-        'container',
-        'utility-animation',
-        'has-background',
-        'video-frame__container',
+        "container",
+        "utility-animation",
+        "has-background",
+        "video-frame__container",
         {
-          'video-frame__container--spacing': this.spacingTop,
+          "video-frame__container--spacing": this.spacingTop,
           //'is-sticky-scroller': this.sticky,
-          'video-frame--top-overflow': this.corner && this.corner.topOverflow,
+          "video-frame--top-overflow": this.corner && this.corner.topOverflow
         },
-        ...this.rootClassList,
+        ...this.rootClassList
       ];
     },
     rowClass() {
-      return ['row', 'justify-content-center', { 'position-relative': this.corner }];
+      return ["row", "justify-content-center", { "position-relative": this.corner }];
     },
     mainClass() {
       return [
-        'video-frame',
-        this.hasVideo ? 'video-frame--has-video' : 'hover__parent',
-        this.container ? 'video-frame--container' : 'has-background utility-animation',
+        "video-frame",
+        this.hasVideo ? "video-frame--has-video" : "hover__parent",
+        this.container ? "video-frame--container" : "has-background utility-animation",
         {
-          'video-frame--full-width': this.fullWidth,
+          "video-frame--full-width": this.fullWidth
           //'is-sticky-scroller': !this.container && this.sticky,
         },
-        ...this.rootClassList,
+        ...this.rootClassList
       ];
     },
     stickyStyles() {
-      return this.sticky ? { position: 'sticky', top: '0' } : {};
+      return this.sticky ? { position: "sticky", top: "0" } : {};
     },
     playerClass() {
-      return ['video-frame__player', 'fade-in-bottom', this.hasVideo ? 'js-inline-video-player' : ''];
+      return ["video-frame__player", "fade-in-bottom", this.hasVideo ? "js-inline-video-player" : ""];
     },
     cornerClass() {
       return [
-        'video-frame__corner-img',
+        "video-frame__corner-img",
         {
-          'video-frame__corner-img--top-overflow': this.corner && this.corner.topOverflow,
+          "video-frame__corner-img--top-overflow": this.corner && this.corner.topOverflow
         },
-        this.corner && this.corner.classes ? this.corner.classes : '',
+        this.corner && this.corner.classes ? this.corner.classes : ""
       ];
     },
     rootStyle() {
       const style = {};
-
       if (this.color) {
-        style['--video-frame-color'] = this.color;
+        style["--video-frame-color"] = this.color;
       }
-
       if (this.headline && this.headline.color) {
-        style['--video-frame-headline-color'] = `var(${this.headline.color})`;
+        style["--video-frame-headline-color"] = `var(${this.headline.color})`;
       }
-
       return style;
     },
     videoPlayerOptions() {
       if (!this.id) return {};
-
       return {
         videoId: this.id,
         parentSelector: `#${this.parentId}`,
         targetSelector: `#${this.targetId}`,
         isAutoplay: true,
         classMap: {
-          toggle: 'video-frame--played',
-        },
+          toggle: "video-frame--played"
+        }
       };
     },
     embedSrc() {
@@ -312,15 +304,13 @@ export default {
     },
     showLightbox() {
       return this.lightbox;
-    },
+    }
   },
   methods: {
     handleClick() {
       if (!this.id) return;
-
       this.setPlayed();
       this.openIframe = true;
-
       this.$nextTick(() => {
         if (!this._videoTracker) {
           this._videoTracker = Analytics.createVideoTracker(this.id, () => this.$refs.iframeContainer);
@@ -333,17 +323,18 @@ export default {
     },
     handleLightboxClose() {
       this.isPlayed = false;
-    },
+    }
   },
   data() {
     return {
       isPlayed: false,
       options: {},
-      openIframe: false,
+      openIframe: false
     };
-  },
+  }
 };
 </script>
+
 <style>
 .video-frame.video-frame--has-video:hover {
   cursor: pointer;
@@ -436,10 +427,6 @@ export default {
 .video-frame .video-frame__headline-container {
   display: none;
 }
-.video-frame .video-frame__headline-container .video-frame__headline {
-  filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.35));
-  color: var(--video-frame-headline-color);
-}
 .video-frame .video-frame__headline-container .video-frame__headline:not(.video-frame__headline--custom) {
   font-size: calc(3.75rem / 1.8);
   line-height: 1.2em;
@@ -462,6 +449,10 @@ export default {
 }
 .video-frame .video-frame__headline-container .video-frame__headline:not(.video-frame__headline--custom) {
   line-height: 1.2em !important;
+}
+.video-frame .video-frame__headline-container .video-frame__headline {
+  filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.35));
+  color: var(--video-frame-headline-color);
 }
 @media (min-width: 768px) {
   .video-frame .video-frame__headline-container {

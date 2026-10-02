@@ -8,20 +8,21 @@
     />
   </svg>
 </template>
+
 <script>
 export default {
-  tagName: 'outline-heart',
+  tagName: "outline-heart",
   computed: {
     style() {
       return `transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
     },
     stroke() {
       return this.color;
-    },
+    }
   },
   props: {
     settings: Object,
-    color: String,
-  },
+    color: String
+  }
 };
 </script>

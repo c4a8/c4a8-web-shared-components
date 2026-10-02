@@ -58,15 +58,15 @@
 
 <script>
 export default {
-  tagName: 'rocket',
+  tagName: "rocket",
   computed: {
     style() {
       return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
-    },
+    }
   },
   props: {
     settings: Object,
-    color: String,
-  },
+    color: String
+  }
 };
 </script>

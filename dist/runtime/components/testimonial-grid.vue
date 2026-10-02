@@ -23,63 +23,62 @@
 </template>
 
 <script>
-import Tools from '../utils/tools.js';
-
+import Tools from "../utils/tools.js";
 export default {
-  tagName: 'testimonial-grid',
+  tagName: "testimonial-grid",
   props: {
-    spacing: { type: String, default: 'space-top-2 space-bottom-2' },
+    spacing: { type: String, default: "space-top-2 space-bottom-2" },
     headline: {
       type: String,
-      default: null,
+      default: null
     },
     headlineLevel: {
       type: Number,
-      default: 2,
+      default: 2
     },
     subline: {
       type: String,
-      default: null,
+      default: null
     },
     contents: {
       type: Array,
-      required: true,
+      required: true
     },
     bgColor: {
       type: String,
-      default: null,
+      default: null
     },
     bgColorHover: {
       type: String,
-      default: null,
+      default: null
     },
     cta: {
       type: Object,
       default: () => ({
         text: null,
         toggleText: null,
-        href: null,
-      }),
+        href: null
+      })
     },
     limit: {
       type: Number,
-      default: 4,
+      default: 4
     },
     maxLimit: {
       type: Number,
-      default: 10,
+      default: 10
     },
     gridSize: {
       type: Number,
-      default: 2,
-    },
+      default: 2
+    }
   },
   data() {
     return {
       toggleLimitValue: this.limit,
       limitValue: this.limit,
       lang: Tools.getLang(),
-      isMobile: Tools.isBelowBreakpoint('md'),
+      isMobile: Tools.isBelowBreakpoint("md")
     };
   },
   mounted() {
@@ -88,11 +87,11 @@ export default {
       this.toggleLimitValue = this.limitValue;
     }
     const texts = {
-      en: { text: 'Show more', toggleText: 'Show less' },
-      de: { text: 'Mehr anzeigen', toggleText: 'Weniger anzeigen' },
-      es: { text: 'Mostrar más', toggleText: 'Mostrar menos' },
+      en: { text: "Show more", toggleText: "Show less" },
+      de: { text: "Mehr anzeigen", toggleText: "Weniger anzeigen" },
+      es: { text: "Mostrar m\xE1s", toggleText: "Mostrar menos" }
     };
-    const langTexts = texts[this.lang] || texts['en'];
+    const langTexts = texts[this.lang] || texts["en"];
     if (this.cta.text == null) {
       this.cta.text = langTexts.text;
     }
@@ -105,7 +104,7 @@ export default {
       return [this.spacing];
     },
     columnClass() {
-      return 'col-lg-' + 12 / this.gridSize;
+      return "col-lg-" + 12 / this.gridSize;
     },
     toggleCtaText() {
       return this.toggleLimitValue === this.limitValue ? this.cta.text : this.cta.toggleText;
@@ -115,15 +114,16 @@ export default {
     },
     showCta() {
       return this.contents.length > this.limitValue;
-    },
+    }
   },
   methods: {
     toggleLimit() {
       this.toggleLimitValue = this.toggleLimitValue === this.limitValue ? this.maxLimit : this.limitValue;
-    },
-  },
+    }
+  }
 };
 </script>
+
 <style>
 .testimonial-grid__content-block {
   margin-bottom: 3.75rem;

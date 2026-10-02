@@ -23,21 +23,21 @@
     </defs>
   </svg>
 </template>
+
 <script>
 export default {
-  tagName: 'check-mark',
+  tagName: "check-mark",
   computed: {
     style() {
-      // TODO check if we can use this style like in the other icons
       return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
     },
     foregroundStroke() {
-      return this.color ? this.color : '#001F35';
-    },
+      return this.color ? this.color : "#001F35";
+    }
   },
   props: {
     settings: Object,
-    color: String,
-  },
+    color: String
+  }
 };
 </script>

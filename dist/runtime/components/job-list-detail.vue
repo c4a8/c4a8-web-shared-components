@@ -61,55 +61,50 @@
 </template>
 
 <script>
-import { useI18n } from '#imports';
-
-import JobListings from '../utils/job-listings.js';
-import State from '../utils/state.js';
-import Loading from '../utils/loading.js';
-import Modal from '../utils/modal.js';
-import Tools from '../utils/tools.js';
-
+import { useI18n } from "#imports";
+import JobListings from "../utils/job-listings.js";
+import State from "../utils/state.js";
+import Loading from "../utils/loading.js";
+import Modal from "../utils/modal.js";
+import Tools from "../utils/tools.js";
 export default {
-  tagName: 'job-list-detail',
+  tagName: "job-list-detail",
   computed: {
     classList() {
       return [
-        'job-list__detail page-detail',
-        `${this.hasLoading ? State.LOADING : ''}`,
-        `${this.hasLoader ? 'loading' : ''}`,
-        `${this.hideLoading ? State.HIDE_LOADING : ''}`,
-        `${this.hasBack ? 'page-detail--has-back' : ''}`,
-        'vue-component',
+        "job-list__detail page-detail",
+        `${this.hasLoading ? State.LOADING : ""}`,
+        `${this.hasLoader ? "loading" : ""}`,
+        `${this.hideLoading ? State.HIDE_LOADING : ""}`,
+        `${this.hasBack ? "page-detail--has-back" : ""}`,
+        "vue-component"
       ];
     },
     headlineClassList() {
-      return `job-list__detail-headline page-detail__headline ${this.headlineClasses ? this.headlineClasses : ''}`;
+      return `job-list__detail-headline page-detail__headline ${this.headlineClasses ? this.headlineClasses : ""}`;
     },
     headlineLevelValue() {
-      return this.headlineLevel ? this.headlineLevel : 'h1';
+      return this.headlineLevel ? this.headlineLevel : "h1";
     },
     style() {
       return `--page-detail-color: var(${this.color}); --color-icon-hover-color: var(--page-detail-color)`;
     },
     color() {
-      return this.detailColor ? this.detailColor : '--color-job-list-detail';
+      return this.detailColor ? this.detailColor : "--color-job-list-detail";
     },
     getUuid() {
-      return 'job-list-detail-style';
-    },
+      return "job-list-detail-style";
+    }
   },
   setup() {
     const { $getLocale } = useI18n();
-
     return { locale: $getLocale() };
   },
   mounted() {
-    this.loading = new Loading(this.$refs['job-list-detail'], () => {
+    this.loading = new Loading(this.$refs["job-list-detail"], () => {
       this.hasLoader = true;
     });
-
     this.loading.on(true);
-
     this.init();
   },
   data() {
@@ -125,34 +120,26 @@ export default {
       entryData: {},
       personQuote: null,
       videoInner: null,
-      jobIdValue: null,
+      jobIdValue: null
     };
   },
   methods: {
     init() {
       const mockApplyUrl = this.mockApplyUrl;
       const mockDocumentsUrl = this.mockDocumentsUrl;
-
       this.api = new JobListings({
-        ...(this.apiUrl && { apiUrl: this.apiUrl }),
+        ...this.apiUrl && { apiUrl: this.apiUrl },
         client_name: this.clientName,
         apiKey: this.apiKey,
         mockApplyUrl,
-        mockDocumentsUrl,
+        mockDocumentsUrl
       });
-
       const lang = this.lang || this.locale;
-
       this.api.setLang(lang);
-
       const jobId = this.api.getJobId() || this.jobId;
-
       this.jobIdValue = jobId;
-
       this.showBackButton();
-
       const hasLanguageLoader = window.i18n?.loader;
-
       if (hasLanguageLoader) {
         hasLanguageLoader.then(() => {
           this.loadJob();
@@ -167,91 +154,70 @@ export default {
       }
     },
     loadJob() {
-      // TODO wait for all promises. right now it is working since vue is reactive so maybe we don't need that
       this.loadLocalJobData();
-      this.api
-        ?.getOpening(this.jobIdValue)
-        .then((response) => response.json())
-        .then((data) => {
-          this.handleJob(data);
-        })
-        .catch((error) => {
-          console.error('Job-list Error:', error);
-        });
+      this.api?.getOpening(this.jobIdValue).then((response) => response.json()).then((data) => {
+        this.handleJob(data);
+      }).catch((error) => {
+        console.error("Job-list Error:", error);
+      });
     },
     handleCta() {
-      Modal.open(this.$refs['modal-component']?.modal);
+      Modal.open(this.$refs["modal-component"]?.modal);
     },
     handleJob(entry) {
       Tools.sleep(this.sleepDelay).then(() => {
         const localEntry = entry.objects ? entry.objects[0] : entry;
-
         if (localEntry) {
-          const gender = this.$t('gender');
+          const gender = this.$t("gender");
           const { title, description } = localEntry;
-
           const entryData = {
             description,
             title,
-            gender,
+            gender
           };
-
           this.hideLoading = true;
-
           this.update(entryData);
         } else {
-          console.error('handleJob has no entry');
+          console.error("handleJob has no entry");
         }
       });
     },
     stopLoading() {
       setTimeout(() => {
         this.loading.off(true, true);
-
         this.hasLoading = false;
       }, this.loadingDelay);
     },
     update(entryData) {
       this.entryData = entryData;
-
       this.stopLoading();
     },
     loadLocalJobData() {
       const url = `${this.api.jobDataUrl}${this.jobIdValue}.json`;
-
       this.addCustomStyle();
-
       return fetch(url, {
-        method: 'GET',
+        method: "GET",
         headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.videoInner) return (this.videoInner = data.videoInner);
-
-          this.personQuote = data.personQuote;
-        })
-        .catch((error) => {
-          console.error('Job-list-Detail Local Job Data Error:', error);
-        });
+          "Content-Type": "application/json"
+        }
+      }).then((response) => response.json()).then((data) => {
+        if (data.videoInner) return this.videoInner = data.videoInner;
+        this.personQuote = data.personQuote;
+      }).catch((error) => {
+        console.error("Job-list-Detail Local Job Data Error:", error);
+      });
     },
     addCustomStyle() {
-      const style = document.createElement('style');
-
+      const style = document.createElement("style");
       style.id = this.getUuid;
-
       document.getElementById(this.getUuid)?.remove();
-
       style.innerHTML = `
         .show-in-${this.jobIdValue}.d-none {
           display: block !important;
         }
       `;
-
       document.head.appendChild(style);
-    },
+    }
   },
   props: {
     detailColor: String,
@@ -269,10 +235,11 @@ export default {
     apiKey: String,
     mockApplyUrl: String,
     mockDocumentsUrl: String,
-    lang: String,
-  },
+    lang: String
+  }
 };
 </script>
+
 <style>
 .job-list__detail.is-loading::before {
   width: 0;
@@ -285,11 +252,6 @@ export default {
   opacity: 0;
   transition: none;
   pointer-events: none;
-}
-.job-list__detail .job-list__detail-animation-1,
-.job-list__detail .job-list__detail-headline {
-  color: var(--color-job-list-detail-copy);
-  word-break: break-word;
 }
 .job-list__detail .job-list__detail-animation-1,
 .job-list__detail .job-list__detail-headline {
@@ -314,6 +276,11 @@ export default {
 .job-list__detail .job-list__detail-animation-1,
 .job-list__detail .job-list__detail-headline {
   font-weight: bold !important;
+}
+.job-list__detail .job-list__detail-animation-1,
+.job-list__detail .job-list__detail-headline {
+  color: var(--color-job-list-detail-copy);
+  word-break: break-word;
 }
 .job-list__detail .job-list__detail-gender {
   transition: opacity 0.6s 1.3s cubic-bezier(0.19, 1, 0.2, 1);

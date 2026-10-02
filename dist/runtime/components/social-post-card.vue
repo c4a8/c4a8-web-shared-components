@@ -80,28 +80,27 @@
     </footer>
   </article>
 </template>
-<script>
-import Tools from '../utils/tools.js';
-import UtilityAnimation from '../utils/utility-animation.js';
 
+<script>
+import Tools from "../utils/tools.js";
+import UtilityAnimation from "../utils/utility-animation.js";
 export default {
-  tagName: 'social-post-card',
+  tagName: "social-post-card",
   computed: {
     classList() {
-      return ['social-post-card', this.hasAnimationValue ? 'utility-animation fade-in-bottom' : '', 'vue-component'];
+      return ["social-post-card", this.hasAnimationValue ? "utility-animation fade-in-bottom" : "", "vue-component"];
     },
     hasAnimationValue() {
       return Tools.isTrue(this.hasAnimation) === true;
     },
     utilityAnimationStep() {
-      return this.hasAnimationValue ? '1' : null;
+      return this.hasAnimationValue ? "1" : null;
     },
     style() {
-      return this.index !== undefined && this.index !== null ? `--utility-animation-index: ${this.index}` : null;
+      return this.index !== void 0 && this.index !== null ? `--utility-animation-index: ${this.index}` : null;
     },
     firstMedia() {
       if (!this.media || !Array.isArray(this.media)) return null;
-
       return this.media[0] || null;
     },
     formattedPostedAt() {
@@ -122,103 +121,88 @@ export default {
     },
     showRepostReadMore() {
       return this.hasReadMore(this.resharedPost.contentHtml);
-    },
+    }
   },
   mounted() {
     if (!this.hasAnimationValue) return;
-
     UtilityAnimation.init([this.$refs.root]);
   },
   methods: {
     hasReadMore(content) {
       if (!content) return false;
-
       const maxLength = this.maxContentLength || 200;
-      const textOnly = content
-        .replace(/<[^>]*>/g, '')
-        .replace(/\s+/g, ' ')
-        .trim();
-
+      const textOnly = content.replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
       return textOnly.length > maxLength;
     },
     truncateContent(content) {
-      if (!content) return '';
-
+      if (!content) return "";
       const maxLength = this.maxContentLength || 200;
-      const textOnly = content
-        .replace(/<[^>]*>/g, '')
-        .replace(/\s+/g, ' ')
-        .trim();
-
+      const textOnly = content.replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
       if (textOnly.length <= maxLength) return content;
-
       let truncated = textOnly.substring(0, maxLength).trim();
-      const lastSpace = truncated.lastIndexOf(' ');
-
+      const lastSpace = truncated.lastIndexOf(" ");
       if (lastSpace > maxLength * 0.8) {
         truncated = truncated.substring(0, lastSpace);
       }
-
       const firstTagMatch = content.match(/^<[^>]+>/);
       const lastTagMatch = content.match(/<\/[^>]+}$/);
-      const prefix = firstTagMatch ? firstTagMatch[0] : '';
-      const suffix = lastTagMatch ? lastTagMatch[0] : '';
-
+      const prefix = firstTagMatch ? firstTagMatch[0] : "";
+      const suffix = lastTagMatch ? lastTagMatch[0] : "";
       return prefix + truncated + suffix;
     },
     formatDate(date) {
-      return Tools.getFormattedDate(date, 'de-DE', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
+      return Tools.getFormattedDate(date, "de-DE", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric"
       });
     },
     handleClick() {
       if (!this.postUrl) return;
-
-      window.open(this.postUrl, '_blank', 'noopener');
-    },
+      window.open(this.postUrl, "_blank", "noopener");
+    }
   },
   props: {
     author: {
       type: Object,
-      default: () => ({}),
+      default: () => ({})
     },
     postedAt: {
-      type: Number,
+      type: Number
     },
     contentHtml: {
-      type: String,
+      type: String
     },
     media: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     stats: {
       type: Object,
-      default: () => ({}),
+      default: () => ({})
     },
     postUrl: {
-      type: String,
+      type: String
     },
     hasAnimation: {
-      default: null,
+      default: null
     },
     resharedPost: {
       type: Object,
-      default: null,
+      default: null
     },
     index: Number,
     maxContentLength: {
       type: Number,
-      default: 130,
+      default: 130
     },
     companyPageUrl: {
-      type: String,
-    },
-  },
+      type: String
+    }
+  }
 };
 </script>
+
 <style>
 .social-post-card {
   --social-post-card-border-color: var(--color-black-30);
@@ -273,7 +257,6 @@ export default {
 .social-post-card__repost-author {
   font-size: 1rem;
   line-height: 1.6;
-  font-weight: bold;
 }
 @media (min-width: 992px) {
   .social-post-card__repost-author {
@@ -286,6 +269,9 @@ export default {
     font-size: 1rem;
     line-height: 1.6;
   }
+}
+.social-post-card__repost-author {
+  font-weight: bold;
 }
 
 .social-post-card__linkedin-badge {

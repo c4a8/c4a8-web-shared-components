@@ -33,15 +33,15 @@
     </div>
   </div>
 </template>
-<script>
-import State from '../utils/state.js';
-import UtilityAnimation from '../utils/utility-animation.js';
 
+<script>
+import State from "../utils/state.js";
+import UtilityAnimation from "../utils/utility-animation.js";
 export default {
-  tagName: 'faq',
+  tagName: "faq",
   data() {
     return {
-      entriesWithState: [],
+      entriesWithState: []
     };
   },
   beforeMount() {
@@ -51,7 +51,6 @@ export default {
       entry.height = null;
       entry.index = index;
       entry.id = `entry-${index}`;
-
       return entry;
     });
   },
@@ -60,95 +59,80 @@ export default {
       return this.index ? `--utility-animation-index: ${this.index}` : null;
     },
     classList() {
-      return ['faq', 'utility-animation', 'container space-top-2', 'vue-component', this.spacing];
+      return ["faq", "utility-animation", "container space-top-2", "vue-component", this.spacing];
     },
     headlineClasses() {
-      return `faq__headline fade-in-bottom ${this.headline?.classes ? this.headline.classes : ''}`;
+      return `faq__headline fade-in-bottom ${this.headline?.classes ? this.headline.classes : ""}`;
     },
     headlineLevel() {
-      return this.headline?.level ? this.headline.level : 'h2';
-    },
+      return this.headline?.level ? this.headline.level : "h2";
+    }
   },
   mounted() {
     if (!this.$refs.root) return;
-
     UtilityAnimation.init([this.$refs.root]);
   },
   methods: {
     getDelay(entry) {
       const miliseconds = entry.index > 0 ? 200 : 0;
       const delay = `${entry.index * miliseconds}ms`;
-
       return `--utility-animation-delay: ${delay};`;
     },
     handleClick(entry) {
       entry.isOpen = entry.isOpen === null ? true : null;
-
       if (entry.isOpen) entry.isDetailsOpen = true;
     },
     getElementByRef(entry) {
       const ref = this.$refs[entry?.id];
-
       if (!ref || ref.length === 0) return;
-
       return ref[0];
     },
     afterLeave(entry) {
       const element = this.getElementByRef(entry);
-
       if (!element) return;
-
       entry.isDetailsOpen = null;
-
-      element.style.removeProperty('display');
-      element.style.removeProperty('height');
+      element.style.removeProperty("display");
+      element.style.removeProperty("height");
       element.classList.remove(State.IS_COLLAPSING);
     },
     enter(entry) {
       const element = this.getElementByRef(entry);
-
       if (!element) return;
-
       const height = element.offsetHeight;
-
-      element.style.removeProperty('height');
+      element.style.removeProperty("height");
       element.style.height = 0;
       element.style.paddingTop = 0;
       element.style.paddingBottom = 0;
       element.style.marginTop = 0;
       element.style.marginBottom = 0;
-
       setTimeout(() => {
         element.style.height = `${height}px`;
-        element.style.removeProperty('padding-top');
-        element.style.removeProperty('padding-bottom');
-        element.style.removeProperty('margin-top');
-        element.style.removeProperty('margin-bottom');
+        element.style.removeProperty("padding-top");
+        element.style.removeProperty("padding-bottom");
+        element.style.removeProperty("margin-top");
+        element.style.removeProperty("margin-bottom");
       });
     },
     leave(entry) {
       const element = this.getElementByRef(entry);
-
       if (!element) return;
-
       const height = element.offsetHeight;
-
       element.classList.add(State.IS_COLLAPSING);
-
       setTimeout(() => {
         element.style.height = `${height}px`;
       });
-    },
+    }
   },
   props: {
     headline: Object,
     entries: Array,
     index: Number,
     spacing: String,
-    width: String,
-  },
+    width: String
+  }
 };
 </script>
+
 <style>
 .faq[data-utility-animation-in-viewport] + :not([data-utility-animation-in-viewport]) [data-utility-animation-step] {
   animation-delay: var(--utility-animation-delay);
@@ -161,11 +145,6 @@ export default {
 }
 .faq[data-utility-animation-in-viewport] + [data-utility-animation-in-viewport] [data-utility-animation-step].faq__headline {
   animation-delay: 200ms;
-}
-.faq summary {
-  list-style-type: none;
-  display: flex;
-  position: relative;
 }
 .faq summary {
   font-size: 1.25rem;
@@ -185,6 +164,11 @@ export default {
 }
 .faq summary {
   line-height: 1.7em !important;
+}
+.faq summary {
+  list-style-type: none;
+  display: flex;
+  position: relative;
 }
 .faq summary::-webkit-details-marker {
   display: none;

@@ -43,74 +43,67 @@
     </div>
   </div>
 </template>
-<script>
-import JobListings from '../utils/job-listings.js';
-import Loading from '../utils/loading.js';
-import Tools from '../utils/tools.js';
-import State from '../utils/state.js';
-import StickyScroller from '../utils/sticky-scroller.js';
 
+<script>
+import JobListings from "../utils/job-listings.js";
+import Loading from "../utils/loading.js";
+import Tools from "../utils/tools.js";
+import State from "../utils/state.js";
+import StickyScroller from "../utils/sticky-scroller.js";
 export default {
-  tagName: 'job-list',
+  tagName: "job-list",
   computed: {
     classList() {
       return [
-        'job-list container',
-        `${this.hasLoading ? State.LOADING : ''}`,
-        `${this.hasLoader ? 'loading' : ''}`,
-        `${Tools.isTrue(this.sticky) === true ? StickyScroller.rootSelector.substring(1) : ''}`,
-        this.isEmpty ? 'mb-8' : '',
+        "job-list container",
+        `${this.hasLoading ? State.LOADING : ""}`,
+        `${this.hasLoader ? "loading" : ""}`,
+        `${Tools.isTrue(this.sticky) === true ? StickyScroller.rootSelector.substring(1) : ""}`,
+        this.isEmpty ? "mb-8" : ""
       ];
     },
     expandClassList() {
       return [
-        'job-list__expand-button',
-        `${!this.hasExpand ? State.HIDDEN : ''}`,
-        `${!this.isExpandVisible ? State.INVISIBLE : ''}`,
+        "job-list__expand-button",
+        `${!this.hasExpand ? State.HIDDEN : ""}`,
+        `${!this.isExpandVisible ? State.INVISIBLE : ""}`
       ];
     },
     headlineClassValue() {
       return `job-list__headline ${this.headlineClasses}`;
     },
     headlineLevelValue() {
-      return `${this.headlineLevel ? this.headlineLevel : 'h2'}`;
+      return `${this.headlineLevel ? this.headlineLevel : "h2"}`;
     },
     tagList() {
-      return this.tags ? this.tags.split(',') : undefined;
-    },
+      return this.tags ? this.tags.split(",") : void 0;
+    }
   },
   mounted() {
     this.api = new JobListings({
-      ...(this.jobId && { jobId: this.jobId }),
-      ...(this.apiUrl && { apiUrl: this.apiUrl }),
-      client_name: this.clientName,
+      ...this.jobId && { jobId: this.jobId },
+      ...this.apiUrl && { apiUrl: this.apiUrl },
+      client_name: this.clientName
     });
-
     if (this.lang) {
       this.api.setLang(this.lang);
     }
-
     if (this.tagList) {
       this.api.setFilter({ tags: this.tagList });
     }
-
-    this.loading = new Loading(this.$refs['job-list'], () => {
+    this.loading = new Loading(this.$refs["job-list"], () => {
       this.hasLoader = true;
     });
-
     this.loading.on(true);
-
     this.init();
   },
   methods: {
     init() {
       const hasLanguageLoader = window.i18n?.loader;
       const method = this.jobId ? this.loadJob : this.loadJobs;
-
       if (hasLanguageLoader) {
         hasLanguageLoader.then(() => {
-          this.translationData = window.i18n?.getTranslationData(['jobListEmpty']);
-
+          this.translationData = window.i18n?.getTranslationData(["jobListEmpty"]);
           method.bind(this)();
         });
       } else {
@@ -120,7 +113,6 @@ export default {
     handleExpand() {
       this.isExpandVisible = false;
       this.hasExpand = false;
-
       this.showJobs();
     },
     showJobs() {
@@ -130,34 +122,25 @@ export default {
     },
     loadJobData() {
       const url = `${this.api.jobDataUrl}jobs.json`;
-
       return fetch(url, {
-        method: 'GET',
+        method: "GET",
         headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          this.jobData = data;
-        })
-        .catch((error) => {
-          console.error('Job-list Local Job Data Error:', error);
-        });
+          "Content-Type": "application/json"
+        }
+      }).then((response) => response.json()).then((data) => {
+        this.jobData = data;
+      }).catch((error) => {
+        console.error("Job-list Local Job Data Error:", error);
+      });
     },
     loadJob(multiple) {
-      const method = !multiple ? 'getOpening' : 'getAll';
-
+      const method = !multiple ? "getOpening" : "getAll";
       this.promises.push(this.loadJobData());
-
-      this.api[method]()
-        .then((response) => response.json())
-        .then((data) => {
-          this.handleJobs(data);
-        })
-        .catch((error) => {
-          console.error('Job-list Error:', error);
-        });
+      this.api[method]().then((response) => response.json()).then((data) => {
+        this.handleJobs(data);
+      }).catch((error) => {
+        console.error("Job-list Error:", error);
+      });
     },
     loadJobs() {
       this.loadJob(true);
@@ -165,135 +148,101 @@ export default {
     handleJobs(data) {
       Tools.sleep(this.sleepDelay).then(() => {
         let localData = data;
-
-        if (typeof localData.objects !== 'object') {
+        if (typeof localData.objects !== "object") {
           const newObject = {
             objects: [localData],
-            meta: localData?.meta,
+            meta: localData?.meta
           };
-
           localData = newObject;
         }
-
         this.data = localData;
-
         if (!this.data.meta) return this.loading.off();
-
-        Promise.all(this.promises)
-          .then(() => {
-            const orderedList = this.api.getOrderedList(localData.objects);
-
-            this.filterJobs(data, orderedList);
-          })
-          .catch((error) => {
-            console.error('Job-List Promises.all ~ error', error);
-          });
+        Promise.all(this.promises).then(() => {
+          const orderedList = this.api.getOrderedList(localData.objects);
+          this.filterJobs(data, orderedList);
+        }).catch((error) => {
+          console.error("Job-List Promises.all ~ error", error);
+        });
       });
     },
     filterJobs(data, orderedList) {
       this.data.objects = orderedList;
-
-      const gender = this.$t('gender');
-
+      const gender = this.$t("gender");
       const filteredList = [];
-
       let counter = 0;
-
       for (let i = 0; i < orderedList?.length; i++) {
         const entry = orderedList[i];
         const { city } = entry?.location || {};
-
         if (!entry) continue;
-
         const { title, position_type, team } = entry;
-
         const entryData = {
           city,
           title,
           gender,
           team,
-          positionType: position_type !== '' ? window.i18n?.translate(position_type) : null,
+          positionType: position_type !== "" ? window.i18n?.translate(position_type) : null,
           isInvisible: this.maxItems > 0 && counter > this.maxItems - 1 ? true : false,
-          id: i,
+          id: i
         };
-
         if (this.isAvailableEntry(entry)) {
           filteredList[i] = entryData;
           counter++;
         }
       }
-
       this.entries = filteredList;
-
       if (this.entries.length === 0) {
         this.isEmpty = true;
       }
-
       if (this.maxItems > 0 && data.objects?.length > this.maxItems) {
         this.showExpandButton();
       }
-
       this.stopLoading();
     },
     showExpandButton() {
       this.hasExpand = true;
-
       setTimeout(() => {
         this.isExpandVisible = true;
       }, this.loadingDelay);
     },
     isAvailableEntry(data) {
       let result = true;
-
       if (data.tags.includes(this.api.hiddenTag)) return false;
-
       if (this.team) {
         const entryTeam = data.team?.toLowerCase();
         const filterTeam = this.team.toLowerCase();
-
-        if (entryTeam === undefined || entryTeam?.indexOf(filterTeam) === -1) {
+        if (entryTeam === void 0 || entryTeam?.indexOf(filterTeam) === -1) {
           result = false;
         }
       }
-
       return result;
     },
     stopLoading() {
       setTimeout(() => {
         this.loading.off(true, true);
-
         this.hasLoading = false;
       }, this.loadingDelay);
     },
     handleEntryClick(e) {
       const current = e.currentTarget;
-
       if (current && this.detailUrl) {
         const currentData = this.getData(current);
-        // TODO load component in page and don't redirect
-
         const detailUrl = this.getDetailUrl(currentData);
         const url = Tools.generateUrl(currentData?.title, detailUrl, currentData?.id);
-
         document.location.href = url;
       }
     },
     getData(element) {
       let result = null;
-
       if (element && element.dataset.id && this.data?.objects) {
         result = this.data.objects[element.dataset.id];
       }
-
       return result;
     },
     getDetailUrl(data) {
-      if (typeof this.detailUrl !== 'object') return this.detailUrl;
-
+      if (typeof this.detailUrl !== "object") return this.detailUrl;
       const lang = this.api.getLangFromEntry(data);
-
       return this.detailUrl[lang] || this.detailUrl.default;
-    },
+    }
   },
   data() {
     return {
@@ -309,7 +258,7 @@ export default {
       entries: [],
       jobData: {},
       promises: [],
-      isEmpty: false,
+      isEmpty: false
     };
   },
   props: {
@@ -327,11 +276,12 @@ export default {
     expandText: String,
     sublineText: String,
     sticky: {
-      default: null,
-    },
-  },
+      default: null
+    }
+  }
 };
 </script>
+
 <style>
 .job-list.is-loading .job-list__message,
 .job-list.is-loading .job-list__header,
@@ -366,15 +316,6 @@ export default {
   transition: opacity 0.1s cubic-bezier(0.19, 1, 0.2, 1);
 }
 
-.job-list__entry {
-  border: 2px solid var(--color-border);
-  padding: 2rem;
-  opacity: 1;
-  transition: opacity 1.3s cubic-bezier(0.19, 1, 0.2, 1);
-  flex: 1 0 100%;
-  margin-bottom: 1.5rem;
-  cursor: pointer;
-}
 .job-list__entry .job-list__entry-title {
   text-decoration: none;
   background-image: linear-gradient(var(--color-gk-white), var(--color-gk-white));
@@ -385,6 +326,15 @@ export default {
 }
 .job-list__entry:hover .job-list__entry-title {
   background-size: 100% 3px;
+}
+.job-list__entry {
+  border: 2px solid var(--color-border);
+  padding: 2rem;
+  opacity: 1;
+  transition: opacity 1.3s cubic-bezier(0.19, 1, 0.2, 1);
+  flex: 1 0 100%;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
 }
 .job-list__entry:hover {
   background-color: var(--color-primary-accent);
@@ -413,9 +363,6 @@ export default {
 }
 
 .job-list__entry-title {
-  display: inline;
-}
-.job-list__entry-title {
   font-size: 1.375rem;
   line-height: 1.6365em;
 }
@@ -430,6 +377,9 @@ export default {
     font-size: 1.95313rem;
     line-height: 1.7em;
   }
+}
+.job-list__entry-title {
+  display: inline;
 }
 
 .job-list__entry-gender {

@@ -8,28 +8,22 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-
+import { ref } from "vue";
 const codeRef = ref(null);
 const copied = ref(false);
-
 function copyCode() {
-  const text = codeRef.value?.innerText ?? '';
-
-  navigator.clipboard
-    .writeText(text)
-    .then(() => {
-      copied.value = true;
-    })
-    .catch((error) => {
-      console.debug(error);
-    });
-
+  const text = codeRef.value?.innerText ?? "";
+  navigator.clipboard.writeText(text).then(() => {
+    copied.value = true;
+  }).catch((error) => {
+    console.debug(error);
+  });
   setTimeout(() => {
     copied.value = false;
-  }, 2000);
+  }, 2e3);
 }
 </script>
+
 <style>
 .code-block {
   position: relative;

@@ -21,22 +21,21 @@
     <v-img :cloudinary="true" :lazy="lazy" v-bind="item" :class="item.classes" v-else></v-img>
   </component>
 </template>
+
 <script>
 export default {
-  tagName: 'carousel-item',
+  tagName: "carousel-item",
   props: {
     item: Object,
     component: String,
-    lazy: Boolean,
+    lazy: Boolean
   },
   methods: {
     handleClick(event) {
       if (!this.component) return;
-
       event.preventDefault();
-
-      this.$emit('click', this.item);
-    },
-  },
+      this.$emit("click", this.item);
+    }
+  }
 };
 </script>

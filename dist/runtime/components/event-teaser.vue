@@ -102,9 +102,8 @@
 </template>
 
 <script>
-import ImgSrcSets from '../utils/data/img-src-sets.js';
-import UtilityAnimation from '../utils/utility-animation.js';
-
+import ImgSrcSets from "../utils/data/img-src-sets.js";
+import UtilityAnimation from "../utils/utility-animation.js";
 export default {
   props: {
     id: String,
@@ -122,7 +121,7 @@ export default {
     cta: Object,
     variant: {
       type: Number,
-      default: 4,
+      default: 4
     },
     webcast: Boolean,
     teaser: Boolean,
@@ -132,34 +131,33 @@ export default {
     bgColorRgb: String,
     lang: {
       type: String,
-      default: 'de',
-    },
+      default: "de"
+    }
   },
   computed: {
     authorNames() {
-      const authorNames = this.author?.map((author) => author).join('<br />& ');
-
-      return `${this.$t('withAuthor')} ${authorNames}`;
+      const authorNames = this.author?.map((author) => author).join("<br />& ");
+      return `${this.$t("withAuthor")} ${authorNames}`;
     },
     imgSrcSets() {
       if (this.teaserImage && this.teaserImage.img) {
-        return this.teaserImage && this.teaserImage.lottie ? null : ImgSrcSets['eventTeaser'];
+        return this.teaserImage && this.teaserImage.lottie ? null : ImgSrcSets["eventTeaser"];
       } else {
-        return this.image && this.image.lottie ? null : ImgSrcSets['eventTeaser'];
+        return this.image && this.image.lottie ? null : ImgSrcSets["eventTeaser"];
       }
     },
     computedStyles() {
       return {
-        '--utility-animation-index': this.index ? this.index : undefined,
-        '--event-teaser-background-color-rgb': this.bgColorRgb ? this.bgColorRgb : undefined,
+        "--utility-animation-index": this.index ? this.index : void 0,
+        "--event-teaser-background-color-rgb": this.bgColorRgb ? this.bgColorRgb : void 0
       };
     },
     eventTeaserImageFullWidth() {
-      return !this.shapes ? 'event-teaser--image-full-width' : '';
+      return !this.shapes ? "event-teaser--image-full-width" : "";
     },
     ctaHref() {
       return this.cta?.href || this.url;
-    },
+    }
   },
   mounted() {
     UtilityAnimation.init([this.$refs.root]);
@@ -167,69 +165,61 @@ export default {
   methods: {
     getShapeSettings(index, webcast) {
       let shapeSettings = {
-        peak: 'right',
-        height: '40',
-        width: '100',
-        obliquity: undefined,
+        peak: "right",
+        height: "40",
+        width: "100",
+        obliquity: void 0
       };
-
       const shape = this.shapes[index];
-
       if (webcast) {
         if (this.shapes?.length > 1) {
           if (index === 0) {
-            shapeSettings.peak = shape.peak || 'left';
+            shapeSettings.peak = shape.peak || "left";
             shapeSettings.height = shape.height || 84;
             shapeSettings.width = shape.width || 100;
           } else {
-            shapeSettings.peak = shape.peak || 'right';
+            shapeSettings.peak = shape.peak || "right";
             shapeSettings.height = shape.height || 17;
             shapeSettings.width = shape.width || 60;
           }
         } else {
-          shapeSettings.peak = shape.peak || 'right';
+          shapeSettings.peak = shape.peak || "right";
           shapeSettings.height = shape.height || 40;
           shapeSettings.width = shape.width || (this.variant === 12 ? 80 : 100);
         }
       } else {
         if (index === 0) {
-          shapeSettings.peak = shape.peak || 'right';
+          shapeSettings.peak = shape.peak || "right";
           shapeSettings.height = shape.height || 12;
           shapeSettings.width = shape.width || 237;
           shapeSettings.obliquity = shape.obliquity || 4;
         } else {
-          shapeSettings.peak = shape.peak || 'left';
+          shapeSettings.peak = shape.peak || "left";
           shapeSettings.height = shape.height || 10;
           shapeSettings.width = shape.width || 80;
         }
       }
-
       return shapeSettings;
     },
     clickHandler(event) {
-      event.currentTarget.querySelector('a')?.click();
+      event.currentTarget.querySelector("a")?.click();
     },
     shapePeak(index) {
-      return index === 0 ? 'right' : 'left';
+      return index === 0 ? "right" : "left";
     },
     shapeHeight(index) {
       return index === 0 ? 12 : 10;
     },
     shapeWidth(index) {
       return index === 0 ? 237 : 80;
-    },
-  },
+    }
+  }
 };
 </script>
+
 <style>
 .event-teaser {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 1.5s cubic-bezier(0.19, 1, 0.2, 1);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--color-event-teaser-background);
-  cursor: pointer;
 }
 .event-teaser .is-foreground :is(img, svg, .lottie),
 .event-teaser .is-background {
@@ -242,8 +232,18 @@ export default {
   transform: scale(1.025);
   transition-duration: 1.3s;
 }
+.event-teaser {
+  transition: box-shadow 1.5s cubic-bezier(0.19, 1, 0.2, 1);
+}
 .event-teaser:hover {
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.25);
+}
+.event-teaser {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-event-teaser-background);
+  cursor: pointer;
 }
 .event-teaser.event-teaser--image-full-width .event-teaser__image .img__picture-wrapper {
   max-width: none;
@@ -733,12 +733,6 @@ export default {
 
 .event-teaser {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 1.5s cubic-bezier(0.19, 1, 0.2, 1);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--color-event-teaser-background);
-  cursor: pointer;
 }
 .event-teaser .is-foreground :is(img, svg, .lottie),
 .event-teaser .is-background {
@@ -751,8 +745,18 @@ export default {
   transform: scale(1.025);
   transition-duration: 1.3s;
 }
+.event-teaser {
+  transition: box-shadow 1.5s cubic-bezier(0.19, 1, 0.2, 1);
+}
 .event-teaser:hover {
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.25);
+}
+.event-teaser {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-event-teaser-background);
+  cursor: pointer;
 }
 .event-teaser.event-teaser--image-full-width .event-teaser__image .img__picture-wrapper {
   max-width: none;

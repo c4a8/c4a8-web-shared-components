@@ -32,41 +32,40 @@
 
 <script>
 export default {
-  tagName: 'awards',
+  tagName: "awards",
   props: {
     awards: {
       type: Object,
-      required: true,
+      required: true
     },
     level: {
       type: String,
-      default: 'h3',
+      default: "h3"
     },
     visualOnly: {
       type: Boolean,
-      default: false,
+      default: false
     },
     cols: {
       type: Number,
-      default: 3,
+      default: 3
     },
     classes: {
       type: String,
-      default: 'mt-8 mt-lg-10 space-bottom-2',
-    },
+      default: "mt-8 mt-lg-10 space-bottom-2"
+    }
   },
   computed: {
     awardsColsValue() {
-      return this.visualOnly ? 'col-lg-12 justify-content-center' : 'col-lg-6';
+      return this.visualOnly ? "col-lg-12 justify-content-center" : "col-lg-6";
     },
     awardsCol() {
       return Math.floor(12 / this.cols);
     },
     headlineClasses() {
-      const base = this.awards.headlineClasses || 'h2-font-size';
-
+      const base = this.awards.headlineClasses || "h2-font-size";
       return `${base} awards__headline`;
-    },
-  },
+    }
+  }
 };
 </script>

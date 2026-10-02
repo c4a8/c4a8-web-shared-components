@@ -20,73 +20,59 @@
     </div>
   </article>
 </template>
-<script>
-import Tools from '../utils/tools.js';
 
+<script>
+import Tools from "../utils/tools.js";
 export default {
-  tagName: 'event',
+  tagName: "event",
   data() {
     return {
-      hasMultipleDays: false,
+      hasMultipleDays: false
     };
   },
   computed: {
     style() {
       return `
-                --color-event-background: ${this.bgColor ? this.bgColor : 'var(--color-copy-highlight)'};
-                --color-event-copy: ${this.color ? this.color : 'var(--color-event-copy-default)'};
-                --color-event-time: ${this.timeColor ? this.timeColor : 'var(--color-copy-highlight)'};
+                --color-event-background: ${this.bgColor ? this.bgColor : "var(--color-copy-highlight)"};
+                --color-event-copy: ${this.color ? this.color : "var(--color-event-copy-default)"};
+                --color-event-time: ${this.timeColor ? this.timeColor : "var(--color-copy-highlight)"};
             `;
     },
     textWithAmpersand() {
-      return this.normalizedText?.replace(/&amp;/g, '&');
+      return this.normalizedText?.replace(/&amp;/g, "&");
     },
     normalizedDate() {
-      // TODO after migration we can probably get rid of this normalization
-
       return this.moment || this.date;
     },
     normalizedText() {
-      // TODO after migration we can probably get rid of this normalization
-
       return this.text || this.excerpt;
     },
     validDate() {
       let date = new Date(this.normalizedDate);
-
       if (isNaN(date.getTime())) {
         date = Tools.convertToDate(this.normalizedDate);
-
         this.hasMultipleDays = true;
-
         if (date && isNaN(date.getTime())) return null;
       }
-
       return date;
     },
     dateDay() {
       if (!this.validDate) return;
-
       const day = this.validDate.getDate();
-
       return day < 10 ? `0${day}` : day;
     },
     dateMonth() {
       if (!this.validDate) return;
-
-      const month = this.validDate.toLocaleDateString(undefined, {
-        month: 'short',
+      const month = this.validDate.toLocaleDateString(void 0, {
+        month: "short"
       });
-
       return month.slice(0, 3);
     },
     dateWeekDay() {
       if (!this.validDate) return;
-
-      const weekDay = this.validDate.toLocaleDateString(undefined, {
-        weekday: 'short',
+      const weekDay = this.validDate.toLocaleDateString(void 0, {
+        weekday: "short"
       });
-
       return weekDay.slice(0, 2);
     },
     imageValue() {
@@ -97,14 +83,13 @@ export default {
     },
     timeValue() {
       return !this.hasMultipleDays ? Tools.standardizeTimeFormat(this.time) : this.normalizedDate;
-    },
+    }
   },
   methods: {
     handleClick() {
-      if (this.external) return window.open(this.url, '_blank');
-
+      if (this.external) return window.open(this.url, "_blank");
       document.location.href = this.url;
-    },
+    }
   },
   props: {
     title: String,
@@ -123,18 +108,14 @@ export default {
     external: Boolean,
     bgColor: String,
     color: String,
-    timeColor: String,
-  },
+    timeColor: String
+  }
 };
 </script>
+
 <style>
 .event {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 1.5s cubic-bezier(0.19, 1, 0.2, 1);
-  --color-event-copy-default: var(--color-override-event-copy, var(--color-copy-on-primary-on-surface));
-  container-type: inline-size;
-  background-color: var(--color-surface-background);
-  overflow: hidden;
 }
 .event .is-foreground :is(img, svg, .lottie),
 .event .is-background {
@@ -147,8 +128,17 @@ export default {
   transform: scale(1.025);
   transition-duration: 1.3s;
 }
+.event {
+  transition: box-shadow 1.5s cubic-bezier(0.19, 1, 0.2, 1);
+}
 .event:hover {
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.25);
+}
+.event {
+  --color-event-copy-default: var(--color-override-event-copy, var(--color-copy-on-primary-on-surface));
+  container-type: inline-size;
+  background-color: var(--color-surface-background);
+  overflow: hidden;
 }
 .event .event__headline {
   margin-bottom: 0.5rem;
@@ -181,13 +171,6 @@ export default {
   }
 }
 .event .event__text {
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-}
-.event .event__text {
   font-size: 1rem;
   line-height: 1.6;
 }
@@ -205,6 +188,13 @@ export default {
 }
 .event .event__text {
   line-height: 1.2em !important;
+}
+.event .event__text {
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
 }
 @container (min-width: 740px) {
   .event .event__inner {
@@ -225,13 +215,6 @@ export default {
     aspect-ratio: 1;
   }
   .event .event__text {
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-  }
-  .event .event__text {
     font-size: 1.125rem;
     line-height: 1.6667em;
   }
@@ -249,6 +232,13 @@ export default {
   }
   .event .event__text {
     line-height: 1.2em !important;
+  }
+  .event .event__text {
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
   }
   .event .event__headline {
     -webkit-line-clamp: 1;
@@ -293,7 +283,6 @@ export default {
 
 .event__image-container {
   position: relative;
-  order: 2;
 }
 .event__image-container:before {
   content: "";
@@ -307,6 +296,9 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
+}
+.event__image-container {
+  order: 2;
 }
 
 .event__image {

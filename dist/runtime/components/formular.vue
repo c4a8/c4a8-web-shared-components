@@ -62,63 +62,57 @@
     </div>
   </div>
 </template>
+
 <script>
-import { useId } from 'vue';
-
-import useConfig from '../composables/useConfig';
-import State from '../utils/state.js';
-import { whenVisible } from '../utils/when-visible.js';
-import Tools from '../utils/tools.js';
-import Form from '../utils/components/form.js';
-import UtilityAnimation from '../utils/utility-animation.js';
-
-import Loading from '../utils/loading.js';
-
+import { useId } from "vue";
+import useConfig from "../composables/useConfig";
+import State from "../utils/state.js";
+import { whenVisible } from "../utils/when-visible.js";
+import Tools from "../utils/tools.js";
+import Form from "../utils/components/form.js";
+import UtilityAnimation from "../utils/utility-animation.js";
+import Loading from "../utils/loading.js";
 export default {
-  emits: ['submit', 'error'],
-  tagName: 'formular',
+  emits: ["submit", "error"],
+  tagName: "formular",
   data() {
     return {
-      originalAction: '',
-      formAction: '',
+      originalAction: "",
+      formAction: "",
       formInstance: null,
       novalidateValue: null,
       errors: [],
       siteKey: null,
-
       loadingDelay: 300,
       sleepDelay: 1300,
       loading: {},
       hasLoading: false,
       hasLoader: true,
-      turnstileReady: false,
+      turnstileReady: false
     };
   },
   setup() {
     const config = useConfig();
-
     const formId = useId();
-
     return {
       config,
-      formId,
+      formId
     };
   },
   computed: {
     loaderClasses() {
-      return [`${this.hasLoading ? State.LOADING : ''}`, `${this.hasLoader ? 'loading' : ''}`, 'vue-component'];
+      return [`${this.hasLoading ? State.LOADING : ""}`, `${this.hasLoader ? "loading" : ""}`, "vue-component"];
     },
-
     classList() {
       return [
-        'form',
-        `${Tools.isTrue(this.light) === true ? 'is-light' : ''}`,
-        `${Tools.isTrue(this.ajax) === true ? 'form--ajax' : ''}`,
-        `${Tools.isTrue(this.odoo) === true ? 'form--odoo' : ''}`,
-        `${Tools.isTrue(this.container) === true ? 'container' : ''}`,
-        `${Tools.isTrue(this.customValidation) === true ? 'form--custom-validation' : ''}`,
-        this.form?.noCustomSubmit === true ? Form.noCustomSubmitClass : '',
-        'vue-component',
+        "form",
+        `${Tools.isTrue(this.light) === true ? "is-light" : ""}`,
+        `${Tools.isTrue(this.ajax) === true ? "form--ajax" : ""}`,
+        `${Tools.isTrue(this.odoo) === true ? "form--odoo" : ""}`,
+        `${Tools.isTrue(this.container) === true ? "container" : ""}`,
+        `${Tools.isTrue(this.customValidation) === true ? "form--custom-validation" : ""}`,
+        this.form?.noCustomSubmit === true ? Form.noCustomSubmitClass : "",
+        "vue-component"
       ];
     },
     reCaptchaField() {
@@ -131,107 +125,88 @@ export default {
       return Tools.isTrue(this.hasAnimation);
     },
     rowClassList() {
-      return ['form__row', `${this.container ? 'row' : ''}`];
+      return ["form__row", `${this.container ? "row" : ""}`];
     },
     wrapperClassList() {
-      return [`${this.container ? 'col-md-11 col-lg-10' : ''}`];
+      return [`${this.container ? "col-md-11 col-lg-10" : ""}`];
     },
     headlineClassList() {
       return [
-        'container headline-row',
-        `${this.space ? this.space : 'space-top-2'}`,
-        this.hasAnimationValue ? 'utility-animation fade-in-bottom' : '',
+        "container headline-row",
+        `${this.space ? this.space : "space-top-2"}`,
+        this.hasAnimationValue ? "utility-animation fade-in-bottom" : ""
       ];
     },
     sublineClassList() {
-      return ['text-center', `${this.form.sublineClasses ? this.form.sublineClasses : ''}`];
+      return ["text-center", `${this.form.sublineClasses ? this.form.sublineClasses : ""}`];
     },
     formClassList() {
-      return ['form__submit mt-5', `${this.positionValue}`];
+      return ["form__submit mt-5", `${this.positionValue}`];
     },
     positionValue() {
-      return this.form.ctaPosition ? this.form.ctaPosition : Tools.isTrue(this.uncentered) ? '' : 'justify-content-end';
+      return this.form.ctaPosition ? this.form.ctaPosition : Tools.isTrue(this.uncentered) ? "" : "justify-content-end";
     },
     method() {
-      return this.form.method ? this.form.method : 'post';
+      return this.form.method ? this.form.method : "post";
     },
     preparedBlocks() {
       const blocks = [];
-
       let index = 0;
       let tempBlock = [];
-
       this.form?.fields?.forEach((sourceField) => {
-        const field = this.useTranslation
-          ? {
-              ...sourceField,
-              ...(sourceField.label && { label: this.$t(sourceField.label) }),
-              ...(sourceField.requiredMsg && { requiredMsg: this.$t(sourceField.requiredMsg) }),
-            }
-          : sourceField;
-
+        const field = this.useTranslation ? {
+          ...sourceField,
+          ...sourceField.label && { label: this.$t(sourceField.label) },
+          ...sourceField.requiredMsg && { requiredMsg: this.$t(sourceField.requiredMsg) }
+        } : sourceField;
         if (field.rowStart || field.rowEnd) {
           if (field.rowStart) {
             blocks[index] = tempBlock;
-
             tempBlock.push(field);
-
             if (field.rowEnd) {
               tempBlock = [];
               index++;
             }
           } else if (field.rowEnd) {
             tempBlock.push(field);
-
             tempBlock = [];
             index++;
           }
         } else {
           tempBlock.push(field);
-
           if (blocks[index]) return;
-
           blocks[index] = tempBlock;
-
           tempBlock = [];
           index++;
         }
       });
-
       return blocks;
-    },
+    }
   },
-
   mounted() {
     this.originalAction = this.formAction = this.form?.action;
     this.formInstance = new Form(this.$refs.root, null, this.validate.bind(this), this.hasRecaptcha, this.siteKey);
-
     Form.expose(this.formInstance);
-
-    this.novalidateValue = 'novalidate';
-
+    this.novalidateValue = "novalidate";
     if (this.hasRecaptcha) {
       this.turnstileObserver = whenVisible(
         this.$refs.root,
         () => {
           this.turnstileReady = true;
         },
-        '200% 0px'
+        "200% 0px"
       );
     }
-
     if (!this.$refs.headline) return;
-
     UtilityAnimation.init([this.$refs.headline]);
   },
   beforeUnmount() {
     this.turnstileObserver?.disconnect();
   },
-
   methods: {
     startLoading() {
       if (!this.loading?.root) {
-        this.loading = new Loading(this.$refs['loader'], () => {
+        this.loading = new Loading(this.$refs["loader"], () => {
           this.hasLoader = true;
         });
       }
@@ -242,7 +217,6 @@ export default {
       this.hasLoading = false;
       this.loading.on(false);
     },
-
     getTranslatedText(text) {
       return this.useTranslation ? this.$t(text) : text;
     },
@@ -251,26 +225,21 @@ export default {
     },
     getOptions(field) {
       if (!field.options) return null;
-
-      if (typeof field.options === 'string') {
-        console.error('Invalid options format for field' + field.id);
-
+      if (typeof field.options === "string") {
+        console.error("Invalid options format for field" + field.id);
         return null;
       }
-
-      return typeof field.options === 'object' && field.options.list ? field.options.list : field.options;
+      return typeof field.options === "object" && field.options.list ? field.options.list : field.options;
     },
     getBlockClassList(block) {
-      return ['row mx-n3', `${block?.rowClass ? block.rowClass : ''}`];
+      return ["row mx-n3", `${block?.rowClass ? block.rowClass : ""}`];
     },
     getFieldClassList(field) {
-      return ['px-3', `${field.col ? 'col-md-' + field.col : 'col-md-12'}`];
+      return ["px-3", `${field.col ? "col-md-" + field.col : "col-md-12"}`];
     },
     getFieldId(field) {
       const groupField = field?.radios || field?.checkboxes;
-
       if (groupField) return groupField[0].id;
-
       return field?.formAttachments?.id || field?.id;
     },
     getId(field) {
@@ -293,59 +262,43 @@ export default {
         e.preventDefault();
       } else {
         if (this.formInstance.hasSubmitHandling) return;
-
         e.preventDefault();
-
         this.formInstance.handleRecaptcha().then(() => {
-          const form = this.$refs['form'];
-
-          if (!form) return console.debug('Form reference missing');
+          const form = this.$refs["form"];
+          if (!form) return console.debug("Form reference missing");
           form.submit();
         });
       }
     },
     handleFormFieldUpdate(e) {
       if (!e.id) return;
-
       const field = document.getElementById(e.id);
-
       if (!field) return;
-
       this.validateField(field);
     },
     validateField(field) {
       const value = field.value;
-      const type = field.getAttribute('type');
-      const isRequired = field.hasAttribute('required');
-
+      const type = field.getAttribute("type");
+      const isRequired = field.hasAttribute("required");
       this.removeFieldError(field);
-
-      if (type === 'checkbox') {
+      if (type === "checkbox") {
         const isChecked = field.checked;
-
         if (isRequired && !isChecked) {
           this.addFieldError(field);
-
           return false;
         }
       } else {
         if (isRequired && !value) {
           this.addFieldError(field);
-
           return false;
         }
-
         const isValidEmail = (email) => /\S+@\S+\.\S+/.test(email);
-
-        if (type === 'email' && !isValidEmail(value)) {
+        if (type === "email" && !isValidEmail(value)) {
           this.addFieldError(field);
-
           return false;
         }
       }
-
       this.addFieldValid(field);
-
       return true;
     },
     addFieldValid(field) {
@@ -353,12 +306,10 @@ export default {
     },
     removeFieldError(field) {
       delete this.errors[field.id];
-
       field.classList.remove(State.ERROR);
     },
     addFieldError(field) {
       this.errors[field.id] = true;
-
       field.classList.remove(State.VALID);
       field.classList.add(State.ERROR);
     },
@@ -367,69 +318,67 @@ export default {
         `.form-field:not(.${State.HIDDEN}) .form-control[required],
         .form-field:not(.${State.HIDDEN}) .form__checkbox[required]`
       );
-
       let allValid = true;
-
       for (const formField of formFields) {
         if (!this.validateField(formField)) {
           allValid = false;
         }
       }
-
       return allValid;
-    },
+    }
   },
   props: {
     form: Object,
     light: {
-      default: null,
+      default: null
     },
     analytics: {
-      default: null,
+      default: null
     },
     space: String,
     container: {
-      default: null,
+      default: null
     },
     ajax: {
-      default: null,
+      default: null
     },
     uncentered: {
-      default: null,
+      default: null
     },
     replaceValue: {
-      default: null,
+      default: null
     },
     customValidation: {
-      default: null,
+      default: null
     },
     options: Object,
     // Deprecated no-op, still declared so configs passing it do not leak it to the DOM.
     hasUuid: {
-      default: null,
+      default: null
     },
     hasAnimation: {
-      default: null,
+      default: null
     },
     useTranslation: {
       type: Boolean,
-      default: false,
+      default: false
     },
     hasRecaptcha: {
       type: Boolean,
-      default: true,
+      default: true
     },
     odoo: {
       type: Boolean,
-      default: false,
+      default: false
     },
     showLoader: {
       type: Boolean,
-      default: false,
-    },
-  },
+      default: false
+    }
+  }
 };
 </script>
+
 <style>
 .shared-components .custom-control-input,
 .shared-components .form-control {

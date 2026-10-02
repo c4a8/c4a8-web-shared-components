@@ -61,46 +61,43 @@
     </a>
   </li>
 </template>
-<script>
-import State from '../utils/state.js';
 
+<script>
+import State from "../utils/state.js";
 export default {
-  tagName: 'v-header-item',
+  tagName: "v-header-item",
   computed: {
     navigation() {
       if (this.lowerLang && this.activeNavigation) return this.activeNavigation;
-    },
+    }
   },
   methods: {
     headerItemClasses(item) {
       return [
-        'header__item',
-        item.languages && item.languages[this.lowerLang]?.active ? State.ACTIVE : '',
-        item.isMobile ? 'is--mobile' : '',
-        item.skin,
+        "header__item",
+        item.languages && item.languages[this.lowerLang]?.active ? State.ACTIVE : "",
+        item.isMobile ? "is--mobile" : "",
+        item.skin
       ];
     },
     headerLinkClasses(item, index) {
-      return this.getListClasses(item, index, ['header__link custom']);
+      return this.getListClasses(item, index, ["header__link custom"]);
     },
     getListClasses(item, index, classes) {
       const isLinkListHidden = this.isLinkListHidden(item, index);
-
-      return [...classes, isLinkListHidden ? '' : State.EXPANDED];
+      return [...classes, isLinkListHidden ? "" : State.EXPANDED];
     },
     isLinkListHidden(item, index) {
       const id = this.getId(item, index);
-
       return !this.linkLists[id] ? true : false;
     },
     navHighlightClasses(item, index) {
       const isHidden = this.isLinkListHidden(item, index);
-
-      return ['header__nav-highlight custom', isHidden ? 'is-hidden' : ''];
+      return ["header__nav-highlight custom", isHidden ? "is-hidden" : ""];
     },
     headerProductListClasses(item, index) {
-      return this.getListClasses(item, index, ['header__product-list', this.inTransition ? State.IN_TRANSITION : '']);
-    },
+      return this.getListClasses(item, index, ["header__product-list", this.inTransition ? State.IN_TRANSITION : ""]);
+    }
   },
   props: {
     lowerLang: String,
@@ -112,7 +109,7 @@ export default {
     linkLists: Object,
     getId: Function,
     inTransition: Boolean,
-    renderMegaMenu: Boolean,
-  },
+    renderMegaMenu: Boolean
+  }
 };
 </script>

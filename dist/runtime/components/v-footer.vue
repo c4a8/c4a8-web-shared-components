@@ -157,58 +157,54 @@
     </div>
   </footer>
 </template>
-<script>
-import Tools from '../utils/tools.js';
-import FooterData from '../utils/data/footer-data.js';
 
+<script>
+import Tools from "../utils/tools.js";
+import FooterData from "../utils/data/footer-data.js";
 export default {
-  tagName: 'v-footer',
+  tagName: "v-footer",
   data() {
     return {
-      bgColorRgbaValue: null,
+      bgColorRgbaValue: null
     };
   },
   computed: {
     classList() {
       return [
-        'footer text-white',
-        this.noMargin === false ? 'mt-8 mt-lg-11' : '',
-        this.isCorporate ? 'footer--corporate' : '',
-        'vue-component',
+        "footer text-white",
+        this.noMargin === false ? "mt-8 mt-lg-11" : "",
+        this.isCorporate ? "footer--corporate" : "",
+        "vue-component"
       ];
     },
     isCorporate() {
       return !this.dataValue?.brandLogos;
     },
     style() {
-      return [this.dataValue?.bgColor ? `background-color: ${this.dataValue.bgColor};` : ''];
+      return [this.dataValue?.bgColor ? `background-color: ${this.dataValue.bgColor};` : ""];
     },
     dataValue() {
       return this.data ? { ...FooterData, ...Tools.getJSON(this.data) } : { ...FooterData };
     },
     links() {
-      const capitalizedLang = Tools.capitalize(this.lang ?? '');
-
+      const capitalizedLang = Tools.capitalize(this.lang ?? "");
       return this.dataValue[`links${capitalizedLang}`] ?? this.dataValue.links;
     },
     locations() {
       const newLocations = [];
-
       newLocations.push({
         name: this.dataValue.name,
         street: this.dataValue.street,
         postalCode: this.dataValue.postalCode,
         city: this.dataValue.city,
         country: this.dataValue.country,
-        mail: this.dataValue.mail,
+        mail: this.dataValue.mail
       });
-
       if (this.dataValue.additionalLocations && this.dataValue.additionalLocations.length) {
         newLocations.push(...this.dataValue.additionalLocations);
       }
-
       return newLocations;
-    },
+    }
   },
   mounted() {
     this.bgColorRgbaValue = this.bgColorRgba();
@@ -216,24 +212,22 @@ export default {
   methods: {
     bgColorRgba() {
       const root = this.$refs.root;
-
       if (!root) return null;
-
-      const bgColor = window.getComputedStyle(this.$refs.root).getPropertyValue('background-color');
-      const rgb = bgColor.replace(/[^\d,]/g, '').split(',');
-
+      const bgColor = window.getComputedStyle(this.$refs.root).getPropertyValue("background-color");
+      const rgb = bgColor.replace(/[^\d,]/g, "").split(",");
       return `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, 1)`;
-    },
+    }
   },
   props: {
     data: Object,
     noMargin: {
-      type: Boolean,
+      type: Boolean
     },
-    lang: String,
-  },
+    lang: String
+  }
 };
 </script>
+
 <style>
 @charset "UTF-8";
 footer {

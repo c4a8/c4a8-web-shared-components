@@ -89,8 +89,9 @@
     </defs>
   </svg>
 </template>
+
 <script>
 export default {
-  tagName: 'hero-pattern',
+  tagName: "hero-pattern"
 };
 </script>

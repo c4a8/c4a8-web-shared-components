@@ -42,69 +42,57 @@
 </template>
 
 <script>
-import DefaultPresets from '../utils/default-presets.js';
-import TransformationOptions from '../utils/transformation-options.js';
-import Cloudinary from '../utils/cloudinary.js';
-import CloudinaryTools from '../utils/cloudinary-tools.js';
-import Tools from '../utils/tools.js';
-import ImgSrcSets from '../utils/data/img-src-sets.js';
-import useConfig from '../composables/useConfig.js';
-
-const basePath = 'https://res.cloudinary.com/c4a8/image/upload/';
-
-// TODO use cloudinary tools and remove logic outside this component
-
-/*
- Known Issues:
- - Chrome does not support jp2 type of images. so if you use devtools to emulate ios, cloudinary will render the images as jp2 which fail.
-*/
-
+import DefaultPresets from "../utils/default-presets.js";
+import TransformationOptions from "../utils/transformation-options.js";
+import Cloudinary from "../utils/cloudinary.js";
+import CloudinaryTools from "../utils/cloudinary-tools.js";
+import Tools from "../utils/tools.js";
+import ImgSrcSets from "../utils/data/img-src-sets.js";
+import useConfig from "../composables/useConfig.js";
+const basePath = "https://res.cloudinary.com/c4a8/image/upload/";
 export default {
-  tagName: 'v-img',
+  tagName: "v-img",
   data() {
     return {
       dimensions: {
         naturalHeight: null,
-        naturalWidth: null,
+        naturalWidth: null
       },
       dimStack: {},
       previousImg: null,
-      srcset: '',
+      srcset: "",
       noCloudinary: null,
-      sizes: null,
+      sizes: null
     };
   },
-  expose: ['imgSrcSetImg'],
+  expose: ["imgSrcSetImg"],
   setup() {
     const config = useConfig();
-
     return {
-      config,
+      config
     };
   },
   computed: {
     classList() {
-      return ['v-img', 'vue-component', this.classListComponent];
+      return ["v-img", "vue-component", this.classListComponent];
     },
     classListComponent() {
       return [
-        this.isSvg() ? 'is-svg' : '',
-        this.class ? this.class : '',
-        this.canGenerateSrcSet() ? `no-small img-responsive` : '',
+        this.isSvg() ? "is-svg" : "",
+        this.class ? this.class : "",
+        this.canGenerateSrcSet() ? `no-small img-responsive` : ""
       ];
     },
     isLottie() {
-      return typeof this.jsonLottieData === 'object' ? true : false;
+      return typeof this.jsonLottieData === "object" ? true : false;
     },
     jsonLottieData() {
       if (!this.lottie) return;
-
-      return typeof this.lottie !== 'object' ? Tools.getJSON(this.lottie) : this.lottie;
+      return typeof this.lottie !== "object" ? Tools.getJSON(this.lottie) : this.lottie;
     },
     jsonLottieSettingsData() {
       if (!this.lottie || !this.lottieSettings) return;
-
-      return typeof this.lottieSettings !== 'object' ? Tools.getJSON(this.lottieSettings) : this.lottieSettings;
+      return typeof this.lottieSettings !== "object" ? Tools.getJSON(this.lottieSettings) : this.lottieSettings;
     },
     isCloudinary() {
       return Tools.isTrue(this.cloudinary);
@@ -113,45 +101,39 @@ export default {
       return this.isCloudinary ? this.noCloudinary || this.getCloudinaryLink() : this.noCloudinary;
     },
     loading() {
-      return this.lazy ? 'lazy' : null;
+      return this.lazy ? "lazy" : null;
     },
     crossOriginValue() {
-      return this.isCloudinary ? (this.crossorigin ? this.crossorigin : 'anonymous') : null;
+      return this.isCloudinary ? this.crossorigin ? this.crossorigin : "anonymous" : null;
     },
     hasPictureTag() {
       if (!this.imgSrcSets) return false;
-
-      const isObject = typeof this.imgSrcSets === 'object';
-
+      const isObject = typeof this.imgSrcSets === "object";
       return isObject ? this.isSvg() : !this.isSvg();
     },
     pictureWrapperClassList() {
-      return ['img__picture-wrapper', this.imgSrcSetValue?.ratioClasses];
+      return ["img__picture-wrapper", this.imgSrcSetValue?.ratioClasses];
     },
     imgSrcSetValue() {
-      return typeof this.imgSrcSets === 'string' ? ImgSrcSets[this.imgSrcSets] : this.imgSrcSets;
+      return typeof this.imgSrcSets === "string" ? ImgSrcSets[this.imgSrcSets] : this.imgSrcSets;
     },
     imgSrcSetSources() {
       return this.imgSrcSetValue?.srcSets?.filter((item) => item.media || item.src);
     },
     imgSrcSetImg() {
       const srcSets = this.imgSrcSetValue?.srcSets;
-
       if (!srcSets) return null;
-
       return this.getCloudinaryBasePathLink(srcSets[srcSets.length - 1]);
-    },
+    }
   },
   watch: {
     animated() {
-      this.srcset = '';
-    },
+      this.srcset = "";
+    }
   },
   created() {
     if (this.canGenerateSrcSet()) return;
-
     if (this.isCloudinary) return;
-
     this.noCloudinary = this.getBaseAssetPath();
     this.sizes = DefaultPresets.sizes;
   },
@@ -165,140 +147,106 @@ export default {
     getSetup() {
       const preset = this.getPreset();
       const transformationsString = this.getTransformationString(preset);
-
       return { preset, transformationsString };
     },
     getPreset() {
       try {
-        if (!this.preset) return { ...DefaultPresets, ...Cloudinary['presets']['default'] };
-
-        const presetExists = Cloudinary['presets'] && Cloudinary['presets'][this.preset];
-
-        return presetExists ? Object.assign(DefaultPresets, Cloudinary['presets'][this.preset]) : DefaultPresets;
+        if (!this.preset) return { ...DefaultPresets, ...Cloudinary["presets"]["default"] };
+        const presetExists = Cloudinary["presets"] && Cloudinary["presets"][this.preset];
+        return presetExists ? Object.assign(DefaultPresets, Cloudinary["presets"][this.preset]) : DefaultPresets;
       } catch (e) {
         console.error(e);
       }
     },
     hasProtocol() {
       const regex = /(http|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])?/;
-
       return regex.test(this.img);
     },
     getBaseAssetPath() {
       if (Tools.isTestingStorybook()) return this.img;
-
-      const baseURL = this.config.public.baseURL && this.config.public.baseURL != '' ? this.config.public.baseURL : '/';
-
-      return /(^|\/)assets\//.test(this.img ?? '')
-        ? this.img
-        : this.hasProtocol()
-          ? this.img
-          : `${baseURL}assets/${this.img}`;
+      const baseURL = this.config.public.baseURL && this.config.public.baseURL != "" ? this.config.public.baseURL : "/";
+      return /(^|\/)assets\//.test(this.img ?? "") ? this.img : this.hasProtocol() ? this.img : `${baseURL}assets/${this.img}`;
     },
     getCloudinaryBasePathLink(srcSet) {
-      return srcSet && srcSet.src ? `${srcSet.src}` : `${basePath}${srcSet ? srcSet.params : ''}${this.img}`;
+      return srcSet && srcSet.src ? `${srcSet.src}` : `${basePath}${srcSet ? srcSet.params : ""}${this.img}`;
     },
     getCloudinaryLink() {
-      return this.isGif() || this.isSvg() || this.animated
-        ? this.getCloudinaryBasePathLink()
-        : this.getCloudinaryLinkWithTransformation();
+      return this.isGif() || this.isSvg() || this.animated ? this.getCloudinaryBasePathLink() : this.getCloudinaryLinkWithTransformation();
     },
     getCloudinaryLinkWithTransformation() {
       return CloudinaryTools.getCloudinaryLinkWithTransformation(this.img, this.preset);
     },
     loadImage(link) {
       if (!this.canGenerateSrcSet()) return;
-
-      const img = document.createElement('img');
-
+      const img = document.createElement("img");
       img.onload = () => {
         const height = img?.naturalHeight;
         const width = img?.naturalWidth;
-
         let dimensions;
-
         if (!this.isSvg()) {
           const { preset, transformationsString } = this.getSetup();
-
           this.sizes = preset?.sizes;
-
           dimensions = {
             naturalHeight: height ? height : preset?.fallback_max_width,
-            naturalWidth: width ? width : preset?.fallback_max_width,
+            naturalWidth: width ? width : preset?.fallback_max_width
           };
-
           if (height && width) {
             this.buildSrcSet(preset, transformationsString);
           }
         } else {
           dimensions = {
             naturalHeight: height,
-            naturalWidth: width,
+            naturalWidth: width
           };
-
           this.srcset = null;
         }
-
         this.dimensions = dimensions;
       };
-
       img.src = link ? link : this.getCloudinaryLinkWithTransformation();
     },
     getTransformationString(preset) {
       const transformations = [];
-
       for (const [key, value] of Object.entries(TransformationOptions)) {
         if (preset[key]) {
           transformations.push(`${value}_${preset[key]}`);
         }
       }
-
       const transformationsIsNotEmpty = transformations.length > 0;
-
-      return transformationsIsNotEmpty ? transformations.join(',') : '';
+      return transformationsIsNotEmpty ? transformations.join(",") : "";
     },
     buildSrcSet(preset, transformationsString) {
       const srcsetArray = [];
-      const steps = preset['steps'];
-      const minWidth = preset['min_width'];
-      const maxWidth = preset['max_width'];
+      const steps = preset["steps"];
+      const minWidth = preset["min_width"];
+      const maxWidth = preset["max_width"];
       const stepWidth = (maxWidth - minWidth) / (steps - 1);
       const { naturalWidth } = this.dimensions;
-
       for (let factor = 1; factor <= steps; factor++) {
         const width = minWidth + (factor - 1) * stepWidth;
         const isWithinNaturalWidth = width <= naturalWidth;
         const selectedWidth = isWithinNaturalWidth ? width : naturalWidth;
-        const srcsetBaseString = this.hasPictureTag
-          ? this.imgSrcSetImg
-          : `${basePath}${transformationsString},w_${selectedWidth}/${this.img}`;
+        const srcsetBaseString = this.hasPictureTag ? this.imgSrcSetImg : `${basePath}${transformationsString},w_${selectedWidth}/${this.img}`;
         const srcsetString = `${srcsetBaseString} ${selectedWidth}w`;
-
         srcsetArray.push(srcsetString);
-
         if (!isWithinNaturalWidth) break;
       }
-
-      this.srcset = naturalWidth < minWidth ? '' : srcsetArray.join(', \n');
+      this.srcset = naturalWidth < minWidth ? "" : srcsetArray.join(", \n");
     },
     isGif() {
       if (!this.img) return;
-
-      const extension = this.img.split('.')[1];
-
-      return extension?.toLowerCase() === 'gif';
+      const extension = this.img.split(".")[1];
+      return extension?.toLowerCase() === "gif";
     },
     isSvg() {
       const extension = Tools.getExtension(this.getCloudinaryBasePathLink());
-
-      return extension?.toLowerCase() === 'svg' || this.img?.indexOf('.svg') !== -1;
-    },
+      return extension?.toLowerCase() === "svg" || this.img?.indexOf(".svg") !== -1;
+    }
   },
   props: {
     // TODO handle img src set and correct all the places where it is not used correctly
     imgSrcSets: {
       type: [String, Object],
-      default: null,
+      default: null
     },
     img: String,
     alt: String,
@@ -309,10 +257,11 @@ export default {
     preset: String,
     lottie: Object,
     lottieSettings: Object,
-    animated: Boolean,
-  },
+    animated: Boolean
+  }
 };
 </script>
+
 <style>
 .img__picture-wrapper.ratio-2x1 {
   position: relative;

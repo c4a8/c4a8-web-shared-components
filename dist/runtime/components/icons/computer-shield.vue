@@ -60,17 +60,18 @@
     </g>
   </svg>
 </template>
+
 <script>
 export default {
-  tagName: 'computer-shield',
+  tagName: "computer-shield",
   computed: {
     style() {
       return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
-    },
+    }
   },
   props: {
     settings: Object,
-    color: String,
-  },
+    color: String
+  }
 };
 </script>

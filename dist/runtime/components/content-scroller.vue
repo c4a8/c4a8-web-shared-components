@@ -44,10 +44,9 @@
 </template>
 
 <script>
-import Tools from '../utils/tools.js';
-
+import Tools from "../utils/tools.js";
 export default {
-  tagName: 'content-scroller',
+  tagName: "content-scroller",
   data() {
     return {
       blockScrollPercentage: [],
@@ -55,72 +54,67 @@ export default {
       minHeight: 0,
       blockCount: 0,
       isScrolledUpOut: false,
-      isScrolledDownOut: false,
+      isScrolledDownOut: false
     };
   },
   computed: {
     classList() {
       return [
-        'content-scroller vue-component',
+        "content-scroller vue-component",
         this.overlappingSizeValue,
-        this.skin ? `content-scroller--${this.skin}` : '',
+        this.skin ? `content-scroller--${this.skin}` : ""
       ];
     },
-
     blocksValue() {
       return Tools.getJSON(this.blocks);
     },
     headlineValue() {
       const headline = Tools.getJSON(this.headline);
-
       return {
         ...headline,
-        level: headline.level || 'h2',
-        classes: `content-scroller__headline ${headline.classes || 'h3-font-size'}`,
+        level: headline.level || "h2",
+        classes: `content-scroller__headline ${headline.classes || "h3-font-size"}`
       };
     },
-
     overlappingSizeValue() {
-      return this.overlappingSize || this.skin || 'mt-md-n10';
+      return this.overlappingSize || this.skin || "mt-md-n10";
     },
     style() {
       return {
-        '--content-scroller-min-height': `${this.minHeight}px`,
+        "--content-scroller-min-height": `${this.minHeight}px`
       };
-    },
+    }
   },
   props: {
     headline: {
-      default: null,
+      default: null
     },
     subline: {
       type: String,
-      default: '',
+      default: ""
     },
     sublineClasses: {
       type: String,
-      default: null,
+      default: null
     },
     blocks: Array,
     overlappingSize: String,
     skin: {
       type: String,
-      default: '',
-    },
+      default: ""
+    }
   },
   mounted() {
     this.calcBlockCount();
-
     this.$nextTick(() => {
       this.handleResize();
     });
-
-    window.addEventListener('scroll', this.handleScroll);
-    window.addEventListener('resize', this.handleResize);
+    window.addEventListener("scroll", this.handleScroll);
+    window.addEventListener("resize", this.handleResize);
   },
   beforeDestroy() {
-    window.removeEventListener('scroll', this.handleScroll);
-    window.removeEventListener('resize', this.handleResize);
+    window.removeEventListener("scroll", this.handleScroll);
+    window.removeEventListener("resize", this.handleResize);
   },
   methods: {
     handleScroll() {
@@ -132,67 +126,46 @@ export default {
       this.handleScroll();
     },
     resetIsScrolledUpOut() {
-      const blocks = this.$refs['block'];
-
+      const blocks = this.$refs["block"];
       if (!blocks) return;
-
       blocks.forEach((_, index) => {
         this.setBlockMinPercentage(index);
       });
-
       this.isScrolledUpOut = true;
     },
     resetIsScrolledDownOut() {
-      const blocks = this.$refs['block'];
-
+      const blocks = this.$refs["block"];
       if (!blocks) return;
-
       blocks.forEach((_, index) => {
         this.setBlockMaxPercentage(index);
       });
-
       this.isScrolledDownOut = true;
     },
     setBlockMaxPercentage(index) {
       const maxBlockScrollPercentage = 100;
-
       this.blockScrollPercentage[index] = maxBlockScrollPercentage;
     },
     setBlockMinPercentage(index) {
       const minBlockScrollPercentage = 0;
-
       this.blockScrollPercentage[index] = minBlockScrollPercentage;
     },
     updateBlocks() {
       const minPercentage = 0;
       const maxPercentage = 100;
-
       if (!this.isScrolledUpOut && this.scrollDistancePercentage <= minPercentage) return this.resetIsScrolledUpOut();
-
       if (!this.isScrolledDownOut && this.scrollDistancePercentage >= maxPercentage)
         return this.resetIsScrolledDownOut();
-
       if (this.scrollDistancePercentage <= minPercentage || this.scrollDistancePercentage >= maxPercentage) return;
-
       this.isScrolledUpOut = false;
       this.isScrolledDownOut = false;
-
       const scrollDistanceStep = 100 / this.blockCount;
-      const blocks = this.$refs['block'];
-
+      const blocks = this.$refs["block"];
       if (!blocks) return;
-
       blocks.forEach((_, index) => {
         const blockStartPercentage = index * scrollDistanceStep;
         const blockEndPercentage = (index + 1) * scrollDistanceStep;
-
-        if (
-          this.scrollDistancePercentage >= blockStartPercentage &&
-          this.scrollDistancePercentage <= blockEndPercentage
-        ) {
-          let blockScrollPercentage =
-            ((this.scrollDistancePercentage - blockStartPercentage) / scrollDistanceStep) * 100;
-
+        if (this.scrollDistancePercentage >= blockStartPercentage && this.scrollDistancePercentage <= blockEndPercentage) {
+          let blockScrollPercentage = (this.scrollDistancePercentage - blockStartPercentage) / scrollDistanceStep * 100;
           this.blockScrollPercentage[index] = blockScrollPercentage;
         } else if (this.scrollDistancePercentage < blockStartPercentage) {
           this.setBlockMinPercentage(index);
@@ -210,41 +183,34 @@ export default {
       const componentTop = root.getBoundingClientRect().top + window.scrollY;
       const componentHeight = root.offsetHeight;
       const componentHeightHalf = componentHeight / 2;
-
       let scrollDistancePercentage = 0;
-
       if (scrollPosition >= componentTop) {
         const scrolledPastComponent = scrollPosition - componentTop;
-
-        scrollDistancePercentage = (scrolledPastComponent / componentHeightHalf) * 100;
+        scrollDistancePercentage = scrolledPastComponent / componentHeightHalf * 100;
       }
-
       this.scrollDistancePercentage = scrollDistancePercentage;
     },
     calcBlockCount() {
       const blockCount = this.blocks.length;
-
       if (!blockCount) return;
-
       this.blockCount = blockCount;
     },
     calcBlockStyle(index) {
       return [
         {
-          '--content-scroller-block-scroll-percentage': this.blockScrollPercentage[index],
-        },
+          "--content-scroller-block-scroll-percentage": this.blockScrollPercentage[index]
+        }
       ];
     },
     calcMinHeight() {
-      const placeholder = this.$refs['placeholder'];
-
+      const placeholder = this.$refs["placeholder"];
       if (!placeholder) return;
-
       this.minHeight = placeholder.offsetHeight;
-    },
-  },
+    }
+  }
 };
 </script>
+
 <style>
 .content-scroller {
   z-index: 120;

@@ -30,17 +30,16 @@
 </template>
 
 <script>
-import State from '../utils/state.js';
-import Tools from '../utils/tools.js';
-
+import State from "../utils/state.js";
+import Tools from "../utils/tools.js";
 export default {
   props: {
-    headline: { type: String, default: '' },
-    headlineLevel: { type: [String, Number], default: '2' },
-    subline: { type: String, default: '' },
+    headline: { type: String, default: "" },
+    headlineLevel: { type: [String, Number], default: "2" },
+    subline: { type: String, default: "" },
     contents: { type: Array, default: () => [] },
-    bgColor: { type: String, default: 'var(--color-gk-light-blue)' },
-    bgColorHover: { type: String, default: 'var(--color-gk-mid-blue)' },
+    bgColor: { type: String, default: "var(--color-gk-light-blue)" },
+    bgColorHover: { type: String, default: "var(--color-gk-mid-blue)" }
   },
   computed: {
     listSize() {
@@ -48,7 +47,7 @@ export default {
     },
     isEven() {
       return this.listSize % 2 === 0;
-    },
+    }
   },
   methods: {
     isOdd(index) {
@@ -58,9 +57,9 @@ export default {
       const idx = index + 1;
       const wideValue1 = idx % 4;
       const wideValue2 = (idx - 1) % 4;
-      let aspectRatio = wideValue1 === 0 || wideValue2 === 0 ? '16/9' : '4/3';
+      let aspectRatio = wideValue1 === 0 || wideValue2 === 0 ? "16/9" : "4/3";
       if (this.isOdd(index) && !this.isEven && idx === this.listSize) {
-        aspectRatio = '4/3';
+        aspectRatio = "4/3";
       }
       return aspectRatio;
     },
@@ -73,23 +72,24 @@ export default {
       });
     },
     currentlyInViewPort() {
-      const testimonials = document.querySelectorAll('.testimonial-list__content');
+      const testimonials = document.querySelectorAll(".testimonial-list__content");
       testimonials.forEach((testimonial) => {
         if (Tools.isInViewportPercent(testimonial, 5)) {
           testimonial.classList.add(State.SHOW);
         }
       });
-    },
+    }
   },
   mounted() {
     this.currentlyInViewPort();
-    document.addEventListener('scroll', this.handleScrollEvent);
+    document.addEventListener("scroll", this.handleScrollEvent);
   },
   beforeUnmount() {
-    document.removeEventListener('scroll', this.handleScrollEvent);
-  },
+    document.removeEventListener("scroll", this.handleScrollEvent);
+  }
 };
 </script>
+
 <style>
 @media (min-width: 992px) {
   .testimonial-list__content-block {

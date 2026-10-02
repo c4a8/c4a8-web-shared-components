@@ -23,47 +23,49 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
-  tagName: 'services',
+  tagName: "services",
   computed: {
     classValue() {
       return [
-        'services',
-        this.author ? `services--author ${this.authorHasSocials ? '' : 'services--no-socials'}` : '',
-        'vue-component',
+        "services",
+        this.author ? `services--author ${this.authorHasSocials ? "" : "services--no-socials"}` : "",
+        "vue-component"
       ];
     },
     authorHasSocials() {
-      return this.author?.socials !== undefined;
+      return this.author?.socials !== void 0;
     },
     itemsList() {
       return this.authorHasSocials ? this.author.socials : this.items;
-    },
+    }
   },
   methods: {},
   props: {
     items: {
-      default: null,
+      default: null
     },
     title: {
-      default: null,
+      default: null
     },
     label: {
-      default: null,
+      default: null
     },
     value: {
-      default: null,
+      default: null
     },
     author: {
-      default: null,
+      default: null
     },
     shareUrl: {
-      default: null,
-    },
-  },
+      default: null
+    }
+  }
 };
 </script>
+
 <style>
 .services.services--author {
   display: flex;

@@ -7,18 +7,19 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
-  tagName: 'google-map-entry',
+  tagName: "google-map-entry",
   computed: {
     classList() {
-      return ['google-map-entry media vue-component', this.icon === 'phone-charger' ? '' : 'mb-5'];
-    },
+      return ["google-map-entry media vue-component", this.icon === "phone-charger" ? "" : "mb-5"];
+    }
   },
   props: {
     icon: String,
     headline: String,
-    subline: String,
-  },
+    subline: String
+  }
 };
 </script>

@@ -143,11 +143,11 @@
     </div>
   </div>
 </template>
-<script>
-import State from '../utils/state.js';
 
+<script>
+import State from "../utils/state.js";
 export default {
-  tagName: 'contact',
+  tagName: "contact",
   props: {
     contact: Object,
     collapsed: Boolean,
@@ -155,7 +155,7 @@ export default {
     spacing: String,
     quote: {
       type: Boolean,
-      default: false,
+      default: false
     },
     bgColor: String,
     color: String,
@@ -172,61 +172,61 @@ export default {
     hasGreyBackground: Boolean,
     svgShape: Object,
     small: { type: Boolean, default: false },
-    quoteColor: { type: String, default: 'var(--color-gk-yellow)' },
-    onSurface: { type: Boolean, default: false },
+    quoteColor: { type: String, default: "var(--color-gk-yellow)" },
+    onSurface: { type: Boolean, default: false }
   },
-
   computed: {
     classList() {
       return [
-        'contact',
+        "contact",
         this.contactVariantClass,
-        'vue-component',
-        !this.collapsed ? 'space-bottom-2 utility-animation utility-animation--percentage-offset' : '',
-        { 'bg-grey': this.hasGreyBackground },
-        !(this.noTopSpacing || this.svgShape || this.collapsed) ? this.spacing : '',
-        this.small ? 'col-4 col-md-6 col-xl-4' : '',
-        this.onSurface ? State.ON_SURFACE : '',
+        "vue-component",
+        !this.collapsed ? "space-bottom-2 utility-animation utility-animation--percentage-offset" : "",
+        { "bg-grey": this.hasGreyBackground },
+        !(this.noTopSpacing || this.svgShape || this.collapsed) ? this.spacing : "",
+        this.small ? "col-4 col-md-6 col-xl-4" : "",
+        this.onSurface ? State.ON_SURFACE : ""
       ];
     },
     contactVariantClass() {
       return [
-        this.svgShape && !this.quote ? 'contact--has-shape' : '',
-        this.quote ? 'contact--quote' : '',
-        this.small ? 'contact--small' : '',
-        this.collapsed ? State.COLLAPSED : '',
+        this.svgShape && !this.quote ? "contact--has-shape" : "",
+        this.quote ? "contact--quote" : "",
+        this.small ? "contact--small" : "",
+        this.collapsed ? State.COLLAPSED : ""
       ];
     },
     contactLight() {
-      return this.light ? 'contact__person--light' : '';
+      return this.light ? "contact__person--light" : "";
     },
     contactBoxClass() {
-      return this.collapsed ? '' : `col-md-10 col-lg-5 offset-lg-1 order-2`;
+      return this.collapsed ? "" : `col-md-10 col-lg-5 offset-lg-1 order-2`;
     },
     contactPersonClass() {
-      return this.small ? 'contact__person--small' : ``;
+      return this.small ? "contact__person--small" : ``;
     },
     contactFormClass() {
-      return this.collapsed ? '' : 'col-md-10 col-lg-6 order-1';
+      return this.collapsed ? "" : "col-md-10 col-lg-6 order-1";
     },
     contactContainerClass() {
-      return ['contact__container', this.collapsed ? '' : 'container pt-8 pt-lg-10'].filter(Boolean).join(' ');
+      return ["contact__container", this.collapsed ? "" : "container pt-8 pt-lg-10"].filter(Boolean).join(" ");
     },
     contactRowClass() {
-      return ['contact__row', this.collapsed ? '' : 'row justify-content-center'];
+      return ["contact__row", this.collapsed ? "" : "row justify-content-center"];
     },
     styleObject() {
       return {
-        '--color-contact-background': this.bgColor || this.contact?.bgColor,
-        '--color-contact-quote-background': this.bgColor || this.contact?.bgColor,
-        '--contact-copy-color': this.color || this.contact?.color,
-        '--color-contact-box-background': this.boxBgColor || this.contact?.boxBgColor,
-        '--contact-box-copy-color': this.boxColor || this.contact?.boxColor,
+        "--color-contact-background": this.bgColor || this.contact?.bgColor,
+        "--color-contact-quote-background": this.bgColor || this.contact?.bgColor,
+        "--contact-copy-color": this.color || this.contact?.color,
+        "--color-contact-box-background": this.boxBgColor || this.contact?.boxBgColor,
+        "--contact-box-copy-color": this.boxColor || this.contact?.boxColor
       };
-    },
-  },
+    }
+  }
 };
 </script>
+
 <style>
 .contact {
   --color-contact-box-background: var(--color-gk-yellow);
@@ -400,9 +400,6 @@ export default {
 }
 
 .contact__notes {
-  display: flex;
-}
-.contact__notes {
   font-size: 1rem;
   line-height: 1.6;
 }
@@ -420,6 +417,9 @@ export default {
 }
 .contact__notes {
   flex: 1 0 100%;
+}
+.contact__notes {
+  display: flex;
 }
 
 .contact__person {

@@ -11,9 +11,10 @@
     <path d="M256.25 200L212.5 175" stroke-linecap="round" stroke-linejoin="round" :style="pathStyle" />
   </svg>
 </template>
+
 <script>
 export default {
-  tagName: 'mail',
+  tagName: "mail",
   computed: {
     style() {
       return `stroke: ${this.color}; fill: none; transform: rotate(var(--icon-rotation)) scale(1.5);`;
@@ -23,15 +24,15 @@ export default {
     },
     strokeWidthValue() {
       return this.strokeWidth * 5;
-    },
+    }
   },
   props: {
     settings: Object,
     color: String,
     strokeWidth: {
       type: Number,
-      default: 2,
-    },
-  },
+      default: 2
+    }
+  }
 };
 </script>

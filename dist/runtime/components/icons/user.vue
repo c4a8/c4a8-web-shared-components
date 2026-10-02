@@ -7,19 +7,19 @@
             d="M11.0336 272.4C16.0033 241.934 21.633 226.638 43.3307 205.093C65.0285 183.548 95.4514 172.443 126.125 172.443C156.799 172.443 187.233 183.548 208.92 205.093C230.618 226.638 237.434 241.934 242.403 272.4C245.684 292.51 7.75326 292.51 11.0336 272.4Z"
             stroke="#000520" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" />
     </svg>
-
 </template>
+
 <script>
 export default {
-    tagName: 'user',
-    computed: {
-        style() {
-            return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
-        },
-    },
-    props: {
-        settings: Object,
-        color: String,
-    },
+  tagName: "user",
+  computed: {
+    style() {
+      return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
+    }
+  },
+  props: {
+    settings: Object,
+    color: String
+  }
 };
 </script>

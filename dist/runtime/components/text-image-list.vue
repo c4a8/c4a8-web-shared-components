@@ -23,33 +23,34 @@
     </template>
   </list-container>
 </template>
+
 <script>
 export default {
-  tagName: 'text-image-list',
+  tagName: "text-image-list",
   props: {
     textImages: Array,
     classes: String,
     headline: String,
     level: {
       type: String,
-      default: 'h2',
+      default: "h2"
     },
     headlineColor: String,
     headlineSticky: Boolean,
     bgColor: {
-      type: String,
+      type: String
     },
-    spacing: String,
+    spacing: String
   },
   methods: {
     isLeft(index) {
       return index % 2 === 1;
-    },
+    }
   },
   computed: {
     textImageListSize() {
       return this.textImages.length;
-    },
-  },
+    }
+  }
 };
 </script>

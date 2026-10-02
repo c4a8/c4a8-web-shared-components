@@ -25,57 +25,58 @@
     </div>
   </div>
 </template>
+
 <script>
-import useFormattedDate from '../composables/useFormattedDate.js';
+import useFormattedDate from "../composables/useFormattedDate.js";
 export default {
-  name: 'event-detail-intro',
+  name: "event-detail-intro",
   setup(props) {
     return {
-      formattedMoment: useFormattedDate(props.moment),
+      formattedMoment: useFormattedDate(props.moment)
     };
   },
   props: {
     badge: {
       type: Object,
-      default: null,
+      default: null
     },
     showBadge: Boolean,
     image: {
       type: Object,
-      default: null,
+      default: null
     },
     teaserImage: {
       type: Object,
-      default: null,
+      default: null
     },
     moment: {
       type: String,
-      default: null,
+      default: null
     },
     time: {
       type: String,
-      default: null,
+      default: null
     },
     headlineText: {
       type: String,
-      required: true,
+      required: true
     },
     headlineLevel: {
       type: String,
-      default: 'h1',
+      default: "h1"
     },
     headlineClasses: {
       type: String,
-      default: '',
+      default: ""
     },
     name: {
       type: Array,
-      default: null,
+      default: null
     },
     price: {
       type: String,
-      default: null,
-    },
-  },
+      default: null
+    }
+  }
 };
 </script>

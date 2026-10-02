@@ -19,22 +19,22 @@
 
 <script>
 export default {
-  name: 'countdown',
+  name: "countdown",
   props: {
     targetDate: {
       type: [String, Date],
-      required: true,
+      required: true
     },
     bgColor: {
       type: String,
       required: false,
-      default: 'var(--color-gk-yellow)',
+      default: "var(--color-gk-yellow)"
     },
     fontColor: {
       type: String,
       required: false,
-      default: 'var(--color-black)',
-    },
+      default: "var(--color-black)"
+    }
   },
   data() {
     return {
@@ -42,38 +42,35 @@ export default {
         days: 0,
         hours: 0,
         minutes: 0,
-        seconds: 0,
+        seconds: 0
       },
-      intervalId: null,
+      intervalId: null
     };
   },
   methods: {
     calculateTimeLeft(target) {
-      const now = new Date();
+      const now = /* @__PURE__ */ new Date();
       const end = new Date(target);
       let diff = end - now;
-
       if (diff <= 0) {
         return { days: 0, hours: 0, minutes: 0, seconds: 0 };
       }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      diff -= days * (1000 * 60 * 60 * 24);
-      const hours = Math.floor(diff / (1000 * 60 * 60));
-      diff -= hours * (1000 * 60 * 60);
-      const minutes = Math.floor(diff / (1000 * 60));
-      diff -= minutes * (1000 * 60);
-      const seconds = Math.floor(diff / 1000);
-
+      const days = Math.floor(diff / (1e3 * 60 * 60 * 24));
+      diff -= days * (1e3 * 60 * 60 * 24);
+      const hours = Math.floor(diff / (1e3 * 60 * 60));
+      diff -= hours * (1e3 * 60 * 60);
+      const minutes = Math.floor(diff / (1e3 * 60));
+      diff -= minutes * (1e3 * 60);
+      const seconds = Math.floor(diff / 1e3);
       return { days, hours, minutes, seconds };
     },
     updateCountdown() {
       this.timeLeft = this.calculateTimeLeft(this.targetDate);
-    },
+    }
   },
   mounted() {
     this.updateCountdown();
-    this.intervalId = setInterval(this.updateCountdown, 1000);
+    this.intervalId = setInterval(this.updateCountdown, 1e3);
   },
   beforeUnmount() {
     clearInterval(this.intervalId);
@@ -81,10 +78,11 @@ export default {
   watch: {
     targetDate() {
       this.updateCountdown();
-    },
-  },
+    }
+  }
 };
 </script>
+
 <style>
 .countdown {
   display: flex;

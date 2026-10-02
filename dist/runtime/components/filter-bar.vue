@@ -50,20 +50,17 @@
     />
   </div>
 </template>
+
 <script>
-import { useI18n } from '#imports';
-
-import Tools from '../utils/tools.js';
-import State from '../utils/state.js';
-
-import { useBlogStore } from '../stores/blog';
-
+import { useI18n } from "#imports";
+import Tools from "../utils/tools.js";
+import State from "../utils/state.js";
+import { useBlogStore } from "../stores/blog";
 export default {
-  tagName: 'filter-bar',
+  tagName: "filter-bar",
   computed: {
     hasNoAspectRatio() {
       if (!this.onlyView) return;
-
       return true;
     },
     flatSelections() {
@@ -71,7 +68,6 @@ export default {
     },
     storedItems() {
       const blogStore = useBlogStore();
-
       return blogStore.getBlogItems;
     },
     normalizedItems() {
@@ -79,20 +75,17 @@ export default {
         if (item.lang && item.lang !== this.locale) {
           item.externalLanguage = Tools.getExternalLanguageText(this.locale, item.lang, this.$t);
         }
-
         return {
           ...item,
-          blogtitlepic: `${item.blog_image_path || ''}${item.blogtitlepic}`,
-          footer: typeof item.footer === 'string' ? item.footer : undefined,
+          blogtitlepic: `${item.blog_image_path || ""}${item.blogtitlepic}`,
+          footer: typeof item.footer === "string" ? item.footer : void 0
         };
       });
     },
     filteredItems() {
       if (!this.selections.length)
         return this.maxBlogPosts ? this.normalizedItems.slice(0, this.maxBlogPosts) : this.normalizedItems;
-
       let filteredItems = [];
-
       this.selections.forEach((selectionArray) => {
         selectionArray.forEach((selection) => {
           this.filterDropdowns.forEach((dropdown) => {
@@ -100,98 +93,84 @@ export default {
             const matchingItems = this.normalizedItems.filter((item) => {
               return Array.isArray(item[key]) ? item[key].includes(selection.value) : item[key] === selection.value;
             });
-
             filteredItems = [...filteredItems, ...matchingItems];
           });
         });
       });
-
       return this.getMaxItems(filteredItems);
     },
     authors() {
-      return this.extractPropertyCounts('author');
+      return this.extractPropertyCounts("author");
     },
     topics() {
-      return this.extractPropertyCounts('categories');
+      return this.extractPropertyCounts("categories");
     },
     tags() {
-      return this.extractPropertyCounts('tags');
+      return this.extractPropertyCounts("tags");
     },
     dropdownCollection() {
       return [this.authors, this.topics, this.tags];
-    },
+    }
   },
   setup() {
     const { $getLocale } = useI18n();
-
     return { locale: $getLocale() };
   },
   created() {
     const blogStore = useBlogStore();
-
     blogStore.setBlogItems(this.items);
     blogStore.setBlogView(this.activeView);
-
     const dropdownConfig = {
       author: {
-        label: this.$t('filterAuthors'),
+        label: this.$t("filterAuthors"),
         items: this.authors,
-        key: 'author',
-        condition: () => this.authors.length > 0,
+        key: "author",
+        condition: () => this.authors.length > 0
       },
       categories: {
-        label: this.$t('filterTopics'),
+        label: this.$t("filterTopics"),
         items: this.topics,
-        key: 'categories',
-        condition: () => true,
+        key: "categories",
+        condition: () => true
       },
       tags: {
-        label: this.$t('filterTags'),
+        label: this.$t("filterTags"),
         items: this.tags,
-        key: 'tags',
+        key: "tags",
         filterable: true,
-        condition: () => true,
-      },
+        condition: () => true
+      }
     };
-
-    this.filterDropdowns = this.enabledDropdowns
-      .filter((key) => dropdownConfig[key] && dropdownConfig[key].condition())
-      .map((key) => {
-        const config = dropdownConfig[key];
-        return {
-          label: config.label,
-          items: config.items,
-          key: config.key,
-          ...(config.filterable && { filterable: config.filterable }),
-        };
-      });
+    this.filterDropdowns = this.enabledDropdowns.filter((key) => dropdownConfig[key] && dropdownConfig[key].condition()).map((key) => {
+      const config = dropdownConfig[key];
+      return {
+        label: config.label,
+        items: config.items,
+        key: config.key,
+        ...config.filterable && { filterable: config.filterable }
+      };
+    });
   },
   mounted() {
     this.selectTagFromHash();
-
-    window.addEventListener('resize', this.handleResize);
-
+    window.addEventListener("resize", this.handleResize);
     this.handleResize();
   },
   beforeDestroy() {
-    window.removeEventListener('resize', this.handleResize);
+    window.removeEventListener("resize", this.handleResize);
   },
   methods: {
     selectTagFromHash() {
       const hash = Tools.getHash();
-
       if (!hash) return;
-
       this.getTagByName(decodeURIComponent(hash.substring(1)).toLowerCase());
     },
     addTagToSelection(tag, index) {
       const selectedIndex = index ? index : this.dropdownCollection.length - 1;
-
       this.selections[selectedIndex] = [tag];
     },
     getMaxItems(items) {
       items = [...new Set(items)];
-
       return this.maxBlogPosts ? items.slice(0, this.maxBlogPosts) : items;
     },
     handleResize() {
@@ -206,34 +185,29 @@ export default {
         } else if (item[property]) {
           this.updatePropertyCount(accumulator, item[property]);
         }
-
         return accumulator;
       }, []);
-
       return results.sort((a, b) => a.text.localeCompare(b.text));
     },
     updatePropertyCount(accumulator, propertyValue) {
       const existingProperty = accumulator.find((prop) => prop?.text?.toLowerCase() === propertyValue?.toLowerCase());
-
       if (existingProperty) {
         existingProperty.count += 1;
       } else {
         accumulator.push({
           text: propertyValue,
           value: propertyValue,
-          count: 1,
+          count: 1
         });
       }
     },
     handleView(view) {
       this.activeView = view;
-
       const blogStore = useBlogStore();
-
       blogStore.setBlogView(this.activeView);
     },
     toggleIconClasses(view) {
-      return ['filter-bar__toggle-icon', view === this.activeView ? State.ACTIVE : ''];
+      return ["filter-bar__toggle-icon", view === this.activeView ? State.ACTIVE : ""];
     },
     isArrayEmpty(array) {
       return Object.keys(array).length ? false : true;
@@ -241,12 +215,10 @@ export default {
     isArrayEmptyRecursive(array) {
       for (let i = 0; i < array.length; i++) {
         const item = array[i];
-
         if (item && !this.isArrayEmpty(item)) {
           return false;
         }
       }
-
       return true;
     },
     handleCardTagClicked(event) {
@@ -257,7 +229,6 @@ export default {
       this.tags.map((tag) => {
         if (tag.text.toLowerCase() === tagName) {
           const index = this.filterDropdowns.length - 1;
-
           this.addTagToSelection(tag, index);
           this.updateDropdownSelection([tag], index);
           this.hasClickedOnTag = true;
@@ -272,13 +243,10 @@ export default {
       } else {
         if (this.hasClickedOnTag) {
           this.hasClickedOnTag = false;
-
           this.selections[index] = [];
         }
-
         this.selections[index] = selection;
       }
-
       if (this.isArrayEmptyRecursive(this.selections)) {
         this.selections = [];
       }
@@ -292,7 +260,6 @@ export default {
     },
     clearAllSelections() {
       this.selections = [];
-
       this.$refs.dropdowns.forEach((dropdown) => {
         dropdown.isOpen = false;
         dropdown.activeSelection = [];
@@ -300,35 +267,29 @@ export default {
     },
     removeSelection(e, selection) {
       e.preventDefault();
-
       this.selections = this.selections.map((selectionArray) => {
         return selectionArray.filter((item) => item.value !== selection.value);
       });
-
       this.selections.forEach((selectionArray, index) => {
         this.updateDropdownSelection(selectionArray || [], index);
       });
-
       const result = this.selections.filter((selectionArray) => selectionArray.length > 0);
-
       if (result.length === 0) return this.clearAllSelections();
     },
     updateDropdownSelection(selection, index) {
       const dropdown = this.$refs.dropdowns[index];
-
       if (!dropdown) return;
-
       dropdown.activeSelection = selection;
-    },
+    }
   },
   data() {
     return {
       activeView: this.onlyView || this.defaultView,
-      views: ['tile-view', 'list-view'],
+      views: ["tile-view", "list-view"],
       filterDropdowns: [],
       selections: [],
       itemStartPoint: 0,
-      hasClickedOnTag: false,
+      hasClickedOnTag: false
     };
   },
   props: {
@@ -336,16 +297,17 @@ export default {
     items: Array,
     maxBlogPosts: Number,
     dataAuthors: Object,
-    defaultView: { type: String, default: 'tile-view' },
+    defaultView: { type: String, default: "tile-view" },
     onlyView: { type: String },
     hasHighlight: { type: Boolean, default: true },
     enabledDropdowns: {
       type: Array,
-      default: () => ['author', 'categories', 'tags'],
-    },
-  },
+      default: () => ["author", "categories", "tags"]
+    }
+  }
 };
 </script>
+
 <style>
 .filter-bar__controls {
   position: relative;
@@ -386,16 +348,16 @@ export default {
   background-color: var(--color-border-light);
 }
 
-.filter-bar__dropdowns {
-  display: flex;
-  gap: 1rem;
-}
 .filter-bar__dropdowns [data-utility-animation-step] {
   --utility-animation-distance: 15%;
 }
 .filter-bar__dropdowns [data-utility-animation-step].is-starting {
   animation-delay: calc(var(--utility-animation-index) * 100ms + 0ms);
   animation-duration: 0.8s;
+}
+.filter-bar__dropdowns {
+  display: flex;
+  gap: 1rem;
 }
 
 .filter-bar__views {

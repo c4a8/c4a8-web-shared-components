@@ -35,11 +35,11 @@
     </div>
   </div>
 </template>
-<script>
-import UtilityAnimation from '../utils/utility-animation.js';
 
+<script>
+import UtilityAnimation from "../utils/utility-animation.js";
 export default {
-  tagName: 'service-overview',
+  tagName: "service-overview",
   data() {
     return {};
   },
@@ -49,23 +49,24 @@ export default {
   props: {
     list: {
       type: Object,
-      required: true,
+      required: true
     },
     logo: {
       type: Object,
-      required: true,
+      required: true
     },
     services: {
       type: Object,
-      required: true,
+      required: true
     },
     title: {
       type: String,
-      required: true,
-    },
-  },
+      required: true
+    }
+  }
 };
 </script>
+
 <style>
 .service-overview {
   z-index: 200;
@@ -175,11 +176,11 @@ export default {
   }
 }
 
-.service-overview__services {
-  width: 100%;
-}
 .service-overview__services[data-utility-animation-step].is-starting {
   animation-delay: calc(var(--utility-animation-index) * 100ms + 0ms);
+}
+.service-overview__services {
+  width: 100%;
 }
 @media (min-width: 992px) {
   .service-overview__services {

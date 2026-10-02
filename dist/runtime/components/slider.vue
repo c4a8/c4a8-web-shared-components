@@ -62,14 +62,10 @@
 </template>
 
 <script>
-import Tools from '../utils/tools.js';
-import { registerSwiperWhenVisible } from '../utils/lazy-swiper.js';
-import State from '../utils/state.js';
-
+import Tools from "../utils/tools.js";
+import { registerSwiperWhenVisible } from "../utils/lazy-swiper.js";
+import State from "../utils/state.js";
 let sliderInstanceCounter = 0;
-
-// TODO move shape to a vue component and insert it here in the template
-// TODO try to export this to the other components that use carousel options
 export const defaultOptions = ({ length, centerPadding }) => {
   return {
     rows: 0,
@@ -79,94 +75,85 @@ export const defaultOptions = ({ length, centerPadding }) => {
     nextArrow: '<span class="slick__arrow-right rounded-circle"></span>',
     dots: length > 3 ? true : false,
     centerMode: false,
-    dotsClass: 'slick-pagination is-default',
+    dotsClass: "slick-pagination is-default",
     responsive: [
       {
         breakpoint: 1200,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 3,
-        },
+          slidesToScroll: 3
+        }
       },
       {
         breakpoint: 992,
         settings: {
           centerMode: true,
           infinite: false,
-          centerPadding: centerPadding ? centerPadding : '30px',
+          centerPadding: centerPadding ? centerPadding : "30px",
           slidesToShow: 2,
           slidesToScroll: 2,
-          dots: length > 2 ? true : false,
-        },
+          dots: length > 2 ? true : false
+        }
       },
       {
         breakpoint: 576,
         settings: {
           centerMode: true,
           infinite: false,
-          centerPadding: centerPadding ? centerPadding : '20px',
+          centerPadding: centerPadding ? centerPadding : "20px",
           slidesToShow: 1,
           slidesToScroll: 1,
-          dots: length > 1 ? true : false,
-        },
-      },
-    ],
+          dots: length > 1 ? true : false
+        }
+      }
+    ]
   };
 };
-
 export default {
-  tagName: 'slider',
+  tagName: "slider",
   computed: {
     classList() {
       return [
-        'slider',
-        `${Tools.isTrue(this.hideContainer) === true ? '' : this.getSpacing}`,
+        "slider",
+        `${Tools.isTrue(this.hideContainer) === true ? "" : this.getSpacing}`,
         `${this.backgroundClass}`,
-        this.overflow || this.hasControls || this.fade ? 'slider--overflow' : '',
-        this.fade ? 'slider--fade' : '',
-        this.fade && this.hideContainerValue ? 'slider--fade-inset' : '',
-        'vue-component',
+        this.overflow || this.hasControls || this.fade ? "slider--overflow" : "",
+        this.fade ? "slider--fade" : "",
+        this.fade && this.hideContainerValue ? "slider--fade-inset" : "",
+        "vue-component"
       ];
     },
     jsonOptions() {
       return Tools.getJSON(this.options);
     },
     getSpacing() {
-      return this.spacing ? this.spacing : '';
+      return this.spacing ? this.spacing : "";
     },
     headlineLevelValue() {
-      return this.headlineLevel ? this.headlineLevel : 'h3';
+      return this.headlineLevel ? this.headlineLevel : "h3";
     },
     headlineClassesValue() {
-      return `slider__headline ${this.headlineClasses ? this.headlineClasses : 'h3-font-size'}`;
+      return `slider__headline ${this.headlineClasses ? this.headlineClasses : "h3-font-size"}`;
     },
     centerPaddingValue() {
-      return this.centerPadding ? this.centerPadding + 'px' : null;
+      return this.centerPadding ? this.centerPadding + "px" : null;
     },
     carouselOptions() {
       const childrenLength = this.childrenLength;
-
       if (childrenLength === 0) return null;
-
-      const options = this.jsonOptions
-        ? this.jsonOptions
-        : defaultOptions({
-            length: childrenLength,
-            centerPadding: this.centerPaddingValue,
-          });
-
+      const options = this.jsonOptions ? this.jsonOptions : defaultOptions({
+        length: childrenLength,
+        centerPadding: this.centerPaddingValue
+      });
       if (!this.jsonOptions) {
         const slidesToShow = 1;
-
         options.slidesToShow = options.slidesToScroll = slidesToShow;
         options.dots = true;
-
         options.responsive.forEach((breakpoint) => {
           breakpoint.settings.dots = true;
           breakpoint.settings.slidesToScroll = breakpoint.settings.slidesToShow = slidesToShow;
         });
       }
-
       return options;
     },
     childrenLength() {
@@ -185,16 +172,15 @@ export default {
       return Tools.isTrue(this.hideContainer);
     },
     backgroundClass() {
-      return this.hideBackgroundValue === false ? State.HAS_BACKGROUND : '';
+      return this.hideBackgroundValue === false ? State.HAS_BACKGROUND : "";
     },
     backgroundColor() {
       return this.bgColor ? this.bgColor : this.defaultBgColor;
     },
     style() {
       if (this.hideBackgroundValue) return;
-
       return {
-        'background-color': this.backgroundColor,
+        "background-color": this.backgroundColor
       };
     },
     hasControls() {
@@ -207,21 +193,21 @@ export default {
       const { controlsClass, ...opts } = this.options || {};
       if (this.hasControls) {
         opts.navigation = {
-          ...(typeof opts.navigation === 'object' ? opts.navigation : {}),
+          ...typeof opts.navigation === "object" ? opts.navigation : {},
           enabled: true,
           nextEl: `.next-element-${this.instanceId}`,
-          prevEl: `.prev-element-${this.instanceId}`,
+          prevEl: `.prev-element-${this.instanceId}`
         };
       }
       if (this.hasPagination) {
         opts.pagination = {
-          ...(typeof opts.pagination === 'object' ? opts.pagination : {}),
+          ...typeof opts.pagination === "object" ? opts.pagination : {},
           enabled: true,
-          clickable: true,
+          clickable: true
         };
       }
       return opts;
-    },
+    }
   },
   mounted() {
     if (!this.v2) {
@@ -237,9 +223,9 @@ export default {
   },
   data() {
     return {
-      defaultBgColor: 'var(--color-bg-grey)',
+      defaultBgColor: "var(--color-bg-grey)",
       instanceId: ++sliderInstanceCounter,
-      swiperReady: false,
+      swiperReady: false
     };
   },
   props: {
@@ -249,10 +235,10 @@ export default {
     spacing: String,
     subline: String,
     hideContainer: {
-      default: false,
+      default: false
     },
     hideBackground: {
-      default: false,
+      default: false
     },
     overflow: Boolean,
     bgColor: String,
@@ -260,19 +246,20 @@ export default {
     options: Object,
     wrapped: {
       type: Boolean,
-      default: true,
+      default: true
     },
     v2: {
       type: Boolean,
-      default: false,
+      default: false
     },
     fade: {
       type: Boolean,
-      default: true,
-    },
-  },
+      default: true
+    }
+  }
 };
 </script>
+
 <style>
 .slider{overflow:hidden!important}.slider.slider--overflow{overflow:visible}.slider.has-background{padding-bottom:4rem;position:relative}.slider.has-background .slider__wrapper:before{display:block}@media (min-width:992px){.slider.has-background{padding-bottom:5.5rem}}.slider .is--desktop,.slider .slider__item--desktop{display:none}@media (min-width:576px){.slider .slick-list{width:100%}}@media (min-width:992px){.slider .slick-list .slick-track{left:0}}.slider .slider__container--v2{position:relative}.slider--fade .slider__fade{bottom:var(--slider-pagination-space,0);display:none;position:absolute;top:0;width:0;z-index:2}.slider--fade .slider__fade--left{left:auto;right:100%}.slider--fade .slider__fade--right{left:100%;right:auto}.slider .slider__container--v2.slider__container--has-pagination{--slider-pagination-offset:3rem;--slider-pagination-space:calc(var(--slider-pagination-offset) + 0.5rem);padding-bottom:var(--slider-pagination-space)}.slider .slider__container--v2.slider__container--has-pagination swiper-container{--swiper-pagination-bottom:calc(var(--slider-pagination-offset)*-1)}.slider .slider__controls{left:0;pointer-events:none;right:0;top:50%;transform:translateY(-50%);z-index:3}.slider .slider__controls>*{pointer-events:auto}.slider .slider__controls.slider__controls--full-width{left:50%;right:auto;transform:translate(-50%,-50%);width:99vw}.slider .slider__controls.slider__controls--full-width .slick__arrow-left{left:.5rem}.slider .slider__controls.slider__controls--full-width .slick__arrow-right{right:.5rem}.slider .slider__controls .slick__arrow-left.swiper-button-disabled,.slider .slider__controls .slick__arrow-right.swiper-button-disabled{cursor:default;opacity:.3;pointer-events:none}.slider swiper-container::part(container){overflow:visible}.slider swiper-slide{height:auto}.slider swiper-slide>*{height:100%}@media (min-width:992px){.slider--fade .slider__fade{display:block;width:calc(50vw - 444px)}}@media (min-width:1200px){.slider--fade .slider__fade{width:calc(50vw - 534px)}}@media (min-width:1340px){.slider--fade .slider__fade{width:calc(50vw - 599px)}}.slider--fade-inset{--slider-fade-width:120px}.slider--fade.slider--fade-inset .slider__fade{width:var(--slider-fade-width)}.slider--fade.slider--fade-inset .slider__fade--left{left:0;right:auto}.slider--fade.slider--fade-inset .slider__fade--right{left:auto;right:0}.slider__wrapper:before{background-color:inherit;content:"";display:none;height:100%;left:50%;position:absolute;transform:translateX(-50%);width:100vw}
 </style>

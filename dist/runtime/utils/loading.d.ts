@@ -20,15 +20,15 @@ declare class Loading {
     animationInterval: number;
     intervals: any[];
     hasShapes: boolean;
-    getRandomColor(runs: any): string;
-    getRandomType(): string;
+    getRandomColor(runs: any): any;
+    getRandomType(): string | undefined;
     getRandomTypeClass(): string;
     getRandomScale(): number;
     getRandomRotation(): number;
     getRandomOffset(): string;
     getRandomStyle(): {
         style: string;
-        color: string;
+        color: any;
     };
     createShapes(): void;
     startAnimation(element: any): void;

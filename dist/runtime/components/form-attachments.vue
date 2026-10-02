@@ -42,127 +42,110 @@
     </div>
   </div>
 </template>
+
 <script>
-import Tools from '../utils/tools.js';
-import State from '../utils/state.js';
-import Events from '../utils/events.js';
-
-// TODO fix hasError and check what is the matter with hasErrors? this could potentially be hasUserError instead
-
+import Tools from "../utils/tools.js";
+import State from "../utils/state.js";
+import Events from "../utils/events.js";
 export default {
-  tagName: 'form-attachments',
+  tagName: "form-attachments",
   data() {
     return {
       isDragging: false,
       hasError: false,
       filesLength: 0,
-      files: null,
+      files: null
     };
   },
   computed: {
     filesList() {
       if (!this.files?.files) return null;
-
       const filesArray = Array.from(this.files.files);
-
       if (this.filesLength > this.maxFilesValue) return filesArray.slice(0, this.maxFilesValue);
-
       return filesArray;
     },
     classList() {
       return [
-        'form-attachments',
-        this.hasError === true ? 'has-error' : '',
-        this.isDragging ? State.DRAGGING : '',
-        'vue-component',
+        "form-attachments",
+        this.hasError === true ? "has-error" : "",
+        this.isDragging ? State.DRAGGING : "",
+        "vue-component"
       ];
     },
     interactableClassList() {
-      return ['form-attachments__interactable', this.hasErrors ? State.HAS_ERROR : ''];
+      return ["form-attachments__interactable", this.hasErrors ? State.HAS_ERROR : ""];
     },
     requiredValue() {
-      return this.required ? 'required' : null;
+      return this.required ? "required" : null;
     },
     maxSizeMb() {
-      return this.maxSize / 1000000;
+      return this.maxSize / 1e6;
     },
     maxFilesValue() {
       const defaultMaxFiles = 5;
-
       return this.maxFiles ? this.maxFiles : defaultMaxFiles;
     },
     extensionList() {
       const capitalized = this.extensions.map((extension) => {
         return Tools.capitalize(extension);
       });
-
-      return capitalized?.join(', ');
+      return capitalized?.join(", ");
     },
     extensionListText() {
       return `${this.extensionList} max. ${this.maxSizeMb} MB`;
     },
     acceptList() {
-      return this.extensions.map((extension) => `.${extension}`).join(',');
-    },
+      return this.extensions.map((extension) => `.${extension}`).join(",");
+    }
   },
   props: {
     hasError: {
-      default: null,
+      default: null
     },
     maxSize: Number,
     description: String,
     text: String,
     requiredMsg: {
-      default: null,
+      default: null
     },
     required: {
-      default: null,
+      default: null
     },
     extensions: Array,
     id: String,
     name: String,
-    maxFiles: Number,
+    maxFiles: Number
   },
   mounted() {
     this.files = new DataTransfer();
-
-    this.root = this.$refs['root'];
-    this.interactable = this.$refs['interactable'];
-    this.button = this.$refs['button'];
-    this.textElement = this.$refs['text'];
-    this.file = this.$refs['file'];
-    this.error = this.$refs['error'];
-    this.base64 = this.$refs['base64'];
-
+    this.root = this.$refs["root"];
+    this.interactable = this.$refs["interactable"];
+    this.button = this.$refs["button"];
+    this.textElement = this.$refs["text"];
+    this.file = this.$refs["file"];
+    this.error = this.$refs["error"];
+    this.base64 = this.$refs["base64"];
     this.bindEvents();
-
     window.i18n?.loader?.then(() => {
-      this.wrongTypeText = window.i18n?.translate('formAttachmentsWrongType');
-      this.maxFilesText = window.i18n?.translate('formAttachmentsMaxFiles', this.maxFilesValue);
-      this.maxSizeText = window.i18n?.translate('formAttachmentsMaxSize');
+      this.wrongTypeText = window.i18n?.translate("formAttachmentsWrongType");
+      this.maxFilesText = window.i18n?.translate("formAttachmentsMaxFiles", this.maxFilesValue);
+      this.maxSizeText = window.i18n?.translate("formAttachmentsMaxSize");
     });
   },
   methods: {
     bindEvents() {
-      this.interactable.addEventListener('drag', this.handleDragStart.bind(this));
-      this.interactable.addEventListener('dragstart', this.handleDragStart.bind(this));
-
-      this.interactable.addEventListener('dragover', this.handleDragOver.bind(this));
-      this.interactable.addEventListener('dragenter', this.handleDragOver.bind(this));
-
-      this.interactable.addEventListener('drop', this.handleDrop.bind(this));
-      this.interactable.addEventListener('dragleave', this.handleDrop.bind(this));
-      this.interactable.addEventListener('dragend', this.handleDrop.bind(this));
-
-      this.interactable.addEventListener('click', this.handleAddAttachment.bind(this));
-
+      this.interactable.addEventListener("drag", this.handleDragStart.bind(this));
+      this.interactable.addEventListener("dragstart", this.handleDragStart.bind(this));
+      this.interactable.addEventListener("dragover", this.handleDragOver.bind(this));
+      this.interactable.addEventListener("dragenter", this.handleDragOver.bind(this));
+      this.interactable.addEventListener("drop", this.handleDrop.bind(this));
+      this.interactable.addEventListener("dragleave", this.handleDrop.bind(this));
+      this.interactable.addEventListener("dragend", this.handleDrop.bind(this));
+      this.interactable.addEventListener("click", this.handleAddAttachment.bind(this));
       document.addEventListener(Events.FORM_ATTACHMENT_ERROR, this.handleFormAttachmentError.bind(this));
-
-      const parent = Tools.getParent(this.root, 'form');
-
+      const parent = Tools.getParent(this.root, "form");
       if (!parent) return;
-
-      parent.addEventListener('reset', this.reset.bind(this));
+      parent.addEventListener("reset", this.reset.bind(this));
     },
     handleFormAttachmentError(e) {
       this.showError(this.maxSizeText);
@@ -174,44 +157,33 @@ export default {
     handleDragOver(e) {
       e.preventDefault();
       e.stopPropagation();
-
       window.clearTimeout(this.dropTimeout);
-
       this.isDragging = true;
     },
     handleDrop(e) {
       e.preventDefault();
       e.stopPropagation();
-
       const droppedFiles = e?.dataTransfer?.files;
-
       this.dropTimeout = window.setTimeout(() => {
         this.isDragging = false;
-
-        if (e.type !== 'drop') return;
-
+        if (e.type !== "drop") return;
         this.handleDroppedFiles(droppedFiles);
       }, 50);
     },
     isAllowedFileExtension(file) {
       if (!file) return;
-
-      const accept = this.file.getAttribute('accept')?.toLowerCase();
-      const allowedExtensions = accept?.split(',') || [];
+      const accept = this.file.getAttribute("accept")?.toLowerCase();
+      const allowedExtensions = accept?.split(",") || [];
       const fileExtension = Tools.getExtension(file.name);
-
       return allowedExtensions.includes(`.${fileExtension}`);
     },
     isUnderMaxSize(file) {
       if (!file || !file.size) return;
-
       return file.size <= this.maxSize;
     },
     handleDroppedFiles(files) {
       const errors = this.getErrors(files);
-
       if (errors) return this.showError(errors);
-
       this.appendDroppedFiles(files);
     },
     handleAddAttachment() {
@@ -223,32 +195,26 @@ export default {
     showError(text) {
       this.restoreDataTransfer();
       this.setErrorText(text);
-
       this.hasError = true;
     },
     setErrorText(text) {
       if (!this.error) return;
-
       this.error.innerText = text;
     },
     reset() {
       this.file.files = null;
       this.files = new DataTransfer();
-
       this.resetError();
     },
     resetError() {
       this.setErrorText(this.requiredMsg);
-
       this.hasError = false;
     },
     appendDroppedFiles(droppedFiles) {
       if (!this.base64) return;
-
       if (this.isRequired) {
         this.file.required = false;
       }
-
       this.appendFiles(droppedFiles);
     },
     areFilesAllowed(files) {
@@ -256,51 +222,41 @@ export default {
     },
     getErrors(files) {
       if (!this.areFilesAllowed(files)) return this.wrongTypeText;
-
       if (this.files.files.length + files.length > this.maxFilesValue) return this.maxFilesText;
-
       if (!Array.from(files).every((file) => this.isUnderMaxSize(file))) return this.maxSizeText;
-
       return;
     },
     appendFiles(files) {
       if (this.files.files.length >= this.maxFilesValue) return this.showError(this.maxFilesText);
-
       Array.from(files).forEach((file) => {
         this.files.items.add(file);
       });
-
       this.syncFiles();
     },
     syncFiles() {
       this.filesLength = this.files.items.length;
       this.file.files = this.files.files;
-
       this.resetError();
     },
     handleChange(event) {
       const files = event?.target?.files;
       const errors = this.getErrors(files);
-
       if (errors) return this.showError(errors);
-
       this.appendFiles(files);
     },
     handleClick(index) {
       const file = this.files.files[index];
-
       if (!file) return;
-
       this.files.items.remove(index);
-
       this.syncFiles();
     },
     toSize(size) {
       return Tools.toSize(size);
-    },
-  },
+    }
+  }
 };
 </script>
+
 <style>
 .form-attachments {
   display: flex;
@@ -346,13 +302,13 @@ export default {
 }
 
 .form-attachments__files-list {
+  font-size: 0.85rem;
+}
+.form-attachments__files-list {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   padding: 1.5rem 0;
-}
-.form-attachments__files-list {
-  font-size: 0.85rem;
 }
 @media (min-width: 768px) {
   .form-attachments__files-list {
@@ -430,9 +386,6 @@ export default {
 }
 
 .form-attachments__description {
-  margin-bottom: 0.5rem;
-}
-.form-attachments__description {
   font-size: 1rem;
   line-height: 1.6;
 }
@@ -451,6 +404,9 @@ export default {
 .form-attachments__description {
   font-weight: bold !important;
 }
+.form-attachments__description {
+  margin-bottom: 0.5rem;
+}
 
 .form-attachments__description,
 .form-attachments__text {
@@ -458,12 +414,12 @@ export default {
 }
 
 .form-attachments__text {
+  font-size: 0.85rem;
+}
+.form-attachments__text {
   cursor: pointer;
   text-decoration: underline;
   margin-bottom: 2.5rem;
-}
-.form-attachments__text {
-  font-size: 0.85rem;
 }
 
 .form-attachments__extensions {

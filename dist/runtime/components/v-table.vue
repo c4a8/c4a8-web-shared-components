@@ -63,51 +63,52 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
-  tagName: 'v-table',
+  tagName: "v-table",
   props: {
     headline: {
       type: String,
-      default: null,
+      default: null
     },
     table: {
       type: Array,
-      required: true,
+      required: true
     },
     hideContainer: {
       type: Boolean,
-      default: false,
+      default: false
     },
     theme: {
       type: String,
-      default: 'striped',
+      default: "striped"
     },
     classes: {
       type: String,
-      default: '',
+      default: ""
     },
     head: {
       type: Boolean,
-      default: false,
+      default: false
     },
     agenda: {
       type: Boolean,
-      default: false,
+      default: false
     },
     sticky: {
       type: Boolean,
-      default: false,
+      default: false
     },
     headBg: {
-      type: String,
+      type: String
     },
     headColor: {
-      type: String,
+      type: String
     },
     bgImg: {
-      type: String,
-    },
+      type: String
+    }
   },
   mounted() {
     this.setStyle();
@@ -119,26 +120,27 @@ export default {
         this.$refs.head.style.color = this.headColor;
       }
       if (this.$refs.headSticky) {
-        this.$refs.head.style.backgroundColor = this.bgImg ? 'transparent' : this.headBg;
-        this.$refs.head.style.backgroundImage = this.bgImg ? `url(${this.bgImg})` : 'none';
-        this.$refs.head.style.backgroundSize = this.bgImg ? '100% 100%' : '';
-        this.$refs.headSticky.style.background = this.bgImg ? 'var(--color-gk-white)' : '';
+        this.$refs.head.style.backgroundColor = this.bgImg ? "transparent" : this.headBg;
+        this.$refs.head.style.backgroundImage = this.bgImg ? `url(${this.bgImg})` : "none";
+        this.$refs.head.style.backgroundSize = this.bgImg ? "100% 100%" : "";
+        this.$refs.headSticky.style.background = this.bgImg ? "var(--color-gk-white)" : "";
       }
-    },
+    }
   },
   computed: {
     tableHideContainer() {
       return this.hideContainer;
     },
     styleClass() {
-      return 'table-' + this.theme;
+      return "table-" + this.theme;
     },
     tableRows() {
       return this.head ? this.table.slice(1) : this.table;
-    },
-  },
+    }
+  }
 };
 </script>
+
 <style>
 .v-table mark {
   background-color: var(--color-table-mark);

@@ -35,13 +35,13 @@
     </div>
   </div>
 </template>
-<script>
-import Tools from '../utils/tools.js';
-import Events from '../utils/events.js';
-import PricingSlider from '../utils/components/pricing-slider.js';
 
+<script>
+import Tools from "../utils/tools.js";
+import Events from "../utils/events.js";
+import PricingSlider from "../utils/components/pricing-slider.js";
 export default {
-  tagName: 'pricing-slider',
+  tagName: "pricing-slider",
   props: {
     slider: Object,
     tooltip: String,
@@ -49,23 +49,23 @@ export default {
     products: Object,
     light: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
       loading: true,
       options: {
-        type: 'single',
-        hide_min_max: !0,
+        type: "single",
+        hide_min_max: true,
         foreground_target_el: null,
         secondary_target_el: null,
         secondary_val: { steps: null, values: null },
         result_max_target_el: null,
         hide_from_to: false,
-        result_min_target_el: '.js-result-price',
-        extra_classes: 'range-slider-custom',
-      },
+        result_min_target_el: ".js-result-price",
+        extra_classes: "range-slider-custom"
+      }
     };
   },
   mounted() {
@@ -77,27 +77,24 @@ export default {
     },
     hsIonRangeSliderOptions() {
       return {
-        extra_classes: 'range-slider-custom',
+        extra_classes: "range-slider-custom",
         hide_from_to: false,
         min: this.pricingSliderRange.min,
         max: this.pricingSliderRange.max,
         from: this.pricingSliderRange.from,
         step: this.pricingSliderRange.step,
-        result_min_target_el: '.js-result-price',
+        result_min_target_el: ".js-result-price"
       };
-    },
+    }
   },
   methods: {
     handleRangeSliderStart(slider) {
-      // TODO move JS inside the vue component
       if (!window.prepareSlider || !window.handleChange) return;
-
       window.prepareSlider(slider);
       window.handleChange(slider);
     },
     handleRangeSliderChange(slider) {
       if (!window.handleChange) return;
-
       window.handleChange(slider);
     },
     bindEvents() {
@@ -105,24 +102,17 @@ export default {
     },
     initRangeSlider() {
       if (!this.$refs.slider || !window.$) return;
-
       this.loading = false;
-
-      // TODO get rid of ionRangeSlider overall!!
       window.$(this.$refs.slider).ionRangeSlider(this.options);
     },
     init() {
       const { min, max, from, step, unit } = this.pricingSliderRange;
-
       Object.assign(this.options, { min, max, from, step, postfix: ` ${unit}` });
-
       this.options.onStart = this.handleRangeSliderStart;
       this.options.onChange = this.handleRangeSliderChange;
-
       if (this.$refs.root) {
         new PricingSlider(this.$refs.root, null, this.products?.pricing);
       }
-
       if (Tools.isClientOnlyLibLoaded()) {
         this.initRangeSlider();
       } else {
@@ -131,28 +121,23 @@ export default {
     },
     pollForJQuery() {
       const maxAttempts = 30;
-
       let attempts = 0;
-
       const checkJQuery = () => {
         if (window.$) {
           this.init();
-
           return;
         }
-
         attempts++;
-
         if (attempts < maxAttempts) {
           setTimeout(checkJQuery, 100);
         }
       };
-
       checkJQuery();
-    },
-  },
+    }
+  }
 };
 </script>
+
 <style>
 .pricing-slider {
   --pricing-copy-color: var(--color-copy);

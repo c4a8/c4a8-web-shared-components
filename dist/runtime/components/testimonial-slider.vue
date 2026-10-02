@@ -37,42 +37,42 @@
 </template>
 
 <script>
-import Tools from '../utils/tools.js';
+import Tools from "../utils/tools.js";
 export default {
-  tagName: 'testimonial-slider',
+  tagName: "testimonial-slider",
   props: {
     headline: {
       type: String,
-      default: null,
+      default: null
     },
     headlineLevel: {
       type: [String, Number],
-      default: null,
+      default: null
     },
     subline: {
       type: String,
-      default: null,
+      default: null
     },
     slides: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     sticky: {
       type: Boolean,
-      default: false,
+      default: false
     },
     ignoreLang: {
       type: Boolean,
-      default: false,
+      default: false
     },
     spacing: {
       type: String,
-      default: 'space-bottom-3',
+      default: "space-bottom-3"
     },
     lang: {
       type: String,
-      default: 'de',
-    },
+      default: "de"
+    }
   },
   mounted() {
     Tools.initSlickSlider(this.$refs.container, this.slickOptions);
@@ -96,18 +96,18 @@ export default {
       return this.spacing;
     },
     sortedSlides() {
-      return [...this.slides]; //.sort((a, b) => (a.uid > b.uid ? 1 : -1));
+      return [...this.slides];
     },
     filteredSlides() {
       if (this.ignoreLang) {
         return this.sortedSlides;
       }
-      return this.sortedSlides; //.filter(item => item.lang === this.lang);
+      return this.sortedSlides;
     },
     slickOptions() {
       return {
         dots: true,
-        dotsClass: 'slick-pagination is-default mt-8 mb-n6',
+        dotsClass: "slick-pagination is-default mt-8 mb-n6",
         prevArrow: '<span class="slick__arrow-left rounded-circle"></span>',
         nextArrow: '<span class="slick__arrow-right rounded-circle"></span>',
         slidesToScroll: 1,
@@ -118,27 +118,28 @@ export default {
             settings: {
               slidesToShow: 2,
               slidesToScroll: 1,
-              variableWidth: false,
-            },
+              variableWidth: false
+            }
           },
           {
             todobreakpoint: 576,
-            settings: 'unslick',
+            settings: "unslick"
           },
           {
             breakpoint: 576,
             settings: {
               slidesToShow: 1,
               slidesToScroll: 1,
-              variableWidth: true,
-            },
-          },
-        ],
+              variableWidth: true
+            }
+          }
+        ]
       };
-    },
-  },
+    }
+  }
 };
 </script>
+
 <style>
 .testimonials-slider {
   width: 100%;

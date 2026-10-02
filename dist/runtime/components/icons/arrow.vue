@@ -22,24 +22,25 @@
     </g>
   </svg>
 </template>
+
 <script>
 export default {
-  tagName: 'arrow',
+  tagName: "arrow",
   computed: {
     style() {
       return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
     },
     strokeWidthValue() {
       return this.strokeWidth / 2.66666666;
-    },
+    }
   },
   props: {
     settings: Object,
     color: String,
     strokeWidth: {
       type: Number,
-      default: 4,
-    },
-  },
+      default: 4
+    }
+  }
 };
 </script>

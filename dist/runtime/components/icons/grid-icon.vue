@@ -11,17 +11,18 @@
     <circle cx="15.8775" cy="27.2559" r="1.62162" :fill="color" />
   </svg>
 </template>
+
 <script>
 export default {
-  tagName: 'grid',
+  tagName: "grid",
   computed: {
     style() {
       return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
-    },
+    }
   },
   props: {
     settings: Object,
-    color: String,
-  },
+    color: String
+  }
 };
 </script>

@@ -18,14 +18,14 @@
             </div>
         </div>
     </div>
-
 </template>
+
 <script>
 export default {
-    tagName: 'stats',
-    props: {
-        headline: String,
-        items: Array,
-    }
-}
+  tagName: "stats",
+  props: {
+    headline: String,
+    items: Array
+  }
+};
 </script>

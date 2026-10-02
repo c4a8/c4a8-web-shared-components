@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  tagName: 'phone',
+  tagName: "phone",
   computed: {
     style() {
       return `stroke: ${this.color}; fill: none; transform: rotate(var(--icon-rotation)); stroke-linecap: round; stroke-linejoin: round; `;
@@ -21,15 +21,15 @@ export default {
     },
     strokeWidthValue() {
       return this.strokeWidth / 2;
-    },
+    }
   },
   props: {
     settings: Object,
     color: String,
     strokeWidth: {
       type: Number,
-      default: 2,
-    },
-  },
+      default: 2
+    }
+  }
 };
 </script>

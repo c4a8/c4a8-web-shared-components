@@ -43,16 +43,17 @@
     </g>
   </svg>
 </template>
+
 <script>
 export default {
-  tagName: 'plus-minus',
+  tagName: "plus-minus",
   computed: {
     effectiveKeySplines() {
-      return '0.19 1 0.2 1';
+      return "0.19 1 0.2 1";
     },
     style() {
       return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
-    },
+    }
   },
   updated() {
     this.animate(this.closed);
@@ -63,33 +64,30 @@ export default {
   methods: {
     animate(mode, start) {
       const animations = [];
-
-      this.$refs['svg'].querySelectorAll('animate, animateTransform').forEach((animation) => {
-        if (!mode && !animation.classList.contains('closed')) {
+      this.$refs["svg"].querySelectorAll("animate, animateTransform").forEach((animation) => {
+        if (!mode && !animation.classList.contains("closed")) {
           animations.push(animation);
-        } else if (mode && animation.classList.contains('closed')) {
+        } else if (mode && animation.classList.contains("closed")) {
           animations.push(animation);
         }
       });
-
-      const animationFunction = start ? 'beginElementAt' : 'beginElement';
-
+      const animationFunction = start ? "beginElementAt" : "beginElement";
       animations.forEach((animation) => {
-        animation[animationFunction](1000);
+        animation[animationFunction](1e3);
       });
-    },
+    }
   },
   props: {
     settings: Object,
     color: String,
-    closed: Boolean,
+    closed: Boolean
   },
   data() {
     return {
-      duration: '0.35s',
-      begin: 'indefinite',
-      keyTimes: '0;1',
+      duration: "0.35s",
+      begin: "indefinite",
+      keyTimes: "0;1"
     };
-  },
+  }
 };
 </script>

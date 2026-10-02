@@ -55,30 +55,29 @@
 </template>
 
 <script>
-import UtilityAnimation from '../utils/utility-animation.js';
-
+import UtilityAnimation from "../utils/utility-animation.js";
 export default {
   props: {
     productBlocks: Object,
-    headline: String || Object,
+    headline: String || Object
   },
   computed: {
     backgroundColorStyle() {
       return { backgroundColor: this.productBlocks.bgColor };
-    },
+    }
   },
   methods: {
     animationStyle(index) {
-      return { '--utility-animation-index': index };
-    },
+      return { "--utility-animation-index": index };
+    }
   },
   mounted() {
     if (!this.$refs.root) return;
-
     UtilityAnimation.init([this.$refs.root]);
-  },
+  }
 };
 </script>
+
 <style>
 .product-blocks__block {
   display: flex;

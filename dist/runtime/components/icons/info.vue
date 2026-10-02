@@ -9,20 +9,21 @@
     </g>
   </svg>
 </template>
+
 <script>
 export default {
-  tagName: 'info',
+  tagName: "info",
   computed: {
     style() {
       return `transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
     },
     fill() {
       return this.color;
-    },
+    }
   },
   props: {
     settings: Object,
-    color: String,
-  },
+    color: String
+  }
 };
 </script>

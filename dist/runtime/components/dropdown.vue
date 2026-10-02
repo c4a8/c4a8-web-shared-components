@@ -60,24 +60,24 @@
     </div>
   </div>
 </template>
-<script>
-import Tools from '../utils/tools.js';
-import State from '../utils/state.js';
-import Events from '../utils/events.js';
-import UtilityAnimation from '../utils/utility-animation.js';
 
+<script>
+import Tools from "../utils/tools.js";
+import State from "../utils/state.js";
+import Events from "../utils/events.js";
+import UtilityAnimation from "../utils/utility-animation.js";
 export default {
-  tagName: 'dropdown',
+  tagName: "dropdown",
   props: {
     label: String,
     items: Array,
     filterable: {
-      default: null,
+      default: null
     },
     hasAnimation: {
-      default: null,
+      default: null
     },
-    index: Number,
+    index: Number
   },
   computed: {
     isStorybook() {
@@ -87,7 +87,7 @@ export default {
       return '[id="app"]';
     },
     dropdownLabelClasses() {
-      return ['dropdown__label font-size-sm', this.hasAnimation ? 'utility-animation fade-in-bottom' : ''];
+      return ["dropdown__label font-size-sm", this.hasAnimation ? "utility-animation fade-in-bottom" : ""];
     },
     parsedItems() {
       return Tools.getJSON(this.items);
@@ -103,8 +103,8 @@ export default {
       return Tools.isTrue(this.filterable) === true;
     },
     style() {
-      return this.hasAnimation ? `--utility-animation-index: ${this.index};` : '';
-    },
+      return this.hasAnimation ? `--utility-animation-index: ${this.index};` : "";
+    }
   },
   methods: {
     initActiveSelection() {
@@ -112,7 +112,6 @@ export default {
     },
     updateUtilityAnimation() {
       if (!this.hasAnimation) return;
-
       UtilityAnimation.observeElementIfNotAlready(this.$refs.label);
     },
     resetSelection() {
@@ -126,15 +125,12 @@ export default {
         this.activeSelection.push(selection);
       } else {
         const index = this.activeSelection.indexOf(selection);
-
         this.activeSelection.splice(index, 1);
       }
-
       this.$emit(Events.DROPDOWN_CHANGED, this.activeSelection);
     },
     toggleDropdown() {
       this.isOpen = !this.isOpen;
-
       if (this.isOpen) {
         this.$emit(Events.DROPDOWN_OPENED, this);
         this.modalOpened();
@@ -144,50 +140,44 @@ export default {
       }
     },
     closeModal() {
-      document.body.classList.remove('modal-open');
+      document.body.classList.remove("modal-open");
     },
     modalOpened() {
       if (Tools.isUpperBreakpoint()) return;
-
-      document.body.classList.add('modal-open');
+      document.body.classList.add("modal-open");
     },
     modalClosed() {
       if (Tools.isUpperBreakpoint()) return;
-
       this.closeModal();
     },
     toggleIconClasses(selection) {
-      return ['dropdown__toggle-icon', this.activeSelection.includes(selection) ? State.ACTIVE : ''];
+      return ["dropdown__toggle-icon", this.activeSelection.includes(selection) ? State.ACTIVE : ""];
     },
     handleMouseEnter(e) {
       if (!Tools.isUpperBreakpoint()) return e.preventDefault();
-
       this.toggleDropdown();
     },
     handleMouseDown(e) {
       if (!Tools.isUpperBreakpoint()) return e.preventDefault();
-
       this.toggleDropdown();
     },
     handleClick(e) {
       if (Tools.isUpperBreakpoint()) return e.preventDefault();
-
       this.toggleDropdown();
     },
     getCheckboxId(item, index) {
       return `dropdown-checkbox-${item.value}-${index}`;
     },
     resetFilterText() {
-      this.filterText = '';
+      this.filterText = "";
     },
     resetModal() {
       this.isOpen = false;
-
       this.closeModal();
     },
     handleResize() {
       this.resetModal();
-    },
+    }
   },
   beforeMount() {
     this.initActiveSelection();
@@ -195,23 +185,23 @@ export default {
   mounted() {
     this.isMounted = true;
     this.updateUtilityAnimation();
-
-    window.addEventListener('resize', this.handleResize);
+    window.addEventListener("resize", this.handleResize);
   },
   beforeDestroy() {
-    window.removeEventListener('resize', this.handleResize);
+    window.removeEventListener("resize", this.handleResize);
   },
   data() {
     return {
       activeSelection: [],
       isMounted: false,
       isOpen: false,
-      filterText: '',
-      minCharsToFilter: 1,
+      filterText: "",
+      minCharsToFilter: 1
     };
-  },
+  }
 };
 </script>
+
 <style>
 .dropdown {
   --dropdown-label-border: transparent;
@@ -273,9 +263,6 @@ export default {
 
 .dropdown__items-list {
   --scrollbar-background-color: var(--color-gk-dark-blue-shade-10);
-  padding: 0 var(--dropdown-inner-spacing) 1rem var(--dropdown-inner-spacing);
-  max-height: 45vh;
-  overflow-y: auto;
 }
 .dropdown__items-list::-webkit-scrollbar {
   width: 8px;
@@ -291,6 +278,11 @@ export default {
 }
 .dropdown__items-list::-webkit-scrollbar-track {
   border-radius: 10px;
+}
+.dropdown__items-list {
+  padding: 0 var(--dropdown-inner-spacing) 1rem var(--dropdown-inner-spacing);
+  max-height: 45vh;
+  overflow-y: auto;
 }
 @media (min-width: 768px) {
   .dropdown__items-list {
@@ -319,11 +311,11 @@ export default {
 }
 
 .dropdown__label-placeholder {
-  opacity: 0;
-  pointer-events: none;
+  font-weight: bold;
 }
 .dropdown__label-placeholder {
-  font-weight: bold;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .dropdown__label-text {

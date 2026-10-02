@@ -15,31 +15,31 @@
 <script>
 export default {
   props: {
-    tagName: 'svg-shape',
+    tagName: "svg-shape",
     align: {
       type: String,
-      default: 'bottom',
+      default: "bottom"
     },
     peak: {
       type: String,
-      default: 'right',
+      default: "right"
     },
     color: {
       type: String,
-      default: 'var(--color-gk-white)',
+      default: "var(--color-gk-white)"
     },
     obliquity: {
       type: Number,
-      default: 10,
+      default: 10
     },
     classes: {
       type: String,
-      default: '',
+      default: ""
     },
     height: {
       type: Number,
-      default: 100,
-    },
+      default: 100
+    }
   },
   computed: {
     svgShapeAlign() {
@@ -61,22 +61,20 @@ export default {
       return this.height;
     },
     basePoints() {
-      return this.svgShapeAlign === 'top'
-        ? `0,0 ${this.svgShapeHeight},0`
-        : `0,${this.svgShapeObliquity} ${this.svgShapeHeight},${this.svgShapeObliquity}`;
+      return this.svgShapeAlign === "top" ? `0,0 ${this.svgShapeHeight},0` : `0,${this.svgShapeObliquity} ${this.svgShapeHeight},${this.svgShapeObliquity}`;
     },
     peakPointY() {
-      return this.svgShapeAlign === 'top' ? this.svgShapeObliquity : 0;
+      return this.svgShapeAlign === "top" ? this.svgShapeObliquity : 0;
     },
     peakPointX() {
-      return this.svgShapePeak === 'left' ? 0 : this.svgShapeHeight;
+      return this.svgShapePeak === "left" ? 0 : this.svgShapeHeight;
     },
     points() {
       return `${this.basePoints} ${this.peakPointX},${this.peakPointY}`;
     },
     translateStyle() {
-      return this.svgShapeAlign !== 'top' ? 'transform: translateY(2px);' : '';
-    },
-  },
+      return this.svgShapeAlign !== "top" ? "transform: translateY(2px);" : "";
+    }
+  }
 };
 </script>

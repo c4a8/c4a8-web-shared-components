@@ -195,39 +195,37 @@
     />
   </div>
 </template>
+
 <script>
 export default {
-  tagName: 'product-stage',
+  tagName: "product-stage",
   props: {
     stage: Object,
     products: Object,
     light: {
       type: Boolean,
-      default: true,
-    },
+      default: true
+    }
   },
   computed: {
     shapeClasses() {
-      return this.overlapping ? 'position-absolute bottom-0 left-0 z-index-1 w-100' : 'position-relative z-index-1';
+      return this.overlapping ? "position-absolute bottom-0 left-0 z-index-1 w-100" : "position-relative z-index-1";
     },
     cardWrapperClasses() {
-      const cardBreakpoint = this.cards?.tabs ? '' : 'lg-';
-
+      const cardBreakpoint = this.cards?.tabs ? "" : "lg-";
       return [
-        'product-stage__card-wrapper',
+        "product-stage__card-wrapper",
         `col-${cardBreakpoint}` + 12 / this.cards.list.length,
-        { 'px-1 px-lg-3 nav-item': this.cards.tabs, 'mb-6 mb-md-8 mb-lg-0': !this.cards.tabs },
+        { "px-1 px-lg-3 nav-item": this.cards.tabs, "mb-6 mb-md-8 mb-lg-0": !this.cards.tabs }
       ];
     },
     bgColor() {
-      const bgColor = this.stage.bgColor || 'var(--color-primary)';
-
-      return bgColor.replace(';', '');
+      const bgColor = this.stage.bgColor || "var(--color-primary)";
+      return bgColor.replace(";", "");
     },
     cutoffBgColor() {
-      const cutoffBgColor = this.stage.cutoff.bgColor || 'var(--color-gk-light-grey)';
-
-      return cutoffBgColor.replace(';', '');
+      const cutoffBgColor = this.stage.cutoff.bgColor || "var(--color-gk-light-grey)";
+      return cutoffBgColor.replace(";", "");
     },
     shape() {
       return this.stage.shape || null;
@@ -236,16 +234,17 @@ export default {
       return this.stage.cards || null;
     },
     overlapping() {
-      return (this.cards && this.stage.headline) || this.stage.description;
-    },
+      return this.cards && this.stage.headline || this.stage.description;
+    }
   },
   methods: {
     hasLink(card) {
       return card.link ? true : false;
-    },
-  },
+    }
+  }
 };
 </script>
+
 <style>
 .product-stage__tab.active .product-stage__tab-content::before, .product-stage__tab:hover .product-stage__tab-content::before {
   background-color: var(--color-bg-grey);

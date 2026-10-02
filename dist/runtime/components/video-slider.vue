@@ -44,11 +44,10 @@
 </template>
 
 <script>
-import Tools from '../utils/tools.js';
-import { registerSwiperWhenVisible } from '../utils/lazy-swiper.js';
-
+import Tools from "../utils/tools.js";
+import { registerSwiperWhenVisible } from "../utils/lazy-swiper.js";
 export default {
-  tagName: 'video-slider',
+  tagName: "video-slider",
   data() {
     return {
       triggerButtonClick: false,
@@ -58,19 +57,19 @@ export default {
       options: {
         centerMode: true,
         infinite: true,
-        centerPadding: '20vw',
+        centerPadding: "20vw",
         slidesToShow: 1,
         responsive: [
           {
             breakpoint: 576,
             settings: {
-              centerPadding: '10vw',
-            },
-          },
+              centerPadding: "10vw"
+            }
+          }
         ],
-        prevArrow: '',
-        nextArrow: '',
-      },
+        prevArrow: "",
+        nextArrow: ""
+      }
     };
   },
   computed: {
@@ -78,26 +77,21 @@ export default {
       return this.tabs.length;
     },
     copyColor() {
-      return this.color ? this.color : 'var(--color-copy)';
+      return this.color ? this.color : "var(--color-copy)";
     },
     backgroundColor() {
-      return this.bgColor ? this.bgColor : 'var(--color-gk-light-grey)';
+      return this.bgColor ? this.bgColor : "var(--color-gk-light-grey)";
     },
     style() {
-      // TODO create a base component that can use a style override like this, since we use this quite often
-
       return `--color-video-slider-background: ${this.backgroundColor}; --color-video-slider-color: ${this.copyColor};`;
-    },
+    }
   },
   mounted() {
     this.swiperObserver = registerSwiperWhenVisible(this.$el);
-
-    const maxWidth = this.$refs['max-width'];
-    const carousel = maxWidth?.querySelector('.js-slick-carousel');
-
+    const maxWidth = this.$refs["max-width"];
+    const carousel = maxWidth?.querySelector(".js-slick-carousel");
     if (!carousel) return;
-
-    import('jquery').then((module) => {
+    import("jquery").then((module) => {
       this.slickElement = module.default(carousel);
       this.bindEvents();
     });
@@ -107,41 +101,32 @@ export default {
   },
   methods: {
     bindEvents() {
-      this.slickElement.on('afterChange', this.handlePositionChange.bind(this));
+      this.slickElement.on("afterChange", this.handlePositionChange.bind(this));
     },
     handlePositionChange(_, slick, currentSlide) {
       this.currentTabIndex = slick.currentSlide;
-
       if (!this.triggerButtonClick) return;
-
       this.triggerButtonClick = false;
       this.currentTab = slick?.$slides[currentSlide];
-
       this.handleAfterChangeClick();
     },
     handleAfterChangeClick() {
-      const videoButton = this.currentTab?.querySelector('.js-video-button');
-
+      const videoButton = this.currentTab?.querySelector(".js-video-button");
       if (!videoButton) return;
-
       videoButton.click();
     },
     handleCtaClick(e) {
       e.preventDefault();
-
       const href = this.cta?.href;
-
       if (href) {
         const element = document.querySelector(href);
-
         if (element) {
           Tools.scrollIntoView(element, true);
         }
       }
     },
     handleTabClick(index) {
-      this.slickElement.slick('slickGoTo', index);
-
+      this.slickElement.slick("slickGoTo", index);
       this.currentTabIndex = index;
     },
     handleVideoInnerEvent(index) {
@@ -149,36 +134,33 @@ export default {
     },
     handleSliderClick(event) {
       const currentTarget = event.target;
-      const parent = currentTarget.closest('.slick-slide');
-      const isCloned = parent?.classList.contains('slick-cloned');
-
+      const parent = currentTarget.closest(".slick-slide");
+      const isCloned = parent?.classList.contains("slick-cloned");
       if (!parent || !isCloned) return;
-
       const tabIndex = parseInt(parent.dataset.slickIndex);
-
       this.handleTabClick(tabIndex);
-
       this.triggerButtonClick = true;
-    },
+    }
   },
   props: {
     headline: {
-      type: Object,
+      type: Object
     },
     subline: {
       type: String,
-      required: true,
+      required: true
     },
     tabs: {
       type: Array,
-      required: true,
+      required: true
     },
     cta: {
-      type: Object,
-    },
-  },
+      type: Object
+    }
+  }
 };
 </script>
+
 <style>
 .video-slider {
   --color-video-slider-tab: var(--color-gk-yellow);

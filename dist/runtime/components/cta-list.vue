@@ -7,17 +7,16 @@
 </template>
 
 <script>
-import Tools from '../utils/tools.js';
-
+import Tools from "../utils/tools.js";
 export default {
-  tagName: 'cta-list',
+  tagName: "cta-list",
   computed: {
     classList() {
-      return ['cta-list vue-component', this.classes ? this.classes : ''];
+      return ["cta-list vue-component", this.classes ? this.classes : ""];
     },
     ctaList() {
       return Tools.getJSON(this.list);
-    },
+    }
   },
   methods: {
     text(cta) {
@@ -28,11 +27,11 @@ export default {
     },
     type(cta) {
       return cta.type || cta.ctaType;
-    },
+    }
   },
   props: {
     list: Array,
-    classes: String,
-  },
+    classes: String
+  }
 };
 </script>

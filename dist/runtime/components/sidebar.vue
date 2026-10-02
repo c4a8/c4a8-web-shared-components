@@ -69,55 +69,53 @@
     </wrapper>
   </div>
 </template>
-<script>
-import State from '../utils/state.js';
-import { useModalStore } from '../stores/modal.js';
 
+<script>
+import State from "../utils/state.js";
+import { useModalStore } from "../stores/modal.js";
 export default {
-  tagName: 'sidebar',
+  tagName: "sidebar",
   props: {
     sections: {
-      type: Array,
+      type: Array
     },
     headlineText: {
-      type: String,
+      type: String
     },
     color: {
-      type: String,
+      type: String
     },
     date: {
-      type: String,
+      type: String
     },
     location: {
-      type: String,
+      type: String
     },
     hint: {
-      type: String,
-    },
+      type: String
+    }
   },
   computed: {
     mainStyle() {
       return {
-        '--color-headlines': this.color,
+        "--color-headlines": this.color
       };
-    },
+    }
   },
   data() {
     return {
       isReady: false,
       State,
-      modalStore: null,
+      modalStore: null
     };
   },
   mounted() {
     this.isReady = true;
     this.modalStore = useModalStore();
-
     this.$nextTick(() => {
       this.registerDialogs();
     });
-
-    window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener("scroll", this.handleScroll);
   },
   beforeUnmount() {
     if (this.modalStore && this.sections) {
@@ -125,24 +123,21 @@ export default {
         this.modalStore.unregisterModal(section.title);
       });
     }
-
-    window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener("scroll", this.handleScroll);
   },
   methods: {
     registerDialogs() {
       if (!this.sections || !this.modalStore) return;
-
       this.sections.forEach((section, index) => {
         this.modalStore.registerModal(section.title, {
           open: () => this.openDialog(index),
-          close: () => this.closeDialog(index),
+          close: () => this.closeDialog(index)
         });
       });
     },
     handleScroll() {
       this.sections.forEach((_, index) => {
         const dialog = this.getDialogByIndex(index);
-
         if (dialog && dialog.open) {
           dialog.close();
         }
@@ -150,28 +145,23 @@ export default {
     },
     getDialogByIndex(index) {
       const ref = this.$refs[`dialog${index}`];
-
       if (!ref) return;
-
       return ref[0];
     },
     openDialog(index) {
       const dialog = this.getDialogByIndex(index);
-
       if (!dialog || !dialog.showModal) return;
-
       dialog.showModal();
     },
     closeDialog(index) {
       const dialog = this.getDialogByIndex(index);
-
       if (!dialog || !dialog.close) return;
-
       dialog.close();
-    },
-  },
+    }
+  }
 };
 </script>
+
 <style>
 .sidebar {
   --sidebar-stagger-delay: 0.1s;
@@ -349,8 +339,6 @@ export default {
 .sidebar__dialog-section-title {
   font-size: 4rem;
   line-height: 1.1em;
-  display: flex !important;
-  justify-content: end !important;
 }
 @media (min-width: 992px) {
   .sidebar__dialog-section-title {
@@ -366,6 +354,10 @@ export default {
 }
 .sidebar__dialog-section-title {
   font-weight: bold;
+}
+.sidebar__dialog-section-title {
+  display: flex !important;
+  justify-content: end !important;
 }
 
 .sidebar__dialog-section-title,
@@ -554,10 +546,6 @@ export default {
 
 .sidebar__date,
 .sidebar__location {
-  color: var(--color-gk-dark-blue-shade-50);
-}
-.sidebar__date,
-.sidebar__location {
   font-size: 1.125rem;
   line-height: 1.6667em;
 }
@@ -579,12 +567,22 @@ export default {
 .sidebar__location {
   font-weight: bold !important;
 }
+.sidebar__date,
+.sidebar__location {
+  color: var(--color-gk-dark-blue-shade-50);
+}
 
 .sidebar__location {
   position: relative;
   display: inline-block;
 }
 
+.sidebar__hint {
+  font-size: 0.85rem;
+}
+.sidebar__hint {
+  font-weight: 400 !important;
+}
 .sidebar__hint {
   position: absolute;
   right: 15px;
@@ -593,12 +591,6 @@ export default {
   color: var(--color-copy);
   display: flex;
   flex-direction: column;
-}
-.sidebar__hint {
-  font-size: 0.85rem;
-}
-.sidebar__hint {
-  font-weight: 400 !important;
 }
 .sidebar__hint .icon {
   color: var(--color-gk-orange);

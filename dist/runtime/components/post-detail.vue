@@ -93,16 +93,15 @@
 </template>
 
 <script>
-import Tools from '../utils/tools.js';
-import { useAppStore } from '../stores/app';
-import useAuthors from '../composables/useAuthors.js';
-import { ref } from 'vue';
-import ContentRendererLink from './content-renderer-link.vue';
-
+import Tools from "../utils/tools.js";
+import { useAppStore } from "../stores/app";
+import useAuthors from "../composables/useAuthors.js";
+import { ref } from "vue";
+import ContentRendererLink from "./content-renderer-link.vue";
 export default {
-  tagName: 'post-detail',
+  tagName: "post-detail",
   components: {
-    ContentRendererLink,
+    ContentRendererLink
   },
   setup(props) {
     const { authors } = useAuthors(props.post?.author);
@@ -110,48 +109,44 @@ export default {
     const endPoint = ref(null);
     const stickyContentHeight = ref(0);
     const store = useAppStore();
-
     return {
       authors,
       isAtEnd,
       endPoint,
       stickyContentHeight,
       store,
-      ContentRendererLink,
+      ContentRendererLink
     };
   },
   data() {
     return {
-      shouldShowStickyBlocks: false,
+      shouldShowStickyBlocks: false
     };
   },
   mounted() {
     this.checkStickyBlocks();
-
-    window.addEventListener('resize', this.checkStickyBlocks);
-
+    window.addEventListener("resize", this.checkStickyBlocks);
     if (!this.normalizedPost) return Tools.gotoHome();
-
     this.store.setPageIsLoaded(true);
   },
   unmounted() {
-    window.removeEventListener('resize', this.checkStickyBlocks);
+    window.removeEventListener("resize", this.checkStickyBlocks);
   },
   methods: {
     checkStickyBlocks() {
-      this.shouldShowStickyBlocks = !this.asideNavValue || !Tools.isBelowBreakpoint('lg');
-    },
+      this.shouldShowStickyBlocks = !this.asideNavValue || !Tools.isBelowBreakpoint("lg");
+    }
   },
   computed: {
     contentWidth() {
       return [
-        'richtext full-width',
-        this.asideNavValue ? 'content-grid--side-bar' : 'content-grid',
-        this.post?.meta?.maxContent === true ? 'richtext--full-width' : null,
+        "richtext full-width",
+        this.asideNavValue ? "content-grid--side-bar" : "content-grid",
+        this.post?.meta?.maxContent === true ? "richtext--full-width" : null
       ];
     },
     tagsWidth() {
-      return this.asideNavValue ? 'full-width content-grid--side-bar' : null;
+      return this.asideNavValue ? "full-width content-grid--side-bar" : null;
     },
     stickyOffsetTop() {
       return this.asideNavValue ? 124 : 100;
@@ -161,13 +156,12 @@ export default {
     },
     enhancedPost() {
       if (!this.normalizedPost) return null;
-
       return {
         ...this.normalizedPost,
         body: {
           ...this.normalizedPost.body,
-          value: Tools.applyKramdownAttrs(this.normalizedPost.body.value),
-        },
+          value: Tools.applyKramdownAttrs(this.normalizedPost.body.value)
+        }
       };
     },
     normalizedPost() {
@@ -175,54 +169,51 @@ export default {
     },
     avatars() {
       const authors = this.normalizedPost?.author;
-
       return authors.filter((person) => this.authors && this.authors[person]?.avatar);
     },
     blogImagePath() {
       return Tools.blogImagePath;
     },
     formattedDate() {
-      if (!this.normalizedPost?.date) return '';
-
+      if (!this.normalizedPost?.date) return "";
       const date = new Date(this.normalizedPost.date);
-
-      return date.toLocaleDateString('de-DE', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
+      return date.toLocaleDateString("de-DE", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric"
       });
     },
     formattedDateXml() {
-      if (!this.normalizedPost?.date) return '';
-
+      if (!this.normalizedPost?.date) return "";
       const date = new Date(this.normalizedPost.date);
       return date.toISOString();
-    },
+    }
   },
   props: {
     post: {
       type: Object,
-      required: true,
+      required: true
     },
     shareUrl: {
       type: String,
-      default: '',
+      default: ""
     },
     noHeader: {
       type: Boolean,
-      default: false,
+      default: false
     },
     noTags: {
       type: Boolean,
-      default: false,
+      default: false
     },
     isTechArticle: {
       type: Boolean,
-      default: false,
-    },
-  },
+      default: false
+    }
+  }
 };
 </script>
+
 <style>
 .post,
 .post-detail {
@@ -420,9 +411,6 @@ export default {
 }
 
 .post__sticky-excerpt {
-  padding-top: 0.75rem;
-}
-.post__sticky-excerpt {
   font-size: 1.25rem;
   line-height: 1.6em;
 }
@@ -443,6 +431,9 @@ export default {
 }
 .post__sticky-excerpt strong {
   font-weight: inherit;
+}
+.post__sticky-excerpt {
+  padding-top: 0.75rem;
 }
 
 .post__title-images {

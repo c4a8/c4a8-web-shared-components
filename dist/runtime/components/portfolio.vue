@@ -20,12 +20,12 @@
   </div>
 </div>
 </template>
+
 <script>
 export default {
-  tagName: 'portfolio',
+  tagName: "portfolio",
   props: {
-    items: Array,
+    items: Array
   }
 };
 </script>
-

@@ -1,6 +1,9 @@
-<template>page detail intro</template>
+<template>
+page detail intro
+</template>
+
 <script>
 export default {
-  name: 'page-detail-intro',
+  name: "page-detail-intro"
 };
 </script>

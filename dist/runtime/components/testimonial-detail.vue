@@ -31,66 +31,63 @@
 
 <script>
 export default {
-  tagName: 'testimonials-detail',
+  tagName: "testimonials-detail",
   props: {
     detailColor: {
       type: String,
-      default: '--color-testimonials',
+      default: "--color-testimonials"
     },
     title: {
       type: String,
-      default: '',
+      default: ""
     },
     name: {
       type: String,
-      default: '',
+      default: ""
     },
     location: {
       type: String,
-      default: '',
+      default: ""
     },
     light: {
       type: Boolean,
-      default: false,
+      default: false
     },
     headlineLevel: {
       type: String,
-      default: 'h1',
+      default: "h1"
     },
     headlineClasses: {
       type: String,
-      default: 'h2-font-size bold',
+      default: "h2-font-size bold"
     },
     introText: {
       type: String,
-      default: '',
+      default: ""
     },
     description: {
       type: String,
-      default: '',
+      default: ""
     },
     image: {
       type: Object,
-      default: () => ({ img: '', alt: '' }),
+      default: () => ({ img: "", alt: "" })
     },
     body: {
       type: Object,
-      default: null,
-    },
+      default: null
+    }
   },
   computed: {
     computedName() {
-      return this.name.replace(/ /g, '<br/>');
+      return this.name.replace(/ /g, "<br/>");
     },
     computedSubline() {
       if (this.title) {
         return `${this.title} | ${this.location}`;
       }
       return this.title;
-    },
-  },
+    }
+  }
 };
 </script>
-<style>
-
-</style>

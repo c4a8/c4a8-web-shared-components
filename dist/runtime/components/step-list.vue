@@ -86,75 +86,73 @@
     </div>
   </div>
 </template>
-<script>
-import UtilityAnimation from '../utils/utility-animation.js';
 
+<script>
+import UtilityAnimation from "../utils/utility-animation.js";
 export default {
-  tagName: 'step-list',
+  tagName: "step-list",
   props: {
     background: {
       type: String,
-      default: 'var(--color-primary-accent)',
+      default: "var(--color-primary-accent)"
     },
     color: {
       type: String,
-      default: 'var(--color-copy-light)',
+      default: "var(--color-copy-light)"
     },
     accentColor: String,
     accentLightText: {
       type: Boolean,
-      default: false,
+      default: false
     },
     headline: {
       type: Object,
-      default: null,
+      default: null
     },
     subline: {
       type: String,
-      default: '',
+      default: ""
     },
     list: {
       type: Array,
-      required: true,
+      required: true
     },
     variant: {
       type: String,
-      default: null,
+      default: null
     },
     sticky: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   mounted() {
     if (!this.$refs.root) return;
-
     UtilityAnimation.init([this.$refs.root]);
-
     if (this.accentColor) {
-      this.$refs.root.style.setProperty('--color-step-list-highlight', this.accentColor);
+      this.$refs.root.style.setProperty("--color-step-list-highlight", this.accentColor);
     }
-
     this.$refs.root.style.setProperty(
-      '--color-step-list-highlight-copy',
-      this.accentLightText ? 'var(--color-copy-light)' : 'var(--color-step-list-override-copy, var(--color-copy))'
+      "--color-step-list-highlight-copy",
+      this.accentLightText ? "var(--color-copy-light)" : "var(--color-step-list-override-copy, var(--color-copy))"
     );
   },
   methods: {
     animationIndex(index, isIcon = false) {
       return index * 2 + (isIcon ? 2 : 1);
-    },
-  },
+    }
+  }
 };
 </script>
+
 <style>
+.step-list [data-utility-animation-step].is-starting {
+  animation-delay: calc(var(--utility-animation-index) * 100ms + 200ms);
+}
 .step-list {
   padding: 6rem 0;
   background-color: var(--step-list-background);
   color: var(--step-list-color);
-}
-.step-list [data-utility-animation-step].is-starting {
-  animation-delay: calc(var(--utility-animation-index) * 100ms + 200ms);
 }
 .step-list [data-utility-animation-step].is-starting.step-list__header {
   animation-delay: calc(var(--utility-animation-index) * 100ms);
@@ -240,10 +238,6 @@ export default {
   display: none;
 }
 .step-list.step-list--small .step-list__title--no-default {
-  display: block;
-  margin-bottom: 1rem;
-}
-.step-list.step-list--small .step-list__title--no-default {
   font-size: 1.5rem;
   line-height: 1.4165em;
   font-weight: normal;
@@ -265,6 +259,10 @@ export default {
 }
 .step-list.step-list--small .step-list__title--no-default strong {
   font-weight: inherit;
+}
+.step-list.step-list--small .step-list__title--no-default {
+  display: block;
+  margin-bottom: 1rem;
 }
 @media (min-width: 992px) {
   .step-list .step-list__list {

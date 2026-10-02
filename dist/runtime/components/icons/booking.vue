@@ -51,24 +51,25 @@
     </defs>
   </svg>
 </template>
+
 <script>
 export default {
-  tagName: 'booking',
+  tagName: "booking",
   computed: {
     style() {
       return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale)); stroke-linecap: round; stroke-linejoin: round;`;
     },
     strokeWidthValue() {
       return this.strokeWidth / 2;
-    },
+    }
   },
   props: {
     settings: Object,
     color: String,
     strokeWidth: {
       type: Number,
-      default: 4,
-    },
-  },
+      default: 4
+    }
+  }
 };
 </script>

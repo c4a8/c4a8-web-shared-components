@@ -59,31 +59,28 @@
 </template>
 
 <script>
-import Tools from '../utils/tools.js';
-
+import Tools from "../utils/tools.js";
 export default {
-  tagName: 'highlight-teaser',
+  tagName: "highlight-teaser",
   data() {
     return {
       index: 0,
       lastIndex: 0,
-      inAnimation: false,
+      inAnimation: false
     };
   },
   computed: {
     classList() {
       return [
-        'highlight-teaser',
+        "highlight-teaser",
         this.spacing,
-        'vue-component',
-        this.rightDirection ? 'highlight-teaser--right-direction' : '',
-        this.reducedAnimationValue ? 'highlight-teaser--reduce-animation' : '',
+        "vue-component",
+        this.rightDirection ? "highlight-teaser--right-direction" : "",
+        this.reducedAnimationValue ? "highlight-teaser--reduce-animation" : ""
       ];
     },
     style() {
-      return `--highlight-teaser-animation-color: ${
-        typeof this.animationColor !== 'undefined' ? this.animationColor : 'var(--color-primary)'
-      };`;
+      return `--highlight-teaser-animation-color: ${typeof this.animationColor !== "undefined" ? this.animationColor : "var(--color-primary)"};`;
     },
     reducedAnimationValue() {
       return Tools.isTrue(this.reduceAnimation);
@@ -92,7 +89,6 @@ export default {
       const defaultLimit = 3;
       const radix = 10;
       const limit = parseInt(this.limit, radix);
-
       return limit > 0 ? limit : defaultLimit;
     },
     isFirstEntry() {
@@ -124,7 +120,7 @@ export default {
         dots: false,
         centerMode: false,
         fade: true,
-        dotsClass: 'slick-pagination is-default',
+        dotsClass: "slick-pagination is-default",
         arrows: false,
         responsive: [
           {
@@ -132,31 +128,31 @@ export default {
             settings: {
               centerMode: true,
               infinite: false,
-              centerPadding: '30px',
+              centerPadding: "30px",
               slidesToShow: 1,
               slidesToScroll: 1,
               dots: false,
-              fade: false,
-            },
+              fade: false
+            }
           },
           {
             breakpoint: 576,
             settings: {
               centerMode: true,
               infinite: false,
-              centerPadding: '20px',
+              centerPadding: "20px",
               slidesToShow: 1,
               slidesToScroll: 1,
               dots: false,
-              fade: false,
-            },
-          },
-        ],
+              fade: false
+            }
+          }
+        ]
       };
     },
     rightDirection() {
       return !this.lastIndex || this.lastIndex < this.index;
-    },
+    }
   },
   methods: {
     handleTransitionsEnd() {
@@ -164,47 +160,39 @@ export default {
     },
     next() {
       if (this.isLastEntry) return;
-
       this.switchSlide(true);
     },
     prev() {
       if (this.isFirstEntry) return;
-
       this.switchSlide(false);
     },
     switchSlide(next) {
       const container = this.$refs.container;
-
       if (!container) return;
-
-      const slickCarousel = container.querySelector('.js-slick-carousel');
-
+      const slickCarousel = container.querySelector(".js-slick-carousel");
       if (!slickCarousel) return;
-
       this.lastIndex = this.index;
-
       if (next) {
         this.index++;
       } else {
         this.index--;
       }
-
       this.inAnimation = true;
-
-      $(slickCarousel).slick('slickGoTo', this.index);
-    },
+      $(slickCarousel).slick("slickGoTo", this.index);
+    }
   },
   props: {
     entries: Array,
     limit: Number,
     spacing: String,
     reduceAnimation: {
-      default: null,
+      default: null
     },
-    animationColor: String,
-  },
+    animationColor: String
+  }
 };
 </script>
+
 <style>
 .highlight-teaser {
   --highlight-teaser-start-position: 200%;
@@ -340,9 +328,6 @@ export default {
 
 .highlight-teaser__entry {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 1.5s cubic-bezier(0.19, 1, 0.2, 1);
-  display: flex;
-  flex-direction: column;
 }
 .highlight-teaser__entry .is-foreground :is(img, svg, .lottie),
 .highlight-teaser__entry .is-background {
@@ -355,8 +340,15 @@ export default {
   transform: scale(1.025);
   transition-duration: 1.3s;
 }
+.highlight-teaser__entry {
+  transition: box-shadow 1.5s cubic-bezier(0.19, 1, 0.2, 1);
+}
 .highlight-teaser__entry:hover {
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.25);
+}
+.highlight-teaser__entry {
+  display: flex;
+  flex-direction: column;
 }
 
 .highlight-teaser__entry-image .img__picture-wrapper {
@@ -373,8 +365,6 @@ export default {
   font-size: 1.625rem;
   line-height: 1.3847em;
   font-weight: lighter;
-  line-height: 1em;
-  margin-bottom: 1.5rem;
 }
 @media (min-width: 992px) {
   .highlight-teaser__infos-title {
@@ -388,11 +378,14 @@ export default {
     line-height: 1.5em;
   }
 }
+.highlight-teaser__infos-title {
+  line-height: 1em;
+  margin-bottom: 1.5rem;
+}
 
 .highlight-teaser__infos-subline {
   font-size: 1.125rem;
   line-height: 1.6667em;
-  margin-bottom: 1.5rem;
 }
 @media (min-width: 992px) {
   .highlight-teaser__infos-subline {
@@ -405,6 +398,9 @@ export default {
     font-size: 1.25rem;
     line-height: 1.7em;
   }
+}
+.highlight-teaser__infos-subline {
+  margin-bottom: 1.5rem;
 }
 
 .highlight-teaser__overlay-container {

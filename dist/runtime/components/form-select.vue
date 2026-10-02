@@ -7,19 +7,20 @@
     </template>
   </select>
 </template>
+
 <script>
 export default {
-  tagName: 'form-select',
+  tagName: "form-select",
   computed: {
     required() {
-      return this.field?.required ? 'required' : null;
-    },
+      return this.field?.required ? "required" : null;
+    }
   },
   props: {
     options: Array,
     field: Object,
     id: String,
-    name: String,
-  },
+    name: String
+  }
 };
 </script>

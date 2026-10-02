@@ -36,16 +36,17 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
-  tagName: 'feature-grid-item',
+  tagName: "feature-grid-item",
   computed: {
     classList() {
       return [
-        'feature-grid__item mb-3 fade-in-bottom',
-        this.classes !== '' ? this.classes : '',
-        this.centered ? 'is-centered' : '',
-        'vue-component',
+        "feature-grid__item mb-3 fade-in-bottom",
+        this.classes !== "" ? this.classes : "",
+        this.centered ? "is-centered" : "",
+        "vue-component"
       ];
     },
     style() {
@@ -58,12 +59,11 @@ export default {
       return this.item?.title;
     },
     headlineLevel() {
-      return this.item?.level ? this.item.level : 'h3';
+      return this.item?.level ? this.item.level : "h3";
     },
     headlineClasses() {
-      const baseClasses = 'mb-2';
-      const additionalClasses = this.item?.classes ? this.item.classes : 'font-size-2 bold';
-
+      const baseClasses = "mb-2";
+      const additionalClasses = this.item?.classes ? this.item.classes : "font-size-2 bold";
       return `${baseClasses} ${additionalClasses}`;
     },
     description() {
@@ -83,22 +83,21 @@ export default {
     },
     ctaClasses() {
       if (!this.item.cta) return;
-
-      const baseClasses = 'mt-5';
-      const additionalClasses = this.item?.cta.align === 'right' ? `d-flex justify-content-end` : '';
-
+      const baseClasses = "mt-5";
+      const additionalClasses = this.item?.cta.align === "right" ? `d-flex justify-content-end` : "";
       return `${baseClasses} ${additionalClasses}`;
-    },
+    }
   },
   methods: {},
   props: {
     classes: String,
     item: Object,
     index: Number,
-    centered: Boolean,
-  },
+    centered: Boolean
+  }
 };
 </script>
+
 <style>
 ul.dashed li.feature-grid-item__text,
 .feature-grid-item__text {

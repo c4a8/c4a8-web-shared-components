@@ -5,20 +5,19 @@
 </template>
 
 <script>
-import State from '../utils/state.js';
-
+import State from "../utils/state.js";
 export default {
-  name: 'back',
+  name: "back",
   props: {
     classes: {
       type: String,
-      default: '',
-    },
+      default: ""
+    }
   },
   data() {
     return {
       State,
-      canGoBack: false,
+      canGoBack: false
     };
   },
   mounted() {
@@ -28,10 +27,11 @@ export default {
     handleClick(e) {
       e.stopImmediatePropagation();
       window.history.back();
-    },
-  },
+    }
+  }
 };
 </script>
+
 <style>
 .back {
   position: relative;

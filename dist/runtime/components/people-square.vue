@@ -40,38 +40,37 @@
 </template>
 
 <script>
-import { reactive } from 'vue';
-import gsap from 'gsap';
-
+import { reactive } from "vue";
+import gsap from "gsap";
 export default {
-  tagName: 'people-square',
+  tagName: "people-square",
   props: {
     grid: {
       type: Array,
-      required: true,
+      required: true
     },
     width: {
       type: Number,
-      default: 3,
+      default: 3
     },
     height: {
       type: Number,
-      default: 3,
+      default: 3
     },
     absolute: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
-      animatedValues: {},
+      animatedValues: {}
     };
   },
   computed: {
     peopleSquareSize() {
       return 100 / this.width;
-    },
+    }
   },
   methods: {
     isExtended(element) {
@@ -79,32 +78,30 @@ export default {
     },
     getElementStyle(element, index) {
       let colStart, colEnd;
-
-      if (element.colStart !== undefined || element.colEnd !== undefined) {
+      if (element.colStart !== void 0 || element.colEnd !== void 0) {
         colStart = element.colStart;
         colEnd = (element.colEnd || element.colStart) + 1;
       } else {
-        colStart = (index % this.width) + 1;
+        colStart = index % this.width + 1;
         colEnd = colStart;
       }
-
       if (element.rowStart && element.rowEnd) {
         return {
           gridRowStart: element.rowStart,
           gridRowEnd: element.rowEnd + 1,
           gridColumnStart: colStart,
-          gridColumnEnd: colEnd,
+          gridColumnEnd: colEnd
         };
       }
-
       return {};
     },
     numberValue(n) {
       return this.animatedValues[n]?.number || 0;
     },
     playAnimation(n) {
+      if (!this.animatedValues[n]) return;
       gsap.to(this.animatedValues[n], { duration: 0.5, number: Number(n) || 0 });
-    },
+    }
   },
   mounted() {
     this.grid.forEach((element) => {
@@ -112,13 +109,13 @@ export default {
         this.animatedValues[element.number] = reactive({ number: 0 });
       }
     });
-  },
+  }
 };
 </script>
+
 <style>
 .people-square {
   position: relative;
-  margin-bottom: 3.5rem;
 }
 .people-square:before {
   content: "";
@@ -132,6 +129,9 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
+}
+.people-square {
+  margin-bottom: 3.5rem;
 }
 @media (min-width: 992px) {
   .people-square.people-square--absolute {
@@ -168,15 +168,15 @@ export default {
   width: 100%;
   height: auto;
 }
+.safari .people-square__element img,
+.safari .people-square__element picture {
+  object-fit: initial;
+}
 .people-square__element img,
 .people-square__element picture {
   position: absolute;
   object-fit: cover;
   height: 100%;
-}
-.safari .people-square__element img,
-.safari .people-square__element picture {
-  object-fit: initial;
 }
 
 .people-square__background {

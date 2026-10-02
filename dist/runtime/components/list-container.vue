@@ -14,34 +14,29 @@
     <slot-items :items="$slots.default"></slot-items>
   </div>
 </template>
-<script>
-import Tools from '../utils/tools.js';
-import UtilityAnimation from '../utils/utility-animation.js';
 
+<script>
+import Tools from "../utils/tools.js";
+import UtilityAnimation from "../utils/utility-animation.js";
 export default {
-  tagName: 'list-container',
+  tagName: "list-container",
   computed: {
     classValue() {
       return [
-        'list-container vue-component',
-        `${this.spacing ? this.spacing : ''}`,
-        `${this.classes ? this.classes : ''}`,
-        Tools.isTrue(this.headlineSticky) ? 'list-container--headline-sticky has-headline-sticky' : '',
+        "list-container vue-component",
+        `${this.spacing ? this.spacing : ""}`,
+        `${this.classes ? this.classes : ""}`,
+        Tools.isTrue(this.headlineSticky) ? "list-container--headline-sticky has-headline-sticky" : ""
       ];
     },
     colorStyling() {
-      const bgColor = this.bgColor
-        ? `--list-container-bg-color: ${this.bgColor}; background-color: var(--list-container-bg-color);`
-        : '';
-      const headlineColor = this.headlineColor
-        ? `--color-headlines: ${this.headlineColor}; color: ${this.headlineColor}`
-        : '';
+      const bgColor = this.bgColor ? `--list-container-bg-color: ${this.bgColor}; background-color: var(--list-container-bg-color);` : "";
+      const headlineColor = this.headlineColor ? `--color-headlines: ${this.headlineColor}; color: ${this.headlineColor}` : "";
       return [bgColor, headlineColor];
-    },
+    }
   },
   mounted() {
     if (!this.$refs.container) return;
-
     UtilityAnimation.init([this.$refs.container]);
   },
   props: {
@@ -51,12 +46,13 @@ export default {
     bgColor: String,
     headlineColor: String,
     headlineSticky: {
-      default: false,
+      default: false
     },
-    spacing: String,
-  },
+    spacing: String
+  }
 };
 </script>
+
 <style>
 .list-container {
   padding-top: 3.5rem;

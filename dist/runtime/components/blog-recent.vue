@@ -60,43 +60,41 @@
     </SharedContentList>
   </template>
 </template>
+
 <script>
-import Tools from '../utils/tools.js';
-import State from '../utils/state.js';
-import StickyScroller from '../utils/sticky-scroller.js';
-import UtilityAnimation from '../utils/utility-animation.js';
-import MarkdownFiles from './markdown-files.vue';
-import useConfig from '../composables/useConfig.js';
-
-import { useNuxtApp } from '#imports';
-
+import Tools from "../utils/tools.js";
+import State from "../utils/state.js";
+import StickyScroller from "../utils/sticky-scroller.js";
+import UtilityAnimation from "../utils/utility-animation.js";
+import MarkdownFiles from "./markdown-files.vue";
+import useConfig from "../composables/useConfig.js";
+import { useNuxtApp } from "#imports";
 export default {
   components: { MarkdownFiles },
-  tagName: 'blog-recent',
+  tagName: "blog-recent",
   data() {
     return {
-      hideData: ['tags', 'footer'],
-      filesValue: [],
+      hideData: ["tags", "footer"],
+      filesValue: []
     };
   },
   setup() {
     const config = useConfig();
-    const strategy = useNuxtApp().$getI18nConfig?.().strategy ?? 'prefix';
-
+    const strategy = useNuxtApp().$getI18nConfig?.().strategy ?? "prefix";
     return {
       config,
-      strategy,
+      strategy
     };
   },
   computed: {
     classList() {
       return [
-        'blog-recent utility-animation utility-animation--percentage-offset',
+        "blog-recent utility-animation utility-animation--percentage-offset",
         `${this.hasBackground}`,
         `${this.skinClass}`,
-        this.hideContainer === true ? '' : this.getSpacing,
-        this.sticky === true ? StickyScroller.rootSelector.substring(1) : '',
-        'vue-component',
+        this.hideContainer === true ? "" : this.getSpacing,
+        this.sticky === true ? StickyScroller.rootSelector.substring(1) : "",
+        "vue-component"
       ];
     },
     showComponent() {
@@ -104,76 +102,69 @@ export default {
     },
     query() {
       let query = {};
-
       const maxItemsToFetch = 15;
-
       query.limit = this.limit;
       query.sort = [{ moment: this.reversed ? 1 : -1 }];
       query.reversed = this.reversed;
-
       if (this.combine === true) {
         query.where = {
-          layout: { IN: ['event', 'post', 'casestudies'] },
+          layout: { IN: ["event", "post", "casestudies"] }
         };
-
-        query.path = 'event-post-casestudies';
+        query.path = "event-post-casestudies";
         query.limit = maxItemsToFetch;
         query.limitEvents = this.limitEvents;
       } else {
         if (this.events === true) {
           query.where = {
-            path: { LIKE: ['/events/%'] },
+            path: { LIKE: ["/events/%"] }
           };
-          query.path = 'events';
+          query.path = "events";
         } else if (this.caseStudies === true) {
           query.where = {
-            path: { LIKE: ['/casestudies/%'] },
+            path: { LIKE: ["/casestudies/%"] }
           };
-          query.path = 'casestudies';
+          query.path = "casestudies";
         } else {
           query.where = {
-            path: { LIKE: ['/posts/%'] },
+            path: { LIKE: ["/posts/%"] }
           };
-          query.path = 'posts';
+          query.path = "posts";
         }
       }
-
       if (this.tag) {
         if (!query.where) {
           query.where = {};
         }
-
         query.where.tags = {
-          LIKE: `%${this.tag}%`,
+          LIKE: `%${this.tag}%`
         };
       }
-
       return query;
     },
     getSpacing() {
-      return this.spacing ? this.spacing : '';
+      return this.spacing ? this.spacing : "";
     },
     hasBackground() {
-      return this.bgColor ? State.HAS_BACKGROUND : '';
+      return this.bgColor ? State.HAS_BACKGROUND : "";
     },
     blogRecentContainerClass() {
       return [
-        'blog-recent__container fade-in-bottom',
-        this.slider === true ? 'js-slick-carousel' : 'row mb-3',
-        'vue-component',
+        "blog-recent__container fade-in-bottom",
+        this.slider === true ? "js-slick-carousel" : "row mb-3",
+        "vue-component"
       ];
     },
     hiddenContainer() {
       return this.slider === false ? this.hideContainer : false;
     },
     skinClass() {
-      return `${this.slider === true ? 'has-slider' : ''}`;
+      return `${this.slider === true ? "has-slider" : ""}`;
     },
     itemClass() {
-      return `${this.slider === true ? 'mb-6 mb-lg-0 blog-recent__slide' : 'col-sm-6 col-lg-4 mb-3 mb-sm-8'}`;
+      return `${this.slider === true ? "mb-6 mb-lg-0 blog-recent__slide" : "col-sm-6 col-lg-4 mb-3 mb-sm-8"}`;
     },
     postsArray() {
-      return typeof this.posts === 'string' ? JSON.parse(this.posts) : this.posts;
+      return typeof this.posts === "string" ? JSON.parse(this.posts) : this.posts;
     },
     carouselOptions() {
       const obj = {
@@ -185,90 +176,81 @@ export default {
         dots: this.filesValue?.length > 3 ? true : false,
         centerMode: false,
         infinite: false,
-        dotsClass: 'slick-pagination is-default',
+        dotsClass: "slick-pagination is-default",
         responsive: [
           {
             breakpoint: 1200,
             settings: {
               slidesToShow: 3,
               slidesToScroll: 3,
-              infinite: false,
-            },
+              infinite: false
+            }
           },
           {
             breakpoint: 992,
             settings: {
               centerMode: true,
               infinite: true,
-              centerPadding: '30px',
+              centerPadding: "30px",
               slidesToShow: 2,
               slidesToScroll: 2,
-              dots: this.filesValue?.length > 2 ? true : false,
-            },
+              dots: this.filesValue?.length > 2 ? true : false
+            }
           },
           {
             breakpoint: 576,
             settings: {
               centerMode: true,
               infinite: false,
-              centerPadding: '20px',
+              centerPadding: "20px",
               slidesToShow: 1,
               slidesToScroll: 1,
-              dots: this.filesValue?.length > 1 ? true : false,
-            },
-          },
-        ],
+              dots: this.filesValue?.length > 1 ? true : false
+            }
+          }
+        ]
       };
-
       return { ...obj, ...this.sliderOptions };
     },
     headlineLevelValue() {
-      return this.headlineLevel ? this.headlineLevel : 'h3';
+      return this.headlineLevel ? this.headlineLevel : "h3";
     },
     headlineClassesValue() {
-      const defaultHeadlineClasses = 'h2-font-size';
-
-      return this.headlineClasses
-        ? Tools.hasFontSizeClass(this.headlineClasses)
-          ? this.headlineClasses
-          : `${defaultHeadlineClasses} ${this.headlineClasses}`
-        : defaultHeadlineClasses;
+      const defaultHeadlineClasses = "h2-font-size";
+      return this.headlineClasses ? Tools.hasFontSizeClass(this.headlineClasses) ? this.headlineClasses : `${defaultHeadlineClasses} ${this.headlineClasses}` : defaultHeadlineClasses;
     },
     sublineClassesValue() {
-      return `blog-recent__subline ${this.sublineClasses ? this.sublineClasses : 'font-size-2'}`;
+      return `blog-recent__subline ${this.sublineClasses ? this.sublineClasses : "font-size-2"}`;
     },
     imgUrl() {
       return Tools.getBlogImgPath(this.config);
-    },
+    }
   },
   watch: {
     filesValue(newValue) {
       if (newValue.length > 0) {
-        if ('requestIdleCallback' in window) {
+        if ("requestIdleCallback" in window) {
           window.requestIdleCallback(() => this.init());
         } else {
           this.$nextTick(() => setTimeout(() => this.init(), 50));
         }
       }
-    },
+    }
   },
   methods: {
     init() {
       if (!this.$refs.container || !this.$refs.root) return;
-
       Tools.initSlickSlider(this.$refs.container, this.carouselOptions);
-
       if (this.sticky) {
         StickyScroller.init([this.$refs.root]);
       }
-
       UtilityAnimation.init([this.$refs.root]);
     },
     event(post) {
-      return post.layout === 'post' ? false : true;
+      return post.layout === "post" ? false : true;
     },
     blogTitleUrl(post) {
-      if (post.layout === 'casestudies') {
+      if (post.layout === "casestudies") {
         return post.hero?.v2 ? post.hero.shape.img : post.hero.background.img;
       } else if (post.image?.img) {
         return post.image.img;
@@ -277,11 +259,10 @@ export default {
       }
     },
     target(post) {
-      return post.external || post.cta?.external ? '_blank' : '_self';
+      return post.external || post.cta?.external ? "_blank" : "_self";
     },
     postUrl(post) {
       let url = post?.cta?.href || post.url;
-
       return url;
     },
     excerpt(post) {
@@ -289,16 +270,14 @@ export default {
     },
     updateFiles(files) {
       if (!files || files.length === 0) return false;
-
       this.filesValue = files;
-
       return true;
-    },
+    }
   },
   props: {
     bgColor: {
       type: String,
-      default: 'var(--color-gk-light-blue)',
+      default: "var(--color-gk-light-blue)"
     },
     dataAuthors: Object,
     headline: String,
@@ -309,25 +288,25 @@ export default {
     spacing: String,
     posts: {
       type: [Array, String],
-      default: [],
+      default: []
     },
     cta: {
-      default: null,
+      default: null
     },
     hideContainer: {
-      default: false,
+      default: false
     },
     limitEvents: Number,
     limit: {
       type: Number,
-      default: 3,
+      default: 3
     },
     slider: {
-      default: null,
+      default: null
     },
     sliderOptions: Object,
     sticky: {
-      default: null,
+      default: null
     },
     events: Boolean,
     combine: Boolean,
@@ -335,11 +314,12 @@ export default {
     reversed: Boolean,
     tag: {
       type: String,
-      default: null,
-    },
-  },
+      default: null
+    }
+  }
 };
 </script>
+
 <style>
 .blog-recent {
   position: relative;

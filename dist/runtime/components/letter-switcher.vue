@@ -61,48 +61,46 @@
     </div>
   </div>
 </template>
-<script>
-import State from '../utils/state.js';
-import Tools from '../utils/tools.js';
-import Events from '../utils/events.js';
 
+<script>
+import State from "../utils/state.js";
+import Tools from "../utils/tools.js";
+import Events from "../utils/events.js";
 export default {
-  tagName: 'letter-switcher',
+  tagName: "letter-switcher",
   data() {
     return {
       show: false,
       end: false,
-      overline: '',
+      overline: "",
       endDelay: 3400,
       startDelay: 900,
-      isLower: null,
+      isLower: null
     };
   },
   computed: {
     classList() {
-      return ['letter-switcher', `${this.show ? State.SHOW : ''}`, `${this.end ? State.END : ''}`, 'vue-component'];
+      return ["letter-switcher", `${this.show ? State.SHOW : ""}`, `${this.end ? State.END : ""}`, "vue-component"];
     },
     fontSize() {
-      return this.isLower ? 'font-size-5' : 'font-size-6 bold';
+      return this.isLower ? "font-size-5" : "font-size-6 bold";
     },
     letterSwitchEndClassList() {
-      return ['letter-switcher__end-animation', this.fontSize];
+      return ["letter-switcher__end-animation", this.fontSize];
     },
     letterSwitchAnimationClassList() {
       return [
-        'letter-switcher__animation',
+        "letter-switcher__animation",
         this.fontSize,
-        'justify-content-center',
-        `${this.isLower ? 'flex-column' : ''}`,
+        "justify-content-center",
+        `${this.isLower ? "flex-column" : ""}`
       ];
-    },
+    }
   },
   mounted() {
     this.overline = this.overlineStart;
     this.isLower = this.isLowerBreakpoint();
-
     this.bindEvents();
-
     setTimeout(() => {
       this.setHeight();
       this.startAnimation();
@@ -110,7 +108,7 @@ export default {
   },
   methods: {
     bindEvents() {
-      window.addEventListener('resize', () => {
+      window.addEventListener("resize", () => {
         this.handleResize();
       });
     },
@@ -119,75 +117,61 @@ export default {
       this.setHeight();
     },
     isLowerBreakpoint() {
-      return Tools.isBelowBreakpoint('sm');
+      return Tools.isBelowBreakpoint("sm");
     },
     setHeight() {
       this.show = false;
-
-      const animation = this.$refs['animation'];
-
+      const animation = this.$refs["animation"];
       if (!animation) return;
-
-      const letter = animation.querySelector('.letter-switcher__letter');
+      const letter = animation.querySelector(".letter-switcher__letter");
       const newHeight = this.isLower ? letter.offsetHeight * 2 : letter.offsetHeight;
-
-      animation.style.height = newHeight + 'px';
-
+      animation.style.height = newHeight + "px";
       this.show = true;
     },
     startAnimation() {
       const delay = 0.3;
       const letterDelay = 0.07;
-
-      [].forEach.call(this.$refs['root'].querySelectorAll('.letter-switcher__group'), (group, index) => {
+      [].forEach.call(this.$refs["root"].querySelectorAll(".letter-switcher__group"), (group, index) => {
         const stepDelay = index * delay;
         const duration = letterDelay * group.children.length;
-
         group.style.animation = `letter-switcher ${duration}s ${stepDelay}s ease-out forwards`;
       });
-
       setTimeout(() => {
         this.end = true;
         this.switchOverline(this.showEndAnimation);
       }, this.endDelay);
     },
     showEndAnimation() {
-      const endText = this.$refs['end-text'];
-      const end = this.$refs['end'];
-
+      const endText = this.$refs["end-text"];
+      const end = this.$refs["end"];
       if (!endText || !end) return this.emitEnded();
-
-      endText.style.width = '0px';
+      endText.style.width = "0px";
       end.classList.remove(State.COLLAPSED);
-
       this.emitEnded();
     },
     switchOverline(callback) {
-      const overline = this.$refs['overline'];
-
+      const overline = this.$refs["overline"];
       if (!overline) return;
-
-      overline.addEventListener('transitionend', () => {
+      overline.addEventListener("transitionend", () => {
         this.overline = this.overlineEnd;
         overline.style.opacity = 1;
-
         callback();
       });
-
       overline.style.opacity = 0;
     },
     emitEnded() {
       this.$emit(Events.ENDED);
-    },
+    }
   },
   props: {
     textStart: String,
     textEnd: String,
     overlineStart: String,
-    overlineEnd: String,
-  },
+    overlineEnd: String
+  }
 };
 </script>
+
 <style>
 .letter-switcher {
   text-align: center;

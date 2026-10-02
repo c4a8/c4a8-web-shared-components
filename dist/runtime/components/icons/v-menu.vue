@@ -253,15 +253,16 @@
     </line>
   </svg>
 </template>
+
 <script>
 export default {
-  tagName: 'v-menu',
+  tagName: "v-menu",
   computed: {
     strokeWidth() {
       return 2;
     },
     effectiveKeySplines() {
-      return '0.19 1 0.2 1';
+      return "0.19 1 0.2 1";
     },
     style() {
       return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
@@ -270,48 +271,48 @@ export default {
       return {
         line1: {
           from: {
-            x1: '8.5',
-            x2: '44.5',
-            y1: '5.5',
-            y2: '5.5',
+            x1: "8.5",
+            x2: "44.5",
+            y1: "5.5",
+            y2: "5.5"
           },
           to: {
-            x1: '13',
-            x2: '38.4558',
-            y1: '31.8787',
-            y2: '6.42284',
-          },
+            x1: "13",
+            x2: "38.4558",
+            y1: "31.8787",
+            y2: "6.42284"
+          }
         },
         line2: {
           from: {
-            x1: '8.5',
-            x2: '44.5',
-            y1: '25.5',
-            y2: '25.5',
+            x1: "8.5",
+            x2: "44.5",
+            y1: "25.5",
+            y2: "25.5"
           },
           to: {
-            x1: '15.1213',
-            x2: '40.5772',
-            y1: '6',
-            y2: '31.4558',
-          },
+            x1: "15.1213",
+            x2: "40.5772",
+            y1: "6",
+            y2: "31.4558"
+          }
         },
         line3: {
           from: {
-            x1: '19.5',
-            x2: '44.5',
-            y1: '15.5',
-            y2: '15.5',
+            x1: "19.5",
+            x2: "44.5",
+            y1: "15.5",
+            y2: "15.5"
           },
           to: {
-            x1: '19.5',
-            x2: '19.5',
-            y1: '15.5',
-            y2: '15.5',
-          },
-        },
+            x1: "19.5",
+            x2: "19.5",
+            y1: "15.5",
+            y2: "15.5"
+          }
+        }
       };
-    },
+    }
   },
   updated() {
     this.animateLines(this.closed);
@@ -322,42 +323,37 @@ export default {
   methods: {
     animateLines(mode, start) {
       const animations = [];
-
-      this.$refs['svg'].querySelectorAll('animate').forEach((animation) => {
-        if ((mode && animation.classList.contains('closed')) || (!mode && !animation.classList.contains('closed'))) {
+      this.$refs["svg"].querySelectorAll("animate").forEach((animation) => {
+        if (mode && animation.classList.contains("closed") || !mode && !animation.classList.contains("closed")) {
           animations.push(animation);
         }
       });
-
       if (!start) {
         animations.forEach((animation) => {
-          const attributeName = animation.getAttribute('attributeName');
-          const fromValue = mode ? animation.getAttribute('to') : animation.getAttribute('from');
-          const targetLine = animation.closest('line');
-
+          const attributeName = animation.getAttribute("attributeName");
+          const fromValue = mode ? animation.getAttribute("to") : animation.getAttribute("from");
+          const targetLine = animation.closest("line");
           targetLine.setAttribute(attributeName, fromValue);
         });
       }
-
-      const animationFunction = start ? 'beginElementAt' : 'beginElement';
+      const animationFunction = start ? "beginElementAt" : "beginElement";
       const animationOffset = start ? -10 : 0;
-
       animations.forEach((animation) => {
         animation[animationFunction](animationOffset);
       });
-    },
+    }
   },
   props: {
     settings: Object,
     color: String,
-    closed: Boolean,
+    closed: Boolean
   },
   data() {
     return {
-      duration: '0.55s',
-      begin: 'indefinite',
-      keyTimes: '0;1',
+      duration: "0.55s",
+      begin: "indefinite",
+      keyTimes: "0;1"
     };
-  },
+  }
 };
 </script>

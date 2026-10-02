@@ -35,24 +35,22 @@
   </div>
   <div v-else><headline>Author not found</headline></div>
 </template>
+
 <script>
-import { useI18n } from '#imports';
-
-import { useAppStore } from '../stores/app';
-
+import { useI18n } from "#imports";
+import { useAppStore } from "../stores/app";
 export default {
-  tagName: 'author',
+  tagName: "author",
   data() {
     return {
       sortBy: {
-        moment: -1,
-      },
+        moment: -1
+      }
     };
   },
   setup() {
     const { $getLocale } = useI18n();
     const store = useAppStore();
-
     return { locale: $getLocale(), store };
   },
   computed: {
@@ -60,24 +58,20 @@ export default {
       return this.posts?.length || 0;
     },
     introText() {
-      if (this.locale === 'de') return this.person?.description;
-
-      const fallbackLocale = 'en';
+      if (this.locale === "de") return this.person?.description;
+      const fallbackLocale = "en";
       let description = this.person?.otherLanguages[this.locale];
-
       if (description) return description;
-
       description = this.person?.otherLanguages[fallbackLocale];
-
       return description;
     },
     intro() {
       return {
-        body: { type: 'minimal', value: [this.introText] },
+        body: { type: "minimal", value: [this.introText] }
       };
     },
     imageUrl() {
-      return this.personData ? '' + this.personData?.avatar : '';
+      return this.personData ? "" + this.personData?.avatar : "";
     },
     hasSocials() {
       return this.personData?.socials;
@@ -85,35 +79,36 @@ export default {
     servicesData() {
       return {
         author: this.personData,
-        title: this.person.title,
+        title: this.person.title
       };
     },
     showSocials() {
       return this.personData?.twitter || this.personData?.linkedin;
-    },
+    }
   },
   mounted() {
     this.store.setPageIsLoaded(true);
   },
   props: {
     person: {
-      type: Object,
+      type: Object
     },
     personData: {
-      type: Object,
+      type: Object
     },
     posts: {
-      type: Array,
+      type: Array
     },
     events: {
-      type: Array,
+      type: Array
     },
     dataAuthors: {
-      type: Object,
-    },
-  },
+      type: Object
+    }
+  }
 };
 </script>
+
 <style scoped>
 .author__posts-list {
   width: 100%;

@@ -7,12 +7,12 @@
 
 <script>
 export default {
-  tagName: 'content',
+  tagName: "content",
   props: {
     classes: {
       type: String,
-      default: null,
-    },
-  },
+      default: null
+    }
+  }
 };
 </script>

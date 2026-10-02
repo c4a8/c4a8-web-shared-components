@@ -47,9 +47,10 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
-  tagName: 'location-section',
+  tagName: "location-section",
   props: {
     classes: String,
     overline: String,
@@ -63,21 +64,21 @@ export default {
     images: Array,
     backgroundColor: {
       type: String,
-      default: 'transparent',
-    },
+      default: "transparent"
+    }
   },
   computed: {
     imgSrcSets() {
       return {
         srcSets: [
           {
-            params: 'c_fill,ar_16:10',
-          },
-        ],
+            params: "c_fill,ar_16:10"
+          }
+        ]
       };
     },
     classList() {
-      return this.classes ? this.classes : 'mb-5 pb-11';
+      return this.classes ? this.classes : "mb-5 pb-11";
     },
     sliderImages() {
       if (!this.images || this.images.length === 0) return [];
@@ -95,32 +96,33 @@ export default {
         hideBackground: true,
         options: {
           navigation: true,
-          controlsClass: 'slider__controls--full-width',
+          controlsClass: "slider__controls--full-width",
           loop: true,
           breakpoints: {
             320: {
               slidesPerView: 1.5,
-              spaceBetween: 10,
+              spaceBetween: 10
             },
             576: {
               slidesPerView: 1.5,
-              spaceBetween: 10,
+              spaceBetween: 10
             },
             992: {
               slidesPerView: 2.5,
-              spaceBetween: 10,
+              spaceBetween: 10
             },
             1200: {
               slidesPerView: 4,
-              spaceBetween: 20,
-            },
-          },
-        },
+              spaceBetween: 20
+            }
+          }
+        }
       };
-    },
-  },
+    }
+  }
 };
 </script>
+
 <style>
 .location-section__slider-image-wrapper{aspect-ratio:4/3}.location-section__slider-image{height:100%;-o-object-fit:cover;object-fit:cover;width:100%}
 </style>

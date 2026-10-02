@@ -5,17 +5,18 @@
     />
   </svg>
 </template>
+
 <script>
 export default {
-  tagName: 'quote',
+  tagName: "quote",
   computed: {
     style() {
       return `fill: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
-    },
+    }
   },
   props: {
     settings: Object,
-    color: String,
-  },
+    color: String
+  }
 };
 </script>

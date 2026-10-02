@@ -8,21 +8,23 @@
     </aside>
   </div>
 </template>
+
 <script>
 export default {
-  tagName: 'aside-wrapper',
+  tagName: "aside-wrapper",
   components: {
-    'aside-scope': {
+    "aside-scope": {
       provide: { proseImgMaxWidth: 700 },
       render() {
         return this.$slots.default?.();
-      },
-    },
+      }
+    }
   },
   methods: {},
-  props: {},
+  props: {}
 };
 </script>
+
 <style scoped>
 .aside-wrapper {
   display: flex;

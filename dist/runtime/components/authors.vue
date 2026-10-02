@@ -19,38 +19,36 @@
     </span>
   </template>
 </template>
+
 <script>
-import Tools from '../utils/tools.js';
-
-import { useI18n } from '#imports';
-
+import Tools from "../utils/tools.js";
+import { useI18n } from "#imports";
 export default {
-  tagName: 'authors',
+  tagName: "authors",
   setup() {
     const { $getLocale } = useI18n();
-
     return { locale: $getLocale() };
   },
   computed: {
     classList() {
       return [
-        'authors',
-        `${Tools.isTrue(this.noLink) === true ? 'authors authors--no-link' : 'authors'}`,
-        'vue-component',
+        "authors",
+        `${Tools.isTrue(this.noLink) === true ? "authors authors--no-link" : "authors"}`,
+        "vue-component"
       ];
     },
     seperator() {
-      return this.noLink ? ' &' : ',';
+      return this.noLink ? " &" : ",";
     },
     authorArray() {
-      return typeof this.authorsList === 'object' ? this.authorsList : [this.authorsList];
+      return typeof this.authorsList === "object" ? this.authorsList : [this.authorsList];
     },
     hasDataAndAuthors() {
       return this.authorArray && this.dataAuthors;
     },
     langValue() {
       return this.lang ? this.lang : this.locale;
-    },
+    }
   },
   methods: {
     authorsSeperator(array, element) {
@@ -62,26 +60,25 @@ export default {
       }
     },
     authorLink(author) {
-      return this.dataAuthors?.hasOwnProperty(author)
-        ? `/${this.langValue}${this.dataAuthors[author].permalink}`
-        : null;
-    },
+      return this.dataAuthors?.hasOwnProperty(author) ? `/${this.langValue}${this.dataAuthors[author].permalink}` : null;
+    }
   },
   props: {
     authorsList: Array,
     noLink: {
-      default: null,
+      default: null
     },
     dataLang: {
-      default: 'de',
+      default: "de"
     },
     dataAuthors: {
-      default: null,
+      default: null
     },
-    lang: String,
-  },
+    lang: String
+  }
 };
 </script>
+
 <style>
 .authors {
   color: var(--color-copy-reduced);

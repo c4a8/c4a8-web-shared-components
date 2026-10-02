@@ -28,30 +28,27 @@
     </div>
   </div>
 </template>
+
 <script>
-import Tools from '../utils/tools.js';
-import UtilityAnimation from '../utils/utility-animation.js';
-
-// TODO replace outer container with wrapper when feature "wrapper-background" is finished
-
+import Tools from "../utils/tools.js";
+import UtilityAnimation from "../utils/utility-animation.js";
 export default {
-  tagName: 'grid',
+  tagName: "grid",
   computed: {
     headlineLevelValue() {
-      return this.headlineLevel ? this.headlineLevel : 'h2';
+      return this.headlineLevel ? this.headlineLevel : "h2";
     },
     headlineClassesValue() {
-      return `grid__headline ${this.headlineClasses ? this.headlineClasses : 'h3-font-size'}`;
+      return `grid__headline ${this.headlineClasses ? this.headlineClasses : "h3-font-size"}`;
     },
     style() {
-      const copyColor = Tools.isTrue(this.light) ? 'var(--color-copy-light)' : null;
-
+      const copyColor = Tools.isTrue(this.light) ? "var(--color-copy-light)" : null;
       return {
         backgroundColor: this.bgColor,
-        '--color-copy': copyColor,
-        '--color-headlines': copyColor,
+        "--color-copy": copyColor,
+        "--color-headlines": copyColor
       };
-    },
+    }
   },
   mounted() {
     UtilityAnimation.init([this.$refs.root]);
@@ -59,36 +56,37 @@ export default {
   methods: {
     getItemStyle(index) {
       return UtilityAnimation.getIndexStyle(index);
-    },
+    }
   },
   props: {
     items: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     headline: String,
     headlineLevel: String,
     headlineClasses: String,
     light: {
-      default: false,
+      default: false
     },
-    bgColor: String,
-  },
+    bgColor: String
+  }
 };
 </script>
+
 <style>
-.grid {
-  --grid-spacing: 7.5rem;
-  --grid-border-color: var(--color-gk-mid-blue);
-  color: var(--color-copy);
-  padding: var(--grid-spacing) 0;
-}
 .grid [data-utility-animation-step] {
   --utility-animation-distance: 15%;
 }
 .grid [data-utility-animation-step].is-starting {
   animation-delay: calc(var(--utility-animation-index) * 100ms + 0ms);
   animation-duration: 0.8s;
+}
+.grid {
+  --grid-spacing: 7.5rem;
+  --grid-border-color: var(--color-gk-mid-blue);
+  color: var(--color-copy);
+  padding: var(--grid-spacing) 0;
 }
 .grid .grid__headline {
   margin-bottom: 3.5rem;
@@ -145,8 +143,6 @@ export default {
   font-size: 1.625rem;
   line-height: 1.3847em;
   font-weight: lighter;
-  line-height: 1em;
-  display: block;
 }
 @media (min-width: 992px) {
   .grid__item-title {
@@ -160,10 +156,11 @@ export default {
     line-height: 1.5em;
   }
 }
-
-.grid__item-text {
-  margin-bottom: 2.5rem;
+.grid__item-title {
+  line-height: 1em;
+  display: block;
 }
+
 .grid__item-text {
   font-size: 1.125rem;
   line-height: 1.6667em;
@@ -185,6 +182,9 @@ export default {
 }
 .grid__item-text strong {
   font-weight: inherit;
+}
+.grid__item-text {
+  margin-bottom: 2.5rem;
 }
 
 .grid__item-img,

@@ -21,56 +21,53 @@
 </template>
 
 <script>
-import State from '../utils/state.js';
-import Events from '../utils/events.js';
-import Tools from '../utils/tools.js';
-
+import State from "../utils/state.js";
+import Events from "../utils/events.js";
+import Tools from "../utils/tools.js";
 export default {
-  tagName: 'fab-button',
+  tagName: "fab-button",
   props: {
     icon: {
       type: String,
-      default: 'phone-mail',
+      default: "phone-mail"
     },
     modal: {
       type: Object,
-      default: null,
+      default: null
     },
     noSticky: {
       type: Boolean,
-      default: false,
+      default: false
     },
     bgColor: {
       type: String,
-      default: null,
+      default: null
     },
     iconColor: {
       type: String,
-      default: null,
+      default: null
     },
     trigger: {
       type: [String, Number],
-      default: null,
-    },
+      default: null
+    }
   },
   computed: {
     classList() {
       return [
-        'fab-button',
-        !this.noSticky ? 'fab-button--sticky' : '',
-        this.trigger ? 'fab-button--has-trigger' : '',
+        "fab-button",
+        !this.noSticky ? "fab-button--sticky" : "",
+        this.trigger ? "fab-button--has-trigger" : "",
         { [this.expandedClass]: this.isExpanded },
-        { [this.hasTriggerClass]: this.hasTrigger },
+        { [this.hasTriggerClass]: this.hasTrigger }
       ];
     },
     iconStyle() {
       let style = {};
-
-      if (this.bgColor) style['--color-fab-background'] = this.bgColor;
+      if (this.bgColor) style["--color-fab-background"] = this.bgColor;
       if (this.iconColor) style.color = this.iconColor;
-
       return style;
-    },
+    }
   },
   data() {
     return {
@@ -79,7 +76,7 @@ export default {
       hasTrigger: false,
       expandedClass: State.EXPANDED,
       offScreenClass: State.OFF_SCREEN,
-      hasTriggerClass: 'fab-button--has-trigger',
+      hasTriggerClass: "fab-button--has-trigger"
     };
   },
   mounted() {
@@ -88,9 +85,7 @@ export default {
     this.modalElement = this.$refs.modal;
     this.closeElement = this.$refs.close;
     this.root = this.$refs.root;
-
     this.hasTrigger = this.root.classList.contains(this.hasTriggerClass);
-
     this.init();
   },
   methods: {
@@ -99,37 +94,29 @@ export default {
     },
     bindEvents() {
       if (!this.iconElement || !this.modalElement || this.hasTrigger) return this.bindTriggerEvent();
-
       this.linkElement.forEach((link) => {
-        link.addEventListener('click', this.handleClick);
+        link.addEventListener("click", this.handleClick);
       });
-      this.iconElement.addEventListener('click', this.handleClick);
-      this.closeElement?.addEventListener('click', this.handleClose);
-
+      this.iconElement.addEventListener("click", this.handleClick);
+      this.closeElement?.addEventListener("click", this.handleClose);
       document.addEventListener(Events.FORM_AJAX_SUBMIT, this.handleSubmit);
-      window.addEventListener('click', this.handleOutsideClick);
-
-      this.modalElement.style.opacity = '1';
-      this.modalElement.style.opacity = '';
+      window.addEventListener("click", this.handleOutsideClick);
+      this.modalElement.style.opacity = "1";
+      this.modalElement.style.opacity = "";
     },
     bindTriggerEvent() {
-      this.iconElement.addEventListener('click', this.handleTriggerClick);
+      this.iconElement.addEventListener("click", this.handleTriggerClick);
     },
     handleTriggerClick(e) {
       const target = e.currentTarget;
       const triggerId = target.dataset.triggerId;
-
       document.dispatchEvent(new CustomEvent(Events.OPEN_MODAL, { detail: { id: triggerId } }));
     },
     handleOutsideClick(e) {
-      if (
-        this.root.classList.contains(this.expandedClass) &&
-        Tools.isOutsideOf('fab-button', e) &&
-        Tools.isOutsideOf('fab-trigger', e)
-      ) {
+      if (this.root.classList.contains(this.expandedClass) && Tools.isOutsideOf("fab-button", e) && Tools.isOutsideOf("fab-trigger", e)) {
         this.handleClose();
       }
-      if (!Tools.isOutsideOf('fab-trigger', e)) {
+      if (!Tools.isOutsideOf("fab-trigger", e)) {
         this.handleClick();
       }
     },
@@ -138,11 +125,10 @@ export default {
     },
     handleClose() {
       this.handleClick();
-
       setTimeout(() => {
         document.dispatchEvent(
           new CustomEvent(Events.FAB_BUTTON_CLOSE, {
-            detail: { target: this.root },
+            detail: { target: this.root }
           })
         );
       }, this.resetDelay);
@@ -150,18 +136,18 @@ export default {
     handleClick() {
       this.isExpanded = !this.isExpanded;
       this.modalElement.classList.toggle(this.offScreenClass);
-
       if (this.modalElement.classList.contains(this.offScreenClass)) {
-        this.modalElement.style.opacity = '';
+        this.modalElement.style.opacity = "";
       }
-    },
+    }
   },
   beforeDestroy() {
-    window.removeEventListener('click', this.handleOutsideClick);
+    window.removeEventListener("click", this.handleOutsideClick);
     document.removeEventListener(Events.FORM_AJAX_SUBMIT, this.handleSubmit);
-  },
+  }
 };
 </script>
+
 <style>
 .fab-button {
   z-index: 250;

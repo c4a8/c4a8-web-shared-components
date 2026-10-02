@@ -33,9 +33,10 @@
     </template>
   </div>
 </template>
+
 <script>
 export default {
-  tagName: 'form-radio',
+  tagName: "form-radio",
   computed: {
     otherId() {
       return `${this.idValue}_radio`;
@@ -44,22 +45,22 @@ export default {
       return `${this.radio.id}_radio`;
     },
     required() {
-      return this.radio?.required ? 'required' : null;
+      return this.radio?.required ? "required" : null;
     },
     idValue() {
       return this.id ? this.id : this.radio.id;
-    },
+    }
   },
   props: {
     radio: Object,
     group: String,
     id: String,
-    name: String,
+    name: String
   },
   methods: {
     changed(radio) {
-      this.$emit('action-changed', radio.changeAction || null);
-    },
-  },
+      this.$emit("action-changed", radio.changeAction || null);
+    }
+  }
 };
 </script>

@@ -40,21 +40,21 @@
     </div>
   </div>
 </template>
-<script>
-import UtilityAnimation from '../utils/utility-animation.js';
 
+<script>
+import UtilityAnimation from "../utils/utility-animation.js";
 export default {
-  tagName: 'feature-grid',
+  tagName: "feature-grid",
   props: {
     backgroundColor: {
       type: String,
-      default: 'var(--color-bg-grey)',
+      default: "var(--color-bg-grey)"
     },
     description: String,
     headline: String,
     gridSize: {
       type: Number,
-      default: 4,
+      default: 4
     },
     image: Object,
     features: Array,
@@ -65,32 +65,32 @@ export default {
     headlineRowClasses: String,
     spacing: {
       type: String,
-      default: 'space-top-2',
-    },
+      default: "space-top-2"
+    }
   },
   mounted() {
     if (!this.$refs.root) return;
-
     UtilityAnimation.init([this.$refs.root]);
   },
   computed: {
     columnClass() {
-      return 'col-lg-' + 12 / this.gridSize;
+      return "col-lg-" + 12 / this.gridSize;
     },
     headlineRowClassesValue() {
-      return ['fade-in-bottom', this.headlineRowClasses ? this.headlineRowClasses : null].join(' ');
+      return ["fade-in-bottom", this.headlineRowClasses ? this.headlineRowClasses : null].join(" ");
     },
     containerClasses() {
-      return ['container', this.spacing];
+      return ["container", this.spacing];
     },
     styleObject() {
       return {
-        backgroundColor: this.backgroundColor,
+        backgroundColor: this.backgroundColor
       };
-    },
-  },
+    }
+  }
 };
 </script>
+
 <style>
 .feature-grid [data-utility-animation-step] {
   --utility-animation-distance: 15%;

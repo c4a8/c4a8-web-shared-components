@@ -29,7 +29,7 @@
 
 <script>
 export default {
-  tagName: 'highlight-teaser-infos',
+  tagName: "highlight-teaser-infos",
   data() {
     return {
       isFadingOut: false,
@@ -38,7 +38,7 @@ export default {
       timeout: null,
       timeoutDelay: 1600,
       reducedTimeoutDelay: 700,
-      skipTransitionEnd: false,
+      skipTransitionEnd: false
     };
   },
   computed: {
@@ -56,33 +56,26 @@ export default {
     },
     isLastEntryOrInAnimation() {
       return this.isInAnimation || this.isLastEntry;
-    },
+    }
   },
   mounted() {
     const content = this.$refs.content;
-
     this.currentIndex = this.index;
-
     if (this.reduceAnimation) {
       this.timeoutDelay = this.reducedTimeoutDelay;
     }
-
     if (!content) return;
-
-    content.addEventListener('transitionend', this.handleTransitionEnd);
+    content.addEventListener("transitionend", this.handleTransitionEnd);
   },
   beforeDestroy() {
     const content = this.$refs.content;
-
     if (!content) return;
-
-    content.removeEventListener('transitionend', this.handleTransitionEnd);
+    content.removeEventListener("transitionend", this.handleTransitionEnd);
   },
   methods: {
     emitTransitionEnd() {
       if (!this.isFadingIn && !this.isFadingOut) return;
-
-      this.$emit('transitionsEnd');
+      this.$emit("transitionsEnd");
     },
     resetTransitions() {
       this.isFadingIn = false;
@@ -90,11 +83,9 @@ export default {
     },
     handleTransitionEnd() {
       if (this.skipTransitionEnd) return;
-
       if (this.isFadingOut) {
         this.isFadingOut = false;
         this.isFadingIn = true;
-
         this.currentIndex = this.index;
       } else {
         this.emitTransitionEnd();
@@ -103,7 +94,6 @@ export default {
     },
     resetTranstitionsFallback() {
       window.clearTimeout(this.timeout);
-
       this.timeout = setTimeout(() => {
         this.emitTransitionEnd();
         this.resetTransitions();
@@ -111,28 +101,22 @@ export default {
     },
     update(forced = false) {
       this.resetTransitions();
-
       this.currentIndex = this.lastIndex;
-
       this.$nextTick(() => {
         this.isFadingOut = true;
         this.isFadingIn = false;
-
         this.resetTranstitionsFallback();
-
         if (forced) {
           this.handleTransitionEnd();
         }
       });
-    },
+    }
   },
   watch: {
     index() {
       window.clearTimeout(this.timeout);
-
       if (this.isFadingIn || this.isFadingOut) {
         this.skipTransitionEnd = true;
-
         this.$nextTick(() => {
           this.skipTransitionEnd = false;
           this.update(true);
@@ -140,7 +124,7 @@ export default {
       } else {
         this.update();
       }
-    },
+    }
   },
   props: {
     pagination: Boolean,
@@ -154,7 +138,7 @@ export default {
     next: Function,
     isFirstEntry: Boolean,
     isLastEntry: Boolean,
-    reducedAnimation: Boolean,
-  },
+    reducedAnimation: Boolean
+  }
 };
 </script>

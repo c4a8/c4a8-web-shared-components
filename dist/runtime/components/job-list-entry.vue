@@ -11,10 +11,10 @@
       </div>
     </div>
 </template>
-<script>
-import Tools from '../utils/tools.js';
-import State from '../utils/state.js';
 
+<script>
+import Tools from "../utils/tools.js";
+import State from "../utils/state.js";
 export default {
   tagName: "job-list-entry",
   computed: {
@@ -22,9 +22,9 @@ export default {
       return [
         "job-list__entry",
         `${Tools.isTrue(this.isInvisible) === true ? State.HIDDEN : ""}`,
-        "vue-component",
+        "vue-component"
       ];
-    },
+    }
   },
   props: {
     title: String,
@@ -33,10 +33,9 @@ export default {
     team: String,
     positionType: String,
     isInvisible: {
-      default: null,
+      default: null
     },
-    id: Number,
-  },
-
+    id: Number
+  }
 };
 </script>
