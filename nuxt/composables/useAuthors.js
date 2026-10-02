@@ -69,6 +69,6 @@ export default function useAuthors(names) {
     authors: authors.value?.meta || null,
     pending,
     error,
-    refresh,
+    refresh: () => refresh(),
   };
 }

@@ -27,7 +27,7 @@ export default defineNuxtModule({
     name: 'shared-components',
     configKey: 'sharedComponents',
     compatibility: {
-      nuxt: '>=3.16.1',
+      nuxt: '^3.17.0 || ^4.0.0',
     },
   },
   defaults: {
@@ -99,7 +99,7 @@ export default defineNuxtModule({
     _nuxt.options.vue.compilerOptions.isCustomElement = (tag) =>
       tag.startsWith('swiper-') || prevIsCustomElement?.(tag) || false;
 
-    const runtimeDir = resolve(__dirname, './runtime');
+    const runtimeDir = resolve('./runtime');
 
     const optimizeDeps = [runtimeDir, 'jquery', 'slick-carousel'];
 

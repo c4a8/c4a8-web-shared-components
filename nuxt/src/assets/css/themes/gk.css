@@ -1,5 +1,5 @@
 :root {
-  --site: "gk";
+  --site: 'gk';
   --color-headlines: var(--color-gk-dark-blue);
   --color-copy: var(--color-gk-dark-blue);
   --color-primary: var(--color-gk-light-blue);
@@ -36,7 +36,7 @@
   --color-loading--4: var(--color-gk-orange);
   --color-override-event-copy: var(--color-gk-white);
   --color-override-step-list-copy: var(--color-gk-white);
-  --font-family: "Lato", sans-serif;
+  --font-family: 'Lato', sans-serif;
   --cta-cutoff: 0;
   --cta-normal: 1;
 }
