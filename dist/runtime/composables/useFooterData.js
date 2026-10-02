@@ -1,11 +1,11 @@
 import { useAsyncData, useI18n, useRoute } from '#imports';
 
-const legacyFooterModule = import.meta.glob('~/content/footer.json', { eager: true, import: 'default' });
-const footerConfigModule = import.meta.glob('~/content/footer.config.{js,mjs,ts}', {
+const legacyFooterModule = import.meta.glob('~~/content/footer.json', { eager: true, import: 'default' });
+const footerConfigModule = import.meta.glob('~~/content/footer.config.{js,mjs,ts}', {
   eager: true,
   import: 'footerConfig',
 });
-const localesConfigModule = import.meta.glob('~/locales.config.{js,mjs,ts}', { eager: true });
+const localesConfigModule = import.meta.glob('~~/locales.config.{js,mjs,ts}', { eager: true });
 
 function capitalize(text) {
   return text.charAt(0).toUpperCase() + text.slice(1);

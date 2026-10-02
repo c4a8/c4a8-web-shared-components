@@ -1,11 +1,11 @@
 import { useAsyncData, useI18n, useRoute } from '#imports';
 
-const legacyHeaderModule = import.meta.glob('~/content/header.json', { eager: true, import: 'default' });
-const headerConfigModule = import.meta.glob('~/content/header.config.{js,mjs,ts}', {
+const legacyHeaderModule = import.meta.glob('~~/content/header.json', { eager: true, import: 'default' });
+const headerConfigModule = import.meta.glob('~~/content/header.config.{js,mjs,ts}', {
   eager: true,
   import: 'headerConfig',
 });
-const localesConfigModule = import.meta.glob('~/locales.config.{js,mjs,ts}', { eager: true });
+const localesConfigModule = import.meta.glob('~~/locales.config.{js,mjs,ts}', { eager: true });
 
 function resolveLocalized(field, locale) {
   if (typeof field === 'string') return field;
