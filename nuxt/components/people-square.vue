@@ -103,6 +103,8 @@ export default {
       return this.animatedValues[n]?.number || 0;
     },
     playAnimation(n) {
+      if (!this.animatedValues[n]) return;
+
       gsap.to(this.animatedValues[n], { duration: 0.5, number: Number(n) || 0 });
     },
   },
