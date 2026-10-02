@@ -43,6 +43,11 @@ const module$1 = defineNuxtModule({
     _nuxt.options.sitemap = sitemapOptions;
     await installModule("@nuxtjs/sitemap");
     await installModule("nuxt-schema-org");
+    if (sitemapOptions.autoI18n === false) {
+      _nuxt.hook("nitro:init", (nitro) => {
+        nitro.hooks.hook("prerender:generate", (route) => addSitemapAlternatives(route));
+      });
+    }
     _nuxt.options.vue ||= {};
     _nuxt.options.vue.compilerOptions ||= {};
     const prevIsCustomElement = _nuxt.options.vue.compilerOptions.isCustomElement;
@@ -168,6 +173,18 @@ async function registerSharedI18n(_nuxt, resolve) {
     cwd: layerDir,
     config: { ...base.config, rootDir: layerDir, srcDir: layerDir }
   });
+}
+function addSitemapAlternatives(route) {
+  if (!route._sitemap || typeof route._sitemap !== "object") return;
+  if (!route.fileName?.endsWith(".html") || !route.contents) return;
+  const head = route.contents.split("</head>")[0];
+  const alternatives = [];
+  for (const [tag] of head.matchAll(/<link\b[^>]*>/g)) {
+    const attrs = Object.fromEntries([...tag.matchAll(/([\w-]+)="([^"]*)"/g)].map(([, name, value]) => [name, value]));
+    if (attrs.rel !== "alternate" || !attrs.hreflang || !attrs.href) continue;
+    alternatives.push({ hreflang: attrs.hreflang, href: attrs.href.replace(/&amp;/g, "&") });
+  }
+  if (alternatives.length) route._sitemap.alternatives = alternatives;
 }
 async function writeSecurityTxt(_nuxt, publicDir) {
   const siteUrl = _nuxt.options.site?.url;
