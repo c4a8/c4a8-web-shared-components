@@ -77,6 +77,7 @@ export default {
     return {
       hideData: ['tags', 'footer'],
       filesValue: [],
+      sliderInitialized: false,
     };
   },
   setup() {
@@ -243,18 +244,24 @@ export default {
   },
   watch: {
     filesValue(newValue) {
-      if (newValue.length > 0) {
-        if ('requestIdleCallback' in window) {
-          window.requestIdleCallback(() => this.init());
-        } else {
-          this.$nextTick(() => setTimeout(() => this.init(), 50));
-        }
-      }
+      if (newValue.length > 0) this.scheduleInit();
     },
   },
+  mounted() {
+    if (this.filesValue?.length > 0) this.scheduleInit();
+  },
   methods: {
+    scheduleInit() {
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(() => this.init());
+      } else {
+        this.$nextTick(() => setTimeout(() => this.init(), 50));
+      }
+    },
     init() {
-      if (!this.$refs.container || !this.$refs.root) return;
+      if (!this.$refs.container || !this.$refs.root || this.sliderInitialized) return;
+
+      this.sliderInitialized = true;
 
       Tools.initSlickSlider(this.$refs.container, this.carouselOptions);
 
