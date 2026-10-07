@@ -155,6 +155,13 @@ export default {
     this.noCloudinary = this.getBaseAssetPath();
     this.sizes = DefaultPresets.sizes;
   },
+  mounted() {
+    // A server-rendered img can finish loading before hydration attaches the
+    // @load listener; the event then never fires and srcset/sizes stay empty.
+    if (this.$refs.image?.complete) {
+      this.loadImage(this.hasPictureTag ? this.imgSrcSetImg : undefined);
+    }
+  },
   methods: {
     getSourceSetMedia(srcSet) {
       return srcSet.width ? `(min-width: ${srcSet.width}px)` : srcSet.media;
