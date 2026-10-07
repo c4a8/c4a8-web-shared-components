@@ -33,6 +33,7 @@ export default defineNuxtModule({
   defaults: {
     // TODO add prefix and rename components
     // prefix: 'shared'
+    disablePreloadLinks: true,
   },
   async setup(_options, _nuxt) {
     const { resolve } = createResolver(import.meta.url);
@@ -96,6 +97,14 @@ export default defineNuxtModule({
     if (sitemapOptions.autoI18n === false) {
       _nuxt.hook('nitro:init', (nitro) => {
         nitro.hooks.hook('prerender:generate', (route: any) => addSitemapAlternatives(route));
+      });
+    }
+
+    if (_options.disablePreloadLinks) {
+      _nuxt.hook('build:manifest', (manifest) => {
+        for (const entry of Object.values(manifest)) {
+          entry.preload = false;
+        }
       });
     }
 
