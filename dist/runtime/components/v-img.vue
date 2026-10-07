@@ -52,13 +52,6 @@ import useConfig from '../composables/useConfig.js';
 
 const basePath = 'https://res.cloudinary.com/c4a8/image/upload/';
 
-// TODO use cloudinary tools and remove logic outside this component
-
-/*
- Known Issues:
- - Chrome does not support jp2 type of images. so if you use devtools to emulate ios, cloudinary will render the images as jp2 which fail.
-*/
-
 export default {
   tagName: 'v-img',
   data() {
@@ -156,8 +149,6 @@ export default {
     this.sizes = DefaultPresets.sizes;
   },
   mounted() {
-    // A server-rendered img can finish loading before hydration attaches the
-    // @load listener; the event then never fires and srcset/sizes stay empty.
     if (this.$refs.image?.complete) {
       this.loadImage(this.hasPictureTag ? this.imgSrcSetImg : undefined);
     }
@@ -227,7 +218,6 @@ export default {
 
           this.sizes = preset?.sizes;
 
-          // buildSrcSet reads this.dimensions, so it must be assigned first
           this.dimensions = {
             naturalHeight: height ? height : preset?.fallback_max_width,
             naturalWidth: width ? width : preset?.fallback_max_width,
@@ -299,7 +289,6 @@ export default {
     },
   },
   props: {
-    // TODO handle img src set and correct all the places where it is not used correctly
     imgSrcSets: {
       type: [String, Object],
       default: null,
