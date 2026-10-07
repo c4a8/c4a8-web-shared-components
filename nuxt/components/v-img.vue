@@ -222,14 +222,13 @@ export default {
         const height = img?.naturalHeight;
         const width = img?.naturalWidth;
 
-        let dimensions;
-
         if (!this.isSvg()) {
           const { preset, transformationsString } = this.getSetup();
 
           this.sizes = preset?.sizes;
 
-          dimensions = {
+          // buildSrcSet reads this.dimensions, so it must be assigned first
+          this.dimensions = {
             naturalHeight: height ? height : preset?.fallback_max_width,
             naturalWidth: width ? width : preset?.fallback_max_width,
           };
@@ -238,15 +237,13 @@ export default {
             this.buildSrcSet(preset, transformationsString);
           }
         } else {
-          dimensions = {
+          this.dimensions = {
             naturalHeight: height,
             naturalWidth: width,
           };
 
           this.srcset = null;
         }
-
-        this.dimensions = dimensions;
       };
 
       img.src = link ? link : this.getCloudinaryLinkWithTransformation();
