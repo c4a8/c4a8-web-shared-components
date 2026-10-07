@@ -63,6 +63,7 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
     }, {
         hideData: string[];
         filesValue: never[];
+        sliderInitialized: boolean;
     }, {
         classList(): string[];
         showComponent(): true | {
@@ -175,6 +176,7 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
         sublineClassesValue(): string;
         imgUrl(): any;
     }, {
+        scheduleInit(): void;
         init(): void;
         event(post: any): boolean;
         blogTitleUrl(post: any): any;

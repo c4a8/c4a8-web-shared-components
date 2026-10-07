@@ -6,6 +6,10 @@ declare module '@nuxt/schema' {
         seo?: Record<string, any>;
     }
 }
-declare const _default: _nuxt_schema.NuxtModule<_nuxt_schema.ModuleOptions, _nuxt_schema.ModuleOptions, false>;
+declare const _default: _nuxt_schema.NuxtModule<{
+    disablePreloadLinks: boolean;
+}, {
+    disablePreloadLinks: boolean;
+}, false>;
 
 export { _default as default };
