@@ -25,7 +25,7 @@ export default {
     text: String,
     spacing: {
       type: String,
-      default: 'space-top-3',
+      default: '',
     },
     hasAnimation: Boolean,
     classes: String,

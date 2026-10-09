@@ -7,6 +7,7 @@
       [spacing]: true,
     }"
   >
+    <headline :text="headline" :level="level" class="col mb-8" />
     <div class="event-list__row row col-lg-12">
       <template v-for="(teaserProps, i) in mergedTeasers" :key="i">
         <event-teaser v-bind="teaserProps" />
@@ -19,6 +20,10 @@
 export default {
   name: 'EventList',
   props: {
+    headline: {
+      type: String,
+      default: 'Headline',
+    },
     list: {
       type: Array,
       required: true,
@@ -37,7 +42,7 @@ export default {
     },
     spacing: {
       type: String,
-      default: 'space-bottom-3',
+      default: 'space-top-2 space-bottom-2',
     },
   },
   computed: {

@@ -4,8 +4,8 @@
     :style="{ backgroundColor: iconBlocks.bgColor }"
     v-if="iconBlocks"
   >
-    <div class="container space-2">
-      <div v-if="headline" class="row mt-5 mb-8 px-lg-3 fade-in-bottom" data-utility-animation-step="1">
+    <div class="container">
+      <div v-if="headline" class="row mb-8 fade-in-bottom" data-utility-animation-step="1">
         <div class="col">
           <headline :text="headline" :level="level" />
         </div>
@@ -14,7 +14,7 @@
         <div
           v-for="(item, index) in iconBlocks.items"
           :key="index"
-          :class="[columnClass, 'mb-5', 'mb-md-8', 'fade-in-bottom']"
+          :class="[columnClass, '', '', 'fade-in-bottom']"
           data-utility-animation-step="1"
           :style="{ '--utility-animation-index': index + 1 }"
         >
@@ -52,7 +52,7 @@ export default {
     },
     level: {
       type: String,
-      default: 'h3',
+      default: 'h2',
     },
     classes: {
       type: String,
@@ -64,7 +64,7 @@ export default {
     },
     headline: {
       type: String,
-      default: null,
+      default: '',
     },
     sticky: {
       type: Boolean,
@@ -72,7 +72,7 @@ export default {
     },
     spacing: {
       type: String,
-      default: '',
+      default: 'space-top-2 space-bottom-2',
     },
   },
   computed: {

@@ -1,6 +1,6 @@
 <template>
   <figure :class="classList" ref="root">
-    <div :class="containerClasses">
+    <div class="container">
       <div v-if="headline" class="row mb-9 mt-9">
         <div :class="['col', headlineClasses, 'fade-in-bottom']" data-utility-animation-step="1">
           <headline :text="headline" />
@@ -27,9 +27,6 @@ export default {
     classList() {
       return ['intro-text', 'utility-animation', 'vue-component', this.variant, this.spacing];
     },
-    containerClasses() {
-      return ['container', this.containerSpacing || 'space-lg-2'];
-    },
   },
   mounted() {
     if (!this.$refs.root) return;
@@ -40,10 +37,9 @@ export default {
     copy: String,
     variant: String,
     headline: String,
-    spacing: String,
-    containerSpacing: {
+    spacing: {
       type: String,
-      default: 'space-lg-2',
+      default: 'space-top-2 space-bottom-2',
     },
     headlineClasses: {
       type: String,
@@ -73,7 +69,11 @@ export default {
   background-origin: initial;
   background-clip: initial;
   background-color: initial;
-  background-image: linear-gradient(to bottom, var(--color-highlight-underline) 0%, var(--color-highlight-underline) 100%);
+  background-image: linear-gradient(
+    to bottom,
+    var(--color-highlight-underline) 0%,
+    var(--color-highlight-underline) 100%
+  );
   background-repeat: repeat-x;
 }
 

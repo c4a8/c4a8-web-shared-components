@@ -105,7 +105,7 @@ import UtilityAnimation from '../utils/utility-animation.js';
 export default {
   tagName: 'text-image',
   props: {
-    spacing: { type: String, default: 'space-top-2' },
+    spacing: { type: String, default: 'space-top-2 space-bottom-2' },
     image: String,
     imageClasses: String,
     imagePreset: String,

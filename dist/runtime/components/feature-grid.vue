@@ -1,5 +1,5 @@
 <template>
-  <div class="feature-grid utility-animation py-7" :style="styleObject" ref="root">
+  <div class="feature-grid utility-animation" :style="styleObject" ref="root">
     <div :class="containerClasses">
       <headline-row
         :text="headline"
@@ -9,7 +9,6 @@
         utilityAnimationStep="1"
         :noContainer="true"
         :level="headlineLevel"
-        spacing=""
         v-if="headline"
       ></headline-row>
 
@@ -23,7 +22,7 @@
         <v-img v-bind="image" :img="image.src" class="feature-grid__image" />
       </figure>
 
-      <div class="my-8" v-if="features">
+      <div class="" v-if="features">
         <div class="d-flex flex-wrap">
           <feature-grid-item
             v-for="(feature, index) in features"
@@ -65,7 +64,7 @@ export default {
     headlineRowClasses: String,
     spacing: {
       type: String,
-      default: 'space-top-2',
+      default: 'space-top-2 space-bottom-2',
     },
   },
   mounted() {
@@ -78,7 +77,7 @@ export default {
       return 'col-lg-' + 12 / this.gridSize;
     },
     headlineRowClassesValue() {
-      return ['fade-in-bottom', this.headlineRowClasses ? this.headlineRowClasses : null].join(' ');
+      return ['mb-8 fade-in-bottom', this.headlineRowClasses ? this.headlineRowClasses : null].join(' ');
     },
     containerClasses() {
       return ['container', this.spacing];
