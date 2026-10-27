@@ -41,6 +41,7 @@ declare namespace _default {
         let detailColor: StringConstructor;
         let clientName: StringConstructor;
         let jobId: StringConstructor;
+        let backUrl: StringConstructor;
         let apiUrl: StringConstructor;
         let headlineLevel: StringConstructor;
         let headlineClasses: StringConstructor;
