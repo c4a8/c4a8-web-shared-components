@@ -6,7 +6,7 @@ declare namespace _default {
     function data(): {
         hideData: string[];
         filesValue: never[];
-        isMounted: boolean;
+        initialized: boolean;
     };
     function setup(): {
         config: {};
@@ -94,7 +94,6 @@ declare namespace _default {
     }
     function mounted(): void;
     namespace methods {
-        function scheduleInit(): void;
         function init(): void;
         function event(post: any): boolean;
         function blogTitleUrl(post: any): any;
