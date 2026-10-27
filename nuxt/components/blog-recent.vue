@@ -77,7 +77,7 @@ export default {
     return {
       hideData: ['tags', 'footer'],
       filesValue: [],
-      isMounted: false,
+      initialized: false,
     };
   },
   setup() {
@@ -244,36 +244,29 @@ export default {
   },
   watch: {
     filesValue(newValue) {
-      // Before mount the refs do not exist yet; mounted() schedules the init then.
-      if (newValue.length > 0 && this.isMounted) {
-        this.scheduleInit();
+      if (newValue.length > 0) {
+        if ('requestIdleCallback' in window) {
+          window.requestIdleCallback(() => this.init());
+        } else {
+          this.$nextTick(() => setTimeout(() => this.init(), 50));
+        }
       }
     },
   },
+  // the filesValue watcher can fire during hydration, before the template refs exist —
+  // init() then bails on its ref guard and never retries, leaving the slider
+  // uninitialized and the fade-in elements stuck at opacity 0
   mounted() {
-    // Under a pending <Suspense> (e.g. a page still loading an async component) the
-    // template refs are only set once the boundary resolves, which is also when
-    // mounted() runs. Scheduling from here guarantees init() finds its refs.
-    this.isMounted = true;
-
-    if (this.filesValue.length > 0) {
-      this.scheduleInit();
-    }
+    this.$nextTick(() => this.init());
   },
   methods: {
-    scheduleInit() {
-      if ('requestIdleCallback' in window) {
-        window.requestIdleCallback(() => this.init());
-      } else {
-        this.$nextTick(() => setTimeout(() => this.init(), 50));
-      }
-    },
     init() {
+      if (this.initialized) return;
       if (!this.$refs.container || !this.$refs.root) return;
 
-      if (!this.$refs.container.classList.contains('slick-initialized')) {
-        Tools.initSlickSlider(this.$refs.container, this.carouselOptions);
-      }
+      this.initialized = true;
+
+      Tools.initSlickSlider(this.$refs.container, this.carouselOptions);
 
       if (this.sticky) {
         StickyScroller.init([this.$refs.root]);

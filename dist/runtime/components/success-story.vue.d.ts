@@ -31,26 +31,7 @@ declare namespace _default {
         function successStorySticky(): any;
         function successStorySpacing(): any;
         function successStoryHeadlineClass(): any;
-        function slickOptions(): {
-            rows: number;
-            slidesToShow: number;
-            slidesToScroll: number;
-            prevArrow: string;
-            nextArrow: string;
-            dots: boolean;
-            centerMode: boolean;
-            dotsClass: string;
-            responsive: {
-                breakpoint: number;
-                settings: {
-                    centerMode: boolean;
-                    infinite: boolean;
-                    centerPadding: string;
-                    slidesToShow: number;
-                    slidesToScroll: number;
-                };
-            }[];
-        };
+        function slickOptions(): any;
     }
 }
 export default _default;

@@ -6,6 +6,12 @@ declare namespace _default {
             let _default: string;
             export { _default as default };
         }
+        namespace fallback {
+            let type_1: StringConstructor;
+            export { type_1 as type };
+            let _default_1: string;
+            export { _default_1 as default };
+        }
     }
     function data(): {
         State: {
@@ -41,6 +47,7 @@ declare namespace _default {
             ON_SURFACE: string;
         };
         canGoBack: boolean;
+        hasInternalHistory: boolean;
     };
     function mounted(): void;
     namespace methods {

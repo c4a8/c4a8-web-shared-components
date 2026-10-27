@@ -1,5 +1,11 @@
 # Releases
 
+# Release 0.4.126
+
+- Fixes the recent blog posts slider staying uninitialized and invisible after hydration
+- Adds an option to hide the success story slider dots and keeps its arrows visible in narrow layouts
+- Adds a fallback URL to the back button so the job detail page can navigate back on direct entries
+
 # Release 0.4.125
 
 - Adds an area variant to the team cards with an area label, accent color and CTA
