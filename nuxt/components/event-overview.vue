@@ -2,7 +2,12 @@
   <wrapper :class="classList" ref="root">
     <headline class="event-overview__headline" :text="headline" :level="headlineLevel" v-if="headline" />
     <transition-group name="event-overview__item">
-      <SharedContentList :data-list="eventsValue" :query="query" v-slot="{ list, strategy }" :key="0">
+      <SharedContentList
+        :data-list="hideItemsValue ? (events || []) : eventsValue"
+        :query="query"
+        v-slot="{ list, strategy }"
+        :key="0"
+      >
         <markdown-files
           :list="list"
           v-slot="{ files }"
