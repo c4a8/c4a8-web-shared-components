@@ -116,7 +116,9 @@ export default {
         const raw = item.until || item.moment;
         if (!raw) return false;
 
-        const end = new Date(raw);
+        const end = new Date(
+          typeof raw === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(raw) ? `${raw}T00:00:00` : raw
+        );
         if (isNaN(end)) return false;
 
         end.setHours(23, 59, 59, 999);
