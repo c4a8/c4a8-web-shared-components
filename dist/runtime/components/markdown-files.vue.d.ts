@@ -1,7 +1,7 @@
 declare namespace _default {
     let tagName: string;
     function setup(): {
-        currentLocale: string;
+        currentLocale: any;
     };
     namespace computed {
         function structuredList(): any;
