@@ -1,6 +1,6 @@
 <template>
   <template v-if="showComponent">
-    <SharedContentList :data-list="postsArray" :query="query" v-slot="{ list }">
+    <SharedContentList :data-list="postsArray" :query="query" v-slot="{ list, authors }">
       <template v-if="list">
         <markdown-files
           :list="list"
@@ -36,7 +36,7 @@
                       :author="post.author"
                       :target="target(post)"
                       :event="event(post)"
-                      :dataAuthors="dataAuthorsValue"
+                      :dataAuthors="dataAuthors || authors"
                       :external-language="post.externalLanguage"
                       :excerpt="excerpt(post)"
                     />
@@ -67,28 +67,25 @@ import StickyScroller from '../utils/sticky-scroller.js';
 import UtilityAnimation from '../utils/utility-animation.js';
 import MarkdownFiles from './markdown-files.vue';
 import useConfig from '../composables/useConfig.js';
-import useAuthors from '../composables/useAuthors.js';
 
-import { useI18n } from 'vue-i18n';
+import { useNuxtApp } from '#imports';
 
 export default {
   components: { MarkdownFiles },
   tagName: 'blog-recent',
   data() {
     return {
-      hideData: ['tags'],
+      hideData: ['tags', 'footer'],
       filesValue: [],
-      dataAuthorsValue: null,
+      initialized: false,
     };
   },
   setup() {
     const config = useConfig();
-    const { authors } = useAuthors();
-    const { strategy } = useI18n();
+    const strategy = useNuxtApp().$getI18nConfig?.().strategy ?? 'prefix';
 
     return {
       config,
-      authors,
       strategy,
     };
   },
@@ -109,7 +106,7 @@ export default {
     query() {
       let query = {};
 
-      const maxItemsToFetch = 21;
+      const maxItemsToFetch = 15;
 
       query.limit = this.limit;
       query.sort = [{ moment: this.reversed ? 1 : -1 }];
@@ -256,12 +253,18 @@ export default {
       }
     },
   },
-  created() {
-    this.getDataAuthors();
+  // the filesValue watcher can fire during hydration, before the template refs exist —
+  // init() then bails on its ref guard and never retries, leaving the slider
+  // uninitialized and the fade-in elements stuck at opacity 0
+  mounted() {
+    this.$nextTick(() => this.init());
   },
   methods: {
     init() {
+      if (this.initialized) return;
       if (!this.$refs.container || !this.$refs.root) return;
+
+      this.initialized = true;
 
       Tools.initSlickSlider(this.$refs.container, this.carouselOptions);
 
@@ -270,11 +273,6 @@ export default {
       }
 
       UtilityAnimation.init([this.$refs.root]);
-    },
-    async getDataAuthors() {
-      if (this.dataAuthors) return (this.dataAuthorsValue = this.dataAuthors);
-
-      this.dataAuthorsValue = this.authors;
     },
     event(post) {
       return post.layout === 'post' ? false : true;
@@ -300,7 +298,7 @@ export default {
       return post.excerpt || post.hero?.subline;
     },
     updateFiles(files) {
-      if (!files) return;
+      if (!files || files.length === 0) return false;
 
       this.filesValue = files;
 

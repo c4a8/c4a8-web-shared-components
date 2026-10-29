@@ -9,7 +9,7 @@ declare namespace _default {
         function getUuid(): string;
     }
     function setup(): {
-        locale: import("vue").WritableComputedRef<string, string>;
+        locale: string;
     };
     function mounted(): void;
     function data(): {
@@ -41,6 +41,7 @@ declare namespace _default {
         let detailColor: StringConstructor;
         let clientName: StringConstructor;
         let jobId: StringConstructor;
+        let backUrl: StringConstructor;
         let apiUrl: StringConstructor;
         let headlineLevel: StringConstructor;
         let headlineClasses: StringConstructor;

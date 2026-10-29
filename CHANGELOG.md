@@ -1,5 +1,29 @@
 # Releases
 
+# Release 0.4.126
+
+- Fixes the recent blog posts slider staying uninitialized and invisible after hydration
+- Adds an option to hide the success story slider dots and keeps its arrows visible in narrow layouts
+- Adds a fallback URL to the back button so the job detail page can navigate back on direct entries
+
+# Release 0.4.125
+
+- Adds an area variant to the team cards with an area label, accent color and CTA
+- Adds an optional button field type to the form that emits a field-action event
+- Adds a success slot and success/error handling for ajax form submissions
+- Allows the cal-calendar to re-render its inline calendar
+
+# Release 0.4.124
+
+- Adds pipeline-based web translation with new languages (Swedish, Norwegian, Finnish, Danish, Icelandic, Italian, Dutch, Korean, Japanese) and locale-aware header, footer, secondary navigation and content links
+- Adds a collapsible header with a new flyout design, info text, small CTA and an option to disable Cloudinary
+- Adds a small CTA variant, a quote overlap option and a richtext conclusion box variant with a module option to opt out
+- Adds a module hook for security.txt generation
+- Reduces the page payload by passing only the active locale's header, footer and content data
+- Fixes hydration issues in v-img, the lightbox and the blog-recent slider
+- Fixes form labels mutating the shared form object when translated
+- Removes stale SCSS components left over from the SFC migration
+
 # Release 0.4.123
 
 - Removes the 500 ms wait for update from the default gtag consent settings
