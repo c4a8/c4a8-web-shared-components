@@ -1,5 +1,10 @@
 # Releases
 
+# Release 0.4.127
+
+- Adds a hidePast option to the event overview that hides events once their last day is over
+- Adds the conclusion box for Spanish richtext headings
+
 # Release 0.4.126
 
 - Fixes the recent blog posts slider staying uninitialized and invisible after hydration
