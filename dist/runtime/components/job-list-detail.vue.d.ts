@@ -9,7 +9,7 @@ declare namespace _default {
         function getUuid(): string;
     }
     function setup(): {
-        locale: string;
+        locale: any;
     };
     function mounted(): void;
     function data(): {

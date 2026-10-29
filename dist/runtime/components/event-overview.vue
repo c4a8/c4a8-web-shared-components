@@ -2,8 +2,20 @@
   <wrapper :class="classList" ref="root">
     <headline class="event-overview__headline" :text="headline" :level="headlineLevel" v-if="headline" />
     <transition-group name="event-overview__item">
-      <SharedContentList :data-list="eventsValue" :query="query" v-slot="{ list, strategy }" :key="0">
-        <markdown-files :list="list" v-slot="{ files }" :sort="sort" :strategy="strategy" :limit="maxLimitValue">
+      <SharedContentList
+        :data-list="hideItemsValue ? (events || []) : eventsValue"
+        :query="query"
+        v-slot="{ list, strategy }"
+        :key="0"
+      >
+        <markdown-files
+          :list="list"
+          v-slot="{ files }"
+          :sort="sort"
+          :strategy="strategy"
+          :limit="maxLimitValue"
+          :hide-items="hideItemsValue"
+        >
           <template v-if="updateFiles(files)">
             <template v-for="(event, index) in files" :key="index">
               <div :class="{ 'is-visible': isVisible(index), 'event-overview__item': true }">
@@ -95,6 +107,25 @@ export default {
     sort() {
       return this.sortBy || { moment: 1 };
     },
+    hideItemsValue() {
+      if (!Tools.isTrue(this.hidePast)) return null;
+
+      // an event stays visible through its last day: `until` (multi-day events)
+      // wins over `moment` (start date); events without any date are kept
+      return (item) => {
+        const raw = item.until || item.moment;
+        if (!raw) return false;
+
+        const end = new Date(
+          typeof raw === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(raw) ? `${raw}T00:00:00` : raw
+        );
+        if (isNaN(end)) return false;
+
+        end.setHours(23, 59, 59, 999);
+
+        return end < new Date();
+      };
+    },
   },
   mounted() {
     UtilityAnimation.init([this.$refs.root]);
@@ -131,6 +162,7 @@ export default {
     headline: String,
     headlineLevel: String,
     overlap: Boolean,
+    hidePast: Boolean,
     limit: Number,
     maxLimit: Number,
     moreUrl: String,

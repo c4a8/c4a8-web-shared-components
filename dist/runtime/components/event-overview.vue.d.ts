@@ -19,6 +19,7 @@ declare namespace _default {
             path: string;
         };
         function sort(): any;
+        function hideItemsValue(): ((item: any) => boolean) | null;
     }
     function mounted(): void;
     namespace methods {
@@ -32,6 +33,7 @@ declare namespace _default {
         let headline: StringConstructor;
         let headlineLevel: StringConstructor;
         let overlap: BooleanConstructor;
+        let hidePast: BooleanConstructor;
         let limit: NumberConstructor;
         let maxLimit: NumberConstructor;
         let moreUrl: StringConstructor;
