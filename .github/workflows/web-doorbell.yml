@@ -1,0 +1,160 @@
+# Rings the web pipeline (c4a8/c4a8-code-web-pipeline) for website change
+# requests: decides whether an issue or comment event of the calling site
+# repository is a web request event and forwards it to the queue issue of the
+# pipeline repository. Called from .github/workflows/web-request.yml in each
+# site repository (template: templates/web-caller.yml in the pipeline
+# repository). Lives here because shared-components is public: the internal
+# site repositories cannot call workflows of the private pipeline repository.
+#
+# The doorbell app's only permission is issues: write on the pipeline
+# repository. Whoever can change this file can obtain that key from every
+# calling site, so changes go through review like any other.
+name: Web request doorbell
+on:
+  workflow_call:
+    inputs:
+      product:
+        description: Product key of the site, as in products/<key>.yml of the pipeline repository
+        required: true
+        type: string
+    secrets:
+      DOORBELL_APP_ID:
+        required: true
+      DOORBELL_PRIVATE_KEY:
+        required: true
+permissions: {}
+jobs:
+  ring:
+    runs-on: ubuntu-latest
+    # Read the calling site's issues and pull requests; the caller grants the same.
+    permissions:
+      issues: read
+      pull-requests: read
+    # One doorbell at a time per issue: a form submission fires "opened" and
+    # "labeled" together, and both must see the same queue issue.
+    concurrency:
+      group: doorbell-${{ github.event.issue.number }}
+      cancel-in-progress: false
+    # Ticking a box edits the bot's comment, which needs write access, so an
+    # edit is already authorised; everything else comes from members only.
+    if: >-
+      github.event.sender.type != 'Bot' &&
+      (github.event.action == 'edited' || github.event_name == 'pull_request' ||
+       contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'),
+         github.event.comment.author_association || github.event.issue.author_association))
+    steps:
+      - name: Pull request head
+        id: pr
+        if: github.event.issue.pull_request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          # Forward a pull request comment only for a pipeline pull request: opened by
+          # the web bot from a branch of this repository for an issue that is a request.
+          pr=$(gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json headRefName,author,isCrossRepository)
+          echo "$pr" | jq -e '.author.login == "app/c4a8-web-bot" and .isCrossRepository == false' >/dev/null || { echo "not a pipeline pull request"; exit 0; }
+          head=$(echo "$pr" | jq -r .headRefName)
+          n=$(echo "$head" | sed -nE 's#^preview/issue-([0-9]+)-.*#\1#p')
+          [ -n "$n" ] || exit 0
+          gh issue view "$n" --repo "$GITHUB_REPOSITORY" --json labels,state --jq 'select(.state == "OPEN") | [.labels[].name] | index("web:request")' | grep -qE '^[0-9]+$' || { echo "issue $n is not an open request"; exit 0; }
+          echo "head=$head" >> "$GITHUB_OUTPUT"
+
+      - name: Doorbell token
+        id: token
+        uses: actions/create-github-app-token@fee1f7d63c2ff003460e3d139729b119787bc349 # v2.2.2
+        with:
+          app-id: ${{ secrets.DOORBELL_APP_ID }}
+          private-key: ${{ secrets.DOORBELL_PRIVATE_KEY }}
+          owner: c4a8
+          repositories: c4a8-code-web-pipeline
+          permission-issues: write
+
+      - name: Ring
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7.1.0
+        env:
+          PRODUCT: ${{ inputs.product }}
+          PR_HEAD: ${{ steps.pr.outputs.head }}
+        with:
+          github-token: ${{ steps.token.outputs.token }}
+          script: |
+            const queue = { owner: "c4a8", repo: "c4a8-code-web-pipeline" };
+            const product = process.env.PRODUCT;
+            if (!/^[a-z0-9-]+$/.test(product)) { core.setFailed(`invalid product key: ${product}`); return; }
+            const site = `${context.repo.owner}/${context.repo.repo}`;
+            const { eventName, payload } = context;
+            // A pipeline pull request closed without merging sends the request back
+            // to its issue; a merged one closes the issue through "Closes #n" itself.
+            if (eventName === "pull_request") {
+              const pr = payload.pull_request;
+              const m = /^preview\/issue-(\d+)-/.exec(pr.head?.ref || "");
+              const ours = pr.user?.login === "c4a8-web-bot[bot]" && pr.head?.repo?.full_name === site;
+              if (!m || !ours || pr.merged) { core.info("skip: not an unmerged pipeline pull request"); return; }
+              payload.issue = { number: Number(m[1]), title: "", labels: [{ name: "web:request" }], state: "open" };
+            }
+            const issue = payload.issue;
+            const labels = (issue.labels || []).map((l) => l.name);
+            const isRequest = labels.includes("web:request");
+
+            let ev = null;
+            if (eventName === "pull_request") {
+              ev = { event: "pr-closed", issue: issue.number, pr: payload.pull_request.number };
+            } else if (eventName === "issues" && payload.action === "opened" && isRequest) {
+              ev = { event: "opened", issue: issue.number, pr: null };
+            } else if (eventName === "issues" && payload.action === "labeled" && payload.label?.name === "web:request") {
+              ev = { event: "opened", issue: issue.number, pr: null };
+            } else if (eventName === "issues" && payload.action === "closed" && isRequest) {
+              ev = { event: "closed", issue: issue.number, pr: null };
+            } else if (eventName === "issue_comment" && payload.action === "edited") {
+              // Only a person ticking or unticking a box in one of the bot's cards counts.
+              const boxes = (t) => (t || "").match(/^\s*- \[[ xX]\] .+$/gm)?.join("\n") ?? "";
+              const byBot = payload.comment.user?.login === "c4a8-web-bot[bot]";
+              const changed = boxes(payload.comment.body) !== boxes(payload.changes?.body?.from);
+              if (byBot && changed && !issue.pull_request && isRequest && issue.state === "open") {
+                ev = { event: "comment", issue: issue.number, pr: null };
+              }
+            } else if (eventName === "issue_comment" && !issue.pull_request && isRequest && issue.state === "open") {
+              const text = payload.comment.body.trim();
+              const event = /^\/go\b/i.test(text) ? "go" : /^\/ship\b/i.test(text) ? "ship" : "comment";
+              ev = { event, issue: issue.number, pr: null };
+            } else if (eventName === "issue_comment" && issue.pull_request && process.env.PR_HEAD) {
+              const m = /^preview\/issue-(\d+)-/.exec(process.env.PR_HEAD || "");
+              if (m) ev = { event: "pr-comment", issue: Number(m[1]), pr: issue.number };
+            }
+            if (!ev) { core.info("skip: not a web request event"); return; }
+
+            const title = `${product}#${ev.issue}`;
+            const actor = payload.sender.login;
+            const record = {
+              product, repo: site, issue: ev.issue,
+              title: ev.pr ? "" : issue.title,
+              url: `https://github.com/${site}/issues/${ev.issue}`,
+              actor,
+            };
+            const fence = (o) => "```json\n" + JSON.stringify(o) + "\n```";
+
+            // Listed, not searched: the search index lags behind new issues, and a
+            // second event seconds after the first must find the same queue issue.
+            const all = await github.paginate(github.rest.issues.listForRepo, {
+              ...queue, labels: "queue", state: "all", per_page: 100,
+            });
+            let q = all.find((i) => i.title === title);
+            if (!q && ev.event === "closed") { core.info("skip: nothing to clean up"); return; }
+            if (!q) {
+              // The new queue issue is itself the "opened" event; any other event
+              // (a comment on a request older than the pipeline) follows as a comment.
+              q = (await github.rest.issues.create({ ...queue, title, body: fence(record), labels: ["queue"] })).data;
+              core.info(`created queue issue #${q.number}`);
+              if (ev.event === "opened") return;
+            } else if (ev.event === "opened") {
+              core.info(`skip: queue issue #${q.number} already exists`); return;
+            } else if (q.state === "closed") {
+              await github.rest.issues.update({ ...queue, issue_number: q.number, state: "open" });
+            }
+            const comment = fence({
+              event: ev.event, actor,
+              comment_id: payload.comment?.id ?? null,
+              pr: ev.pr,
+            });
+            await github.rest.issues.createComment({ ...queue, issue_number: q.number, body: comment });
+            core.info(`forwarded ${ev.event} to queue issue #${q.number}`);
