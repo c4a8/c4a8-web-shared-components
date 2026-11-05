@@ -44,7 +44,6 @@
 <script>
 import DefaultPresets from '../utils/default-presets.js';
 import TransformationOptions from '../utils/transformation-options.js';
-import Cloudinary from '../utils/cloudinary.js';
 import CloudinaryTools from '../utils/cloudinary-tools.js';
 import Tools from '../utils/tools.js';
 import ImgSrcSets from '../utils/data/img-src-sets.js';
@@ -167,15 +166,7 @@ export default {
       return { preset, transformationsString };
     },
     getPreset() {
-      try {
-        if (!this.preset) return { ...DefaultPresets, ...Cloudinary['presets']['default'] };
-
-        const presetExists = Cloudinary['presets'] && Cloudinary['presets'][this.preset];
-
-        return presetExists ? Object.assign(DefaultPresets, Cloudinary['presets'][this.preset]) : DefaultPresets;
-      } catch (e) {
-        console.error(e);
-      }
+      return CloudinaryTools.getPreset(this.preset);
     },
     hasProtocol() {
       const regex = /(http|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])?/;
