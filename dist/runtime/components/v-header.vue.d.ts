@@ -1060,6 +1060,8 @@ declare namespace _default {
         function languageNote(): any;
         function searchValue(): boolean;
         function metaList(): any;
+        function clonedMeta(): any;
+        function clonedContact(): any;
         function spacerBgColor(): string;
         function clonedNavigation(): any;
         function isLight(): boolean;

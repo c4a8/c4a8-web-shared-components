@@ -1,5 +1,10 @@
 # Releases
 
+# Release 0.4.130
+
+- Fixes image presets and header navigation state leaking between renders
+- Fixes oversized contact portraits by loading them as avatars
+
 # Release 0.4.129
 
 - Fixes author pages rendering empty

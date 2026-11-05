@@ -42,7 +42,7 @@
                       :img="contact.person.image"
                       :cloudinary="contact.person.cloudinary"
                       :alt="contact.person.alt"
-                      preset="cardSmall"
+                      preset="avatar"
                       lazy
                     />
                   </div>
@@ -53,7 +53,7 @@
                     :img="contact.person.image"
                     :cloudinary="contact.person.cloudinary"
                     :alt="contact.person.alt"
-                    preset="cardSmall"
+                    preset="avatar"
                     lazy
                   />
                 </div>
