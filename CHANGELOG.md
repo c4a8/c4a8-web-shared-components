@@ -1,5 +1,10 @@
 # Releases
 
+# Release 0.4.129
+
+- Fixes author pages rendering empty
+- Fixes a server error on author pages of authors without a translated intro text
+
 # Release 0.4.128
 
 - Fixes oversized author avatars on post detail pages caused by missing authors in the server-rendered markup
