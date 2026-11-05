@@ -5,16 +5,12 @@ import Tools from './tools.js';
 
 const CloudinaryTools = {
   basePath: 'https://res.cloudinary.com/c4a8/image/upload/',
+  // Always a fresh object: DefaultPresets is shared by every render in the process,
+  // so writing a preset into it leaks that preset into all later images.
   getPreset(presetName) {
-    try {
-      if (!presetName) return { ...DefaultPresets, ...Cloudinary['presets']['default'] };
+    const presets = Cloudinary.presets ?? {};
 
-      const presetExists = Cloudinary['presets'] && Cloudinary['presets'][presetName];
-
-      return presetExists ? Object.assign(DefaultPresets, Cloudinary['presets'][presetName]) : DefaultPresets;
-    } catch (e) {
-      console.error(e);
-    }
+    return { ...DefaultPresets, ...(presetName ? presets[presetName] : presets.default) };
   },
   getSetup(presetName) {
     const preset = this.getPreset(presetName);

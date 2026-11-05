@@ -381,12 +381,22 @@ export default {
       return Tools.isTrue(this.search);
     },
     metaList() {
-      if (!this.meta || typeof this.meta !== 'object') return null;
+      const meta = this.clonedMeta;
+
+      if (!meta || typeof meta !== 'object') return null;
 
       return {
-        ...this.meta,
-        children: this.meta,
+        ...meta,
+        children: meta,
       };
+    },
+    // Meta and contact come from header data that the prerenderer shares across all
+    // routes of a locale. getActiveUrlByLang marks active links, so it works on copies.
+    clonedMeta() {
+      return this.meta ? JSON.parse(JSON.stringify(this.meta)) : this.meta;
+    },
+    clonedContact() {
+      return this.contact ? JSON.parse(JSON.stringify(this.contact)) : this.contact;
     },
     spacerBgColor() {
       const color = this.bgColor ? this.bgColor : 'var(--color-header-background)';
@@ -1078,11 +1088,11 @@ export default {
       let parent = Tools.findRecursive(this.clonedNavigation, matcher, callback);
 
       if (!parent) {
-        parent = Tools.findRecursive(this.meta, matcher, callback);
+        parent = Tools.findRecursive(this.clonedMeta, matcher, callback);
       }
 
       if (!parent) {
-        parent = Tools.findRecursive(this.contact, matcher, callback);
+        parent = Tools.findRecursive(this.clonedContact, matcher, callback);
       }
 
       if (!parent) {
