@@ -1,5 +1,10 @@
 # Releases
 
+# Release 0.4.128
+
+- Fixes oversized author avatars on post detail pages caused by missing authors in the server-rendered markup
+- Adds a reusable web request doorbell workflow
+
 # Release 0.4.127
 
 - Adds a hidePast option to the event overview that hides events once their last day is over
