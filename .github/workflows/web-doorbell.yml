@@ -36,10 +36,16 @@ jobs:
       group: doorbell-${{ github.event.issue.number }}
       cancel-in-progress: false
     # Ticking a box edits the bot's comment, which needs write access, so an
-    # edit is already authorised; everything else comes from members only.
+    # edit is already authorised. On an internal or private site everyone who
+    # can open an issue there is a colleague and rings (decision 2026-11-05, see
+    # the pipeline's docs/decisions.md): the event does not name a member with
+    # hidden membership MEMBER. On a public site, or when the event names no
+    # such visibility, everything else comes from members only.
     if: >-
       github.event.sender.type != 'Bot' &&
       (github.event.action == 'edited' || github.event_name == 'pull_request' ||
+       github.event.repository.visibility == 'internal' ||
+       github.event.repository.visibility == 'private' ||
        contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'),
          github.event.comment.author_association || github.event.issue.author_association))
     steps:
