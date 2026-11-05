@@ -132,13 +132,26 @@ jobs:
               actor,
             };
             const fence = (o) => "```json\n" + JSON.stringify(o) + "\n```";
+            const unfence = (body) => {
+              const m = /```json\s*\n([\s\S]*?)\n```/.exec(body || "");
+              try { return m ? JSON.parse(m[1]) : null; } catch { return null; }
+            };
 
             // Listed, not searched: the search index lags behind new issues, and a
             // second event seconds after the first must find the same queue issue.
+            // Only a queue issue this site opened counts: a site that rings with
+            // another site's product key gets a queue issue of its own, which the
+            // pipeline skips, and never writes on that site's request.
             const all = await github.paginate(github.rest.issues.listForRepo, {
               ...queue, labels: "queue", state: "all", per_page: 100,
             });
-            let q = all.find((i) => i.title === title);
+            let q = all.find((i) => i.title === title && unfence(i.body)?.repo === site);
+            // Two sites ring with one product key: one caller names the wrong key.
+            // The run log of each site says so, since that is where the web team looks.
+            const other = all.find((i) => i.title === title && typeof unfence(i.body)?.repo === "string" && unfence(i.body).repo !== site);
+            if (other) {
+              core.warning(`queue issue #${other.number} (${title}) belongs to ${unfence(other.body).repo}, this site is ${site}: both ring with the product key "${product}". Fix the product key in .github/workflows/web-request.yml of the site that names another site's key.`);
+            }
             if (!q && ev.event === "closed") { core.info("skip: nothing to clean up"); return; }
             if (!q) {
               // The new queue issue is itself the "opened" event; any other event
@@ -151,8 +164,9 @@ jobs:
             } else if (q.state === "closed") {
               await github.rest.issues.update({ ...queue, issue_number: q.number, state: "open" });
             }
+            // The site rides along, so the pipeline can check it against the queue issue.
             const comment = fence({
-              event: ev.event, actor,
+              event: ev.event, actor, repo: site,
               comment_id: payload.comment?.id ?? null,
               pr: ev.pr,
             });
