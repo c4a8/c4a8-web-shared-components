@@ -1,4 +1,4 @@
-import { useAsyncData, queryCollection } from '#imports';
+import { computed, useAsyncData, queryCollection } from '#imports';
 
 export function normalizeUmlauts(str) {
   const replacements = {
@@ -66,7 +66,7 @@ export default function useAuthors(names) {
   );
 
   return {
-    authors: authors.value?.meta || null,
+    authors: computed(() => authors.value?.meta || null),
     pending,
     error,
     refresh,
