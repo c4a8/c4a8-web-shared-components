@@ -9,8 +9,13 @@ const CloudinaryTools = {
   // so writing a preset into it leaks that preset into all later images.
   getPreset(presetName) {
     const presets = Cloudinary.presets ?? {};
+    const preset = (presetName ? presets[presetName] : presets.default) ?? {};
+    // fallback_max_width sets the width of the initial src. A preset without one would
+    // load at the default 1200 px, wider than its own srcset ever goes.
+    const fallback =
+      preset.max_width && !preset.fallback_max_width ? { fallback_max_width: preset.max_width } : {};
 
-    return { ...DefaultPresets, ...(presetName ? presets[presetName] : presets.default) };
+    return { ...DefaultPresets, ...fallback, ...preset };
   },
   getSetup(presetName) {
     const preset = this.getPreset(presetName);
