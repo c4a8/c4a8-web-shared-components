@@ -390,8 +390,6 @@ export default {
         children: meta,
       };
     },
-    // Meta and contact come from header data that the prerenderer shares across all
-    // routes of a locale. getActiveUrlByLang marks active links, so it works on copies.
     clonedMeta() {
       return this.meta ? JSON.parse(JSON.stringify(this.meta)) : this.meta;
     },
