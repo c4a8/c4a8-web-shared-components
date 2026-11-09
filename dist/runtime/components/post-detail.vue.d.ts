@@ -4,7 +4,7 @@ declare namespace _default {
         export { ContentRendererLink };
     }
     function setup(props: any): {
-        authors: any;
+        authors: import("vue").ComputedRef<any>;
         isAtEnd: import("vue").Ref<boolean, boolean>;
         endPoint: import("vue").Ref<null, null>;
         stickyContentHeight: import("vue").Ref<number, number>;

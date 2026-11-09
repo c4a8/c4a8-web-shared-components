@@ -1,5 +1,20 @@
 # Releases
 
+# Release 0.4.130
+
+- Fixes image presets and header navigation state leaking between renders
+- Fixes oversized contact portraits by loading them as avatars
+
+# Release 0.4.129
+
+- Fixes author pages rendering empty
+- Fixes a server error on author pages of authors without a translated intro text
+
+# Release 0.4.128
+
+- Fixes oversized author avatars on post detail pages caused by missing authors in the server-rendered markup
+- Adds a reusable web request doorbell workflow
+
 # Release 0.4.127
 
 - Adds a hidePast option to the event overview that hides events once their last day is over

@@ -6,15 +6,12 @@ import Tools from './tools.js';
 const CloudinaryTools = {
   basePath: 'https://res.cloudinary.com/c4a8/image/upload/',
   getPreset(presetName) {
-    try {
-      if (!presetName) return { ...DefaultPresets, ...Cloudinary['presets']['default'] };
+    const presets = Cloudinary.presets ?? {};
+    const preset = (presetName ? presets[presetName] : presets.default) ?? {};
+    const fallback =
+      preset.max_width && !preset.fallback_max_width ? { fallback_max_width: preset.max_width } : {};
 
-      const presetExists = Cloudinary['presets'] && Cloudinary['presets'][presetName];
-
-      return presetExists ? Object.assign(DefaultPresets, Cloudinary['presets'][presetName]) : DefaultPresets;
-    } catch (e) {
-      console.error(e);
-    }
+    return { ...DefaultPresets, ...fallback, ...preset };
   },
   getSetup(presetName) {
     const preset = this.getPreset(presetName);
