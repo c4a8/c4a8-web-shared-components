@@ -232,6 +232,9 @@
                       <div class="header__product-list-data">
                         <div class="header__product-list-title font-size-8 bold">
                           {{ subChild.languages[lowerLang]?.title }}
+                          <span v-if="subChild.isOpenSource" class="header__product-list-opensource">{{
+                            openSourceText
+                          }}</span>
                         </div>
                         <div class="header__product-list-subtitle">{{ subChild.languages[lowerLang]?.subtitle }}</div>
                       </div>
@@ -1253,6 +1256,7 @@ export default {
       initEvents: ['mousemove', 'scroll', 'touchstart', 'click'],
       renderMegaMenu: false,
       languageListExpanded: false,
+      openSourceText: 'OpenSource',
     };
   },
 };
@@ -1297,7 +1301,8 @@ export default {
 .header.vue-component.is-scrolled {
   transition: background-color 0.5s cubic-bezier(0.19, 1, 0.2, 1);
 }
-.header.vue-component:hover .header__secondary-navigation-button, .header.vue-component.is-scrolled .header__secondary-navigation-button {
+.header.vue-component:hover .header__secondary-navigation-button,
+.header.vue-component.is-scrolled .header__secondary-navigation-button {
   box-shadow: var(--header-secondary-navigation-shadow);
 }
 .header.vue-component.on-surface .header__secondary-navigation {
@@ -1308,7 +1313,7 @@ export default {
 }
 .header.vue-component:not(:hover):not(.is-scrolled):not(.is-expanded)::after {
   position: absolute;
-  content: "";
+  content: '';
   top: 0;
   left: 0;
   bottom: 0;
@@ -1338,7 +1343,8 @@ export default {
   --header-logo-height-large: 40px;
   box-shadow: none;
 }
-.header.vue-component.header--product.is-scrolled, .header.vue-component.header--product:hover {
+.header.vue-component.header--product.is-scrolled,
+.header.vue-component.header--product:hover {
   box-shadow: 0 12px 15px rgba(140, 152, 164, 0.1);
 }
 .header.vue-component.header--product .header__item:hover .header__link::after {
@@ -1362,7 +1368,7 @@ export default {
   }
   .header.vue-component.header--product:not(.is-condensed) .header__item.active::before {
     background-color: var(--color-highlight);
-    content: "";
+    content: '';
     height: 8px;
     left: 50%;
     position: absolute;
@@ -1455,7 +1461,7 @@ export default {
 }
 .header.vue-component:not(:hover):not(.is-scrolled)::before {
   position: absolute;
-  content: "";
+  content: '';
   top: 0;
   left: 0;
   bottom: 0;
@@ -1623,7 +1629,8 @@ export default {
   .header.vue-component:not(.is-condensed).header--blending:not(.is-hovering):not(.is-scrolled):not(:hover) {
     mix-blend-mode: difference;
   }
-  .header.vue-component:not(.is-condensed).header--blending:not(.is-hovering):not(.is-scrolled):not(:hover) .header__link-text {
+  .header.vue-component:not(.is-condensed).header--blending:not(.is-hovering):not(.is-scrolled):not(:hover)
+    .header__link-text {
     font-weight: 300;
   }
 }
@@ -1678,7 +1685,7 @@ export default {
 }
 .header__col::after {
   position: absolute;
-  content: "";
+  content: '';
   display: block;
   width: 100vw;
   height: 100%;
@@ -1712,7 +1719,7 @@ export default {
 }
 .header__link::after {
   display: none;
-  content: "";
+  content: '';
   position: absolute;
   bottom: -1px;
   height: 3px;
@@ -1724,7 +1731,7 @@ export default {
 }
 .header__link::before {
   display: block;
-  content: "";
+  content: '';
   position: absolute;
   bottom: -1px;
   height: 1px;
@@ -1733,7 +1740,11 @@ export default {
   background-color: var(--color-header-border);
   z-index: 10;
   pointer-events: none;
-  transition: background-color 0.5s cubic-bezier(0.19, 1, 0.2, 1), height 0.5s cubic-bezier(0.19, 1, 0.2, 1), width 0.5s cubic-bezier(0.19, 1, 0.2, 1), left 0.5s cubic-bezier(0.19, 1, 0.2, 1);
+  transition:
+    background-color 0.5s cubic-bezier(0.19, 1, 0.2, 1),
+    height 0.5s cubic-bezier(0.19, 1, 0.2, 1),
+    width 0.5s cubic-bezier(0.19, 1, 0.2, 1),
+    left 0.5s cubic-bezier(0.19, 1, 0.2, 1);
 }
 @media (min-width: 992px) {
   :where(.header:not(.is-condensed)) .header__link::before {
@@ -1851,7 +1862,9 @@ export default {
   left: 0;
   width: 100%;
   z-index: 5;
-  transition: transform cubic-bezier(0.19, 1, 0.2, 1) 0.5s, opacity cubic-bezier(0.19, 1, 0.2, 1) 0.4s;
+  transition:
+    transform cubic-bezier(0.19, 1, 0.2, 1) 0.5s,
+    opacity cubic-bezier(0.19, 1, 0.2, 1) 0.4s;
 }
 
 .header__flyout,
@@ -1891,7 +1904,9 @@ export default {
   gap: 4.5rem;
 }
 .header__flyout-items > * {
-  transition: opacity 0.5s 0.15s cubic-bezier(0.19, 1, 0.2, 1), transform 0.4s 0.15s cubic-bezier(0.19, 1, 0.2, 1);
+  transition:
+    opacity 0.5s 0.15s cubic-bezier(0.19, 1, 0.2, 1),
+    transform 0.4s 0.15s cubic-bezier(0.19, 1, 0.2, 1);
   flex: 1 0 var(--header-flyout-item-width);
 }
 .header__flyout-items > *.header__product-list {
@@ -1946,7 +1961,7 @@ export default {
   pointer-events: none;
 }
 .header__language-switch::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   right: 0;
@@ -1957,7 +1972,7 @@ export default {
 }
 .header__language-switch::before {
   display: none;
-  content: "";
+  content: '';
   position: absolute;
   bottom: var(--header-language-underline-offset);
   left: var(--header-language-spacing);
@@ -2130,9 +2145,13 @@ export default {
 }
 
 .header__product-list {
-  transition: height 0.4s cubic-bezier(0.19, 1, 0.2, 1), opacity 0.5s 0.15s cubic-bezier(0.19, 1, 0.2, 1), transform 0.4s 0.15s cubic-bezier(0.19, 1, 0.2, 1);
+  transition:
+    height 0.4s cubic-bezier(0.19, 1, 0.2, 1),
+    opacity 0.5s 0.15s cubic-bezier(0.19, 1, 0.2, 1),
+    transform 0.4s 0.15s cubic-bezier(0.19, 1, 0.2, 1);
 }
-.header__product-list:not(.is-expanded), .header__product-list.in-transition {
+.header__product-list:not(.is-expanded),
+.header__product-list.in-transition {
   visibility: collapse;
   opacity: 0;
   height: 0;
@@ -2152,7 +2171,7 @@ export default {
   position: relative;
 }
 .header__spacer::after {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   width: 100%;
@@ -2225,7 +2244,9 @@ export default {
 .header__product-list-item:hover .header__product-list-image {
   transform: scale(1.2);
 }
-.header__product-list-item:visited .header__product-list-image, .header__product-list-item:focus .header__product-list-image, .header__product-list-item:active .header__product-list-image {
+.header__product-list-item:visited .header__product-list-image,
+.header__product-list-item:focus .header__product-list-image,
+.header__product-list-item:active .header__product-list-image {
   transform: scale(1);
 }
 
@@ -2242,10 +2263,12 @@ export default {
 .header__language-link:hover {
   color: var(--color-copy);
 }
-.header__language-link.active, .header__language-link.active:hover {
+.header__language-link.active,
+.header__language-link.active:hover {
   color: var(--color-active);
 }
-.header__language-link.active .header__language-code, .header__language-link.active:hover .header__language-code {
+.header__language-link.active .header__language-code,
+.header__language-link.active:hover .header__language-code {
   color: inherit;
 }
 @media (min-width: 992px) {
@@ -2282,17 +2305,24 @@ export default {
   min-width: var(--header-language-flyout-width);
   columns: 2;
   column-gap: 4rem;
-  transition: transform cubic-bezier(0.19, 1, 0.2, 1) 0.5s, opacity cubic-bezier(0.19, 1, 0.2, 1) 0.4s 0.1s;
+  transition:
+    transform cubic-bezier(0.19, 1, 0.2, 1) 0.5s,
+    opacity cubic-bezier(0.19, 1, 0.2, 1) 0.4s 0.1s;
 }
 .header__language-switch-flyout .header__language-link {
   grid-template-columns: var(--header-language-name-width) auto;
-  transition: opacity 0.4s 0.15s cubic-bezier(0.19, 1, 0.2, 1), transform 0.4s 0.15s cubic-bezier(0.19, 1, 0.2, 1);
+  transition:
+    opacity 0.4s 0.15s cubic-bezier(0.19, 1, 0.2, 1),
+    transform 0.4s 0.15s cubic-bezier(0.19, 1, 0.2, 1);
 }
 
 .header__language-switch-list {
   width: 100%;
   padding: 0.5rem 0 1rem;
-  transition: height 0.4s cubic-bezier(0.19, 1, 0.2, 1), opacity 0.5s 0.15s cubic-bezier(0.19, 1, 0.2, 1), transform 0.4s 0.15s cubic-bezier(0.19, 1, 0.2, 1);
+  transition:
+    height 0.4s cubic-bezier(0.19, 1, 0.2, 1),
+    opacity 0.5s 0.15s cubic-bezier(0.19, 1, 0.2, 1),
+    transform 0.4s 0.15s cubic-bezier(0.19, 1, 0.2, 1);
 }
 
 .header__language-label {
@@ -2356,7 +2386,8 @@ export default {
 .header__nav-highlight .icon {
   margin-right: 0.5rem;
 }
-.header__nav-highlight.is-in-transition, .header__nav-highlight.is-hidden {
+.header__nav-highlight.is-in-transition,
+.header__nav-highlight.is-hidden {
   visibility: collapse;
   opacity: 0;
   height: 0;
@@ -2367,7 +2398,8 @@ export default {
   pointer-events: none;
   width: 0;
 }
-.header__nav-highlight:hover, .header__nav-highlight:active {
+.header__nav-highlight:hover,
+.header__nav-highlight:active {
   color: var(--color-emergency);
 }
 
@@ -2391,8 +2423,10 @@ export default {
   transition-duration: 0.4s, 0.7s;
   transition-timing-function: cubic-bezier(0.19, 1, 0.2, 1);
 }
-.header__secondary-navigation.is-ready:not([data-updating]):not([data-expanded]):not(.in-transition) .header__secondary-navigation-content,
-.header__secondary-navigation.is-ready:not([data-updating]):not([data-expanded]):not(.in-transition) .header__secondary-navigation-text {
+.header__secondary-navigation.is-ready:not([data-updating]):not([data-expanded]):not(.in-transition)
+  .header__secondary-navigation-content,
+.header__secondary-navigation.is-ready:not([data-updating]):not([data-expanded]):not(.in-transition)
+  .header__secondary-navigation-text {
   display: none;
 }
 .header__secondary-navigation.is-ready:not([data-updating])[data-width-expanded] {
@@ -2406,7 +2440,8 @@ export default {
   opacity: 1;
   pointer-events: all;
 }
-.header__secondary-navigation.is-ready:not([data-updating])[data-height-expanded] .header__secondary-navigation-content {
+.header__secondary-navigation.is-ready:not([data-updating])[data-height-expanded]
+  .header__secondary-navigation-content {
   opacity: 1;
   pointer-events: all;
   height: auto;
@@ -2508,12 +2543,30 @@ export default {
   text-transform: none;
   white-space: normal;
   column-span: all;
-  transition: opacity 0.4s 0.25s cubic-bezier(0.19, 1, 0.2, 1), transform 0.4s 0.25s cubic-bezier(0.19, 1, 0.2, 1);
+  transition:
+    opacity 0.4s 0.25s cubic-bezier(0.19, 1, 0.2, 1),
+    transform 0.4s 0.25s cubic-bezier(0.19, 1, 0.2, 1);
 }
 
 .header__language-switch:not(.is-expanded) .header__language-note {
   opacity: 0;
   transform: translateY(-20px);
   transition-delay: 0s;
+}
+
+.header__product-list-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.header__product-list-opensource {
+  font-size: 12px;
+  font-weight: 400 !important;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background-color: var(--color-gk-grey);
+  padding: 0.1em 0.4em 0.15em 0.4em;
+  margin-bottom: 0.05em;
 }
 </style>

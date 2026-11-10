@@ -232,6 +232,9 @@
                       <div class="header__product-list-data">
                         <div class="header__product-list-title font-size-8 bold">
                           {{ subChild.languages[lowerLang]?.title }}
+                          <span v-if="subChild.isOpenSource" class="header__product-list-opensource">{{
+                            openSourceText
+                          }}</span>
                         </div>
                         <div class="header__product-list-subtitle">{{ subChild.languages[lowerLang]?.subtitle }}</div>
                       </div>
@@ -1253,6 +1256,7 @@ export default {
       initEvents: ['mousemove', 'scroll', 'touchstart', 'click'],
       renderMegaMenu: false,
       languageListExpanded: false,
+      openSourceText: 'OpenSource',
     };
   },
 };
@@ -2727,4 +2731,20 @@ $header-collapse-max-viewport: 1400px;
     transform: translateY(-20px);
     transition-delay: 0s;
   }
+
+.header__product-list-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.header__product-list-opensource {
+  font-size: 12px;
+  font-weight: 400 !important;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background-color: var(--color-gk-grey);
+  padding: 0.1em 0.4em 0.15em 0.4em;
+  margin-bottom: 0.05em;
+}
 </style>
