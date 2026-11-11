@@ -1840,8 +1840,9 @@ export default {
   align-items: center;
 }
 .header__item.header__item--is-slim .header__product-list-image {
-  max-width: none;
-  max-height: 38px;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
   object-fit: contain;
   object-position: left;
 }
