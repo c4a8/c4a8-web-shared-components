@@ -1993,8 +1993,9 @@ $header-collapse-max-viewport: 1400px;
     }
 
     .header__product-list-image {
-      max-width: none;
-      max-height: 38px;
+      flex-shrink: 0;
+      width: 38px;
+      height: 38px;
       object-fit: contain;
       object-position: left;
     }
