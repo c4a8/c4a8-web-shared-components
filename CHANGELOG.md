@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.132
+
+- Fixes product logos and the expand chevron overflowing the mobile product navigation in Safari
+
 # Release 0.4.131
 
 - Adds an external option to the testimonial teaser that opens links leaving the website in a new tab
