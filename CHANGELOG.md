@@ -1,5 +1,9 @@
 # Releases
 
+# Release 0.4.131
+
+- Adds an external option to the testimonial teaser that opens links leaving the website in a new tab
+
 # Release 0.4.130
 
 - Fixes image presets and header navigation state leaking between renders
