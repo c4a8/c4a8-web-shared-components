@@ -10,6 +10,7 @@
         :id="toggleSwitchId"
         :checked="toggleSwitchActive"
         :data-toggle-switch-options="JSON.stringify({ targetSelector: toggleSwitchTargetSelector })"
+        :data-pricing="pricingDataAttribute"
       />
       <span class="toggle-switch-label">
         <span class="toggle-switch-indicator"></span>
@@ -42,6 +43,10 @@ export default {
     },
     products: {
       type: Object,
+    },
+    pricing: {
+      type: Object,
+      default: null,
     },
   },
   mounted() {
@@ -79,6 +84,11 @@ export default {
     },
     defaultPlan() {
       return this.products && this.products.pricing && this.products.pricing.defaultPlan;
+    },
+    pricingDataAttribute() {
+      const pricing = this.pricing || (this.products && this.products.pricing);
+
+      return pricing ? JSON.stringify(pricing) : null;
     },
     toggleSwitchActive() {
       return this.toggleSwitch.active || this.defaultPlan === 'annual';
