@@ -52,7 +52,16 @@ export default {
   mounted() {
     if (!this.$refs.root) return;
 
-    new ToggleSwitch(this.$refs.root);
+    this.instance = new ToggleSwitch(this.$refs.root);
+  },
+  watch: {
+    // a page can convert its prices after mount (the visitor's country): format the prices again
+    pricingDataAttribute: {
+      handler() {
+        this.instance?.initPrices();
+      },
+      flush: 'post',
+    },
   },
   computed: {
     toggleSwitchTextLeft() {

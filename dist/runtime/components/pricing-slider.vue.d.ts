@@ -29,6 +29,10 @@ declare namespace _default {
         };
     };
     function mounted(): void;
+    function beforeUnmount(): void;
+    namespace watch {
+        function products(products: any): void;
+    }
     namespace computed {
         function pricingSliderRange(): any;
         function hsIonRangeSliderOptions(): any;

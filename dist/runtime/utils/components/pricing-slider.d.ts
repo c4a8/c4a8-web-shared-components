@@ -5,11 +5,26 @@ declare class PricingSlider extends BaseComponent {
     products: any;
     range: any;
     pricing: any;
-    priceFormatter: Intl.NumberFormat;
-    selectedPlan: any;
     currentPrice: number;
+    setPricing(pricing: any): void;
+    priceFormatter: Intl.NumberFormat | undefined;
+    selectedPlan: any;
+    /**
+     * New prices or another currency after the slider started (a page that converts its
+     * prices once it knows the visitor's country): format and show the current value again.
+     * Before the slider started there is nothing to show; it reads the new list when it starts.
+     */
+    update(pricing: any, products: any): void;
+    destroy(): void;
     init(): void;
     bindEvents(): void;
+    info: any;
+    infoHandler: any;
+    handlers: {
+        handleChange: any;
+        fixSliderText: any;
+        prepareSlider: any;
+    } | undefined;
     handleInfoClick(): void;
     /**
      *
