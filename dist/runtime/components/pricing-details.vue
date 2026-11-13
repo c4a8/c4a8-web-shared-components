@@ -14,7 +14,7 @@
       </p>
       <div class="pricing-details__content pt-6 pt-lg-8 pb-10">
         <div v-if="toggleSwitch">
-          <toggle-switch :toggle-switch="toggleSwitch" :has-animation="true" />
+          <toggle-switch :toggle-switch="toggleSwitch" :has-animation="true" :pricing="pricing" />
         </div>
         <pricing-product
           v-for="(product, index) in list"

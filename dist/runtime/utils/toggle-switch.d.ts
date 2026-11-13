@@ -7,7 +7,6 @@ declare class ToggleSwitch {
     targetSelector: string;
     target: any;
     duration: number;
-    parsePricingData: any;
     getTargetSelectors(element: any): any[];
     handleChange(e: any): void;
     switchButtonHrefs(element: any, state: any): void;
