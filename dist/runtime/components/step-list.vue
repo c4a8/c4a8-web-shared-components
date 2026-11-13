@@ -35,26 +35,28 @@
                 :style="`--utility-animation-index: ${index + 1};
                 color: ${accentColor}`"
               >
-                <div
-                  class="step-list__counter"
-                  :class="[
-                    element.step || element.img ? 'step-list__counter--manual' : '',
-                    element.overlapping ? 'step-list__counter--overlapping' : '',
-                  ]"
-                  :data-content="element.step || ''"
-                >
-                  <div v-if="element.img" class="step-list__counter-icon">
-                    <img-filter
-                      v-if="element.tint"
-                      :img="element.img"
-                      :cloudinary="element.cloudinary"
-                      :alt="element.alt"
-                    />
-                    <v-img v-else :src="element.img" :alt="element.alt" />
+                <div class="step-list__head">
+                  <div
+                    class="step-list__counter"
+                    :class="[
+                      element.step || element.img ? 'step-list__counter--manual' : '',
+                      element.overlapping ? 'step-list__counter--overlapping' : '',
+                    ]"
+                    :data-content="element.step || (element.img ? '' : index + 1)"
+                  >
+                    <div v-if="element.img" class="step-list__counter-icon">
+                      <img-filter
+                        v-if="element.tint"
+                        :img="element.img"
+                        :cloudinary="element.cloudinary"
+                        :alt="element.alt"
+                      />
+                      <v-img v-else :src="element.img" :alt="element.alt" />
+                    </div>
                   </div>
-                </div>
-                <div class="step-list__title step-list__title--no-small">
-                  {{ element.title }}
+                  <div class="step-list__title step-list__title--no-small">
+                    {{ element.title }}
+                  </div>
                 </div>
                 <div class="step-list__content font-size-1" :class="!variant ? 'light' : ''">
                   <div class="step-list__title step-list__title--no-default">
@@ -278,6 +280,60 @@ export default {
     --icon-rotation: 0deg;
   }
 }
+@media (min-width: 992px) {
+  .step-list:where(:not(.step-list--small)) .step-list__list {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto auto;
+    row-gap: 0;
+  }
+  .step-list:where(:not(.step-list--small)) .step-list__list-element {
+    grid-row: span 2;
+    grid-template-rows: subgrid;
+    min-width: 0;
+  }
+  .step-list:where(:not(.step-list--small)) .step-list__counter::before {
+    content: attr(data-content);
+  }
+  .step-list:where(:not(.step-list--small)) .step-list__head {
+    container: step-list-head/inline-size;
+    display: grid;
+    grid-column: 1/-1;
+    grid-template-columns: fit-content(4rem) minmax(0, 1fr);
+    align-content: start;
+    min-width: 0;
+  }
+  .step-list:where(:not(.step-list--small)) .step-list__title--no-small {
+    min-width: 0;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    hyphenate-limit-chars: 6 3 3;
+    overflow-wrap: anywhere;
+  }
+  .step-list:where(:not(.step-list--small)) .step-list__content {
+    min-width: 0;
+    overflow-wrap: break-word;
+  }
+  .step-list:where(:not(.step-list--small)) .step-list__counter {
+    position: relative;
+  }
+  .step-list:where(:not(.step-list--small)) .step-list__icon {
+    grid-row: 1;
+    align-self: start;
+    display: flex;
+    align-items: center;
+  }
+  @container step-list-head (width < 16rem) {
+    .step-list:where(:not(.step-list--small)) .step-list__title--no-small {
+      grid-column: 1/-1;
+      grid-row: 2;
+      align-items: flex-start;
+      margin-top: 1rem;
+      padding-left: 0;
+    }
+  }
+}
 
 .step-list__headline {
   --color-headlines: var(--step-list-color);
@@ -318,6 +374,10 @@ export default {
   padding-left: 1.5rem;
   display: flex;
   align-items: center;
+}
+
+.step-list__head {
+  display: contents;
 }
 
 .step-list__counter {
