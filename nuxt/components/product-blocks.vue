@@ -9,7 +9,7 @@
       >
         <headline-row :text="headline" :centered="true" />
       </div>
-      <div class="row">
+      <div class="product-blocks__row row">
         <div
           v-for="(item, index) in productBlocks.items"
           :key="index"
@@ -100,5 +100,36 @@ export default {
 
 .product-blocks__item {
   @include utility-animation-options($delay: 80ms, $selector: '&');
+}
+
+// Blocks side by side: the buttons of one row share one line, also when a
+// button group wraps. From md the row is a grid; every block takes two of
+// its rows (content, buttons) and hands them down (subgrid), so each row is
+// as tall as the tallest part beside it. Stacked blocks (below md) look as
+// before; without subgrid the buttons stay at the foot of their blocks.
+@supports (grid-template-rows: subgrid) {
+  @include media-breakpoint-up(md) {
+    .product-blocks__row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    // minmax(0, 1fr): a single column that does not grow with wide content
+    .product-blocks__row > .product-blocks__item {
+      display: grid;
+      grid-row: span 2;
+      grid-template-rows: subgrid;
+      grid-template-columns: minmax(0, 1fr);
+      max-width: none;
+    }
+
+    .product-blocks__block {
+      display: grid;
+      grid-row: span 2;
+      grid-template-rows: subgrid;
+      grid-template-columns: minmax(0, 1fr);
+      height: auto;
+    }
+  }
 }
 </style>
