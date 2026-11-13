@@ -35,26 +35,28 @@
                 :style="`--utility-animation-index: ${index + 1};
                 color: ${accentColor}`"
               >
-                <div
-                  class="step-list__counter"
-                  :class="[
-                    element.step || element.img ? 'step-list__counter--manual' : '',
-                    element.overlapping ? 'step-list__counter--overlapping' : '',
-                  ]"
-                  :data-content="element.step || ''"
-                >
-                  <div v-if="element.img" class="step-list__counter-icon">
-                    <img-filter
-                      v-if="element.tint"
-                      :img="element.img"
-                      :cloudinary="element.cloudinary"
-                      :alt="element.alt"
-                    />
-                    <v-img v-else :src="element.img" :alt="element.alt" />
+                <div class="step-list__head">
+                  <div
+                    class="step-list__counter"
+                    :class="[
+                      element.step || element.img ? 'step-list__counter--manual' : '',
+                      element.overlapping ? 'step-list__counter--overlapping' : '',
+                    ]"
+                    :data-content="element.step || (element.img ? '' : index + 1)"
+                  >
+                    <div v-if="element.img" class="step-list__counter-icon">
+                      <img-filter
+                        v-if="element.tint"
+                        :img="element.img"
+                        :cloudinary="element.cloudinary"
+                        :alt="element.alt"
+                      />
+                      <v-img v-else :src="element.img" :alt="element.alt" />
+                    </div>
                   </div>
-                </div>
-                <div class="step-list__title step-list__title--no-small">
-                  {{ element.title }}
+                  <div class="step-list__title step-list__title--no-small">
+                    {{ element.title }}
+                  </div>
                 </div>
                 <div class="step-list__content font-size-1" :class="!variant ? 'light' : ''">
                   <div class="step-list__title step-list__title--no-default">
@@ -246,6 +248,95 @@ $step-list-color-img-tint: $color-copy;
       }
     }
   }
+
+  // In a row of steps, every text starts on one line, however many lines a
+  // title wraps to, and the row stays inside the container.
+  // - The steps and the arrows between them are the columns of one grid: the
+  //   steps share the free width equally, also when a long word would be
+  //   wider, and the arrows keep theirs.
+  // - Every step lays its head (counter and title), then its text, on the
+  //   grid's two rows through subgrid: the tallest head sets the first row
+  //   for all steps. Counters and arrows sit at its top.
+  // - The head is a container: a step narrower than 16rem has no room for a
+  //   title beside its counter (four steps at 992 px), so there the title
+  //   goes under the counter and takes the step's full width. Wider steps,
+  //   and steps that a page stacks itself, keep the title beside it.
+  // - A title too long for its line is hyphenated (in the page's language,
+  //   words of six letters or more, three on each side); breaking anywhere
+  //   is only the last resort. A word in the text breaks only when it does
+  //   not fit on a line of its own.
+  // :where() keeps the specificity of the rules above, so a page's own rules
+  // for its step-list still win. Not the small variant.
+  &:where(:not(.step-list--small)) {
+    @include media-breakpoint-up(lg) {
+      .step-list__list {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(0, 1fr) auto;
+        grid-template-rows: auto auto;
+        row-gap: 0;
+      }
+
+      .step-list__list-element {
+        grid-row: span 2;
+        grid-template-rows: subgrid;
+        min-width: 0;
+      }
+
+      // The number comes from the markup, not from the CSS counter: the
+      // head's container contains style, so the counter would start again
+      // in every head (Chrome showed "1" everywhere, Safari "0").
+      .step-list__counter::before {
+        content: attr(data-content);
+      }
+
+      .step-list__head {
+        container: step-list-head / inline-size;
+        display: grid;
+        grid-column: 1 / -1;
+        grid-template-columns: fit-content($step-list-counter-width) minmax(0, 1fr);
+        align-content: start;
+        min-width: 0;
+      }
+
+      .step-list__title--no-small {
+        min-width: 0;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+        hyphenate-limit-chars: 6 3 3;
+        overflow-wrap: anywhere;
+      }
+
+      .step-list__content {
+        min-width: 0;
+        overflow-wrap: break-word;
+      }
+
+      // The image of a step with `img` is placed against its counter.
+      .step-list__counter {
+        position: relative;
+      }
+
+      // As a flex box the arrow is as tall as its picture, not as its line,
+      // so it does not make the first row taller than the counters do.
+      .step-list__icon {
+        grid-row: 1;
+        align-self: start;
+        display: flex;
+        align-items: center;
+      }
+
+      @container step-list-head (width < 16rem) {
+        .step-list__title--no-small {
+          grid-column: 1 / -1;
+          grid-row: 2;
+          align-items: flex-start;
+          margin-top: spacing(4);
+          padding-left: 0;
+        }
+      }
+    }
+  }
 }
 
 .step-list__headline {
@@ -289,6 +380,12 @@ $step-list-color-img-tint: $color-copy;
   padding-left: spacing(6);
   display: flex;
   align-items: center;
+}
+
+// Groups counter and title for the row of steps from 992 px; everywhere else
+// it leaves no box, and counter and title sit in the step as before.
+.step-list__head {
+  display: contents;
 }
 
 .step-list__counter {
