@@ -27,7 +27,13 @@ export default {
   tagName: 'grid-list',
   computed: {
     classList() {
-      return ['grid-list row mb-3 utility-animation__group vue-component'];
+      return [
+        'grid-list row mb-3 utility-animation__group vue-component',
+        this.hasProductTiles ? 'grid-list--products' : '',
+      ];
+    },
+    hasProductTiles() {
+      return this.view === 'tile-view' && this.items?.some((item) => item.product);
     },
     columnClassList() {
       return [this.view === 'tile-view' ? 'col-sm-6 col-lg-4' : 'col-sm-6 col-lg-12', 'mb-3 mb-sm-8'];
@@ -94,5 +100,41 @@ export default {
 <style>
 .grid-list.row {
   margin: 0 calc(-1 * 30px / 2);
+}
+
+@supports (grid-template-rows: subgrid) {
+  @media (min-width: 576px) {
+    .grid-list--products.row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .grid-list--products.row > * {
+      display: grid;
+      grid-row: span 3;
+      grid-template-rows: subgrid;
+      grid-template-columns: minmax(0, 1fr);
+      max-width: none;
+    }
+    .grid-list--products.row .card--products {
+      display: grid;
+      grid-row: span 3;
+      grid-template-rows: subgrid;
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .grid-list--products.row .card--products .card__body {
+      display: grid !important;
+      grid-row: 2/span 2;
+      grid-template-rows: subgrid;
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .grid-list--products.row .card--products .card__link {
+      margin-top: 0 !important;
+    }
+  }
+  @media (min-width: 992px) {
+    .grid-list--products.row {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
 }
 </style>
