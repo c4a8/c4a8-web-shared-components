@@ -48,6 +48,19 @@
               </div>
             </div>
           </template>
+          <span v-if="bottomNote">
+            <cta
+              v-if="bottomNote.href"
+              :text="bottomNote.text"
+              :button="true"
+              :link="true"
+              :href="bottomNote.href"
+              :analytics="analytics"
+              :reversed="true"
+              class="form__bottom-note d-flex align-items-center justify-content-end"
+            />
+            <span v-else v-html="bottomNote.text" class="form__bottom-note"></span>
+          </span>
           <div v-if="hasRecaptcha" class="form__recaptcha-infos">
             <NuxtTurnstile v-if="turnstileReady" ref="turnstile" />
           </div>
@@ -437,6 +450,10 @@ export default {
   },
   props: {
     form: Object,
+    bottomNote: {
+      type: Object,
+      default: null,
+    },
     light: {
       default: null,
     },
@@ -486,106 +503,77 @@ export default {
   },
 };
 </script>
-<style lang="scss">
-$form-background-color: var(--color-form-background);
-$form-background-color-light: var(--color-form-background-light);
-$form-error-color: var(--color-form-error);
-$form-success-color: var(--color-form-success);
-$form-border-hover-color: var(--color-form-border-hover);
-$form-checkbox-size: 2em;
-$form-checkbox-spacing: 1em;
-$form-checkbox-offset: $form-checkbox-size + $form-checkbox-spacing;
-$form-radio-size: $form-checkbox-size;
-
-.shared-components {
-  .custom-control-input,
-  .form-control {
-    border-radius: 0;
-  }
-
-  .form {
-    &.is-light {
-      textarea.form-textarea,
-      input[type=''].form-control,
-      input[type='text'].form-control,
-      input[type='phone'].form-control,
-      input[type='number'].form-control,
-      input[type='email'].form-control,
-      .form__input {
-        background-color: $form-background-color-light;
-        border-color: $form-background-color-light;
-
-        &:hover {
-          border-color: $form-border-hover-color;
-        }
-      }
-
-      .custom-checkbox label.custom-control-label,
-      .form__checkbox-label {
-        &::before {
-          background-color: $form-background-color-light;
-        }
-      }
-
-      .form__checkbox:checked ~ .form__checkbox-label::before {
-        background-color: var(--color-bg-checkbox);
-      }
-    }
-
-    .invalid-feedback {
-      color: $form-error-color;
-    }
-
-    .form__checkbox:checked ~ .form__checkbox-label::before {
-      background-color: var(--color-bg-checkbox);
-    }
-
-    .form__radio.is-invalid {
-      border-color: $form-error-color;
-    }
-
-    .form__radio.is-invalid ~ .form__radio-label {
-      color: $form-error-color;
-    }
-
-    .was-validated .form-control:invalid,
-    .form-control.is-invalid {
-      border-color: $form-error-color;
-      background-repeat: no-repeat;
-      background-position: right calc(0.4em + 0.375rem) center;
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23e44418' viewBox='0 0 12 12'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23ed4c78' stroke='none'/%3e%3c/svg%3e");
-    }
-
-    .was-validated .form-control:valid,
-    .form-control.is-valid,
-    .was-validated .form-control:valid:focus,
-    .form-control.is-valid:focus {
-      border-color: $form-success-color;
-      background-repeat: no-repeat;
-      background-position: right calc(0.4em + 0.375rem) center;
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath fill='%23008774' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
-    }
-
-    .is-valid ~ {
-      .form__checkbox-label {
-        color: var(--contact-copy-color, var(--color-copy));
-      }
-    }
-
-    .is-valid:checked ~ {
-      .form__checkbox-label {
-        &::before {
-          border-color: var(--color-bg-checkbox);
-        }
-      }
-    }
-  }
+<style>
+.shared-components .custom-control-input,
+.shared-components .form-control {
+  border-radius: 0;
+}
+.shared-components .form.is-light textarea.form-textarea,
+.shared-components .form.is-light input[type=''].form-control,
+.shared-components .form.is-light input[type='text'].form-control,
+.shared-components .form.is-light input[type='phone'].form-control,
+.shared-components .form.is-light input[type='number'].form-control,
+.shared-components .form.is-light input[type='email'].form-control,
+.shared-components .form.is-light .form__input {
+  background-color: var(--color-form-background-light);
+  border-color: var(--color-form-background-light);
+}
+.shared-components .form.is-light textarea.form-textarea:hover,
+.shared-components .form.is-light input[type=''].form-control:hover,
+.shared-components .form.is-light input[type='text'].form-control:hover,
+.shared-components .form.is-light input[type='phone'].form-control:hover,
+.shared-components .form.is-light input[type='number'].form-control:hover,
+.shared-components .form.is-light input[type='email'].form-control:hover,
+.shared-components .form.is-light .form__input:hover {
+  border-color: var(--color-form-border-hover);
+}
+.shared-components .form.is-light .custom-checkbox label.custom-control-label::before,
+.shared-components .form.is-light .form__checkbox-label::before {
+  background-color: var(--color-form-background-light);
+}
+.shared-components .form.is-light .form__checkbox:checked ~ .form__checkbox-label::before {
+  background-color: var(--color-bg-checkbox);
+}
+.shared-components .form .invalid-feedback {
+  color: var(--color-form-error);
+}
+.shared-components .form .form__checkbox:checked ~ .form__checkbox-label::before {
+  background-color: var(--color-bg-checkbox);
+}
+.shared-components .form .form__radio.is-invalid {
+  border-color: var(--color-form-error);
+}
+.shared-components .form .form__radio.is-invalid ~ .form__radio-label {
+  color: var(--color-form-error);
+}
+.shared-components .form .was-validated .form-control:invalid,
+.shared-components .form .form-control.is-invalid {
+  border-color: var(--color-form-error);
+  background-repeat: no-repeat;
+  background-position: right calc(0.4em + 0.375rem) center;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23e44418' viewBox='0 0 12 12'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23ed4c78' stroke='none'/%3e%3c/svg%3e");
+}
+.shared-components .form .was-validated .form-control:valid,
+.shared-components .form .form-control.is-valid,
+.shared-components .form .was-validated .form-control:valid:focus,
+.shared-components .form .form-control.is-valid:focus {
+  border-color: var(--color-form-success);
+  background-repeat: no-repeat;
+  background-position: right calc(0.4em + 0.375rem) center;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath fill='%23008774' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+}
+.shared-components .form .is-valid ~ .form__checkbox-label {
+  color: var(--contact-copy-color, var(--color-copy));
+}
+.shared-components .form .is-valid:checked ~ .form__checkbox-label::before {
+  border-color: var(--color-bg-checkbox);
 }
 
 .form__row {
   overflow: hidden;
-
-  @include media-breakpoint-up(md) {
+}
+@media (min-width: 768px) {
+  .form__row {
     justify-content: center;
   }
 }
@@ -594,20 +582,18 @@ $form-radio-size: $form-checkbox-size;
   resize: none;
 }
 
-input {
-  &[readonly] {
-    pointer-events: none;
-  }
+input[readonly] {
+  pointer-events: none;
 }
 
 label.input-label,
 .form__label {
   color: var(--color-products-dark-blue);
   opacity: 0.7;
-
-  + .invalid-feedback {
-    margin-bottom: 0.5em;
-  }
+}
+label.input-label + .invalid-feedback,
+.form__label + .invalid-feedback {
+  margin-bottom: 0.5em;
 }
 
 textarea.form-textarea,
@@ -618,30 +604,40 @@ input[type='phone'].form-control,
 input[type='number'].form-control,
 input[type='radio'],
 .form__input {
-  background-color: $form-background-color;
-  border-color: $form-background-color;
-
-  &:hover {
-    border-color: $form-border-hover-color;
-  }
+  background-color: var(--color-form-background);
+  border-color: var(--color-form-background);
+}
+textarea.form-textarea:hover,
+input[type=''].form-control:hover,
+input[type='text'].form-control:hover,
+input[type='email'].form-control:hover,
+input[type='phone'].form-control:hover,
+input[type='number'].form-control:hover,
+input[type='radio']:hover,
+.form__input:hover {
+  border-color: var(--color-form-border-hover);
 }
 
-.is-light {
-  textarea.form-textarea,
-  input[type=''].form-control,
-  input[type='text'].form-control,
-  input[type='email'].form-control,
-  input[type='phone'].form-control,
-  input[type='number'].form-control,
-  input[type='radio'],
-  .form__input {
-    background-color: var(--color-gk-white);
-    border-color: $form-background-color;
-
-    &:hover {
-      border-color: $form-border-hover-color;
-    }
-  }
+.is-light textarea.form-textarea,
+.is-light input[type=''].form-control,
+.is-light input[type='text'].form-control,
+.is-light input[type='email'].form-control,
+.is-light input[type='phone'].form-control,
+.is-light input[type='number'].form-control,
+.is-light input[type='radio'],
+.is-light .form__input {
+  background-color: var(--color-gk-white);
+  border-color: var(--color-form-background);
+}
+.is-light textarea.form-textarea:hover,
+.is-light input[type=''].form-control:hover,
+.is-light input[type='text'].form-control:hover,
+.is-light input[type='email'].form-control:hover,
+.is-light input[type='phone'].form-control:hover,
+.is-light input[type='number'].form-control:hover,
+.is-light input[type='radio']:hover,
+.is-light .form__input:hover {
+  border-color: var(--color-form-border-hover);
 }
 
 input[type='checkbox'].custom-control-input,
@@ -649,17 +645,13 @@ input[type='checkbox'].custom-control-input,
   position: absolute;
   left: 0;
   z-index: -1;
-  width: $form-checkbox-size;
-  height: $form-checkbox-size;
+  width: 2em;
+  height: 2em;
   opacity: 0;
-
-  &:checked ~ {
-    .form__checkbox-label {
-      &::after {
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26l2.974 2.99L8 2.193z'/%3e%3c/svg%3e");
-      }
-    }
-  }
+}
+input[type='checkbox'].custom-control-input:checked ~ .form__checkbox-label::after,
+.form__checkbox:checked ~ .form__checkbox-label::after {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26l2.974 2.99L8 2.193z'/%3e%3c/svg%3e");
 }
 
 .custom-checkbox label.custom-control-label,
@@ -669,70 +661,71 @@ input[type='checkbox'].custom-control-input,
   margin-bottom: 0;
   vertical-align: top;
   cursor: pointer;
-
-  &::before {
-    background-color: $form-background-color;
-    border: 1px solid var(--color-form-border);
-    border-radius: 0;
-    pointer-events: none;
+}
+.custom-checkbox label.custom-control-label::before,
+.form__checkbox-label::before {
+  background-color: var(--color-form-background);
+  border: 1px solid var(--color-form-border);
+  border-radius: 0;
+  pointer-events: none;
+}
+.custom-checkbox label.custom-control-label::after,
+.form__checkbox-label::after {
+  background: no-repeat 50%/50% 50%;
+}
+.custom-checkbox label.custom-control-label::before,
+.custom-checkbox label.custom-control-label::after,
+.form__checkbox-label::before,
+.form__checkbox-label::after {
+  position: absolute;
+  content: '';
+  display: block;
+  width: 2em;
+  height: 2em;
+  top: 0;
+  left: -3em;
+}
+.custom-checkbox label.custom-control-label + .form__input,
+.form__checkbox-label + .form__input {
+  display: inline-block;
+  margin-left: -4px;
+  flex: 1;
+}
+@media (min-width: 992px) {
+  .custom-checkbox label.custom-control-label + .form__input,
+  .form__checkbox-label + .form__input {
+    flex-basis: 50%;
+    flex-grow: 0;
   }
-
-  &::after {
-    background: no-repeat 50% / 50% 50%;
-  }
-
-  &::before,
-  &::after {
-    position: absolute;
-    content: '';
-    display: block;
-    width: $form-checkbox-size;
-    height: $form-checkbox-size;
-    top: 0;
-    left: -#{$form-checkbox-offset};
-  }
-
-  + .form__input {
-    display: inline-block;
-    margin-left: -4px;
-    flex: 1;
-
-    @include media-breakpoint-up(lg) {
-      flex-basis: 50%;
-      flex-grow: 0;
-    }
-  }
-
-  &:hover {
-    &::before {
-      border-color: $form-border-hover-color;
-    }
-  }
+}
+.custom-checkbox label.custom-control-label:hover::before,
+.form__checkbox-label:hover::before {
+  border-color: var(--color-form-border-hover);
 }
 
 div.custom-control,
 .form__checkbox-control {
-  padding-left: $form-checkbox-offset;
-  min-height: $form-checkbox-size;
+  padding-left: 3em;
+  min-height: 2em;
   display: flex;
-
-  + .invalid-feedback {
-    display: none !important;
-  }
-
-  .custom-control-input {
-    width: $form-checkbox-size;
-    height: $form-checkbox-size;
-  }
+}
+div.custom-control + .invalid-feedback,
+.form__checkbox-control + .invalid-feedback {
+  display: none !important;
+}
+div.custom-control .custom-control-input,
+.form__checkbox-control .custom-control-input {
+  width: 2em;
+  height: 2em;
 }
 
 .form__submit {
   display: flex;
-  margin-bottom: spacing(2);
+  margin-bottom: 0.5rem;
 }
 
 .form__form {
-  margin-top: spacing(10);
+  margin-top: 2.5rem;
 }
 
 .form__super-field {
@@ -749,57 +742,57 @@ div.custom-control,
 .form__radio-control {
   display: flex;
   flex-direction: row;
-
-  input[type='radio'],
-  .form__radio {
-    appearance: none;
-    width: $form-radio-size;
-    height: $form-radio-size;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 50%;
-    border-color: var(--color-form-border);
-
-    &:checked {
-      background-color: $form-background-color;
-      border: 0.6em solid var(--color-primary);
-      box-shadow: 0 0 0 1px var(--color-form-border);
-    }
-
-    &:hover {
-      box-shadow: 0 0 0 1px $form-border-hover-color;
-    }
-  }
-
-  .form__radio-label {
-    margin: auto 0;
-    margin-left: spacing(4);
-  }
-
-  .form__radio,
-  .form__radio-label {
-    cursor: pointer;
-  }
+}
+.form__radio-control input[type='radio'],
+.form__radio-control .form__radio {
+  appearance: none;
+  width: 2em;
+  height: 2em;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 50%;
+  border-color: var(--color-form-border);
+}
+.form__radio-control input[type='radio']:checked,
+.form__radio-control .form__radio:checked {
+  background-color: var(--color-form-background);
+  border: 0.6em solid var(--color-primary);
+  box-shadow: 0 0 0 1px var(--color-form-border);
+}
+.form__radio-control input[type='radio']:hover,
+.form__radio-control .form__radio:hover {
+  box-shadow: 0 0 0 1px var(--color-form-border-hover);
+}
+.form__radio-control .form__radio-label {
+  margin: auto 0;
+  margin-left: 1rem;
+}
+.form__radio-control .form__radio,
+.form__radio-control .form__radio-label {
+  cursor: pointer;
 }
 
-.form-field {
-  @include utility-animation-options($distance: 15%, $delay: 200ms, $duration: 0.8s, $selector: '&');
+.form-field[data-utility-animation-step] {
+  --utility-animation-distance: 15%;
+}
+.form-field[data-utility-animation-step].is-starting {
+  animation-delay: calc(var(--utility-animation-index) * 200ms + 0ms);
+  animation-duration: 0.8s;
 }
 
 .form__recaptcha-infos {
-  @include font-size-xs;
+  font-size: 0.7565rem;
 }
 
 .grecaptcha-badge {
   visibility: hidden !important;
 }
 
-.form__wrapper {
-  &.loading {
-    opacity: 0.6;
-    pointer-events: none;
-  }
+.form__wrapper.loading {
+  opacity: 0.6;
+  pointer-events: none;
 }
+
 .form__wrapper--resizing {
   overflow: hidden;
   transition: height 0.6s cubic-bezier(0.22, 1, 0.36, 1);
@@ -818,5 +811,9 @@ div.custom-control,
 
 .form__loader {
   z-index: 2;
+}
+
+.form__bottom-note {
+  font-size: small !important;
 }
 </style>
