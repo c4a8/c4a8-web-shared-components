@@ -14,6 +14,21 @@ declare namespace _default {
         let pricing: ObjectConstructor;
     }
     function mounted(): void;
+    namespace watch {
+        namespace product {
+            let handler: string;
+            let deep: boolean;
+            let flush: string;
+        }
+        namespace pricing {
+            let handler_1: string;
+            export { handler_1 as handler };
+            let deep_1: boolean;
+            export { deep_1 as deep };
+            let flush_1: string;
+            export { flush_1 as flush };
+        }
+    }
     namespace methods {
         function updatePrices(): void;
     }

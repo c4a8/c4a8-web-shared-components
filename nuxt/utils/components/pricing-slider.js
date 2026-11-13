@@ -1,5 +1,6 @@
 import BaseComponent from './base-component.js';
 import Modal from '../modal.js';
+import Tools from '../tools.js';
 
 class PricingSlider extends BaseComponent {
   static rootSelector = '.pricing-slider';
@@ -10,9 +11,16 @@ class PricingSlider extends BaseComponent {
     this.selectedValue = 0;
     this.products = null;
     this.range = null;
+    this.currentPrice = 0;
+
+    this.setPricing(pricing);
+    this.init();
+  }
+
+  // TODO move to a product related component
+  setPricing(pricing) {
     this.pricing = pricing;
 
-    // TODO move to a product related component
     const pricingData = this.pricing
       ? this.pricing
       : {
@@ -21,18 +29,40 @@ class PricingSlider extends BaseComponent {
           defaultPlan: 'monthly',
         };
 
-    this.priceFormatter = new Intl.NumberFormat(pricingData.format, {
-      style: 'currency',
-      currency: pricingData.currency,
-      maximumFractionDigits: 0,
-    });
+    // the price table's formatter (currency display, cents), but whole amounts without ",00":
+    // "8.250 €" and "$10,395" as before, "$14,602.50" where a converted price has cents
+    this.priceFormatter = Tools.getPriceFormatter(pricingData, { trailingZeroDisplay: 'stripIfInteger' });
 
     this.selectedPlan = ['monthly', 'annual'].includes(pricingData.defaultPlan)
       ? pricingData.defaultPlan
       : console.error('Please provide a valid plan in site.data.products.pricing.defaultPlan: "annual" or "monthly"!');
-    this.currentPrice = 0;
+  }
 
-    this.init();
+  /**
+   * New prices or another currency after the slider started (a page that converts its
+   * prices once it knows the visitor's country): format and show the current value again.
+   * Before the slider started there is nothing to show; it reads the new list when it starts.
+   */
+  update(pricing, products) {
+    this.setPricing(pricing);
+
+    if (!this.range) return;
+
+    this.products = products || this.products;
+    this.handlePricingSlider({ from: this.selectedValue });
+  }
+
+  // Removes the window handlers, if they are still this instance's, so the next slider can bind its own
+  destroy() {
+    if (this.handlers) {
+      Object.entries(this.handlers).forEach(([name, handler]) => {
+        if (window[name] === handler) delete window[name];
+      });
+    }
+
+    if (this.info && this.infoHandler) {
+      this.info.removeEventListener('click', this.infoHandler);
+    }
   }
 
   init() {
@@ -42,16 +72,21 @@ class PricingSlider extends BaseComponent {
   }
 
   bindEvents() {
-    const info = this.root.querySelector('.pricing-slider__info');
+    this.info = this.root.querySelector('.pricing-slider__info');
 
-    if (info) {
-      info.addEventListener('click', this.handleInfoClick.bind(this));
+    if (this.info) {
+      this.infoHandler = this.handleInfoClick.bind(this);
+      this.info.addEventListener('click', this.infoHandler);
     }
 
     // TODO rename after global migration
-    window.handleChange = this.handlePricingSlider.bind(this);
-    window.fixSliderText = this.fixText.bind(this);
-    window.prepareSlider = this.prepare.bind(this);
+    this.handlers = {
+      handleChange: this.handlePricingSlider.bind(this),
+      fixSliderText: this.fixText.bind(this),
+      prepareSlider: this.prepare.bind(this),
+    };
+
+    Object.assign(window, this.handlers);
   }
 
   handleInfoClick() {
@@ -75,9 +110,13 @@ class PricingSlider extends BaseComponent {
 
     const extraUsers = this.selectedValue - product.value;
 
+    // to the cent: converted prices have cents ("14,602.50"), the table shows them too
     var price =
-      parseInt(product.price[this.selectedPlan]) +
-      extraUsers * parseFloat(product.additionalUsersFee[this.selectedPlan]);
+      Math.round(
+        (parseFloat(product.price[this.selectedPlan]) +
+          extraUsers * parseFloat(product.additionalUsersFee[this.selectedPlan])) *
+          100,
+      ) / 100;
 
     this.currentPrice = price;
 
@@ -130,6 +169,10 @@ class PricingSlider extends BaseComponent {
 
   fixText() {
     const sliderTextElement = document.querySelector('.irs-single');
+
+    // the timeout of prepare() can fire after the slider is gone
+    if (!sliderTextElement || !this.range) return;
+
     const currentSliderContent = sliderTextElement.innerHTML;
 
     if (!currentSliderContent.includes(this.range.unit)) {

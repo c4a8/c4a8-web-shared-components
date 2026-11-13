@@ -71,6 +71,24 @@ export default {
   mounted() {
     this.pollForJQuery();
   },
+  beforeUnmount() {
+    this.unmounted = true;
+
+    document.removeEventListener(Events.CLIENT_ONLY_LIB_LOADED, this.initRangeSlider);
+
+    if (window.$ && this.$refs.slider) {
+      window.$(this.$refs.slider).data('ionRangeSlider')?.destroy();
+    }
+
+    this.pricingSlider?.destroy();
+    this.pricingSlider = null;
+  },
+  watch: {
+    // a page can convert its prices after mount (the visitor's country): format them again
+    products(products) {
+      this.pricingSlider?.update(products?.pricing, products?.list);
+    },
+  },
   computed: {
     pricingSliderRange() {
       return this.slider && this.slider.range ? this.slider.range : {};
@@ -104,7 +122,7 @@ export default {
       document.addEventListener(Events.CLIENT_ONLY_LIB_LOADED, this.initRangeSlider);
     },
     initRangeSlider() {
-      if (!this.$refs.slider || !window.$) return;
+      if (this.unmounted || !this.$refs.slider || !window.$) return;
 
       this.loading = false;
 
@@ -120,7 +138,7 @@ export default {
       this.options.onChange = this.handleRangeSliderChange;
 
       if (this.$refs.root) {
-        new PricingSlider(this.$refs.root, null, this.products?.pricing);
+        this.pricingSlider = new PricingSlider(this.$refs.root, null, this.products?.pricing);
       }
 
       if (Tools.isClientOnlyLibLoaded()) {
@@ -135,6 +153,8 @@ export default {
       let attempts = 0;
 
       const checkJQuery = () => {
+        if (this.unmounted) return;
+
         if (window.$) {
           this.init();
 

@@ -87,8 +87,10 @@ class ToggleSwitch {
     });
   }
 
+  // Also called again when the page's currency changes after mount (toggle-switch.vue)
   initPrices() {
     const selectors = this.getTargetSelectors(this.target);
+    const plan = this.target.checked ? 'annual' : 'monthly';
 
     selectors.forEach((selector) => {
       const targetElements = document.querySelectorAll(selector);
@@ -96,7 +98,14 @@ class ToggleSwitch {
       targetElements.forEach((element) => {
         if (element.dataset.currencyFormat === undefined) return;
 
-        Tools.updateElementPrice(element, element.innerHTML, this.priceFormatter());
+        // the value of the plan the switch shows, not the element's text: after a re-render
+        // that is the default plan's raw number, and it may be formatted already
+        const options = element.dataset.toggleSwitchItemOptions
+          ? JSON.parse(element.dataset.toggleSwitchItemOptions)
+          : null;
+        const value = options && typeof options[plan] === 'number' ? options[plan] : element.innerHTML;
+
+        Tools.updateElementPrice(element, value, this.priceFormatter());
       });
     });
   }

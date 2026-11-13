@@ -23,6 +23,12 @@ declare namespace _default {
         }
     }
     function mounted(): void;
+    namespace watch {
+        namespace pricingDataAttribute {
+            function handler(): void;
+            let flush: string;
+        }
+    }
     namespace computed {
         function toggleSwitchTextLeft(): any;
         function toggleSwitchTextRight(): any;
