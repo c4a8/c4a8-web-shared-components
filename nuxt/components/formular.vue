@@ -48,6 +48,19 @@
               </div>
             </div>
           </template>
+          <span v-if="bottomNote">
+            <cta
+              v-if="bottomNote.href"
+              :text="bottomNote.text"
+              :button="true"
+              :link="true"
+              :href="bottomNote.href"
+              :analytics="analytics"
+              :reversed="true"
+              class="ml-n2 form__bottom-note"
+            />
+            <span v-else v-html="bottomNote.text" class="form__bottom-note"></span>
+          </span>
           <div v-if="hasRecaptcha" class="form__recaptcha-infos">
             <NuxtTurnstile v-if="turnstileReady" ref="turnstile" />
           </div>
@@ -437,6 +450,10 @@ export default {
   },
   props: {
     form: Object,
+    bottomNote: {
+      type: Object,
+      default: null,
+    },
     light: {
       default: null,
     },
