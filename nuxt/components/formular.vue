@@ -509,21 +509,21 @@ export default {
   border-radius: 0;
 }
 .shared-components .form.is-light textarea.form-textarea,
-.shared-components .form.is-light input[type=""].form-control,
-.shared-components .form.is-light input[type=text].form-control,
-.shared-components .form.is-light input[type=phone].form-control,
-.shared-components .form.is-light input[type=number].form-control,
-.shared-components .form.is-light input[type=email].form-control,
+.shared-components .form.is-light input[type=''].form-control,
+.shared-components .form.is-light input[type='text'].form-control,
+.shared-components .form.is-light input[type='phone'].form-control,
+.shared-components .form.is-light input[type='number'].form-control,
+.shared-components .form.is-light input[type='email'].form-control,
 .shared-components .form.is-light .form__input {
   background-color: var(--color-form-background-light);
   border-color: var(--color-form-background-light);
 }
 .shared-components .form.is-light textarea.form-textarea:hover,
-.shared-components .form.is-light input[type=""].form-control:hover,
-.shared-components .form.is-light input[type=text].form-control:hover,
-.shared-components .form.is-light input[type=phone].form-control:hover,
-.shared-components .form.is-light input[type=number].form-control:hover,
-.shared-components .form.is-light input[type=email].form-control:hover,
+.shared-components .form.is-light input[type=''].form-control:hover,
+.shared-components .form.is-light input[type='text'].form-control:hover,
+.shared-components .form.is-light input[type='phone'].form-control:hover,
+.shared-components .form.is-light input[type='number'].form-control:hover,
+.shared-components .form.is-light input[type='email'].form-control:hover,
 .shared-components .form.is-light .form__input:hover {
   border-color: var(--color-form-border-hover);
 }
@@ -597,50 +597,50 @@ label.input-label + .invalid-feedback,
 }
 
 textarea.form-textarea,
-input[type=""].form-control,
-input[type=text].form-control,
-input[type=email].form-control,
-input[type=phone].form-control,
-input[type=number].form-control,
-input[type=radio],
+input[type=''].form-control,
+input[type='text'].form-control,
+input[type='email'].form-control,
+input[type='phone'].form-control,
+input[type='number'].form-control,
+input[type='radio'],
 .form__input {
   background-color: var(--color-form-background);
   border-color: var(--color-form-background);
 }
 textarea.form-textarea:hover,
-input[type=""].form-control:hover,
-input[type=text].form-control:hover,
-input[type=email].form-control:hover,
-input[type=phone].form-control:hover,
-input[type=number].form-control:hover,
-input[type=radio]:hover,
+input[type=''].form-control:hover,
+input[type='text'].form-control:hover,
+input[type='email'].form-control:hover,
+input[type='phone'].form-control:hover,
+input[type='number'].form-control:hover,
+input[type='radio']:hover,
 .form__input:hover {
   border-color: var(--color-form-border-hover);
 }
 
 .is-light textarea.form-textarea,
-.is-light input[type=""].form-control,
-.is-light input[type=text].form-control,
-.is-light input[type=email].form-control,
-.is-light input[type=phone].form-control,
-.is-light input[type=number].form-control,
-.is-light input[type=radio],
+.is-light input[type=''].form-control,
+.is-light input[type='text'].form-control,
+.is-light input[type='email'].form-control,
+.is-light input[type='phone'].form-control,
+.is-light input[type='number'].form-control,
+.is-light input[type='radio'],
 .is-light .form__input {
   background-color: var(--color-gk-white);
   border-color: var(--color-form-background);
 }
 .is-light textarea.form-textarea:hover,
-.is-light input[type=""].form-control:hover,
-.is-light input[type=text].form-control:hover,
-.is-light input[type=email].form-control:hover,
-.is-light input[type=phone].form-control:hover,
-.is-light input[type=number].form-control:hover,
-.is-light input[type=radio]:hover,
+.is-light input[type=''].form-control:hover,
+.is-light input[type='text'].form-control:hover,
+.is-light input[type='email'].form-control:hover,
+.is-light input[type='phone'].form-control:hover,
+.is-light input[type='number'].form-control:hover,
+.is-light input[type='radio']:hover,
 .is-light .form__input:hover {
   border-color: var(--color-form-border-hover);
 }
 
-input[type=checkbox].custom-control-input,
+input[type='checkbox'].custom-control-input,
 .form__checkbox {
   position: absolute;
   left: 0;
@@ -649,7 +649,7 @@ input[type=checkbox].custom-control-input,
   height: 2em;
   opacity: 0;
 }
-input[type=checkbox].custom-control-input:checked ~ .form__checkbox-label::after,
+input[type='checkbox'].custom-control-input:checked ~ .form__checkbox-label::after,
 .form__checkbox:checked ~ .form__checkbox-label::after {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26l2.974 2.99L8 2.193z'/%3e%3c/svg%3e");
 }
@@ -673,11 +673,12 @@ input[type=checkbox].custom-control-input:checked ~ .form__checkbox-label::after
 .form__checkbox-label::after {
   background: no-repeat 50%/50% 50%;
 }
-.custom-checkbox label.custom-control-label::before, .custom-checkbox label.custom-control-label::after,
+.custom-checkbox label.custom-control-label::before,
+.custom-checkbox label.custom-control-label::after,
 .form__checkbox-label::before,
 .form__checkbox-label::after {
   position: absolute;
-  content: "";
+  content: '';
   display: block;
   width: 2em;
   height: 2em;
@@ -742,7 +743,7 @@ div.custom-control .custom-control-input,
   display: flex;
   flex-direction: row;
 }
-.form__radio-control input[type=radio],
+.form__radio-control input[type='radio'],
 .form__radio-control .form__radio {
   appearance: none;
   width: 2em;
@@ -752,13 +753,13 @@ div.custom-control .custom-control-input,
   border-radius: 50%;
   border-color: var(--color-form-border);
 }
-.form__radio-control input[type=radio]:checked,
+.form__radio-control input[type='radio']:checked,
 .form__radio-control .form__radio:checked {
   background-color: var(--color-form-background);
   border: 0.6em solid var(--color-primary);
   box-shadow: 0 0 0 1px var(--color-form-border);
 }
-.form__radio-control input[type=radio]:hover,
+.form__radio-control input[type='radio']:hover,
 .form__radio-control .form__radio:hover {
   box-shadow: 0 0 0 1px var(--color-form-border-hover);
 }
@@ -798,7 +799,9 @@ div.custom-control .custom-control-input,
 }
 
 .form__success-enter-active {
-  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .form__success-enter-from {
