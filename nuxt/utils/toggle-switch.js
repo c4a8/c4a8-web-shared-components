@@ -10,7 +10,6 @@ class ToggleSwitch {
     this.targetSelector = '.js-toggle-switch';
     this.target = this.root.querySelector(this.targetSelector);
     this.duration = 400;
-    this.parsePricingData = this.root.querySelector('[data-pricing]')?.dataset.pricing;
 
     this.bindEvents();
     this.initPrices();
@@ -57,13 +56,15 @@ class ToggleSwitch {
   }
 
   pricingData() {
-    return this.parsePricingData
-      ? JSON.parse(this.parsePricingData)
-      : {
-          format: 'de-DE',
-          currency: 'EUR',
-          defaultPlan: 'monthly',
-        };
+    const defaults = {
+      format: 'de-DE',
+      currency: 'EUR',
+      defaultPlan: 'monthly',
+    };
+    // read on every call: the page can switch the currency after mount (visitor's country)
+    const pricingData = this.root.querySelector('[data-pricing]')?.dataset.pricing;
+
+    return pricingData ? { ...defaults, ...JSON.parse(pricingData) } : defaults;
   }
 
   priceFormatter() {

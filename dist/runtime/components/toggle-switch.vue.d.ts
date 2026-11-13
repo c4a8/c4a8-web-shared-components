@@ -15,6 +15,12 @@ declare namespace _default {
             let type_2: ObjectConstructor;
             export { type_2 as type };
         }
+        namespace pricing {
+            let type_3: ObjectConstructor;
+            export { type_3 as type };
+            let _default_2: null;
+            export { _default_2 as default };
+        }
     }
     function mounted(): void;
     namespace computed {
@@ -28,6 +34,7 @@ declare namespace _default {
         function toggleSwitchTargetSelector(): any;
         function toggleSwitchLimit(): any;
         function defaultPlan(): any;
+        function pricingDataAttribute(): string | null;
         function toggleSwitchActive(): any;
         function toggleSwitchLimitLeftClass(): "" | "toggle-switch__text--right";
         function toggleSwitchClasses(): string[];
