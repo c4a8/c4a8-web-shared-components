@@ -263,8 +263,15 @@ $step-list-color-img-tint: $color-copy;
   //   and steps that a page stacks itself, keep the title beside it.
   // - A title too long for its line is hyphenated (in the page's language,
   //   words of six letters or more, three on each side); breaking anywhere
-  //   is only the last resort. A word in the text breaks only when it does
-  //   not fit on a line of its own.
+  //   is only the last resort.
+  // - The text hyphenates only long words (twelve letters or more, four on
+  //   each side), so a long compound in a narrow step breaks with a hyphen
+  //   and short words never do. Safari ignores hyphenate-limit-chars and
+  //   would hyphenate every word; its own limits (six letters on each side,
+  //   so also twelve or more in all, and no more than two hyphenated lines
+  //   in a row) keep it as calm. A word with no hyphenation point still
+  //   breaks when it does not fit on a line of its own. A step's link keeps
+  //   its words whole.
   // :where() keeps the specificity of the rules above, so a page's own rules
   // for its step-list still win. Not the small variant.
   // The class inside :where() is not redundant: PurgeCSS (the sites' purge-css
@@ -312,7 +319,18 @@ $step-list-color-img-tint: $color-copy;
 
       .step-list__content {
         min-width: 0;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+        hyphenate-limit-chars: 12 4 4;
+        -webkit-hyphenate-limit-before: 6;
+        -webkit-hyphenate-limit-after: 6;
+        -webkit-hyphenate-limit-lines: 2;
         overflow-wrap: break-word;
+
+        .cta {
+          -webkit-hyphens: manual;
+          hyphens: manual;
+        }
       }
 
       // The image of a step with `img` is placed against its counter.
