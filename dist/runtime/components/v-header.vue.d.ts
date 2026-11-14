@@ -920,6 +920,7 @@ declare namespace _default {
         }>;
         switchLocalePath: any;
         availableLocales: import("vue").ComputedRef<any>;
+        contentAlternates: any;
     };
     namespace computed {
         function classList(): string[];
@@ -1067,11 +1068,14 @@ declare namespace _default {
         function isLight(): boolean;
         function hasLangSwitch(): boolean;
         function languageOptions(): {
+            href: any;
             code: any;
             label: any;
             native: any;
             translated: any;
         }[];
+        function skipTargetId(): string;
+        function skipLinkText(): any;
         function hasContact(): any;
         function hasMeta(): any;
         function headerState(): any;
@@ -1138,7 +1142,7 @@ declare namespace _default {
         function getHref(item: any): any;
         function getTarget(item: any): any;
         function getNextLanguage(): string | undefined;
-        function handleLanguageSwitch(nextLang: any): Promise<void>;
+        function handleLanguageSwitch(nextLang: any, event: any): Promise<void>;
         function loadContentAlternates(): any;
         function getActiveUrlByLang(lang: any, update: any): any;
         function getTranslatedUrl(currentPath: any, lang: any): any;
