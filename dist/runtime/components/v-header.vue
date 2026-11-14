@@ -1,4 +1,5 @@
 <template>
+  <a class="header__skip-link custom" :href="`#${skipTargetId}`">{{ skipLinkText }}</a>
   <div class="header__spacer" :style="spacerBgColor"></div>
   <header :class="classList" v-on:mouseover="handleHeaderMouseOver" v-on:mouseout="handleHeaderMouseOut">
     <div :class="headerContainerClassList" ref="headerContainer">
@@ -135,7 +136,9 @@
                   <a
                     v-for="option in languageOptions"
                     :class="{ 'header__language-link custom': true, active: option.code === lowerLang }"
-                    v-on:click="handleLanguageSwitch(option.code)"
+                    :href="option.href"
+                    :hreflang="option.code"
+                    v-on:click="handleLanguageSwitch(option.code, $event)"
                     :key="option.code"
                   >
                     <span class="header__language-names">
@@ -167,7 +170,9 @@
               <a
                 v-for="option in languageOptions"
                 :class="{ 'header__language-link custom': true, active: option.code === lowerLang }"
-                v-on:click="handleLanguageSwitch(option.code)"
+                :href="option.href"
+                :hreflang="option.code"
+                v-on:click="handleLanguageSwitch(option.code, $event)"
                 :key="option.code"
               >
                 <span class="header__language-names">
@@ -250,11 +255,12 @@
       </div>
     </div>
   </header>
+  <div :id="skipTargetId" class="header__skip-target" tabindex="-1"></div>
 </template>
 
 <script>
 import { computed } from 'vue';
-import { useI18n, useNuxtApp } from '#imports';
+import { useAppConfig, useI18n, useNuxtApp } from '#imports';
 import { useAppStore } from '../stores/app.js';
 import Tools from '../utils/tools.js';
 import State from '../utils/state.js';
@@ -264,6 +270,30 @@ import Languages from '../utils/languages.js';
 
 const HEADER_LAYOUT_CACHE_KEY = 'vHeaderLayout';
 const HEADER_COLLAPSE_MAX_VIEWPORT = 1400;
+
+// The skip link jumps to the element right after the header, so its target exists on
+// every page that has the header, whatever the page renders as its content.
+const SKIP_TARGET_ID = 'main-content';
+
+// The shared translations (locales/global.js) have no French, so the label of the skip
+// link lives here, for every language of the sites; other languages read English.
+const SKIP_LINK_TEXT = {
+  da: 'Gå til hovedindhold',
+  de: 'Zum Hauptinhalt springen',
+  en: 'Skip to main content',
+  es: 'Saltar al contenido principal',
+  fi: 'Siirry pääsisältöön',
+  fr: 'Aller au contenu principal',
+  is: 'Fara í meginmál',
+  it: 'Vai al contenuto principale',
+  ja: 'メインコンテンツへスキップ',
+  ko: '본문 바로가기',
+  nl: 'Naar de hoofdinhoud',
+  no: 'Gå til hovedinnhold',
+  pl: 'Przejdź do treści głównej',
+  pt: 'Ir para o conteúdo principal',
+  sv: 'Hoppa till huvudinnehållet',
+};
 
 const isOutsideCollapseMeasureRange = () => {
   if (typeof window === 'undefined') return false;
@@ -290,8 +320,11 @@ export default {
 
     const { $switchLocalePath: switchLocalePath, $getLocales } = useI18n();
     const availableLocales = computed(() => ($getLocales() || []).map((l) => (typeof l === 'string' ? l : l.code)));
+    // Content pages that some languages lack, from the site's i18n-content-alternates.json
+    // (put into the app config by the module); none on a site without that file.
+    const contentAlternates = useAppConfig()?.sharedComponents?.contentAlternates || null;
 
-    return { store, switchLocalePath, availableLocales };
+    return { store, switchLocalePath, availableLocales, contentAlternates };
   },
   computed: {
     classList() {
@@ -424,7 +457,24 @@ export default {
       return this.availableLocales.length > 1;
     },
     languageOptions() {
-      return Languages.getOptions(this.availableLocales, this.lowerLang);
+      // Each entry is a real link to the same page in that language, so crawlers and
+      // visitors without JavaScript reach it too. It points where handleLanguageSwitch
+      // sends a click: the language's home when the page is missing in that language.
+      const stem = (this.$route?.path || '/').replace(/^\/[a-z]{2}(?=\/|$)/, '') || '/';
+      const locales = this.contentAlternates?.[stem];
+
+      return Languages.getOptions(this.availableLocales, this.lowerLang).map((option) => {
+        const missing = locales && !locales.includes(option.code);
+        const target = this.switchLocalePath(option.code);
+
+        return { ...option, href: missing || !target ? `/${option.code}` : target };
+      });
+    },
+    skipTargetId() {
+      return SKIP_TARGET_ID;
+    },
+    skipLinkText() {
+      return SKIP_LINK_TEXT[this.lowerLang] || SKIP_LINK_TEXT.en;
     },
     hasContact() {
       return this.contact;
@@ -841,6 +891,10 @@ export default {
       this.resetFlyouts();
       this.updateProductListHeight();
 
+      // The burger layout shows no flyout, so no menu is open as a flyout there. On a large
+      // screen reset() also runs when the page height changes, with the flyout still open.
+      if (this.isLowerBreakpoint()) this.openFlyout = null;
+
       this.closed = true;
     },
     handleCloseClick() {
@@ -934,12 +988,12 @@ export default {
 
       link.classList.add(State.EXPANDED);
 
-      this.openFlyout = index;
-
       const flyout = this.getFlyoutRef(index);
 
       if (!flyout) return;
 
+      // Only once the flyout exists: before the first interaction renders it, nothing opens.
+      this.openFlyout = index;
       this.flyoutIndex = index;
 
       flyout.classList.add(State.EXPANDED);
@@ -1045,7 +1099,13 @@ export default {
 
       return nextLang[0];
     },
-    async handleLanguageSwitch(nextLang) {
+    async handleLanguageSwitch(nextLang, event) {
+      // A click with a modifier key opens the link's href in a new tab or window, as on
+      // any link. A plain click stays here and switches as before.
+      if (event && (event.button > 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)) return;
+
+      event?.preventDefault();
+
       if (nextLang === this.lowerLang) return;
 
       Tools.storageSave('preferedLanguage', nextLang, false);
@@ -2204,6 +2264,39 @@ export default {
   .header__spacer {
     display: none;
   }
+}
+
+.header__skip-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.header__skip-link:focus {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 1002;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  overflow: visible;
+  clip-path: none;
+  background-color: var(--color-gk-white, #fff);
+  color: var(--color-copy);
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.header__skip-target {
+  position: absolute;
+  outline: 0;
 }
 
 .header__button {
