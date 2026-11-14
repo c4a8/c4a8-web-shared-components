@@ -1,5 +1,12 @@
 # Releases
 
+# Release 0.4.137
+
+- Adds a skip link to the main content as the first stop of the keyboard, visible only on keyboard focus, in every site language
+- Makes the language switch entries real links to the same page in the other language, so crawlers and visitors without JavaScript reach them; a click works as before
+- Names the footer's social icons for screen readers
+- Fixes the menus' aria-expanded saying "open" before the first flyout exists and after a resize into the burger menu
+
 # Release 0.4.136
 
 - Hyphenates long words in the step-list texts and titles, so they no longer break without a hyphen in narrow steps
