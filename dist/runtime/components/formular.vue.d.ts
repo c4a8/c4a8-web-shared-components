@@ -63,66 +63,72 @@ declare namespace _default {
     }
     namespace props {
         let form: ObjectConstructor;
-        namespace light {
+        namespace bottomNote {
+            export let type: ObjectConstructor;
             let _default: null;
             export { _default as default };
         }
-        namespace analytics {
+        namespace light {
             let _default_1: null;
             export { _default_1 as default };
         }
-        let space: StringConstructor;
-        namespace container {
+        namespace analytics {
             let _default_2: null;
             export { _default_2 as default };
         }
-        namespace ajax {
+        let space: StringConstructor;
+        namespace container {
             let _default_3: null;
             export { _default_3 as default };
         }
-        namespace uncentered {
+        namespace ajax {
             let _default_4: null;
             export { _default_4 as default };
         }
-        namespace replaceValue {
+        namespace uncentered {
             let _default_5: null;
             export { _default_5 as default };
         }
-        namespace customValidation {
+        namespace replaceValue {
             let _default_6: null;
             export { _default_6 as default };
         }
-        let options: ObjectConstructor;
-        namespace hasUuid {
+        namespace customValidation {
             let _default_7: null;
             export { _default_7 as default };
         }
-        namespace hasAnimation {
+        let options: ObjectConstructor;
+        namespace hasUuid {
             let _default_8: null;
             export { _default_8 as default };
         }
-        namespace useTranslation {
-            export let type: BooleanConstructor;
-            let _default_9: boolean;
+        namespace hasAnimation {
+            let _default_9: null;
             export { _default_9 as default };
         }
-        namespace hasRecaptcha {
+        namespace useTranslation {
             let type_1: BooleanConstructor;
             export { type_1 as type };
             let _default_10: boolean;
             export { _default_10 as default };
         }
-        namespace odoo {
+        namespace hasRecaptcha {
             let type_2: BooleanConstructor;
             export { type_2 as type };
             let _default_11: boolean;
             export { _default_11 as default };
         }
-        namespace showLoader {
+        namespace odoo {
             let type_3: BooleanConstructor;
             export { type_3 as type };
             let _default_12: boolean;
             export { _default_12 as default };
+        }
+        namespace showLoader {
+            let type_4: BooleanConstructor;
+            export { type_4 as type };
+            let _default_13: boolean;
+            export { _default_13 as default };
         }
     }
 }

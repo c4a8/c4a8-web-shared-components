@@ -267,7 +267,10 @@ $step-list-color-img-tint: $color-copy;
   //   not fit on a line of its own.
   // :where() keeps the specificity of the rules above, so a page's own rules
   // for its step-list still win. Not the small variant.
-  &:where(:not(.step-list--small)) {
+  // The class inside :where() is not redundant: PurgeCSS (the sites' purge-css
+  // step) drops a rule whose :where() holds a bare :not(), and with it this
+  // whole block.
+  &:where(.step-list:not(.step-list--small)) {
     @include media-breakpoint-up(lg) {
       .step-list__list {
         display: grid;
