@@ -134,6 +134,7 @@
                 <a
                   class="btn btn-xs btn-icon btn-soft-light"
                   :title="social.title"
+                  :aria-label="social.title"
                   :href="social.url"
                   target="_blank"
                   rel="noopener"
