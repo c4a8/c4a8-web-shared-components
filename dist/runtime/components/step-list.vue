@@ -308,12 +308,25 @@ export default {
     min-width: 0;
     -webkit-hyphens: auto;
     hyphens: auto;
-    hyphenate-limit-chars: 6 3 3;
+    hyphenate-limit-chars: 12 4 4;
+    -webkit-hyphenate-limit-before: 6;
+    -webkit-hyphenate-limit-after: 6;
+    -webkit-hyphenate-limit-lines: 2;
     overflow-wrap: anywhere;
   }
   .step-list:where(.step-list:not(.step-list--small)) .step-list__content {
     min-width: 0;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    hyphenate-limit-chars: 12 4 4;
+    -webkit-hyphenate-limit-before: 6;
+    -webkit-hyphenate-limit-after: 6;
+    -webkit-hyphenate-limit-lines: 2;
     overflow-wrap: break-word;
+  }
+  .step-list:where(.step-list:not(.step-list--small)) .step-list__content .cta {
+    -webkit-hyphens: manual;
+    hyphens: manual;
   }
   .step-list:where(.step-list:not(.step-list--small)) .step-list__counter {
     position: relative;
