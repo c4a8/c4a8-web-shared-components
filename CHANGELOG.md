@@ -1,5 +1,10 @@
 # Releases
 
+# Release 0.4.136
+
+- Hyphenates long words in the step-list texts and titles, so they no longer break without a hyphen in narrow steps
+- Stops hyphenating short words in the step-list titles, also in Safari
+
 # Release 0.4.132
 
 - Fixes product logos and the expand chevron overflowing the mobile product navigation in Safari
