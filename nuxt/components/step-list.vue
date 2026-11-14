@@ -261,17 +261,14 @@ $step-list-color-img-tint: $color-copy;
   //   title beside its counter (four steps at 992 px), so there the title
   //   goes under the counter and takes the step's full width. Wider steps,
   //   and steps that a page stacks itself, keep the title beside it.
-  // - A title too long for its line is hyphenated (in the page's language,
-  //   words of six letters or more, three on each side); breaking anywhere
-  //   is only the last resort.
-  // - The text hyphenates only long words (twelve letters or more, four on
-  //   each side), so a long compound in a narrow step breaks with a hyphen
-  //   and short words never do. Safari ignores hyphenate-limit-chars and
-  //   would hyphenate every word; its own limits (six letters on each side,
-  //   so also twelve or more in all, and no more than two hyphenated lines
-  //   in a row) keep it as calm. A word with no hyphenation point still
-  //   breaks when it does not fit on a line of its own. A step's link keeps
-  //   its words whole.
+  // - Title and text hyphenate only long words, in the page's language
+  //   (twelve letters or more, four on each side), so a long compound in a
+  //   narrow step breaks with a hyphen and short words like "Service" never
+  //   do. Safari ignores hyphenate-limit-chars and would hyphenate every
+  //   word; its own limits (six letters on each side, so also twelve or more
+  //   in all, and no more than two hyphenated lines in a row) keep it as
+  //   calm. A word with no hyphenation point still breaks rather than leave
+  //   the step. A step's link keeps its words whole.
   // :where() keeps the specificity of the rules above, so a page's own rules
   // for its step-list still win. Not the small variant.
   // The class inside :where() is not redundant: PurgeCSS (the sites' purge-css
@@ -313,7 +310,10 @@ $step-list-color-img-tint: $color-copy;
         min-width: 0;
         -webkit-hyphens: auto;
         hyphens: auto;
-        hyphenate-limit-chars: 6 3 3;
+        hyphenate-limit-chars: 12 4 4;
+        -webkit-hyphenate-limit-before: 6;
+        -webkit-hyphenate-limit-after: 6;
+        -webkit-hyphenate-limit-lines: 2;
         overflow-wrap: anywhere;
       }
 
