@@ -281,22 +281,22 @@ export default {
   }
 }
 @media (min-width: 992px) {
-  .step-list:where(:not(.step-list--small)) .step-list__list {
+  .step-list:where(.step-list:not(.step-list--small)) .step-list__list {
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: minmax(0, 1fr) auto;
     grid-template-rows: auto auto;
     row-gap: 0;
   }
-  .step-list:where(:not(.step-list--small)) .step-list__list-element {
+  .step-list:where(.step-list:not(.step-list--small)) .step-list__list-element {
     grid-row: span 2;
     grid-template-rows: subgrid;
     min-width: 0;
   }
-  .step-list:where(:not(.step-list--small)) .step-list__counter::before {
+  .step-list:where(.step-list:not(.step-list--small)) .step-list__counter::before {
     content: attr(data-content);
   }
-  .step-list:where(:not(.step-list--small)) .step-list__head {
+  .step-list:where(.step-list:not(.step-list--small)) .step-list__head {
     container: step-list-head/inline-size;
     display: grid;
     grid-column: 1/-1;
@@ -304,28 +304,28 @@ export default {
     align-content: start;
     min-width: 0;
   }
-  .step-list:where(:not(.step-list--small)) .step-list__title--no-small {
+  .step-list:where(.step-list:not(.step-list--small)) .step-list__title--no-small {
     min-width: 0;
     -webkit-hyphens: auto;
     hyphens: auto;
     hyphenate-limit-chars: 6 3 3;
     overflow-wrap: anywhere;
   }
-  .step-list:where(:not(.step-list--small)) .step-list__content {
+  .step-list:where(.step-list:not(.step-list--small)) .step-list__content {
     min-width: 0;
     overflow-wrap: break-word;
   }
-  .step-list:where(:not(.step-list--small)) .step-list__counter {
+  .step-list:where(.step-list:not(.step-list--small)) .step-list__counter {
     position: relative;
   }
-  .step-list:where(:not(.step-list--small)) .step-list__icon {
+  .step-list:where(.step-list:not(.step-list--small)) .step-list__icon {
     grid-row: 1;
     align-self: start;
     display: flex;
     align-items: center;
   }
   @container step-list-head (width < 16rem) {
-    .step-list:where(:not(.step-list--small)) .step-list__title--no-small {
+    .step-list:where(.step-list:not(.step-list--small)) .step-list__title--no-small {
       grid-column: 1/-1;
       grid-row: 2;
       align-items: flex-start;
