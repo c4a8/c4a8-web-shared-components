@@ -89,16 +89,20 @@
         </div>
       </div>
       <div class="card__body card-body mt-0 pt-0 z-index-2 d-flex flex-column">
-        <template v-for="(info, index) in subPointsList(productValue)" v-bind:key="index">
-          <headline :class="headlineClassValue(index)" level="h6">{{ info.title }}</headline>
-          <template v-for="(point, pointIndex) in info.subpoints" v-bind:key="pointIndex">
-            <div class="card__check-mark-row">
-              <span class="card__check-placeholder" v-if="point.hideIcon"></span>
-              <icon class="card__check-mark-icon" v-else :icon="isIncluded(point.included)" size="medium" />
-              <span class="card__check-mark-point">{{ point.subpoint }}</span>
-            </div>
+        <!-- One box for the points, so a grid-list of product cards can line
+             up the links of cards side by side (see grid-list.vue) -->
+        <div class="card__product-points d-flex flex-column">
+          <template v-for="(info, index) in subPointsList(productValue)" v-bind:key="index">
+            <headline :class="headlineClassValue(index)" level="h6">{{ info.title }}</headline>
+            <template v-for="(point, pointIndex) in info.subpoints" v-bind:key="pointIndex">
+              <div class="card__check-mark-row">
+                <span class="card__check-placeholder" v-if="point.hideIcon"></span>
+                <icon class="card__check-mark-icon" v-else :icon="isIncluded(point.included)" size="medium" />
+                <span class="card__check-mark-point">{{ point.subpoint }}</span>
+              </div>
+            </template>
           </template>
-        </template>
+        </div>
         <div class="card__link mt-auto" v-if="cta">
           <cta v-bind="ctaValue" class="font-weight-bold mt-5" style="color: var(--color-primary)" />
         </div>

@@ -80,8 +80,12 @@
                 :getTarget="getTarget"
                 :linkLists="linkLists"
                 :getId="getId"
+                :getIdToken="getIdToken"
+                :getFlyoutId="getFlyoutId"
+                :openFlyout="openFlyout"
                 :inTransition="inTransition"
                 :renderMegaMenu="renderMegaMenu"
+                :crawlableMenus="crawlableMenus"
                 ref="headerItem"
               ></v-header-item>
             </ul>
@@ -157,7 +161,7 @@
             ref="languageSwitch"
           >
             <span class="header__link-text">{{ lowerLang }}</span>
-            <span class="header__link-text-spacer">{{ lowerLang }}</span>
+            <span class="header__link-text-spacer" :aria-hidden="crawlableMenus ? 'true' : null">{{ lowerLang }}</span>
             <icon class="header__link-icon" icon="expand" size="small" />
             <div class="header__language-switch-flyout" ref="languageSwitchFlyout">
               <a
@@ -185,6 +189,7 @@
             <div
               class="header__flyout-content"
               v-for="(item, itemIndex) in activeNavigation"
+              :id="crawlableMenus && item.children ? getFlyoutId(item, itemIndex) : null"
               ref="flyout"
               :key="itemIndex"
             >
@@ -887,6 +892,13 @@ export default {
     getId(item, index) {
       return `${item.name}_${index}`;
     },
+    getIdToken(item, index) {
+      // getId as a token for an id attribute: no spaces, nothing a selector would trip on.
+      return this.getId(item, index).replace(/[^A-Za-z0-9_-]+/g, '-');
+    },
+    getFlyoutId(item, index) {
+      return `header-flyout-${this.getIdToken(item, index)}`;
+    },
     handleHeaderMouseOver() {
       if (this.initMegaMenu) this.initMegaMenu();
 
@@ -922,6 +934,8 @@ export default {
 
       link.classList.add(State.EXPANDED);
 
+      this.openFlyout = index;
+
       const flyout = this.getFlyoutRef(index);
 
       if (!flyout) return;
@@ -934,6 +948,7 @@ export default {
       if (event.relatedTarget?.closest('.header__flyout')) return;
 
       this.hover = false;
+      this.openFlyout = null;
 
       const link = this.getLinkRef(this.flyoutIndex);
 
@@ -979,6 +994,8 @@ export default {
       links?.forEach((link) => {
         link.classList.remove(State.EXPANDED);
       });
+
+      this.openFlyout = null;
 
       this.$refs['flyout']?.forEach((flyout) => {
         flyout.classList.remove(State.EXPANDED);
@@ -1216,6 +1233,14 @@ export default {
     collapse: {
       default: null,
     },
+    // Puts every submenu link into the server HTML, so crawlers that do not run JavaScript
+    // find the pages of the menu, and makes each menu with a submenu a button with
+    // aria-expanded and aria-controls. Off by default: the submenus are then rendered
+    // after the first interaction, which keeps the start DOM small (745ae3e9).
+    crawlableMenus: {
+      default: false,
+      type: Boolean,
+    },
   },
   data() {
     const layoutCache = readHeaderLayoutCache();
@@ -1229,6 +1254,7 @@ export default {
       hover: false,
       headerHover: false,
       flyoutIndex: null,
+      openFlyout: null,
       linkLists: {},
       scrollThreshold: 10,
       isScrolled: false,
@@ -2066,6 +2092,19 @@ export default {
 .header__contact-link:visited,
 .header__contact-link {
   color: var(--color-copy);
+}
+
+:where(button.header__link) {
+  appearance: none;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: inherit;
+  text-transform: inherit;
+  align-items: normal;
+  cursor: pointer;
 }
 
 .header__footer {

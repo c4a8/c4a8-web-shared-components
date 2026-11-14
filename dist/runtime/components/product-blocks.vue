@@ -9,7 +9,7 @@
       >
         <headline-row :text="headline" :centered="true" />
       </div>
-      <div class="row">
+      <div class="product-blocks__row row">
         <div
           v-for="(item, index) in productBlocks.items"
           :key="index"
@@ -101,5 +101,28 @@ export default {
 
 .product-blocks__item[data-utility-animation-step].is-starting {
   animation-delay: calc(var(--utility-animation-index) * 80ms + 0ms);
+}
+
+@supports (grid-template-rows: subgrid) {
+  @media (min-width: 768px) {
+    .product-blocks__row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .product-blocks__row > .product-blocks__item {
+      display: grid;
+      grid-row: span 2;
+      grid-template-rows: subgrid;
+      grid-template-columns: minmax(0, 1fr);
+      max-width: none;
+    }
+    .product-blocks__block {
+      display: grid;
+      grid-row: span 2;
+      grid-template-rows: subgrid;
+      grid-template-columns: minmax(0, 1fr);
+      height: auto;
+    }
+  }
 }
 </style>

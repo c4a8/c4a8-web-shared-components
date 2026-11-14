@@ -1121,6 +1121,8 @@ declare namespace _default {
         function closeAllSiblings(id: any): void;
         function closeAllChildren(): void;
         function getId(item: any, index: any): string;
+        function getIdToken(item: any, index: any): string;
+        function getFlyoutId(item: any, index: any): string;
         function handleHeaderMouseOver(): void;
         function handleHeaderMouseOut(): void;
         function setCtaClasses(): void;
@@ -1188,6 +1190,11 @@ declare namespace _default {
             let _default_6: null;
             export { _default_6 as default };
         }
+        namespace crawlableMenus {
+            let _default_7: boolean;
+            export { _default_7 as default };
+            export let type: BooleanConstructor;
+        }
     }
     function data(): {
         hoverHeader: boolean;
@@ -1198,6 +1205,7 @@ declare namespace _default {
         hover: boolean;
         headerHover: boolean;
         flyoutIndex: null;
+        openFlyout: null;
         linkLists: {};
         scrollThreshold: number;
         isScrolled: boolean;

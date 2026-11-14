@@ -115,6 +115,8 @@ if (post.value) {
     description: post.value.meta?.customExcerpt ?? null,
     keywords: post.value.meta?.keywords ?? null,
     image: socialImgUrl,
+    // A post is an article; the sites set "website" as their default in app.vue
+    ogType: 'article',
   });
 
   useSchemaOrg([
