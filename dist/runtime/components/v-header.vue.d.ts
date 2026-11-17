@@ -918,8 +918,8 @@ declare namespace _default {
             resetHeader(): void;
             setPageIsLoaded(isLoaded: any): void;
         }>;
-        switchLocalePath: any;
-        availableLocales: import("vue").ComputedRef<any>;
+        switchLocalePath: (locale: string) => string;
+        availableLocales: import("vue").ComputedRef<string[]>;
         contentAlternates: any;
     };
     namespace computed {
@@ -1197,7 +1197,8 @@ declare namespace _default {
         namespace crawlableMenus {
             let _default_7: boolean;
             export { _default_7 as default };
-            export let type: BooleanConstructor;
+            let type_1: BooleanConstructor;
+            export { type_1 as type };
         }
     }
     function data(): {

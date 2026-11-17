@@ -2,6 +2,7 @@ declare namespace _default {
     let tagName: string;
     namespace computed {
         function classList(): string[];
+        function hasProductTiles(): any;
         function columnClassList(): string[];
         function isList(): any;
         function isRow(): boolean;

@@ -15,12 +15,13 @@ declare namespace _default {
     }
     function mounted(): void;
     namespace watch {
-        namespace product {
+        export namespace product_1 {
             let handler: string;
             let deep: boolean;
             let flush: string;
         }
-        namespace pricing {
+        export { product_1 as product };
+        export namespace pricing_1 {
             let handler_1: string;
             export { handler_1 as handler };
             let deep_1: boolean;
@@ -28,6 +29,7 @@ declare namespace _default {
             let flush_1: string;
             export { flush_1 as flush };
         }
+        export { pricing_1 as pricing };
     }
     namespace methods {
         function updatePrices(): void;
