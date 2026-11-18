@@ -4,9 +4,9 @@ declare class PricingSlider extends BaseComponent {
     selectedValue: number;
     products: any;
     range: any;
-    pricing: any;
     currentPrice: number;
     setPricing(pricing: any): void;
+    pricing: any;
     priceFormatter: Intl.NumberFormat | undefined;
     selectedPlan: any;
     /**
@@ -19,11 +19,11 @@ declare class PricingSlider extends BaseComponent {
     init(): void;
     bindEvents(): void;
     info: any;
-    infoHandler: any;
+    infoHandler: (() => void) | undefined;
     handlers: {
-        handleChange: any;
-        fixSliderText: any;
-        prepareSlider: any;
+        handleChange: ({ from }: object) => void;
+        fixSliderText: () => void;
+        prepareSlider: (slider: any) => void;
     } | undefined;
     handleInfoClick(): void;
     /**

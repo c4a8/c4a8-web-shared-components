@@ -21,6 +21,7 @@ declare namespace _default {
         formId: string;
     };
     namespace computed {
+        function turnstileEnabled(): any;
         function loaderClasses(): string[];
         function classList(): string[];
         function hasSuccessSlot(): boolean;
