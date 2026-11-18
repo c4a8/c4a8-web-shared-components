@@ -1,6 +1,6 @@
 import { promises } from 'fs';
 import { pathToFileURL } from 'url';
-import { join, resolve as resolve$1 } from 'path';
+import { join, resolve } from 'path';
 import { defineNuxtModule, createResolver, installModule, addComponentsDir, addTemplate, addLayout, addPlugin, extendPages, addImportsDir } from '@nuxt/kit';
 
 
@@ -180,7 +180,7 @@ async function registerSharedI18n(_nuxt, resolve) {
   });
 }
 async function registerContentAlternates(_nuxt) {
-  const file = join(resolve$1(_nuxt.options.rootDir, _nuxt.options.dir?.public || "public"), "i18n-content-alternates.json");
+  const file = join(resolve(_nuxt.options.rootDir, _nuxt.options.dir?.public || "public"), "i18n-content-alternates.json");
   let contentAlternates;
   try {
     contentAlternates = JSON.parse(await promises.readFile(file, "utf8"));

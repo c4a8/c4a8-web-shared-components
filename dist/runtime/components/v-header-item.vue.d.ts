@@ -8,7 +8,7 @@ declare namespace _default {
         function headerLinkClasses(item: any, index: any): any;
         function getListClasses(item: any, index: any, classes: any): any[];
         function isLinkListHidden(item: any, index: any): boolean;
-        function isMenuButton(item: any): boolean;
+        function isMenuButton(item: any): any;
         function isMenuOpen(item: any, index: any): boolean;
         function getMenuId(item: any, index: any, listIndex: any): string | null;
         function getMenuControls(item: any, index: any): string;

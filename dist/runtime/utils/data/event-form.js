@@ -5,7 +5,8 @@ const EventForm = {
     skin: 'primary',
   },
   method: 'post',
-  action: '/successful',
+  action: '/send',
+  next: '/successful',
   fields: [
     {
       label: 'form.event.firstname',

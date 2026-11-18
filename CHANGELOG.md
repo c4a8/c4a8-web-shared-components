@@ -1,5 +1,10 @@
 # Releases
 
+# Release 0.4.138
+
+- Lets an event set its own redirect after the form submit via `formNext`, and keeps a custom form's own `_next` and `eventid` fields
+- Allows turning off the Turnstile check in forms via `sharedComponents.turnstile: false`
+
 # Release 0.4.137
 
 - Adds a skip link to the main content as the first stop of the keyboard, visible only on keyboard focus, in every site language
