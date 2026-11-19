@@ -757,7 +757,6 @@ export default {
 
 .hero__overline {
   position: relative;
-  z-index: 1;
   display: inline-block;
   margin-bottom: 0.5rem;
   padding: 0rem 0.25rem 0em 0.25rem;
