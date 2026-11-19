@@ -130,7 +130,11 @@ import StickyScroller from '../utils/sticky-scroller.js';
 export default {
   tagName: 'hero',
   components: {
-    'text-icon-animation': defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./text-icon-animation.vue') }),
+    'text-icon-animation': defineAsyncComponent({
+      suspensible: false,
+      hydrate: hydrateOnIdle(),
+      loader: () => import('./text-icon-animation.vue'),
+    }),
   },
   setup() {
     const store = useAppStore();
@@ -810,17 +814,26 @@ export default {
 }
 
 .hero__overline {
-  @include background-grow($color: var(--hero-overline-background-color), $spacing: spacing(1));
-
+  position: relative;
   display: inline-block;
   margin-bottom: spacing(2);
-  padding: spacing(1) spacing(6) spacing(1) spacing(2);
+  padding: 0 spacing(1);
   color: var(--hero-copy-overline-color);
 
-  &.hero__overline--full {
-    &::before {
-      animation-name: growFull;
-    }
+  &::before {
+    position: absolute;
+    content: '';
+    display: block;
+    top: calc(0.35rem + 0.6em);
+    bottom: 0;
+    width: 0;
+    left: 0;
+    background-color: var(--color-highlight-underline);
+    animation: growFull;
+    animation-duration: 0.8s;
+    animation-fill-mode: forwards;
+    animation-timing-function: $animation-transition;
+    z-index: -1;
   }
 }
 
