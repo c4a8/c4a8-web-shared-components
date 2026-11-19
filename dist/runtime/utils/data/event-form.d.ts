@@ -7,6 +7,7 @@ declare namespace EventForm {
     }
     let method: string;
     let action: string;
+    let next: string;
     let fields: ({
         label: string;
         type: string;

@@ -61,7 +61,7 @@
             />
             <span v-else v-html="bottomNote.text" class="form__bottom-note"></span>
           </span>
-          <div v-if="hasRecaptcha" class="form__recaptcha-infos">
+          <div v-if="turnstileEnabled" class="form__recaptcha-infos">
             <NuxtTurnstile v-if="turnstileReady" ref="turnstile" />
           </div>
           <div :class="formClassList">
@@ -126,6 +126,9 @@ export default {
     };
   },
   computed: {
+    turnstileEnabled() {
+      return this.hasRecaptcha && this.config?.public?.sharedComponents?.turnstile !== false;
+    },
     loaderClasses() {
       return [`${this.hasLoading ? State.LOADING : ''}`, `${this.hasLoader ? 'loading' : ''}`, 'vue-component'];
     },
@@ -228,7 +231,7 @@ export default {
 
   mounted() {
     this.originalAction = this.formAction = this.form?.action;
-    this.formInstance = new Form(this.$refs.root, null, this.validate.bind(this), this.hasRecaptcha, this.siteKey);
+    this.formInstance = new Form(this.$refs.root, null, this.validate.bind(this), this.turnstileEnabled, this.siteKey);
 
     Form.expose(this.formInstance);
 
@@ -237,7 +240,7 @@ export default {
 
     this.novalidateValue = 'novalidate';
 
-    if (this.hasRecaptcha) {
+    if (this.turnstileEnabled) {
       this.turnstileObserver = whenVisible(
         this.$refs.root,
         () => {
