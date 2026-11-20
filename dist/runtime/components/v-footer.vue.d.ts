@@ -13,6 +13,7 @@ declare namespace _default {
     }
     function mounted(): void;
     namespace methods {
+        function socialIcon(name: any): any;
         function bgColorRgba(): string | null;
     }
     namespace props {
