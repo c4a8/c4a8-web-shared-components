@@ -1,1 +1,0 @@
-import{b7 as i,bb as s,b8 as r}from"./C6iTuytH.js";import"./Dp1pzeXC.js";const f=i({cast(t){return typeof t=="string"&&(t={name:t}),t},defaults:{"@type":"ListItem"},resolve(t,e){return typeof t.item=="string"?t.item=s(e.meta.host,t.item):typeof t.item=="object"&&(t.item=r(t.item,e)),t}});export{f as listItemResolver};

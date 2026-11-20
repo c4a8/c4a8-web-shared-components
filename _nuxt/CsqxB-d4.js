@@ -1,1 +1,0 @@
-import{b7 as t}from"./C6iTuytH.js";import"./Dp1pzeXC.js";const o=t({defaults:{"@type":"ReadAction"},resolve(e,r){return e.target.includes(r.meta.url)||e.target.unshift(r.meta.url),e}});export{o as readActionResolver};
