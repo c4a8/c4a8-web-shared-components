@@ -1,5 +1,11 @@
 # Releases
 
+# Release 0.4.141
+
+- Updates the dependencies of the Storybook and module build to clear the open security alerts (Nuxt 3.21, Storybook 9.1, Nuxt Content 3.16); the components and styles the sites get are unchanged
+- Removes the unused Storybook 8 and Vite packages from the root package; their sources were removed in March
+- Carries the hero overline styles and their background color fix, which reached master after 0.4.138
+
 # Release 0.4.138
 
 - Lets an event set its own redirect after the form submit via `formNext`, and keeps a custom form's own `_next` and `eventid` fields

@@ -5,8 +5,8 @@ import Hero from '../components/hero.vue';
 import IntroText from '../components/intro-text.vue';
 import Blog from '../components/blog.vue';
 // import VFooter from '../components/v-footer.vue';
-import HeaderData from '../.storybook/data/header';
-import Posts from '../.storybook/data/posts';
+import HeaderData from '../../.storybook/data/header';
+import Posts from '../../.storybook/data/posts';
 
 export default {
   component: VHeader,
