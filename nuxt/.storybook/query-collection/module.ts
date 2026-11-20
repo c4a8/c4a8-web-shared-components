@@ -11,7 +11,7 @@ export default defineNuxtModule({
     const { resolve } = createResolver(import.meta.url);
     const contentModule = await resolvePath('@nuxt/content');
 
-    nuxt.options.alias['#content-runtime-app'] = join(dirname(contentModule), 'runtime/app');
+    nuxt.options.alias['#content-runtime-app'] = join(dirname(contentModule), 'runtime/client');
 
     addImports({ name: 'queryCollection', from: resolve('./runtime'), priority: 2 });
   },

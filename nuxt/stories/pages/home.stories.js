@@ -4,7 +4,7 @@ import Content from '../components/content.vue';
 import Hero from '../components/hero.vue';
 import IntroText from '../components/intro-text.vue';
 // import VFooter from '../components/v-footer.vue';
-import HeaderData from '../.storybook/data/header';
+import HeaderData from '../../.storybook/data/header';
 
 export default {
   component: VHeader,
