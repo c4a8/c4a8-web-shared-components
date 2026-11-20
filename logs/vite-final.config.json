@@ -16,8 +16,6 @@
         "entry": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/nuxt/dist/app/entry.js"
       },
       "output": {
-        "chunkFileNames": "_nuxt/[hash].js",
-        "entryFileNames": "_nuxt/[hash].js"
       }
     },
     "sourcemap": false
@@ -124,7 +122,7 @@
               "postcssPlugin": "cssnano-util-raw-cache"
             }
           ],
-          "version": "8.5.21"
+          "version": "8.5.32"
         }
       ]
     },
@@ -138,7 +136,8 @@
   },
   "define": {
     "__NUXT_ASYNC_CONTEXT__": false,
-    "__NUXT_VERSION__": "\"3.16.2\"",
+    "__NUXT_VERSION__": "\"3.21.11\"",
+    "__VUE_PROD_DEVTOOLS__": false,
     "__VUE_PROD_HYDRATION_MISMATCH_DETAILS__": false,
     "import.meta.browser": true,
     "import.meta.client": "true",
@@ -195,14 +194,17 @@
       "@vue/reactivity",
       "@vue/shared",
       "@vue/devtools-api",
+      "@vue/test-utils",
       "vue-router",
       "vue-demi",
       "nuxt",
       "nuxt/app",
+      "@nuxt/test-utils",
       "@unhead/vue",
       "consola",
       "defu",
       "devalue",
+      "get-port-please",
       "h3",
       "hookable",
       "klona",
@@ -211,19 +213,55 @@
       "ufo",
       "unctx",
       "unenv",
-      "#app-manifest"
+      "#app-manifest",
+      "#imports",
+      "#app",
+      "#build",
+      "#build/*",
+      "#components",
+      "#head",
+      "virtual:nuxt:",
+      "virtual:nuxt:*",
+      "mocked-exports",
+      "std-env",
+      "@storybook-vue/nuxt/preview",
+      "nuxt/app",
+      "@nuxtjs/storybook",
+      "@nuxt/content",
+      "nuxt-i18n-micro",
+      "@pinia/nuxt/dist/runtime",
+      "@pinia/nuxt",
+      "@nuxtjs/turnstile/dist/runtime",
+      "@nuxt/scripts",
+      "@nuxtjs/turnstile",
+      "site-config-stack",
+      "nuxt-site-config",
+      "nuxt-schema-org",
+      "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt",
+      "@nuxt/devtools",
+      "@unhead/vue",
+      "@nuxt/telemetry",
+      "yaml",
+      "@nuxtjs/mdc",
+      "@storybook-vue/nuxt/dist/runtime/composables",
+      ".storybook/query-collection/module",
+      "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/nuxt-i18n-micro/dist/runtime/components",
+      "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@nuxt/scripts/dist/runtime/components",
+      "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@nuxtjs/mdc/dist/runtime/components/prose",
+      "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@storybook-vue/nuxt/dist/runtime/components/nuxt-link"
     ],
     "include": [
-      "@nuxt/content > @nuxtjs/mdc > remark-gfm",
-      "@nuxt/content > @nuxtjs/mdc > remark-emoji",
-      "@nuxt/content > @nuxtjs/mdc > remark-mdc",
-      "@nuxt/content > @nuxtjs/mdc > remark-rehype",
-      "@nuxt/content > @nuxtjs/mdc > rehype-raw",
-      "@nuxt/content > @nuxtjs/mdc > parse5",
-      "@nuxt/content > @nuxtjs/mdc > unist-util-visit",
-      "@nuxt/content > @nuxtjs/mdc > unified",
-      "@nuxt/content > @nuxtjs/mdc > debug",
       "@nuxt/content > slugify",
+      "@nuxtjs/mdc > remark-gfm",
+      "@nuxtjs/mdc > remark-emoji",
+      "@nuxtjs/mdc > remark-mdc",
+      "@nuxtjs/mdc > remark-rehype",
+      "@nuxtjs/mdc > rehype-raw",
+      "@nuxtjs/mdc > parse5",
+      "@nuxtjs/mdc > unist-util-visit",
+      "@nuxtjs/mdc > unified",
+      "@nuxtjs/mdc > debug",
+      "@nuxtjs/mdc > extend",
       "@nuxtjs/storybook > @storybook-vue/nuxt > @storybook/vue3 > lodash/kebabCase",
       "storybook > @storybook/core > jsdoc-type-pratt-parser"
     ]
@@ -270,57 +308,138 @@
       }
     },
     {
-      "name": "ssr-styles",
+      "enforce": "pre",
+      "name": "nuxt:components-loader-pre",
+      "transform": {
+        "filter": {
+          "code": {
+            "include": {
+            }
+          }
+        }
+      }
+    },
+    {
+      "enforce": "post",
+      "name": "nuxt:resolve-bare-imports",
       "resolveId": {
-        "order": "pre"
+        "filter": {
+          "id": {
+            "exclude": [
+              {
+              },
+              {
+              },
+              {
+              },
+              {
+              },
+              {
+              }
+            ]
+          }
+        }
       }
     },
     {
       "enforce": "pre",
-      "name": "nuxt:components-loader-pre"
+      "name": "nuxt:resolve-externals"
     },
-    {
-      "load": {
-        "enforce": "pre"
+    [
+      {
+        "name": "nuxt:vite-public-dir-resolution-dev"
       },
-      "name": "nuxt:vite-public-dir-resolution",
-      "resolveId": {
-        "enforce": "post"
-      },
-      "vite": {
+      {
         "load": {
-          "enforce": "pre"
+          "filter": {
+            "id": {
+            }
+          },
+          "order": "pre"
         },
+        "name": "nuxt:vite-public-dir-resolution",
         "resolveId": {
-          "enforce": "post"
+          "filter": {
+            "id": {
+              "exclude": [
+                {
+                },
+                {
+                },
+                {
+                }
+              ]
+            }
+          },
+          "order": "post"
         }
       }
+    ],
+    {
+      "enforce": "post",
+      "name": "nuxt:replace"
+    },
+    null,
+    {
+      "name": "ssr-styles"
+    },
+    {
+      "enforce": "pre",
+      "name": "nuxt:environments"
     },
     {
       "name": "nuxt:remove-plugin-metadata"
     },
     {
-      "enforce": "post",
-      "name": "nuxt:composable-keys"
-    },
-    {
-      "name": "nuxt:prehydrate-transform"
+      "name": "nuxt:prehydrate-transform",
+      "transform": {
+        "filter": {
+          "code": {
+            "include": {
+            }
+          }
+        }
+      }
     },
     {
       "enforce": "pre",
       "name": "nuxt:layer-aliasing",
       "resolveId": {
+        "filter": {
+          "id": {
+          }
+        },
         "order": "pre"
+      },
+      "transform": {
+        "filter": {
+          "code": {
+            "include": {
+            }
+          }
+        }
       },
       "vite": {
         "resolveId": {
+          "filter": {
+            "id": {
+            }
+          },
           "order": "pre"
         }
       }
     },
     {
       "enforce": "pre",
-      "name": "nuxt:server-devonly:transform"
+      "name": "nuxt:server-devonly:transform",
+      "transform": {
+        "filter": {
+          "code": {
+            "include": {
+            }
+          }
+        }
+      }
     },
     {
       "enforce": "pre",
@@ -328,7 +447,27 @@
     },
     {
       "enforce": "post",
-      "name": "nuxt:head:unhead-imports"
+      "name": "nuxt:head:unhead-imports",
+      "transform": {
+        "filter": {
+          "code": {
+            "include": {
+            }
+          }
+        }
+      }
+    },
+    {
+      "enforce": "post",
+      "name": "nuxt:lazy-hydration-macro",
+      "transform": {
+        "filter": {
+          "code": {
+            "include": {
+            }
+          }
+        }
+      }
     },
     {
       "enforce": "post",
@@ -336,7 +475,15 @@
     },
     {
       "enforce": "post",
-      "name": "unctx:transform"
+      "name": "unctx:transform",
+      "transform": {
+        "filter": {
+          "code": {
+            "exclude": {
+            }
+          }
+        }
+      }
     },
     {
       "name": "nuxt-scripts:check-scripts"
@@ -350,11 +497,65 @@
         "order": "post"
       },
       "name": "nuxt:pages-macros-transform",
+      "transform": {
+        "filter": {
+          "code": {
+            "include": [
+              {
+              },
+              {
+              },
+              {
+              },
+              {
+              }
+            ]
+          },
+          "id": {
+            "exclude": [
+              {
+              }
+            ],
+            "include": {
+            }
+          }
+        }
+      },
       "vite": {
         "handleHotUpdate": {
           "order": "post"
         }
       }
+    },
+    {
+      "enforce": "post",
+      "name": "nuxt:compiler:keyed-functions",
+      "transform": {
+        "filter": {
+          "code": {
+            "include": {
+            }
+          },
+          "id": {
+            "exclude": [
+              {
+              },
+              {
+              },
+              {
+              }
+            ],
+            "include": {
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "nuxt:nitro:ssr-conditions"
+    },
+    {
+      "name": "nuxt:nitro:vue-feature-flags"
     },
     {
       "apply": "serve",
@@ -365,35 +566,103 @@
       "enforce": "post",
       "name": "nuxt:runtime-paths-dep"
     },
+    null,
     {
-      "enforce": "post",
-      "name": "nuxt:vite-node-server"
+      "name": "nuxt:type-check"
     },
     {
       "name": "nuxt:module-preload-polyfill"
     },
     {
-      "name": "nuxt:virtual"
+      "name": "nuxt:stable-entry"
     },
     {
-      "enforce": "pre",
-      "name": "impound"
     },
     {
-      "enforce": "pre",
-      "name": "nuxt:import-protection"
+      "name": "nuxt:dev-server"
+    },
+    {
+    },
+    {
+      "load": {
+        "filter": {
+          "id": {
+          }
+        }
+      },
+      "name": "nuxt:virtual",
+      "resolveId": {
+        "filter": {
+          "id": [
+            {
+            },
+            {
+            },
+            {
+            },
+            {
+            },
+            {
+            }
+          ]
+        },
+        "order": "pre"
+      },
+      "vite": {
+        "resolveId": {
+          "filter": {
+            "id": [
+              {
+              },
+              {
+              },
+              {
+              },
+              {
+              },
+              {
+              }
+            ]
+          },
+          "order": "pre"
+        }
+      }
     },
     {
       "enforce": "post",
-      "name": "nuxt:resolve-bare-imports"
+      "name": "nuxt:route-injection-plugin",
+      "transform": {
+        "filter": {
+          "code": {
+            "exclude": [
+              "_ctx._.provides[__nuxt_route_symbol",
+              "this._.provides[__nuxt_route_symbol"
+            ],
+            "include": {
+            }
+          }
+        }
+      }
     },
     {
       "enforce": "post",
-      "name": "nuxt:route-injection-plugin"
+      "name": "nuxt:components:imports-wrapper",
+      "transform": {
+        "filter": {
+          "id": {
+          }
+        }
+      }
     },
     {
       "enforce": "post",
-      "name": "nuxt:components:imports"
+      "name": "nuxt:components:imports-alias",
+      "transform": {
+        "filter": {
+          "code": {
+          }
+        }
+      }
     },
     {
       "enforce": "post",
@@ -404,10 +673,35 @@
     },
     {
       "enforce": "post",
-      "name": "nuxt:tree-shake-composables:transform"
+      "name": "nuxt:tree-shake-composables:transform",
+      "transform": {
+        "filter": {
+          "code": {
+            "include": {
+            }
+          }
+        }
+      }
     },
     {
-      "name": "replace"
+      "enforce": "pre",
+      "load": {
+        "filter": {
+          "id": {
+          }
+        }
+      },
+      "name": "impound"
+    },
+    {
+      "enforce": "pre",
+      "load": {
+        "filter": {
+          "id": {
+          }
+        }
+      },
+      "name": "nuxt:import-protection"
     },
     {
       "enforce": "pre",
@@ -445,6 +739,31 @@
       "name": "storybook:rollup-plugin-webpack-stats"
     },
     {
+      "name": "vite:storybook-inject-mocker-runtime",
+      "resolveId": {
+        "filter": {
+          "id": [
+            {
+            }
+          ]
+        }
+      }
+    },
+    [
+      {
+        "load": {
+          "order": "pre"
+        },
+        "name": "storybook:mock-loader",
+        "transform": {
+          "order": "pre"
+        }
+      },
+      {
+        "name": "storybook:mock-loader-preview"
+      }
+    ],
+    {
       "name": "storybook:vue-template-compilation"
     },
     {
@@ -460,14 +779,13 @@
   "publicDir": false,
   "resolve": {
     "alias": {
-      "#app": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/nuxt/dist/app",
-      "#app-manifest": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/mocked-exports/lib/empty.mjs",
-      "#build": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt",
-      "#content-runtime-app": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@nuxt/content/dist/runtime/app",
+      "#app": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/nuxt/dist/app/",
+      "#app-manifest": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/manifest/meta/storybook.json",
+      "#build": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/",
+      "#content-runtime-app": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@nuxt/content/dist/runtime/client",
       "#content/components": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/content/components.ts",
       "#content/manifest": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/content/manifest.ts",
       "#imports": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/imports",
-      "#internal/nitro": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/nitro.client.mjs",
       "#internal/nuxt/paths": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/paths.mjs",
       "#mdc-configs": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/mdc-configs.mjs",
       "#mdc-highlighter": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/mdc-highlighter.mjs",
@@ -475,20 +793,21 @@
       "#nuxt-scripts": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@nuxt/scripts/dist/runtime",
       "#nuxt-scripts-validator": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@nuxt/scripts/dist/runtime/validation/mock.js",
       "#schema-org": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/nuxt-schema-org/dist/runtime",
-      "#shared": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/shared",
+      "#server": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/server/",
+      "#shared": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/shared/",
       "#site-config": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/nuxt-site-config/dist/runtime",
       "#unhead/composables": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/nuxt/dist/head/runtime/composables/v3",
       "#vue-router": "vue-router",
-      "@": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt",
-      "@@": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt",
+      "@": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/",
+      "@@": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/",
       "@vue/composition-api": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/nuxt/dist/app/compat/capi",
       "abort-controller": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/mocked-exports/lib/empty.mjs",
-      "assets": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/assets",
-      "public": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/public",
+      "assets": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/assets/",
+      "public": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/public/",
       "vue-demi": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/nuxt/dist/app/compat/vue-demi",
       "web-streams-polyfill/ponyfill/es2018": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/mocked-exports/lib/empty.mjs",
-      "~": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt",
-      "~~": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt"
+      "~": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/",
+      "~~": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/"
     },
     "conditions": [
       "storybook",
@@ -528,7 +847,6 @@
         "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@storybook-vue/nuxt/dist/runtime/components"
       ]
     },
-    "hmr": false,
     "middlewareMode": true,
     "proxy": {
       "/__storybook_preview__": {
@@ -557,9 +875,19 @@
     "isProduction": true,
     "script": {
       "globalTypeFiles": [
+        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/types/nitro-layouts.d.ts",
+        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/types/builder-env.d.ts",
+        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/content/types.d.ts",
         "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/types/i18n-plugin.d.ts",
         "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/types/h3.d.ts",
         "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/types/i18n-internal.d.ts",
+        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/module/nuxt-site-config.d.ts",
+        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/types/layouts.d.ts",
+        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/types/middleware.d.ts",
+        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/types/nitro-middleware.d.ts",
+        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/types/components.d.ts",
+        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/imports.d.ts",
+        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/types/imports.d.ts",
         "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/module/nuxt-scripts.d.ts"
       ],
       "hoistStatic": {
@@ -594,5 +922,9 @@
     }
   },
   "vueJsx": {
+    "defineComponentName": [
+      "defineComponent",
+      "defineNuxtComponent"
+    ]
   }
 }

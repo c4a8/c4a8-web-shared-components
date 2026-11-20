@@ -53,6 +53,31 @@
       "name": "storybook:rollup-plugin-webpack-stats"
     },
     {
+      "name": "vite:storybook-inject-mocker-runtime",
+      "resolveId": {
+        "filter": {
+          "id": [
+            {
+            }
+          ]
+        }
+      }
+    },
+    [
+      {
+        "load": {
+          "order": "pre"
+        },
+        "name": "storybook:mock-loader",
+        "transform": {
+          "order": "pre"
+        }
+      },
+      {
+        "name": "storybook:mock-loader-preview"
+      }
+    ],
+    {
       "name": "storybook:vue-template-compilation"
     },
     {
