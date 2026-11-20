@@ -1,5 +1,15 @@
 # Releases
 
+# Release 0.4.142
+
+- Lets the header's menu slide out from behind the bar, so on slow machines its lists no longer show over the logo and the menu labels while it opens
+- Fixes white text in the pricing details of a light pricing stage
+- Draws the footer's social icons as inline SVG, so the product sites no longer load the Font Awesome Brands font for them
+- Gives the footer's award seals and logos their size in the page, so the footer no longer shifts while they load
+- Describes the footer's award seals in their alt texts
+- Gives the card images an empty alt text, as the card title next to them already names them
+- Keeps the site name in the link preview title (og:title) on sites that derive it from the page title, also after their update to Unhead 2.1
+
 # Release 0.4.141
 
 - Updates the dependencies of the Storybook and module build to clear the open security alerts (Nuxt 3.21, Storybook 9.1, Nuxt Content 3.16); the components and styles the sites get are unchanged

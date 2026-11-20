@@ -14,11 +14,15 @@ const FooterData = {
   partners: [
     {
       img: '/logos/partner-seal-mpoy.svg',
-      alt: 'Partner of the Year Award',
+      alt: 'Microsoft Partner of the Year, winner or finalist nine times',
+      width: 276,
+      height: 101,
     },
     {
       img: '/logos/partner-seal-mssp.svg',
-      alt: 'Security MSSP of the Year',
+      alt: 'Security MSSP of the Year, finalist three times',
+      width: 275,
+      height: 101,
     },
   ],
   brandLogos: [
@@ -35,42 +39,62 @@ const FooterData = {
     {
       img: '/logos/msft-misa-xdr.svg',
       alt: 'Microsoft Intelligent Security Association',
+      width: 232,
+      height: 123,
     },
     {
       img: '/logos/msft-infrastructure-azure-specializations.svg',
       alt: 'MSP Infrastructure Azure',
+      width: 123,
+      height: 150,
     },
     {
       img: '/logos/msft-data-ai-azure-specializations.svg',
       alt: 'MSP Data & AI Azure',
+      width: 123,
+      height: 150,
     },
     {
       img: '/logos/msft-digital-app-innovation-azure-specializations.svg',
       alt: 'MSP Digital & App Innovation Azure',
+      width: 123,
+      height: 150,
     },
     {
       img: '/logos/msft-modern-work-specializations.svg',
       alt: 'MSP Modern Work',
+      width: 123,
+      height: 150,
     },
     {
       img: '/logos/msft-security-specializations.svg',
       alt: 'MSP Security',
+      width: 123,
+      height: 150,
     },
     {
       img: '/logos/ISG-M365Services-LargeAccounts-DE.svg',
       alt: 'ISG Microsoft 365 Services Large Enterprises',
+      width: 233,
+      height: 101,
     },
     {
       img: '/logos/ISG-M365Services-Midmarket-DE.svg',
       alt: 'ISG Microsoft 365 Services Midmarket',
+      width: 233,
+      height: 101,
     },
     {
       img: '/logos/ISG-ManagedServicesAzure-LargeAccounts-DE.svg',
       alt: 'ISG Microsoft Azure Large Enterprises',
+      width: 234,
+      height: 101,
     },
     {
       img: '/logos/ISG-ManagedServicesAzure-MidMarket-DE.svg',
       alt: 'ISG Microsoft Azure Midmarket',
+      width: 233,
+      height: 101,
     },
     {
       img: '/logos/iso27001.svg',
@@ -82,6 +106,8 @@ const FooterData = {
     {
       img: '/logos/kununu-compact.svg',
       alt: 'Kununu Logo',
+      width: 161,
+      height: 102,
       url: 'https://www.kununu.com/de/glueck-kanja-consulting',
       target: '_blank',
     },

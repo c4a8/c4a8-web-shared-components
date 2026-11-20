@@ -1617,6 +1617,19 @@ export default {
     opacity: 0.4;
   }
 }
+@media (min-width: 992px) {
+  .header.vue-component.is-hovering:not(.is-condensed) .header__container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -100vw;
+    right: -100vw;
+    z-index: -1;
+    background-color: var(--color-header-background);
+    pointer-events: none;
+  }
+}
 .header.vue-component .header__menu .icon {
   width: 2rem;
   height: 2rem;
