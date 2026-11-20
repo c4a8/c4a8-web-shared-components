@@ -771,7 +771,7 @@ export default {
   bottom: 0;
   width: 0;
   left: 0;
-  background-color: var(--color-highlight-underline);
+  background-color: var(--hero-overline-background-color);
   animation: growFull;
   animation-duration: 0.8s;
   animation-fill-mode: forwards;
