@@ -71,6 +71,7 @@
               :button="true"
               :skin="form.cta?.skin"
               :width="form.cta?.width"
+              :onSurface="form.cta?.onSurface"
               :analytics="analytics"
               @click="handleSubmit"
             />

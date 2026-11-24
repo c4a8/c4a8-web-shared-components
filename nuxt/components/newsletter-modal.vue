@@ -57,6 +57,7 @@
 </template>
 
 <script>
+import State from '../utils/state.js';
 import Tools from '../utils/tools';
 const SCREEN_XS_THRESHOLD = 750;
 const LOTTIE_SIZE_MOBILE = 170;
@@ -93,14 +94,17 @@ export default {
       type: Boolean,
       default: false,
     },
+    onSurface: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     formularConfig() {
-      if (!this.isMobile) return this.formular;
-      return {
-        ...this.formular,
-        form: { ...this.formular.form, ctaPosition: 'justify-content-start' },
-      };
+      const form = { ...this.formular.form };
+      if (this.isMobile) form.ctaPosition = 'justify-content-start';
+      if (this.onSurface) form.cta = { ...form.cta, onSurface: true };
+      return { ...this.formular, form };
     },
     contrastColor() {
       return this.light ? 'var(--color-gk-white)' : 'var(--color-black)';
@@ -126,7 +130,10 @@ export default {
       return this.isMobile ? 'mt-n5 d-flex justify-content-center align-items-center' : '';
     },
     containerClasses() {
-      return this.isMobile ? 'flex-column justify-content-between p-2' : 'align-items-center container';
+      return [
+        this.isMobile ? 'flex-column justify-content-between p-2' : 'align-items-center container',
+        this.onSurface ? State.ON_SURFACE : '',
+      ];
     },
     lottieAnimation() {
       return this.idle ? this.lottie?.idle : this.lottie?.fly;

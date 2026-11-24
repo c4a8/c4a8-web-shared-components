@@ -18,6 +18,7 @@
             :iconColor="iconColor"
             :bgColor="bgColor"
             :light="light"
+            :onSurface="onSurface"
             :lottie="lottieFiles"
           />
         </div>
@@ -37,7 +38,7 @@
               </div>
             </div>
             <div v-if="!isMobile" class="d-flex justify-content-center col-2">
-              <cta v-bind="cta" />
+              <cta v-bind="cta" :onSurface="onSurface || cta?.onSurface" />
             </div>
           </div>
         </div>
@@ -95,6 +96,10 @@ export default {
       default: null,
     },
     light: {
+      type: Boolean,
+      default: false,
+    },
+    onSurface: {
       type: Boolean,
       default: false,
     },
