@@ -38,6 +38,12 @@ declare namespace _default {
             let _default_2: boolean;
             export { _default_2 as default };
         }
+        namespace onSurface {
+            let type_8: BooleanConstructor;
+            export { type_8 as type };
+            let _default_3: boolean;
+            export { _default_3 as default };
+        }
     }
     namespace computed {
         function formularConfig(): any;
@@ -47,10 +53,10 @@ declare namespace _default {
         function contentClasses(): string[];
         function headlineClasses(): string[];
         function formularClasses(): any;
-        function containerClasses(): any;
+        function containerClasses(): string[];
         function lottieAnimation(): any;
         function lottieSpeed(): 1 | 40;
-        function lottieSize(): 170 | 220;
+        function lottieSize(): 100 | 120;
         function iconHeartDisplay(): "" | "none";
         function birdAnimationClass(): "" | "fade-out-animation";
         function heartAnimationClass(): "" | "fade-in-animation";

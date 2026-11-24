@@ -759,10 +759,9 @@ export default {
   position: relative;
   display: inline-block;
   margin-bottom: 0.5rem;
-  padding: 0rem 0.25rem 0em 0.25rem;
+  padding: 0 0.25rem;
   color: var(--hero-copy-overline-color);
 }
-
 .hero__overline::before {
   position: absolute;
   content: "";
@@ -777,9 +776,6 @@ export default {
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.19, 1, 0.2, 1);
   z-index: -1;
-}
-.hero__overline.hero__overline--full::before {
-  animation-name: growFull;
 }
 
 .hero__overline-wrapper {

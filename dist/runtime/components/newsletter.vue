@@ -18,6 +18,7 @@
             :iconColor="iconColor"
             :bgColor="bgColor"
             :light="light"
+            :onSurface="onSurface"
             :lottie="lottieFiles"
           />
         </div>
@@ -26,18 +27,18 @@
     <div class="newsletter__banner-wrapper">
       <div class="newsletter__banner mx-auto" :class="isMobile ? 'd-flex' : ''" ref="icon" @click="handleClick">
         <div :style="bannerStyle" :class="isMobile ? 'w-100 mr-5' : ''">
-          <div class="d-flex align-items-center px-3 py-2 row" :class="isMobile ? '' : 'row-cols-2'">
-            <div class="d-flex align-items-center" :class="isMobile ? 'px-3 py-2 row' : 'font-size-2 col-9'">
+          <div class="d-flex align-items-center" :class="isMobile ? '' : 'px-3 py-2 row row-cols-2'">
+            <div class="d-flex align-items-center" :class="isMobile ? 'pl-4 pr-8 py-3 px-md-7' : 'font-size-2 col-9'">
               <div v-if="isMobile" class="font-size-2 light">
-                <div class="ml-2">{{ textMobile }}</div>
-                <cta v-bind="cta" link="true" :class="[light ? 'text-light' : 'text-dark']" />
+                <div>{{ textMobile }}</div>
+                <cta v-bind="cta" link="true" class="p-0 border-0" :class="[light ? 'text-light' : 'text-dark']" />
               </div>
               <div v-else>
                 {{ text }}
               </div>
             </div>
             <div v-if="!isMobile" class="d-flex justify-content-center col-2">
-              <cta v-bind="cta" />
+              <cta v-bind="cta" :onSurface="onSurface || cta?.onSurface" />
             </div>
           </div>
         </div>
@@ -95,6 +96,10 @@ export default {
       default: null,
     },
     light: {
+      type: Boolean,
+      default: false,
+    },
+    onSurface: {
       type: Boolean,
       default: false,
     },
@@ -3254,8 +3259,8 @@ export default {
   padding: 0.25rem;
   cursor: pointer;
 }
-.newsletter__close > .icon:hover {
-  background-color: transparent;
+.newsletter__close > .icon:hover line {
+  stroke: var(--color-icon-hover-color);
 }
 .newsletter__close > .icon.icon--circle svg {
   width: 80%;
@@ -3275,18 +3280,36 @@ export default {
 .newsletter__dialog {
   position: fixed;
   z-index: 1000;
-  overflow: visible;
-  padding: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: 1rem;
+  border: 0;
+  background: transparent;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.newsletter__dialog[open] {
+  display: flex;
+}
+
+.newsletter__popup {
+  position: relative;
+  min-width: 0;
+  max-width: 100%;
+  margin: auto;
 }
 @media (min-width: 992px) {
-  .newsletter__dialog {
+  .newsletter__popup {
     max-width: 80vw;
   }
 }
-@media (max-width: 1199.98px) {
-  .newsletter__dialog {
-    top: 10vh;
-  }
+
+body:has(.newsletter__dialog[open]) {
+  overflow: hidden;
 }
 
 .newsletter__trigger {

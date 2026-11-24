@@ -22,8 +22,8 @@
     <div
       :class="[
         isMobile
-          ? 'd-flex align-items-center position-absolute justify-content-end mx-n2 my-md-8 right-0 bottom-0'
-          : 'col-5 col-lg-4 d-flex align-items-center z-index-1 align-content-center',
+          ? 'newsletter-modal__bird d-flex align-items-center position-absolute justify-content-end'
+          : 'col-3 d-flex align-items-center z-index-1 align-content-center',
       ]"
     >
       <lottie-player
@@ -57,10 +57,11 @@
 </template>
 
 <script>
+import State from '../utils/state.js';
 import Tools from '../utils/tools';
 const SCREEN_XS_THRESHOLD = 750;
-const LOTTIE_SIZE_MOBILE = 170;
-const LOTTIE_SIZE_DESKTOP = 220;
+const LOTTIE_SIZE_MOBILE = 100;
+const LOTTIE_SIZE_DESKTOP = 120;
 const LOTTIE_SPEED_SUCCESS = 40;
 const LOTTIE_SPEED_NORMAL = 1;
 export default {
@@ -93,14 +94,17 @@ export default {
       type: Boolean,
       default: false,
     },
+    onSurface: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     formularConfig() {
-      if (!this.isMobile) return this.formular;
-      return {
-        ...this.formular,
-        form: { ...this.formular.form, ctaPosition: 'justify-content-start' },
-      };
+      const form = { ...this.formular.form };
+      if (this.isMobile) form.ctaPosition = 'justify-content-start';
+      if (this.onSurface) form.cta = { ...form.cta, onSurface: true };
+      return { ...this.formular, form };
     },
     contrastColor() {
       return this.light ? 'var(--color-gk-white)' : 'var(--color-black)';
@@ -117,7 +121,7 @@ export default {
       return this.success ? this.confirmation?.text : this.text;
     },
     contentClasses() {
-      return [this.isMobile ? 'my-md-4' : 'my-6 col-10', this.success ? 'd-flex align-items-center' : ''];
+      return [this.isMobile ? '' : 'my-6 col-9', this.success ? 'd-flex align-items-center' : ''];
     },
     headlineClasses() {
       return [this.isMobile ? '' : 'mb-5', this.success ? 'mb-5' : 'mb-2'];
@@ -126,7 +130,10 @@ export default {
       return this.isMobile ? 'mt-n5 d-flex justify-content-center align-items-center' : '';
     },
     containerClasses() {
-      return this.isMobile ? 'flex-column justify-content-between p-2' : 'align-items-center container';
+      return [
+        this.isMobile ? 'flex-column justify-content-between p-4 p-md-7' : 'align-items-center container',
+        this.onSurface ? State.ON_SURFACE : '',
+      ];
     },
     lottieAnimation() {
       return this.idle ? this.lottie?.idle : this.lottie?.fly;
@@ -202,13 +209,14 @@ export default {
   z-index: 330;
 }
 
-@media (max-width: 767.98px) {
-  .newsletter-modal__content {
-    height: 90%;
-    max-height: 60vh;
-    overflow-y: scroll;
-    margin-bottom: 21%;
-    margin-top: 15%;
+.newsletter-modal__bird {
+  right: 1.5rem;
+  bottom: 3.25rem;
+}
+@media (min-width: 768px) {
+  .newsletter-modal__bird {
+    right: 3rem;
+    bottom: 4.75rem;
   }
 }
 
