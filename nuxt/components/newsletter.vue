@@ -27,11 +27,11 @@
     <div class="newsletter__banner-wrapper">
       <div class="newsletter__banner mx-auto" :class="isMobile ? 'd-flex' : ''" ref="icon" @click="handleClick">
         <div :style="bannerStyle" :class="isMobile ? 'w-100 mr-5' : ''">
-          <div class="d-flex align-items-center px-3 py-2 row" :class="isMobile ? '' : 'row-cols-2'">
-            <div class="d-flex align-items-center" :class="isMobile ? 'px-3 py-2 row' : 'font-size-2 col-9'">
+          <div class="d-flex align-items-center" :class="isMobile ? '' : 'px-3 py-2 row row-cols-2'">
+            <div class="d-flex align-items-center" :class="isMobile ? 'pl-4 pr-8 py-3 px-md-7' : 'font-size-2 col-9'">
               <div v-if="isMobile" class="font-size-2 light">
-                <div class="ml-2">{{ textMobile }}</div>
-                <cta v-bind="cta" link="true" :class="[light ? 'text-light' : 'text-dark']" />
+                <div>{{ textMobile }}</div>
+                <cta v-bind="cta" link="true" class="p-0 border-0" :class="[light ? 'text-light' : 'text-dark']" />
               </div>
               <div v-else>
                 {{ text }}
@@ -3261,9 +3261,10 @@ export default {
     padding: spacing(1);
     cursor: pointer;
 
-    &:hover {
-      background-color: transparent;
+    &:hover line {
+      stroke: var(--color-icon-hover-color);
     }
+
     &.icon--circle svg {
       width: 80%;
     }
