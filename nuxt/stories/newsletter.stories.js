@@ -140,3 +140,88 @@ export const Light = {
     },
   },
 };
+
+export const RequestForm = {
+  args: {
+    bgColor: 'var(--color-gk-light-blue)',
+    iconColor: 'var(--color-gk-yellow)',
+    onSurface: true,
+    text: 'Wie es um euren Tenant steht, zeigt ein Assessment in einem halben Tag. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor.',
+    textMobile: 'Assessment in einem halben Tag.',
+    cta: {
+      text: 'Anfrage stellen',
+      width: 'w-100',
+    },
+    modal: {
+      headline: 'Assessment anfragen',
+      text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est.',
+      confirmation: {
+        headline: 'Danke, die Anfrage ist da.',
+        text: 'Wir melden uns in den nächsten Tagen mit einem Terminvorschlag.',
+      },
+      formular: {
+        ajax: true,
+        form: {
+          cta: {
+            skin: 'primary',
+            width: 'w-40',
+          },
+          ctaPosition: '',
+          ctaText: 'Anfrage senden',
+          method: 'post',
+          action: '/send',
+          fields: [
+            {
+              label: 'Name',
+              type: 'text',
+              id: 'name',
+              required: true,
+              requiredMsg: 'Bitte Namen eingeben',
+            },
+            {
+              label: 'E-Mail-Adresse',
+              type: 'email',
+              id: 'email',
+              required: true,
+              requiredMsg: 'Bitte E-Mail-Adresse eingeben',
+            },
+            {
+              label: 'Unternehmen',
+              type: 'text',
+              id: 'company',
+              required: true,
+              requiredMsg: 'Bitte Unternehmensname eingeben',
+            },
+            {
+              label: 'Telefon (optional)',
+              type: 'text',
+              id: 'phone',
+            },
+            {
+              label: 'Eure Nachricht (optional)',
+              type: 'textarea',
+              id: 'message',
+            },
+            {
+              label:
+                "Eure Daten werden zur Bearbeitung und Beantwortung eurer Anfrage bei uns gespeichert. Weitere Informationen zum Datenschutz findet ihr in unserer <a href='/de/datenschutz/'>Datenschutzerklärung</a>.",
+              type: 'checkbox',
+              id: 'dataprotection',
+              required: true,
+              requiredMsg: 'Bitte bestätigen',
+            },
+            {
+              type: 'hidden',
+              id: '_subject',
+              value: 'Storybook: Request form',
+            },
+            {
+              type: 'hidden',
+              id: '_gotcha',
+            },
+          ],
+        },
+      },
+    },
+  },
+};
