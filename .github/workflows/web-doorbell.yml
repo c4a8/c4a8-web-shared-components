@@ -101,6 +101,10 @@ jobs:
             const issue = payload.issue;
             const labels = (issue.labels || []).map((l) => l.name);
             const isRequest = labels.includes("web:request");
+            // A comment that starts with /note is a note between people: it never wakes the pipeline.
+            if (eventName === "issue_comment" && payload.action === "created" && /^\/note\b/i.test((payload.comment.body || "").trim())) {
+              core.info("skip: a note for people"); return;
+            }
 
             let ev = null;
             if (eventName === "pull_request") {
