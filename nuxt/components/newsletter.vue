@@ -3283,15 +3283,36 @@ export default {
 .newsletter__dialog {
   position: fixed;
   z-index: 1000;
-  overflow: visible;
-  padding: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: spacing(4);
+  border: 0;
+  background: transparent;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  &[open] {
+    display: flex;
+  }
+}
+
+.newsletter__popup {
+  position: relative;
+  min-width: 0;
+  max-width: 100%;
+  margin: auto;
+
   @include media-breakpoint-up(lg) {
     max-width: 80vw;
   }
+}
 
-  @include media-breakpoint-down(lg) {
-    top: 10vh;
-  }
+body:has(.newsletter__dialog[open]) {
+  overflow: hidden;
 }
 
 .newsletter__trigger {

@@ -22,8 +22,8 @@
     <div
       :class="[
         isMobile
-          ? 'd-flex align-items-center position-absolute justify-content-end mx-n2 my-md-8 right-0 bottom-0'
-          : 'col-5 col-lg-4 d-flex align-items-center z-index-1 align-content-center',
+          ? 'newsletter-modal__bird d-flex align-items-center position-absolute justify-content-end'
+          : 'col-3 d-flex align-items-center z-index-1 align-content-center',
       ]"
     >
       <lottie-player
@@ -60,8 +60,8 @@
 import State from '../utils/state.js';
 import Tools from '../utils/tools';
 const SCREEN_XS_THRESHOLD = 750;
-const LOTTIE_SIZE_MOBILE = 170;
-const LOTTIE_SIZE_DESKTOP = 220;
+const LOTTIE_SIZE_MOBILE = 100;
+const LOTTIE_SIZE_DESKTOP = 120;
 const LOTTIE_SPEED_SUCCESS = 40;
 const LOTTIE_SPEED_NORMAL = 1;
 export default {
@@ -121,7 +121,7 @@ export default {
       return this.success ? this.confirmation?.text : this.text;
     },
     contentClasses() {
-      return [this.isMobile ? 'my-md-4' : 'my-6 col-10', this.success ? 'd-flex align-items-center' : ''];
+      return [this.isMobile ? '' : 'my-6 col-9', this.success ? 'd-flex align-items-center' : ''];
     },
     headlineClasses() {
       return [this.isMobile ? '' : 'mb-5', this.success ? 'mb-5' : 'mb-2'];
@@ -131,7 +131,7 @@ export default {
     },
     containerClasses() {
       return [
-        this.isMobile ? 'flex-column justify-content-between p-2' : 'align-items-center container',
+        this.isMobile ? 'flex-column justify-content-between p-4 p-md-7' : 'align-items-center container',
         this.onSurface ? State.ON_SURFACE : '',
       ];
     },
@@ -209,13 +209,13 @@ export default {
   @include z-index;
 }
 
-.newsletter-modal__content {
-  @include media-breakpoint-down(sm) {
-    height: 90%;
-    max-height: 60vh;
-    overflow-y: scroll;
-    margin-bottom: 21%;
-    margin-top: 15%;
+.newsletter-modal__bird {
+  right: spacing(6);
+  bottom: spacing(13);
+
+  @include media-breakpoint-up(md) {
+    right: spacing(12);
+    bottom: spacing(19);
   }
 }
 
