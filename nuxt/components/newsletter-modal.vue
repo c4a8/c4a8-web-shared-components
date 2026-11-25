@@ -104,6 +104,7 @@ export default {
       const form = { ...this.formular.form };
       if (this.isMobile) form.ctaPosition = 'justify-content-start';
       if (this.onSurface) form.cta = { ...form.cta, onSurface: true };
+      if (this.isSmall) form.cta = { ...form.cta, width: 'w-100' };
       return { ...this.formular, form };
     },
     contrastColor() {
@@ -164,6 +165,7 @@ export default {
       screenXS: false,
       heightFixed: 'auto',
       isMobile: Tools.isBelowBreakpoint('lg'),
+      isSmall: Tools.isBelowBreakpoint('sm'),
     };
   },
   mounted() {
@@ -197,6 +199,7 @@ export default {
 
     checkBreakpoint() {
       this.isMobile = Tools.isBelowBreakpoint('lg');
+      this.isSmall = Tools.isBelowBreakpoint('sm');
       if (typeof window !== 'undefined' && window.visualViewport) {
         this.screenXS = window.visualViewport.height <= SCREEN_XS_THRESHOLD;
       }
@@ -207,6 +210,12 @@ export default {
 <style lang="scss">
 .newsletter-modal {
   @include z-index;
+}
+
+.newsletter-modal__content {
+  @include media-breakpoint-down(sm) {
+    padding-bottom: spacing(24);
+  }
 }
 
 .newsletter-modal__bird {
