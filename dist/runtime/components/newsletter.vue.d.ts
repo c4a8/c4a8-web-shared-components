@@ -38,6 +38,12 @@ declare namespace _default {
             let _default_4: boolean;
             export { _default_4 as default };
         }
+        namespace onSurface {
+            let type_7: BooleanConstructor;
+            export { type_7 as type };
+            let _default_5: boolean;
+            export { _default_5 as default };
+        }
     }
     namespace computed {
         function classList(): (string | {

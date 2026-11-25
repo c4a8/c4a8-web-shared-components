@@ -13,13 +13,13 @@ declare namespace _default {
             export { _default as default };
         }
         namespace maxBlur {
-            let type_1: (NumberConstructor | StringConstructor)[];
+            let type_1: (StringConstructor | NumberConstructor)[];
             export { type_1 as type };
             let _default_1: number;
             export { _default_1 as default };
         }
         namespace steps {
-            let type_2: (NumberConstructor | StringConstructor)[];
+            let type_2: (StringConstructor | NumberConstructor)[];
             export { type_2 as type };
             let _default_2: number;
             export { _default_2 as default };

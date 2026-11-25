@@ -1,5 +1,12 @@
 # Releases
 
+# Release 0.4.143
+
+- Fixes the newsletter modal on smaller screens: it scrolls as an overlay, has corrected spacing below 1200px and a full width submit button below 768px
+- Adds light button and link styles for the newsletter on colored backgrounds
+- Shows an error message when an ajax form submit fails and sends every ajax form as url encoded form data
+- Adds `bgColor`, `left` and `light` props and a configurable headline `level` to the video inner component
+
 # Release 0.4.142
 
 - Lets the header's menu slide out from behind the bar, so on slow machines its lists no longer show over the logo and the menu labels while it opens

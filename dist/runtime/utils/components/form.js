@@ -327,15 +327,13 @@ class Form extends BaseComponent {
     });
   }
   ajaxSubmit() {
-    const data = Form.getFormData(this.form);
-
     fetch(this.form.action, {
       method: this.form.method || 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       redirect: 'follow',
-      body: data,
+      body: new URLSearchParams(new FormData(this.form)),
     })
       .then((response) => {
         if (response.ok || response.status === 302) {
