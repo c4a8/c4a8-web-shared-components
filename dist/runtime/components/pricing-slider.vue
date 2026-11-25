@@ -25,7 +25,7 @@
         <strong class="js-result-product"></strong>
         <span class="js-result-extra"></span>
       </div>
-      <modal :slim="true" :center="true" class="pricing-slider__modal" :modal-id="modalId">
+      <modal :slim="true" :center="true" :light="light" class="pricing-slider__modal" :modal-id="modalId">
         <div class="container">
           <div class="row">
             <div class="col" v-html="tooltip"></div>

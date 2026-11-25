@@ -6,7 +6,7 @@ import IntroText from '../components/intro-text.vue';
 import VFooter from '../components/v-footer.vue';
 import FabHint from '../components/fab-hint.vue';
 import BackToTop from '../components/back-to-top.vue';
-import HeaderData from '../.storybook/data/header';
+import HeaderData from '../../.storybook/data/header';
 
 export default {
   component: VHeader,

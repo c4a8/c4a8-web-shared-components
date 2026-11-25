@@ -17,6 +17,7 @@
           <div class="card__img-top position-relative overflow-hidden is-foreground">
             <v-img
               itemprop="image"
+              alt=""
               :img="hasExtension"
               :cloudinary="hasBlogTitlePic"
               :img-src-sets="imgSrcSets"
@@ -113,6 +114,7 @@
       <div class="card__img-top position-relative no-gutters is-foreground" v-if="blogtitlepic">
         <v-img
           itemprop="image"
+          alt=""
           :img="hasExtension"
           :cloudinary="hasBlogTitlePic"
           :img-src-sets="imgSrcSets"
@@ -185,6 +187,7 @@
       <div class="card__img-top position-relative is-foreground" v-if="blogtitlepic">
         <v-img
           itemprop="image"
+          alt=""
           :img="hasExtension"
           :cloudinary="hasBlogTitlePic"
           :img-src-sets="imgSrcSets"

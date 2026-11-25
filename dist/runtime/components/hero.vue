@@ -130,7 +130,11 @@ import StickyScroller from '../utils/sticky-scroller.js';
 export default {
   tagName: 'hero',
   components: {
-    'text-icon-animation': defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./text-icon-animation.vue') }),
+    'text-icon-animation': defineAsyncComponent({
+      suspensible: false,
+      hydrate: hydrateOnIdle(),
+      loader: () => import('./text-icon-animation.vue'),
+    }),
   },
   setup() {
     const store = useAppStore();
