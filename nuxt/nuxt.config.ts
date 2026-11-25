@@ -100,6 +100,9 @@ export default defineNuxtConfig({
     siteKey: turnstileSiteKey ?? undefined,
   },
   vite: {
+    optimizeDeps: {
+      include: ['jquery', 'slick-carousel', 'bootstrap/dist/js/bootstrap.bundle.min.js', 'ion-rangeslider'],
+    },
     css: {
       preprocessorOptions: {
         scss: {
