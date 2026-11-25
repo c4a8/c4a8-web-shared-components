@@ -108,6 +108,24 @@ export default defineNuxtModule({
       });
     }
 
+    if (!_nuxt.options.dev && nuxtSecurityRemovesLoggers(_nuxt)) {
+      _nuxt.hook('vite:extendConfig', (config: any, { isClient }: any) => {
+        if (!isClient) return;
+
+        config.build ||= {};
+        config.build.rolldownOptions ||= {};
+        config.build.rolldownOptions.output ||= {};
+
+        for (const output of [config.build.rolldownOptions.output].flat()) {
+          output.minify = {
+            compress: { dropConsole: true, dropDebugger: true },
+            mangle: true,
+            codegen: true,
+          };
+        }
+      });
+    }
+
     _nuxt.options.vue ||= {};
     _nuxt.options.vue.compilerOptions ||= {};
     const prevIsCustomElement = _nuxt.options.vue.compilerOptions.isCustomElement;
@@ -273,6 +291,16 @@ async function registerSharedI18n(_nuxt: any, resolve: (p: string) => string) {
     cwd: layerDir,
     config: { ...base.config, rootDir: layerDir, srcDir: layerDir },
   });
+}
+
+function nuxtSecurityRemovesLoggers(_nuxt: any) {
+  const installed = _nuxt.options.modules.some((entry: any) => (Array.isArray(entry) ? entry[0] : entry) === 'nuxt-security');
+  const security = _nuxt.options.security || {};
+
+  if (!installed || security.enabled === false) return false;
+  if (_nuxt.options.vite?.build?.minify === 'terser') return false;
+
+  return (security.removeLoggers ?? true) === true;
 }
 
 function addSitemapAlternatives(route: any) {
