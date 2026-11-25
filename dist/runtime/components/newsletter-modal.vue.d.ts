@@ -68,6 +68,7 @@ declare namespace _default {
         screenXS: boolean;
         heightFixed: string;
         isMobile: boolean;
+        isSmall: boolean;
     };
     function mounted(): void;
     function beforeUnmount(): void;

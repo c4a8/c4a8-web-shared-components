@@ -14,6 +14,7 @@ declare namespace _default {
         hasLoading: boolean;
         hasLoader: boolean;
         turnstileReady: boolean;
+        hasAjaxError: boolean;
         isSubmitted: boolean;
     };
     function setup(): {
