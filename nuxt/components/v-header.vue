@@ -1689,6 +1689,24 @@ $header-collapse-max-viewport: 1400px;
       }
     }
 
+    // The flyout slides down from above the bar. The bar covers it until it has passed the bar's
+    // lower edge, so a slow frame never shows the flyout or its lists over the bar.
+    &.is-hovering:not(.is-condensed) {
+      @include media-breakpoint-up($header-expand-breakpoint) {
+        .header__container::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: -100vw;
+          right: -100vw;
+          z-index: -1;
+          background-color: var(--color-header-background);
+          pointer-events: none;
+        }
+      }
+    }
+
     .header__menu {
       .icon {
         width: spacing(8);

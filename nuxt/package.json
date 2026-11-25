@@ -45,7 +45,7 @@
     "jquery": "^3.7.1",
     "lottie-web": "^5.13.0",
     "node-html-parser": "^6.1.13",
-    "nuxt": "3.16.2",
+    "nuxt": "3.21.11",
     "nuxt-i18n-micro": "^3.21.4",
     "nuxt-schema-org": "^5.0.6",
     "nuxt-seo-utils": "^7.0.4",
@@ -56,22 +56,33 @@
     "sitemap": "^8.0.0",
     "slick-carousel": "^1.8.1",
     "swiper": "^12.1.2",
-    "vue": "3.5.20",
-    "vue-router": "4.5.0"
+    "vue": "3.5.45",
+    "vue-router": "4.6.4"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "4.0.0",
-    "@nuxtjs/storybook": "npm:@nuxtjs/storybook@nightly",
-    "@storybook/addon-docs": "9.0.4",
+    "@nuxtjs/storybook": "npm:@nuxtjs/storybook@8.4.0-29150728.8f1b8c8",
+    "@storybook/addon-docs": "9.1.21",
     "@vue-leaflet/vue-leaflet": "^0.10.1",
+    "better-sqlite3": "^12.11.1",
     "leaflet": "^1.9.4",
-    "sass-embedded": "^1.89.2",
-    "storybook": "9.0.4"
+    "sass": "1.77.6",
+    "sass-embedded": "1.89.2",
+    "storybook": "9.1.21"
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "4.9.5"
   },
   "overrides": {
-    "swiper": "^12.1.2"
+    "swiper": "^12.1.2",
+    "@vercel/nft": {
+      "glob": "^14.0.6"
+    },
+    "jiti@>=2.7.0 <3": "2.6.1",
+    "minimatch@>=7.0.0 <11.0.1": "^11.0.8",
+    "sass": "1.77.6",
+    "storybook": {
+      "@vitest/mocker": "^4.1.12"
+    }
   }
 }

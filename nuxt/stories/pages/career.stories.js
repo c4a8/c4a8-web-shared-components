@@ -7,7 +7,7 @@ import VFooter from '../components/v-footer.vue';
 import FabButton from '../components/fab-button.vue';
 import TextImage from '../components/text-image.vue';
 
-import HeaderData from '../.storybook/data/header';
+import HeaderData from '../../.storybook/data/header';
 import { JobApplication } from '../textImage.stories';
 
 export default {

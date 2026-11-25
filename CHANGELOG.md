@@ -1,5 +1,28 @@
 # Releases
 
+# Release 0.4.143
+
+- Fixes the newsletter modal on smaller screens: it scrolls as an overlay, has corrected spacing below 1200px and a full width submit button below 768px
+- Adds light button and link styles for the newsletter on colored backgrounds
+- Shows an error message when an ajax form submit fails and sends every ajax form as url encoded form data
+- Adds `bgColor`, `left` and `light` props and a configurable headline `level` to the video inner component
+
+# Release 0.4.142
+
+- Lets the header's menu slide out from behind the bar, so on slow machines its lists no longer show over the logo and the menu labels while it opens
+- Fixes white text in the pricing details of a light pricing stage
+- Draws the footer's social icons as inline SVG, so the product sites no longer load the Font Awesome Brands font for them
+- Gives the footer's award seals and logos their size in the page, so the footer no longer shifts while they load
+- Describes the footer's award seals in their alt texts
+- Gives the card images an empty alt text, as the card title next to them already names them
+- Keeps the site name in the link preview title (og:title) on sites that derive it from the page title, also after their update to Unhead 2.1
+
+# Release 0.4.141
+
+- Updates the dependencies of the Storybook and module build to clear the open security alerts (Nuxt 3.21, Storybook 9.1, Nuxt Content 3.16); the components and styles the sites get are unchanged
+- Removes the unused Storybook 8 and Vite packages from the root package; their sources were removed in March
+- Carries the hero overline styles and their background color fix, which reached master after 0.4.138
+
 # Release 0.4.138
 
 - Lets an event set its own redirect after the form submit via `formNext`, and keeps a custom form's own `_next` and `eventid` fields
