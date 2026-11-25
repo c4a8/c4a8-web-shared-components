@@ -64,6 +64,7 @@
           <div v-if="turnstileEnabled" class="form__recaptcha-infos">
             <NuxtTurnstile v-if="turnstileReady" ref="turnstile" />
           </div>
+          <div v-if="hasAjaxError" class="form__ajax-error mb-4" role="alert">{{ $t('formSubmitError') }}</div>
           <div :class="formClassList">
             <cta
               :text="getTranslatedText(form.ctaText)"
@@ -113,6 +114,7 @@ export default {
       hasLoading: false,
       hasLoader: true,
       turnstileReady: false,
+      hasAjaxError: false,
       isSubmitted: false,
     };
   },
@@ -313,6 +315,7 @@ export default {
     },
     handleAjaxError(error) {
       this.stopLoading();
+      this.hasAjaxError = true;
       this.$refs.turnstile?.reset?.();
       this.$emit('error', error);
     },
@@ -360,6 +363,7 @@ export default {
       }
     },
     handleSubmit(e) {
+      this.hasAjaxError = false;
       this.startLoading();
       if (!this.validate()) {
         this.stopLoading();
@@ -540,6 +544,13 @@ export default {
 }
 .shared-components .form .invalid-feedback {
   color: var(--color-form-error);
+}
+.shared-components .form .form__ajax-error {
+  color: var(--color-form-error);
+}
+.shared-components .on-surface .form .form__ajax-error {
+  color: inherit;
+  font-weight: bold;
 }
 .shared-components .form .form__checkbox:checked ~ .form__checkbox-label::before {
   background-color: var(--color-bg-checkbox);
