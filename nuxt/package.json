@@ -59,15 +59,16 @@
   },
   "devDependencies": {
     "@nuxt/cli": "^3.37.0",
-    "@nuxtjs/storybook": "npm:@nuxtjs/storybook@9.1.0-29411911.f34c865",
-    "@storybook/addon-docs": "10.0.8",
+    "@nuxtjs/storybook": "10.0.4",
+    "@storybook/addon-docs": "10.6.9",
     "@vue-leaflet/vue-leaflet": "^0.10.1",
     "better-sqlite3": "^12.11.1",
     "leaflet": "^1.9.4",
     "sass": "1.77.6",
     "sass-embedded": "1.89.2",
-    "storybook": "10.0.8",
+    "storybook": "10.6.9",
     "typescript": "~5.9.3",
+    "vite": "^8.3.8",
     "vue-tsc": "^3.3.11"
   },
   "optionalDependencies": {
