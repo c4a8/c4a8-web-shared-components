@@ -1,0 +1,1 @@
+import{_ as s,h as t}from"./5GwMDVLb.js";import"./Dp1pzeXC.js";const e={};function n(o,r){return t(o.$slots,"default")}const d=s(e,[["render",n]]);e.__docgenInfo={displayName:"post",description:"",tags:{},slots:[{name:"default"}],sourceFiles:["/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/layouts/post.vue"]};export{d as default};

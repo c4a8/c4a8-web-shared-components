@@ -1,1 +1,0 @@
-import{_ as t,h as o}from"./PEI_TpMB.js";import"./Dp1pzeXC.js";const e={};function s(n,r){return o(n.$slots,"default")}const d=t(e,[["render",s]]);e.__docgenInfo={displayName:"event",description:"",tags:{},slots:[{name:"default"}],sourceFiles:["/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/layouts/event.vue"]};export{d as default};
