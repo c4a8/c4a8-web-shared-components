@@ -94,7 +94,9 @@ if (post.value) {
     title: post.value.meta?.seoTitle,
     description: post.value.meta?.customExcerpt ?? null,
     keywords: post.value.meta?.keywords ?? null,
-    image: socialImgUrl
+    image: socialImgUrl,
+    // A post is an article; the sites set "website" as their default in app.vue
+    ogType: "article"
   });
   useSchemaOrg([
     defineArticle({

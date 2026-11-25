@@ -4,7 +4,16 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
     video: ObjectConstructor;
     variant: StringConstructor;
     spacing: StringConstructor;
-    overlapping: StringConstructor;
+    overlapping: (BooleanConstructor | StringConstructor)[];
+    bgColor: StringConstructor;
+    left: {
+        type: (BooleanConstructor | StringConstructor)[];
+        default: boolean;
+    };
+    light: {
+        type: (BooleanConstructor | StringConstructor)[];
+        default: boolean;
+    };
     level: {
         default: string;
     };
@@ -29,11 +38,15 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
     elementClasses: {};
 }, {
     videoClass(): any[];
+    style(): {
+        'background-color': string;
+    } | null;
     videoPlayerClass(): any[];
     videoContentClass(): any[];
     videoTextClasses(): string[];
     isCompact(): boolean;
-    variantClasses(): "" | "bg-dark" | "col-md-6 order-md-2";
+    hasCustomLevel(): boolean | "";
+    variantClasses(): string;
     isVariantRow(): boolean;
     videoParsed(): any;
     onClickVideoContent(): "this.querySelector('a').click()" | null;
@@ -62,7 +75,16 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
     video: ObjectConstructor;
     variant: StringConstructor;
     spacing: StringConstructor;
-    overlapping: StringConstructor;
+    overlapping: (BooleanConstructor | StringConstructor)[];
+    bgColor: StringConstructor;
+    left: {
+        type: (BooleanConstructor | StringConstructor)[];
+        default: boolean;
+    };
+    light: {
+        type: (BooleanConstructor | StringConstructor)[];
+        default: boolean;
+    };
     level: {
         default: string;
     };
@@ -83,8 +105,10 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
         default: boolean;
     };
 }>> & Readonly<{}>, {
+    left: string | boolean;
     level: string;
     lazy: boolean;
+    light: string | boolean;
     noAnimation: boolean;
     playlist: boolean;
     subtitles: string;

@@ -17,7 +17,16 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
         type: BooleanConstructor;
         default: boolean;
     };
-}>, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<{
+    variant: {
+        type: StringConstructor;
+        default: null;
+    };
+    area: StringConstructor;
+    color: StringConstructor;
+    cta: ObjectConstructor;
+}>, {}, {}, {
+    isArea(): boolean;
+}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<{
     img: StringConstructor;
     alt: StringConstructor;
     name: StringConstructor;
@@ -34,7 +43,15 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
         type: BooleanConstructor;
         default: boolean;
     };
+    variant: {
+        type: StringConstructor;
+        default: null;
+    };
+    area: StringConstructor;
+    color: StringConstructor;
+    cta: ObjectConstructor;
 }>> & Readonly<{}>, {
+    variant: string;
     noRow: boolean;
     noBorder: boolean;
 }, {}, {}, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;

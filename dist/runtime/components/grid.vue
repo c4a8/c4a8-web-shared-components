@@ -75,18 +75,18 @@ export default {
 </script>
 
 <style>
+.grid {
+  --grid-spacing: 7.5rem;
+  --grid-border-color: var(--color-gk-mid-blue);
+  color: var(--color-copy);
+  padding: var(--grid-spacing) 0;
+}
 .grid [data-utility-animation-step] {
   --utility-animation-distance: 15%;
 }
 .grid [data-utility-animation-step].is-starting {
   animation-delay: calc(var(--utility-animation-index) * 100ms + 0ms);
   animation-duration: 0.8s;
-}
-.grid {
-  --grid-spacing: 7.5rem;
-  --grid-border-color: var(--color-gk-mid-blue);
-  color: var(--color-copy);
-  padding: var(--grid-spacing) 0;
 }
 .grid .grid__headline {
   margin-bottom: 3.5rem;
@@ -143,6 +143,8 @@ export default {
   font-size: 1.625rem;
   line-height: 1.3847em;
   font-weight: lighter;
+  line-height: 1em;
+  display: block;
 }
 @media (min-width: 992px) {
   .grid__item-title {
@@ -156,11 +158,10 @@ export default {
     line-height: 1.5em;
   }
 }
-.grid__item-title {
-  line-height: 1em;
-  display: block;
-}
 
+.grid__item-text {
+  margin-bottom: 2.5rem;
+}
 .grid__item-text {
   font-size: 1.125rem;
   line-height: 1.6667em;
@@ -182,9 +183,6 @@ export default {
 }
 .grid__item-text strong {
   font-weight: inherit;
-}
-.grid__item-text {
-  margin-bottom: 2.5rem;
 }
 
 .grid__item-img,

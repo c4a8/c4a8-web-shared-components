@@ -246,12 +246,12 @@ export default {
   background-color: var(--color-icon-hover-background);
   color: var(--color-icon-hover-color);
 }
-.icon.icon--has-background.icon--circle {
-  flex: none;
-}
 .icon.icon--has-background {
   background-color: var(--color-icon-check-background);
   border-color: var(--color-icon-check-background);
+}
+.icon.icon--has-background.icon--circle {
+  flex: none;
 }
 .icon.icon--smile svg .hand {
   transition: stroke-width ease-in 0.2s;

@@ -30,6 +30,7 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
 }, {
     hasCal(): any;
     initCalendar(): void;
+    renderCalendar(): void;
     initCal(): void;
 }, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<{
     calendarId: {

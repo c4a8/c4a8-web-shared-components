@@ -95,17 +95,17 @@ export default {
 </script>
 
 <style>
-.teaser [data-utility-animation-step] {
-  --utility-animation-distance: 135%;
-}
-.teaser [data-utility-animation-step].is-starting {
-  animation-duration: 0.8s;
-}
 .teaser {
   --color-teaser-copy-highlight: var(--color-copy-highlight);
   --color-teaser-background: var(--color-gk-light-grey);
   position: relative;
   padding: 4rem 0 2.5rem;
+}
+.teaser [data-utility-animation-step] {
+  --utility-animation-distance: 135%;
+}
+.teaser [data-utility-animation-step].is-starting {
+  animation-duration: 0.8s;
 }
 .teaser:not(.teaser--has-video) {
   cursor: pointer;

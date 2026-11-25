@@ -17,8 +17,19 @@ function resolveLocalized(field, locale) {
   return field?.[locale] ?? field?.en ?? field?.de;
 }
 
-function buildFooter(config, locales, sourceLocale) {
+function buildFooter(config, locales, sourceLocale, currentLocale) {
   const data = { ...config.data };
+
+  // Logos with a `path` link within the current locale (path "/" -> "/de", "/da", ...),
+  // so the footer logo keeps the visitor in the language they are browsing. Logos with
+  // a plain `url` pass through unchanged (external links, legacy configs).
+  if (Array.isArray(data.logos) && currentLocale) {
+    data.logos = data.logos.map((logo) =>
+      logo.path !== undefined
+        ? { ...logo, url: `/${currentLocale}${logo.path === '/' ? '' : logo.path}` }
+        : logo
+    );
+  }
 
   for (const locale of locales) {
     const links = config.links
@@ -80,7 +91,7 @@ export function useFooterData(options = {}) {
       const current = currentLocale();
       const locales = current === sourceLocale ? [sourceLocale] : [sourceLocale, current];
 
-      return Promise.resolve(buildFooter(footerConfig, locales, sourceLocale));
+      return Promise.resolve(buildFooter(footerConfig, locales, sourceLocale, current));
     },
     { watch: localeRef ? [localeRef] : [] }
   );

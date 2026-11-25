@@ -39,27 +39,26 @@ const isDetailPage = computed(() => event.value?.detailPage ?? event.value?.meta
 if (sharedComponents?.requireEventDetailPage && event.value && !isDetailPage.value) {
   await navigateTo(nuxtApp.$localePath("/"), { redirectCode: 301, replace: true });
 }
-const nextRoute = EventForm.action;
-const actionRoute = "/send";
 const getFormular = (event2) => {
+  const customForm = event2?.form;
+  const fields = customForm ? customForm.fields : EventForm.fields;
   const additionalFields = [
     {
       type: "hidden",
       id: "_next",
-      value: nextRoute
+      value: event2?.formNext || EventForm.next
     },
     {
       type: "hidden",
       id: "eventid",
       value: "#form-field-replace-value#"
     }
-  ];
+  ].filter((additionalField) => !fields.some((field) => field.id === additionalField.id));
   const replaceValue = event2?.eventid || "no-event-id";
-  return event2?.form ? { form: { ...event2.form, fields: [...event2.form.fields, ...additionalFields] }, replaceValue } : {
+  return customForm ? { form: { ...customForm, fields: [...fields, ...additionalFields] }, replaceValue } : {
     form: {
       ...EventForm,
-      action: actionRoute,
-      fields: [...EventForm.fields, ...additionalFields]
+      fields: [...fields, ...additionalFields]
     },
     replaceValue,
     useTranslation: true

@@ -295,6 +295,7 @@ export default {
 }
 .text-image .img__picture-wrapper.ratio-1x1 {
   position: relative;
+  overflow: hidden;
 }
 .text-image .img__picture-wrapper.ratio-1x1:before {
   content: "";
@@ -308,9 +309,6 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-}
-.text-image .img__picture-wrapper.ratio-1x1 {
-  overflow: hidden;
 }
 .text-image .img__picture-wrapper.ratio-1x1 > img {
   top: 50%;

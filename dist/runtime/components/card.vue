@@ -17,6 +17,7 @@
           <div class="card__img-top position-relative overflow-hidden is-foreground">
             <v-img
               itemprop="image"
+              alt=""
               :img="hasExtension"
               :cloudinary="hasBlogTitlePic"
               :img-src-sets="imgSrcSets"
@@ -89,16 +90,20 @@
         </div>
       </div>
       <div class="card__body card-body mt-0 pt-0 z-index-2 d-flex flex-column">
-        <template v-for="(info, index) in subPointsList(productValue)" v-bind:key="index">
-          <headline :class="headlineClassValue(index)" level="h6">{{ info.title }}</headline>
-          <template v-for="(point, pointIndex) in info.subpoints" v-bind:key="pointIndex">
-            <div class="card__check-mark-row">
-              <span class="card__check-placeholder" v-if="point.hideIcon"></span>
-              <icon class="card__check-mark-icon" v-else :icon="isIncluded(point.included)" size="medium" />
-              <span class="card__check-mark-point">{{ point.subpoint }}</span>
-            </div>
+        <!-- One box for the points, so a grid-list of product cards can line
+             up the links of cards side by side (see grid-list.vue) -->
+        <div class="card__product-points d-flex flex-column">
+          <template v-for="(info, index) in subPointsList(productValue)" v-bind:key="index">
+            <headline :class="headlineClassValue(index)" level="h6">{{ info.title }}</headline>
+            <template v-for="(point, pointIndex) in info.subpoints" v-bind:key="pointIndex">
+              <div class="card__check-mark-row">
+                <span class="card__check-placeholder" v-if="point.hideIcon"></span>
+                <icon class="card__check-mark-icon" v-else :icon="isIncluded(point.included)" size="medium" />
+                <span class="card__check-mark-point">{{ point.subpoint }}</span>
+              </div>
+            </template>
           </template>
-        </template>
+        </div>
         <div class="card__link mt-auto" v-if="cta">
           <cta v-bind="ctaValue" class="font-weight-bold mt-5" style="color: var(--color-primary)" />
         </div>
@@ -109,6 +114,7 @@
       <div class="card__img-top position-relative no-gutters is-foreground" v-if="blogtitlepic">
         <v-img
           itemprop="image"
+          alt=""
           :img="hasExtension"
           :cloudinary="hasBlogTitlePic"
           :img-src-sets="imgSrcSets"
@@ -181,6 +187,7 @@
       <div class="card__img-top position-relative is-foreground" v-if="blogtitlepic">
         <v-img
           itemprop="image"
+          alt=""
           :img="hasExtension"
           :cloudinary="hasBlogTitlePic"
           :img-src-sets="imgSrcSets"
@@ -475,6 +482,7 @@ export default {
 }
 .card.vue-component:not(.card--no-link) {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 1.5s cubic-bezier(0.19, 1, 0.2, 1);
 }
 .card.vue-component:not(.card--no-link) .is-foreground :is(img, svg, .lottie),
 .card.vue-component:not(.card--no-link) .is-background {
@@ -486,9 +494,6 @@ export default {
 .card.vue-component:not(.card--no-link):hover .is-background {
   transform: scale(1.025);
   transition-duration: 1.3s;
-}
-.card.vue-component:not(.card--no-link) {
-  transition: box-shadow 1.5s cubic-bezier(0.19, 1, 0.2, 1);
 }
 .card.vue-component:not(.card--no-link):hover {
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.25);
@@ -767,6 +772,7 @@ export default {
 
 .card:not(.vue-component):not(.card--no-link) {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 1.5s cubic-bezier(0.19, 1, 0.2, 1);
 }
 .card:not(.vue-component):not(.card--no-link) .is-foreground :is(img, svg, .lottie),
 .card:not(.vue-component):not(.card--no-link) .is-background {
@@ -778,9 +784,6 @@ export default {
 .card:not(.vue-component):not(.card--no-link):hover .is-background {
   transform: scale(1.025);
   transition-duration: 1.3s;
-}
-.card:not(.vue-component):not(.card--no-link) {
-  transition: box-shadow 1.5s cubic-bezier(0.19, 1, 0.2, 1);
 }
 .card:not(.vue-component):not(.card--no-link):hover {
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.25);

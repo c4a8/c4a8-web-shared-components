@@ -27,7 +27,13 @@ export default {
   tagName: 'grid-list',
   computed: {
     classList() {
-      return ['grid-list row mb-3 utility-animation__group vue-component'];
+      return [
+        'grid-list row mb-3 utility-animation__group vue-component',
+        this.hasProductTiles ? 'grid-list--products' : '',
+      ];
+    },
+    hasProductTiles() {
+      return this.view === 'tile-view' && this.items?.some((item) => item.product);
     },
     columnClassList() {
       return [this.view === 'tile-view' ? 'col-sm-6 col-lg-4' : 'col-sm-6 col-lg-12', 'mb-3 mb-sm-8'];
@@ -95,6 +101,54 @@ export default {
 .grid-list {
   &.row {
     margin: 0 calc(-1 * (#{$grid-gutter-width} / 2));
+  }
+}
+
+// Product cards side by side (tile view): the links of one row share one
+// line, also when a link wraps. From sm the list is a grid; every column
+// takes three of its rows (image, points, link) and hands them down to its
+// card and the card's body (subgrid), so each row is as tall as the
+// tallest part beside it. One card per row (below sm) looks as before;
+// without subgrid the links stay at the foot of their cards.
+@supports (grid-template-rows: subgrid) {
+  @include media-breakpoint-up(sm) {
+    .grid-list--products.row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+
+      // minmax(0, 1fr): a single column that does not grow with wide content
+      > * {
+        display: grid;
+        grid-row: span 3;
+        grid-template-rows: subgrid;
+        grid-template-columns: minmax(0, 1fr);
+        max-width: none;
+      }
+
+      .card--products {
+        display: grid;
+        grid-row: span 3;
+        grid-template-rows: subgrid;
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .card--products .card__body {
+        display: grid !important; // over the body's d-flex
+        grid-row: 2 / span 2;
+        grid-template-rows: subgrid;
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .card--products .card__link {
+        margin-top: 0 !important; // over mt-auto, which would pin it to the foot again
+      }
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    .grid-list--products.row {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
   }
 }
 </style>

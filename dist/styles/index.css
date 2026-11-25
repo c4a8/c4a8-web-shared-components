@@ -25020,8 +25020,8 @@ input[type=submit].btn-block {
 
 :host,
 :root {
-  --fa-style-family-brands: 'Font Awesome 6 Brands';
-  --fa-font-brands: normal 400 1em/1 'Font Awesome 6 Brands';
+  --fa-style-family-brands: "Font Awesome 6 Brands";
+  --fa-font-brands: normal 400 1em/1 "Font Awesome 6 Brands";
 }
 
 @font-face {
@@ -27008,7 +27008,7 @@ input[type=submit].btn-block {
 
 :host,
 :root {
-  --fa-font-regular: normal 400 1em/1 'Font Awesome 6 Free';
+  --fa-font-regular: normal 400 1em/1 "Font Awesome 6 Free";
 }
 
 .fa-regular,
@@ -27018,8 +27018,8 @@ input[type=submit].btn-block {
 
 :host,
 :root {
-  --fa-style-family-classic: 'Font Awesome 6 Free';
-  --fa-font-solid: normal 900 1em/1 'Font Awesome 6 Free';
+  --fa-style-family-classic: "Font Awesome 6 Free";
+  --fa-font-solid: normal 900 1em/1 "Font Awesome 6 Free";
 }
 
 @font-face {
@@ -28325,14 +28325,12 @@ p {
 }
 .modal.fade .modal-dialog {
   transition: transform 0.3s ease-out;
+  transform: translate(0, -50px);
 }
 @media (prefers-reduced-motion: reduce) {
   .modal.fade .modal-dialog {
     transition: none;
   }
-}
-.modal.fade .modal-dialog {
-  transform: translate(0, -50px);
 }
 .modal.show .modal-dialog {
   transform: none;
@@ -32846,11 +32844,11 @@ p {
   transform: scale(1.4);
 }
 .modal.modal--center-slim .modal__body {
-  line-height: 1.7em;
-}
-.modal.modal--center-slim .modal__body {
   line-height: 2;
   padding: 2rem 0;
+}
+.modal.modal--center-slim .modal__body {
+  line-height: 1.7em;
 }
 .modal.modal--notification .modal-dialog {
   --modal-bottom-spacing: 2rem;
@@ -32962,6 +32960,9 @@ p {
 }
 
 .modal__success-subline {
+  margin-bottom: 3.5rem;
+}
+.modal__success-subline {
   font-size: 1.125rem;
   line-height: 1.6667em;
 }
@@ -32985,9 +32986,6 @@ p {
 }
 .modal__success-subline {
   line-height: 1.7em !important;
-}
-.modal__success-subline {
-  margin-bottom: 3.5rem;
 }
 
 .modal__success-subheadline {
@@ -33069,14 +33067,14 @@ p {
 }
 
 .modal__error-text {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.modal__error-text {
   font-size: 0.85rem;
 }
 .modal__error-text {
   line-height: 1.7em !important;
-}
-.modal__error-text {
-  text-align: center;
-  margin-bottom: 1rem;
 }
 
 .modal__error-phone,
@@ -33227,137 +33225,145 @@ modal {
   padding-left: 1.5em;
   margin-top: 3rem;
 }
-.richtext h2[id=über], .richtext h2[id=Über], .richtext h2[id^=über-], .richtext h2[id^=Über-], .richtext h2[id=about], .richtext h2[id=About], .richtext h2[id^=about-], .richtext h2[id^=About-], .richtext h2#Fazit, .richtext h2#fazit, .richtext h2#Conclusion, .richtext h2#conclusion, .richtext h2#Slutsats, .richtext h2#slutsats, .richtext h2#Konklusjon, .richtext h2#konklusjon, .richtext h2#Johtopäätös, .richtext h2#johtopäätös, .richtext h2#Yhteenveto, .richtext h2#yhteenveto, .richtext h2#Konklusion, .richtext h2#konklusion, .richtext h2#Niðurstaða, .richtext h2#niðurstaða, .richtext h2#Conclusione, .richtext h2#conclusione, .richtext h2#Conclusie, .richtext h2#conclusie, .richtext h2#결론, .richtext h2#結論, .richtext h2#まとめ,
-.richtext h3[id=über],
-.richtext h3[id=Über],
-.richtext h3[id^=über-],
-.richtext h3[id^=Über-],
-.richtext h3[id=about],
-.richtext h3[id=About],
-.richtext h3[id^=about-],
-.richtext h3[id^=About-],
-.richtext h3#Fazit,
-.richtext h3#fazit,
-.richtext h3#Conclusion,
-.richtext h3#conclusion,
-.richtext h3#Slutsats,
-.richtext h3#slutsats,
-.richtext h3#Konklusjon,
-.richtext h3#konklusjon,
-.richtext h3#Johtopäätös,
-.richtext h3#johtopäätös,
-.richtext h3#Yhteenveto,
-.richtext h3#yhteenveto,
-.richtext h3#Konklusion,
-.richtext h3#konklusion,
-.richtext h3#Niðurstaða,
-.richtext h3#niðurstaða,
-.richtext h3#Conclusione,
-.richtext h3#conclusione,
-.richtext h3#Conclusie,
-.richtext h3#conclusie,
-.richtext h3#결론,
-.richtext h3#結論,
-.richtext h3#まとめ,
-.richtext h4[id=über],
-.richtext h4[id=Über],
-.richtext h4[id^=über-],
-.richtext h4[id^=Über-],
-.richtext h4[id=about],
-.richtext h4[id=About],
-.richtext h4[id^=about-],
-.richtext h4[id^=About-],
-.richtext h4#Fazit,
-.richtext h4#fazit,
-.richtext h4#Conclusion,
-.richtext h4#conclusion,
-.richtext h4#Slutsats,
-.richtext h4#slutsats,
-.richtext h4#Konklusjon,
-.richtext h4#konklusjon,
-.richtext h4#Johtopäätös,
-.richtext h4#johtopäätös,
-.richtext h4#Yhteenveto,
-.richtext h4#yhteenveto,
-.richtext h4#Konklusion,
-.richtext h4#konklusion,
-.richtext h4#Niðurstaða,
-.richtext h4#niðurstaða,
-.richtext h4#Conclusione,
-.richtext h4#conclusione,
-.richtext h4#Conclusie,
-.richtext h4#conclusie,
-.richtext h4#결론,
-.richtext h4#結論,
-.richtext h4#まとめ {
+html:not([data-richtext-conclusion-box=false]) .richtext h2[id=über], html:not([data-richtext-conclusion-box=false]) .richtext h2[id=Über], html:not([data-richtext-conclusion-box=false]) .richtext h2[id^=über-], html:not([data-richtext-conclusion-box=false]) .richtext h2[id^=Über-], html:not([data-richtext-conclusion-box=false]) .richtext h2[id=about], html:not([data-richtext-conclusion-box=false]) .richtext h2[id=About], html:not([data-richtext-conclusion-box=false]) .richtext h2[id^=about-], html:not([data-richtext-conclusion-box=false]) .richtext h2[id^=About-], html:not([data-richtext-conclusion-box=false]) .richtext h2#Fazit, html:not([data-richtext-conclusion-box=false]) .richtext h2#fazit, html:not([data-richtext-conclusion-box=false]) .richtext h2#Conclusion, html:not([data-richtext-conclusion-box=false]) .richtext h2#conclusion, html:not([data-richtext-conclusion-box=false]) .richtext h2#Conclusión, html:not([data-richtext-conclusion-box=false]) .richtext h2#conclusión, html:not([data-richtext-conclusion-box=false]) .richtext h2#Slutsats, html:not([data-richtext-conclusion-box=false]) .richtext h2#slutsats, html:not([data-richtext-conclusion-box=false]) .richtext h2#Konklusjon, html:not([data-richtext-conclusion-box=false]) .richtext h2#konklusjon, html:not([data-richtext-conclusion-box=false]) .richtext h2#Johtopäätös, html:not([data-richtext-conclusion-box=false]) .richtext h2#johtopäätös, html:not([data-richtext-conclusion-box=false]) .richtext h2#Yhteenveto, html:not([data-richtext-conclusion-box=false]) .richtext h2#yhteenveto, html:not([data-richtext-conclusion-box=false]) .richtext h2#Konklusion, html:not([data-richtext-conclusion-box=false]) .richtext h2#konklusion, html:not([data-richtext-conclusion-box=false]) .richtext h2#Niðurstaða, html:not([data-richtext-conclusion-box=false]) .richtext h2#niðurstaða, html:not([data-richtext-conclusion-box=false]) .richtext h2#Conclusione, html:not([data-richtext-conclusion-box=false]) .richtext h2#conclusione, html:not([data-richtext-conclusion-box=false]) .richtext h2#Conclusie, html:not([data-richtext-conclusion-box=false]) .richtext h2#conclusie, html:not([data-richtext-conclusion-box=false]) .richtext h2#결론, html:not([data-richtext-conclusion-box=false]) .richtext h2#結論, html:not([data-richtext-conclusion-box=false]) .richtext h2#まとめ,
+html:not([data-richtext-conclusion-box=false]) .richtext h3[id=über],
+html:not([data-richtext-conclusion-box=false]) .richtext h3[id=Über],
+html:not([data-richtext-conclusion-box=false]) .richtext h3[id^=über-],
+html:not([data-richtext-conclusion-box=false]) .richtext h3[id^=Über-],
+html:not([data-richtext-conclusion-box=false]) .richtext h3[id=about],
+html:not([data-richtext-conclusion-box=false]) .richtext h3[id=About],
+html:not([data-richtext-conclusion-box=false]) .richtext h3[id^=about-],
+html:not([data-richtext-conclusion-box=false]) .richtext h3[id^=About-],
+html:not([data-richtext-conclusion-box=false]) .richtext h3#Fazit,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#fazit,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#Conclusion,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#conclusion,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#Conclusión,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#conclusión,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#Slutsats,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#slutsats,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#Konklusjon,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#konklusjon,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#Johtopäätös,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#johtopäätös,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#Yhteenveto,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#yhteenveto,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#Konklusion,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#konklusion,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#Niðurstaða,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#niðurstaða,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#Conclusione,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#conclusione,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#Conclusie,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#conclusie,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#결론,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#結論,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#まとめ,
+html:not([data-richtext-conclusion-box=false]) .richtext h4[id=über],
+html:not([data-richtext-conclusion-box=false]) .richtext h4[id=Über],
+html:not([data-richtext-conclusion-box=false]) .richtext h4[id^=über-],
+html:not([data-richtext-conclusion-box=false]) .richtext h4[id^=Über-],
+html:not([data-richtext-conclusion-box=false]) .richtext h4[id=about],
+html:not([data-richtext-conclusion-box=false]) .richtext h4[id=About],
+html:not([data-richtext-conclusion-box=false]) .richtext h4[id^=about-],
+html:not([data-richtext-conclusion-box=false]) .richtext h4[id^=About-],
+html:not([data-richtext-conclusion-box=false]) .richtext h4#Fazit,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#fazit,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#Conclusion,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#conclusion,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#Conclusión,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#conclusión,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#Slutsats,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#slutsats,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#Konklusjon,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#konklusjon,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#Johtopäätös,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#johtopäätös,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#Yhteenveto,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#yhteenveto,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#Konklusion,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#konklusion,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#Niðurstaða,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#niðurstaða,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#Conclusione,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#conclusione,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#Conclusie,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#conclusie,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#결론,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#結論,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#まとめ {
   background-color: var(--color-gk-petrol);
   color: var(--color-gk-white);
   padding: 1rem 1rem 2.5rem;
   margin: 5rem 0 0 0;
 }
-.richtext h2[id=über] ~ p, .richtext h2[id=Über] ~ p, .richtext h2[id^=über-] ~ p, .richtext h2[id^=Über-] ~ p, .richtext h2[id=about] ~ p, .richtext h2[id=About] ~ p, .richtext h2[id^=about-] ~ p, .richtext h2[id^=About-] ~ p, .richtext h2#Fazit ~ p, .richtext h2#fazit ~ p, .richtext h2#Conclusion ~ p, .richtext h2#conclusion ~ p, .richtext h2#Slutsats ~ p, .richtext h2#slutsats ~ p, .richtext h2#Konklusjon ~ p, .richtext h2#konklusjon ~ p, .richtext h2#Johtopäätös ~ p, .richtext h2#johtopäätös ~ p, .richtext h2#Yhteenveto ~ p, .richtext h2#yhteenveto ~ p, .richtext h2#Konklusion ~ p, .richtext h2#konklusion ~ p, .richtext h2#Niðurstaða ~ p, .richtext h2#niðurstaða ~ p, .richtext h2#Conclusione ~ p, .richtext h2#conclusione ~ p, .richtext h2#Conclusie ~ p, .richtext h2#conclusie ~ p, .richtext h2#결론 ~ p, .richtext h2#結論 ~ p, .richtext h2#まとめ ~ p,
-.richtext h3[id=über] ~ p,
-.richtext h3[id=Über] ~ p,
-.richtext h3[id^=über-] ~ p,
-.richtext h3[id^=Über-] ~ p,
-.richtext h3[id=about] ~ p,
-.richtext h3[id=About] ~ p,
-.richtext h3[id^=about-] ~ p,
-.richtext h3[id^=About-] ~ p,
-.richtext h3#Fazit ~ p,
-.richtext h3#fazit ~ p,
-.richtext h3#Conclusion ~ p,
-.richtext h3#conclusion ~ p,
-.richtext h3#Slutsats ~ p,
-.richtext h3#slutsats ~ p,
-.richtext h3#Konklusjon ~ p,
-.richtext h3#konklusjon ~ p,
-.richtext h3#Johtopäätös ~ p,
-.richtext h3#johtopäätös ~ p,
-.richtext h3#Yhteenveto ~ p,
-.richtext h3#yhteenveto ~ p,
-.richtext h3#Konklusion ~ p,
-.richtext h3#konklusion ~ p,
-.richtext h3#Niðurstaða ~ p,
-.richtext h3#niðurstaða ~ p,
-.richtext h3#Conclusione ~ p,
-.richtext h3#conclusione ~ p,
-.richtext h3#Conclusie ~ p,
-.richtext h3#conclusie ~ p,
-.richtext h3#결론 ~ p,
-.richtext h3#結論 ~ p,
-.richtext h3#まとめ ~ p,
-.richtext h4[id=über] ~ p,
-.richtext h4[id=Über] ~ p,
-.richtext h4[id^=über-] ~ p,
-.richtext h4[id^=Über-] ~ p,
-.richtext h4[id=about] ~ p,
-.richtext h4[id=About] ~ p,
-.richtext h4[id^=about-] ~ p,
-.richtext h4[id^=About-] ~ p,
-.richtext h4#Fazit ~ p,
-.richtext h4#fazit ~ p,
-.richtext h4#Conclusion ~ p,
-.richtext h4#conclusion ~ p,
-.richtext h4#Slutsats ~ p,
-.richtext h4#slutsats ~ p,
-.richtext h4#Konklusjon ~ p,
-.richtext h4#konklusjon ~ p,
-.richtext h4#Johtopäätös ~ p,
-.richtext h4#johtopäätös ~ p,
-.richtext h4#Yhteenveto ~ p,
-.richtext h4#yhteenveto ~ p,
-.richtext h4#Konklusion ~ p,
-.richtext h4#konklusion ~ p,
-.richtext h4#Niðurstaða ~ p,
-.richtext h4#niðurstaða ~ p,
-.richtext h4#Conclusione ~ p,
-.richtext h4#conclusione ~ p,
-.richtext h4#Conclusie ~ p,
-.richtext h4#conclusie ~ p,
-.richtext h4#결론 ~ p,
-.richtext h4#結論 ~ p,
-.richtext h4#まとめ ~ p {
+html:not([data-richtext-conclusion-box=false]) .richtext h2[id=über] ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2[id=Über] ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2[id^=über-] ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2[id^=Über-] ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2[id=about] ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2[id=About] ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2[id^=about-] ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2[id^=About-] ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#Fazit ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#fazit ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#Conclusion ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#conclusion ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#Conclusión ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#conclusión ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#Slutsats ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#slutsats ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#Konklusjon ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#konklusjon ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#Johtopäätös ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#johtopäätös ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#Yhteenveto ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#yhteenveto ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#Konklusion ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#konklusion ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#Niðurstaða ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#niðurstaða ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#Conclusione ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#conclusione ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#Conclusie ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#conclusie ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#결론 ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#結論 ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#まとめ ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3[id=über] ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3[id=Über] ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3[id^=über-] ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3[id^=Über-] ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3[id=about] ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3[id=About] ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3[id^=about-] ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3[id^=About-] ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#Fazit ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#fazit ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#Conclusion ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#conclusion ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#Conclusión ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#conclusión ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#Slutsats ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#slutsats ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#Konklusjon ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#konklusjon ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#Johtopäätös ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#johtopäätös ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#Yhteenveto ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#yhteenveto ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#Konklusion ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#konklusion ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#Niðurstaða ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#niðurstaða ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#Conclusione ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#conclusione ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#Conclusie ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#conclusie ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#결론 ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#結論 ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#まとめ ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4[id=über] ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4[id=Über] ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4[id^=über-] ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4[id^=Über-] ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4[id=about] ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4[id=About] ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4[id^=about-] ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4[id^=About-] ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#Fazit ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#fazit ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#Conclusion ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#conclusion ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#Conclusión ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#conclusión ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#Slutsats ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#slutsats ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#Konklusjon ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#konklusjon ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#Johtopäätös ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#johtopäätös ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#Yhteenveto ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#yhteenveto ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#Konklusion ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#konklusion ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#Niðurstaða ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#niðurstaða ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#Conclusione ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#conclusione ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#Conclusie ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#conclusie ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#결론 ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#結論 ~ p,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#まとめ ~ p {
   background-color: var(--color-gk-petrol);
   color: var(--color-gk-white);
   padding: 0 1rem 1rem;
@@ -33365,164 +33371,174 @@ modal {
   margin-bottom: 0;
 }
 @media (min-width: 992px) {
-  .richtext h2[id=über], .richtext h2[id=Über], .richtext h2[id^=über-], .richtext h2[id^=Über-], .richtext h2[id=about], .richtext h2[id=About], .richtext h2[id^=about-], .richtext h2[id^=About-], .richtext h2#Fazit, .richtext h2#fazit, .richtext h2#Conclusion, .richtext h2#conclusion, .richtext h2#Slutsats, .richtext h2#slutsats, .richtext h2#Konklusjon, .richtext h2#konklusjon, .richtext h2#Johtopäätös, .richtext h2#johtopäätös, .richtext h2#Yhteenveto, .richtext h2#yhteenveto, .richtext h2#Konklusion, .richtext h2#konklusion, .richtext h2#Niðurstaða, .richtext h2#niðurstaða, .richtext h2#Conclusione, .richtext h2#conclusione, .richtext h2#Conclusie, .richtext h2#conclusie, .richtext h2#결론, .richtext h2#結論, .richtext h2#まとめ,
-  .richtext h3[id=über],
-  .richtext h3[id=Über],
-  .richtext h3[id^=über-],
-  .richtext h3[id^=Über-],
-  .richtext h3[id=about],
-  .richtext h3[id=About],
-  .richtext h3[id^=about-],
-  .richtext h3[id^=About-],
-  .richtext h3#Fazit,
-  .richtext h3#fazit,
-  .richtext h3#Conclusion,
-  .richtext h3#conclusion,
-  .richtext h3#Slutsats,
-  .richtext h3#slutsats,
-  .richtext h3#Konklusjon,
-  .richtext h3#konklusjon,
-  .richtext h3#Johtopäätös,
-  .richtext h3#johtopäätös,
-  .richtext h3#Yhteenveto,
-  .richtext h3#yhteenveto,
-  .richtext h3#Konklusion,
-  .richtext h3#konklusion,
-  .richtext h3#Niðurstaða,
-  .richtext h3#niðurstaða,
-  .richtext h3#Conclusione,
-  .richtext h3#conclusione,
-  .richtext h3#Conclusie,
-  .richtext h3#conclusie,
-  .richtext h3#결론,
-  .richtext h3#結論,
-  .richtext h3#まとめ,
-  .richtext h4[id=über],
-  .richtext h4[id=Über],
-  .richtext h4[id^=über-],
-  .richtext h4[id^=Über-],
-  .richtext h4[id=about],
-  .richtext h4[id=About],
-  .richtext h4[id^=about-],
-  .richtext h4[id^=About-],
-  .richtext h4#Fazit,
-  .richtext h4#fazit,
-  .richtext h4#Conclusion,
-  .richtext h4#conclusion,
-  .richtext h4#Slutsats,
-  .richtext h4#slutsats,
-  .richtext h4#Konklusjon,
-  .richtext h4#konklusjon,
-  .richtext h4#Johtopäätös,
-  .richtext h4#johtopäätös,
-  .richtext h4#Yhteenveto,
-  .richtext h4#yhteenveto,
-  .richtext h4#Konklusion,
-  .richtext h4#konklusion,
-  .richtext h4#Niðurstaða,
-  .richtext h4#niðurstaða,
-  .richtext h4#Conclusione,
-  .richtext h4#conclusione,
-  .richtext h4#Conclusie,
-  .richtext h4#conclusie,
-  .richtext h4#결론,
-  .richtext h4#結論,
-  .richtext h4#まとめ {
+  html:not([data-richtext-conclusion-box=false]) .richtext h2[id=über], html:not([data-richtext-conclusion-box=false]) .richtext h2[id=Über], html:not([data-richtext-conclusion-box=false]) .richtext h2[id^=über-], html:not([data-richtext-conclusion-box=false]) .richtext h2[id^=Über-], html:not([data-richtext-conclusion-box=false]) .richtext h2[id=about], html:not([data-richtext-conclusion-box=false]) .richtext h2[id=About], html:not([data-richtext-conclusion-box=false]) .richtext h2[id^=about-], html:not([data-richtext-conclusion-box=false]) .richtext h2[id^=About-], html:not([data-richtext-conclusion-box=false]) .richtext h2#Fazit, html:not([data-richtext-conclusion-box=false]) .richtext h2#fazit, html:not([data-richtext-conclusion-box=false]) .richtext h2#Conclusion, html:not([data-richtext-conclusion-box=false]) .richtext h2#conclusion, html:not([data-richtext-conclusion-box=false]) .richtext h2#Conclusión, html:not([data-richtext-conclusion-box=false]) .richtext h2#conclusión, html:not([data-richtext-conclusion-box=false]) .richtext h2#Slutsats, html:not([data-richtext-conclusion-box=false]) .richtext h2#slutsats, html:not([data-richtext-conclusion-box=false]) .richtext h2#Konklusjon, html:not([data-richtext-conclusion-box=false]) .richtext h2#konklusjon, html:not([data-richtext-conclusion-box=false]) .richtext h2#Johtopäätös, html:not([data-richtext-conclusion-box=false]) .richtext h2#johtopäätös, html:not([data-richtext-conclusion-box=false]) .richtext h2#Yhteenveto, html:not([data-richtext-conclusion-box=false]) .richtext h2#yhteenveto, html:not([data-richtext-conclusion-box=false]) .richtext h2#Konklusion, html:not([data-richtext-conclusion-box=false]) .richtext h2#konklusion, html:not([data-richtext-conclusion-box=false]) .richtext h2#Niðurstaða, html:not([data-richtext-conclusion-box=false]) .richtext h2#niðurstaða, html:not([data-richtext-conclusion-box=false]) .richtext h2#Conclusione, html:not([data-richtext-conclusion-box=false]) .richtext h2#conclusione, html:not([data-richtext-conclusion-box=false]) .richtext h2#Conclusie, html:not([data-richtext-conclusion-box=false]) .richtext h2#conclusie, html:not([data-richtext-conclusion-box=false]) .richtext h2#결론, html:not([data-richtext-conclusion-box=false]) .richtext h2#結論, html:not([data-richtext-conclusion-box=false]) .richtext h2#まとめ,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3[id=über],
+  html:not([data-richtext-conclusion-box=false]) .richtext h3[id=Über],
+  html:not([data-richtext-conclusion-box=false]) .richtext h3[id^=über-],
+  html:not([data-richtext-conclusion-box=false]) .richtext h3[id^=Über-],
+  html:not([data-richtext-conclusion-box=false]) .richtext h3[id=about],
+  html:not([data-richtext-conclusion-box=false]) .richtext h3[id=About],
+  html:not([data-richtext-conclusion-box=false]) .richtext h3[id^=about-],
+  html:not([data-richtext-conclusion-box=false]) .richtext h3[id^=About-],
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#Fazit,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#fazit,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#Conclusion,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#conclusion,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#Conclusión,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#conclusión,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#Slutsats,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#slutsats,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#Konklusjon,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#konklusjon,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#Johtopäätös,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#johtopäätös,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#Yhteenveto,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#yhteenveto,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#Konklusion,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#konklusion,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#Niðurstaða,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#niðurstaða,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#Conclusione,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#conclusione,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#Conclusie,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#conclusie,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#결론,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#結論,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#まとめ,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4[id=über],
+  html:not([data-richtext-conclusion-box=false]) .richtext h4[id=Über],
+  html:not([data-richtext-conclusion-box=false]) .richtext h4[id^=über-],
+  html:not([data-richtext-conclusion-box=false]) .richtext h4[id^=Über-],
+  html:not([data-richtext-conclusion-box=false]) .richtext h4[id=about],
+  html:not([data-richtext-conclusion-box=false]) .richtext h4[id=About],
+  html:not([data-richtext-conclusion-box=false]) .richtext h4[id^=about-],
+  html:not([data-richtext-conclusion-box=false]) .richtext h4[id^=About-],
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#Fazit,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#fazit,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#Conclusion,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#conclusion,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#Conclusión,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#conclusión,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#Slutsats,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#slutsats,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#Konklusjon,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#konklusjon,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#Johtopäätös,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#johtopäätös,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#Yhteenveto,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#yhteenveto,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#Konklusion,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#konklusion,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#Niðurstaða,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#niðurstaða,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#Conclusione,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#conclusione,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#Conclusie,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#conclusie,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#결론,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#結論,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#まとめ {
     padding: 3rem 3rem 2.5rem;
   }
-  .richtext h2[id=über] ~ p, .richtext h2[id=Über] ~ p, .richtext h2[id^=über-] ~ p, .richtext h2[id^=Über-] ~ p, .richtext h2[id=about] ~ p, .richtext h2[id=About] ~ p, .richtext h2[id^=about-] ~ p, .richtext h2[id^=About-] ~ p, .richtext h2#Fazit ~ p, .richtext h2#fazit ~ p, .richtext h2#Conclusion ~ p, .richtext h2#conclusion ~ p, .richtext h2#Slutsats ~ p, .richtext h2#slutsats ~ p, .richtext h2#Konklusjon ~ p, .richtext h2#konklusjon ~ p, .richtext h2#Johtopäätös ~ p, .richtext h2#johtopäätös ~ p, .richtext h2#Yhteenveto ~ p, .richtext h2#yhteenveto ~ p, .richtext h2#Konklusion ~ p, .richtext h2#konklusion ~ p, .richtext h2#Niðurstaða ~ p, .richtext h2#niðurstaða ~ p, .richtext h2#Conclusione ~ p, .richtext h2#conclusione ~ p, .richtext h2#Conclusie ~ p, .richtext h2#conclusie ~ p, .richtext h2#결론 ~ p, .richtext h2#結論 ~ p, .richtext h2#まとめ ~ p,
-  .richtext h3[id=über] ~ p,
-  .richtext h3[id=Über] ~ p,
-  .richtext h3[id^=über-] ~ p,
-  .richtext h3[id^=Über-] ~ p,
-  .richtext h3[id=about] ~ p,
-  .richtext h3[id=About] ~ p,
-  .richtext h3[id^=about-] ~ p,
-  .richtext h3[id^=About-] ~ p,
-  .richtext h3#Fazit ~ p,
-  .richtext h3#fazit ~ p,
-  .richtext h3#Conclusion ~ p,
-  .richtext h3#conclusion ~ p,
-  .richtext h3#Slutsats ~ p,
-  .richtext h3#slutsats ~ p,
-  .richtext h3#Konklusjon ~ p,
-  .richtext h3#konklusjon ~ p,
-  .richtext h3#Johtopäätös ~ p,
-  .richtext h3#johtopäätös ~ p,
-  .richtext h3#Yhteenveto ~ p,
-  .richtext h3#yhteenveto ~ p,
-  .richtext h3#Konklusion ~ p,
-  .richtext h3#konklusion ~ p,
-  .richtext h3#Niðurstaða ~ p,
-  .richtext h3#niðurstaða ~ p,
-  .richtext h3#Conclusione ~ p,
-  .richtext h3#conclusione ~ p,
-  .richtext h3#Conclusie ~ p,
-  .richtext h3#conclusie ~ p,
-  .richtext h3#결론 ~ p,
-  .richtext h3#結論 ~ p,
-  .richtext h3#まとめ ~ p,
-  .richtext h4[id=über] ~ p,
-  .richtext h4[id=Über] ~ p,
-  .richtext h4[id^=über-] ~ p,
-  .richtext h4[id^=Über-] ~ p,
-  .richtext h4[id=about] ~ p,
-  .richtext h4[id=About] ~ p,
-  .richtext h4[id^=about-] ~ p,
-  .richtext h4[id^=About-] ~ p,
-  .richtext h4#Fazit ~ p,
-  .richtext h4#fazit ~ p,
-  .richtext h4#Conclusion ~ p,
-  .richtext h4#conclusion ~ p,
-  .richtext h4#Slutsats ~ p,
-  .richtext h4#slutsats ~ p,
-  .richtext h4#Konklusjon ~ p,
-  .richtext h4#konklusjon ~ p,
-  .richtext h4#Johtopäätös ~ p,
-  .richtext h4#johtopäätös ~ p,
-  .richtext h4#Yhteenveto ~ p,
-  .richtext h4#yhteenveto ~ p,
-  .richtext h4#Konklusion ~ p,
-  .richtext h4#konklusion ~ p,
-  .richtext h4#Niðurstaða ~ p,
-  .richtext h4#niðurstaða ~ p,
-  .richtext h4#Conclusione ~ p,
-  .richtext h4#conclusione ~ p,
-  .richtext h4#Conclusie ~ p,
-  .richtext h4#conclusie ~ p,
-  .richtext h4#결론 ~ p,
-  .richtext h4#結論 ~ p,
-  .richtext h4#まとめ ~ p {
+  html:not([data-richtext-conclusion-box=false]) .richtext h2[id=über] ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2[id=Über] ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2[id^=über-] ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2[id^=Über-] ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2[id=about] ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2[id=About] ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2[id^=about-] ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2[id^=About-] ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#Fazit ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#fazit ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#Conclusion ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#conclusion ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#Conclusión ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#conclusión ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#Slutsats ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#slutsats ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#Konklusjon ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#konklusjon ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#Johtopäätös ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#johtopäätös ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#Yhteenveto ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#yhteenveto ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#Konklusion ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#konklusion ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#Niðurstaða ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#niðurstaða ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#Conclusione ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#conclusione ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#Conclusie ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#conclusie ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#결론 ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#結論 ~ p, html:not([data-richtext-conclusion-box=false]) .richtext h2#まとめ ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3[id=über] ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3[id=Über] ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3[id^=über-] ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3[id^=Über-] ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3[id=about] ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3[id=About] ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3[id^=about-] ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3[id^=About-] ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#Fazit ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#fazit ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#Conclusion ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#conclusion ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#Conclusión ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#conclusión ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#Slutsats ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#slutsats ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#Konklusjon ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#konklusjon ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#Johtopäätös ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#johtopäätös ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#Yhteenveto ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#yhteenveto ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#Konklusion ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#konklusion ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#Niðurstaða ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#niðurstaða ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#Conclusione ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#conclusione ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#Conclusie ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#conclusie ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#결론 ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#結論 ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h3#まとめ ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4[id=über] ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4[id=Über] ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4[id^=über-] ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4[id^=Über-] ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4[id=about] ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4[id=About] ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4[id^=about-] ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4[id^=About-] ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#Fazit ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#fazit ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#Conclusion ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#conclusion ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#Conclusión ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#conclusión ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#Slutsats ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#slutsats ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#Konklusjon ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#konklusjon ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#Johtopäätös ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#johtopäätös ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#Yhteenveto ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#yhteenveto ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#Konklusion ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#konklusion ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#Niðurstaða ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#niðurstaða ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#Conclusione ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#conclusione ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#Conclusie ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#conclusie ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#결론 ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#結論 ~ p,
+  html:not([data-richtext-conclusion-box=false]) .richtext h4#まとめ ~ p {
     padding: 0 3rem 3rem;
   }
 }
-.richtext h2#fazit, .richtext h2#conclusion, .richtext h2#slutsats, .richtext h2#konklusjon, .richtext h2#johtopäätös, .richtext h2#yhteenveto, .richtext h2#konklusion, .richtext h2#niðurstaða, .richtext h2#conclusione, .richtext h2#conclusie, .richtext h2#결론, .richtext h2#結論, .richtext h2#まとめ,
-.richtext h3#fazit,
-.richtext h3#conclusion,
-.richtext h3#slutsats,
-.richtext h3#konklusjon,
-.richtext h3#johtopäätös,
-.richtext h3#yhteenveto,
-.richtext h3#konklusion,
-.richtext h3#niðurstaða,
-.richtext h3#conclusione,
-.richtext h3#conclusie,
-.richtext h3#결론,
-.richtext h3#結論,
-.richtext h3#まとめ,
-.richtext h4#fazit,
-.richtext h4#conclusion,
-.richtext h4#slutsats,
-.richtext h4#konklusjon,
-.richtext h4#johtopäätös,
-.richtext h4#yhteenveto,
-.richtext h4#konklusion,
-.richtext h4#niðurstaða,
-.richtext h4#conclusione,
-.richtext h4#conclusie,
-.richtext h4#결론,
-.richtext h4#結論,
-.richtext h4#まとめ {
+html:not([data-richtext-conclusion-box=false]) .richtext h2#fazit, html:not([data-richtext-conclusion-box=false]) .richtext h2#conclusion, html:not([data-richtext-conclusion-box=false]) .richtext h2#conclusión, html:not([data-richtext-conclusion-box=false]) .richtext h2#slutsats, html:not([data-richtext-conclusion-box=false]) .richtext h2#konklusjon, html:not([data-richtext-conclusion-box=false]) .richtext h2#johtopäätös, html:not([data-richtext-conclusion-box=false]) .richtext h2#yhteenveto, html:not([data-richtext-conclusion-box=false]) .richtext h2#konklusion, html:not([data-richtext-conclusion-box=false]) .richtext h2#niðurstaða, html:not([data-richtext-conclusion-box=false]) .richtext h2#conclusione, html:not([data-richtext-conclusion-box=false]) .richtext h2#conclusie, html:not([data-richtext-conclusion-box=false]) .richtext h2#결론, html:not([data-richtext-conclusion-box=false]) .richtext h2#結論, html:not([data-richtext-conclusion-box=false]) .richtext h2#まとめ,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#fazit,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#conclusion,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#conclusión,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#slutsats,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#konklusjon,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#johtopäätös,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#yhteenveto,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#konklusion,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#niðurstaða,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#conclusione,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#conclusie,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#결론,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#結論,
+html:not([data-richtext-conclusion-box=false]) .richtext h3#まとめ,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#fazit,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#conclusion,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#conclusión,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#slutsats,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#konklusjon,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#johtopäätös,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#yhteenveto,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#konklusion,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#niðurstaða,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#conclusione,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#conclusie,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#결론,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#結論,
+html:not([data-richtext-conclusion-box=false]) .richtext h4#まとめ {
   margin: 2rem 0 0 0;
 }
 .richtext h6:last-of-type {
@@ -33570,13 +33586,13 @@ modal {
   padding-left: 2rem;
   padding-right: 2rem;
 }
-.richtext h2:first-child,
-.richtext h3:first-child {
-  margin-top: 0;
-}
 .richtext h2,
 .richtext h3 {
   margin: 2rem 0;
+}
+.richtext h2:first-child,
+.richtext h3:first-child {
+  margin-top: 0;
 }
 
 .slick__arrow-left,
@@ -34069,6 +34085,11 @@ svg.streamline-icon {
 }
 
 .google-maps .leaflet-popup-content-wrapper {
+  background-color: var(--color-google-maps-popup-background);
+  color: var(--color-copy-light);
+  border-radius: 0;
+}
+.google-maps .leaflet-popup-content-wrapper {
   font-size: 1rem;
   line-height: 1.6;
 }
@@ -34083,11 +34104,6 @@ svg.streamline-icon {
     font-size: 1rem;
     line-height: 1.6;
   }
-}
-.google-maps .leaflet-popup-content-wrapper {
-  background-color: var(--color-google-maps-popup-background);
-  color: var(--color-copy-light);
-  border-radius: 0;
 }
 .google-maps .leaflet-popup-tip,
 .google-maps .leaflet-popup-close-button {
@@ -34419,6 +34435,8 @@ shape {
   font-size: calc(3.75rem / 1.8);
   line-height: 1.2em;
   font-weight: lighter;
+  margin-bottom: 1rem;
+  line-height: 1.4em;
 }
 @media (min-width: 992px) {
   .page-detail__description h2 {
@@ -34431,10 +34449,6 @@ shape {
     font-size: 3.75rem;
     line-height: 1.2em;
   }
-}
-.page-detail__description h2 {
-  margin-bottom: 1rem;
-  line-height: 1.4em;
 }
 @media (min-width: 992px) {
   .page-detail__description h2 {
@@ -34586,6 +34600,10 @@ shape {
 
 .page-detail__subline.page-detail__subline--overlapped {
   font-size: 1rem;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
 @media (min-width: 768px) {
   .page-detail__subline.page-detail__subline--overlapped {
@@ -34601,12 +34619,6 @@ shape {
   .page-detail__subline.page-detail__subline--overlapped {
     font-size: 1.25rem;
   }
-}
-.page-detail__subline.page-detail__subline--overlapped {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
 }
 
 .page-detail__img-wrapper {

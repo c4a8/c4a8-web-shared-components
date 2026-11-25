@@ -10,6 +10,7 @@
         :id="toggleSwitchId"
         :checked="toggleSwitchActive"
         :data-toggle-switch-options="JSON.stringify({ targetSelector: toggleSwitchTargetSelector })"
+        :data-pricing="pricingDataAttribute"
       />
       <span class="toggle-switch-label">
         <span class="toggle-switch-indicator"></span>
@@ -41,11 +42,24 @@ export default {
     },
     products: {
       type: Object
+    },
+    pricing: {
+      type: Object,
+      default: null
     }
   },
   mounted() {
     if (!this.$refs.root) return;
-    new ToggleSwitch(this.$refs.root);
+    this.instance = new ToggleSwitch(this.$refs.root);
+  },
+  watch: {
+    // a page can convert its prices after mount (the visitor's country): format the prices again
+    pricingDataAttribute: {
+      handler() {
+        this.instance?.initPrices();
+      },
+      flush: "post"
+    }
   },
   computed: {
     toggleSwitchTextLeft() {
@@ -78,6 +92,10 @@ export default {
     defaultPlan() {
       return this.products && this.products.pricing && this.products.pricing.defaultPlan;
     },
+    pricingDataAttribute() {
+      const pricing = this.pricing || this.products && this.products.pricing;
+      return pricing ? JSON.stringify(pricing) : null;
+    },
     toggleSwitchActive() {
       return this.toggleSwitch.active || this.defaultPlan === "annual";
     },
@@ -101,13 +119,13 @@ export default {
 </script>
 
 <style scoped>
-.toggle-switch[data-utility-animation-step].is-starting {
-  animation-delay: calc(var(--utility-animation-index) * 100ms + 0ms);
-}
 .toggle-switch {
   cursor: default;
   display: flex;
   margin-bottom: 0;
+}
+.toggle-switch[data-utility-animation-step].is-starting {
+  animation-delay: calc(var(--utility-animation-index) * 100ms + 0ms);
 }
 .toggle-switch .toggle-switch-label,
 .toggle-switch .toggle-switch-input:checked + .toggle-switch-label {

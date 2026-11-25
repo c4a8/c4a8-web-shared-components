@@ -2,6 +2,10 @@ declare const _default: typeof __VLS_export;
 export default _default;
 declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractPropTypes<{
     form: ObjectConstructor;
+    bottomNote: {
+        type: ObjectConstructor;
+        default: null;
+    };
     light: {
         default: null;
     };
@@ -63,9 +67,13 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
     hasLoading: boolean;
     hasLoader: boolean;
     turnstileReady: boolean;
+    hasAjaxError: boolean;
+    isSubmitted: boolean;
 }, {
+    turnstileEnabled(): boolean;
     loaderClasses(): string[];
     classList(): string[];
+    hasSuccessSlot(): boolean;
     reCaptchaField(): any;
     novalidate(): null;
     hasAnimationValue(): boolean;
@@ -80,6 +88,9 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
 }, {
     startLoading(): void;
     stopLoading(): void;
+    handleAjaxSuccess(): void;
+    animateHeight(element: any, startHeight: any): void;
+    handleAjaxError(error: any): void;
     getTranslatedText(text: any): any;
     hasError(field: any): undefined;
     getOptions(field: any): any;
@@ -96,8 +107,12 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
     removeFieldError(field: any): void;
     addFieldError(field: any): void;
     validate(): boolean;
-}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("error" | "submit")[], "error" | "submit", import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<{
+}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("error" | "submit" | "field-action" | "success")[], "error" | "submit" | "field-action" | "success", import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<{
     form: ObjectConstructor;
+    bottomNote: {
+        type: ObjectConstructor;
+        default: null;
+    };
     light: {
         default: null;
     };
@@ -146,6 +161,8 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
 }>> & Readonly<{
     onSubmit?: ((...args: any[]) => any) | undefined;
     onError?: ((...args: any[]) => any) | undefined;
+    "onField-action"?: ((...args: any[]) => any) | undefined;
+    onSuccess?: ((...args: any[]) => any) | undefined;
 }>, {
     container: null;
     hasAnimation: null;
@@ -153,6 +170,7 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
     light: null;
     analytics: null;
     replaceValue: null;
+    bottomNote: Record<string, any>;
     uncentered: null;
     customValidation: null;
     hasUuid: null;

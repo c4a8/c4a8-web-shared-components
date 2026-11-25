@@ -61,6 +61,7 @@ export default defineNuxtConfig({
     '@nuxtjs/turnstile',
     '@nuxt/scripts',
     'nuxt-schema-org',
+    './.storybook/query-collection/module',
   ],
   // nuxt-i18n-micro: translations live in i18n/locales/<code>.json (generated
   // from locales/global.js — the shared-components UI strings). Single global

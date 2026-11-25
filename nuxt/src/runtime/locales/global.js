@@ -32,6 +32,7 @@ export default {
       'Bitte wähle ein gültiges Dateiformat und achte darauf, dass der Dateiname keine Sonderzeichen enthält.',
     formAttachmentsMaxFiles: 'Max. %s Dateien',
     formAttachmentsMaxSize: 'Eine oder mehrere Dateien sind zu groß.',
+    formSubmitError: 'Das Formular konnte nicht gesendet werden. Bitte versuch es noch einmal.',
     changeLanguage: 'Sprache ändern',
     languageNote:
       'Auf {source} geschrieben, von Claude übersetzt. Etwas in der Übersetzung verloren gegangen? Sag es uns.',
@@ -124,6 +125,7 @@ export default {
       'Please choose a valid file format and make sure that the file name does not contain any special characters.',
     formAttachmentsMaxFiles: 'Max. %s Files',
     formAttachmentsMaxSize: 'One or more files are too large.',
+    formSubmitError: 'The form could not be sent. Please try again.',
     changeLanguage: 'Change language',
     languageNote:
       'Written in {source}, translated by Claude. Something lost in translation? Please tell us.',
@@ -215,6 +217,7 @@ export default {
       'Elija un formato de archivo válido y asegúrese de que el nombre del archivo no contiene caracteres especiales.',
     formAttachmentsMaxFiles: 'Máx. %s archivos',
     formAttachmentsMaxSize: 'Uno o más archivos son demasiado grandes.',
+    formSubmitError: 'No se ha podido enviar el formulario. Inténtelo de nuevo.',
     changeLanguage: 'Cambiar idioma',
     languageNote:
       'Escrito en {source}, traducido por Claude. ¿Se ha perdido algo en la traducción? Dínoslo.',
@@ -296,6 +299,7 @@ export default {
       'Välj ett giltigt filformat och se till att filnamnet inte innehåller några specialtecken.',
     formAttachmentsMaxFiles: 'Max. %s filer',
     formAttachmentsMaxSize: 'En eller flera filer är för stora.',
+    formSubmitError: 'Formuläret kunde inte skickas. Försök igen.',
     changeLanguage: 'Byt språk',
     languageNote:
       'Skrivet på {source}, översatt av Claude. Har något gått förlorat i översättningen? Berätta för oss.',
@@ -376,6 +380,7 @@ export default {
     formAttachmentsWrongType: 'Velg et gyldig filformat og pass på at filnavnet ikke inneholder spesialtegn.',
     formAttachmentsMaxFiles: 'Maks. %s filer',
     formAttachmentsMaxSize: 'Én eller flere filer er for store.',
+    formSubmitError: 'Skjemaet kunne ikke sendes. Prøv igjen.',
     changeLanguage: 'Endre språk',
     languageNote:
       'Skrevet på {source}, oversatt av Claude. Har noe gått tapt i oversettelsen? Si det til oss.',
@@ -457,6 +462,7 @@ export default {
       'Valitse kelvollinen tiedostomuoto ja varmista, ettei tiedostonimi sisällä erikoismerkkejä.',
     formAttachmentsMaxFiles: 'Enint. %s tiedostoa',
     formAttachmentsMaxSize: 'Yksi tai useampi tiedosto on liian suuri.',
+    formSubmitError: 'Lomaketta ei voitu lähettää. Yritä uudelleen.',
     changeLanguage: 'Vaihda kieltä',
     languageNote:
       'Kirjoitettu {source}, kääntänyt Claude. Menikö jotain käännöksessä hukkaan? Kerro meille.',
@@ -537,6 +543,7 @@ export default {
     formAttachmentsWrongType: 'Vælg et gyldigt filformat, og sørg for, at filnavnet ikke indeholder specialtegn.',
     formAttachmentsMaxFiles: 'Maks. %s filer',
     formAttachmentsMaxSize: 'En eller flere filer er for store.',
+    formSubmitError: 'Formularen kunne ikke sendes. Prøv igen.',
     changeLanguage: 'Skift sprog',
     languageNote:
       'Skrevet på {source}, oversat af Claude. Er noget gået tabt i oversættelsen? Sig det til os.',
@@ -617,6 +624,7 @@ export default {
     formAttachmentsWrongType: 'Veldu gilt skráarsnið og gættu þess að skráarnafnið innihaldi ekki sértákn.',
     formAttachmentsMaxFiles: 'Hám. %s skrár',
     formAttachmentsMaxSize: 'Ein eða fleiri skrár eru of stórar.',
+    formSubmitError: 'Ekki tókst að senda eyðublaðið. Reyndu aftur.',
     changeLanguage: 'Breyta tungumáli',
     languageNote:
       'Skrifað á {source}, þýtt af Claude. Fór eitthvað úrskeiðis í þýðingunni? Segðu okkur frá því.',
@@ -698,6 +706,7 @@ export default {
       'Scegli un formato di file valido e assicurati che il nome del file non contenga caratteri speciali.',
     formAttachmentsMaxFiles: 'Max. %s file',
     formAttachmentsMaxSize: 'Uno o più file sono troppo grandi.',
+    formSubmitError: 'Non è stato possibile inviare il modulo. Riprova.',
     changeLanguage: 'Cambia lingua',
     languageNote:
       'Scritto in {source}, tradotto da Claude. Qualcosa si è perso nella traduzione? Faccelo sapere.',
@@ -779,6 +788,7 @@ export default {
       'Kies een geldig bestandsformaat en zorg ervoor dat de bestandsnaam geen speciale tekens bevat.',
     formAttachmentsMaxFiles: 'Max. %s bestanden',
     formAttachmentsMaxSize: 'Een of meer bestanden zijn te groot.',
+    formSubmitError: 'Het formulier kon niet worden verzonden. Probeer het opnieuw.',
     changeLanguage: 'Taal wijzigen',
     languageNote:
       'Geschreven in {source}, vertaald door Claude. Is er iets verloren gegaan in de vertaling? Laat het ons weten.',
@@ -859,6 +869,7 @@ export default {
     formAttachmentsWrongType: '유효한 파일 형식을 선택하고 파일 이름에 특수 문자가 포함되지 않도록 해 주세요.',
     formAttachmentsMaxFiles: '최대 %s개 파일',
     formAttachmentsMaxSize: '하나 이상의 파일이 너무 큽니다.',
+    formSubmitError: '양식을 보내지 못했습니다. 다시 시도해 주세요.',
     changeLanguage: '언어 변경',
     languageNote:
       '{source}로 작성하고 Claude가 번역했습니다. 번역에서 어색한 부분이 있다면 알려주세요.',
@@ -939,6 +950,7 @@ export default {
     formAttachmentsWrongType: '有効なファイル形式を選択し、ファイル名に特殊文字が含まれていないことを確認してください。',
     formAttachmentsMaxFiles: '最大 %s ファイル',
     formAttachmentsMaxSize: '1つ以上のファイルが大きすぎます。',
+    formSubmitError: 'フォームを送信できませんでした。もう一度お試しください。',
     changeLanguage: '言語を変更',
     languageNote:
       '{source}で執筆し、Claude が翻訳しています。訳文に気になる点があればお知らせください。',

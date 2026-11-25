@@ -1,24 +1,43 @@
 <template>
   <li :class="headerItemClasses(item)" v-for="(item, index) in navigation" :key="index">
-    <a
+    <!--
+      Without crawlableMenus (the default) the header renders as it always did: a menu with a
+      submenu is a link to javascript:void(0), and its lists are rendered after the first
+      interaction (renderMegaMenu). With crawlableMenus the menu is a button that opens its
+      submenu, and the lists are in the server HTML, hidden until opened, so crawlers that do
+      not run JavaScript find every page of the menu. Only their images still wait for the
+      first interaction.
+    -->
+    <component
+      :is="isMenuButton(item) ? 'button' : 'a'"
       :class="headerLinkClasses(item, index)"
-      :href="getHref(item)"
-      :target="getTarget(item)"
+      :type="isMenuButton(item) ? 'button' : null"
+      :href="isMenuButton(item) ? null : getHref(item)"
+      :target="isMenuButton(item) ? null : getTarget(item)"
+      :aria-expanded="isMenuButton(item) ? String(isMenuOpen(item, index)) : null"
+      :aria-controls="isMenuButton(item) ? getMenuControls(item, index) : null"
       v-on:click="handleClick(item, index)"
       v-if="item?.languages"
       ref="link"
     >
-      <div class="header__link-content" v-on:mouseover="handleMouseOver(item, index, $event)">
+      <component
+        :is="crawlableMenus ? 'span' : 'div'"
+        class="header__link-content"
+        v-on:mouseover="handleMouseOver(item, index, $event)"
+      >
         <span class="header__link-text">{{ item.languages[lowerLang]?.title }}</span>
-        <span class="header__link-text-spacer">{{ item.languages[lowerLang]?.title }}</span>
+        <span class="header__link-text-spacer" :aria-hidden="crawlableMenus ? 'true' : null">{{
+          item.languages[lowerLang]?.title
+        }}</span>
         <icon class="header__link-icon" icon="expand" size="small" v-if="item.children" />
-      </div>
-    </a>
+      </component>
+    </component>
 
     <template v-for="(list, listIndex) in item.children">
-      <template v-if="renderMegaMenu">
+      <template v-if="renderMegaMenu || crawlableMenus">
         <link-list
           :key="listIndex"
+          :id="getMenuId(item, index, listIndex)"
           :list="list"
           :lang="lowerLang"
           :hidden="isLinkListHidden(item, index)"
@@ -26,7 +45,13 @@
           :no-animation="true"
           v-if="list && item.children && !list.products"
         />
-        <div :class="headerProductListClasses(item, index)" ref="product-list" v-else :key="`product-list-${listIndex}`">
+        <div
+          :id="getMenuId(item, index, listIndex)"
+          :class="headerProductListClasses(item, index)"
+          ref="product-list"
+          v-else
+          :key="`product-list-${listIndex}`"
+        >
           <a
             :href="subChild?.languages[lowerLang]?.url"
             :target="subChild.target"
@@ -39,6 +64,7 @@
               class="header__product-list-image"
               :cloudinary="true"
               :alt="subChild.languages[lowerLang]?.alt || subChild.languages[lowerLang]?.title"
+              v-if="renderMegaMenu"
             />
             <div class="header__product-list-data">
               <div :class="['header__product-list-title', !item.isMobile ? 'font-size-8 bold' : '']">
@@ -93,6 +119,24 @@ export default {
 
       return !this.linkLists[id] ? true : false;
     },
+    isMenuButton(item) {
+      return this.crawlableMenus && !!item.children;
+    },
+    isMenuOpen(item, index) {
+      // Open as a list in the mobile menu, or as the flyout on a large screen.
+      return !this.isLinkListHidden(item, index) || this.openFlyout === index;
+    },
+    getMenuId(item, index, listIndex) {
+      if (!this.crawlableMenus) return null;
+
+      return `header-menu-${this.getIdToken(item, index)}-${listIndex}`;
+    },
+    getMenuControls(item, index) {
+      // The lists in the menu, then the flyout, which a large screen shows instead.
+      const lists = item.children.map((_, listIndex) => this.getMenuId(item, index, listIndex));
+
+      return [...lists, this.getFlyoutId(item, index)].join(' ');
+    },
     navHighlightClasses(item, index) {
       const isHidden = this.isLinkListHidden(item, index);
 
@@ -111,8 +155,15 @@ export default {
     getTarget: Function,
     linkLists: Object,
     getId: Function,
+    getIdToken: Function,
+    getFlyoutId: Function,
+    openFlyout: {
+      type: Number,
+      default: null,
+    },
     inTransition: Boolean,
     renderMegaMenu: Boolean,
+    crawlableMenus: Boolean,
   },
 };
 </script>

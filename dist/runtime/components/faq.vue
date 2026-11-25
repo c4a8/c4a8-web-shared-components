@@ -147,6 +147,11 @@ export default {
   animation-delay: 200ms;
 }
 .faq summary {
+  list-style-type: none;
+  display: flex;
+  position: relative;
+}
+.faq summary {
   font-size: 1.25rem;
   line-height: 1.6em;
 }
@@ -164,11 +169,6 @@ export default {
 }
 .faq summary {
   line-height: 1.7em !important;
-}
-.faq summary {
-  list-style-type: none;
-  display: flex;
-  position: relative;
 }
 .faq summary::-webkit-details-marker {
   display: none;

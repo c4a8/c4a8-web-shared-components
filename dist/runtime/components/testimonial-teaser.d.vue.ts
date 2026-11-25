@@ -4,6 +4,10 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
     href: {
         type: StringConstructor;
     };
+    external: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
     name: {
         type: StringConstructor;
     };
@@ -55,6 +59,10 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
     href: {
         type: StringConstructor;
     };
+    external: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
     name: {
         type: StringConstructor;
     };
@@ -96,6 +104,7 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
 }>> & Readonly<{}>, {
     cloudinary: boolean;
     bgColor: string;
+    external: boolean;
     aspectRatio: string;
     bgColorHover: string;
     imgPosition: string;

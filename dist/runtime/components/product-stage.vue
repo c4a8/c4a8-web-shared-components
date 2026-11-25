@@ -120,8 +120,12 @@
                   class="product-stage__tab-content position-relative h-100"
                   :class="{ 'product-stage__tab-content--alternative-border': cards.tabs }"
                 >
-                  <div :class="['rounded', { 'p-2 p-lg-8': card.link, 'p-8 bg-white shadow-lg': !card.link }]">
-                    <div class="d-flex flex-column align-items-center position-relative z-index-2">
+                  <!-- Full height down to the column, so the description grows and
+                       the buttons of cards side by side share one line -->
+                  <div
+                    :class="['rounded h-100', { 'p-2 p-lg-8': card.link, 'p-8 bg-white shadow-lg': !card.link }]"
+                  >
+                    <div class="d-flex flex-column align-items-center h-100 position-relative z-index-2">
                       <h2
                         v-if="card.title"
                         :class="['font-size-3 mb-2 mb-md-6 text-center', { 'text-primary': card.link }]"
@@ -135,7 +139,7 @@
                         :href="card.cta.href"
                         :target="card.cta.target"
                         :skin="card.cta.skin"
-                        classes="align-self-center z-index-2"
+                        classes="align-self-center mt-auto z-index-2"
                       />
                     </div>
                   </div>

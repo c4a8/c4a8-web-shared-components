@@ -11,6 +11,7 @@
         :hasRecaptcha="hasRecaptcha"
         :odoo="form.odoo"
         :showLoader="form.showLoader"
+        :bottomNote="form.bottomNote"
       />
     </div>
     <div class="modal__success container" v-if="success">

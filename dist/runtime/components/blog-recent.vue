@@ -76,7 +76,7 @@ export default {
     return {
       hideData: ["tags", "footer"],
       filesValue: [],
-      sliderInitialized: false
+      initialized: false
     };
   },
   setup() {
@@ -232,8 +232,11 @@ export default {
       if (newValue.length > 0) this.scheduleInit();
     }
   },
+  // the filesValue watcher can fire during hydration, before the template refs exist —
+  // init() then bails on its ref guard and never retries, leaving the slider
+  // uninitialized and the fade-in elements stuck at opacity 0
   mounted() {
-    if (this.filesValue?.length > 0) this.scheduleInit();
+    if (this.filesValue?.length > 0) this.$nextTick(() => this.init());
   },
   methods: {
     scheduleInit() {
@@ -244,8 +247,9 @@ export default {
       }
     },
     init() {
-      if (!this.$refs.container || !this.$refs.root || this.sliderInitialized) return;
-      this.sliderInitialized = true;
+      if (this.initialized) return;
+      if (!this.$refs.container || !this.$refs.root) return;
+      this.initialized = true;
       Tools.initSlickSlider(this.$refs.container, this.carouselOptions);
       if (this.sticky) {
         StickyScroller.init([this.$refs.root]);

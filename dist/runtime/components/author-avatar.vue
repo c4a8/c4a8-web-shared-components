@@ -41,6 +41,9 @@ export default {
 <style scoped>
 .author__avatar-frame {
   position: relative;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border-radius: 100%;
 }
 .author__avatar-frame:before {
   content: "";
@@ -54,11 +57,6 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-}
-.author__avatar-frame {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  border-radius: 100%;
 }
 .author__avatar-frame > * {
   width: 100%;

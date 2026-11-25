@@ -5,6 +5,7 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
     headline: StringConstructor;
     headlineLevel: StringConstructor;
     overlap: BooleanConstructor;
+    hidePast: BooleanConstructor;
     limit: NumberConstructor;
     maxLimit: NumberConstructor;
     moreUrl: StringConstructor;
@@ -35,6 +36,7 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
         path: string;
     };
     sort(): Record<string, any>;
+    hideItemsValue(): ((item: any) => boolean) | null;
 }, {
     updatedEvent(event: any): any;
     isVisible(index: any): boolean;
@@ -45,6 +47,7 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
     headline: StringConstructor;
     headlineLevel: StringConstructor;
     overlap: BooleanConstructor;
+    hidePast: BooleanConstructor;
     limit: NumberConstructor;
     maxLimit: NumberConstructor;
     moreUrl: StringConstructor;
@@ -55,4 +58,5 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
     timeColor: StringConstructor;
 }>> & Readonly<{}>, {
     overlap: boolean;
+    hidePast: boolean;
 }, {}, {}, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;

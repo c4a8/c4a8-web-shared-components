@@ -1,4 +1,5 @@
 <template>
+  <a class="header__skip-link custom" :href="`#${skipTargetId}`">{{ skipLinkText }}</a>
   <div class="header__spacer" :style="spacerBgColor"></div>
   <header :class="classList" v-on:mouseover="handleHeaderMouseOver" v-on:mouseout="handleHeaderMouseOut">
     <div :class="headerContainerClassList" ref="headerContainer">
@@ -80,8 +81,12 @@
                 :getTarget="getTarget"
                 :linkLists="linkLists"
                 :getId="getId"
+                :getIdToken="getIdToken"
+                :getFlyoutId="getFlyoutId"
+                :openFlyout="openFlyout"
                 :inTransition="inTransition"
                 :renderMegaMenu="renderMegaMenu"
+                :crawlableMenus="crawlableMenus"
                 ref="headerItem"
               ></v-header-item>
             </ul>
@@ -131,7 +136,9 @@
                   <a
                     v-for="option in languageOptions"
                     :class="{ 'header__language-link custom': true, active: option.code === lowerLang }"
-                    v-on:click="handleLanguageSwitch(option.code)"
+                    :href="option.href"
+                    :hreflang="option.code"
+                    v-on:click="handleLanguageSwitch(option.code, $event)"
                     :key="option.code"
                   >
                     <span class="header__language-names">
@@ -157,13 +164,15 @@
             ref="languageSwitch"
           >
             <span class="header__link-text">{{ lowerLang }}</span>
-            <span class="header__link-text-spacer">{{ lowerLang }}</span>
+            <span class="header__link-text-spacer" :aria-hidden="crawlableMenus ? 'true' : null">{{ lowerLang }}</span>
             <icon class="header__link-icon" icon="expand" size="small" />
             <div class="header__language-switch-flyout" ref="languageSwitchFlyout">
               <a
                 v-for="option in languageOptions"
                 :class="{ 'header__language-link custom': true, active: option.code === lowerLang }"
-                v-on:click="handleLanguageSwitch(option.code)"
+                :href="option.href"
+                :hreflang="option.code"
+                v-on:click="handleLanguageSwitch(option.code, $event)"
                 :key="option.code"
               >
                 <span class="header__language-names">
@@ -185,6 +194,7 @@
             <div
               class="header__flyout-content"
               v-for="(item, itemIndex) in activeNavigation"
+              :id="crawlableMenus && item.children ? getFlyoutId(item, itemIndex) : null"
               ref="flyout"
               :key="itemIndex"
             >
@@ -245,11 +255,12 @@
       </div>
     </div>
   </header>
+  <div :id="skipTargetId" class="header__skip-target" tabindex="-1"></div>
 </template>
 
 <script>
 import { computed } from 'vue';
-import { useI18n, useNuxtApp } from '#imports';
+import { useAppConfig, useI18n, useNuxtApp } from '#imports';
 import { useAppStore } from '../stores/app.js';
 import Tools from '../utils/tools.js';
 import State from '../utils/state.js';
@@ -259,6 +270,30 @@ import Languages from '../utils/languages.js';
 
 const HEADER_LAYOUT_CACHE_KEY = 'vHeaderLayout';
 const HEADER_COLLAPSE_MAX_VIEWPORT = 1400;
+
+// The skip link jumps to the element right after the header, so its target exists on
+// every page that has the header, whatever the page renders as its content.
+const SKIP_TARGET_ID = 'main-content';
+
+// The shared translations (locales/global.js) have no French, so the label of the skip
+// link lives here, for every language of the sites; other languages read English.
+const SKIP_LINK_TEXT = {
+  da: 'Gå til hovedindhold',
+  de: 'Zum Hauptinhalt springen',
+  en: 'Skip to main content',
+  es: 'Saltar al contenido principal',
+  fi: 'Siirry pääsisältöön',
+  fr: 'Aller au contenu principal',
+  is: 'Fara í meginmál',
+  it: 'Vai al contenuto principale',
+  ja: 'メインコンテンツへスキップ',
+  ko: '본문 바로가기',
+  nl: 'Naar de hoofdinhoud',
+  no: 'Gå til hovedinnhold',
+  pl: 'Przejdź do treści głównej',
+  pt: 'Ir para o conteúdo principal',
+  sv: 'Hoppa till huvudinnehållet',
+};
 
 const isOutsideCollapseMeasureRange = () => {
   if (typeof window === 'undefined') return false;
@@ -285,8 +320,11 @@ export default {
 
     const { $switchLocalePath: switchLocalePath, $getLocales } = useI18n();
     const availableLocales = computed(() => ($getLocales() || []).map((l) => (typeof l === 'string' ? l : l.code)));
+    // Content pages that some languages lack, from the site's i18n-content-alternates.json
+    // (put into the app config by the module); none on a site without that file.
+    const contentAlternates = useAppConfig()?.sharedComponents?.contentAlternates || null;
 
-    return { store, switchLocalePath, availableLocales };
+    return { store, switchLocalePath, availableLocales, contentAlternates };
   },
   computed: {
     classList() {
@@ -381,12 +419,20 @@ export default {
       return Tools.isTrue(this.search);
     },
     metaList() {
-      if (!this.meta || typeof this.meta !== 'object') return null;
+      const meta = this.clonedMeta;
+
+      if (!meta || typeof meta !== 'object') return null;
 
       return {
-        ...this.meta,
-        children: this.meta,
+        ...meta,
+        children: meta,
       };
+    },
+    clonedMeta() {
+      return this.meta ? JSON.parse(JSON.stringify(this.meta)) : this.meta;
+    },
+    clonedContact() {
+      return this.contact ? JSON.parse(JSON.stringify(this.contact)) : this.contact;
     },
     spacerBgColor() {
       const color = this.bgColor ? this.bgColor : 'var(--color-header-background)';
@@ -411,7 +457,24 @@ export default {
       return this.availableLocales.length > 1;
     },
     languageOptions() {
-      return Languages.getOptions(this.availableLocales, this.lowerLang);
+      // Each entry is a real link to the same page in that language, so crawlers and
+      // visitors without JavaScript reach it too. It points where handleLanguageSwitch
+      // sends a click: the language's home when the page is missing in that language.
+      const stem = (this.$route?.path || '/').replace(/^\/[a-z]{2}(?=\/|$)/, '') || '/';
+      const locales = this.contentAlternates?.[stem];
+
+      return Languages.getOptions(this.availableLocales, this.lowerLang).map((option) => {
+        const missing = locales && !locales.includes(option.code);
+        const target = this.switchLocalePath(option.code);
+
+        return { ...option, href: missing || !target ? `/${option.code}` : target };
+      });
+    },
+    skipTargetId() {
+      return SKIP_TARGET_ID;
+    },
+    skipLinkText() {
+      return SKIP_LINK_TEXT[this.lowerLang] || SKIP_LINK_TEXT.en;
     },
     hasContact() {
       return this.contact;
@@ -828,6 +891,10 @@ export default {
       this.resetFlyouts();
       this.updateProductListHeight();
 
+      // The burger layout shows no flyout, so no menu is open as a flyout there. On a large
+      // screen reset() also runs when the page height changes, with the flyout still open.
+      if (this.isLowerBreakpoint()) this.openFlyout = null;
+
       this.closed = true;
     },
     handleCloseClick() {
@@ -879,6 +946,13 @@ export default {
     getId(item, index) {
       return `${item.name}_${index}`;
     },
+    getIdToken(item, index) {
+      // getId as a token for an id attribute: no spaces, nothing a selector would trip on.
+      return this.getId(item, index).replace(/[^A-Za-z0-9_-]+/g, '-');
+    },
+    getFlyoutId(item, index) {
+      return `header-flyout-${this.getIdToken(item, index)}`;
+    },
     handleHeaderMouseOver() {
       if (this.initMegaMenu) this.initMegaMenu();
 
@@ -918,6 +992,8 @@ export default {
 
       if (!flyout) return;
 
+      // Only once the flyout exists: before the first interaction renders it, nothing opens.
+      this.openFlyout = index;
       this.flyoutIndex = index;
 
       flyout.classList.add(State.EXPANDED);
@@ -926,6 +1002,7 @@ export default {
       if (event.relatedTarget?.closest('.header__flyout')) return;
 
       this.hover = false;
+      this.openFlyout = null;
 
       const link = this.getLinkRef(this.flyoutIndex);
 
@@ -971,6 +1048,8 @@ export default {
       links?.forEach((link) => {
         link.classList.remove(State.EXPANDED);
       });
+
+      this.openFlyout = null;
 
       this.$refs['flyout']?.forEach((flyout) => {
         flyout.classList.remove(State.EXPANDED);
@@ -1020,7 +1099,13 @@ export default {
 
       return nextLang[0];
     },
-    async handleLanguageSwitch(nextLang) {
+    async handleLanguageSwitch(nextLang, event) {
+      // A click with a modifier key opens the link's href in a new tab or window, as on
+      // any link. A plain click stays here and switches as before.
+      if (event && (event.button > 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)) return;
+
+      event?.preventDefault();
+
       if (nextLang === this.lowerLang) return;
 
       Tools.storageSave('preferedLanguage', nextLang, false);
@@ -1078,11 +1163,11 @@ export default {
       let parent = Tools.findRecursive(this.clonedNavigation, matcher, callback);
 
       if (!parent) {
-        parent = Tools.findRecursive(this.meta, matcher, callback);
+        parent = Tools.findRecursive(this.clonedMeta, matcher, callback);
       }
 
       if (!parent) {
-        parent = Tools.findRecursive(this.contact, matcher, callback);
+        parent = Tools.findRecursive(this.clonedContact, matcher, callback);
       }
 
       if (!parent) {
@@ -1208,6 +1293,14 @@ export default {
     collapse: {
       default: null,
     },
+    // Puts every submenu link into the server HTML, so crawlers that do not run JavaScript
+    // find the pages of the menu, and makes each menu with a submenu a button with
+    // aria-expanded and aria-controls. Off by default: the submenus are then rendered
+    // after the first interaction, which keeps the start DOM small (745ae3e9).
+    crawlableMenus: {
+      default: false,
+      type: Boolean,
+    },
   },
   data() {
     const layoutCache = readHeaderLayoutCache();
@@ -1221,6 +1314,7 @@ export default {
       hover: false,
       headerHover: false,
       flyoutIndex: null,
+      openFlyout: null,
       linkLists: {},
       scrollThreshold: 10,
       isScrolled: false,
@@ -1591,6 +1685,24 @@ $header-collapse-max-viewport: 1400px;
 
         .header__secondary-navigation-button {
           opacity: 0.4;
+        }
+      }
+    }
+
+    // The flyout slides down from above the bar. The bar covers it until it has passed the bar's
+    // lower edge, so a slow frame never shows the flyout or its lists over the bar.
+    &.is-hovering:not(.is-condensed) {
+      @include media-breakpoint-up($header-expand-breakpoint) {
+        .header__container::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: -100vw;
+          right: -100vw;
+          z-index: -1;
+          background-color: var(--color-header-background);
+          pointer-events: none;
         }
       }
     }
@@ -1985,8 +2097,9 @@ $header-collapse-max-viewport: 1400px;
     }
 
     .header__product-list-image {
-      max-width: none;
-      max-height: 38px;
+      flex-shrink: 0;
+      width: 38px;
+      height: 38px;
       object-fit: contain;
       object-position: left;
     }
@@ -2225,6 +2338,21 @@ $header-collapse-max-viewport: 1400px;
   color: var(--color-copy);
 }
 
+// A menu that opens a submenu is a button (v-header-item). It has no look of its own and
+// looks like the links beside it; :where() keeps every .header__link rule above this one.
+:where(button.header__link) {
+  appearance: none;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: inherit;
+  text-transform: inherit;
+  align-items: normal;
+  cursor: pointer;
+}
+
 .header__footer {
   width: 100%;
   margin: 0 auto;
@@ -2338,6 +2466,42 @@ $header-collapse-max-viewport: 1400px;
   @include media-breakpoint-up($header-expand-breakpoint) {
     display: none;
   }
+}
+
+// The first stop of the keyboard: hidden until it has the focus, then above the header.
+.header__skip-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+
+  &:focus {
+    position: fixed;
+    top: spacing(2);
+    left: spacing(2);
+    z-index: 1002;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: spacing(2) spacing(4);
+    overflow: visible;
+    clip-path: none;
+    background-color: var(--color-gk-white, #fff);
+    color: var(--color-copy);
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
+// The target of the skip link, out of the flow so it changes no layout.
+.header__skip-target {
+  position: absolute;
+  outline: 0;
 }
 
 .header__button {

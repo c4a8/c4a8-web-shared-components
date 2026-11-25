@@ -96,15 +96,15 @@ export default {
   column-gap: 1.25rem;
   width: calc(100% + 2 * 1rem);
 }
+.event-list__row > * {
+  margin-bottom: 1.25rem;
+}
 .event-list__row > *[data-utility-animation-step] {
   --utility-animation-distance: 15%;
 }
 .event-list__row > *[data-utility-animation-step].is-starting {
   animation-delay: calc(var(--utility-animation-index) * 100ms + 0ms);
   animation-duration: 0.8s;
-}
-.event-list__row > * {
-  margin-bottom: 1.25rem;
 }
 @media (min-width: 992px) {
   .event-list__row {

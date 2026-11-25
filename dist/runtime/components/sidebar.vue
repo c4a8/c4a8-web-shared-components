@@ -339,6 +339,8 @@ export default {
 .sidebar__dialog-section-title {
   font-size: 4rem;
   line-height: 1.1em;
+  display: flex !important;
+  justify-content: end !important;
 }
 @media (min-width: 992px) {
   .sidebar__dialog-section-title {
@@ -354,10 +356,6 @@ export default {
 }
 .sidebar__dialog-section-title {
   font-weight: bold;
-}
-.sidebar__dialog-section-title {
-  display: flex !important;
-  justify-content: end !important;
 }
 
 .sidebar__dialog-section-title,
@@ -546,6 +544,10 @@ export default {
 
 .sidebar__date,
 .sidebar__location {
+  color: var(--color-gk-dark-blue-shade-50);
+}
+.sidebar__date,
+.sidebar__location {
   font-size: 1.125rem;
   line-height: 1.6667em;
 }
@@ -567,22 +569,12 @@ export default {
 .sidebar__location {
   font-weight: bold !important;
 }
-.sidebar__date,
-.sidebar__location {
-  color: var(--color-gk-dark-blue-shade-50);
-}
 
 .sidebar__location {
   position: relative;
   display: inline-block;
 }
 
-.sidebar__hint {
-  font-size: 0.85rem;
-}
-.sidebar__hint {
-  font-weight: 400 !important;
-}
 .sidebar__hint {
   position: absolute;
   right: 15px;
@@ -591,6 +583,12 @@ export default {
   color: var(--color-copy);
   display: flex;
   flex-direction: column;
+}
+.sidebar__hint {
+  font-size: 0.85rem;
+}
+.sidebar__hint {
+  font-weight: 400 !important;
 }
 .sidebar__hint .icon {
   color: var(--color-gk-orange);

@@ -128,7 +128,11 @@ import StickyScroller from "../utils/sticky-scroller.js";
 export default {
   tagName: "hero",
   components: {
-    "text-icon-animation": defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import("./text-icon-animation.vue") })
+    "text-icon-animation": defineAsyncComponent({
+      suspensible: false,
+      hydrate: hydrateOnIdle(),
+      loader: () => import("./text-icon-animation.vue")
+    })
   },
   setup() {
     const store = useAppStore();
@@ -725,31 +729,25 @@ export default {
 
 .hero__overline {
   position: relative;
-  z-index: 1;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  padding: 0 0.25rem;
+  color: var(--hero-copy-overline-color);
 }
 .hero__overline::before {
   position: absolute;
   content: "";
   display: block;
-  height: calc(var(--type-default-line-height) * 1em + 2 * 0.25rem);
+  top: calc(0.35rem + 0.6em);
+  bottom: 0;
   width: 0;
   left: 0;
-  top: 0;
   background-color: var(--hero-overline-background-color);
-  animation: grow;
+  animation: growFull;
   animation-duration: 0.8s;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.19, 1, 0.2, 1);
   z-index: -1;
-}
-.hero__overline {
-  display: inline-block;
-  margin-bottom: 0.5rem;
-  padding: 0.25rem 1.5rem 0.25rem 0.5rem;
-  color: var(--hero-copy-overline-color);
-}
-.hero__overline.hero__overline--full::before {
-  animation-name: growFull;
 }
 
 .hero__overline-wrapper {
@@ -815,6 +813,7 @@ export default {
 .hero__subline {
   font-size: 1.125rem;
   line-height: 1.6667em;
+  display: inline;
 }
 @media (min-width: 992px) {
   .hero__subline {
@@ -827,9 +826,6 @@ export default {
     font-size: 1.25rem;
     line-height: 1.7em;
   }
-}
-.hero__subline {
-  display: inline;
 }
 .hero__subline .highlight {
   background-position-x: 1em;

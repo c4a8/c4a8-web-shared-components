@@ -159,7 +159,7 @@ exists to prevent repeating them:
 | --- | --- |
 | `de` | `Fazit` / `fazit` |
 | `en` | `Conclusion` / `conclusion` |
-| `es` | *(missing — would be `Conclusión`, verify slugified ID)* |
+| `es` | `Conclusión` / `conclusión` *(slugified ID keeps the accent, verified 2026-10-27)* |
 | `sv` | `Slutsats` / `slutsats` |
 | `no` | `Konklusjon` / `konklusjon` |
 | `fi` | `Yhteenveto` / `yhteenveto` **and** `Johtopäätös` / `johtopäätös` *(the fi translations consistently produced "Yhteenveto" ("summary"), not the dictionary word — both are in the CSS since 2026-07-15)* |

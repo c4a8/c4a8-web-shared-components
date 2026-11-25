@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs';
 import { pathToFileURL } from 'url';
-import { join } from 'path';
+import { join, resolve as resolvePath } from 'path';
 import {
   defineNuxtModule,
   addPlugin,
@@ -240,6 +240,8 @@ export default defineNuxtModule({
       console.error('✖ [sc-i18n] FAILED:', (e && e.stack) || e);
     }
 
+    await registerContentAlternates(_nuxt);
+
     _nuxt.hook('nitro:build:public-assets', (nitro) => writeSecurityTxt(_nuxt, nitro.options.output.publicDir));
   },
 });
@@ -286,6 +288,27 @@ function addSitemapAlternatives(route: any) {
   }
 
   if (alternatives.length) route._sitemap.alternatives = alternatives;
+}
+
+// The header's language switch links every language's version of the page. A content page
+// that a language lacks links that language's home instead, as the switch's click does.
+// The product sites list those pages in public/i18n-content-alternates.json (written when
+// their config loads); the header reads it from the app config, which ships in the JS
+// bundle, not in each page's payload. Without the file the header links every page.
+async function registerContentAlternates(_nuxt: any) {
+  const file = join(resolvePath(_nuxt.options.rootDir, _nuxt.options.dir?.public || 'public'), 'i18n-content-alternates.json');
+  let contentAlternates: Record<string, string[]>;
+
+  try {
+    contentAlternates = JSON.parse(await fs.readFile(file, 'utf8'));
+  } catch {
+    return;
+  }
+
+  _nuxt.options.appConfig.sharedComponents = {
+    ...(_nuxt.options.appConfig.sharedComponents || {}),
+    contentAlternates,
+  };
 }
 
 async function writeSecurityTxt(_nuxt: any, publicDir: string) {

@@ -220,6 +220,12 @@ export default {
 <style>
 .event-teaser {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 1.5s cubic-bezier(0.19, 1, 0.2, 1);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-event-teaser-background);
+  cursor: pointer;
 }
 .event-teaser .is-foreground :is(img, svg, .lottie),
 .event-teaser .is-background {
@@ -232,18 +238,8 @@ export default {
   transform: scale(1.025);
   transition-duration: 1.3s;
 }
-.event-teaser {
-  transition: box-shadow 1.5s cubic-bezier(0.19, 1, 0.2, 1);
-}
 .event-teaser:hover {
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.25);
-}
-.event-teaser {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--color-event-teaser-background);
-  cursor: pointer;
 }
 .event-teaser.event-teaser--image-full-width .event-teaser__image .img__picture-wrapper {
   max-width: none;
@@ -733,6 +729,12 @@ export default {
 
 .event-teaser {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 1.5s cubic-bezier(0.19, 1, 0.2, 1);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-event-teaser-background);
+  cursor: pointer;
 }
 .event-teaser .is-foreground :is(img, svg, .lottie),
 .event-teaser .is-background {
@@ -745,18 +747,8 @@ export default {
   transform: scale(1.025);
   transition-duration: 1.3s;
 }
-.event-teaser {
-  transition: box-shadow 1.5s cubic-bezier(0.19, 1, 0.2, 1);
-}
 .event-teaser:hover {
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.25);
-}
-.event-teaser {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--color-event-teaser-background);
-  cursor: pointer;
 }
 .event-teaser.event-teaser--image-full-width .event-teaser__image .img__picture-wrapper {
   max-width: none;

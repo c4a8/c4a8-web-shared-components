@@ -641,11 +641,14 @@ class Tools {
     return window && window.sharedComponents ? window.sharedComponents.clientOnlyLibLoaded : false;
   }
 
-  static getPriceFormatter(pricingData) {
+  static getPriceFormatter(pricingData, options = {}) {
     return new Intl.NumberFormat(pricingData.format, {
       style: 'currency',
       currency: pricingData.currency,
+      // optional: 'code' prints "AUD 14,602.50" where the locale's symbol would be ambiguous ("$")
+      ...(pricingData.currencyDisplay && { currencyDisplay: pricingData.currencyDisplay }),
       maximumFractionDigits: 2,
+      ...options,
     });
   }
 

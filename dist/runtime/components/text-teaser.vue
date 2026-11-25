@@ -87,14 +87,14 @@ export default {
 </script>
 
 <style>
+.text-teaser {
+  background-repeat: no-repeat;
+}
 .text-teaser [data-utility-animation-step] {
   --utility-animation-distance: 75%;
 }
 .text-teaser [data-utility-animation-step].is-starting {
   animation-duration: 1s;
-}
-.text-teaser {
-  background-repeat: no-repeat;
 }
 
 .text-teaser__logo-container {

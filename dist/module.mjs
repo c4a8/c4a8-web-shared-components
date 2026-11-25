@@ -1,6 +1,6 @@
 import { promises } from 'fs';
 import { pathToFileURL } from 'url';
-import { join } from 'path';
+import { join, resolve } from 'path';
 import { defineNuxtModule, createResolver, installModule, addComponentsDir, addTemplate, addLayout, addPlugin, extendPages, addImportsDir } from '@nuxt/kit';
 
 const module$1 = defineNuxtModule({
@@ -162,6 +162,7 @@ const module$1 = defineNuxtModule({
     } catch (e) {
       console.error("\u2716 [sc-i18n] FAILED:", e && e.stack || e);
     }
+    await registerContentAlternates(_nuxt);
     _nuxt.hook("nitro:build:public-assets", (nitro) => writeSecurityTxt(_nuxt, nitro.options.output.publicDir));
   }
 });
@@ -193,6 +194,19 @@ function addSitemapAlternatives(route) {
     alternatives.push({ hreflang: attrs.hreflang, href: attrs.href.replace(/&amp;/g, "&") });
   }
   if (alternatives.length) route._sitemap.alternatives = alternatives;
+}
+async function registerContentAlternates(_nuxt) {
+  const file = join(resolve(_nuxt.options.rootDir, _nuxt.options.dir?.public || "public"), "i18n-content-alternates.json");
+  let contentAlternates;
+  try {
+    contentAlternates = JSON.parse(await promises.readFile(file, "utf8"));
+  } catch {
+    return;
+  }
+  _nuxt.options.appConfig.sharedComponents = {
+    ..._nuxt.options.appConfig.sharedComponents || {},
+    contentAlternates
+  };
 }
 async function writeSecurityTxt(_nuxt, publicDir) {
   const siteUrl = _nuxt.options.site?.url;

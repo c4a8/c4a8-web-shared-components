@@ -92,7 +92,7 @@ const { authors } = useAuthors([
   ...(events.value || []).flatMap((item) => (item.author ? [].concat(item.author) : [])),
 ]);
 
-const personData = computed(() => (authors ? authors[person?.value?.name] : null));
+const personData = computed(() => (authors.value ? authors.value[person?.value?.name] : null));
 
 const hasAuthor = computed(() => {
   if (person.value && person.value.stem) return true;

@@ -80,14 +80,23 @@ export default {
     if (!this.$refs.root) return;
     UtilityAnimation.init([this.$refs.root]);
   },
+  watch: {
+    // a page can convert its prices after mount (the visitor's country): Vue writes the raw
+    // numbers into the spans again, so they are formatted again once the DOM is updated
+    product: { handler: "updatePrices", deep: true, flush: "post" },
+    pricing: { handler: "updatePrices", deep: true, flush: "post" }
+  },
   methods: {
     updatePrices() {
       if (!this.pricing) return;
-      const elements = [this.$refs.price, this.$refs["additionalUsersFee"]];
       const formatter = Tools.getPriceFormatter(this.pricing);
-      elements.forEach((element) => {
-        if (element) {
-          Tools.updateElementPrice(element, element.innerHTML, formatter);
+      const prices = [
+        [this.$refs.price, this.price?.[this.selectedPlan]],
+        [this.$refs["additionalUsersFee"], this.additionalUsersFee?.[this.selectedPlan]]
+      ];
+      prices.forEach(([element, value]) => {
+        if (element && value !== null && value !== "" && !isNaN(value)) {
+          Tools.updateElementPrice(element, Number(value), formatter);
         }
       });
     }

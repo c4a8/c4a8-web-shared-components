@@ -14,9 +14,7 @@
                 "stickyOffsetBottom": 20
               }'
           >
-            <div class="job-list__detail-back page-detail__back page-detail__animation-3 back back--animated">
-              <icon icon="arrow" direction="left" hover="true" circle="true" />
-            </div>
+            <back classes="job-list__detail-back page-detail__back page-detail__animation-3" :fallback="backUrl" />
             <headline :text="entryData?.title" :level="headlineLevelValue" :classes="headlineClassList" />
             <span class="job-list__detail-gender">{{ entryData?.gender }}</span>
             <div class="job-list__detail-share">
@@ -223,6 +221,7 @@ export default {
     detailColor: String,
     clientName: String,
     jobId: String,
+    backUrl: String,
     apiUrl: String,
     headlineLevel: String,
     headlineClasses: String,
@@ -255,6 +254,11 @@ export default {
 }
 .job-list__detail .job-list__detail-animation-1,
 .job-list__detail .job-list__detail-headline {
+  color: var(--color-job-list-detail-copy);
+  word-break: break-word;
+}
+.job-list__detail .job-list__detail-animation-1,
+.job-list__detail .job-list__detail-headline {
   font-size: calc(3.75rem / 1.8);
   line-height: 1.2em;
   font-weight: lighter;
@@ -276,11 +280,6 @@ export default {
 .job-list__detail .job-list__detail-animation-1,
 .job-list__detail .job-list__detail-headline {
   font-weight: bold !important;
-}
-.job-list__detail .job-list__detail-animation-1,
-.job-list__detail .job-list__detail-headline {
-  color: var(--color-job-list-detail-copy);
-  word-break: break-word;
 }
 .job-list__detail .job-list__detail-gender {
   transition: opacity 0.6s 1.3s cubic-bezier(0.19, 1, 0.2, 1);

@@ -1,5 +1,97 @@
 # Releases
 
+# Release 0.4.143
+
+- Fixes the newsletter modal on smaller screens: it scrolls as an overlay, has corrected spacing below 1200px and a full width submit button below 768px
+- Adds light button and link styles for the newsletter on colored backgrounds
+- Shows an error message when an ajax form submit fails and sends every ajax form as url encoded form data
+- Adds `bgColor`, `left` and `light` props and a configurable headline `level` to the video inner component
+
+# Release 0.4.142
+
+- Lets the header's menu slide out from behind the bar, so on slow machines its lists no longer show over the logo and the menu labels while it opens
+- Fixes white text in the pricing details of a light pricing stage
+- Draws the footer's social icons as inline SVG, so the product sites no longer load the Font Awesome Brands font for them
+- Gives the footer's award seals and logos their size in the page, so the footer no longer shifts while they load
+- Describes the footer's award seals in their alt texts
+- Gives the card images an empty alt text, as the card title next to them already names them
+- Keeps the site name in the link preview title (og:title) on sites that derive it from the page title, also after their update to Unhead 2.1
+
+# Release 0.4.141
+
+- Updates the dependencies of the Storybook and module build to clear the open security alerts (Nuxt 3.21, Storybook 9.1, Nuxt Content 3.16); the components and styles the sites get are unchanged
+- Removes the unused Storybook 8 and Vite packages from the root package; their sources were removed in March
+- Carries the hero overline styles and their background color fix, which reached master after 0.4.138
+
+# Release 0.4.138
+
+- Lets an event set its own redirect after the form submit via `formNext`, and keeps a custom form's own `_next` and `eventid` fields
+- Allows turning off the Turnstile check in forms via `sharedComponents.turnstile: false`
+
+# Release 0.4.137
+
+- Adds a skip link to the main content as the first stop of the keyboard, visible only on keyboard focus, in every site language
+- Makes the language switch entries real links to the same page in the other language, so crawlers and visitors without JavaScript reach them; a click works as before
+- Names the footer's social icons for screen readers
+- Fixes the menus' aria-expanded saying "open" before the first flyout exists and after a resize into the burger menu
+
+# Release 0.4.136
+
+- Hyphenates long words in the step-list texts and titles, so they no longer break without a hyphen in narrow steps
+- Stops hyphenating short words in the step-list titles, also in Safari
+
+# Release 0.4.132
+
+- Fixes product logos and the expand chevron overflowing the mobile product navigation in Safari
+
+# Release 0.4.131
+
+- Adds an external option to the testimonial teaser that opens links leaving the website in a new tab
+
+# Release 0.4.130
+
+- Fixes image presets and header navigation state leaking between renders
+- Fixes oversized contact portraits by loading them as avatars
+
+# Release 0.4.129
+
+- Fixes author pages rendering empty
+- Fixes a server error on author pages of authors without a translated intro text
+
+# Release 0.4.128
+
+- Fixes oversized author avatars on post detail pages caused by missing authors in the server-rendered markup
+- Adds a reusable web request doorbell workflow
+
+# Release 0.4.127
+
+- Adds a hidePast option to the event overview that hides events once their last day is over
+- Adds the conclusion box for Spanish richtext headings
+
+# Release 0.4.126
+
+- Fixes the recent blog posts slider staying uninitialized and invisible after hydration
+- Adds an option to hide the success story slider dots and keeps its arrows visible in narrow layouts
+- Adds a fallback URL to the back button so the job detail page can navigate back on direct entries
+
+# Release 0.4.125
+
+- Adds an area variant to the team cards with an area label, accent color and CTA
+- Adds an optional button field type to the form that emits a field-action event
+- Adds a success slot and success/error handling for ajax form submissions
+- Allows the cal-calendar to re-render its inline calendar
+
+# Release 0.4.124
+
+- Adds pipeline-based web translation with new languages (Swedish, Norwegian, Finnish, Danish, Icelandic, Italian, Dutch, Korean, Japanese) and locale-aware header, footer, secondary navigation and content links
+- Adds a collapsible header with a new flyout design, info text, small CTA and an option to disable Cloudinary
+- Adds a small CTA variant, a quote overlap option and a richtext conclusion box variant with a module option to opt out
+- Adds a module hook for security.txt generation
+- Reduces the page payload by passing only the active locale's header, footer and content data
+- Fixes hydration issues in v-img, the lightbox and the blog-recent slider
+- Fixes form labels mutating the shared form object when translated
+- Removes stale SCSS components left over from the SFC migration
+
 # Release 0.4.123
 
 - Removes the 500 ms wait for update from the default gtag consent settings

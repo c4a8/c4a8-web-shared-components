@@ -25,7 +25,7 @@
         <strong class="js-result-product"></strong>
         <span class="js-result-extra"></span>
       </div>
-      <modal :slim="true" :center="true" class="pricing-slider__modal" :modal-id="modalId">
+      <modal :slim="true" :center="true" :light="light" class="pricing-slider__modal" :modal-id="modalId">
         <div class="container">
           <div class="row">
             <div class="col" v-html="tooltip"></div>
@@ -71,6 +71,21 @@ export default {
   mounted() {
     this.pollForJQuery();
   },
+  beforeUnmount() {
+    this.unmounted = true;
+    document.removeEventListener(Events.CLIENT_ONLY_LIB_LOADED, this.initRangeSlider);
+    if (window.$ && this.$refs.slider) {
+      window.$(this.$refs.slider).data("ionRangeSlider")?.destroy();
+    }
+    this.pricingSlider?.destroy();
+    this.pricingSlider = null;
+  },
+  watch: {
+    // a page can convert its prices after mount (the visitor's country): format them again
+    products(products) {
+      this.pricingSlider?.update(products?.pricing, products?.list);
+    }
+  },
   computed: {
     pricingSliderRange() {
       return this.slider && this.slider.range ? this.slider.range : {};
@@ -101,7 +116,7 @@ export default {
       document.addEventListener(Events.CLIENT_ONLY_LIB_LOADED, this.initRangeSlider);
     },
     initRangeSlider() {
-      if (!this.$refs.slider || !window.$) return;
+      if (this.unmounted || !this.$refs.slider || !window.$) return;
       this.loading = false;
       window.$(this.$refs.slider).ionRangeSlider(this.options);
     },
@@ -111,7 +126,7 @@ export default {
       this.options.onStart = this.handleRangeSliderStart;
       this.options.onChange = this.handleRangeSliderChange;
       if (this.$refs.root) {
-        new PricingSlider(this.$refs.root, null, this.products?.pricing);
+        this.pricingSlider = new PricingSlider(this.$refs.root, null, this.products?.pricing);
       }
       if (Tools.isClientOnlyLibLoaded()) {
         this.initRangeSlider();
@@ -123,6 +138,7 @@ export default {
       const maxAttempts = 30;
       let attempts = 0;
       const checkJQuery = () => {
+        if (this.unmounted) return;
         if (window.$) {
           this.init();
           return;

@@ -27,6 +27,10 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
         type: BooleanConstructor;
         default: boolean;
     };
+    onSurface: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
 }>, {}, {
     isMobile: boolean;
     isExpanded: boolean;
@@ -1222,10 +1226,15 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
         type: BooleanConstructor;
         default: boolean;
     };
+    onSurface: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
 }>> & Readonly<{}>, {
     modal: Record<string, any>;
     cta: Record<string, any>;
     bgColor: string;
     light: boolean;
+    onSurface: boolean;
     iconColor: string;
 }, {}, {}, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;

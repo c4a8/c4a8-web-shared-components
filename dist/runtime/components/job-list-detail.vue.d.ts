@@ -4,6 +4,7 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
     detailColor: StringConstructor;
     clientName: StringConstructor;
     jobId: StringConstructor;
+    backUrl: StringConstructor;
     apiUrl: StringConstructor;
     headlineLevel: StringConstructor;
     headlineClasses: StringConstructor;
@@ -53,6 +54,7 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
     detailColor: StringConstructor;
     clientName: StringConstructor;
     jobId: StringConstructor;
+    backUrl: StringConstructor;
     apiUrl: StringConstructor;
     headlineLevel: StringConstructor;
     headlineClasses: StringConstructor;

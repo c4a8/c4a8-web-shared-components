@@ -48,7 +48,7 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
 }, {
     hideData: string[];
     filesValue: never[];
-    sliderInitialized: boolean;
+    initialized: boolean;
 }, {
     classList(): string[];
     showComponent(): true | {

@@ -199,6 +199,11 @@ export default {
   font-size: 1.5rem;
   line-height: 1.4165em;
   font-weight: normal;
+  --color-highlight-underline: var(--fab-hint-highlight-underline-color);
+  margin-bottom: 1.25rem;
+  margin-right: 2.5rem;
+  line-height: 1em;
+  display: inline-block;
 }
 @media (min-width: 992px) {
   .fab-hint__title {
@@ -211,12 +216,5 @@ export default {
     font-size: 1.8rem;
     line-height: 1.4585em;
   }
-}
-.fab-hint__title {
-  --color-highlight-underline: var(--fab-hint-highlight-underline-color);
-  margin-bottom: 1.25rem;
-  margin-right: 2.5rem;
-  line-height: 1em;
-  display: inline-block;
 }
 </style>

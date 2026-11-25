@@ -31,6 +31,10 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
     collapse: {
         default: null;
     };
+    crawlableMenus: {
+        default: boolean;
+        type: BooleanConstructor;
+    };
 }>, {
     store: import("pinia").Store<"app", {
         loading: boolean;
@@ -951,6 +955,7 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
     }>;
     switchLocalePath: (locale: string) => string;
     availableLocales: import("vue").ComputedRef<string[]>;
+    contentAlternates: any;
 }, {
     hoverHeader: boolean;
     inUpdate: boolean;
@@ -960,6 +965,7 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
     hover: boolean;
     headerHover: boolean;
     flyoutIndex: null;
+    openFlyout: null;
     linkLists: {};
     scrollThreshold: number;
     isScrolled: boolean;
@@ -1122,19 +1128,22 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
     lowerLang(): string;
     languageNote(): any;
     searchValue(): boolean;
-    metaList(): {
-        children: Record<string, any>;
-    } | null;
+    metaList(): any;
+    clonedMeta(): any;
+    clonedContact(): any;
     spacerBgColor(): string;
     clonedNavigation(): any;
     isLight(): boolean;
     hasLangSwitch(): boolean;
     languageOptions(): {
+        href: string;
         code: any;
         label: any;
         native: any;
         translated: any;
     }[];
+    skipTargetId(): "main-content";
+    skipLinkText(): any;
     hasContact(): Record<string, any> | undefined;
     hasMeta(): boolean | undefined;
     headerState(): {
@@ -1187,6 +1196,8 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
     closeAllSiblings(id: any): void;
     closeAllChildren(): void;
     getId(item: any, index: any): string;
+    getIdToken(item: any, index: any): string;
+    getFlyoutId(item: any, index: any): string;
     handleHeaderMouseOver(): void;
     handleHeaderMouseOut(): void;
     setCtaClasses(): void;
@@ -1202,7 +1213,7 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
     getHref(item: any): any;
     getTarget(item: any): any;
     getNextLanguage(): string | undefined;
-    handleLanguageSwitch(nextLang: any): Promise<void>;
+    handleLanguageSwitch(nextLang: any, event: any): Promise<void>;
     loadContentAlternates(): any;
     getActiveUrlByLang(lang: any, update: any): any;
     getTranslatedUrl(currentPath: any, lang: any): any;
@@ -1246,6 +1257,10 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
     collapse: {
         default: null;
     };
+    crawlableMenus: {
+        default: boolean;
+        type: BooleanConstructor;
+    };
 }>> & Readonly<{}>, {
     button: null;
     search: null;
@@ -1254,5 +1269,6 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
     product: null;
     light: null;
     onSurface: boolean;
+    crawlableMenus: boolean;
     blendMode: null;
 }, {}, {}, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;

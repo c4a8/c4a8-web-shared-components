@@ -5,6 +5,8 @@
       :class="[]"
       :style="bgStyling"
       :href="href"
+      :target="external ? '_blank' : null"
+      :rel="external ? 'noopener' : null"
       data-utility-animation-step="1"
       ref="root"
     >
@@ -82,6 +84,10 @@ export default {
   props: {
     href: {
       type: String,
+    },
+    external: {
+      type: Boolean,
+      default: false,
     },
     name: {
       type: String,

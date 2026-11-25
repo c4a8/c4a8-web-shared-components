@@ -327,25 +327,39 @@ class Form extends BaseComponent {
     });
   }
   ajaxSubmit() {
-    const data = Form.getFormData(this.form);
-
     fetch(this.form.action, {
       method: this.form.method || 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       redirect: 'follow',
-      body: data,
-    }).then((response) => {
-      if (response.status === 200 || response.status === 302) {
-        this.ajaxSubmitCompleted();
-      } else {
-        // TODO handle error
-      }
-    });
+      body: new URLSearchParams(new FormData(this.form)),
+    })
+      .then((response) => {
+        if (response.ok || response.status === 302) {
+          this.ajaxSubmitCompleted();
+        } else {
+          this.ajaxSubmitFailed(response);
+        }
+      })
+      .catch((error) => {
+        this.ajaxSubmitFailed(error);
+      });
+  }
+
+  ajaxSubmitFailed(error) {
+    this.onAjaxError?.(error);
+
+    document.dispatchEvent(
+      new CustomEvent(Events.FORM_AJAX_ERROR, {
+        detail: { target: this.root, error },
+      })
+    );
   }
 
   ajaxSubmitCompleted() {
+    this.onAjaxSuccess?.();
+
     document.dispatchEvent(
       new CustomEvent(Events.FORM_AJAX_SUBMIT, {
         detail: { target: this.root },

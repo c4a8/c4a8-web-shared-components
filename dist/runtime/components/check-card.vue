@@ -175,14 +175,14 @@ export default {
   }
 }
 
+.check-card__container {
+  width: 100%;
+}
 .check-card__container[data-utility-animation-step] {
   --utility-animation-distance: 5%;
 }
 .check-card__container[data-utility-animation-step].is-starting {
   animation-delay: calc(var(--utility-animation-index) * 150ms + 0ms);
-}
-.check-card__container {
-  width: 100%;
 }
 @media (min-width: 992px) {
   .check-card__container {

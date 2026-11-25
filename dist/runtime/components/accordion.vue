@@ -345,14 +345,12 @@ export default {
 
 .accordion__container {
   opacity: 0;
+  overflow: hidden;
 }
 .accordion__container[data-utility-animation-in-viewport=true] {
   transform: translate3d(0, var(--utility-animation-distance), 0);
   animation: fade-in-from-bottom 0.5s forwards;
   animation-timing-function: cubic-bezier(0.19, 1, 0.2, 1);
-}
-.accordion__container {
-  overflow: hidden;
 }
 .accordion__container.accordion--has-image .accordion__image {
   display: block;

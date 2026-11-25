@@ -316,6 +316,15 @@ export default {
   transition: opacity 0.1s cubic-bezier(0.19, 1, 0.2, 1);
 }
 
+.job-list__entry {
+  border: 2px solid var(--color-border);
+  padding: 2rem;
+  opacity: 1;
+  transition: opacity 1.3s cubic-bezier(0.19, 1, 0.2, 1);
+  flex: 1 0 100%;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+}
 .job-list__entry .job-list__entry-title {
   text-decoration: none;
   background-image: linear-gradient(var(--color-gk-white), var(--color-gk-white));
@@ -326,15 +335,6 @@ export default {
 }
 .job-list__entry:hover .job-list__entry-title {
   background-size: 100% 3px;
-}
-.job-list__entry {
-  border: 2px solid var(--color-border);
-  padding: 2rem;
-  opacity: 1;
-  transition: opacity 1.3s cubic-bezier(0.19, 1, 0.2, 1);
-  flex: 1 0 100%;
-  margin-bottom: 1.5rem;
-  cursor: pointer;
 }
 .job-list__entry:hover {
   background-color: var(--color-primary-accent);
@@ -363,6 +363,9 @@ export default {
 }
 
 .job-list__entry-title {
+  display: inline;
+}
+.job-list__entry-title {
   font-size: 1.375rem;
   line-height: 1.6365em;
 }
@@ -377,9 +380,6 @@ export default {
     font-size: 1.95313rem;
     line-height: 1.7em;
   }
-}
-.job-list__entry-title {
-  display: inline;
 }
 
 .job-list__entry-gender {

@@ -44,20 +44,12 @@
 <script>
 import DefaultPresets from '../utils/default-presets.js';
 import TransformationOptions from '../utils/transformation-options.js';
-import Cloudinary from '../utils/cloudinary.js';
 import CloudinaryTools from '../utils/cloudinary-tools.js';
 import Tools from '../utils/tools.js';
 import ImgSrcSets from '../utils/data/img-src-sets.js';
 import useConfig from '../composables/useConfig.js';
 
 const basePath = 'https://res.cloudinary.com/c4a8/image/upload/';
-
-// TODO use cloudinary tools and remove logic outside this component
-
-/*
- Known Issues:
- - Chrome does not support jp2 type of images. so if you use devtools to emulate ios, cloudinary will render the images as jp2 which fail.
-*/
 
 export default {
   tagName: 'v-img',
@@ -155,6 +147,11 @@ export default {
     this.noCloudinary = this.getBaseAssetPath();
     this.sizes = DefaultPresets.sizes;
   },
+  mounted() {
+    if (this.$refs.image?.complete) {
+      this.loadImage(this.hasPictureTag ? this.imgSrcSetImg : undefined);
+    }
+  },
   methods: {
     getSourceSetMedia(srcSet) {
       return srcSet.width ? `(min-width: ${srcSet.width}px)` : srcSet.media;
@@ -169,15 +166,7 @@ export default {
       return { preset, transformationsString };
     },
     getPreset() {
-      try {
-        if (!this.preset) return { ...DefaultPresets, ...Cloudinary['presets']['default'] };
-
-        const presetExists = Cloudinary['presets'] && Cloudinary['presets'][this.preset];
-
-        return presetExists ? Object.assign(DefaultPresets, Cloudinary['presets'][this.preset]) : DefaultPresets;
-      } catch (e) {
-        console.error(e);
-      }
+      return CloudinaryTools.getPreset(this.preset);
     },
     hasProtocol() {
       const regex = /(http|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])?/;
@@ -215,14 +204,12 @@ export default {
         const height = img?.naturalHeight;
         const width = img?.naturalWidth;
 
-        let dimensions;
-
         if (!this.isSvg()) {
           const { preset, transformationsString } = this.getSetup();
 
           this.sizes = preset?.sizes;
 
-          dimensions = {
+          this.dimensions = {
             naturalHeight: height ? height : preset?.fallback_max_width,
             naturalWidth: width ? width : preset?.fallback_max_width,
           };
@@ -231,15 +218,13 @@ export default {
             this.buildSrcSet(preset, transformationsString);
           }
         } else {
-          dimensions = {
+          this.dimensions = {
             naturalHeight: height,
             naturalWidth: width,
           };
 
           this.srcset = null;
         }
-
-        this.dimensions = dimensions;
       };
 
       img.src = link ? link : this.getCloudinaryLinkWithTransformation();
@@ -295,7 +280,6 @@ export default {
     },
   },
   props: {
-    // TODO handle img src set and correct all the places where it is not used correctly
     imgSrcSets: {
       type: [String, Object],
       default: null,

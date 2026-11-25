@@ -5,6 +5,8 @@
       :class="[]"
       :style="bgStyling"
       :href="href"
+      :target="external ? '_blank' : null"
+      :rel="external ? 'noopener' : null"
       data-utility-animation-step="1"
       ref="root"
     >
@@ -83,6 +85,10 @@ export default {
   props: {
     href: {
       type: String
+    },
+    external: {
+      type: Boolean,
+      default: false
     },
     name: {
       type: String
@@ -199,6 +205,8 @@ export default {
 }
 .testimonial-teaser.testimonial-teaser--aspect-ratio .testimonial-teaser__img-wrapper {
   position: relative;
+  height: 100%;
+  width: 100%;
 }
 .testimonial-teaser.testimonial-teaser--aspect-ratio .testimonial-teaser__img-wrapper:before {
   content: "";
@@ -212,10 +220,6 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-}
-.testimonial-teaser.testimonial-teaser--aspect-ratio .testimonial-teaser__img-wrapper {
-  height: 100%;
-  width: 100%;
 }
 @media (min-width: 992px) {
   .testimonial-teaser.testimonial-teaser--aspect-ratio .testimonial-teaser__img-wrapper {

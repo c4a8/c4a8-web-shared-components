@@ -13,6 +13,8 @@ declare namespace FooterData {
     let partners: {
         img: string;
         alt: string;
+        width: number;
+        height: number;
     }[];
     let brandLogos: {
         title: string;
@@ -25,6 +27,8 @@ declare namespace FooterData {
     let highlights: ({
         img: string;
         alt: string;
+        width: number;
+        height: number;
         url?: undefined;
         target?: undefined;
         classes?: undefined;
@@ -34,9 +38,13 @@ declare namespace FooterData {
         url: string;
         target: string;
         classes: string;
+        width?: undefined;
+        height?: undefined;
     } | {
         img: string;
         alt: string;
+        width: number;
+        height: number;
         url: string;
         target: string;
         classes?: undefined;

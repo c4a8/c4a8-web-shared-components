@@ -12,6 +12,10 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
     products: {
         type: ObjectConstructor;
     };
+    pricing: {
+        type: ObjectConstructor;
+        default: null;
+    };
 }>, {}, {}, {
     toggleSwitchTextLeft(): any;
     toggleSwitchTextRight(): any;
@@ -23,6 +27,7 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
     toggleSwitchTargetSelector(): any;
     toggleSwitchLimit(): any;
     defaultPlan(): any;
+    pricingDataAttribute(): string | null;
     toggleSwitchActive(): any;
     toggleSwitchLimitLeftClass(): "" | "toggle-switch__text--right";
     toggleSwitchClasses(): string[];
@@ -38,7 +43,12 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
     products: {
         type: ObjectConstructor;
     };
+    pricing: {
+        type: ObjectConstructor;
+        default: null;
+    };
 }>> & Readonly<{}>, {
+    pricing: Record<string, any>;
     toggleSwitch: Record<string, any>;
     toggleSwitchHasAnimation: boolean;
 }, {}, {}, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;

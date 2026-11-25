@@ -121,11 +121,11 @@ export default {
   color: var(--tag-base-color) !important;
 }
 .tags__btn.tag--small, .tags__btn.tag--icon {
-  font-weight: bold;
-}
-.tags__btn.tag--small, .tags__btn.tag--icon {
   margin-right: 0.5rem;
   text-transform: uppercase;
+}
+.tags__btn.tag--small, .tags__btn.tag--icon {
+  font-weight: bold;
 }
 
 .tag__icon .icon {

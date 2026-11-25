@@ -257,6 +257,7 @@ export default {
 .social-post-card__repost-author {
   font-size: 1rem;
   line-height: 1.6;
+  font-weight: bold;
 }
 @media (min-width: 992px) {
   .social-post-card__repost-author {
@@ -269,9 +270,6 @@ export default {
     font-size: 1rem;
     line-height: 1.6;
   }
-}
-.social-post-card__repost-author {
-  font-weight: bold;
 }
 
 .social-post-card__linkedin-badge {

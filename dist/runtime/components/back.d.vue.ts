@@ -5,6 +5,10 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
         type: StringConstructor;
         default: string;
     };
+    fallback: {
+        type: StringConstructor;
+        default: string;
+    };
 }>, {}, {
     State: {
         ACTIVE: string;
@@ -39,6 +43,7 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
         ON_SURFACE: string;
     };
     canGoBack: boolean;
+    hasInternalHistory: boolean;
 }, {}, {
     handleClick(e: any): void;
 }, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<{
@@ -46,6 +51,11 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
         type: StringConstructor;
         default: string;
     };
+    fallback: {
+        type: StringConstructor;
+        default: string;
+    };
 }>> & Readonly<{}>, {
     classes: string;
+    fallback: string;
 }, {}, {}, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;

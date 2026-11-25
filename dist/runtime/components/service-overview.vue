@@ -176,11 +176,11 @@ export default {
   }
 }
 
-.service-overview__services[data-utility-animation-step].is-starting {
-  animation-delay: calc(var(--utility-animation-index) * 100ms + 0ms);
-}
 .service-overview__services {
   width: 100%;
+}
+.service-overview__services[data-utility-animation-step].is-starting {
+  animation-delay: calc(var(--utility-animation-index) * 100ms + 0ms);
 }
 @media (min-width: 992px) {
   .service-overview__services {

@@ -7,6 +7,7 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
     hasNoAspectRatio: BooleanConstructor;
 }>, {}, {}, {
     classList(): string[];
+    hasProductTiles(): boolean | undefined;
     columnClassList(): string[];
     isList(): boolean;
     isRow(): boolean;

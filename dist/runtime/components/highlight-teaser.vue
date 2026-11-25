@@ -328,6 +328,9 @@ export default {
 
 .highlight-teaser__entry {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 1.5s cubic-bezier(0.19, 1, 0.2, 1);
+  display: flex;
+  flex-direction: column;
 }
 .highlight-teaser__entry .is-foreground :is(img, svg, .lottie),
 .highlight-teaser__entry .is-background {
@@ -340,15 +343,8 @@ export default {
   transform: scale(1.025);
   transition-duration: 1.3s;
 }
-.highlight-teaser__entry {
-  transition: box-shadow 1.5s cubic-bezier(0.19, 1, 0.2, 1);
-}
 .highlight-teaser__entry:hover {
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.25);
-}
-.highlight-teaser__entry {
-  display: flex;
-  flex-direction: column;
 }
 
 .highlight-teaser__entry-image .img__picture-wrapper {
@@ -365,6 +361,8 @@ export default {
   font-size: 1.625rem;
   line-height: 1.3847em;
   font-weight: lighter;
+  line-height: 1em;
+  margin-bottom: 1.5rem;
 }
 @media (min-width: 992px) {
   .highlight-teaser__infos-title {
@@ -378,14 +376,11 @@ export default {
     line-height: 1.5em;
   }
 }
-.highlight-teaser__infos-title {
-  line-height: 1em;
-  margin-bottom: 1.5rem;
-}
 
 .highlight-teaser__infos-subline {
   font-size: 1.125rem;
   line-height: 1.6667em;
+  margin-bottom: 1.5rem;
 }
 @media (min-width: 992px) {
   .highlight-teaser__infos-subline {
@@ -398,9 +393,6 @@ export default {
     font-size: 1.25rem;
     line-height: 1.7em;
   }
-}
-.highlight-teaser__infos-subline {
-  margin-bottom: 1.5rem;
 }
 
 .highlight-teaser__overlay-container {

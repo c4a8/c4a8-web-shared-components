@@ -302,13 +302,13 @@ export default {
 }
 
 .form-attachments__files-list {
-  font-size: 0.85rem;
-}
-.form-attachments__files-list {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   padding: 1.5rem 0;
+}
+.form-attachments__files-list {
+  font-size: 0.85rem;
 }
 @media (min-width: 768px) {
   .form-attachments__files-list {
@@ -386,6 +386,9 @@ export default {
 }
 
 .form-attachments__description {
+  margin-bottom: 0.5rem;
+}
+.form-attachments__description {
   font-size: 1rem;
   line-height: 1.6;
 }
@@ -404,9 +407,6 @@ export default {
 .form-attachments__description {
   font-weight: bold !important;
 }
-.form-attachments__description {
-  margin-bottom: 0.5rem;
-}
 
 .form-attachments__description,
 .form-attachments__text {
@@ -414,12 +414,12 @@ export default {
 }
 
 .form-attachments__text {
-  font-size: 0.85rem;
-}
-.form-attachments__text {
   cursor: pointer;
   text-decoration: underline;
   margin-bottom: 2.5rem;
+}
+.form-attachments__text {
+  font-size: 0.85rem;
 }
 
 .form-attachments__extensions {

@@ -60,14 +60,14 @@ export default {
     introText() {
       if (this.locale === "de") return this.person?.description;
       const fallbackLocale = "en";
-      let description = this.person?.otherLanguages[this.locale];
+      let description = this.person?.otherLanguages?.[this.locale];
       if (description) return description;
-      description = this.person?.otherLanguages[fallbackLocale];
+      description = this.person?.otherLanguages?.[fallbackLocale];
       return description;
     },
     intro() {
       return {
-        body: { type: "minimal", value: [this.introText] }
+        body: { type: "minimal", value: [this.introText || ""] }
       };
     },
     imageUrl() {

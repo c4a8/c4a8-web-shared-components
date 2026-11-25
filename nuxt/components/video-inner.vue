@@ -1,133 +1,135 @@
 <template>
-  <div :class="videoClass" :onclick="onClick" ref="root" data-utility-animation-ref="root">
-    <wrapper classes="row align-items-end no-gutters" :hideContainer="!isVariantRow">
-      <div
-        :class="videoPlayerClass"
-        :id="videoId"
-        data-utility-animation-step="1"
-        data-utility-animation-ref="video-player"
-      >
-        <template v-if="videoParsed.lightbox">
-          <lightbox
-            classes="video__lightbox-frame media-viewer"
-            :source="dataSrc"
-            :source-caption="dataCaption"
-            :cloudinary="cloudinary"
-            @click="handleLightboxClick"
-            @lightbox-close="handleLightboxClose"
-          >
-            <template #lightbox-content>
+  <div :style="style">
+    <div :class="videoClass" :onclick="onClick" ref="root" data-utility-animation-ref="root">
+      <wrapper classes="row align-items-end no-gutters" :hideContainer="!isVariantRow">
+        <div
+          :class="videoPlayerClass"
+          :id="videoId"
+          data-utility-animation-step="1"
+          data-utility-animation-ref="video-player"
+        >
+          <template v-if="videoParsed.lightbox">
+            <lightbox
+              classes="video__lightbox-frame media-viewer"
+              :source="dataSrc"
+              :source-caption="dataCaption"
+              :cloudinary="cloudinary"
+              @click="handleLightboxClick"
+              @lightbox-close="handleLightboxClose"
+            >
+              <template #lightbox-content>
+                <iframe
+                  class="video__iframe"
+                  v-if="isPlayed"
+                  frameborder="0"
+                  allowfullscreen="1"
+                  allow="autoplay; fullscreen"
+                  :src="embedSrc"
+                  sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-presentation"
+                  scrolling="no"
+                ></iframe>
+              </template>
+              <div class="img-fluid">
+                <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt" :lazy="lazy" />
+              </div>
+              <span class="media-viewer-container">
+                <span class="video-player-icon">
+                  <i class="fas fa-play"></i>
+                </span>
+              </span>
+            </lightbox>
+
+            <a
+              class="js-video-button media-viewer video-player-btn"
+              href="javascript:;"
+              :data-src="dataSrc"
+              :data-caption="dataCaption"
+              :data-hs-fancybox-options="dataOptionsLightBox"
+              ref="lightbox"
+              @click="handleLightboxClick"
+              style="display: none"
+            >
+              <div class="img-fluid">
+                <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt" :lazy="lazy" />
+              </div>
+              <span class="media-viewer-container">
+                <span class="video-player-icon">
+                  <i class="fas fa-play"></i>
+                </span>
+              </span>
+            </a>
+          </template>
+          <template v-else>
+            <div class="img-fluid video-player-preview">
+              <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt" :lazy="lazy" />
+            </div>
+            <template v-if="videoParsed.id">
+              <a
+                class="js-inline-video-player video__player-btn video-player-btn video-player-centered"
+                href="javascript:;"
+                :data-hs-video-player-options="dataOptionsRegular"
+                ref="video-player"
+                @click="handleButtonClick"
+              >
+                <span class="video-player-icon video__player-icon">
+                  <i class="fas fa-play"></i>
+                </span>
+              </a>
+            </template>
+            <div class="embed-responsive embed-responsive-16by9" ref="iframeContainer">
               <iframe
                 class="video__iframe"
                 v-if="isPlayed"
                 frameborder="0"
                 allowfullscreen="1"
-                allow="autoplay; fullscreen"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                width="640"
+                height="360"
                 :src="embedSrc"
                 sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-presentation"
-                scrolling="no"
               ></iframe>
-            </template>
-            <div class="img-fluid">
-              <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt" :lazy="lazy" />
             </div>
-            <span class="media-viewer-container">
-              <span class="video-player-icon">
-                <i class="fas fa-play"></i>
-              </span>
-            </span>
-          </lightbox>
-
-          <a
-            class="js-video-button media-viewer video-player-btn"
-            href="javascript:;"
-            :data-src="dataSrc"
-            :data-caption="dataCaption"
-            :data-hs-fancybox-options="dataOptionsLightBox"
-            ref="lightbox"
-            @click="handleLightboxClick"
-            style="display: none"
-          >
-            <div class="img-fluid">
-              <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt" :lazy="lazy" />
-            </div>
-            <span class="media-viewer-container">
-              <span class="video-player-icon">
-                <i class="fas fa-play"></i>
-              </span>
-            </span>
-          </a>
-        </template>
-        <template v-else>
-          <div class="img-fluid video-player-preview">
-            <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt" :lazy="lazy" />
-          </div>
-          <template v-if="videoParsed.id">
-            <a
-              class="js-inline-video-player video__player-btn video-player-btn video-player-centered"
-              href="javascript:;"
-              :data-hs-video-player-options="dataOptionsRegular"
-              ref="video-player"
-              :onclick="handleButtonClick"
-            >
-              <span class="video-player-icon video__player-icon">
-                <i class="fas fa-play"></i>
-              </span>
-            </a>
           </template>
-          <div class="embed-responsive embed-responsive-16by9" ref="iframeContainer">
-            <iframe
-              class="video__iframe"
-              v-if="isPlayed"
-              frameborder="0"
-              allowfullscreen="1"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              width="640"
-              height="360"
-              :src="embedSrc"
-              sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-presentation"
-            ></iframe>
-          </div>
-        </template>
-      </div>
-      <template v-if="videoParsed.headline">
-        <div
-          :class="videoContentClass"
-          :onclick="onClickVideoContent"
-          data-utility-animation-step="1"
-          data-utility-animation-ref="video-content"
-        >
-          <div class="row no-gutters d-flex flex-wrap">
-            <template v-if="videoParsed.logo">
-              <div class="video__logo col-lg-5 order-lg-2 pb-3 pb-lg-0">
-                <v-img :img="videoParsed.logo" :cloudinary="true" :alt="videoParsed.logoAlt" :lazy="lazy" />
+        </div>
+        <template v-if="videoParsed.headline">
+          <div
+            :class="videoContentClass"
+            :onclick="onClickVideoContent"
+            data-utility-animation-step="1"
+            data-utility-animation-ref="video-content"
+          >
+            <div class="row no-gutters d-flex flex-wrap">
+              <template v-if="videoParsed.logo">
+                <div class="video__logo col-lg-5 order-lg-2 pb-3 pb-lg-0">
+                  <v-img :img="videoParsed.logo" :cloudinary="true" :alt="videoParsed.logoAlt" :lazy="lazy" />
+                </div>
+                <div class="col-lg-7 order-lg-1">
+                  <headline :level="level" :text="videoParsed.headline" :classes="headlineClasses" />
+                </div>
+              </template>
+              <template v-else>
+                <div class="col-lg-12 order-lg-1">
+                  <headline :level="level" :text="videoParsed.headline" :classes="headlineClasses" />
+                </div>
+              </template>
+              <div :class="videoTextClasses" v-if="videoParsed.text" v-html="videoParsed.text"></div>
+              <div class="col-lg-12 pt-2 pt-lg-4 order-lg-3" v-if="videoParsed.date">
+                {{ videoParsed.date }}
               </div>
-              <div class="col-lg-7 order-lg-1">
-                <headline :level="level" :text="videoParsed.headline" :classes="headlineClasses" />
-              </div>
-            </template>
-            <template v-else>
-              <div class="col-lg-12 order-lg-1">
-                <headline :level="level" :text="videoParsed.headline" :classes="headlineClasses" />
-              </div>
-            </template>
-            <div :class="videoTextClasses" v-if="videoParsed.text" v-html="videoParsed.text"></div>
-            <div class="col-lg-12 pt-2 pt-lg-4 order-lg-3" v-if="videoParsed.date">
-              {{ videoParsed.date }}
+            </div>
+            <div class="pt-4 pt-lg-6 pb-6" v-if="videoParsed.ctaText">
+              <cta
+                :text="videoParsed?.ctaText"
+                :href="videoParsed?.ctaHref"
+                :link="videoParsed?.link"
+                :target="videoParsed?.target"
+                :type="videoParsed?.type"
+              />
             </div>
           </div>
-          <div class="pt-4 pt-lg-6 pb-6" v-if="videoParsed.ctaText">
-            <cta
-              :text="videoParsed?.ctaText"
-              :href="videoParsed?.ctaHref"
-              :link="videoParsed?.link"
-              :target="videoParsed?.target"
-              :type="videoParsed?.type"
-            />
-          </div>
-        </div>
-      </template>
-    </wrapper>
+        </template>
+      </wrapper>
+    </div>
   </div>
 </template>
 <script>
@@ -149,9 +151,15 @@ export default {
         `${this.spacing ? this.spacing : 'space-bottom-1 space-bottom-lg-0'}`,
         `${!this.isReversed() ? 'h-100' : ''}`,
         `${this.variant ? 'video--' + this.variant : ''}`,
+        `${Tools.isTrue(this.left) ? 'video--left' : ''}`,
+        `${Tools.isTrue(this.light) ? 'video--light' : ''}`,
+        `${this.hasCustomLevel ? 'video--custom-level' : ''}`,
         this.elementClasses.root,
         'vue-component',
       ];
+    },
+    style() {
+      return this.bgColor ? { 'background-color': this.bgColor } : null;
     },
     videoPlayerClass() {
       return [
@@ -172,7 +180,7 @@ export default {
         'video__content',
         this.noAnimation ? '' : 'fade-in-bottom',
         `${this.videoParsed.ctaText ? 'hover__parent' : ''}`,
-        `${this.isVariantRow ? 'col-md-6 ' : 'flex-grow-1 ' + padding}`,
+        `${this.isVariantRow ? `col-md-6 ${Tools.isTrue(this.left) ? 'order-md-2' : 'order-md-1'} ` : 'flex-grow-1 ' + padding}`,
         this.elementClasses['video-content'],
       ];
     },
@@ -182,8 +190,13 @@ export default {
     isCompact() {
       return this.variant === 'compact';
     },
+    hasCustomLevel() {
+      return this.level && this.level !== 'h4';
+    },
     variantClasses() {
-      return !this.variant ? 'bg-dark' : this.isVariantRow ? 'col-md-6 order-md-2' : '';
+      const order = Tools.isTrue(this.left) ? 'order-md-1' : 'order-md-2';
+
+      return !this.variant ? 'bg-dark' : this.isVariantRow ? `col-md-6 ${order}` : '';
     },
     isVariantRow() {
       return this.variant === 'row';
@@ -205,9 +218,9 @@ export default {
     },
     headlineClasses() {
       const variantClasses = this.isVariantRow || this.isCompact ? 'mb-0' : '';
-      const headlineClasses = this.isCompact ? 'h5-font-size' : 'h4-font-size';
+      const headlineClasses = this.isCompact ? 'h5-font-size' : `${this.level}-font-size`;
 
-      return `${headlineClasses} ${variantClasses}`;
+      return `${headlineClasses} ${variantClasses} font-weight-bold`;
     },
     dataOptionsLightBox() {
       const options = {
@@ -293,7 +306,16 @@ export default {
     video: Object,
     variant: String,
     spacing: String,
-    overlapping: String,
+    overlapping: [String, Boolean],
+    bgColor: String,
+    left: {
+      type: [String, Boolean],
+      default: false,
+    },
+    light: {
+      type: [String, Boolean],
+      default: false,
+    },
     level: {
       default: 'h4',
     },
@@ -349,7 +371,7 @@ export default {
       background-color: transparent;
     }
     .headline {
-      @include font-style($style: 'font-size-2', $weight: 'light');
+      @include font-weight($weight: 'light', $important: true);
 
       display: flex;
       align-self: flex-end;
@@ -363,6 +385,67 @@ export default {
         &::before {
           content: '';
           width: 60%;
+        }
+      }
+    }
+
+    &:not(.video--custom-level) {
+      .headline {
+        @include font-style($style: 'font-size-2', $weight: 'light');
+      }
+    }
+
+    .video__text {
+      @include font-weight($weight: 'light', $important: true);
+
+      padding-right: 0;
+      line-height: 1.6em;
+
+      @include media-breakpoint-up(md) {
+        padding-right: spacing(6);
+        text-align: right;
+
+        &::before {
+          content: '';
+          width: 60%;
+          flex-shrink: 0;
+        }
+      }
+    }
+
+    &.video--left {
+      .headline {
+        @include media-breakpoint-up(md) {
+          padding-right: 0;
+          padding-left: spacing(6);
+          text-align: left;
+
+          &::before {
+            content: none;
+          }
+
+          &::after {
+            content: '';
+            width: 60%;
+          }
+        }
+      }
+
+      .video__text {
+        @include media-breakpoint-up(md) {
+          padding-right: 0;
+          padding-left: spacing(6);
+          text-align: left;
+
+          &::before {
+            content: none;
+          }
+
+          &::after {
+            content: '';
+            width: 60%;
+            flex-shrink: 0;
+          }
         }
       }
     }
@@ -412,6 +495,13 @@ export default {
   &.video--compact {
     .video__text {
       @include font-style($style: 'font-size-3', $weight: 'light');
+    }
+  }
+
+  &.video--light {
+    .video__content,
+    .headline {
+      color: var(--color-gk-white);
     }
   }
 }

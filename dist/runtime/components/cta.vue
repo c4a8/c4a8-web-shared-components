@@ -221,13 +221,13 @@ export default {
 .shared-components .cta:hover.btn-primary:not(.is-loading) {
   --cta-border-color: transparent;
 }
-.hover__parent:hover .cta.btn-primary.is-light:not(label.btn):not([href]),
-.shared-components .cta:hover.btn-primary.is-light:not(label.btn):not([href]) {
+.hover__parent:hover .cta.btn-primary.is-light,
+.shared-components .cta:hover.btn-primary.is-light {
   background-color: var(--color-primary-accent-light);
   color: var(--color-primary-accent);
 }
-.hover__parent:hover .cta.btn-primary.is-light,
-.shared-components .cta:hover.btn-primary.is-light {
+.hover__parent:hover .cta.btn-primary.is-light:not(label.btn):not([href]),
+.shared-components .cta:hover.btn-primary.is-light:not(label.btn):not([href]) {
   background-color: var(--color-primary-accent-light);
   color: var(--color-primary-accent);
 }
@@ -295,15 +295,13 @@ export default {
 .cta.is-loading, .is-loading .cta:not(.header .cta) {
   --cta-loading-delay: 0.4s;
   --cta-loading-start-duration: 1.1s;
+  pointer-events: none;
+  opacity: 0.8;
+  animation: ctaLoadingButton 1s forwards;
 }
 .cta.is-loading:active, .cta.is-loading:focus, .is-loading .cta:not(.header .cta):active, .is-loading .cta:not(.header .cta):focus {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   box-shadow: none;
-}
-.cta.is-loading, .is-loading .cta:not(.header .cta) {
-  pointer-events: none;
-  opacity: 0.8;
-  animation: ctaLoadingButton 1s forwards;
 }
 .cta.is-loading::before, .is-loading .cta:not(.header .cta)::before {
   content: "";

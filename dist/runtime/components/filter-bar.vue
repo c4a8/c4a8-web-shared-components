@@ -348,16 +348,16 @@ export default {
   background-color: var(--color-border-light);
 }
 
+.filter-bar__dropdowns {
+  display: flex;
+  gap: 1rem;
+}
 .filter-bar__dropdowns [data-utility-animation-step] {
   --utility-animation-distance: 15%;
 }
 .filter-bar__dropdowns [data-utility-animation-step].is-starting {
   animation-delay: calc(var(--utility-animation-index) * 100ms + 0ms);
   animation-duration: 0.8s;
-}
-.filter-bar__dropdowns {
-  display: flex;
-  gap: 1rem;
 }
 
 .filter-bar__views {

@@ -116,6 +116,11 @@ export default {
 <style>
 .event {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 1.5s cubic-bezier(0.19, 1, 0.2, 1);
+  --color-event-copy-default: var(--color-override-event-copy, var(--color-copy-on-primary-on-surface));
+  container-type: inline-size;
+  background-color: var(--color-surface-background);
+  overflow: hidden;
 }
 .event .is-foreground :is(img, svg, .lottie),
 .event .is-background {
@@ -128,17 +133,8 @@ export default {
   transform: scale(1.025);
   transition-duration: 1.3s;
 }
-.event {
-  transition: box-shadow 1.5s cubic-bezier(0.19, 1, 0.2, 1);
-}
 .event:hover {
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.25);
-}
-.event {
-  --color-event-copy-default: var(--color-override-event-copy, var(--color-copy-on-primary-on-surface));
-  container-type: inline-size;
-  background-color: var(--color-surface-background);
-  overflow: hidden;
 }
 .event .event__headline {
   margin-bottom: 0.5rem;
@@ -171,6 +167,13 @@ export default {
   }
 }
 .event .event__text {
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+}
+.event .event__text {
   font-size: 1rem;
   line-height: 1.6;
 }
@@ -188,13 +191,6 @@ export default {
 }
 .event .event__text {
   line-height: 1.2em !important;
-}
-.event .event__text {
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
 }
 @container (min-width: 740px) {
   .event .event__inner {
@@ -215,6 +211,13 @@ export default {
     aspect-ratio: 1;
   }
   .event .event__text {
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+  }
+  .event .event__text {
     font-size: 1.125rem;
     line-height: 1.6667em;
   }
@@ -232,13 +235,6 @@ export default {
   }
   .event .event__text {
     line-height: 1.2em !important;
-  }
-  .event .event__text {
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
   }
   .event .event__headline {
     -webkit-line-clamp: 1;
@@ -283,6 +279,7 @@ export default {
 
 .event__image-container {
   position: relative;
+  order: 2;
 }
 .event__image-container:before {
   content: "";
@@ -296,9 +293,6 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-}
-.event__image-container {
-  order: 2;
 }
 
 .event__image {

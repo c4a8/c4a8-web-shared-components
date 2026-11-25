@@ -42,7 +42,7 @@
                       :img="contact.person.image"
                       :cloudinary="contact.person.cloudinary"
                       :alt="contact.person.alt"
-                      preset="cardSmall"
+                      preset="avatar"
                       lazy
                     />
                   </div>
@@ -53,7 +53,7 @@
                     :img="contact.person.image"
                     :cloudinary="contact.person.cloudinary"
                     :alt="contact.person.alt"
-                    preset="cardSmall"
+                    preset="avatar"
                     lazy
                   />
                 </div>
@@ -400,6 +400,9 @@ export default {
 }
 
 .contact__notes {
+  display: flex;
+}
+.contact__notes {
   font-size: 1rem;
   line-height: 1.6;
 }
@@ -417,9 +420,6 @@ export default {
 }
 .contact__notes {
   flex: 1 0 100%;
-}
-.contact__notes {
-  display: flex;
 }
 
 .contact__person {

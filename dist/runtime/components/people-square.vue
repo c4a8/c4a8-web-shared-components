@@ -116,6 +116,7 @@ export default {
 <style>
 .people-square {
   position: relative;
+  margin-bottom: 3.5rem;
 }
 .people-square:before {
   content: "";
@@ -129,9 +130,6 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-}
-.people-square {
-  margin-bottom: 3.5rem;
 }
 @media (min-width: 992px) {
   .people-square.people-square--absolute {
@@ -168,15 +166,15 @@ export default {
   width: 100%;
   height: auto;
 }
-.safari .people-square__element img,
-.safari .people-square__element picture {
-  object-fit: initial;
-}
 .people-square__element img,
 .people-square__element picture {
   position: absolute;
   object-fit: cover;
   height: 100%;
+}
+.safari .people-square__element img,
+.safari .people-square__element picture {
+  object-fit: initial;
 }
 
 .people-square__background {

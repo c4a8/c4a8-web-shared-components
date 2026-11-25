@@ -411,6 +411,9 @@ export default {
 }
 
 .post__sticky-excerpt {
+  padding-top: 0.75rem;
+}
+.post__sticky-excerpt {
   font-size: 1.25rem;
   line-height: 1.6em;
 }
@@ -431,9 +434,6 @@ export default {
 }
 .post__sticky-excerpt strong {
   font-weight: inherit;
-}
-.post__sticky-excerpt {
-  padding-top: 0.75rem;
 }
 
 .post__title-images {

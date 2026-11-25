@@ -181,7 +181,7 @@ export const PostDetail = {
       title: 'Audiocodes & Devices Review',
       date: '2021-06-17',
       moment: '2021-06-17',
-      author: ['Carolin Kanja', 'Jan Petersen'],
+      author: ['Carolin Kanja'],
       categories: ['Microsoft', 'Teams', 'Calling', 'Audiocodes'],
       tags: ['Microsoft', 'Teams', 'Calling', 'Audiocodes'],
       blogtitlepic: 'head-audiocodes-review',
@@ -189,6 +189,15 @@ export const PostDetail = {
       excerpt:
         'Audiocodes &quot; hat mir mehrere Geräte &quot; für einen Test zur Verfügung gestellt. Ich habe sie alle eingerichtet und getestet. Hier ist eine kurze Zusammenfassung meiner Ergebnisse.',
       body,
+    },
+  },
+};
+
+export const MultipleAuthors = {
+  args: {
+    post: {
+      ...PostDetail.args.post,
+      author: ['Carolin Kanja', 'Jan Petersen'],
     },
   },
 };

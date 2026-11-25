@@ -427,6 +427,10 @@ export default {
 .video-frame .video-frame__headline-container {
   display: none;
 }
+.video-frame .video-frame__headline-container .video-frame__headline {
+  filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.35));
+  color: var(--video-frame-headline-color);
+}
 .video-frame .video-frame__headline-container .video-frame__headline:not(.video-frame__headline--custom) {
   font-size: calc(3.75rem / 1.8);
   line-height: 1.2em;
@@ -449,10 +453,6 @@ export default {
 }
 .video-frame .video-frame__headline-container .video-frame__headline:not(.video-frame__headline--custom) {
   line-height: 1.2em !important;
-}
-.video-frame .video-frame__headline-container .video-frame__headline {
-  filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.35));
-  color: var(--video-frame-headline-color);
 }
 @media (min-width: 768px) {
   .video-frame .video-frame__headline-container {

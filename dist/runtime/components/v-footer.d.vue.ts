@@ -16,6 +16,7 @@ declare const __VLS_export: import("vue").DefineComponent<import("vue").ExtractP
     links(): any;
     locations(): any[];
 }, {
+    socialIcon(name: any): any;
     bgColorRgba(): string | null;
 }, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<{
     data: ObjectConstructor;

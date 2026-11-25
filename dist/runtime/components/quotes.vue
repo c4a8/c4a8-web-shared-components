@@ -23,7 +23,8 @@
         <slider
           :options="slickOptions"
           :hide-background="true"
-          class="quotes__slider col-sm-12 mb-lg-n8"
+          class="quotes__slider col-sm-12"
+          :class="overlapping ? 'mb-lg-n8' : 'pb-8'"
           :hide-container="true"
         >
           <quotes-entry
@@ -66,6 +67,10 @@ export default {
     noFullscreen: {
       type: Boolean,
       default: false
+    },
+    overlapping: {
+      type: Boolean,
+      default: true
     }
   },
   mounted() {
@@ -131,13 +136,13 @@ export default {
   background-color: var(--color-quotes-background);
   color: var(--color-quotes-copy);
 }
-.quotes.quotes--no-image:not(.quotes--no-fullscreenn) {
-  min-height: 100vh;
-}
 .quotes.quotes--no-image {
   display: flex;
   align-items: center;
   padding-bottom: 6rem;
+}
+.quotes.quotes--no-image:not(.quotes--no-fullscreenn) {
+  min-height: 100vh;
 }
 .quotes.quotes--no-image .quotes__entry-quote,
 .quotes.quotes--no-image .quotes__entry-infos,
@@ -146,6 +151,9 @@ export default {
 }
 .quotes.quotes--no-image .quotes__row .slick-slide {
   margin-right: 0;
+}
+.quotes.quotes--no-image .quotes__entry-text {
+  width: 100%;
 }
 .quotes.quotes--no-image .quotes__entry-text {
   font-size: 1.5rem;
@@ -172,9 +180,6 @@ export default {
 }
 .quotes.quotes--no-image .quotes__entry-text {
   line-height: 1.4em !important;
-}
-.quotes.quotes--no-image .quotes__entry-text {
-  width: 100%;
 }
 .quotes.quotes--no-image .quotes__entry-infos {
   width: 100%;
@@ -345,12 +350,12 @@ export default {
   }
 }
 
-.safari .quotes__arrow-left {
-  transform: rotate(180deg);
-}
 .quotes__arrow-left {
   background-image: url("../../assets/svg/left.svg");
   right: 5rem;
+}
+.safari .quotes__arrow-left {
+  transform: rotate(180deg);
 }
 @media (min-width: 992px) {
   .quotes__arrow-left {
@@ -417,21 +422,21 @@ export default {
   opacity: 0;
   pointer-events: none;
 }
-.slick-active .quotes__entry .quotes__entry-quote-wrapper:not(.utility-animation), .slick-current .quotes__entry .quotes__entry-quote-wrapper:not(.utility-animation) {
-  opacity: 1;
-}
 .slick-active .quotes__entry .quotes__entry-quote-wrapper, .slick-current .quotes__entry .quotes__entry-quote-wrapper {
   pointer-events: all;
 }
+.slick-active .quotes__entry .quotes__entry-quote-wrapper:not(.utility-animation), .slick-current .quotes__entry .quotes__entry-quote-wrapper:not(.utility-animation) {
+  opacity: 1;
+}
 
+.quotes__entry-quote-wrapper {
+  position: relative;
+}
 .quotes__entry-quote-wrapper.utility-animation[data-utility-animation-step] {
   --utility-animation-distance: 15%;
 }
 .quotes__entry-quote-wrapper.utility-animation[data-utility-animation-step].is-starting {
   animation-delay: calc(var(--utility-animation-index) * 200ms + 0ms);
-}
-.quotes__entry-quote-wrapper {
-  position: relative;
 }
 @media (min-width: 992px) {
   .quotes__entry-quote-wrapper {

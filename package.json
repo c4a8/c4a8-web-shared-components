@@ -1,7 +1,7 @@
 {
   "name": "shared-components",
   "private": false,
-  "version": "0.4.123",
+  "version": "0.4.143",
   "description": "Shared Vue.js components for use on the product page",
   "type": "module",
   "exports": {
@@ -60,23 +60,20 @@
     "vue3-lottie": "^3.3.1"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "^1.9.0",
-    "@storybook/addon-essentials": "^8.2.9",
-    "@storybook/addon-interactions": "^8.2.9",
-    "@storybook/addon-links": "^8.2.9",
-    "@storybook/addon-onboarding": "^8.2.9",
-    "@storybook/blocks": "^8.2.9",
-    "@storybook/test": "^8.2.9",
-    "@storybook/vue3": "^8.2.9",
-    "@storybook/vue3-vite": "^8.2.9",
-    "@vitejs/plugin-vue": "^5.1.2",
-    "gsap": "^3.13.0",
-    "sass": "1.77.6",
-    "storybook": "^8.2.9",
-    "unplugin-vue-components": "^0.27.4",
-    "vite": "^5.4.1"
+    "gsap": "^3.13.0"
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "4.9.5"
+  },
+  "overrides": {
+    "@vercel/nft": {
+      "glob": "^14.0.6"
+    },
+    "ipx": {
+      "sharp": "^0.35.5"
+    },
+    "readdir-glob": {
+      "minimatch": "^11.0.8"
+    }
   }
 }

@@ -725,6 +725,15 @@ export default {
 }
 
 .timeline__entry-inner-text {
+  border: 1px solid var(--color-timeline-line);
+  border-radius: 4px;
+  padding: 1rem 1.5rem;
+  min-height: 5rem;
+  display: flex;
+  align-items: center;
+  max-width: 80%;
+}
+.timeline__entry-inner-text {
   font-size: 1.125rem;
   line-height: 1.6667em;
 }
@@ -745,15 +754,6 @@ export default {
 }
 .timeline__entry-inner-text strong {
   font-weight: inherit;
-}
-.timeline__entry-inner-text {
-  border: 1px solid var(--color-timeline-line);
-  border-radius: 4px;
-  padding: 1rem 1.5rem;
-  min-height: 5rem;
-  display: flex;
-  align-items: center;
-  max-width: 80%;
 }
 .timeline__entry-inner-text.timeline__entry-inner-text--simple {
   border: 0;
@@ -798,6 +798,7 @@ export default {
 .timeline__entry-title {
   font-size: 1.25rem;
   line-height: 1.6em;
+  margin-bottom: 0.75rem;
 }
 @media (min-width: 992px) {
   .timeline__entry-title {
@@ -810,9 +811,6 @@ export default {
     font-size: 1.5625rem;
     line-height: 1.6em;
   }
-}
-.timeline__entry-title {
-  margin-bottom: 0.75rem;
 }
 
 .timeline__entry-text {

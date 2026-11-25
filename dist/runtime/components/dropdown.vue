@@ -263,6 +263,9 @@ export default {
 
 .dropdown__items-list {
   --scrollbar-background-color: var(--color-gk-dark-blue-shade-10);
+  padding: 0 var(--dropdown-inner-spacing) 1rem var(--dropdown-inner-spacing);
+  max-height: 45vh;
+  overflow-y: auto;
 }
 .dropdown__items-list::-webkit-scrollbar {
   width: 8px;
@@ -278,11 +281,6 @@ export default {
 }
 .dropdown__items-list::-webkit-scrollbar-track {
   border-radius: 10px;
-}
-.dropdown__items-list {
-  padding: 0 var(--dropdown-inner-spacing) 1rem var(--dropdown-inner-spacing);
-  max-height: 45vh;
-  overflow-y: auto;
 }
 @media (min-width: 768px) {
   .dropdown__items-list {
@@ -311,11 +309,11 @@ export default {
 }
 
 .dropdown__label-placeholder {
-  font-weight: bold;
-}
-.dropdown__label-placeholder {
   opacity: 0;
   pointer-events: none;
+}
+.dropdown__label-placeholder {
+  font-weight: bold;
 }
 
 .dropdown__label-text {

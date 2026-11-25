@@ -227,6 +227,9 @@ export default {
 }
 .tab-list .tab-list__content .tab-list__text {
   font-size: 1rem;
+  position: relative;
+  font-weight: normal;
+  --color-headlines: var(--color-primary);
 }
 @media (min-width: 768px) {
   .tab-list .tab-list__content .tab-list__text {
@@ -242,11 +245,6 @@ export default {
   .tab-list .tab-list__content .tab-list__text {
     font-size: 1.25rem;
   }
-}
-.tab-list .tab-list__content .tab-list__text {
-  position: relative;
-  font-weight: normal;
-  --color-headlines: var(--color-primary);
 }
 
 .tab-list__list {
