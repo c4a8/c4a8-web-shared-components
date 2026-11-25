@@ -53,9 +53,9 @@ export const Career = {
     },
     hero: {
       overline: 'Karriere',
+      overlineBgColor: 'var(--color-gk-mid-blue)',
       bgColor: 'var(--color-gk-dark-blue)',
       light: true,
-      lightOverline: false,
       fullscreen: true,
       background: {
         icon: 'smile',

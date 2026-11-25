@@ -24,8 +24,8 @@ export const Career = {
     hero: {
       bgColor: 'var(--color-gk-dark-blue)',
       light: true,
-      lightOverline: false,
       overline: 'Karriere',
+      overlineBgColor: 'var(--color-gk-mid-blue)',
       fullscreen: true,
       animation: {
         sequence: [
@@ -62,8 +62,8 @@ export const CareerHand = {
     hero: {
       bgColor: 'var(--color-gk-dark-blue)',
       light: true,
-      lightOverline: false,
       overline: 'Karriere',
+      overlineBgColor: 'var(--color-gk-mid-blue)',
       fullscreen: true,
       animation: {
         sequence: [
@@ -112,10 +112,10 @@ export const TextImageOffset = {
     hero: {
       bgColor: 'var(--color-gk-dark-blue)',
       light: true,
-      lightOverline: false,
       headline: 'Komm zu uns. Finde deinen Platz.',
       subline: 'Erfahrt jetzt in unserem Video, wie wir<br>Bluthochdruck-Diane helfen konnten.',
       overline: 'Karriere bei einem der führenden',
+      overlineBgColor: 'var(--color-gk-mid-blue)',
       overlineFull: true,
       background: {
         spacing: 'hero__content--large',
