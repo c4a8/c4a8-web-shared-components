@@ -48,6 +48,7 @@ export const Career = {
       },
       background: {
         icon: 'smile',
+        iconColor: 'var(--color-gk-yellow)',
       },
       cta: {
         text: 'Zu den Stellenanzeigen',
@@ -76,6 +77,7 @@ export const CareerHand = {
       },
       background: {
         icon: 'hand',
+        iconColor: 'var(--color-gk-yellow)',
       },
       cta: {
         text: 'Zu den Stellenanzeigen',
