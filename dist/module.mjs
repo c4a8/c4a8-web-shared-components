@@ -61,12 +61,16 @@ const module$1 = defineNuxtModule({
     const prevIsCustomElement = _nuxt.options.vue.compilerOptions.isCustomElement;
     _nuxt.options.vue.compilerOptions.isCustomElement = (tag) => tag.startsWith("swiper-") || prevIsCustomElement?.(tag) || false;
     const runtimeDir = resolve("./runtime");
-    const optimizeDeps = [runtimeDir, "jquery", "slick-carousel"];
     _nuxt.options.build.transpile = _nuxt.options.build.transpile || [];
-    _nuxt.options.build.transpile.push(...optimizeDeps);
+    _nuxt.options.build.transpile.push(runtimeDir);
     _nuxt.options.vite.optimizeDeps ||= {};
     _nuxt.options.vite.optimizeDeps.include ||= [];
-    _nuxt.options.vite.optimizeDeps.include.push(...optimizeDeps);
+    _nuxt.options.vite.optimizeDeps.include.push(
+      "jquery",
+      "slick-carousel",
+      "bootstrap/dist/js/bootstrap.bundle.min.js",
+      "ion-rangeslider"
+    );
     _nuxt.options.css.push(resolve("./styles/index.min.css"));
     if (theme) {
       _nuxt.options.css.push(resolve(`./styles/${theme}.min.css`));
