@@ -1,5 +1,17 @@
 # Releases
 
+# Release 0.5.0
+
+- Moves the module, its build and the Storybook to Nuxt 4.5 and Vite 8; sites on Nuxt 3.17 or newer keep working with it, a Nuxt 3.21 site builds the same pages as with 0.4.143
+- Turns off the modulepreload and prefetch links by default, because Vite 8 splits a site into many more small chunks and preloading all of them delayed the first paint; a site turns them back on with `disablePreloadLinks: false`
+- Removes the console calls from the client build again when nuxt-security removes loggers, since Vite 8 ignores the esbuild option nuxt-security sets
+- Pre-bundles jQuery, Slick, Bootstrap and ion-rangeslider in development, so sliders and Bootstrap scripts also work in `nuxt dev` and `storybook dev`
+- Takes the sitemap alternatives from the prerendered pages when a site turns off the sitemap's automatic i18n
+- Reads the site config from the site's root directory, which Nuxt 4 separates from the app directory
+- Starts the blog slider when its posts are already there on mount
+- Builds the Storybook deploy on Node 24, which Nuxt 4.5 needs
+- Shows the overline and icon colors of the live career page in the career stories
+
 # Release 0.4.143
 
 - Fixes the newsletter modal on smaller screens: it scrolls as an overlay, has corrected spacing below 1200px and a full width submit button below 768px
